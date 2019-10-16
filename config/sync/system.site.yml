@@ -1,0 +1,14 @@
+uuid: c4a3bac4-f642-42b8-b339-3dd80682442f
+name: liiweb
+mail: no-reply@example.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /user/login
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI

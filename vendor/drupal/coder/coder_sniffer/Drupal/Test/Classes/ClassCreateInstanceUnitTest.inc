@@ -1,0 +1,37 @@
+<?php
+
+$x = array(new Foo, array());
+$y = new Foo;
+$z = new $class;
+$bar = new $foo[$x + 1];
+
+$obj1 = new DateTime;
+$obj1 = new \DateTime;
+$obj2 = $obj1->add(new \DateTime);
+$obj2 = $obj1->add(new Vendor);
+$obj2 = $obj1->add(new Vendor\DateTools);
+$obj2 = $obj1->add(new Vendor\DateTools\DateInterval);
+$obj2 = $obj1->add(new \Vendor\DateTools\DateInterval);
+
+$bar = new $foo[$x + 1][$y + 1];
+
+/**
+ * Test class.
+ */
+class Test2 {
+
+  /**
+   * Using PHP 7 return type hints is fine.
+   *
+   * @return ValidatorInterface[]
+   *   The validators.
+   */
+  public function getValidators(): array {
+    return [
+      new PublishedNodesValidator,
+      new MinimumNodesValidator($this->nrOfArticles),
+      new AccessibleOnCurrentDomainValidator($this->sectionService),
+    ];
+  }
+
+}

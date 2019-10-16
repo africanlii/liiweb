@@ -1,0 +1,22 @@
+<?php
+
+/**
+ *
+ */
+trait TestTrait {
+
+  /**
+   * Function visibility is missing here.
+   */
+  public function foo() {
+
+  }
+
+  /**
+   * Visibility is missing here and should be auto-fixed correctly.
+   */
+  public static function bar() {
+
+  }
+
+}
