@@ -1,0 +1,15 @@
+name: XML Sitemap
+type: module
+description: 'Creates an XML sitemap conforming to the <a href="http://sitemaps.org/">sitemaps.org protocol</a>.'
+package: 'XML Sitemap'
+# core: 8.x
+configure: xmlsitemap.admin_search
+recommends: robotstxt
+test_dependencies:
+  - robotstxt:robotstxt
+
+# Information added by Drupal.org packaging script on 2018-10-03
+version: '8.x-1.0-alpha3'
+core: '8.x'
+project: 'xmlsitemap'
+datestamp: 1538607186

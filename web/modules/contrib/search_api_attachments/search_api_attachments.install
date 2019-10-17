@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Install and update functions for the search_api_attachments module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function search_api_attachments_uninstall() {
+  // Remove collection search_api_attachments.
+  \Drupal::keyValue('search_api_attachments')->deleteAll();
+}
+
+/**
+ * Add path configuration for pdftotext_extractor.
+ */
+function search_api_attachments_update_8001() {
+  \Drupal::configFactory()
+    ->getEditable('search_api_attachments.admin_config')
+    ->set('pdftotext_extractor_configuration.pdftotext_path', 'pdftotext')
+    ->save();
+}
+
+/**
+ * Add configuration for tika_server_extractor.
+ */
+function search_api_attachments_update_8002() {
+  \Drupal::configFactory()
+    ->getEditable('search_api_attachments.admin_config')
+    ->set('tika_server_extractor_configuration.scheme', 'http')
+    ->set('tika_server_extractor_configuration.host', 'localhost')
+    ->set('tika_server_extractor_configuration.port', '9998')
+    ->set('tika_server_extractor_configuration.timeout', '5')
+    ->save();
+}

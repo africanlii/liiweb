@@ -1,0 +1,6 @@
+services:
+  captcha.config_subscriber:
+    class: Drupal\captcha\EventSubscriber\CaptchaCachedSettingsSubscriber
+    arguments: ['@element_info']
+    tags:
+      - { name: event_subscriber }

@@ -1,0 +1,13 @@
+type: module
+name: 'Search API Solr Devel'
+description: 'Debugging your Solr integration.'
+package: Search
+core: 8.x
+dependencies:
+  - devel:devel
+  - search_api_solr:search_api_solr
+
+# Information added by Drupal.org packaging script on 2019-10-02
+version: '8.x-3.7'
+project: 'search_api_solr'
+datestamp: 1570049588

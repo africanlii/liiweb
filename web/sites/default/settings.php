@@ -280,7 +280,7 @@ $config_directories = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = 'zYYZN27t0RFHZBLiS7VNuqi0mN9aF_r3T_9nI6Wv2Lbt60nj4sNcQU3vZMZGIjbADC7FPxzvjg';
+$settings['hash_salt'] = '';
 
 /**
  * Deployment identifier.
@@ -290,7 +290,7 @@ $settings['hash_salt'] = 'zYYZN27t0RFHZBLiS7VNuqi0mN9aF_r3T_9nI6Wv2Lbt60nj4sNcQU
  * custom code that changes the container, changing this identifier will also
  * allow the container to be invalidated as soon as code is deployed.
  */
-# $settings['deployment_identifier'] = \Drupal::VERSION;
+$settings['deployment_identifier'] = \Drupal::VERSION;
 
 /**
  * Access control for update.php script.

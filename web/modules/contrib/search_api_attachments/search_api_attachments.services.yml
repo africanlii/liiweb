@@ -1,0 +1,10 @@
+services:
+  plugin.manager.search_api_attachments.text_extractor:
+    class: Drupal\search_api_attachments\TextExtractorPluginManager
+    parent: default_plugin_manager
+  search_api_attachments.extract_file_validator:
+    class: Drupal\search_api_attachments\ExtractFileValidator
+    arguments: ['@file.mime_type.guesser']
+  logger.channel.search_api_attachments:
+    parent: logger.channel_base
+    arguments: ['search_api_attachments']

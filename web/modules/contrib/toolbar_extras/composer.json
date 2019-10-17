@@ -1,0 +1,14 @@
+{
+  "name": "drupal/toolbar_extras",
+  "type": "drupal-module",
+  "description": "Add extras function to toolbar",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/toolbar_extras",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/toolbar_extras",
+    "source": "http://cgit.drupalcode.org/toolbar_extras"
+  },
+  "require": { }
+}

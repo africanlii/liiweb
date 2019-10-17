@@ -1,0 +1,6 @@
+{
+  "name": "drupal/search_api_attachments",
+  "description": "Extract and index file fields content.",
+  "type": "drupal-module",
+  "license": "GPL-2.0+"
+}
