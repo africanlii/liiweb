@@ -1,5 +1,7 @@
 # Ignore sensitive information
 /web/sites/*/settings.local.php
+*.sql
+*.sql.gz
 
 # Ignore Drupal's file directory
 /web/sites/*/files/
