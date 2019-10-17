@@ -11,4 +11,5 @@ is_admin: false
 permissions:
   - 'access content'
   - 'opt-in or out of google analytics tracking'
+  - 'use text format full_html'
   - 'view media'
