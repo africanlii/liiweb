@@ -1,0 +1,15 @@
+uuid: e20a23d1-7fa1-4e6f-9c66-469b70a9563c
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content: {  }
+hidden:
+  langcode: true
+  member_for: true
+  search_api_excerpt: true
