@@ -153,6 +153,25 @@ $settings['trusted_host_patterns'] = [
   '^liiweb\.test$',
 ];
 
+/**
+ * Salt for one-time login links, cancel links, form tokens, etc.
+ *
+ * This variable will be set to a random value by the installer. All one-time
+ * login links will be invalidated if the value is changed. Note that if your
+ * site is deployed on a cluster of web servers, you must ensure that this
+ * variable has the same value on each server.
+ *
+ * For enhanced security, you may set this variable to the contents of a file
+ * outside your document root; you should also ensure that this file is not
+ * stored with backups of your database.
+ *
+ * Example:
+ * @code
+ *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
+ * @endcode
+ */
+$settings['hash_salt'] = '';
+
 $databases['default']['default'] = [
   'database' => 'liiweb',
   'username' => 'root',
@@ -163,3 +182,22 @@ $databases['default']['default'] = [
   'prefix' => '',
   'collation' => 'utf8mb4_general_ci',
 ];
+
+# Google ReCaptcha
+$config['recaptcha.settings']['site_key'] = '6LfXXXX';
+$config['recaptcha.settings']['secret_key'] = '6LfXXXX';
+
+# Search API Solr
+$config['search_api.server.solr']['backend_config']['connector'] = 'basic_auth';
+$config['search_api.server.solr']['backend_config']['connector_config']['scheme'] = 'http';
+$config['search_api.server.solr']['backend_config']['connector_config']['host'] = 'search.server.ip';
+$config['search_api.server.solr']['backend_config']['connector_config']['port'] = 8983;
+$config['search_api.server.solr']['backend_config']['connector_config']['core'] = 'liiweb';
+$config['search_api.server.solr']['backend_config']['connector_config']['username'] = 'root';
+$config['search_api.server.solr']['backend_config']['connector_config']['password'] = 'secret';
+
+# Google Analytics
+$config['google_analytics.settings']['account'] = 'UA-XXXXXXXX-X';
+
+# Webforms
+$config['webform.webform.contact']['handlers']['email_notification']['settings']['to_mail'] = 'contact@lii.org';

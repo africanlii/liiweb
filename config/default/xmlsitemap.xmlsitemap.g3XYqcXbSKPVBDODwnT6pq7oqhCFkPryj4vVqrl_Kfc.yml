@@ -1,0 +1,8 @@
+uuid: dbc9ee61-9113-4627-a1a9-4cd15b24a5a9
+langcode: en
+status: true
+dependencies: {  }
+id: g3XYqcXbSKPVBDODwnT6pq7oqhCFkPryj4vVqrl_Kfc
+label: 'http://default/'
+context:
+  language: en

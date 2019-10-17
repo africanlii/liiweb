@@ -73,3 +73,6 @@ display:
           content: 'Aucun média disponible.'
   media_page_list:
     display_title: Média
+    display_options:
+      menu:
+        title: Média
