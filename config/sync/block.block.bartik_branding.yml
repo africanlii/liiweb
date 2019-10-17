@@ -1,15 +1,15 @@
-uuid: b37393a1-cb6f-41ff-9b35-cac3e9438770
+uuid: d5dca204-90fa-4478-8146-d777a56909ec
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - stark
+    - bartik
 _core:
   default_config_hash: fRKXNB91UxDvEMkzCR8ZBsawfC6Fqbme2gtobei3gu4
-id: stark_branding
-theme: stark
+id: bartik_branding
+theme: bartik
 region: header
 weight: 0
 provider: null

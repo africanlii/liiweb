@@ -3006,6 +3006,59 @@
         "description": "Drupal is an open source content management platform powering millions of websites and applications."
     },
     {
+        "name": "drupal/toolbar_extras",
+        "version": "1.0.0-beta2",
+        "version_normalized": "1.0.0.0-beta2",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/toolbar_extras.git",
+            "reference": "8.x-1.0-beta2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/toolbar_extras-8.x-1.0-beta2.zip",
+            "reference": "8.x-1.0-beta2",
+            "shasum": "3f21b4638a7f755b25c3f61d5993acb7cf39405c"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-beta2",
+                "datestamp": "1529744624",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Beta releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "zipme_hkt",
+                "homepage": "https://www.drupal.org/user/368236"
+            }
+        ],
+        "description": "Add extras function to toolbar",
+        "homepage": "https://www.drupal.org/project/toolbar_extras",
+        "keywords": [
+            "Drupal"
+        ],
+        "support": {
+            "source": "http://cgit.drupalcode.org/toolbar_extras",
+            "issues": "https://www.drupal.org/project/issues/toolbar_extras"
+        }
+    },
+    {
         "name": "drush/drush",
         "version": "9.7.1",
         "version_normalized": "9.7.1.0",
