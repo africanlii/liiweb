@@ -22,6 +22,11 @@ Follow the steps below to update your core files.
 
 ## FAQ
 
+
+### How can I install contrib modules?
+
+https://www.drupal.org/docs/develop/using-composer/using-composer-to-install-drupal-and-manage-dependencies
+
 ### How can I apply patches to downloaded modules?
 
 If you need to apply patches (depending on the project being modified, a pull

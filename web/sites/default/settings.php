@@ -672,6 +672,7 @@ if ($settings['hash_salt']) {
 /**
  * Load services definition file.
  */
+/** @noinspection PhpUndefinedVariableInspection */
 $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
 
 /**

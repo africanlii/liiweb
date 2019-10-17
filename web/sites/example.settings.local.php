@@ -116,7 +116,7 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  * be gained by generating a query string from rebuild_token_calculator.sh and
  * using these parameters in a request to rebuild.php.
  */
-$settings['rebuild_access'] = TRUE;
+$settings['rebuild_access'] = FALSE;
 
 /**
  * Skip file system permissions hardening.
@@ -129,3 +129,37 @@ $settings['rebuild_access'] = TRUE;
  * directory.
  */
 $settings['skip_permissions_hardening'] = TRUE;
+
+/**
+ * Trusted host configuration.
+ *
+ * Drupal core can use the Symfony trusted host mechanism to prevent HTTP Host
+ * header spoofing.
+ *
+ * To enable the trusted host mechanism, you enable your allowable hosts
+ * in $settings['trusted_host_patterns']. This should be an array of regular
+ * expression patterns, without delimiters, representing the hosts you would
+ * like to allow.
+ *
+ * For example:
+ * @code
+ * $settings['trusted_host_patterns'] = [
+ *   '^www\.example\.com$',
+ * ];
+ * @endcode
+ * will allow the site to only run from www.example.com.
+ */
+$settings['trusted_host_patterns'] = [
+  '^liiweb\.test$',
+];
+
+$databases['default']['default'] = [
+  'database' => 'liiweb',
+  'username' => 'root',
+  'password' => 'secret',
+  'host' => 'localhost',
+  'port' => '3306',
+  'driver' => 'mysql',
+  'prefix' => '',
+  'collation' => 'utf8mb4_general_ci',
+];
