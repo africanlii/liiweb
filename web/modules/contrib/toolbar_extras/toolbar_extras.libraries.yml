@@ -1,0 +1,6 @@
+toolbar_extras:
+  version: VERSION
+  js:
+    js/toolbar_extras.js: {}
+  dependencies:
+    - toolbar/toolbar

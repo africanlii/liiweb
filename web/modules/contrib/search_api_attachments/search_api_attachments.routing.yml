@@ -1,0 +1,7 @@
+search_api_attachments.admin_form:
+  path: '/admin/config/search/search_api_attachments'
+  defaults:
+    _form: '\Drupal\search_api_attachments\Form\TextExtractorFormSettings'
+    _title: 'Search API Attachments'
+  requirements:
+    _permission: 'administer search_api_attachments'

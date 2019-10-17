@@ -1,0 +1,5 @@
+search_api_attachments.admin_form:
+  title: 'Search API Attachments'
+  parent: system.admin_config_search
+  description: 'Configure search_api_attachments.'
+  route_name: search_api_attachments.admin_form

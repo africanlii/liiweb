@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Administration toolbar extras.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function toolbar_extras_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'toolbar_extras/toolbar_extras';
+}

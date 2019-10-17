@@ -1,0 +1,14 @@
+name: XML Sitemap Custom
+type: module
+description: 'Adds user configurable links to the sitemap.'
+package: 'XML Sitemap'
+# core: 8.x
+configure: xmlsitemap_custom.list
+dependencies:
+    - xmlsitemap:xmlsitemap
+
+# Information added by Drupal.org packaging script on 2018-10-03
+version: '8.x-1.0-alpha3'
+core: '8.x'
+project: 'xmlsitemap'
+datestamp: 1538607186

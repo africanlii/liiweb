@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * @file
+ * Implement hooks and help functions to delete extracted files cache content.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\file\Entity\File;
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+function search_api_attachments_file_update(File $file) {
+  _search_api_attachments_delete_cache($file);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function search_api_attachments_file_delete(File $file) {
+  _search_api_attachments_delete_cache($file);
+}
+
+/**
+ * Implements hook_cache_flush().
+ */
+function search_api_attachments_cache_flush() {
+  $config = \Drupal::config('search_api_attachments.admin_config');
+  $preserve_cache = $config->get('preserve_cache');
+  if (!$preserve_cache) {
+    $collection = 'search_api_attachments';
+    \Drupal::keyValue($collection)->deleteAll();
+  }
+}
+
+/**
+ * Helper function to delete a file extracted data cache.
+ *
+ * @param \Drupal\file\Entity\File $file
+ *   The file object.
+ */
+function _search_api_attachments_delete_cache(File $file) {
+  $collection = 'search_api_attachments';
+  $key = $collection . ':' . $file->id();
+  \Drupal::keyValue($collection)->delete($key);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function search_api_attachments_theme() {
+  return [
+    'saa' => [
+      'variables' => [
+        'message' => NULL,
+        'type' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_help().
+ */
+function search_api_attachments_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.search_api_attachments':
+      $text = file_get_contents(dirname(__FILE__) . '/README.txt');
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}

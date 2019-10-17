@@ -1,0 +1,28 @@
+plugin.plugin_configuration.search_api_processor.file_attachments:
+  type: mapping
+  label: 'File attachments processor configuration'
+  mapping:
+    excluded_extensions:
+      type: string
+      label: 'Excluded file extensions'
+    number_indexed:
+      type: integer
+      label: 'Number of files indexed per file field'
+    number_first_bytes:
+      type: string
+      label: 'Size limit of the extracted string before indexing'
+    max_filesize:
+      type: string
+      label: 'Maximum upload size'
+    excluded_private:
+      type: integer
+      label: 'Exclude private files'
+    excluded_mimes:
+      type: string
+      label: 'Excluded mime types'
+    weights:
+      type: sequence
+      label: 'The processor''s weights for the different processing stages'
+      sequence:
+        type: integer
+        label: 'The processor''s weight for this stage'
