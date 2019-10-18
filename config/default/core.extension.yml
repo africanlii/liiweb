@@ -21,6 +21,7 @@ module:
   google_analytics: 0
   image: 0
   language: 0
+  liiweb: 0
   link: 0
   locale: 0
   media: 0
