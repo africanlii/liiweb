@@ -1,0 +1,18 @@
+uuid: f8ea448f-87ca-4ac9-b025-27fc058770a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.legislation
+id: node.legislation.title
+field_name: title
+entity_type: node
+bundle: legislation
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
