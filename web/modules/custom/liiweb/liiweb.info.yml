@@ -1,0 +1,6 @@
+name: LII Web
+type: module
+description: 'Holds custom functionality for the LII Website'
+package: custom
+version: VERSION
+core: 8.x
