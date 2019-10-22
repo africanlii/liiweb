@@ -3,12 +3,43 @@
 [![Build Status](https://travis-ci.com/stefanbutura/liiweb.svg?branch=master)](https://travis-ci.org/drupal-composer/drupal-project)
 
 
+## Install development environment from scratch
 
-## Setup development environment
+Make sure you have Drush 9 installed. This guide helps installing the 'default' site on the developer computer.
 
-1. Git checkout
-1. Create a virtual host in Apache
-1. Install the instance [TODO]
+1. Create a database liiweb in MySQL
+2. Clone this repository this project in `/home/user/work/liiweb/website` folder
+3. Create a virtual host in Apache which should look like this. For consistency please use the same domain.
+```apacheconfig
+<VirtualHost *:80>
+  ServerName liiweb.test
+  DocumentRoot /home/user/work/liiweb/website/web/
+  <Directory /home/user/work/liiweb/website/web/>
+    AllowOverride All
+    Require all granted
+  </Directory>
+  <FilesMatch ".+\.php$">
+    SetHandler "proxy:unix:/run/php/php7.3-fpm.sock|fcgi://localhost"
+  </FilesMatch>
+</VirtualHost>
+```
+4. Create Drupal settings file
+```bash
+cp web/sites/example.settings.local.php web/sites/default/settings.local.php
+```
+Then open the configuration file and set the missing variables: `$settings['hash_salt']`, `$databases['default']['default'` at minimum. If available, configure additional settings: Solr integration etc.
+
+At this stage if you visit http://liiweb.test it should open the Drupal installation procedure. Proceed further.
+
+5. Install the instance using Drush
+```
+drush site:install --existing-config -y
+drush cim sync -y
+drush cr
+```
+6. Open the local instance
+
+When you open the instance http://liiweb.test again you should be able to log in with the username and passwords set by Drush.
 
 
 ## Updating Drupal Core
