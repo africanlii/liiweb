@@ -1,0 +1,51 @@
+uuid: d7ebe615-a0bb-4ed9-9ef4-dfe139ef9905
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.legislation.field_created
+    - field.field.node.legislation.field_publication_date
+    - field.field.node.legislation.field_publication_name
+    - node.type.legislation
+  module:
+    - datetime
+    - user
+id: node.legislation.default
+targetEntityType: node
+bundle: legislation
+mode: default
+content:
+  field_created:
+    weight: 101
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_publication_date:
+    weight: 102
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_publication_name:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
