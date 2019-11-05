@@ -1,0 +1,9 @@
+uuid: e11883b0-6a12-4774-bff9-b525083b0869
+langcode: en
+status: true
+dependencies: {  }
+id: work_repeal
+label: 'Work Repeal'
+icon_uuid: null
+description: 'References that repeal legislation works'
+behavior_plugins: {  }

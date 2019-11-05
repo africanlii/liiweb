@@ -1,0 +1,15 @@
+uuid: 60557a23-6e5a-4baf-bea7-0d9a869c8e66
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.legislation_tags
+id: taxonomy_term.legislation_tags.default
+targetEntityType: taxonomy_term
+bundle: legislation_tags
+mode: default
+content: {  }
+hidden:
+  description: true
+  langcode: true
+  search_api_excerpt: true
