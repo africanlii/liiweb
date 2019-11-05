@@ -1,17 +1,16 @@
-uuid: dc8db76f-f8b8-4fc4-a637-00c452b5662f
+uuid: 6df8ba82-4da1-4db3-a030-0326b6a75ef9
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime
     - node
-id: node.field_created
-field_name: field_created
+    - text
+id: node.field_content
+field_name: field_content
 entity_type: node
-type: datetime
-settings:
-  datetime_type: date
-module: datetime
+type: text_long
+settings: {  }
+module: text
 locked: false
 cardinality: 1
 translatable: true

@@ -1,20 +1,20 @@
-uuid: 91595ede-7b9c-4719-a787-2a115adbb0f0
+uuid: 0c661576-db99-4608-b626-c30f51b3a274
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_created
+    - field.storage.node.field_commencement_date
     - node.type.legislation
   module:
     - datetime
-id: node.legislation.field_created
-field_name: field_created
+id: node.legislation.field_commencement_date
+field_name: field_commencement_date
 entity_type: node
 bundle: legislation
-label: Created
-description: 'Timestamp of when the work was first created.'
+label: 'Commencement date'
+description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }

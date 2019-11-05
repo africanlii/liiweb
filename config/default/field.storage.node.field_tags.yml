@@ -1,19 +1,19 @@
-uuid: dc8db76f-f8b8-4fc4-a637-00c452b5662f
+uuid: 793ed118-38a7-4ae9-99e3-d20ac4675475
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime
     - node
-id: node.field_created
-field_name: field_created
+    - taxonomy
+id: node.field_tags
+field_name: field_tags
 entity_type: node
-type: datetime
+type: entity_reference
 settings:
-  datetime_type: date
-module: datetime
+  target_type: taxonomy_term
+module: core
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false
