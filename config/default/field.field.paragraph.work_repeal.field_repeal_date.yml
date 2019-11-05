@@ -1,0 +1,21 @@
+uuid: 6ca58133-074f-4b29-b2e4-b38bceac1abd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_repeal_date
+    - paragraphs.paragraphs_type.work_repeal
+  module:
+    - datetime
+id: paragraph.work_repeal.field_repeal_date
+field_name: field_repeal_date
+entity_type: paragraph
+bundle: work_repeal
+label: 'Repeal date'
+description: 'Date when the document was repealed'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

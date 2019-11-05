@@ -1,17 +1,18 @@
-uuid: dc8db76f-f8b8-4fc4-a637-00c452b5662f
+uuid: 684009c7-417e-45fc-801c-6c302681e4c4
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime
     - node
-id: node.field_created
-field_name: field_created
+id: node.field_frbr_uri
+field_name: field_frbr_uri
 entity_type: node
-type: datetime
+type: string
 settings:
-  datetime_type: date
-module: datetime
+  max_length: 2048
+  is_ascii: false
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true
