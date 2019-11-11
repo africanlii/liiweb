@@ -1,0 +1,30 @@
+liiweb.legislation.post:
+  path: /api/node/legislation
+  methods: [POST]
+  defaults:
+    _controller: liiweb.entity_resource:createIndividual
+    resource_type: node--legislation
+  requirements:
+    _entity_create_access: node:legislation
+    _csrf_request_header_token: 'TRUE'
+  options:
+    _auth: ['basic_auth']
+    parameters:
+      resource_type:
+        type: jsonapi_resource_type
+
+liiweb.legislation.api_call:
+  path: /akn/{country}/{year}/{number}/{langcode_year}
+  methods: [DELETE, PATCH, POST]
+  defaults:
+    _controller: liiweb.entity_resource:apiCall
+    resource_type: node--legislation
+    langcode_year: 0
+  requirements:
+    _access: 'TRUE'
+    _csrf_request_header_token: 'TRUE'
+  options:
+    _auth: ['basic_auth']
+    parameters:
+      resource_type:
+        type: jsonapi_resource_type
