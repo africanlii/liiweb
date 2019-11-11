@@ -1,0 +1,15 @@
+services:
+  liiweb.entity_resource:
+    class: Drupal\liiweb_api\Controller\LiiWebEntityResource
+    arguments:
+      - '@entity_type.manager'
+      - '@entity_field.manager'
+      - '@jsonapi.resource_type.repository'
+      - '@renderer'
+      - '@entity.repository'
+      - '@jsonapi.include_resolver'
+      - '@jsonapi.entity_access_checker'
+      - '@jsonapi.field_resolver'
+      - '@jsonapi.serializer'
+      - '@datetime.time'
+      - '@current_user'
