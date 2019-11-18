@@ -1,0 +1,13 @@
+{
+  "data": {
+    "type": "node--legislation",
+    "attributes": {
+      "title": "Legislation title 2019",
+      "langcode": "en",
+      "field_publication_date": "2019-03-11",
+      "field_publication_name": "Publication name",
+      "field_frbr_uri": "/akn/za/1993/31/eng@2019-03-11"
+    }
+  }
+}
+
