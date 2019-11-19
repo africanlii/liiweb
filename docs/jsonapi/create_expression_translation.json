@@ -2,10 +2,10 @@
   "data": {
     "type": "node--legislation",
     "attributes": {
-      "title": "Legislation title FR 2019",
       "langcode": "fr",
+      "title": "Nouvelle expression: Titre de la législation en français",
       "field_publication_date": "2019-03-11",
-      "field_publication_name": "Publication name",
+      "field_publication_name": "Nouvelle expression: Nom de publication",
       "field_frbr_uri": "/akn/za/1993/31/fra@2019-03-11"
     }
   }
