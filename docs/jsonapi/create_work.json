@@ -2,10 +2,10 @@
   "data": {
     "type": "node--legislation",
     "attributes": {
-      "title": "Legislation title 2017",
+      "title": "Work: Original legislation title",
       "langcode": "en",
       "field_publication_date": "2017-03-11",
-      "field_publication_name": "Publication name",
+      "field_publication_name": "Work: Original publication name",
       "field_frbr_uri": "/akn/za/1993/31/eng@2017-03-11"
     }
   }

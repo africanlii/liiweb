@@ -1,0 +1,10 @@
+{
+  "data": {
+    "type": "node--legislation",
+    "attributes": {
+      "langcode": "en",
+      "title": "Updated legislation title",
+      "field_publication_name": "Updated publication name"
+    }
+  }
+}
