@@ -3049,6 +3049,9 @@
                 "recurse": false,
                 "replace": false,
                 "merge-extra": false
+            },
+            "patches_applied": {
+                "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch"
             }
         },
         "installation-source": "dist",
