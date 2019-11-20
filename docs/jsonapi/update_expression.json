@@ -3,8 +3,27 @@
     "type": "node--legislation",
     "attributes": {
       "langcode": "en",
-      "title": "Updated legislation title",
+      "title": "Work: /akn/za/1993/31/eng@1993-01-31 - Simple work (updated expression)",
       "field_publication_name": "Updated publication name"
+    },
+    "relationships": {
+      "field_tags": {
+        "data": [
+          {
+            "type": "taxonomy_term--legislation_tags",
+            "tid": "tid",
+            "id": "virtual"
+          },
+          {
+            "type": "taxonomy_term--legislation_tags",
+            "tid": "tid",
+            "id": "virtual",
+            "attributes": {
+              "name": "Tag #3"
+            }
+          }
+        ]
+      }
     }
   }
 }
