@@ -1,0 +1,76 @@
+{
+  "data": {
+    "type": "node--legislation",
+    "attributes": {
+      "title": "Legislation title 2017",
+      "langcode": "en",
+      "field_publication_date": "2017-03-11",
+      "field_publication_name": "Publication name",
+      "field_frbr_uri": "/akn/za/1993/31/eng@2017-03-11"
+    },
+    "relationships": {
+      "field_tags": {
+        "data": [
+          {
+            "type": "taxonomy_term--legislation_tags",
+            "tid": "tid",
+            "id": "virtual",
+            "attributes": {
+              "name": "Legislation title 2017"
+            }
+          },
+          {
+            "type": "taxonomy_term--legislation_tags",
+            "tid": "tid",
+            "id": "virtual",
+            "attributes": {
+              "name": "title#sec#22"
+            }
+          }
+        ]
+      },
+      "field_parent_work": {
+        "data": [
+          {
+            "type": "node--legislation",
+            "nid": "nid",
+            "id": "virtual",
+            "attributes": {
+              "title": "Legislation title 2018 - parent",
+              "langcode": "en",
+              "field_publication_date": "2018-03-11",
+              "field_publication_name": "Publication name",
+              "field_frbr_uri": "/akn/za/1993/31/eng@2018-03-11/parent"
+            }
+          }
+        ]
+      },
+      "field_repeal": {
+        "data": [
+          {
+            "type": "paragraph--work_repeal",
+            "pid": "pid",
+            "id": "virtual",
+            "attributes": {
+              "field_repeal_date": "1995-12-23"
+            },
+            "relationships": {
+              "field_repeal_work": {
+                "data": [
+                  {
+                    "type": "node--legislation",
+                    "nid": "nid",
+                    "id": "virtual",
+                    "attributes": {
+                      "field_frbr_uri": "/akn/za/1993/31/eng@2017-03-11"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
