@@ -37,3 +37,14 @@ function liiweb_api_node_access(NodeInterface $node, $op, AccountInterface $acco
   }
   return AccessResult::neutral();
 }
+
+/**
+ * Implements hook_entity_create().
+ */
+function liiweb_api_entity_create(\Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity instanceof \Drupal\node\Entity\Node) {
+    if ($entity->bundle() == 'legislation' && Drupal::currentUser()->hasPermission('manipulate legislation api')) {
+      $entity->set('field_created_by_api', TRUE);
+    }
+  }
+}
