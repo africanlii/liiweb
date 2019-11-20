@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.legislation.field_commencement_date
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
+    - field.field.node.legislation.field_created_by_api
     - field.field.node.legislation.field_document_link
     - field.field.node.legislation.field_files
     - field.field.node.legislation.field_frbr_uri
@@ -32,7 +33,7 @@ bundle: legislation
 mode: default
 content:
   field_commencement_date:
-    weight: 108
+    weight: 8
     label: above
     settings:
       format_type: medium
@@ -41,14 +42,14 @@ content:
     type: datetime_default
     region: content
   field_content:
-    weight: 112
+    weight: 12
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_created:
-    weight: 101
+    weight: 1
     label: above
     settings:
       format_type: medium
@@ -57,7 +58,7 @@ content:
     type: datetime_default
     region: content
   field_document_link:
-    weight: 110
+    weight: 10
     label: above
     settings:
       trim_length: 80
@@ -69,7 +70,7 @@ content:
     type: link
     region: content
   field_files:
-    weight: 114
+    weight: 14
     label: above
     settings:
       use_description_as_link_text: true
@@ -77,7 +78,7 @@ content:
     type: file_default
     region: content
   field_frbr_uri:
-    weight: 104
+    weight: 4
     label: above
     settings:
       link_to_entity: false
@@ -85,7 +86,7 @@ content:
     type: string
     region: content
   field_images:
-    weight: 113
+    weight: 13
     label: above
     settings:
       image_style: ''
@@ -94,7 +95,7 @@ content:
     type: image
     region: content
   field_parent_work:
-    weight: 105
+    weight: 5
     label: above
     settings:
       link: true
@@ -102,7 +103,7 @@ content:
     type: entity_reference_label
     region: content
   field_publication_date:
-    weight: 102
+    weight: 2
     label: above
     settings:
       format_type: medium
@@ -111,7 +112,7 @@ content:
     type: datetime_default
     region: content
   field_publication_name:
-    weight: 103
+    weight: 3
     label: above
     settings:
       link_to_entity: false
@@ -120,7 +121,7 @@ content:
     region: content
   field_repeal:
     type: entity_reference_revisions_entity_view
-    weight: 107
+    weight: 7
     label: above
     settings:
       view_mode: default
@@ -128,7 +129,7 @@ content:
     third_party_settings: {  }
     region: content
   field_stub:
-    weight: 109
+    weight: 9
     label: above
     settings:
       format: default
@@ -138,7 +139,7 @@ content:
     type: boolean
     region: content
   field_tags:
-    weight: 106
+    weight: 6
     label: above
     settings:
       link: true
@@ -146,17 +147,18 @@ content:
     type: entity_reference_label
     region: content
   field_toc:
-    weight: 111
+    weight: 11
     label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: content
   links:
-    weight: 100
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
+  field_created_by_api: true
   langcode: true
   search_api_excerpt: true
