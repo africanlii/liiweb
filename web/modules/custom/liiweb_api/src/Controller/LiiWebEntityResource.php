@@ -3,12 +3,9 @@
 namespace Drupal\liiweb_api\Controller;
 
 use Drupal\Component\Serialization\Json;
-use Drupal\Core\Config\Entity\ConfigEntityInterface;
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Entity\RevisionLogInterface;
-use Drupal\facets\Exception\Exception;
 use Drupal\jsonapi\Controller\EntityResource;
 use Drupal\jsonapi\JsonApiResource\ErrorCollection;
 use Drupal\jsonapi\JsonApiResource\JsonApiDocumentTopLevel;
@@ -21,7 +18,6 @@ use Drupal\jsonapi\ResourceType\ResourceType;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class LiiWebEntityResource extends EntityResource {
@@ -67,22 +63,18 @@ class LiiWebEntityResource extends EntityResource {
   public function apiCall(ResourceType $resource_type, Request $request, $country, $year, $number, $langcode_year = NULL) {
     $request_method = $request->getMethod();
 
-    if (in_array($request_method, ['POST', 'PATCH'])) {
-      /** @var NodeInterface $parsed_entity */
-      $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
-    }
-
     if ($request_method == 'DELETE') {
       return $this->delete($request, $langcode_year);
     }
 
     if (!empty($langcode_year)) {
       $langcode_year = explode('@', $langcode_year);
-      $langcode = $langcode_year[0];
       $date = $langcode_year[1];
     }
 
     if ($request_method == 'POST') {
+      /** @var NodeInterface $parsed_entity */
+      $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
       $create_revision = FALSE;
       // Try to load the node.
       $node = $this->getNodeFromFrbrUri($request->getRequestUri());
@@ -259,6 +251,22 @@ class LiiWebEntityResource extends EntityResource {
     $entity->save();
     $primary_data = new ResourceObjectData([ResourceObject::createFromEntity($resource_type, $entity)], 1);
     return $this->buildWrappedResponse($primary_data, $request, $this->getIncludes($request, $primary_data));
+  }
+
+  /**
+   * @inheritDoc
+   */
+  public function createIndividual(ResourceType $resource_type, Request $request) {
+    $database = \Drupal::database();
+    $transaction = $database->startTransaction();
+
+    try {
+      return  parent::createIndividual($resource_type, $request);
+    } catch (\Exception $e) {
+      $transaction->rollback();
+      \Drupal::logger('liiweb_api')->error($e->getMessage());
+      return $this->getResourceResponseError($e->getMessage(), $e->getCode());
+    }
   }
 
 }

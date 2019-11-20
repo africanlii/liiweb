@@ -84,6 +84,7 @@
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/Commands/contrib/{$name}": ["type:drupal-drush"]
         },
+        "patches-file": "composer.patches.json",
         "drupal-scaffold": {
             "initial": {
                 ".editorconfig": "../.editorconfig",

@@ -17,6 +17,14 @@ http://liiweb.test/api/node/legislation
 
 After this call a new Drupal node is created in the system having a current revision.
 
+This example creates a new work (assimilated as well with the first expression of a node) having completed fields: tags, primary work, repeal work:
+```
+curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X POST -u api_user:password --data @create_complete_work.json \
+http://liiweb.test/api/node/legislation
+```
+Notice: If the entity searched by "attributes" key is not found, then a new entity is created and linked to the new work
+
+
 ## Update an existing expression
 
 This example updates the title and publication name of the legislation previously created. In this way any other field can be changed.
@@ -30,6 +38,13 @@ http://liiweb.test/akn/za/1993/31/eng@2017-03-11
 
 After the call the Drupal revision will have its fields updated with the new values and can be visible by visiting the page for this legislation. Note the existing revision has been altered and the system had not created a new one.
 
+
+
+This example will update a work, removing one of it's tags, the primary work and the repeal work
+```
+curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X PATCH -u api_user:password --data @update_complex_expression.json \
+http://liiweb.test/akn/za/1993/31/eng@2017-03-13
+```
 
 ## Create a new expression
 
