@@ -265,7 +265,7 @@ class LiiWebEntityResource extends EntityResource {
     } catch (\Exception $e) {
       $transaction->rollback();
       \Drupal::logger('liiweb_api')->error($e->getMessage());
-      return $this->getResourceResponseError($e->getMessage(), $e->getCode());
+      return $this->getResourceResponseError($e->getMessage(), 500);
     }
   }
 
