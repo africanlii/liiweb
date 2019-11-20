@@ -109,21 +109,20 @@ class LiiWebJsonApiDocumentTopLevelNormalizer extends JsonApiDocumentTopLevelNor
             throw new BadRequestHttpException("Invalid type specified for related resource: '" . $relationship['data'][$key]['type'] . "'");
           }
 
-          $relationEntityStorage = $this->entityTypeManager
-            ->getStorage($relationResourceType->getEntityTypeId());
+          $relationEntity = $this->getEntityForParameters($relationResourceType, $relationship['data'][$key]['attributes']);
 
-          if ($relationResourceType->getEntityTypeId() != 'paragraph') {
-            $entity = $relationEntityStorage->loadByProperties($relationship['data'][$key]['attributes']);
-          }
-
-          if (!empty($entity)) {
-            $relationEntity = reset($entity);
+          if (!empty($relationEntity)) {
             $map[$relationEntity->uuid()] = $relationEntity->id();
             $id_list[$key] = $relationEntity->uuid();
             if ($relationEntity instanceof Paragraph) {
               $revisionMapping[$relationEntity->uuid()] = $relationEntity->getRevisionId();
             }
             continue;
+          }
+
+          /** We allow creation of paragraphs and terms on the same request as the main entity */
+          if ($relationResourceType->getEntityTypeId() == 'node') {
+            throw new BadRequestHttpException(sprintf("Cannot find entity for requested parameters: %s", json_encode($relationship['data'][$key]['attributes'])));
           }
 
           $relationData = $relationship['data'][$key];
@@ -144,9 +143,11 @@ class LiiWebJsonApiDocumentTopLevelNormalizer extends JsonApiDocumentTopLevelNor
           }
 
           $uuid = $response->getResponseData()->getData()->toArray()[0]->getId();
+          $relationEntityStorage = $this->entityTypeManager
+            ->getStorage($relationResourceType->getEntityTypeId());
 
           /** @var \Drupal\Core\Entity\Entity $relationEntity */
-          $relationEntity =   $relationEntityStorage->loadByProperties(['uuid' => $uuid]);
+          $relationEntity = $relationEntityStorage->loadByProperties(['uuid' => $uuid]);
           if (empty($relationEntity)) {
             throw new BadRequestHttpException("Could not found relation entity!");
           }
@@ -199,5 +200,36 @@ class LiiWebJsonApiDocumentTopLevelNormalizer extends JsonApiDocumentTopLevelNor
     return $this
       ->serializer
       ->denormalize($normalized, $class, $format, $context);
+  }
+
+  /**
+   * @param \Drupal\jsonapi\ResourceType\ResourceType $relationResourceType
+   * @param array $parameters
+   *
+   * @return mixed|void|null
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  protected function getEntityForParameters(ResourceType $relationResourceType, array $parameters) {
+    if ($relationResourceType->getEntityTypeId() == 'paragraph') {
+      return;
+    }
+
+    $relationEntityStorage = $this->entityTypeManager
+      ->getStorage($relationResourceType->getEntityTypeId());
+
+    $query = $relationEntityStorage->getQuery();
+    foreach ($parameters as $field => $value) {
+      $query->condition($field, "$value%", "LIKE");
+    }
+
+    $ids = $query->execute();
+
+    $entities = $relationEntityStorage->loadMultiple($ids);
+    if (empty($entities)) {
+      return NULL;
+    }
+
+    return reset($entities);
   }
 }
