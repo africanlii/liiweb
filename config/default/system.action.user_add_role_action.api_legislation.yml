@@ -1,0 +1,14 @@
+uuid: 34f74f45-0a46-4e41-9102-87f341533288
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.api_legislation
+  module:
+    - user
+id: user_add_role_action.api_legislation
+label: 'Add the Legislation API User role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: api_legislation

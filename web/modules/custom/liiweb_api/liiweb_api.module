@@ -1,11 +1,38 @@
 <?php
+/** @noinspection PhpUnused */
+
+/*
+ * @file liiweb_api.module
+ */
+
+use \Drupal\Core\Access\AccessResult;
+use \Drupal\Core\Session\AccountInterface;
+use \Drupal\node\NodeInterface;
 
 /**
  * Implements hook_entity_type_alter().
+ * {@inheritDoc}
  */
 function liiweb_entity_type_alter(array &$entity_types) {
   $constraints = $entity_types['node']->getConstraints();
   unset($constraints['EntityChanged']);
   $constraints['LiiWebEntityChanged'] = NULL;
   $entity_types['node']->setConstraints($constraints);
+}
+
+/**
+ * Implements hook_node_access().
+ * Deny access to edit legislation imported via API.
+ * {@inheritDoc}
+ */
+function liiweb_api_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  if ($node->bundle() == 'legislation' && ($op == 'update' || $op == 'delete')) {
+    if (!$account->hasPermission('manipulate legislation api')) {
+      /** @noinspection PhpUndefinedFieldInspection */
+      if($node->field_created_by_api->value == 1) {
+        return AccessResult::forbidden('Cannot manipulate legislation imported via the API')->cachePerPermissions();
+      }
+    }
+  }
+  return AccessResult::neutral();
 }
