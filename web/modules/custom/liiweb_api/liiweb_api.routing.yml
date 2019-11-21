@@ -15,7 +15,7 @@ liiweb.legislation.post:
 
 liiweb.legislation.api_call:
   path: /akn/{country}/{year}/{number}/{langcode_year}
-  methods: [DELETE, PATCH, POST]
+  methods: [GET, DELETE, PATCH, POST]
   defaults:
     _controller: liiweb.entity_resource:apiCall
     resource_type: node--legislation
@@ -24,7 +24,7 @@ liiweb.legislation.api_call:
     _access: 'TRUE'
     _csrf_request_header_token: 'TRUE'
   options:
-    _auth: ['basic_auth']
+    _auth: ['basic_auth', 'cookie']
     parameters:
       resource_type:
         type: jsonapi_resource_type
