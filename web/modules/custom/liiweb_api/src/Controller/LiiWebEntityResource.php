@@ -18,7 +18,9 @@ use Drupal\jsonapi\ResourceType\ResourceType;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class LiiWebEntityResource extends EntityResource {
 
@@ -62,6 +64,10 @@ class LiiWebEntityResource extends EntityResource {
 
   public function apiCall(ResourceType $resource_type, Request $request, $country, $year, $number, $langcode_year = NULL) {
     $request_method = $request->getMethod();
+
+    if ($request_method == 'GET') {
+      return $this->get($request);
+    }
 
     if ($request_method == 'DELETE') {
       return $this->delete($request, $langcode_year);
@@ -117,6 +123,24 @@ class LiiWebEntityResource extends EntityResource {
     }
 
     return $this->getResourceResponseError('Method not accepted', 400);
+  }
+
+  protected function get(Request $request) {
+    /** @var NodeInterface $revision */
+    $revision = $this->getRevisionFromFrbrUri($request->getRequestUri());
+    if (empty($revision)) {
+      throw new NotFoundHttpException();
+    }
+
+    if ($request->headers->get('Accept') == 'application/json') {
+      return $this->getIndividual($revision, $request);
+    }
+
+    if (!$revision->access()) {
+      throw new AccessDeniedHttpException();
+    }
+    $build = $this->entityTypeManager->getViewBuilder('node')->view($revision);
+    return $build;
   }
 
   protected function getResourceResponseError($message, $status_code) {
