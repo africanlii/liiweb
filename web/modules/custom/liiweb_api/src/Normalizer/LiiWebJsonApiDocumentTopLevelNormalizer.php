@@ -3,6 +3,7 @@
 namespace Drupal\liiweb_api\Normalizer;
 
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
+use Drupal\jsonapi\JsonApiResource\ErrorCollection;
 use Drupal\jsonapi\Normalizer\JsonApiDocumentTopLevelNormalizer;
 use Drupal\jsonapi\ResourceType\ResourceType;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -137,6 +138,11 @@ class LiiWebJsonApiDocumentTopLevelNormalizer extends JsonApiDocumentTopLevelNor
             json_encode(['data' => $relationData]));
 
           $response = $service->createIndividual($relationResourceType, $relationRequest);
+          $responseData = $response->getResponseData()->getData();
+
+          if ($responseData instanceof ErrorCollection) {
+            throw new BadRequestHttpException($responseData->getIterator()->next());
+          }
 
           if ($response->getResponseData()->getData()->count() != 1) {
             throw new BadRequestHttpException("There cannot be more than one individual created from one request! ");

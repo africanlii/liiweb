@@ -2,11 +2,21 @@
 
 namespace Drupal\liiweb_api\Controller;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Component\Serialization\Json;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Entity\RevisionLogInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\jsonapi\Access\EntityAccessChecker;
+use Drupal\jsonapi\Context\FieldResolver;
 use Drupal\jsonapi\Controller\EntityResource;
+use Drupal\jsonapi\IncludeResolver;
 use Drupal\jsonapi\JsonApiResource\ErrorCollection;
 use Drupal\jsonapi\JsonApiResource\JsonApiDocumentTopLevel;
 use Drupal\jsonapi\JsonApiResource\LinkCollection;
@@ -15,119 +25,116 @@ use Drupal\jsonapi\JsonApiResource\ResourceObject;
 use Drupal\jsonapi\JsonApiResource\ResourceObjectData;
 use Drupal\jsonapi\ResourceResponse;
 use Drupal\jsonapi\ResourceType\ResourceType;
+use Drupal\jsonapi\ResourceType\ResourceTypeRepositoryInterface;
+use Drupal\liiweb_api\LiiWebApiUtils;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class LiiWebEntityResource extends EntityResource {
 
-  const LANGCODE_MAPPING = [
-    'fra' => 'fr',
-    'eng' => 'en',
-  ];
+  /**
+   * @var \Drupal\liiweb_api\LiiWebApiUtils
+   */
+  protected $liiWebApiUtils;
 
-  protected function getRevisionFromFrbrUri($uri) {
-    $this->getNodeFromFrbrUri($uri);
+  /**
+   * @var \Psr\Log\LoggerInterface
+   */
+  protected $logger;
 
-    $result = \Drupal::database()->query("
-    SELECT entity_id, revision_id, langcode
-    FROM node_revision__field_frbr_uri
-    WHERE field_frbr_uri_value = :uri
-    ORDER BY revision_id DESC", [':uri' => $uri])->fetchAssoc();
-
-    if (!empty($result['entity_id'])) {
-      return \Drupal::entityTypeManager()->getStorage('node')->loadRevision($result['revision_id'])->getTranslation($result['langcode']);
-    }
-
-    return NULL;
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityFieldManagerInterface $field_manager, ResourceTypeRepositoryInterface $resource_type_repository, RendererInterface $renderer, EntityRepositoryInterface $entity_repository, IncludeResolver $include_resolver, EntityAccessChecker $entity_access_checker, FieldResolver $field_resolver, SerializerInterface $serializer, TimeInterface $time, AccountInterface $user, LoggerChannelFactoryInterface $loggerChannelFactory, LiiWebApiUtils $liiWebApiUtils) {
+    parent::__construct($entity_type_manager, $field_manager, $resource_type_repository, $renderer, $entity_repository, $include_resolver, $entity_access_checker, $field_resolver, $serializer, $time, $user);
+    $this->logger = $loggerChannelFactory->get('liiweb_api');
+    $this->liiWebApiUtils = $liiWebApiUtils;
   }
 
-  protected function getNodeFromFrbrUri($uri) {
-    $base_uri = explode('/', $uri);
-    array_pop($base_uri);
-    $base_uri = implode('/', $base_uri);
+  /**
+   * @param \Drupal\jsonapi\ResourceType\ResourceType $resource_type
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   * @param $country
+   * @param $year
+   * @param $number
+   * @param $langcode_year
+   *
+   * @return \Drupal\jsonapi\ResourceResponse
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  public function post(ResourceType $resource_type, Request $request, $country, $year, $number, $langcode_year) {
+    $langcode_year = explode('@', $langcode_year);
+    $date = $langcode_year[1];
 
-    $node = \Drupal::entityQuery('node')
-      ->condition('type', 'legislation')
-      ->condition('field_frbr_uri', "$base_uri/%", 'LIKE')
-      ->execute();
-
-    if (!empty($node)) {
-      $node = reset($node);
+    /** @var NodeInterface $parsed_entity */
+    $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
+    $create_revision = FALSE;
+    // Try to load the node.
+    $node = $this->getNodeFromFrbrUri($request->getRequestUri());
+    if (empty($node)) {
+      return $this->getResourceResponseError('The requested node does not exist.', 404);
     }
 
-    return Node::load($node);
+    $revision = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    if (!empty($revision)) {
+      return $this->getResourceResponseError('Revision already exists.', 400);
+    }
+
+    /** @var \Drupal\Core\Entity\TranslatableInterface $revision */
+    $revision = $this->getRevisionWithPublicationDate($node, $date);
+    // A revision with that creation date does not exist, and the langcode is different from the original language - invalid request
+    if (empty($revision) && $node->language()->getId() != $parsed_entity->language()->getId()) {
+      return $this->getResourceResponseError('Cannot create translations for revisions that do not exist. Please create a revision in the default language for that node with the requested date and try again.', 404);
+    }
+
+    // If we found the revision for that creation date, just create a translation for it.
+    if (!empty($revision)) {
+      $revision = $revision->addTranslation($parsed_entity->language()->getId());
+      return $this->patchIndividual($resource_type, $revision, $request, $create_revision);
+    }
+
+    // If we didn't find the revision for that creation date but the langcode is the same as the node,
+    // just create a revision.
+    return $this->patchIndividual($resource_type, $node, $request, TRUE);
   }
 
-  public function apiCall(ResourceType $resource_type, Request $request, $country, $year, $number, $langcode_year = NULL) {
-    $request_method = $request->getMethod();
-
-    if ($request_method == 'GET') {
-      return $this->get($request);
+  /**
+   * @param \Drupal\jsonapi\ResourceType\ResourceType $resource_type
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *
+   * @return \Drupal\jsonapi\ResourceResponse
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  public function patch(ResourceType $resource_type, Request $request) {
+    $revision = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    if (empty($revision)) {
+      return $this->getResourceResponseError('The requested revision does not exist.', 404);
     }
 
-    if ($request_method == 'DELETE') {
-      return $this->delete($request, $langcode_year);
-    }
-
-    if (!empty($langcode_year)) {
-      $langcode_year = explode('@', $langcode_year);
-      $date = $langcode_year[1];
-    }
-
-    if ($request_method == 'POST') {
-      /** @var NodeInterface $parsed_entity */
-      $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
-      $create_revision = FALSE;
-      // Try to load the node.
-      $node = $this->getNodeFromFrbrUri($request->getRequestUri());
-      if (empty($node)) {
-        return $this->getResourceResponseError('The requested node does not exist.', 404);
-      }
-
-      $revision = $this->getRevisionFromFrbrUri($request->getRequestUri());
-      if (!empty($revision)) {
-        return $this->getResourceResponseError('Revision already exists.', 400);
-      }
-
-      /** @var \Drupal\Core\Entity\TranslatableInterface $revision */
-      $revision = $this->getRevisionWithPublicationDate($node, $date);
-      // A revision with that creation date does not exist, and the langcode is different from the original language - invalid request
-      if (empty($revision) && $node->language()->getId() != $parsed_entity->language()->getId()) {
-        return $this->getResourceResponseError('Cannot create translations for revisions that do not exist. Please create a revision in the default language for that node with the requested date and try again.', 404);
-      }
-
-      // If we found the revision for that creation date, just create a translation for it.
-      if (!empty($revision)) {
-        $revision = $revision->addTranslation($parsed_entity->language()->getId());
-        return $this->patchIndividual($resource_type, $revision, $request, $create_revision);
-      }
-      // If we didn't find the revision for that creation date but the langcode is the same as the node,
-      // just create a revision.
-      else {
-        $revision = $node;
-        return $this->patchIndividual($resource_type, $revision, $request, TRUE);
-      }
-    }
-
-    if ($request_method == 'PATCH') {
-      $revision = $this->getRevisionFromFrbrUri($request->getRequestUri());
-      if (empty($revision)) {
-        return $this->getResourceResponseError('The requested revision does not exist.', 404);
-      }
-
-      return $this->patchIndividual($resource_type, $revision, $request);
-    }
-
-    return $this->getResourceResponseError('Method not accepted', 400);
+    return $this->patchIndividual($resource_type, $revision, $request);
   }
 
-  protected function get(Request $request) {
+  /**
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   * @param null $langcode_year
+   *
+   * @return array|\Drupal\jsonapi\ResourceResponse
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  protected function get(Request $request, $langcode_year = NULL) {
     /** @var NodeInterface $revision */
-    $revision = $this->getRevisionFromFrbrUri($request->getRequestUri());
+    if (empty($langcode_year)) {
+      $revision = $this->getNodeFromFrbrUri($request->getRequestUri());
+    }
+    else {
+      $revision = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    }
+
     if (empty($revision)) {
       throw new NotFoundHttpException();
     }
@@ -152,7 +159,9 @@ class LiiWebEntityResource extends EntityResource {
    * @param \Drupal\node\NodeInterface $node
    * @param $date
    *
-   * @return \Drupal\Core\Entity\EntityInterface|\Drupal\Core\Entity\RevisionableInterface|null
+   * @return \Drupal\Core\Entity\EntityInterface|\Drupal\Core\Entity\RevisionableInterface|mixed|null
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   protected function getRevisionWithPublicationDate(NodeInterface $node, $date) {
     $revisions = $this->getNodeRevisions($node);
@@ -165,6 +174,15 @@ class LiiWebEntityResource extends EntityResource {
     return NULL;
   }
 
+  /**
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   * @param null $langcode_year
+   *
+   * @return \Drupal\jsonapi\ResourceResponse
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
   public function delete(Request $request, $langcode_year = NULL) {
     // Request to delete the node.
     if (empty($langcode_year)) {
@@ -180,7 +198,7 @@ class LiiWebEntityResource extends EntityResource {
     /** @var \Drupal\node\NodeStorage $nodeStorage */
     $nodeStorage = $this->entityTypeManager->getStorage('node');
     /** @var RevisionableInterface $node */
-    $node = $this->getRevisionFromFrbrUri($request->getRequestUri());
+    $node = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
 
     // Revision not found.
     if (empty($node)) {
@@ -285,10 +303,10 @@ class LiiWebEntityResource extends EntityResource {
     $transaction = $database->startTransaction();
 
     try {
-      return  parent::createIndividual($resource_type, $request);
+      return parent::createIndividual($resource_type, $request);
     } catch (\Exception $e) {
       $transaction->rollback();
-      \Drupal::logger('liiweb_api')->error($e->getMessage());
+      $this->logger->error($e->getMessage());
       return $this->getResourceResponseError($e->getMessage(), 500);
     }
   }
