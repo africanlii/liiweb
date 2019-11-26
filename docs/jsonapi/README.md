@@ -40,7 +40,6 @@ http://liiweb.test/api/node/legislation
 
 Notice: In this example the referenced entity `"attributes": { "field_frbr_uri": "/akn/za/2017/15/eng@2017-06-15" }` must exist in order to be successfully linked to this work. 
 
-
 ## Update an existing expression
 
 This example corrects the title and publication name of a work previously created. In this way any other fields could be changed.
@@ -88,6 +87,79 @@ To replace relationships, just pass empty data structures like this:
       }
     }
 }
+```
+
+## Adding files to a work
+
+Before linking a file to a work, the file must first be uploaded into Drupal.
+
+- uploading a file (pdf, doc, docx):
+
+```
+curl http://liiweb.test/jsonapi/node/legislation/field_files \
+   -u api_user:password \
+   -H 'Accept: application/vnd.api+json' \
+   -H 'Content-Type: application/octet-stream' \
+   -H 'Content-Disposition: attachment; filename="FILENAME.pdf"' \
+   --data-binary @/path/to/file.pdf
+```
+
+- uploading images:
+
+```
+curl http://liiweb.test/jsonapi/node/legislation/field_images \
+   -u api_user:password \
+   -H 'Accept: application/vnd.api+json' \
+   -H 'Content-Type: application/octet-stream' \
+   -H 'Content-Disposition: attachment; filename="FILENAME.png"' \
+   --data-binary @/path/to/file.png
+```
+
+This POST call will save the file entity in Drupal and will return the file data. It is important to save the file ID as it will be used to link the file to a legislation.
+
+```json
+{
+  "data": {
+    "type": "file--file",
+    "id": "b4b921e1-bdd4-47d7-a380-b573cbae262a"
+  },
+  ...
+}
+```
+
+Finally, the file can be linked to a work using relationships:
+
+```json
+...
+"relationships": {
+  "field_images": {
+    "data": [
+      {
+        "type": "file--file",
+        "id": "765b20df-94a5-472d-ac19-fbd7d8c25b82"
+      },
+      {
+        "type": "file--file",
+        "id": "58ab4180-cbf0-43ed-91fb-5ff867602cd3"
+      }
+    ]
+  },
+  "field_files": {
+    "data": [
+      {
+        "type": "file--file",
+        "id": "765b20df-94a5-472d-ac19-fbd7d8c25b8x"
+      }
+    ]
+  }
+}
+```
+
+Example:
+
+```
+curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X PATCH -u api_user:password --data @docs/jsonapi/add_files_to_expression.json \
+http://liiweb.test/akn/za/1993/31/eng@1993-01-31
 ```
 
 ## Create a new expression
