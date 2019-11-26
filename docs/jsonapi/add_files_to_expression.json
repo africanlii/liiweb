@@ -1,0 +1,35 @@
+{
+  "data": {
+    "type": "node--legislation",
+    "attributes": {
+      "langcode": "en",
+      "title": "Work: /akn/za/1993/31/eng@1993-01-31 - Simple work (with files)",
+    },
+    "relationships": {
+      "field_images": {
+        "data": [
+          {
+            "type": "file--file",
+            "id": "765b20df-94a5-472d-ac19-fbd7d8c25b82"
+          },
+          {
+            "type": "file--file",
+            "id": "58ab4180-cbf0-43ed-91fb-5ff867602cd3"
+          }
+        ]
+      },
+      "field_files": {
+        "data": [
+          {
+            "type": "file--file",
+            "id": "765b20df-94a5-472d-ac19-fbd7d8c25b8x"
+          },
+          {
+            "type": "file--file",
+            "id": "58ab4180-cbf0-43ed-91fb-5ff867602cdy"
+          }
+        ]
+      }
+    }
+  }
+}
