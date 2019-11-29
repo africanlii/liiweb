@@ -1,0 +1,40 @@
+{
+  "data": {
+    "type": "node--legislation",
+    "attributes": {
+      "title": "Work: /akn/za/1993/31/eng@1993-01-31 - Simple work (expression repealed)",
+      "langcode": "en",
+      "field_publication_date": "2019-03-11",
+      "field_publication_name": "Newest expression: Publication name",
+      "field_frbr_uri": "/akn/za/1993/31/eng@2019-03-11"
+    },
+    "relationships": {
+      "field_repeal": {
+        "data": [
+          {
+            "type": "paragraph--work_repeal",
+            "pid": "pid",
+            "id": "virtual",
+            "attributes": {
+              "field_repeal_date": "2019-08-23"
+            },
+            "relationships": {
+              "field_repeal_work": {
+                "data": [
+                  {
+                    "type": "node--legislation",
+                    "nid": "nid",
+                    "id": "virtual",
+                    "attributes": {
+                      "field_frbr_uri": "/akn/za/2017/15/eng@2017-06-15"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

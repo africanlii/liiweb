@@ -1,0 +1,14 @@
+uuid: 7fd4f4a5-b819-4d95-b822-4deca123a531
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.api_legislation
+  module:
+    - user
+id: user_remove_role_action.api_legislation
+label: 'Remove the Legislation API User role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: api_legislation

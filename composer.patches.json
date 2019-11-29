@@ -1,0 +1,7 @@
+{
+  "patches": {
+    "drupal/core": {
+      "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch"
+    }
+  }
+}
