@@ -1,5 +1,5 @@
 {
-    "name": "liiweb",
+    "name": "africanlii/liiweb",
     "description": "Drupal 8 project for the AfricanLII websites network",
     "type": "project",
     "license": "GPL-2.0-or-later",
