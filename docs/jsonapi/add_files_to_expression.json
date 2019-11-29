@@ -3,18 +3,18 @@
     "type": "node--legislation",
     "attributes": {
       "langcode": "en",
-      "title": "Work: /akn/za/1993/31/eng@1993-01-31 - Simple work (with files)",
+      "title": "Work: /akn/za/1993/31/eng@1993-01-31 - Simple work (with files)"
     },
     "relationships": {
       "field_images": {
         "data": [
           {
             "type": "file--file",
-            "id": "765b20df-94a5-472d-ac19-fbd7d8c25b82"
+            "id": "fe42769e-6832-4846-9d49-e48f098653fd"
           },
           {
             "type": "file--file",
-            "id": "58ab4180-cbf0-43ed-91fb-5ff867602cd3"
+            "id": "4808d2b8-6ed7-4dae-82c0-a16da18bf4ac"
           }
         ]
       },
@@ -22,11 +22,11 @@
         "data": [
           {
             "type": "file--file",
-            "id": "765b20df-94a5-472d-ac19-fbd7d8c25b8x"
+            "id": "7b130afd-0390-40e3-919b-10fc11b894d3"
           },
           {
             "type": "file--file",
-            "id": "58ab4180-cbf0-43ed-91fb-5ff867602cdy"
+            "id": "e7a89e0c-69ab-4391-b661-cf335f59a09d"
           }
         ]
       }
