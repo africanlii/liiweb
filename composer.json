@@ -1,5 +1,5 @@
 {
-    "name": "liiweb",
+    "name": "africanlii/liiweb",
     "description": "Drupal 8 project for the AfricanLII websites network",
     "type": "project",
     "license": "GPL-2.0-or-later",
@@ -40,6 +40,7 @@
         "zaporylie/composer-drupal-optimizations": "^1.0"
     },
     "require-dev": {
+        "drupal/entity_browser": "^2.2",
         "webflo/drupal-core-require-dev": "^8.7.0"
     },
     "conflict": {
@@ -83,6 +84,7 @@
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/Commands/contrib/{$name}": ["type:drupal-drush"]
         },
+        "patches-file": "composer.patches.json",
         "drupal-scaffold": {
             "initial": {
                 ".editorconfig": "../.editorconfig",

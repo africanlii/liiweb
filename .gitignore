@@ -15,6 +15,6 @@
 # Ignore .env files as they are personal
 /.env
 
-phpunit.xml.dist
+phpunit.xml
 web/web.config
 web/robots.txt

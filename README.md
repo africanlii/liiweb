@@ -74,6 +74,14 @@ git commit -m "refs #123 Added new fields"
 
 TODO: Add multi-site configuration details here.
 
+## How to run the tests locally
+
+Step 1. Copy `example.phpunit.xml` to `phpunit.xml` and modify variables inside according to your environment: SIMPLETEST_BASE_URL, SIMPLETEST_DB, BROWSERTEST_OUTPUT_DIRECTORY, MINK_DRIVER_ARGS_WEBDRIVER (for FunctionalJavascript tests) etc.
+Step 2. Run the whole `liiweb` suite
+```bash
+./vendor/bin/phpunit --colors=auto --group liiweb
+```
+
 ## Updating Drupal Core
 
 Follow the steps below to update your core files.

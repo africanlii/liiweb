@@ -1,0 +1,26 @@
+{
+  "data": {
+    "type": "node--legislation",
+    "attributes": {
+      "title": "Work: /akn/za/2017/15/eng@2017-06-15 - Child work (of /akn/za/1993/31/eng@1993-01-31)",
+      "langcode": "en",
+      "field_publication_date": "2017-06-15",
+      "field_publication_name": "Publication name",
+      "field_frbr_uri": "/akn/za/2017/15/eng@2017-06-15"
+    },
+    "relationships": {
+      "field_parent_work": {
+        "data": [
+          {
+            "type": "node--legislation",
+            "nid": "nid",
+            "id": "virtual",
+            "attributes": {
+              "field_frbr_uri": "/akn/za/1993/31/eng@1993-01-31"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
