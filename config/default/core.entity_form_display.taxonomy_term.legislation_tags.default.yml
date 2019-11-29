@@ -1,0 +1,34 @@
+uuid: 7e601d4a-e9d9-4cba-856c-1edb57bd62d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.legislation_tags
+id: taxonomy_term.legislation_tags.default
+targetEntityType: taxonomy_term
+bundle: legislation_tags
+mode: default
+content:
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  description: true
+  path: true

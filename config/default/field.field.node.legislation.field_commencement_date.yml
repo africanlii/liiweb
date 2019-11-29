@@ -1,0 +1,21 @@
+uuid: 0c661576-db99-4608-b626-c30f51b3a274
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_commencement_date
+    - node.type.legislation
+  module:
+    - datetime
+id: node.legislation.field_commencement_date
+field_name: field_commencement_date
+entity_type: node
+bundle: legislation
+label: 'Commencement date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
