@@ -85,7 +85,7 @@ class LiiWebEntityResource extends EntityResource {
 
     /** @var \Drupal\Core\Entity\TranslatableInterface $revision */
     $revision = $this->getRevisionWithPublicationDate($node, $date);
-    // A revision with that creation date does not exist, and the langcode is different from the original language - invalid request
+    // A revision with that publication date does not exist, and the langcode is different from the original language - invalid request
     if (empty($revision) && $node->language()->getId() != $parsed_entity->language()->getId()) {
       return $this->getResourceResponseError('Cannot create translations for revisions that do not exist. Please create a revision in the default language for that node with the requested date and try again.', 404);
     }
