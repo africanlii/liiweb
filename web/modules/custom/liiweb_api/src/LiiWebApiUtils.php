@@ -2,7 +2,8 @@
 
 namespace Drupal\liiweb_api;
 
-use Drupal\Core\Database\Driver\mysql\Connection;
+
+use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\node\Entity\Node;
 
@@ -27,6 +28,7 @@ class LiiWebApiUtils {
 
   /**
    * Constructs a new LiiWebApiUtils object.
+   * {@inheritDoc}
    */
   public function __construct(Connection $database, EntityTypeManagerInterface $entity_type_manager) {
     $this->database = $database;
