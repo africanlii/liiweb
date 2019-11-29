@@ -1,0 +1,27 @@
+uuid: 4bec5f6e-4daa-4397-9aa9-3dff4d5dcd6b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_parent_work
+    - node.type.legislation
+id: node.legislation.field_parent_work
+field_name: field_parent_work
+entity_type: node
+bundle: legislation
+label: 'Primary work'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      legislation: legislation
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
