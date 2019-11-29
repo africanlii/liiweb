@@ -1,0 +1,3 @@
+manipulate legislation api:
+  title: 'Manipulate legislation via API'
+  description: 'Users with this permission are able to modify legislation created via the API'
