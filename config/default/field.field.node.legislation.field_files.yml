@@ -1,0 +1,27 @@
+uuid: 5e866b25-bbb5-4fac-913a-44c4e0bc38f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_files
+    - node.type.legislation
+  module:
+    - file
+id: node.legislation.field_files
+field_name: field_files
+entity_type: node
+bundle: legislation
+label: Files
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: legislation/files
+  file_extensions: 'txt doc docx pdf epub'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file
