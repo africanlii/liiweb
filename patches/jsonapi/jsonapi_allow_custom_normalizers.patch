@@ -1,0 +1,13 @@
+diff --git a/core/modules/jsonapi/src/Serializer/Serializer.php b/core/modules/jsonapi/src/Serializer/Serializer.php
+index 67c07c47..f18f413c 100644
+--- a/core/modules/jsonapi/src/Serializer/Serializer.php
++++ b/core/modules/jsonapi/src/Serializer/Serializer.php
+@@ -35,7 +35,7 @@
+   public function __construct(array $normalizers = [], array $encoders = []) {
+     foreach ($normalizers as $normalizer) {
+       if (strpos(get_class($normalizer), 'Drupal\jsonapi\Normalizer') !== 0) {
+-        throw new \LogicException('JSON:API does not allow adding more normalizers!');
++//        throw new \LogicException('JSON:API does not allow adding more normalizers!');
+       }
+     }
+     parent::__construct($normalizers, $encoders);

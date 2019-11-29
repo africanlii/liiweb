@@ -1,0 +1,9 @@
+name: LII Web API
+type: module
+description: 'Holds custom functionality for the LII Website API'
+package: custom
+version: VERSION
+core: 8.x
+dependencies:
+  - drupal:jsonapi
+  - drupal:basic_auth
