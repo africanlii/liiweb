@@ -43,7 +43,9 @@ function liiweb_api_node_access(NodeInterface $node, $op, AccountInterface $acco
  */
 function liiweb_api_entity_create(\Drupal\Core\Entity\EntityInterface $entity) {
   if ($entity instanceof \Drupal\node\Entity\Node) {
-    if ($entity->bundle() == 'legislation' && Drupal::currentUser()->hasPermission('manipulate legislation api')) {
+    $currentUser = \Drupal::currentUser();
+    if ($entity->bundle() == 'legislation' && $currentUser->hasPermission('manipulate legislation api')
+      && !in_array('administrator', $currentUser->getRoles())) {
       $entity->set('field_created_by_api', TRUE);
     }
   }
