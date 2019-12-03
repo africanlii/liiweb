@@ -26,18 +26,23 @@ class UseDeclarationUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return [
-            15 => 1,
-            29 => 2,
-            30 => 1,
-            42 => 1,
-            57 => 3,
-            59 => 3,
-            61 => 1,
-            63 => 5,
-            65 => 1,
-            71 => 1,
-            73 => 2,
-            76 => 1,
+            15  => 1,
+            29  => 2,
+            30  => 1,
+            42  => 1,
+            57  => 3,
+            59  => 3,
+            61  => 1,
+            63  => 5,
+            65  => 1,
+            71  => 1,
+            73  => 2,
+            76  => 1,
+            86  => 2,
+            103 => 1,
+            112 => 1,
+            122 => 1,
+            132 => 1,
         ];
 
     }//end getErrorList()
