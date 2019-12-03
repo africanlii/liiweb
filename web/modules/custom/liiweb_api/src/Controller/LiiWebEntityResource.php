@@ -126,10 +126,10 @@ class LiiWebEntityResource extends EntityResource {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  protected function get(Request $request, $langcode_year = NULL) {
+  public function get(Request $request, $langcode_year = NULL) {
     /** @var NodeInterface $revision */
     if (empty($langcode_year)) {
-      $revision = $this->getNodeFromFrbrUri($request->getRequestUri());
+      $revision = $this->liiWebApiUtils->getNodeFromFrbrUri($request->getRequestUri());
     }
     else {
       $revision = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
