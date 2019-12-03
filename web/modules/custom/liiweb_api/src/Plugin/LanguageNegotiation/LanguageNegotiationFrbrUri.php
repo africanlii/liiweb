@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
  *   \Drupal\Core\Language\LanguageInterface::TYPE_CONTENT,
  *   \Drupal\Core\Language\LanguageInterface::TYPE_URL},
  *   weight = -7,
- *   name = @Translation("FRBR Uri"),
+ *   name = @Translation("FRBR URI"),
  *   description = @Translation("Language from the FRBR URI"),
  * )
  */
