@@ -46,6 +46,7 @@ class LiiWebApiUtils {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function getNodeFromFrbrUri($uri) {
+    $uri = urldecode($uri);
     $base_uri = explode('/', $uri);
     array_pop($base_uri);
     $base_uri = implode('/', $base_uri);
@@ -73,7 +74,7 @@ class LiiWebApiUtils {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function getRevisionFromFrbrUri($uri) {
-    $this->getNodeFromFrbrUri($uri);
+    $uri = urldecode($uri);
 
     $result = $this->database->query("
     SELECT entity_id, revision_id, langcode
