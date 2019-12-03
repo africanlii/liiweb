@@ -1,0 +1,12 @@
+<?php
+
+use Drupal\node\NodeInterface;
+
+function liiweb_node_presave(NodeInterface $node) {
+  if ($node->isDefaultRevision() && !empty($node->field_frbr_uri->value)) {
+    $node->path = [
+      'alias' => $node->field_frbr_uri->value,
+      'pathauto' => 0,
+    ];
+  }
+}
