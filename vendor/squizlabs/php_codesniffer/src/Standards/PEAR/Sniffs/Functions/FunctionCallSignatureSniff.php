@@ -346,11 +346,17 @@ class FunctionCallSignatureSniff implements Sniff
             // the indent from there.
             $prev  = $phpcsFile->findPrevious(T_CONSTANT_ENCAPSED_STRING, ($first - 2), null, true);
             $first = $phpcsFile->findFirstOnLine(Tokens::$emptyTokens, $prev, true);
+            if ($first === false) {
+                $first = ($prev + 1);
+            }
         }
 
         $foundFunctionIndent = 0;
         if ($first !== false) {
-            if ($tokens[$first]['code'] === T_INLINE_HTML) {
+            if ($tokens[$first]['code'] === T_INLINE_HTML
+                || ($tokens[$first]['code'] === T_CONSTANT_ENCAPSED_STRING
+                && $tokens[($first - 1)]['code'] === T_CONSTANT_ENCAPSED_STRING)
+            ) {
                 $trimmed = ltrim($tokens[$first]['content']);
                 if ($trimmed === '') {
                     $foundFunctionIndent = strlen($tokens[$first]['content']);
@@ -421,6 +427,28 @@ class FunctionCallSignatureSniff implements Sniff
 
         // Start processing at the first argument.
         $i = $phpcsFile->findNext(T_WHITESPACE, ($openBracket + 1), null, true);
+
+        if ($tokens[$i]['line'] > ($tokens[$openBracket]['line'] + 1)) {
+            $error = 'The first argument in a multi-line function call must be on the line after the opening parenthesis';
+            $fix   = $phpcsFile->addFixableError($error, $i, 'FirstArgumentPosition');
+            if ($fix === true) {
+                $phpcsFile->fixer->beginChangeset();
+                for ($x = ($openBracket + 1); $x < $i; $x++) {
+                    if ($tokens[$x]['line'] === $tokens[$openBracket]['line']) {
+                        continue;
+                    }
+
+                    if ($tokens[$x]['line'] === $tokens[$i]['line']) {
+                        break;
+                    }
+
+                    $phpcsFile->fixer->replaceToken($x, '');
+                }
+
+                $phpcsFile->fixer->endChangeset();
+            }
+        }//end if
+
         if ($tokens[($i - 1)]['code'] === T_WHITESPACE
             && $tokens[($i - 1)]['line'] === $tokens[$i]['line']
         ) {

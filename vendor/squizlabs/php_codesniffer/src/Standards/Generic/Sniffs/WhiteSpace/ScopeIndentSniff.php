@@ -122,7 +122,7 @@ class ScopeIndentSniff implements Sniff
      * @param int                         $stackPtr  The position of the current token
      *                                               in the stack passed in $tokens.
      *
-     * @return void
+     * @return int
      */
     public function process(File $phpcsFile, $stackPtr)
     {
@@ -844,7 +844,10 @@ class ScopeIndentSniff implements Sniff
                 && $tokens[($checkToken + 1)]['code'] !== T_DOUBLE_COLON
             ) {
                 $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($checkToken + 1), null, true);
-                if ($next === false || $tokens[$next]['code'] !== T_CLOSURE) {
+                if ($next === false
+                    || ($tokens[$next]['code'] !== T_CLOSURE
+                    && $tokens[$next]['code'] !== T_VARIABLE)
+                ) {
                     if ($this->debug === true) {
                         $line = $tokens[$checkToken]['line'];
                         $type = $tokens[$checkToken]['type'];
