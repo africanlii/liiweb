@@ -103,7 +103,7 @@ class LiiWebJsonApiDocumentTopLevelNormalizer extends JsonApiDocumentTopLevelNor
           }
 
           /** @var \Drupal\jsonapi\Controller\EntityResource $service */
-          $service = \Drupal::service('liiweb.entity_resource');
+          $service = \Drupal::service('liiweb_api.entity_resource');
           /** @var ResourceType $relationEntityType */
           $relationResourceType = $this->resourceTypeRepository->getByTypeName($relationship['data'][$key]['type']);
           if (empty($relationResourceType)) {

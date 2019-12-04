@@ -26,7 +26,7 @@ use Drupal\jsonapi\JsonApiResource\ResourceObjectData;
 use Drupal\jsonapi\ResourceResponse;
 use Drupal\jsonapi\ResourceType\ResourceType;
 use Drupal\jsonapi\ResourceType\ResourceTypeRepositoryInterface;
-use Drupal\liiweb_api\LiiWebApiUtils;
+use Drupal\liiweb\LiiWebApiUtils;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +38,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class LiiWebEntityResource extends EntityResource {
 
   /**
-   * @var \Drupal\liiweb_api\LiiWebApiUtils
+   * @var \Drupal\liiweb\LiiWebApiUtils
    */
   protected $liiWebApiUtils;
 
@@ -137,10 +137,6 @@ class LiiWebEntityResource extends EntityResource {
 
     if (empty($revision)) {
       throw new NotFoundHttpException();
-    }
-
-    if ($request->headers->get('Accept') == 'application/json') {
-      return $this->getIndividual($revision, $request);
     }
 
     if (!$revision->access()) {

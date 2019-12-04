@@ -1,7 +1,6 @@
 <?php
 
-namespace Drupal\liiweb_api;
-
+namespace Drupal\liiweb;
 
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
