@@ -1,5 +1,5 @@
 services:
-  liiweb.entity_resource:
+  liiweb_api.entity_resource:
     class: Drupal\liiweb_api\Controller\LiiWebEntityResource
     arguments:
       - '@entity_type.manager'
@@ -14,14 +14,16 @@ services:
       - '@datetime.time'
       - '@current_user'
       - '@logger.factory'
-      - '@liiweb_api.utils'
+      - '@liiweb.utils'
 
-  liiweb.serializer.normalizer.jsonapi_document_toplevel.jsonapi:
+  liiweb_api.serializer.normalizer.jsonapi_document_toplevel.jsonapi:
     class: Drupal\liiweb_api\Normalizer\LiiWebJsonApiDocumentTopLevelNormalizer
     arguments: ['@entity_type.manager', '@jsonapi.resource_type.repository']
     tags:
       - { name: jsonapi_normalizer, priority: 1 }
 
-  liiweb_api.utils:
-    class: Drupal\liiweb_api\LiiWebApiUtils
-    arguments: ['@database', '@entity_type.manager']
+  liiweb_api.event_subscriber:
+    class: Drupal\liiweb_api\EventSubscriber\LiiWebApiEventSubscriber
+    arguments: ['@liiweb_api.entity_resource']
+    tags:
+      - { name: event_subscriber }

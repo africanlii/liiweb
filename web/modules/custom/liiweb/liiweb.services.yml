@@ -1,0 +1,4 @@
+services:
+  liiweb.utils:
+    class: Drupal\liiweb\LiiWebApiUtils
+    arguments: ['@database', '@entity_type.manager']
