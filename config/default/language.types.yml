@@ -7,6 +7,7 @@ configurable:
 negotiation:
   language_content:
     enabled:
+      language-frbr-uri: -9
       language-interface: 9
     method_weights:
       language-content-entity: -10
@@ -19,18 +20,17 @@ negotiation:
       language-selected: 12
   language_url:
     enabled:
-      language-url: 0
+      language-frbr-uri: 0
       language-url-fallback: 1
   language_interface:
     enabled:
       language-frbr-uri: -20
-      language-url: -18
       language-user: -16
       language-browser: -15
       language-selected: -14
     method_weights:
-      language-user-admin: -19
       language-frbr-uri: -20
+      language-user-admin: -19
       language-url: -18
       language-session: -17
       language-user: -16

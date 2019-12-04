@@ -4,6 +4,7 @@ namespace Drupal\liiweb_api\Controller;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Component\Serialization\Json;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
@@ -139,10 +140,19 @@ class LiiWebEntityResource extends EntityResource {
       throw new NotFoundHttpException();
     }
 
+    if ($request->headers->get('Accept') == 'application/json') {
+      $response =  $this->getIndividual($revision, $request);
+      $cacheability = (new CacheableMetadata())->addCacheContexts(['headers:Accept']);
+      $response->addCacheableDependency($cacheability);
+      return $response;
+    }
+
     if (!$revision->access()) {
       throw new AccessDeniedHttpException();
     }
+
     $build = $this->entityTypeManager->getViewBuilder('node')->view($revision);
+    $build['#cache']['contexts'][] = 'headers:Accept';
     return $build;
   }
 
