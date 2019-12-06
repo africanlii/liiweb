@@ -63,6 +63,8 @@ dokku run countrylii vendor/drush/drush/drush cr
 
 We strongly recommend you include an SSL certificate. You can do this easily, and for free, with Dokku's [letsencrypt plugin](https://github.com/dokku/dokku-letsencrypt).
 
+Install the letsencrypt plugin:
+
 ```
 sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 ```
@@ -79,6 +81,20 @@ Install the certificate:
 
 ```
 dokku letsencrypt countrylii
+```
+
+#### Renewing a certificate
+
+Letsencrypt certificates expire every three months. Let's setup a cron job to renew certificates automatically:
+
+```
+dokku letsencrypt:cron-job --add
+```
+
+You can also manually renew a certificate when it's close to expiry:
+
+```
+dokku letsencrypt:auto-renew countrylii
 ```
 
 ### Subsequent deployments
