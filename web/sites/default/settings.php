@@ -88,7 +88,17 @@
  * ];
  * @endcode
  */
-$databases = [];
+$dbopts = parse_url(getenv('DATABASE_URL'));
+$databases['default']['default'] = [
+  'database' => ltrim($dbopts["path"], '/'),
+  'username' => $dbopts["user"],
+  'password' => $dbopts["pass"],
+  'host' => $dbopts["host"],
+  'port' => $dbopts["port"],
+  'driver' => $dbopts["scheme"],
+  'prefix' => '',
+  'collation' => 'utf8mb4_general_ci',
+];
 
 /**
  * Customizing database settings.
@@ -280,7 +290,7 @@ $config_directories = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = getenv('DRUPAL_HASH_SALT');
 
 /**
  * Deployment identifier.
