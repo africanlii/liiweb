@@ -74,7 +74,7 @@ class LiiWebEntityResource extends EntityResource {
     $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
     $create_revision = FALSE;
     // Try to load the node.
-    $node = $this->getNodeFromFrbrUri($request->getRequestUri());
+    $node = $this->liiWebApiUtils->getNodeFromFrbrUri($request->getRequestUri());
     if (empty($node)) {
       return $this->getResourceResponseError('The requested node does not exist.', 404);
     }
@@ -192,7 +192,7 @@ class LiiWebEntityResource extends EntityResource {
   public function delete(Request $request, $langcode_year = NULL) {
     // Request to delete the node.
     if (empty($langcode_year)) {
-      $node = $this->getNodeFromFrbrUri($request->getRequestUri());
+      $node = $this->liiWebApiUtils->getNodeFromFrbrUri($request->getRequestUri());
       // Node not found.
       if (empty($node)) {
         return $this->getResourceResponseError('The requested node does not exist.', 404);
