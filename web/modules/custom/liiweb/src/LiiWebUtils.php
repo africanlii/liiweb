@@ -7,9 +7,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\node\Entity\Node;
 
 /**
- * Class LiiWebApiUtils.
+ * Class LiiWebUtils.
  */
-class LiiWebApiUtils {
+class LiiWebUtils {
 
   /**
    * Drupal\Core\Database\Driver\mysql\Connection definition.
@@ -26,7 +26,7 @@ class LiiWebApiUtils {
   protected $entityTypeManager;
 
   /**
-   * Constructs a new LiiWebApiUtils object.
+   * Constructs a new LiiWebUtils object.
    * {@inheritDoc}
    */
   public function __construct(Connection $database, EntityTypeManagerInterface $entity_type_manager) {
@@ -86,6 +86,18 @@ class LiiWebApiUtils {
     }
 
     return NULL;
+  }
+
+  /**
+   * Check if an URI is in AKN format.
+   *
+   * @param $uri
+   *   Example: /akn/za/1993/31/eng@1993-01-01
+   *
+   * @return bool
+   */
+  public function isAknUri($uri) {
+    return (bool) preg_match('/\/akn\/[a-zA-Z]+\/[0-9]+\/[0-9]+\/[a-zA-Z]+\@[0-9]+\-[0-9]+\-[0-9]+/', $uri, $matches);
   }
 
 }
