@@ -27,3 +27,11 @@ services:
     arguments: ['@liiweb_api.entity_resource']
     tags:
       - { name: event_subscriber }
+
+  #  Override core path_processor_alias
+  path_processor_alias:
+    class: Drupal\liiweb_api\PathProcessor\LiiWebPathProcessorAlias
+    tags:
+      - { name: path_processor_inbound, priority: 100 }
+      - { name: path_processor_outbound, priority: 300 }
+    arguments: ['@path.alias_manager', '@liiweb.utils']
