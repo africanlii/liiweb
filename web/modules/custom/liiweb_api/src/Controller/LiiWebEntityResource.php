@@ -27,7 +27,7 @@ use Drupal\jsonapi\JsonApiResource\ResourceObjectData;
 use Drupal\jsonapi\ResourceResponse;
 use Drupal\jsonapi\ResourceType\ResourceType;
 use Drupal\jsonapi\ResourceType\ResourceTypeRepositoryInterface;
-use Drupal\liiweb\LiiWebApiUtils;
+use Drupal\liiweb\LiiWebUtils;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,19 +39,19 @@ use Symfony\Component\Serializer\SerializerInterface;
 class LiiWebEntityResource extends EntityResource {
 
   /**
-   * @var \Drupal\liiweb\LiiWebApiUtils
+   * @var \Drupal\liiweb\LiiWebUtils
    */
-  protected $liiWebApiUtils;
+  protected $liiWebUtils;
 
   /**
    * @var \Psr\Log\LoggerInterface
    */
   protected $logger;
 
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityFieldManagerInterface $field_manager, ResourceTypeRepositoryInterface $resource_type_repository, RendererInterface $renderer, EntityRepositoryInterface $entity_repository, IncludeResolver $include_resolver, EntityAccessChecker $entity_access_checker, FieldResolver $field_resolver, SerializerInterface $serializer, TimeInterface $time, AccountInterface $user, LoggerChannelFactoryInterface $loggerChannelFactory, LiiWebApiUtils $liiWebApiUtils) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityFieldManagerInterface $field_manager, ResourceTypeRepositoryInterface $resource_type_repository, RendererInterface $renderer, EntityRepositoryInterface $entity_repository, IncludeResolver $include_resolver, EntityAccessChecker $entity_access_checker, FieldResolver $field_resolver, SerializerInterface $serializer, TimeInterface $time, AccountInterface $user, LoggerChannelFactoryInterface $loggerChannelFactory, LiiWebUtils $liiWebUtils) {
     parent::__construct($entity_type_manager, $field_manager, $resource_type_repository, $renderer, $entity_repository, $include_resolver, $entity_access_checker, $field_resolver, $serializer, $time, $user);
     $this->logger = $loggerChannelFactory->get('liiweb_api');
-    $this->liiWebApiUtils = $liiWebApiUtils;
+    $this->liiWebUtils = $liiWebUtils;
   }
 
   /**
@@ -71,15 +71,22 @@ class LiiWebEntityResource extends EntityResource {
     $date = $langcode_year[1];
 
     /** @var NodeInterface $parsed_entity */
-    $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
+    try {
+      $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
+    }
+    catch (\Exception $e) {
+      $this->logger->error($e->getMessage());
+      return $this->getResourceResponseError($e->getMessage(), 400);
+    }
+
     $create_revision = FALSE;
     // Try to load the node.
-    $node = $this->liiWebApiUtils->getNodeFromFrbrUri($request->getRequestUri());
+    $node = $this->liiWebUtils->getNodeFromFrbrUri($request->getRequestUri());
     if (empty($node)) {
       return $this->getResourceResponseError('The requested node does not exist.', 404);
     }
 
-    $revision = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
     if (!empty($revision)) {
       return $this->getResourceResponseError('Revision already exists.', 400);
     }
@@ -111,7 +118,7 @@ class LiiWebEntityResource extends EntityResource {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function patch(ResourceType $resource_type, Request $request) {
-    $revision = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
     if (empty($revision)) {
       return $this->getResourceResponseError('The requested revision does not exist.', 404);
     }
@@ -130,10 +137,10 @@ class LiiWebEntityResource extends EntityResource {
   public function get(Request $request, $langcode_year = NULL) {
     /** @var NodeInterface $revision */
     if (empty($langcode_year)) {
-      $revision = $this->liiWebApiUtils->getNodeFromFrbrUri($request->getRequestUri());
+      $revision = $this->liiWebUtils->getNodeFromFrbrUri($request->getRequestUri());
     }
     else {
-      $revision = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
+      $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
     }
 
     if (empty($revision)) {
@@ -192,7 +199,7 @@ class LiiWebEntityResource extends EntityResource {
   public function delete(Request $request, $langcode_year = NULL) {
     // Request to delete the node.
     if (empty($langcode_year)) {
-      $node = $this->liiWebApiUtils->getNodeFromFrbrUri($request->getRequestUri());
+      $node = $this->liiWebUtils->getNodeFromFrbrUri($request->getRequestUri());
       // Node not found.
       if (empty($node)) {
         return $this->getResourceResponseError('The requested node does not exist.', 404);
@@ -204,7 +211,7 @@ class LiiWebEntityResource extends EntityResource {
     /** @var \Drupal\node\NodeStorage $nodeStorage */
     $nodeStorage = $this->entityTypeManager->getStorage('node');
     /** @var RevisionableInterface $node */
-    $node = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    $node = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
 
     // Revision not found.
     if (empty($node)) {
@@ -261,7 +268,13 @@ class LiiWebEntityResource extends EntityResource {
    * {@inheritDoc}
    */
   public function patchIndividual(ResourceType $resource_type, EntityInterface $entity, Request $request, $create_revision = FALSE) {
-    $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
+    try {
+      $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
+    }
+    catch (\Exception $e) {
+      $this->logger->error($e->getMessage());
+      return $this->getResourceResponseError($e->getMessage(), 400);
+    }
 
     $body = Json::decode($request->getContent());
     $data = $body['data'];
@@ -274,7 +287,13 @@ class LiiWebEntityResource extends EntityResource {
       return $destination;
     }, $entity);
 
-    static::validate($entity, $field_names);
+    try {
+      static::validate($entity, $field_names);
+    }
+    catch (\Exception $e) {
+      $this->logger->error($e->getMessage());
+      return $this->getResourceResponseError($e->getMessage(), 400);
+    }
 
     // Set revision data details for revisionable entities.
     if ($entity->getEntityType()->isRevisionable()) {

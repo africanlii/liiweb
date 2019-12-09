@@ -5,7 +5,7 @@ namespace Drupal\liiweb\Plugin\LanguageNegotiation;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\language\Plugin\LanguageNegotiation\LanguageNegotiationUrl;
-use Drupal\liiweb\LiiWebApiUtils;
+use Drupal\liiweb\LiiWebUtils;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -30,15 +30,15 @@ class LanguageNegotiationFrbrUri extends LanguageNegotiationUrl implements Conta
   const METHOD_ID = 'language-frbr-uri';
 
   /**
-   * @var \Drupal\liiweb\LiiWebApiUtils
+   * @var \Drupal\liiweb\LiiWebUtils
    */
-  protected $liiWebApiUtils;
+  protected $liiWebUtils;
 
   /**
    * {@inheritdoc}
    */
-  public function __construct(LiiWebApiUtils $liiWebApiUtils) {
-    $this->liiWebApiUtils = $liiWebApiUtils;
+  public function __construct(LiiWebUtils $liiWebUtils) {
+    $this->liiWebUtils = $liiWebUtils;
   }
 
   /**
@@ -57,7 +57,7 @@ class LanguageNegotiationFrbrUri extends LanguageNegotiationUrl implements Conta
     }
 
     $uri = $request->getRequestUri();
-    $revision = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
     if (!empty($revision)) {
       return $revision->language()->getId();
     }
@@ -69,7 +69,7 @@ class LanguageNegotiationFrbrUri extends LanguageNegotiationUrl implements Conta
    * {@inheritdoc}
    */
   public function processOutbound($path, &$options = [], Request $request = NULL, BubbleableMetadata $bubbleable_metadata = NULL) {
-    $revision = $this->liiWebApiUtils->getRevisionFromFrbrUri($path);
+    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($path);
     if (!empty($revision)) {
       return $path;
     }

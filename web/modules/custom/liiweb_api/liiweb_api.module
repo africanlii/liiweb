@@ -11,9 +11,8 @@ use \Drupal\node\NodeInterface;
 
 /**
  * Implements hook_entity_type_alter().
- * {@inheritDoc}
  */
-function liiweb_entity_type_alter(array &$entity_types) {
+function liiweb_api_entity_type_alter(array &$entity_types) {
   $constraints = $entity_types['node']->getConstraints();
   unset($constraints['EntityChanged']);
   unset($constraints['EntityUntranslatableFields']);
