@@ -55,10 +55,11 @@ class LiiWebUtils {
       ->condition('field_frbr_uri', "$base_uri/%", 'LIKE')
       ->execute();
 
-    if (!empty($node)) {
-      $node = reset($node);
+    if (empty($node)) {
+      return NULL;
     }
 
+    $node = reset($node);
     return Node::load($node);
   }
 
@@ -75,11 +76,11 @@ class LiiWebUtils {
   public function getRevisionFromFrbrUri($uri) {
     $uri = urldecode($uri);
 
-    $result = $this->database->query("
-    SELECT entity_id, revision_id, langcode
-    FROM node_revision__field_frbr_uri
-    WHERE field_frbr_uri_value = :uri
-    ORDER BY revision_id DESC", [':uri' => $uri])->fetchAssoc();
+    $query = $this->database->select('node_revision__field_frbr_uri', 'n');
+    $query->fields('n', ['entity_id', 'revision_id', 'langcode']);
+    $query->condition('field_frbr_uri_value', $uri);
+    $query->orderBy('revision_id', 'DESC');
+    $result = $query->execute()->fetchAssoc();
 
     if (!empty($result['entity_id'])) {
       return $this->entityTypeManager->getStorage('node')->loadRevision($result['revision_id'])->getTranslation($result['langcode']);

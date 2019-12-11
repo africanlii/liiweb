@@ -10,18 +10,36 @@ use Drupal\language\Plugin\LanguageNegotiation\LanguageNegotiationUrlFallback;
  */
 function liiweb_node_presave(NodeInterface $node) {
   if ($node->isDefaultRevision() && !empty($node->field_frbr_uri->value)) {
+    $aliasSource = '/node/' . $node->id();
     /** @var \Drupal\Core\Path\AliasStorageInterface $pathService */
     $pathService = \Drupal::service('path.alias_storage');
-    $pathService->delete([
-      'source' => '/node/' . $node->id(),
-      'langcode' => $node->language()->getId(),
-    ]);
+    if (!$pathService->aliasExists($node->field_frbr_uri->value, $node->language()->getId())) {
+      $node->path = [
+        'alias' => $node->field_frbr_uri->value,
+        'pathauto' => 0,
+      ];
+    }
 
-    $node->path = [
-      'alias' => $node->field_frbr_uri->value,
-      'pathauto' => 0,
-    ];
+    if ($node->isDefaultTranslation()) {
+      $pathService->delete([
+        'source' => $aliasSource,
+      ]);
+
+      $languages = $node->getTranslationLanguages(FALSE);
+      foreach ($languages as $language) {
+        $langcode = $language->getId();
+        if (!$node->hasTranslation($langcode)) {
+          continue;
+        }
+        $translation = $node->getTranslation($langcode);
+        if (empty($translation->field_frbr_uri->value)) {
+          continue;
+        }
+        $pathService->save($aliasSource, $translation->field_frbr_uri->value, $langcode);
+      }
+    }
   }
+
 }
 
 /**

@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.work_repeal.field_repeal_date
+    - field.field.paragraph.work_repeal.field_repeal_work
+    - paragraphs.paragraphs_type.work_repeal
+  module:
+    - datetime
+id: paragraph.work_repeal.default
+targetEntityType: paragraph
+bundle: work_repeal
+mode: default
+content:
+  field_repeal_date:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_repeal_work:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden:
+  created: true
+  status: true
