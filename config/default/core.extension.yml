@@ -31,7 +31,6 @@ module:
   menu_ui: 0
   node: 0
   options: 0
-  page_cache: 0
   path: 0
   recaptcha: 0
   responsive_image: 0

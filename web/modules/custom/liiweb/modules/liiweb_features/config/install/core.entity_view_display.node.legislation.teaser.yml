@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.legislation
+  module:
+    - user
+id: node.legislation.teaser
+targetEntityType: node
+bundle: legislation
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_created: true
+  field_publication_date: true
+  field_publication_name: true
+  langcode: true
+  search_api_excerpt: true

@@ -204,18 +204,34 @@ class LiiWebEntityResource extends EntityResource {
       if (empty($node)) {
         return $this->getResourceResponseError('The requested node does not exist.', 404);
       }
+      if (!$node->access('delete')) {
+        return $this->getResourceResponseError('Forbidden.', 403);
+      }
       $node->delete();
       return new ResourceResponse(NULL, 204);
     }
 
     /** @var \Drupal\node\NodeStorage $nodeStorage */
     $nodeStorage = $this->entityTypeManager->getStorage('node');
-    /** @var RevisionableInterface $node */
+    /** @var \Drupal\node\NodeInterface $node */
     $node = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
 
     // Revision not found.
     if (empty($node)) {
       return $this->getResourceResponseError('The requested revision does not exist.', 404);
+    }
+
+    if (!$node->access('delete')) {
+      return $this->getResourceResponseError('Forbidden.', 403);
+    }
+
+    // If it is not a revision for the default language, we can safely delete it.
+    if (!$node->isDefaultTranslation()) {
+      /** @var \Drupal\node\NodeInterface $defaultTranslation */
+      $defaultTranslation = $nodeStorage->loadRevision($node->getRevisionId());
+      $defaultTranslation->removeTranslation($node->language()->getId());
+      $defaultTranslation->save();
+      return new ResourceResponse(NULL, 204);
     }
 
     // If it is not the default revision, we can safely delete it.

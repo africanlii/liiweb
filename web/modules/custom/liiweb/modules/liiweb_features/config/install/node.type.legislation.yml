@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Legislation
+type: legislation
+description: "Each item represents a legislation <strong>work</strong> imported from the <a href=\"https://laws.africa\">Africa.Laws</a> Indigo platform. Each revision of this work represents a time sensitive <strong>expression</strong>.\r\n"
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false
