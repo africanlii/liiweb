@@ -5,6 +5,7 @@ namespace Drupal\liiweb;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\node\Entity\Node;
+use Symfony\Component\Config\Definition\NodeInterface;
 
 /**
  * Class LiiWebUtils.
@@ -76,6 +77,10 @@ class LiiWebUtils {
   public function getRevisionFromFrbrUri($uri) {
     $uri = urldecode($uri);
 
+    if (!$this->isAknUri($uri)) {
+      return NULL;
+    }
+
     $query = $this->database->select('node_revision__field_frbr_uri', 'n');
     $query->fields('n', ['entity_id', 'revision_id', 'langcode']);
     $query->condition('field_frbr_uri_value', $uri);
@@ -99,6 +104,26 @@ class LiiWebUtils {
    */
   public function isAknUri($uri) {
     return (bool) preg_match('/\/akn\/[a-zA-Z]+\/[0-9]+\/[0-9]+\/[a-zA-Z]+\@[0-9]+\-[0-9]+\-[0-9]+/', $uri, $matches);
+  }
+
+  /**
+   * @param \Drupal\node\NodeInterface $node
+   * @param $langcode
+   *
+   * @return string|null
+   */
+  public function getLatestFrbrUriForNode(\Drupal\node\NodeInterface $node, $langcode) {
+    $query = $this->database->select('node_revision__field_frbr_uri', 'n');
+    $query->addField('n', 'field_frbr_uri_value');
+    $query->condition('entity_id', $node->id());
+    $query->condition('langcode', $langcode);
+    $query->orderBy('field_frbr_uri_value', 'DESC');
+    $alias = $query->execute()->fetchField();
+    if (!empty($alias)) {
+      return $alias;
+    }
+
+    return NULL;
   }
 
 }
