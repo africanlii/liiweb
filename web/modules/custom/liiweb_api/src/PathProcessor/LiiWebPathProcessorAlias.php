@@ -6,6 +6,8 @@ use Drupal\Core\Path\AliasManagerInterface;
 use Drupal\Core\PathProcessor\PathProcessorAlias;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\liiweb\LiiWebUtils;
+use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class LiiWebPathProcessorAlias extends PathProcessorAlias {
@@ -26,6 +28,25 @@ class LiiWebPathProcessorAlias extends PathProcessorAlias {
     $this->liiWebUtils = $liiWebUtils;
   }
 
+  public function processOutbound($path, &$options = [], Request $request = NULL, BubbleableMetadata $bubbleable_metadata = NULL) {
+    $langcode = isset($options['language']) ? $options['language']->getId() : NULL;
+    if (empty($langcode)) {
+      return parent::processOutbound($path, $options, $request, $bubbleable_metadata);
+    }
+
+    preg_match('/\/node\/([0-9]+)/', $path, $matches);
+
+    if (!empty($matches[1])) {
+      $nid = $matches[1];
+      $alias = $this->liiWebUtils->getLatestFrbrUriForNode(Node::load($nid), $langcode);
+      if (!empty($alias)) {
+        return $alias;
+      }
+    }
+
+    return parent::processOutbound($path, $options, $request, $bubbleable_metadata);
+  }
+
   /**
    * We need to override the PathProcessorAlias method so that API Calls don't get routed to /node/nid because of URL Aliasing.
    *
@@ -34,6 +55,11 @@ class LiiWebPathProcessorAlias extends PathProcessorAlias {
   public function processInbound($path, Request $request) {
     if ($this->liiWebUtils->isAknUri($request->getRequestUri()) && ($request->getMethod() !== 'GET' || $request->headers->get('Accept') === 'application/json')) {
       return $path;
+    }
+
+    $node = $this->liiWebUtils->getRevisionFromFrbrUri($path);
+    if ($node instanceof NodeInterface && $node->isDefaultRevision()) {
+      return "/node/{$node->id()}";
     }
 
     return parent::processInbound($path, $request);

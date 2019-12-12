@@ -76,7 +76,8 @@ class LiiWebEntityResource extends EntityResource {
     }
     catch (\Exception $e) {
       $this->logger->error($e->getMessage());
-      return $this->getResourceResponseError($e->getMessage(), 400);
+      $status_code = $e instanceof HttpException ? $e->getStatusCode() : 400;
+      return $this->getResourceResponseError($e->getMessage(), $status_code);
     }
 
     $create_revision = FALSE;
@@ -101,12 +102,12 @@ class LiiWebEntityResource extends EntityResource {
     // If we found the revision for that creation date, just create a translation for it.
     if (!empty($revision)) {
       $revision = $revision->addTranslation($parsed_entity->language()->getId());
-      return $this->patchIndividual($resource_type, $revision, $request, $create_revision);
+      return $this->patchIndividual($resource_type, $revision, $request, $create_revision, 201);
     }
 
     // If we didn't find the revision for that creation date but the langcode is the same as the node,
     // just create a revision.
-    return $this->patchIndividual($resource_type, $node, $request, TRUE);
+    return $this->patchIndividual($resource_type, $node, $request, TRUE, 201);
   }
 
   /**
@@ -121,6 +122,10 @@ class LiiWebEntityResource extends EntityResource {
     $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
     if (empty($revision)) {
       return $this->getResourceResponseError('The requested revision does not exist.', 404);
+    }
+
+    if (!$revision->access('update')) {
+      throw new AccessDeniedHttpException();
     }
 
     return $this->patchIndividual($resource_type, $revision, $request);
@@ -163,7 +168,7 @@ class LiiWebEntityResource extends EntityResource {
     return $build;
   }
 
-  protected function getResourceResponseError($message, $status_code) {
+  protected function getResourceResponseError($message, $status_code = 400) {
     $response = new ResourceResponse(new JsonApiDocumentTopLevel(new ErrorCollection([new HttpException($status_code, $message)]), new NullIncludedData(), new LinkCollection([])), $status_code);
     return $response;
   }
@@ -205,7 +210,7 @@ class LiiWebEntityResource extends EntityResource {
         return $this->getResourceResponseError('The requested node does not exist.', 404);
       }
       if (!$node->access('delete')) {
-        return $this->getResourceResponseError('Forbidden.', 403);
+        throw new AccessDeniedHttpException();
       }
       $node->delete();
       return new ResourceResponse(NULL, 204);
@@ -222,7 +227,7 @@ class LiiWebEntityResource extends EntityResource {
     }
 
     if (!$node->access('delete')) {
-      return $this->getResourceResponseError('Forbidden.', 403);
+      throw new AccessDeniedHttpException();
     }
 
     // If it is not a revision for the default language, we can safely delete it.
@@ -283,13 +288,14 @@ class LiiWebEntityResource extends EntityResource {
   /**
    * {@inheritDoc}
    */
-  public function patchIndividual(ResourceType $resource_type, EntityInterface $entity, Request $request, $create_revision = FALSE) {
+  public function patchIndividual(ResourceType $resource_type, EntityInterface $entity, Request $request, $create_revision = FALSE, $status_code = 200) {
     try {
       $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
     }
     catch (\Exception $e) {
       $this->logger->error($e->getMessage());
-      return $this->getResourceResponseError($e->getMessage(), 400);
+      $status_code = $e instanceof HttpException ? $e->getStatusCode() : 400;
+      return $this->getResourceResponseError($e->getMessage(), $status_code);
     }
 
     $body = Json::decode($request->getContent());
@@ -308,7 +314,8 @@ class LiiWebEntityResource extends EntityResource {
     }
     catch (\Exception $e) {
       $this->logger->error($e->getMessage());
-      return $this->getResourceResponseError($e->getMessage(), 400);
+      $status_code = $e instanceof HttpException ? $e->getStatusCode() : 400;
+      return $this->getResourceResponseError($e->getMessage(), $status_code);
     }
 
     // Set revision data details for revisionable entities.
@@ -333,7 +340,7 @@ class LiiWebEntityResource extends EntityResource {
 
     $entity->save();
     $primary_data = new ResourceObjectData([ResourceObject::createFromEntity($resource_type, $entity)], 1);
-    return $this->buildWrappedResponse($primary_data, $request, $this->getIncludes($request, $primary_data));
+    return $this->buildWrappedResponse($primary_data, $request, $this->getIncludes($request, $primary_data), $status_code);
   }
 
   /**
@@ -348,7 +355,8 @@ class LiiWebEntityResource extends EntityResource {
     } catch (\Exception $e) {
       $transaction->rollback();
       $this->logger->error($e->getMessage());
-      return $this->getResourceResponseError($e->getMessage(), 500);
+      $status_code = $e instanceof HttpException ? $e->getStatusCode() : 400;
+      return $this->getResourceResponseError($e->getMessage(), $status_code);
     }
   }
 
