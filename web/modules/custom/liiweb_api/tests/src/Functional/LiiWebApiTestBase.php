@@ -6,11 +6,14 @@ use Drupal\node\Entity\Node;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
+use Drupal\views\Tests\ViewTestData;
 use GuzzleHttp\Exception\RequestException;
 
 abstract class LiiWebApiTestBase extends BrowserTestBase {
 
   const API_USER = 'api@api.test';
+
+  public static $modules = ['node', 'liiweb_api', 'liiweb_features', 'liiweb', 'path'];
 
   /**
    * {@inheritDoc}
@@ -49,24 +52,28 @@ abstract class LiiWebApiTestBase extends BrowserTestBase {
     $apiUser->set('status', 1);
     $apiUser->addRole('api_legislation');
     $apiUser->save();
+
+    ViewTestData::createTestViews(self::class, static::$modules);
   }
 
-
+  /**
+   * Create a node with 2 revisions, both translated.
+   */
   protected function createTestNode() {
-    /** @var \Drupal\node\NodeInterface $node */
     $node = Node::create([
       'type' => 'legislation',
       'title' => 'Legislation old',
       'field_frbr_uri' =>'/akn/za/1993/31/eng@1993-01-31',
       'field_publication_date' => '1993-01-31',
-      'uid' => user_load_by_mail(static::API_USER)->id(),
+      'uid' => user_load_by_mail(static::API_USER),
     ]);
     $node->save();
 
     $node->addTranslation('fr', [
       'field_frbr_uri' =>'/akn/za/1993/31/fra@1993-01-31',
       'title' => 'Legislation old fr',
-      'uid' => user_load_by_mail(static::API_USER)->id(),
+      'uid' => user_load_by_mail(static::API_USER),
+      'field_publication_date' => '1993-01-31',
     ]);
     $node->setNewRevision(FALSE);
     $node->save();
@@ -82,7 +89,6 @@ abstract class LiiWebApiTestBase extends BrowserTestBase {
     $node->setTitle('Legislation new fr');
     $node->get('field_frbr_uri')->setValue('/akn/za/1993/31/fra@1994-01-31');
     $node->get('field_publication_date')->setValue('1994-01-31');
-    $node->setNewRevision();
     $node->save();
   }
 
@@ -132,6 +138,9 @@ abstract class LiiWebApiTestBase extends BrowserTestBase {
     $this->drupalLogin($user);
   }
 
+  /**
+   * Helper function to login the API user.
+   */
   protected function loginApiUser() {
     $this->userLogIn(static::API_USER);
   }

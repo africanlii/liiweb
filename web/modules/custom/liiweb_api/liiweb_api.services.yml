@@ -28,10 +28,18 @@ services:
     tags:
       - { name: event_subscriber }
 
-  #  Override core path_processor_alias
+  # Override core path_processor_alias
   path_processor_alias:
     class: Drupal\liiweb_api\PathProcessor\LiiWebPathProcessorAlias
     tags:
       - { name: path_processor_inbound, priority: 100 }
       - { name: path_processor_outbound, priority: 300 }
     arguments: ['@path.alias_manager', '@liiweb.utils']
+
+  # Override core router.route_provider.
+  router.route_provider:
+    class: Drupal\liiweb_api\Routing\LiiWebRouteProvider
+    arguments: ['@database', '@state', '@path.current', '@cache.data', '@path_processor_manager', '@cache_tags.invalidator', '@liiweb.utils', 'router', '@language_manager']
+    tags:
+      - { name: event_subscriber }
+      - { name: backend_overridable }

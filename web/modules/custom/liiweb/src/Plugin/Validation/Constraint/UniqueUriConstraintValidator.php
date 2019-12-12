@@ -42,7 +42,7 @@ class UniqueUriConstraintValidator extends ConstraintValidator implements Contai
 
     /** @var \Drupal\node\Entity\Node $existingRevision */
     $existingRevision = $this->liiWebUtils->getRevisionFromFrbrUri($node->field_frbr_uri->value);
-    if (empty($existingRevision) || $existingRevision->getRevisionId() == $node->getRevisionId()) {
+    if (empty($existingRevision) || $existingRevision->getRevisionId() == $node->getRevisionId() && $existingRevision->language()->getId() == $node->language()->getId()) {
       return;
     }
 
