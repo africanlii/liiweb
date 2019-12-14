@@ -232,8 +232,6 @@ class LiiWebApiTest extends LiiWebApiTestBase {
     $response = $this->apiRequest('/api/node/legislation', 'POST', TRUE, $data);
     // Cannot have 2 revisions with the same FRBR URI.
     $this->assertEqual($response->getStatusCode(), 422);
-
-    $this->assertEqual('xd', $this->databasePrefix);
   }
 
   /**
