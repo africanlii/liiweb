@@ -34,7 +34,7 @@ class LiiWebPathProcessorAlias extends PathProcessorAlias {
       return parent::processOutbound($path, $options, $request, $bubbleable_metadata);
     }
 
-    preg_match('/\/node\/([0-9]+)/', $path, $matches);
+    preg_match('/^\/node\/([0-9]+)$/', $path, $matches);
 
     if (!empty($matches[1])) {
       $nid = $matches[1];
