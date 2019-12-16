@@ -96,7 +96,7 @@ abstract class LiiWebApiTestBase extends BrowserTestBase {
    * Get the body of a GET request with the Accept: application/json header.
    */
   protected function getJsonFromUri($uri) {
-    $response = $this->apiRequest($uri, 'GET');
+    $response = $this->apiRequest($uri, 'GET', FALSE, NULL, ['Accept' => 'application/json']);
     return $response->getBody();
   }
 
