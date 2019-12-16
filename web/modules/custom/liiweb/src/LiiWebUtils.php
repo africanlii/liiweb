@@ -113,14 +113,20 @@ class LiiWebUtils {
    * @return string|null
    */
   public function getLatestFrbrUriForNode(\Drupal\node\NodeInterface $node, $langcode) {
-    $query = $this->database->select('node_revision__field_frbr_uri', 'n');
-    $query->addField('n', 'field_frbr_uri_value');
-    $query->condition('entity_id', $node->id());
-    $query->condition('langcode', $langcode);
-    $query->orderBy('field_frbr_uri_value', 'DESC');
-    $alias = $query->execute()->fetchField();
-    if (!empty($alias)) {
-      return $alias;
+    if ($node->bundle() != 'legislation') {
+      return NULL;
+    }
+
+    // Make sure we have the default revision.
+    $node = Node::load($node->id());
+
+    if ($node->language()->getId() == $langcode) {
+      return $node->field_frbr_uri->value;
+    }
+
+    if ($node->hasTranslation($langcode)) {
+      $node = $node->getTranslation($langcode);
+      return $node->field_frbr_uri->value;
     }
 
     return NULL;

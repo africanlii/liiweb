@@ -34,7 +34,7 @@ services:
     tags:
       - { name: path_processor_inbound, priority: 100 }
       - { name: path_processor_outbound, priority: 300 }
-    arguments: ['@path.alias_manager', '@liiweb.utils']
+    arguments: ['@path.alias_manager', '@liiweb.utils', '@language_manager']
 
   # Override core router.route_provider.
   router.route_provider:
