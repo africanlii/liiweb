@@ -2,6 +2,7 @@
 
 namespace Drupal\liiweb_api\PathProcessor;
 
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Path\AliasManagerInterface;
 use Drupal\Core\PathProcessor\PathProcessorAlias;
 use Drupal\Core\Render\BubbleableMetadata;
@@ -18,25 +19,27 @@ class LiiWebPathProcessorAlias extends PathProcessorAlias {
   protected $liiWebUtils;
 
   /**
+   * @var \Drupal\Core\Language\LanguageManagerInterface
+   */
+  protected $languageManager;
+
+  /**
    * LiiWebPathProcessorAlias constructor.
    *
    * @param \Drupal\Core\Path\AliasManagerInterface $alias_manager
    * @param \Drupal\liiweb\LiiWebUtils $liiWebUtils
    */
-  public function __construct(AliasManagerInterface $alias_manager, LiiWebUtils $liiWebUtils) {
+  public function __construct(AliasManagerInterface $alias_manager, LiiWebUtils $liiWebUtils, LanguageManagerInterface $languageManager) {
     parent::__construct($alias_manager);
     $this->liiWebUtils = $liiWebUtils;
+    $this->languageManager = $languageManager;
   }
 
   public function processOutbound($path, &$options = [], Request $request = NULL, BubbleableMetadata $bubbleable_metadata = NULL) {
-    $langcode = isset($options['language']) ? $options['language']->getId() : NULL;
-    if (empty($langcode)) {
-      return parent::processOutbound($path, $options, $request, $bubbleable_metadata);
-    }
-
     preg_match('/^\/node\/([0-9]+)$/', $path, $matches);
 
     if (!empty($matches[1])) {
+      $langcode = isset($options['language']) ? $options['language']->getId() : $this->languageManager->getCurrentLanguage()->getId();
       $nid = $matches[1];
       $alias = $this->liiWebUtils->getLatestFrbrUriForNode(Node::load($nid), $langcode);
       if (!empty($alias)) {
