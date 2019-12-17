@@ -7,8 +7,7 @@ configurable:
 negotiation:
   language_content:
     enabled:
-      language-frbr-uri: -9
-      language-interface: 9
+      language-interface: 0
     method_weights:
       language-content-entity: -10
       language-frbr-uri: -9
