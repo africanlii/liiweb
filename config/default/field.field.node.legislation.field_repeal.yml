@@ -13,7 +13,7 @@ field_name: field_repeal
 entity_type: node
 bundle: legislation
 label: 'Repeal work'
-description: ''
+description: 'Description of the repeal of this work, if it has been repealed.'
 required: false
 translatable: false
 default_value: {  }

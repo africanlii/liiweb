@@ -10,7 +10,7 @@ field_name: field_stub
 entity_type: node
 bundle: legislation
 label: Stub
-description: ''
+description: 'Data in the system about this work is incomplete.'
 required: false
 translatable: false
 default_value:
