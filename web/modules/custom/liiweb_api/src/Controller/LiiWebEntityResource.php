@@ -4,6 +4,7 @@ namespace Drupal\liiweb_api\Controller;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Component\Serialization\Json;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
@@ -26,7 +27,7 @@ use Drupal\jsonapi\JsonApiResource\ResourceObjectData;
 use Drupal\jsonapi\ResourceResponse;
 use Drupal\jsonapi\ResourceType\ResourceType;
 use Drupal\jsonapi\ResourceType\ResourceTypeRepositoryInterface;
-use Drupal\liiweb_api\LiiWebApiUtils;
+use Drupal\liiweb\LiiWebUtils;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,19 +39,19 @@ use Symfony\Component\Serializer\SerializerInterface;
 class LiiWebEntityResource extends EntityResource {
 
   /**
-   * @var \Drupal\liiweb_api\LiiWebApiUtils
+   * @var \Drupal\liiweb\LiiWebUtils
    */
-  protected $liiWebApiUtils;
+  protected $liiWebUtils;
 
   /**
    * @var \Psr\Log\LoggerInterface
    */
   protected $logger;
 
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityFieldManagerInterface $field_manager, ResourceTypeRepositoryInterface $resource_type_repository, RendererInterface $renderer, EntityRepositoryInterface $entity_repository, IncludeResolver $include_resolver, EntityAccessChecker $entity_access_checker, FieldResolver $field_resolver, SerializerInterface $serializer, TimeInterface $time, AccountInterface $user, LoggerChannelFactoryInterface $loggerChannelFactory, LiiWebApiUtils $liiWebApiUtils) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityFieldManagerInterface $field_manager, ResourceTypeRepositoryInterface $resource_type_repository, RendererInterface $renderer, EntityRepositoryInterface $entity_repository, IncludeResolver $include_resolver, EntityAccessChecker $entity_access_checker, FieldResolver $field_resolver, SerializerInterface $serializer, TimeInterface $time, AccountInterface $user, LoggerChannelFactoryInterface $loggerChannelFactory, LiiWebUtils $liiWebUtils) {
     parent::__construct($entity_type_manager, $field_manager, $resource_type_repository, $renderer, $entity_repository, $include_resolver, $entity_access_checker, $field_resolver, $serializer, $time, $user);
     $this->logger = $loggerChannelFactory->get('liiweb_api');
-    $this->liiWebApiUtils = $liiWebApiUtils;
+    $this->liiWebUtils = $liiWebUtils;
   }
 
   /**
@@ -70,15 +71,23 @@ class LiiWebEntityResource extends EntityResource {
     $date = $langcode_year[1];
 
     /** @var NodeInterface $parsed_entity */
-    $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
+    try {
+      $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
+    }
+    catch (\Exception $e) {
+      $this->logger->error($e->getMessage());
+      $status_code = $e instanceof HttpException ? $e->getStatusCode() : 400;
+      return $this->getResourceResponseError($e->getMessage(), $status_code);
+    }
+
     $create_revision = FALSE;
     // Try to load the node.
-    $node = $this->getNodeFromFrbrUri($request->getRequestUri());
+    $node = $this->liiWebUtils->getNodeFromFrbrUri($request->getRequestUri());
     if (empty($node)) {
       return $this->getResourceResponseError('The requested node does not exist.', 404);
     }
 
-    $revision = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
     if (!empty($revision)) {
       return $this->getResourceResponseError('Revision already exists.', 400);
     }
@@ -93,12 +102,12 @@ class LiiWebEntityResource extends EntityResource {
     // If we found the revision for that creation date, just create a translation for it.
     if (!empty($revision)) {
       $revision = $revision->addTranslation($parsed_entity->language()->getId());
-      return $this->patchIndividual($resource_type, $revision, $request, $create_revision);
+      return $this->patchIndividual($resource_type, $revision, $request, $create_revision, 201);
     }
 
     // If we didn't find the revision for that creation date but the langcode is the same as the node,
     // just create a revision.
-    return $this->patchIndividual($resource_type, $node, $request, TRUE);
+    return $this->patchIndividual($resource_type, $node, $request, TRUE, 201);
   }
 
   /**
@@ -110,9 +119,13 @@ class LiiWebEntityResource extends EntityResource {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function patch(ResourceType $resource_type, Request $request) {
-    $revision = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
     if (empty($revision)) {
       return $this->getResourceResponseError('The requested revision does not exist.', 404);
+    }
+
+    if (!$revision->access('update')) {
+      throw new AccessDeniedHttpException();
     }
 
     return $this->patchIndividual($resource_type, $revision, $request);
@@ -126,13 +139,13 @@ class LiiWebEntityResource extends EntityResource {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  protected function get(Request $request, $langcode_year = NULL) {
+  public function get(Request $request, $langcode_year = NULL) {
     /** @var NodeInterface $revision */
     if (empty($langcode_year)) {
-      $revision = $this->getNodeFromFrbrUri($request->getRequestUri());
+      $revision = $this->liiWebUtils->getNodeFromFrbrUri($request->getRequestUri());
     }
     else {
-      $revision = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
+      $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
     }
 
     if (empty($revision)) {
@@ -140,17 +153,22 @@ class LiiWebEntityResource extends EntityResource {
     }
 
     if ($request->headers->get('Accept') == 'application/json') {
-      return $this->getIndividual($revision, $request);
+      $response =  $this->getIndividual($revision, $request);
+      $cacheability = (new CacheableMetadata())->addCacheContexts(['headers:Accept']);
+      $response->addCacheableDependency($cacheability);
+      return $response;
     }
 
     if (!$revision->access()) {
       throw new AccessDeniedHttpException();
     }
+
     $build = $this->entityTypeManager->getViewBuilder('node')->view($revision);
+    $build['#cache']['contexts'][] = 'headers:Accept';
     return $build;
   }
 
-  protected function getResourceResponseError($message, $status_code) {
+  protected function getResourceResponseError($message, $status_code = 400) {
     $response = new ResourceResponse(new JsonApiDocumentTopLevel(new ErrorCollection([new HttpException($status_code, $message)]), new NullIncludedData(), new LinkCollection([])), $status_code);
     return $response;
   }
@@ -186,10 +204,13 @@ class LiiWebEntityResource extends EntityResource {
   public function delete(Request $request, $langcode_year = NULL) {
     // Request to delete the node.
     if (empty($langcode_year)) {
-      $node = $this->getNodeFromFrbrUri($request->getRequestUri());
+      $node = $this->liiWebUtils->getNodeFromFrbrUri($request->getRequestUri());
       // Node not found.
       if (empty($node)) {
         return $this->getResourceResponseError('The requested node does not exist.', 404);
+      }
+      if (!$node->access('delete')) {
+        throw new AccessDeniedHttpException();
       }
       $node->delete();
       return new ResourceResponse(NULL, 204);
@@ -197,12 +218,25 @@ class LiiWebEntityResource extends EntityResource {
 
     /** @var \Drupal\node\NodeStorage $nodeStorage */
     $nodeStorage = $this->entityTypeManager->getStorage('node');
-    /** @var RevisionableInterface $node */
-    $node = $this->liiWebApiUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
 
     // Revision not found.
     if (empty($node)) {
       return $this->getResourceResponseError('The requested revision does not exist.', 404);
+    }
+
+    if (!$node->access('delete')) {
+      throw new AccessDeniedHttpException();
+    }
+
+    // If it is not a revision for the default language, we can safely delete it.
+    if (!$node->isDefaultTranslation()) {
+      /** @var \Drupal\node\NodeInterface $defaultTranslation */
+      $defaultTranslation = $nodeStorage->loadRevision($node->getRevisionId());
+      $defaultTranslation->removeTranslation($node->language()->getId());
+      $defaultTranslation->save();
+      return new ResourceResponse(NULL, 204);
     }
 
     // If it is not the default revision, we can safely delete it.
@@ -254,8 +288,15 @@ class LiiWebEntityResource extends EntityResource {
   /**
    * {@inheritDoc}
    */
-  public function patchIndividual(ResourceType $resource_type, EntityInterface $entity, Request $request, $create_revision = FALSE) {
-    $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
+  public function patchIndividual(ResourceType $resource_type, EntityInterface $entity, Request $request, $create_revision = FALSE, $status_code = 200) {
+    try {
+      $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
+    }
+    catch (\Exception $e) {
+      $this->logger->error($e->getMessage());
+      $status_code = $e instanceof HttpException ? $e->getStatusCode() : 400;
+      return $this->getResourceResponseError($e->getMessage(), $status_code);
+    }
 
     $body = Json::decode($request->getContent());
     $data = $body['data'];
@@ -268,7 +309,14 @@ class LiiWebEntityResource extends EntityResource {
       return $destination;
     }, $entity);
 
-    static::validate($entity, $field_names);
+    try {
+      static::validate($entity, $field_names);
+    }
+    catch (\Exception $e) {
+      $this->logger->error($e->getMessage());
+      $status_code = $e instanceof HttpException ? $e->getStatusCode() : 400;
+      return $this->getResourceResponseError($e->getMessage(), $status_code);
+    }
 
     // Set revision data details for revisionable entities.
     if ($entity->getEntityType()->isRevisionable()) {
@@ -292,7 +340,7 @@ class LiiWebEntityResource extends EntityResource {
 
     $entity->save();
     $primary_data = new ResourceObjectData([ResourceObject::createFromEntity($resource_type, $entity)], 1);
-    return $this->buildWrappedResponse($primary_data, $request, $this->getIncludes($request, $primary_data));
+    return $this->buildWrappedResponse($primary_data, $request, $this->getIncludes($request, $primary_data), $status_code);
   }
 
   /**
@@ -307,7 +355,8 @@ class LiiWebEntityResource extends EntityResource {
     } catch (\Exception $e) {
       $transaction->rollback();
       $this->logger->error($e->getMessage());
-      return $this->getResourceResponseError($e->getMessage(), 500);
+      $status_code = $e instanceof HttpException ? $e->getStatusCode() : 400;
+      return $this->getResourceResponseError($e->getMessage(), $status_code);
     }
   }
 

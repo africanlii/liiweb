@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_repeal
+    - node.type.legislation
+    - paragraphs.paragraphs_type.work_repeal
+  module:
+    - entity_reference_revisions
+id: node.legislation.field_repeal
+field_name: field_repeal
+entity_type: node
+bundle: legislation
+label: 'Repeal work'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      work_repeal: work_repeal
+    target_bundles_drag_drop:
+      work_repeal:
+        enabled: true
+        weight: 2
+field_type: entity_reference_revisions

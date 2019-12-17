@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+id: api_legislation
+label: 'Legislation API User'
+weight: 3
+is_admin: null
+permissions:
+  - 'create legislation content'
+  - 'create terms in legislation_tags'
+  - 'delete own legislation content'
+  - 'edit own legislation content'
+  - 'manipulate legislation api'

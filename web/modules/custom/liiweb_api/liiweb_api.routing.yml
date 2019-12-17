@@ -2,12 +2,13 @@ liiweb.legislation.post:
   path: /api/node/legislation
   methods: [POST]
   defaults:
-    _controller: liiweb.entity_resource:createIndividual
+    _controller: liiweb_api.entity_resource:createIndividual
     resource_type: node--legislation
   requirements:
     _entity_create_access: node:legislation
     _csrf_request_header_token: 'TRUE'
   options:
+    no_cache: TRUE
     _auth: ['basic_auth']
     parameters:
       resource_type:
@@ -17,7 +18,7 @@ liiweb.legislation.get:
   path: /akn/{country}/{year}/{number}/{langcode_year}
   methods: [GET]
   defaults:
-    _controller: liiweb.entity_resource:get
+    _controller: liiweb_api.entity_resource:get
     langcode_year: 0
   requirements:
     _permission: 'access content'
@@ -28,12 +29,13 @@ liiweb.legislation.post_update:
   path: /akn/{country}/{year}/{number}/{langcode_year}
   methods: [POST]
   defaults:
-    _controller: liiweb.entity_resource:post
+    _controller: liiweb_api.entity_resource:post
     resource_type: node--legislation
   requirements:
     _access: 'TRUE'
     _csrf_request_header_token: 'TRUE'
   options:
+    no_cache: TRUE
     _auth: ['basic_auth', 'cookie']
     parameters:
       resource_type:
@@ -43,12 +45,13 @@ liiweb.legislation.patch:
   path: /akn/{country}/{year}/{number}/{langcode_year}
   methods: [PATCH]
   defaults:
-    _controller: liiweb.entity_resource:patch
+    _controller: liiweb_api.entity_resource:patch
     resource_type: node--legislation
   requirements:
     _access: 'TRUE'
     _csrf_request_header_token: 'TRUE'
   options:
+    no_cache: TRUE
     _auth: ['basic_auth', 'cookie']
     parameters:
       resource_type:
@@ -58,13 +61,14 @@ liiweb.legislation.delete:
   path: /akn/{country}/{year}/{number}/{langcode_year}
   methods: [DELETE]
   defaults:
-    _controller: liiweb.entity_resource:delete
+    _controller: liiweb_api.entity_resource:delete
     resource_type: node--legislation
     langcode_year: 0
   requirements:
     _access: 'TRUE'
     _csrf_request_header_token: 'TRUE'
   options:
+    no_cache: TRUE
     _auth: ['basic_auth', 'cookie']
     parameters:
       resource_type:

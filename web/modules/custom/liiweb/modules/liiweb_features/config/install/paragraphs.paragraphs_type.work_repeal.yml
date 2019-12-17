@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: work_repeal
+label: 'Work Repeal'
+icon_description: 'References that repeal legislation works'
+behavior_plugins: {  }
