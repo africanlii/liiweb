@@ -1,11 +1,12 @@
+uuid: 585af068-56e8-4a87-9fd4-97f92e6f9304
 langcode: en
 status: true
 dependencies:
   module:
     - link
     - node
-id: node.field_document_link
-field_name: field_document_link
+id: node.field_external_link
+field_name: field_external_link
 entity_type: node
 type: link
 settings: {  }

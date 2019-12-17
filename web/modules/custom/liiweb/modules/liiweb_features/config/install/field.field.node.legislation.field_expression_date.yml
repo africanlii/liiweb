@@ -1,0 +1,21 @@
+uuid: 273af7a8-84d3-4806-a317-281da962910d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_expression_date
+    - node.type.legislation
+  module:
+    - datetime
+id: node.legislation.field_expression_date
+field_name: field_expression_date
+entity_type: node
+bundle: legislation
+label: 'Expression date'
+description: 'Date of this expression of the work.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

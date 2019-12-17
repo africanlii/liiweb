@@ -1,3 +1,4 @@
+uuid: 0c661576-db99-4608-b626-c30f51b3a274
 langcode: en
 status: true
 dependencies:
@@ -11,7 +12,7 @@ field_name: field_commencement_date
 entity_type: node
 bundle: legislation
 label: 'Commencement date'
-description: ''
+description: 'This is the date on which the work commencements; the date on which it becomes law.'
 required: false
 translatable: false
 default_value: {  }

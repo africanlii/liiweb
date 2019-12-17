@@ -1,3 +1,4 @@
+uuid: 2053c9bd-a21b-41a2-9c5d-d939a05137ec
 langcode: en
 status: true
 dependencies:
@@ -6,7 +7,8 @@ dependencies:
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
     - field.field.node.legislation.field_created_by_api
-    - field.field.node.legislation.field_document_link
+    - field.field.node.legislation.field_expression_date
+    - field.field.node.legislation.field_external_link
     - field.field.node.legislation.field_files
     - field.field.node.legislation.field_frbr_uri
     - field.field.node.legislation.field_images
@@ -51,8 +53,14 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_document_link:
-    weight: 12
+  field_expression_date:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_external_link:
+    weight: 27
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -126,12 +134,9 @@ content:
     region: content
   field_tags:
     weight: 10
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_toc:
     weight: 13
