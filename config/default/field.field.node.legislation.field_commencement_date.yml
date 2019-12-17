@@ -12,7 +12,7 @@ field_name: field_commencement_date
 entity_type: node
 bundle: legislation
 label: 'Commencement date'
-description: ''
+description: 'This is the date on which the work commencements; the date on which it becomes law.'
 required: false
 translatable: false
 default_value: {  }
