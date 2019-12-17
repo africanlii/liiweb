@@ -1,0 +1,12 @@
+services:
+  liiweb.utils:
+    class: Drupal\liiweb\LiiWebUtils
+    arguments: ['@database', '@entity_type.manager']
+
+  # Override core url_generator.non_bubbling.
+  url_generator.non_bubbling:
+    class: Drupal\liiweb\Routing\LiiWebUrlGenerator
+    arguments: ['@router.route_provider', '@path_processor_manager', '@route_processor_manager', '@request_stack', '@liiweb.utils', '%filter_protocols%']
+    public: false
+    calls:
+      - [setContext, ['@?router.request_context']]

@@ -1,0 +1,8 @@
+uuid: 4eb04ffb-5d46-45d6-9c74-6bfe7454516d
+langcode: en
+status: true
+dependencies: {  }
+name: 'Legislation Tags'
+vid: legislation_tags
+description: 'Contains the vocabulary containing tags for the legislation content'
+weight: 0

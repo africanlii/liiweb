@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_created
+    - node.type.legislation
+  module:
+    - datetime
+id: node.legislation.field_created
+field_name: field_created
+entity_type: node
+bundle: legislation
+label: Created
+description: 'Timestamp of when the work was first created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

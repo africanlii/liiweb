@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_publication_name
+    - node.type.legislation
+id: node.legislation.field_publication_name
+field_name: field_publication_name
+entity_type: node
+bundle: legislation
+label: 'Publication name'
+description: 'Name of the publication in which the work was originally published.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
