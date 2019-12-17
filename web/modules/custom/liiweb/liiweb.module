@@ -1,0 +1,19 @@
+<?php
+
+use Drupal\Core\Language\LanguageInterface;
+use Drupal\liiweb\Plugin\LanguageNegotiation\LanguageNegotiationFrbrUri;
+use Drupal\language\Plugin\LanguageNegotiation\LanguageNegotiationUrlFallback;
+
+/**
+ * Implements hook_language_types_info_alter().
+ */
+function liiweb_language_types_info_alter(array &$language_types) {
+  $language_types[LanguageInterface::TYPE_URL]['fixed'] = [LanguageNegotiationFrbrUri::METHOD_ID, LanguageNegotiationUrlFallback::METHOD_ID];
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function liiweb_entity_type_alter(array &$entity_types) {
+  $entity_types['node']->addConstraint('UniqueURI', []);
+}

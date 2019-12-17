@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_frbr_uri
+    - node.type.legislation
+id: node.legislation.field_frbr_uri
+field_name: field_frbr_uri
+entity_type: node
+bundle: legislation
+label: 'FRBR URI'
+description: 'Unique identifier for this work, e.g. "/akn/za/act/1992/2"'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
