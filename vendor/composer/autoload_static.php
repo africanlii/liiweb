@@ -28,7 +28,9 @@ class ComposerStaticInit6c89a8198357672c14b5acc121b6cd17
         '1ca3bc274755662169f9629d5412a1da' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_uploaded_files.php',
         '40360c0b9b437e69bcbb7f1349ce029e' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
+        'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
         '952683d815ff0a7bf322b93c0be7e4e4' => __DIR__ . '/..' . '/chi-teck/drupal-code-generator/src/bootstrap.php',
         '5a12a5271c58108e0aa33355e6ac54ea' => __DIR__ . '/..' . '/drupal/console-core/src/functions.php',
         '38d3c5a085ddcb38f573ef5344011394' => __DIR__ . '/../..' . '/load.environment.php',
@@ -137,6 +139,7 @@ class ComposerStaticInit6c89a8198357672c14b5acc121b6cd17
         'J' => 
         array (
             'JsonSchema\\' => 11,
+            'JmesPath\\' => 9,
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
             'JakubOnderka\\PhpConsoleColor\\' => 29,
         ),
@@ -199,6 +202,7 @@ class ComposerStaticInit6c89a8198357672c14b5acc121b6cd17
         ),
         'A' => 
         array (
+            'Aws\\' => 4,
             'Asm89\\Stack\\' => 12,
             'Alchemy\\Zippy\\' => 14,
         ),
@@ -463,6 +467,10 @@ class ComposerStaticInit6c89a8198357672c14b5acc121b6cd17
         array (
             0 => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema',
         ),
+        'JmesPath\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mtdowling/jmespath.php/src',
+        ),
         'JakubOnderka\\PhpConsoleHighlighter\\' => 
         array (
             0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
@@ -631,6 +639,10 @@ class ComposerStaticInit6c89a8198357672c14b5acc121b6cd17
         'Behat\\Mink\\' => 
         array (
             0 => __DIR__ . '/..' . '/behat/mink/src',
+        ),
+        'Aws\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aws/aws-sdk-php/src',
         ),
         'Asm89\\Stack\\' => 
         array (

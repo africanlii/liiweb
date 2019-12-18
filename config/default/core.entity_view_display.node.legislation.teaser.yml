@@ -18,8 +18,21 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_commencement_date: true
+  field_content: true
   field_created: true
+  field_created_by_api: true
+  field_expression_date: true
+  field_external_link: true
+  field_files: true
+  field_frbr_uri: true
+  field_images: true
+  field_parent_work: true
   field_publication_date: true
   field_publication_name: true
+  field_repeal: true
+  field_stub: true
+  field_tags: true
+  field_toc: true
   langcode: true
   search_api_excerpt: true

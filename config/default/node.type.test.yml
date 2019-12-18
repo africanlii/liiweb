@@ -1,0 +1,18 @@
+uuid: 4d417d20-e253-446e-b8e3-2142f433e62e
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Test
+type: test
+description: 'Content type for testing github pushing and s3 file storage.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

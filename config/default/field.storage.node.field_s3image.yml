@@ -1,0 +1,30 @@
+uuid: 1e488e08-6ef1-4de5-aa13-7fd001eba3e0
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - image
+    - node
+id: node.field_s3image
+field_name: field_s3image
+entity_type: node
+type: image
+settings:
+  uri_scheme: s3
+  default_image:
+    uuid: f3ca774d-ecf3-46e3-aae7-2cdb10137ec2
+    alt: ''
+    title: ''
+    width: 158
+    height: 105
+  target_type: file
+  display_field: false
+  display_default: false
+module: image
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
