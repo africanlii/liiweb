@@ -9,10 +9,8 @@
 
 namespace Drupal\Sniffs\Commenting;
 
-use Drupal\Sniffs\Commenting\FunctionCommentSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
-use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Parses and verifies class property doc comments.
@@ -47,6 +45,9 @@ class VariableCommentSniff extends AbstractVariableSniff
             T_VAR,
             T_STATIC,
             T_WHITESPACE,
+            T_STRING,
+            T_NS_SEPARATOR,
+            T_NULLABLE,
         ];
 
         $commentEnd = $phpcsFile->findPrevious($ignore, ($stackPtr - 1), null, true);

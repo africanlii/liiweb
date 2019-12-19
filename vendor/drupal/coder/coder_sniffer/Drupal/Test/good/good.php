@@ -18,6 +18,8 @@
  * phpcs:disable Drupal.Classes.ClassFileName
  */
 
+declare(strict_types=1);
+
 use Drupal\very_long_module_name_i_am_inventing_here_trololololo\SuperManager;
 use Drupal\some_module\ExampleClass as AliasedExampleClass;
 use Drupal\mymodule\TestReturnType;
@@ -603,6 +605,13 @@ class Bar {
    * @var int
    */
   public $barProperty = 1;
+
+  /**
+   * Using property types is allowed.
+   *
+   * @var \Foo\Bar
+   */
+  public ?Bar $bar;
 
   /**
    * Public static variables use camelCase, too.

@@ -16,12 +16,12 @@ namespace Drupal\Test;
 use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Ruleset;
 use PHP_CodeSniffer\Files\LocalFile;
-use PHP_CodeSniffer\RuntimeException;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Util\Common;
-use PHP_CodeSniffer\Autoload;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPUnit\Framework\TestCase;
 
-abstract class CoderSniffUnitTest extends \PHPUnit_Framework_TestCase
+abstract class CoderSniffUnitTest extends TestCase
 {
 
     /**
@@ -125,7 +125,7 @@ abstract class CoderSniffUnitTest extends \PHPUnit_Framework_TestCase
      * @preserveGlobalState disabled
      *
      * @return void
-     * @throws PHPUnit_Framework_Error
+     * @throws \PHPUnit\Framework\Exception
      */
     final public function testSniff()
     {

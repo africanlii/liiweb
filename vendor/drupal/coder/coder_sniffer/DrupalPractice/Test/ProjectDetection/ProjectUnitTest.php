@@ -3,11 +3,12 @@
 namespace DrupalPractice\ProjectDetection;
 
 use DrupalPractice\Project;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests that project and version detection works.
  */
-class ProjectUnitTest extends \PHPUnit_Framework_TestCase
+class ProjectUnitTest extends TestCase
 {
 
     /**
@@ -108,6 +109,10 @@ class ProjectUnitTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'invalid',
+                8,
+            ],
+            [
+                __DIR__.'/directory.info/test.php',
                 8,
             ],
         ];

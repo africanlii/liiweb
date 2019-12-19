@@ -94,6 +94,9 @@ class Project
                 $infoFiles = glob("$dir/*.info");
             }
 
+            // Filter out directories.
+            $infoFiles = array_filter($infoFiles, 'is_file');
+
             // Go one directory up if we do not find an info file here.
             $dir = dirname($dir);
         } while (empty($infoFiles) === true && $dir !== dirname($dir));
@@ -265,7 +268,7 @@ class Project
             if (isset($infoSettings['core']) === true
                 && is_string($infoSettings['core']) === true
             ) {
-                return (int) $infoSettings['core']{0};
+                return (int) $infoSettings['core'][0];
             }
 
             // Default to Drupal 7 if there is an info file.
