@@ -499,6 +499,9 @@ interface WebformSubmissionStorageInterface extends ContentEntityStorageInterfac
    *   (optional) An additional variable that is passed by reference.
    * @param mixed $context2
    *   (optional) An additional variable that is passed by reference.
+   *
+   * @return \Drupal\Core\Access\AccessResult|null
+   *   If 'access' method is invoked an AccessResult is returned.
    */
   public function invokeWebformHandlers($method, WebformSubmissionInterface $webform_submission, &$context1 = NULL, &$context2 = NULL);
 

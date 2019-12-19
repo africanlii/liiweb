@@ -108,6 +108,13 @@ class WebformSubmission extends ContentEntityBase implements WebformSubmissionIn
   protected $originalData = [];
 
   /**
+   * The data with computed values.
+   *
+   * @var array
+   */
+  protected $computedData = [];
+
+  /**
    * Flag to indicated if submission is being converted from anonymous to authenticated.
    *
    * @var bool
@@ -368,7 +375,8 @@ class WebformSubmission extends ContentEntityBase implements WebformSubmissionIn
    * {@inheritdoc}
    */
   public function getElementData($key) {
-    return (isset($this->data[$key])) ? $this->data[$key] : NULL;
+    $data = $this->getData();
+    return (isset($data[$key])) ? $data[$key] : NULL;
   }
 
   /**
@@ -378,6 +386,7 @@ class WebformSubmission extends ContentEntityBase implements WebformSubmissionIn
     // Make sure the element exists before setting its value.
     if ($this->getWebform()->getElement($key)) {
       $this->data[$key] = $value;
+      $this->computedData = NULL;
     }
     return $this;
   }
@@ -385,17 +394,28 @@ class WebformSubmission extends ContentEntityBase implements WebformSubmissionIn
   /**
    * {@inheritdoc}
    */
-  public function getData() {
+  public function getRawData() {
     return $this->data;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setData(array $data) {
-    $this->data = $data;
+  public function getData() {
+    if (isset($this->computedData)) {
+      return $this->computedData;
+    }
+
+    // If there is no active theme and we can't prematurely start computing
+    // element values because it will define and lock the active theme.
+    /** @var \Drupal\webform\WebformThemeManagerInterface $theme_manager */
+    $theme_manager = \Drupal::service('webform.theme_manager');
+    if (!$theme_manager->hasActiveTheme()) {
+      return $this->data;
+    }
 
     // Set computed element values in to submission data.
+    $this->computedData = $this->data;
     $webform = $this->getWebform();
     if ($webform->hasComputed()) {
       /** @var \Drupal\webform\Plugin\WebformElementManagerInterface $element_manager */
@@ -405,9 +425,19 @@ class WebformSubmission extends ContentEntityBase implements WebformSubmissionIn
         $computed_element = $webform->getElement($computed_element_name);
         /** @var \Drupal\webform\Plugin\WebformElementComputedInterface $element_plugin */
         $element_plugin = $element_manager->getElementInstance($computed_element);
-        $this->data[$computed_element_name] = $element_plugin->computeValue($computed_element, $this);
+        $this->computedData[$computed_element_name] = $element_plugin->computeValue($computed_element, $this);
       }
     }
+
+    return $this->computedData;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setData(array $data) {
+    $this->data = $data;
+    $this->computedData = NULL;
     return $this;
   }
 
@@ -424,6 +454,13 @@ class WebformSubmission extends ContentEntityBase implements WebformSubmissionIn
   public function setOriginalData(array $data) {
     $this->originalData = $data;
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getElementOriginalData($key) {
+    return (isset($this->originalData[$key])) ? $this->originalData[$key] : NULL;
   }
 
   /**
@@ -487,28 +524,42 @@ class WebformSubmission extends ContentEntityBase implements WebformSubmissionIn
   /**
    * {@inheritdoc}
    */
-  public function getTokenUrl() {
-    $uri = $this->getSourceUrl();
-    $options = $uri->getOptions();
+  public function getTokenUrl($operation = 'update') {
+    switch ($operation) {
+      case 'view':
+        /** @var \Drupal\webform\WebformRequestInterface $request_handler */
+        $request_handler = \Drupal::service('webform.request');
+        $url = $request_handler->getUrl($this, $this->getSourceEntity(), 'webform.user.submission');
+        break;
+
+      case 'update':
+        $url = $this->getSourceUrl();
+        break;
+
+      default:
+        throw new \Exception("Token URL operation $operation is not supported");
+    }
+
+    $options = $url->setAbsolute()->getOptions();
     $options['query']['token'] = $this->getToken();
-    return $uri->setOptions($options);
+    return $url->setOptions($options);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function invokeWebformHandlers($method, &$context1 = NULL, &$context2 = NULL) {
+  public function invokeWebformHandlers($method, &$context1 = NULL, &$context2 = NULL, &$context3 = NULL) {
     if ($webform = $this->getWebform()) {
-      $webform->invokeHandlers($method, $this, $context1, $context2);
+      return $webform->invokeHandlers($method, $this, $context1, $context2, $context3);
     }
   }
 
   /**
    * {@inheritdoc}
    */
-  public function invokeWebformElements($method, &$context1 = NULL, &$context2 = NULL) {
+  public function invokeWebformElements($method, &$context1 = NULL, &$context2 = NULL, &$context3 = NULL) {
     if ($webform = $this->getWebform()) {
-      $webform->invokeElements($method, $this, $context1, $context2);
+      $webform->invokeElements($method, $this, $context1, $context2, $context3);
     }
   }
 
@@ -732,7 +783,7 @@ class WebformSubmission extends ContentEntityBase implements WebformSubmissionIn
       'langcode' => \Drupal::languageManager()->getCurrentLanguage()->getId(),
       'token' => Crypt::randomBytesBase64(),
       'uri' => preg_replace('#^' . base_path() . '#', '/', $current_request->getRequestUri()),
-      'remote_addr' => ($webform && $webform->hasRemoteAddr()) ? '' : $current_request->getClientIp(),
+      'remote_addr' => ($webform && $webform->hasRemoteAddr()) ? $current_request->getClientIp() : '',
     ];
 
     $webform->invokeHandlers(__FUNCTION__, $values);
@@ -796,7 +847,16 @@ class WebformSubmission extends ContentEntityBase implements WebformSubmissionIn
    * {@inheritdoc}
    */
   public function resave() {
-    return $this->entityManager()->getStorage($this->entityTypeId)->resave($this);
+    return $this->entityTypeManager()->getStorage($this->entityTypeId)->resave($this);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function access($operation, AccountInterface $account = NULL, $return_as_object = FALSE) {
+    $access = parent::access($operation, $account, TRUE)
+      ->orIf($this->invokeWebformHandlers('access', $operation, $account));
+    return $return_as_object ? $access : $access->isAllowed();
   }
 
   /**

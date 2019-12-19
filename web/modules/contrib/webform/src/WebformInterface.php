@@ -762,6 +762,14 @@ interface WebformInterface extends ConfigEntityInterface, EntityWithPluginCollec
   public function getElementsPrepopulate();
 
   /**
+   * Get webform elements default data.
+   *
+   * @return array
+   *   Webform elements default data.
+   */
+  public function getElementsDefaultData();
+
+  /**
    * Sets elements (YAML) value.
    *
    * @param array $elements
@@ -801,13 +809,17 @@ interface WebformInterface extends ConfigEntityInterface, EntityWithPluginCollec
    * @param string $operation
    *   The webform submission operation.
    *   Usually 'default', 'add', 'edit', 'edit_all', 'api', or 'test'.
+   * @param \Drupal\webform\WebformSubmissionInterface|null $webform_submission
+   *   (Optional) A webform submission. If a webform submission is defined and
+   *   the 'wizard_progress_states' is TRUE, wizard page conditional logic
+   *   will be evaluated.
    *
    * @return array
    *   An associative array of webform wizard pages.
    *
    * @see \Drupal\webform\Entity\WebformSubmission
    */
-  public function getPages($operation = '');
+  public function getPages($operation = '', WebformSubmissionInterface $webform_submission = NULL);
 
   /**
    * Get webform wizard page.
@@ -839,6 +851,16 @@ interface WebformInterface extends ConfigEntityInterface, EntityWithPluginCollec
    *   TRUE if the webform has any message handlers.
    */
   public function hasMessageHandler();
+
+  /**
+   * Determine if a webform handler requires anonymous submission tracking.
+   *
+   * @return bool
+   *   TRUE if a webform handler requires anonymous submission tracking.
+   *
+   * @see \Drupal\webform_options_limit\Plugin\WebformHandler\OptionsLimitWebformHandler
+   */
+  public function hasAnonymousSubmissionTrackingHandler();
 
   /**
    * Returns a specific webform handler.
@@ -914,8 +936,13 @@ interface WebformInterface extends ConfigEntityInterface, EntityWithPluginCollec
    *   (optional) An additional variable that is passed by reference.
    * @param mixed $context2
    *   (optional) An additional variable that is passed by reference.
+   * @param mixed $context3
+   *   (optional) An additional variable that is passed by reference.
+   *
+   * @return \Drupal\Core\Access\AccessResult|null
+   *   If 'access' method is invoked an AccessResult is returned.
    */
-  public function invokeHandlers($method, &$data, &$context1 = NULL, &$context2 = NULL);
+  public function invokeHandlers($method, &$data, &$context1 = NULL, &$context2 = NULL, &$context3 = NULL);
 
   /**
    * Invoke elements method.

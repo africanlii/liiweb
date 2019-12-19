@@ -4,7 +4,10 @@ namespace Drupal\webform\Plugin\WebformElement;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\Plugin\WebformElementBase;
+use Drupal\webform\WebformSubmissionForm;
 use Drupal\webform\WebformSubmissionInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Url as CoreUrl;
 
 /**
  * Provides a 'captcha' element.
@@ -94,10 +97,15 @@ class Captcha extends WebformElementBase {
   public function preview() {
     $element = parent::preview() + [
       '#captcha_admin_mode' => TRUE,
+      // Define empty form id to prevent fatal error when preview is
+      // rendered via Ajax.
+      // @see \Drupal\captcha\Element\Captcha::processCaptchaElement
+      '#captcha_info' => ['form_id' => ''],
     ];
     if (\Drupal::moduleHandler()->moduleExists('image_captcha')) {
       $element['#captcha_type'] = 'image_captcha/Image';
     }
+
     return $element;
   }
 
@@ -123,13 +131,26 @@ class Captcha extends WebformElementBase {
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
-    if (\Drupal::moduleHandler()->moduleExists('captcha')) {
-      module_load_include('inc', 'captcha', 'captcha.admin');
-      $captcha_types = _captcha_available_challenge_types();
+    // Issue #3090624: Call to undefined function trying to add CAPTCHA
+    // element to form.
+    // @see _captcha_available_challenge_types();
+    // @see \Drupal\captcha\Service\CaptchaService::getAvailableChallengeTypes
+    $captcha_types = [];
+    $captcha_types['default'] = t('Default challenge type');
+    // We do our own version of Drupal's module_invoke_all() here because
+    // we want to build an array with custom keys and values.
+    foreach (\Drupal::moduleHandler()->getImplementations('captcha') as $module) {
+      $result = call_user_func_array($module . '_captcha', ['list']);
+      if (is_array($result)) {
+        foreach ($result as $type) {
+          $captcha_types["$module/$type"] = t('@type (from module @module)', [
+            '@type' => $type,
+            '@module' => $module,
+          ]);
+        }
+      }
     }
-    else {
-      $captcha_types = ['default' => $this->t('Default challenge type')];
-    }
+
     $form['captcha'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('CAPTCHA settings'),
@@ -180,6 +201,39 @@ class Captcha extends WebformElementBase {
         $element['captcha_widgets']['captcha_response']['#description'] = $element['#captcha_description'];
       }
     }
+
+    // Add image refresh button to captcha form element.
+    // @see image_captcha_after_build_process()
+    if ($form_state->getFormObject() instanceof WebformSubmissionForm) {
+      $is_image_captcha = FALSE;
+      if ($element['#captcha_type'] === 'image_captcha/Image') {
+        $is_image_captcha = TRUE;
+      }
+      elseif ($element['#captcha_type'] === 'default') {
+        $default_challenge = \Drupal::service('config.manager')
+          ->getConfigFactory()
+          ->get('captcha.settings')
+          ->get('default_challenge');
+        if ($default_challenge === 'image_captcha/Image') {
+          $is_image_captcha = TRUE;
+        }
+      }
+      if ($is_image_captcha && isset($element['#captcha_info']['form_id'])) {
+        $form_id = $element['#captcha_info']['form_id'];
+        $uri = Link::fromTextAndUrl(t('Get new captcha!'),
+          new CoreUrl('image_captcha.refresh',
+            ['form_id' => $form_id],
+            ['attributes' => ['class' => ['reload-captcha']]]
+          )
+        );
+        $element['captcha_widgets']['captcha_refresh'] = [
+          '#theme' => 'image_captcha_refresh',
+          '#captcha_refresh_link' => $uri,
+        ];
+      }
+    }
+
+
     return $element;
   }
 

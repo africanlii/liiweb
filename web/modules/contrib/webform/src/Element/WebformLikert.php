@@ -227,6 +227,9 @@ class WebformLikert extends FormElement {
 
     $element['#tree'] = TRUE;
 
+    // Add after_build callback.
+    $element['#after_build'][] = [get_called_class(), 'afterBuild'];
+
     // Add validate callback.
     $element += ['#element_validate' => []];
     array_unshift($element['#element_validate'], [get_called_class(), 'validateWebformLikert']);
@@ -255,9 +258,24 @@ class WebformLikert extends FormElement {
   }
 
   /**
+   * Performs the after_build callback.
+   */
+  static public function afterBuild(array $element, FormStateInterface $form_state) {
+    if ($form_state->isProcessingInput()) {
+      // Likert elements contain a table which uses 'item' form elements to
+      // display the questions. These 'item' elements provide undesired data to
+      // the $form_state values. Set the value in $form_state again to overwrite
+      // the undesired item values.
+      // @see https://www.drupal.org/project/webform/issues/3090007
+      $form_state->setValueForElement($element, $element['#value']);
+    }
+    return $element;
+  }
+
+  /**
    * {@inheritdoc}
    */
-  public static function valueCallback(&$element, $input, FormStateInterface $form_state) {
+  static public function valueCallback(&$element, $input, FormStateInterface $form_state) {
     $default_value = [];
     foreach ($element['#questions'] as $question_key => $question_title) {
       $default_value[$question_key] = NULL;
@@ -280,18 +298,26 @@ class WebformLikert extends FormElement {
    * Validates a likert element.
    */
   public static function validateWebformLikert(&$element, FormStateInterface $form_state, &$complete_form) {
-    $value = $element['#value'];
-
     if (!empty($element['#required'])) {
-      foreach ($element['#questions'] as $question_key => $question_title) {
-        if (is_null($value[$question_key])) {
-          $form_state->setError($element['table'][$question_key]['likert_question'], t('@name field is required.', ['@name' => $question_title]));
-        }
+      static::setRequiredError($element, $form_state);
+    }
+  }
+
+  /**
+   * Set element required error messages.
+   *
+   * @param array $element
+   *   An element.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current form's state.
+   */
+  public static function setRequiredError(array &$element, FormStateInterface $form_state) {
+    $value = $element['#value'];
+    foreach ($element['#questions'] as $question_key => $question_title) {
+      if (is_null($value[$question_key])) {
+        $form_state->setError($element['table'][$question_key]['likert_question'], t('@name field is required.', ['@name' => $question_title]));
       }
     }
-
-    $element['#value'] = $value;
-    $form_state->setValueForElement($element, $value);
   }
 
 }

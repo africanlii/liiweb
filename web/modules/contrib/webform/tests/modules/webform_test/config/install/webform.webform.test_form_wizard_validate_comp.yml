@@ -172,6 +172,7 @@ settings:
   wizard_progress_pages: true
   wizard_progress_percentage: true
   wizard_progress_link: false
+  wizard_progress_states: false
   wizard_start_label: ''
   wizard_preview_link: false
   wizard_confirmation: true
@@ -219,6 +220,7 @@ settings:
   purge_days: null
   results_disabled: true
   results_disabled_ignore: true
+  token_view: false
   token_update: false
 access:
   create:
