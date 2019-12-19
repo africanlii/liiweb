@@ -32,7 +32,7 @@ class Telephone extends TextBase {
         'multiple' => FALSE,
         'international' => FALSE,
         'international_initial_country' => '',
-        'international_preferred_countries' => '',
+        'international_preferred_countries' => [],
       ] + parent::getDefaultProperties();
 
     // Add support for telephone_validation.module.
@@ -45,6 +45,13 @@ class Telephone extends TextBase {
     }
 
     return $properties;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTranslatableProperties() {
+    return array_merge(parent::getTranslatableProperties(), ['international_initial_country']);
   }
 
   /**

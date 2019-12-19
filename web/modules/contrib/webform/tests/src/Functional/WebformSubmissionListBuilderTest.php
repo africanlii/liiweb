@@ -48,6 +48,7 @@ class WebformSubmissionListBuilderTest extends WebformBrowserTestBase {
 
     /** @var \Drupal\webform\WebformInterface $webform */
     $webform = Webform::load('test_submissions');
+    $this->webform = $webform;
 
     /** @var \Drupal\webform\WebformSubmissionInterface[] $submissions */
     $submissions = array_values(\Drupal::entityTypeManager()->getStorage('webform_submission')->loadByProperties(['webform_id' => 'test_submissions']));
@@ -199,11 +200,11 @@ class WebformSubmissionListBuilderTest extends WebformBrowserTestBase {
     $this->drupalGet('/admin/structure/webform/manage/' . $webform->id() . '/results/submissions');
 
     // Check user header and value.
-    $this->assertRaw('<a href="' . $base_path . 'admin/structure/webform/manage/' . $webform->id() . '/results/submissions?sort=asc&amp;order=User" title="sort by User">User</a>');
+    $this->assertTableHeaderSort('User');
     $this->assertRaw('<td class="priority-medium">Anonymous</td>');
 
     // Check date of birth.
-    $this->assertRaw('<th specifier="element__dob"><a href="' . $base_path . 'admin/structure/webform/manage/' . $webform->id() . '/results/submissions?sort=asc&amp;order=Date%20of%20birth" title="sort by Date of birth">Date of birth</a></th>');
+    $this->assertTableHeaderSort('Date of birth');
     $this->assertRaw('<td>Sunday, October 26, 1947</td>');
 
     // Display Header key and element raw.
@@ -215,11 +216,11 @@ class WebformSubmissionListBuilderTest extends WebformBrowserTestBase {
     $this->drupalGet('/admin/structure/webform/manage/' . $webform->id() . '/results/submissions');
 
     // Check user header and value.
-    $this->assertRaw('<a href="' . $base_path . 'admin/structure/webform/manage/' . $webform->id() . '/results/submissions?sort=asc&amp;order=uid" title="sort by uid">uid</a>');
+    $this->assertTableHeaderSort('uid');
     $this->assertRaw('<td class="priority-medium">0</td>');
 
     // Check date of birth.
-    $this->assertRaw('<th specifier="element__dob"><a href="' . $base_path . 'admin/structure/webform/manage/' . $webform->id() . '/results/submissions?sort=asc&amp;order=dob" title="sort by dob">dob</a></th>');
+    $this->assertTableHeaderSort('dob');
     $this->assertRaw('<td>1947-10-26</td>');
 
     /**************************************************************************/
@@ -245,6 +246,32 @@ class WebformSubmissionListBuilderTest extends WebformBrowserTestBase {
     $this->assertNoRaw('<th specifier="remote_addr" class="priority-low">');
     $this->assertRaw('<th specifier="element__first_name" aria-sort="ascending" class="is-active">');
     $this->assertRaw('<th specifier="element__last_name">');
+  }
+
+  /**
+   * Assert table header sorting.
+   *
+   * @param string $order
+   *   Column table is sorted by.
+   * @param string $sort
+   *   Sort order for table column.
+   * @param string|NULL $label
+   *   Column label.
+   */
+  protected function assertTableHeaderSort($order, $sort = 'asc', $label = NULL) {
+    global $base_path;
+
+    $label = $label ?: $order;
+    $webform = $this->webform;
+
+    // @todo Remove once Drupal 8.9.x is only supported.
+    if (floatval(\Drupal::VERSION) >= 8.9) {
+      $this->assertRaw('<a href="' . $base_path . 'admin/structure/webform/manage/' . $webform->id() . '/results/submissions?sort=' . $sort . '&amp;order=' . str_replace(' ', '%20', $order) . '" title="sort by ' . $label . '" rel="nofollow">' . $label . '</a>');
+    }
+    else {
+      $this->assertRaw('<a href="' . $base_path . 'admin/structure/webform/manage/' . $webform->id() . '/results/submissions?sort=' . $sort . '&amp;order=' . str_replace(' ', '%20', $order)  . '" title="sort by ' . $label . '">' . $label . '</a>');
+    }
+
   }
 
 }

@@ -127,6 +127,9 @@ batch:
   default_batch_email_size: 500
 purge:
   cron_size: 100
+form:
+  filter_category: ''
+  filter_state: ''
 element:
   machine_name_pattern: 'a-z0-9_'
   empty_message: '{Empty}'

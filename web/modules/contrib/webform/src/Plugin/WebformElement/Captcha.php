@@ -3,6 +3,7 @@
 namespace Drupal\webform\Plugin\WebformElement;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\webform\Element\WebformMessage as WebformMessageElement;
 use Drupal\webform\Plugin\WebformElementBase;
 use Drupal\webform\WebformSubmissionForm;
 use Drupal\webform\WebformSubmissionInterface;
@@ -154,6 +155,14 @@ class Captcha extends WebformElementBase {
     $form['captcha'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('CAPTCHA settings'),
+    ];
+    $form['captcha']['message'] = [
+      '#type' => 'webform_message',
+      '#message_type' => 'warning',
+      '#message_message' => $this->t('Note that the CAPTCHA module disables page caching of pages that include a CAPTCHA challenge.'),
+      '#message_close' => TRUE,
+      '#message_storage' => WebformMessageElement::STORAGE_SESSION,
+      '#access' => TRUE,
     ];
     $form['captcha']['captcha_type'] = [
       '#type' => 'select',

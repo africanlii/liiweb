@@ -1,0 +1,11 @@
+group_content.group_node_relate_page:
+  route_name: 'entity.group_content.group_node_relate_page'
+  title: 'Add existing content'
+  appears_on:
+    - 'view.group_nodes.page_1'
+
+group_content.group_node_add_page:
+  route_name: 'entity.group_content.group_node_add_page'
+  title: 'Add new content'
+  appears_on:
+    - 'view.group_nodes.page_1'

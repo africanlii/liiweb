@@ -9,6 +9,7 @@ use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormState;
@@ -25,13 +26,17 @@ use Drupal\Core\Url;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\Form\WebformDialogFormTrait;
 use Drupal\webform\Plugin\WebformElement\Hidden;
+use Drupal\webform\Plugin\WebformElement\OptionsBase;
+use Drupal\webform\Plugin\WebformElementEntityReferenceInterface;
 use Drupal\webform\Plugin\WebformElementManagerInterface;
+use Drupal\webform\Plugin\WebformElementOtherInterface;
 use Drupal\webform\Plugin\WebformElementWizardPageInterface;
 use Drupal\webform\Plugin\WebformHandlerInterface;
 use Drupal\webform\Plugin\WebformSourceEntityManager;
 use Drupal\webform\Utility\WebformArrayHelper;
 use Drupal\webform\Utility\WebformDialogHelper;
 use Drupal\webform\Utility\WebformElementHelper;
+use Drupal\webform\Utility\WebformOptionsHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -155,6 +160,13 @@ class WebformSubmissionForm extends ContentEntityForm {
   protected $killSwitch;
 
   /**
+   * Selection Plugin Manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface
+   */
+  protected $selectionManager;
+
+  /**
    * Stores the original submission data passed via the EntityFormBuilder.
    *
    * @var array
@@ -196,6 +208,8 @@ class WebformSubmissionForm extends ContentEntityForm {
    *   The webform submission generation service.
    * @param \Drupal\Core\PageCache\ResponsePolicy\KillSwitch $killSwitch
    *   The page cache kill switch service.
+   * @param \Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface $selection_manager
+   *   The selection plugin manager.
    */
   public function __construct(
     EntityRepositoryInterface $entity_repository,
@@ -211,7 +225,8 @@ class WebformSubmissionForm extends ContentEntityForm {
     WebformSubmissionConditionsValidatorInterface $conditions_validator,
     WebformEntityReferenceManagerInterface $webform_entity_reference_manager,
     WebformSubmissionGenerateInterface $submission_generate,
-    KillSwitch $killSwitch
+    KillSwitch $killSwitch,
+    SelectionPluginManagerInterface $selection_manager
   ) {
     parent::__construct($entity_repository);
     $this->configFactory = $config_factory;
@@ -227,6 +242,8 @@ class WebformSubmissionForm extends ContentEntityForm {
     $this->webformEntityReferenceManager = $webform_entity_reference_manager;
     $this->generate = $submission_generate;
     $this->killSwitch = $killSwitch;
+    $this->selectionManager = $selection_manager;
+
   }
 
   /**
@@ -247,7 +264,8 @@ class WebformSubmissionForm extends ContentEntityForm {
       $container->get('webform_submission.conditions_validator'),
       $container->get('webform.entity_reference_manager'),
       $container->get('webform_submission.generate'),
-      $container->get('page_cache_kill_switch')
+      $container->get('page_cache_kill_switch'),
+      $container->get('plugin.manager.entity_reference_selection')
     );
   }
 
@@ -1755,7 +1773,7 @@ class WebformSubmissionForm extends ContentEntityForm {
         // For all other submissions, use the request URI.
         $uri = preg_replace('#^' . base_path() . '#', '/', $this->getRequest()->getRequestUri());
         // Remove Ajax query string parameters.
-        $uri = preg_replace('/(ajax_form=1|_wrapper_format=drupal_ajax)(&|$)/', '', $uri);
+        $uri = preg_replace('/(ajax_form=1|_wrapper_format=(drupal_ajax|drupal_modal|drupal_dialog|html|ajax))(&|$)/', '', $uri);
         // Remove empty query string.
         $uri = preg_replace('/\?$/', '', $uri);
       }
@@ -2294,23 +2312,96 @@ class WebformSubmissionForm extends ContentEntityForm {
    *   An array of default.
    */
   protected function prepopulateData(array &$data) {
+    // Get prepopulate data.
     if ($this->getWebformSetting('form_prepopulate')) {
-      if ($this->operation === 'test') {
-        // Query string data should override existing test data.
-        $data = $this->getRequest()->query->all() + $data;
-      }
-      else {
-        $data += $this->getRequest()->query->all();
-      }
+      $prepopulate_data = $this->getRequest()->query->all();
     }
     else {
+      $prepopulate_data = [];
       $elements = $this->getWebform()->getElementsPrepopulate();
       foreach ($elements as $element_key) {
         if ($this->getRequest()->query->has($element_key)) {
-          $data[$element_key] = $this->getRequest()->query->get($element_key);
+          $prepopulate_data[$element_key] = $this->getRequest()->query->get($element_key);
         }
       }
     }
+
+    // Validate prepopulate data.
+    foreach ($prepopulate_data as $element_key => &$value) {
+      if ($this->checkPrepopulateDataValid($element_key, $value) === FALSE) {
+        unset($prepopulate_data[$element_key]);
+      }
+    }
+
+    // Set prepopulate data.
+    if ($this->operation === 'test') {
+      // Query string data should override existing test data.
+      $data = $prepopulate_data + $data;
+    }
+    else {
+      $data += $prepopulate_data;
+    }
+  }
+
+  /**
+   * Determine if element prepopulate data is valid.
+   *
+   * @param string $element_key
+   *   An element key
+   * @param string|array &$value
+   *   A value.
+   *
+   * @return bool
+   *   TRUE if element prepopulate data is valid.
+   */
+  protected function checkPrepopulateDataValid($element_key, &$value) {
+    // Make sure the element exists.
+    $element = $this->getWebform()->getElement($element_key);
+    if (!$element) {
+      return FALSE;
+    }
+
+    // Make sure the element is an input.
+    $element_plugin = $this->elementManager->getElementInstance($element);
+    if (!$element_plugin->isInput($element)) {
+      return FALSE;
+    }
+
+    // Validate entity references.
+    // @see \Drupal\Core\Entity\Element\EntityAutocomplete::validateEntityAutocomplete
+    if ($element_plugin instanceof WebformElementEntityReferenceInterface) {
+      $options = $element['#selection_settings'] + [
+        'target_type' => $element['#target_type'],
+        'handler' => $element['#selection_handler'],
+      ];
+      /** @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface $handler */
+      $handler = $this->selectionManager->getInstance($options);
+      $valid_ids = $handler->validateReferenceableEntities((array) $value);
+      if (empty($valid_ids)) {
+        return FALSE;
+      }
+      else {
+        $value = $element_plugin->hasMultipleValues($element) ? $valid_ids : reset($valid_ids);
+        return TRUE;
+      }
+    }
+
+    // Validate options.
+    $is_options_element = isset($element['#options'])
+      && $element_plugin instanceof OptionsBase
+      && !$element_plugin instanceof WebformElementOtherInterface;
+    if ($is_options_element) {
+      $option_values = WebformOptionsHelper::validateOptionValues($element['#options'], (array) $value);
+      if (empty($option_values)) {
+        return FALSE;
+      }
+      else {
+        $value = $element_plugin->hasMultipleValues($element) ? $option_values : reset($option_values);
+        return TRUE;
+      }
+    }
+
+    return TRUE;
   }
 
   /**
