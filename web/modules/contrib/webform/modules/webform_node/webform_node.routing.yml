@@ -308,7 +308,7 @@ entity.node.webform_submission.resend_form:
     _form: 'Drupal\webform\Form\WebformSubmissionResendForm'
     _title_callback: '\Drupal\webform\Controller\WebformSubmissionViewController::title'
     operation: webform_submission_resend
-    entity_access: 'webform_submission.update_any'
+    entity_access: 'webform_submission.resend'
   options:
     _admin_route: TRUE
     parameters:
@@ -323,7 +323,7 @@ entity.node.webform_submission.duplicate_form:
     _entity_form: 'webform_submission.duplicate'
     _title_callback: '\Drupal\webform\Controller\WebformSubmissionViewController::title'
     operation: webform_submission_duplicate
-    entity_access: 'webform_submission.update_any'
+    entity_access: 'webform_submission.duplicate'
     duplicate: TRUE
   options:
     _admin_route: TRUE

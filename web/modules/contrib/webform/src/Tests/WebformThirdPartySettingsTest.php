@@ -45,7 +45,7 @@ class WebformThirdPartySettingsTest extends WebformTestBase {
     $edit = [
       'third_party_settings[webform_test_third_party_settings][message]' => 'Message for all webforms',
     ];
-    $this->drupalPostForm('admin/structure/webform/config', $edit, t('Save configuration'));
+    $this->drupalPostForm('/admin/structure/webform/config', $edit, t('Save configuration'));
     $this->drupalGet('/webform/contact');
     $this->assertRaw('Message for all webforms');
 
@@ -59,7 +59,7 @@ class WebformThirdPartySettingsTest extends WebformTestBase {
     $edit = [
       'third_party_settings[webform_test_third_party_settings][message]' => 'Message for only this webform',
     ];
-    $this->drupalPostForm('admin/structure/webform/manage/contact/settings', $edit, t('Save'));
+    $this->drupalPostForm('/admin/structure/webform/manage/contact/settings', $edit, t('Save'));
     $this->drupalGet('/webform/contact');
     $this->assertRaw('Message for only this webform');
 

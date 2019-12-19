@@ -46,6 +46,14 @@ elements: |
       - One
       - Two
       - Three
+  webform_multiple_no_add_more_input:
+    '#type': webform_multiple
+    '#title': webform_multiple_no_add_more_input
+    '#add_more_input': false
+    '#default_value':
+      - One
+      - Two
+      - Three
   webform_multiple_custom_label:
     '#type': webform_multiple
     '#title': webform_multiple_custom_label
@@ -247,6 +255,15 @@ elements: |
   webform_multiple_custom_attributes:
     '#type': webform_multiple
     '#title': webform_multiple_custom_attributes
+    '#ajax_attributes':
+      class:
+        - custom-ajax
+    '#table_wrapper_attributes':
+      class:
+        - custom-table-wrapper
+    '#table_attributes':
+      class:
+        - custom-table
     '#header': true
     '#element':
       textfield:
@@ -261,6 +278,7 @@ elements: |
         '#attributes':
           class:
             - custom-element
+  
 css: ''
 javascript: ''
 settings:
@@ -326,6 +344,7 @@ settings:
   wizard_progress_pages: false
   wizard_progress_percentage: false
   wizard_progress_link: false
+  wizard_progress_states: false
   wizard_start_label: ''
   wizard_preview_link: false
   wizard_confirmation: true
@@ -373,6 +392,7 @@ settings:
   purge_days: null
   results_disabled: true
   results_disabled_ignore: false
+  token_view: false
   token_update: false
 access:
   create:
