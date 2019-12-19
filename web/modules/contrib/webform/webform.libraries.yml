@@ -394,6 +394,14 @@ webform.wizard.track:
 
 # Element.
 
+webform.element.ajax:
+  version: VERSION
+  js:
+    js/webform.element.ajax.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery.once
+
 webform.element.buttons:
   version: VERSION
   js:

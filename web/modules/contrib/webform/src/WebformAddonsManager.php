@@ -278,6 +278,14 @@ class WebformAddonsManager implements WebformAddonsManagerInterface {
       'category' => 'element',
     ];
 
+    // Element: Webform Summation Field.
+    $projects['webform_summation_field'] = [
+      'title' => $this->t('Webform Summation Field'),
+      'description' => $this->t('Provides a webform summation field to collect the values of other fields.'),
+      'url' => Url::fromUri('https://www.drupal.org/project/webform_summation_field'),
+      'category' => 'element',
+    ];
+
     /**************************************************************************/
     // Enhancement.
     /**************************************************************************/
@@ -346,9 +354,17 @@ class WebformAddonsManager implements WebformAddonsManagerInterface {
       'category' => 'enhancement',
     ];
 
+    // Enhancement: Webform Navigation.
+    $projects['webformnavigation'] = [
+      'title' => $this->t('Webform Navigation'),
+      'description' => $this->t('Creates a navigation setting for webform that allows users to navigate forwards and backwards through wizard pages when the wizard navigation progress bar is enabled.'),
+      'url' => Url::fromUri('https://www.drupal.org/project/webformnavigation'),
+      'category' => 'enhancement',
+    ];
+
     // Enhancement: Webform OCR.
     $projects['webform_ocr'] = [
-      'title' => $this->t('Webform Webform OCR'),
+      'title' => $this->t('Webform OCR'),
       'description' => $this->t('OCR images as new Webforms.'),
       'url' => Url::fromUri('https://www.drupal.org/project/webform_ocr'),
       'category' => 'enhancement',
@@ -760,6 +776,14 @@ class WebformAddonsManager implements WebformAddonsManagerInterface {
       'title' => $this->t('SendGrid Integration <em>(requires Mail System)</em>'),
       'description' => $this->t('Provides SendGrid Integration for the Drupal Mail System.'),
       'url' => Url::fromUri('https://www.drupal.org/project/sendgrid_integration'),
+      'category' => 'mail',
+    ];
+
+    // Mail: Queue Mail.
+    $projects['queue_mail'] = [
+      'title' => $this->t('Queue Mail'),
+      'description' => $this->t('Queues webform email sending so that instead of being sent immediately it is sent on cron or via some other queue processor.'),
+      'url' => Url::fromUri('https://www.drupal.org/project/queue_mail'),
       'category' => 'mail',
     ];
 

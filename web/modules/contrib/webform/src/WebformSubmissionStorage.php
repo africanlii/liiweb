@@ -494,6 +494,29 @@ class WebformSubmissionStorage extends SqlContentEntityStorage implements Webfor
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function getSourceEntityAsOptions(WebformInterface $webform, $entity_type) {
+    $entity_ids = Database::getConnection()->select('webform_submission', 's')
+      ->fields('s', ['entity_id'])
+      ->condition('s.webform_id', $webform->id())
+      ->condition('s.entity_type', $entity_type)
+      ->execute()
+      ->fetchCol();
+    // Limit the number of source entities loaded to 100.
+    if (empty($entity_ids) || count($entity_ids) > 100) {
+      return [];
+    }
+    $entities = $this->entityTypeManager->getStorage($entity_type)->loadMultiple($entity_ids);
+    $options = [];
+    foreach ($entities as $entity_id => $entity) {
+      $options[$entity_id] = $entity->label();
+    }
+    asort($options);
+    return $options;
+  }
+
+  /**
    * Get a webform submission's terminus (aka first or last).
    *
    * @param \Drupal\webform\WebformInterface $webform

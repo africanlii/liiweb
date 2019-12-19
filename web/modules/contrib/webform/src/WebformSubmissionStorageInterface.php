@@ -322,6 +322,20 @@ interface WebformSubmissionStorageInterface extends ContentEntityStorageInterfac
    */
   public function getSourceEntityTypes(WebformInterface $webform);
 
+  /**
+   * Get webform submission source entities as options.
+   *
+   * @param \Drupal\webform\WebformInterface $webform
+   *   A webform.
+   * @param string $entity_type
+   *   A source entity type.
+   *
+   * @return array
+   *   An array of source entities as options that the webform
+   *   has been submitted from.
+   */
+  public function getSourceEntityAsOptions(WebformInterface $webform, $entity_type);
+
   /****************************************************************************/
   // WebformSubmissionEntityList methods.
   /****************************************************************************/

@@ -3295,3 +3295,10 @@ function webform_update_8176() {
 function webform_update_8177() {
   _webform_update_webform_settings();
 }
+
+/**
+ * Issue #3095275: Allow webform management filter by default category and states to be customized
+ */
+function webform_update_8178() {
+  _webform_update_admin_settings();
+}

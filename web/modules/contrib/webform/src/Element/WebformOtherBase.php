@@ -112,11 +112,6 @@ abstract class WebformOtherBase extends FormElement {
     }
     $element[$type]['#error_no_message'] = TRUE;
 
-    // Prevent nested fieldset by removing fieldset theme wrapper around
-    // radios and checkboxes.
-    // @see \Drupal\Core\Render\Element\CompositeFormElementTrait
-    $element[$type]['#pre_render'] = [];
-
     // Build other textfield.
     $element += ['other' => []];
     foreach ($element as $key => $value) {
@@ -159,6 +154,11 @@ abstract class WebformOtherBase extends FormElement {
     $element_manager = \Drupal::service('plugin.manager.webform.element');
     $element_manager->buildElement($element[$type], $complete_form, $form_state);
     $element_manager->buildElement($element['other'], $complete_form, $form_state);
+
+    // Prevent nested fieldset by removing fieldset theme wrapper around
+    // radios and checkboxes.
+    // @see \Drupal\Core\Render\Element\CompositeFormElementTrait
+    $element[$type]['#pre_render'] = [];
 
     // Add js trigger attributes to the composite wrapper.
     // @see \Drupal\webform\Element\WebformCompositeFormElementTrait
