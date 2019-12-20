@@ -153,8 +153,9 @@ class LiiWebEntityResource extends EntityResource {
     }
 
     if ($request->headers->get('Accept') == 'application/json') {
+      $revision->addCacheContexts(['url']);
       $response =  $this->getIndividual($revision, $request);
-      $cacheability = (new CacheableMetadata())->addCacheContexts(['headers:Accept']);
+      $cacheability = (new CacheableMetadata())->addCacheContexts(['headers:Accept', 'url']);
       $response->addCacheableDependency($cacheability);
       return $response;
     }
