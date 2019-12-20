@@ -5,6 +5,7 @@ namespace Drupal\webform\Form;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\webform\Element\WebformAjaxElementTrait;
 use Drupal\webform\Plugin\WebformHandlerMessageInterface;
 use Drupal\webform\WebformRequestInterface;
 use Drupal\webform\WebformSubmissionInterface;
@@ -14,6 +15,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Defines a webform that resends webform submission.
  */
 class WebformSubmissionResendForm extends FormBase {
+
+  use WebformAjaxElementTrait;
 
   /**
    * A webform submission.
@@ -98,7 +101,8 @@ class WebformSubmissionResendForm extends FormBase {
     }
 
     // Display message handler with change message Ajax submit button.
-    $form['message_handler_id'] = [
+    $form['message_handler'] = [];
+    $form['message_handler']['message_handler_id'] = [
       '#type' => 'tableselect',
       '#header' => $header,
       '#options' => $options,
@@ -106,23 +110,6 @@ class WebformSubmissionResendForm extends FormBase {
       '#empty' => $this->t('No messages are available.'),
       '#multiple' => FALSE,
       '#default_value' => $message_handler_id,
-      '#attributes' => ['data-webform-trigger-submit' => '.js-webform-message-change-submit'],
-    ];
-    $form['message_change'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Change message'),
-      '#submit' => [[get_called_class(), 'changeMessageSubmit']],
-      '#attributes' => [
-        'class' => [
-          'js-hide',
-          'js-webform-message-change-submit',
-        ],
-      ],
-      '#ajax' => [
-        'callback' => '::ajaxMessageCallback',
-        'wrapper' => 'edit-webform-message-wrapper',
-        'progress' => ['type' => 'fullscreen'],
-      ],
     ];
 
     // Message.
@@ -134,8 +121,6 @@ class WebformSubmissionResendForm extends FormBase {
       '#title' => $this->t('Message'),
       '#open' => TRUE,
       '#tree' => TRUE,
-      '#prefix' => '<div id="edit-webform-message-wrapper">',
-      '#suffix' => '</div>',
     ] + $resend_form;
 
     // Add resend button.
@@ -158,6 +143,13 @@ class WebformSubmissionResendForm extends FormBase {
       '#weight' => -19,
     ];
     $form['#attached']['library'][] = 'webform/webform.admin';
+
+    $this->buildAjaxElement(
+      'webform-message-handler',
+      $form['message'],
+      $form['message_handler']['message_handler_id'],
+      $form['message_handler']
+    );
 
     return $form;
   }
@@ -244,39 +236,19 @@ class WebformSubmissionResendForm extends FormBase {
   }
 
   /****************************************************************************/
-  // Change message handling.
+  // Change message ajax callbacks.
   /****************************************************************************/
 
   /**
-   * Change message handler.
-   *
-   * @param array $form
-   *   An associative array containing the structure of the form.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The current state of the form.
+   * {@inheritdoc}
    */
-  public static function changeMessageSubmit(array &$form, FormStateInterface $form_state) {
+  public static function submitAjaxElementCallback(array $form, FormStateInterface $form_state) {
     // Unset the message so that it can be completely rebuilt.
     NestedArray::unsetValue($form_state->getUserInput(), ['message']);
     $form_state->unsetValue('message');
 
     // Rebuild the form.
     $form_state->setRebuild();
-  }
-
-  /**
-   * Handles switching between messages.
-   *
-   * @param array $form
-   *   An associative array containing the structure of the form.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The current state of the form.
-   *
-   * @return array
-   *   An associative array containing an email message.
-   */
-  public function ajaxMessageCallback(array $form, FormStateInterface $form_state) {
-    return $form['message'];
   }
 
 }

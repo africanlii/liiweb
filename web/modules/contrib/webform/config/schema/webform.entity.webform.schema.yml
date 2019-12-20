@@ -284,6 +284,9 @@
         wizard_progress_link:
           type: boolean
           label: 'Link to previous pages in progress bar'
+        wizard_progress_states:
+          type: boolean
+          label: 'Update wizard progress bar''s pages based on conditions'
         wizard_start_label:
           type: label
           label: 'Wizard start label'
@@ -431,9 +434,12 @@
         results_disabled_ignore:
           type: boolean
           label: 'Ignore disabled results warning'
+        token_view:
+          type: boolean
+          label: 'Allow viewing a submission using token'
         token_update:
           type: boolean
-          label: 'Allow updates using token'
+          label: 'Allow updating a submission using token'
     access:
       type: sequence
       label: 'Access Rules'

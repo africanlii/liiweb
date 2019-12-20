@@ -1,0 +1,7 @@
+name: 'Webform Custom Options Test'
+type: module
+description: 'Support module for webform that provides custom options element working examples.'
+package: Testing
+core: 8.x
+dependencies:
+  - 'webform:webform_options_custom'

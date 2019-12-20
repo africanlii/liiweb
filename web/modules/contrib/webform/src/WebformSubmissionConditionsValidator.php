@@ -61,6 +61,32 @@ class WebformSubmissionConditionsValidator implements WebformSubmissionCondition
   }
 
   /****************************************************************************/
+  // Build pages methods.
+  /****************************************************************************/
+
+  /**
+   * {@inheritdoc}
+   */
+  public function buildPages(array $pages, WebformSubmissionInterface $webform_submission) {
+    foreach ($pages as $page_key => $page) {
+      // Check #access which can be set via form alter.
+      if ($page['#access'] === FALSE) {
+        unset($pages[$page_key]);
+      }
+      // Check #states (visible/hidden).
+      if (!empty($page['#states'])) {
+        $state = key($page['#states']);
+        $conditions = $page['#states'][$state];
+        $result = $this->validateState($state, $conditions, $webform_submission);
+        if ($result !== NULL && !$result) {
+          unset($pages[$page_key]);
+        }
+      }
+    }
+    return $pages;
+  }
+
+  /****************************************************************************/
   // Build form methods.
   /****************************************************************************/
 
@@ -320,6 +346,9 @@ class WebformSubmissionConditionsValidator implements WebformSubmissionCondition
       // Determine if the element is required.
       $is_required = $this->validateConditions($conditions, $webform_submission);
       $is_required = ($state == 'optional') ? !$is_required : $is_required;
+      if (!$is_required) {
+        continue;
+      }
 
       // Determine if the element is empty (but not zero).
       if (isset($element['#webform_key'])) {
@@ -329,12 +358,19 @@ class WebformSubmissionConditionsValidator implements WebformSubmissionCondition
         $value = $element['#value'];
       }
 
-      $is_empty = (empty($value) && $value !== '0');
-      $is_default_input_mask = (TextBase::isDefaultInputMask($element, $value));
+      // Perform required validation. Use element's method if available.
+      $element_definition = $element_plugin->getFormElementClassDefinition();
+      if (method_exists($element_definition, 'setRequiredError')) {
+        $element_definition::setRequiredError($element, $form_state);
+      }
+      else {
+        $is_empty = (empty($value) && $value !== '0');
+        $is_default_input_mask = (TextBase::isDefaultInputMask($element, $value));
 
-      // If required and empty then set required error.
-      if ($is_required && ($is_empty || $is_default_input_mask)) {
-        WebformElementHelper::setRequiredError($element, $form_state);
+        // If required and empty then set required error.
+        if ($is_empty || $is_default_input_mask) {
+          WebformElementHelper::setRequiredError($element, $form_state);
+        }
       }
     }
   }

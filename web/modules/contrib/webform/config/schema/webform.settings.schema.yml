@@ -253,6 +253,16 @@ webform.settings:
         javascript:
           type: string
           label: JavaScript
+    form:
+      type: mapping
+      label: 'Form default settings'
+      mapping:
+        filter_category:
+          type: label
+          label: 'Filter category'
+        filter_state:
+          type: string
+          label: 'Filter state'
     element:
       type: mapping
       label: 'Element default settings'

@@ -9,6 +9,7 @@ use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormState;
@@ -25,13 +26,17 @@ use Drupal\Core\Url;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\Form\WebformDialogFormTrait;
 use Drupal\webform\Plugin\WebformElement\Hidden;
+use Drupal\webform\Plugin\WebformElement\OptionsBase;
+use Drupal\webform\Plugin\WebformElementEntityReferenceInterface;
 use Drupal\webform\Plugin\WebformElementManagerInterface;
+use Drupal\webform\Plugin\WebformElementOtherInterface;
 use Drupal\webform\Plugin\WebformElementWizardPageInterface;
 use Drupal\webform\Plugin\WebformHandlerInterface;
 use Drupal\webform\Plugin\WebformSourceEntityManager;
 use Drupal\webform\Utility\WebformArrayHelper;
 use Drupal\webform\Utility\WebformDialogHelper;
 use Drupal\webform\Utility\WebformElementHelper;
+use Drupal\webform\Utility\WebformOptionsHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -155,6 +160,22 @@ class WebformSubmissionForm extends ContentEntityForm {
   protected $killSwitch;
 
   /**
+   * Selection Plugin Manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface
+   */
+  protected $selectionManager;
+
+  /**
+   * Stores the original submission data passed via the EntityFormBuilder.
+   *
+   * @var array
+   *
+   * @see \Drupal\webform\WebformSubmissionForm::setEntity
+   */
+  protected $originalData;
+
+  /**
    * Constructs a WebformSubmissionForm object.
    *
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
@@ -187,6 +208,8 @@ class WebformSubmissionForm extends ContentEntityForm {
    *   The webform submission generation service.
    * @param \Drupal\Core\PageCache\ResponsePolicy\KillSwitch $killSwitch
    *   The page cache kill switch service.
+   * @param \Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface $selection_manager
+   *   The selection plugin manager.
    */
   public function __construct(
     EntityRepositoryInterface $entity_repository,
@@ -202,7 +225,8 @@ class WebformSubmissionForm extends ContentEntityForm {
     WebformSubmissionConditionsValidatorInterface $conditions_validator,
     WebformEntityReferenceManagerInterface $webform_entity_reference_manager,
     WebformSubmissionGenerateInterface $submission_generate,
-    KillSwitch $killSwitch
+    KillSwitch $killSwitch,
+    SelectionPluginManagerInterface $selection_manager
   ) {
     parent::__construct($entity_repository);
     $this->configFactory = $config_factory;
@@ -218,6 +242,8 @@ class WebformSubmissionForm extends ContentEntityForm {
     $this->webformEntityReferenceManager = $webform_entity_reference_manager;
     $this->generate = $submission_generate;
     $this->killSwitch = $killSwitch;
+    $this->selectionManager = $selection_manager;
+
   }
 
   /**
@@ -238,7 +264,8 @@ class WebformSubmissionForm extends ContentEntityForm {
       $container->get('webform_submission.conditions_validator'),
       $container->get('webform.entity_reference_manager'),
       $container->get('webform_submission.generate'),
-      $container->get('page_cache_kill_switch')
+      $container->get('page_cache_kill_switch'),
+      $container->get('plugin.manager.entity_reference_selection')
     );
   }
 
@@ -278,6 +305,21 @@ class WebformSubmissionForm extends ContentEntityForm {
     /** @var \Drupal\webform\WebformSubmissionInterface $entity */
     $webform = $entity->getWebform();
 
+    // Initialize the webform submission entity by getting it default data
+    // and storing its original data.
+    if (!isset($this->originalData)) {
+      // Store the original data passed via the EntityFormBuilder.
+      // This allows us to reset the submission to it's original state
+      // via ::reset.
+      // @see \Drupal\Core\Entity\EntityFormBuilder::getForm
+      // @see \Drupal\webform\Entity\Webform::getSubmissionForm
+      // @see \Drupal\webform\WebformSubmissionForm::reset
+      $this->originalData = $entity->getRawData();
+    }
+
+    // Get the submission data and only call WebformSubmission::setData once.
+    $data = $entity->getRawData();
+
     // If ?_webform_test is defined for the current webform, override
     // the 'add' operation with 'test' operation and generate test data.
     if ($this->operation === 'add' &&
@@ -285,7 +327,7 @@ class WebformSubmissionForm extends ContentEntityForm {
       $webform->access('test')
     ) {
       $this->operation = 'test';
-      $entity->setData($this->generate->getData($webform));
+      $data = $this->generate->getData($webform);
     }
 
     // Get the source entity and allow webform submission to be used as a source
@@ -296,13 +338,8 @@ class WebformSubmissionForm extends ContentEntityForm {
     }
     // Handle paragraph sourc entity.
     if ($source_entity && $source_entity->getEntityTypeId() === 'paragraph') {
-      // Default data supports paragraph source entity tokens.
-      // @see \Drupal\webform\Plugin\Field\FieldFormatter\WebformEntityReferenceEntityFormatter::viewElements
-      $data = $entity->getData();
       // Disable :clear suffix to prevent webform tokens from being removed.
       $data = $this->tokenManager->replace($data, $source_entity, [], ['suffixes' => ['clear' => FALSE]]);
-      $entity->setData($data);
-
       $source_entity = WebformSourceEntityManager::getMainSourceEntity($source_entity);
     }
     // Set source entity.
@@ -318,6 +355,7 @@ class WebformSubmissionForm extends ContentEntityForm {
       $webform_submission_token = $this->getStorage()->loadFromToken($token, $webform, $source_entity);
       if ($webform_submission_token) {
         $entity = $webform_submission_token;
+        $data = $entity->getRawData();
       }
       elseif ($webform->getSetting('draft') != WebformInterface::DRAFT_NONE) {
         if ($webform->getSetting('draft_multiple')) {
@@ -327,11 +365,13 @@ class WebformSubmissionForm extends ContentEntityForm {
           $webform_submission_token = $this->getStorage()->loadFromToken($token, $webform, $source_entity, $account);
           if ($webform_submission_token && $webform_submission_token->isDraft()) {
             $entity = $webform_submission_token;
+            $data = $entity->getRawData();
           }
         }
         elseif ($webform_submission_draft = $this->getStorage()->loadDraft($webform, $source_entity, $account)) {
           // Else load the most recent draft.
           $entity = $webform_submission_draft;
+          $data = $entity->getRawData();
         }
       }
     }
@@ -340,39 +380,58 @@ class WebformSubmissionForm extends ContentEntityForm {
     $this->entity = $entity;
 
     if ($entity->isNew()) {
+      $last_submission = NULL;
       if ($webform->getSetting('limit_total_unique')) {
+        // Require user to have update any submission access.
+        if (!$webform->access('submission_view_any')
+          && !$webform->access('submission_update_any')) {
+          throw new AccessDeniedHttpException();
+        }
         // Get last webform/source entity submission.
         $last_submission = $this->getStorage()->getLastSubmission($webform, $source_entity, NULL, ['in_draft' => FALSE]);
-        if ($last_submission) {
-          $entity = $last_submission;
-          $this->operation = 'edit';
-        }
       }
       elseif ($webform->getSetting('limit_user_unique')) {
         // Require user to be authenticated to access a unique submission.
         if (!$account->isAuthenticated()) {
           throw new AccessDeniedHttpException();
         }
-
+        // Require user to have update own submission access.
+        if (!$webform->access('submission_view_own')
+          && !$webform->access('submission_update_own')) {
+          throw new AccessDeniedHttpException();
+        }
         // Get last user submission.
         $last_submission = $this->getStorage()->getLastSubmission($webform, $source_entity, $account, ['in_draft' => FALSE]);
-        if ($last_submission) {
-          $entity = $last_submission;
-          $this->operation = 'edit';
-        }
+      }
+
+      // Set last submission and switch to the edit operation.
+      if ($last_submission) {
+        $entity = $last_submission;
+        $data = $entity->getRawData();
+        $this->operation = 'edit';
       }
     }
 
-    if ($this->operation === 'add' && $entity->isNew()) {
-      if ($webform->getSetting('autofill')) {
-        // Autofill with previous submission.
-        if ($last_submission = $this->getLastSubmission()) {
-          $excluded_elements = $webform->getSetting('autofill_excluded_elements') ?: [];
-          $last_submission_data = array_diff_key($last_submission->getData(), $excluded_elements);
-          $entity->setData($last_submission_data + $entity->getData());
-        }
+    // Autofill with previous submission.
+    if ($this->operation === 'add'
+      && $entity->isNew()
+      && $webform->getSetting('autofill')) {
+      if ($last_submission = $this->getLastSubmission()) {
+        $excluded_elements = $webform->getSetting('autofill_excluded_elements') ?: [];
+        $last_submission_data = array_diff_key($last_submission->getRawData(), $excluded_elements);
+        $data = $last_submission_data + $data;
       }
     }
+
+    // Get default data and append it to the submission's data.
+    // This allows computed elements to be executed and tokens
+    // to be replaced using the webform's default data.
+    $default_data = $webform->getElementsDefaultData();
+    $default_data = $this->tokenManager->replace($default_data, $entity);
+    $data += $default_data;
+
+    // Set data and calculate computed values.
+    $entity->setData($data);
 
     // Override settings.
     $this->overrideSettings($entity);
@@ -516,7 +575,7 @@ class WebformSubmissionForm extends ContentEntityForm {
 
     // Server side #states API validation.
     $this->conditionsValidator->buildForm($form, $form_state);
-    
+
     return $form;
   }
 
@@ -639,7 +698,10 @@ class WebformSubmissionForm extends ContentEntityForm {
 
     // Get and prepopulate (via query string) submission data.
     $data = $webform_submission->getData();
-    $this->prepopulateData($data);
+    // Only prepopulate data when a webform is initially loaded.
+    if (!$form_state->isRebuilding()) {
+      $this->prepopulateData($data);
+    }
 
     /* Elements */
 
@@ -666,6 +728,7 @@ class WebformSubmissionForm extends ContentEntityForm {
         $form['progress'] = [
           '#theme' => 'webform_progress',
           '#webform' => $this->getWebform(),
+          '#webform_submission' => $webform_submission,
           '#current_page' => $current_page,
           '#operation' => $this->operation,
           '#weight' => -20,
@@ -751,6 +814,13 @@ class WebformSubmissionForm extends ContentEntityForm {
       $form['#disable_inline_form_errors'] = TRUE;
     }
 
+    // Details save: Attach details element save open/close library.
+    // This ensures that the library will be loaded even if the webform is
+    // used as a block or a node.
+    if ($this->config('webform.settings')->get('ui.details_save')) {
+      $form['#attached']['library'][] = 'webform/webform.element.details.save';
+    }
+
     // Details toggle: Display collapse/expand all details link.
     if ($this->getWebformSetting('form_details_toggle')) {
       $form['#attributes']['class'][] = 'js-webform-details-toggle';
@@ -761,13 +831,6 @@ class WebformSubmissionForm extends ContentEntityForm {
     // Autofocus: Add autofocus class to webform.
     if ($this->entity->isNew() && $this->getWebformSetting('form_autofocus')) {
       $form['#attributes']['class'][] = 'js-webform-autofocus';
-    }
-
-    // Details save: Attach details element save open/close library.
-    // This ensures that the library will be loaded even if the webform is
-    // used as a block or a node.
-    if ($this->config('webform.settings')->get('ui.details_save')) {
-      $form['#attached']['library'][] = 'webform/webform.element.details.save';
     }
 
     // Pages: Disable webform auto submit on enter for wizard webform pages only.
@@ -1375,6 +1438,13 @@ class WebformSubmissionForm extends ContentEntityForm {
     $current_page = $this->getCurrentPage($form, $form_state);
     $next_page = $this->getNextPage($pages, $current_page);
 
+    // If there is no next page jump to the confirmation page which will also
+    // submit this form.
+    // @see \Drupal\webform\WebformSubmissionForm::wizardSubmit
+    if (empty($next_page)) {
+      $next_page = 'webform_confirmation';
+    }
+
     // Set next page.
     $form_state->set('current_page', $next_page);
 
@@ -1437,19 +1507,22 @@ class WebformSubmissionForm extends ContentEntityForm {
     // @see template_preprocess_webform_progress()
     if ($this->isAjax()) {
       $pages = $this->getPages($form, $form_state);
+      // Make sure the current page exists because the confirmation page
+      // may not be included in the wizard's pages.
+      if (isset($pages[$current_page])) {
+        $page_keys = array_keys($pages);
+        $page_indexes = array_flip($page_keys);
+        $total_pages = count($page_keys);
+        $current_index = $page_indexes[$current_page];
 
-      $page_keys = array_keys($pages);
-      $page_indexes = array_flip($page_keys);
-      $current_index = $page_indexes[$current_page];
-      $total_pages = count($page_keys);
-
-      $t_args = [
-        '@title' => $this->getWebform()->label(),
-        '@page' => $pages[$current_page]['#title'],
-        '@start' => ($current_index + 1),
-        '@end' => $total_pages,
-      ];
-      $this->announce($this->t('"@title: @page" loaded. (Page @start of @end)', $t_args));
+        $t_args = [
+          '@title' => $this->getWebform()->label(),
+          '@page' => $pages[$current_page]['#title'],
+          '@start' => ($current_index + 1),
+          '@end' => $total_pages,
+        ];
+        $this->announce($this->t('"@title: @page" loaded. (Page @start of @end)', $t_args));
+      }
     }
   }
 
@@ -1700,7 +1773,7 @@ class WebformSubmissionForm extends ContentEntityForm {
         // For all other submissions, use the request URI.
         $uri = preg_replace('#^' . base_path() . '#', '/', $this->getRequest()->getRequestUri());
         // Remove Ajax query string parameters.
-        $uri = preg_replace('/(ajax_form=1|_wrapper_format=drupal_ajax)(&|$)/', '', $uri);
+        $uri = preg_replace('/(ajax_form=1|_wrapper_format=(drupal_ajax|drupal_modal|drupal_dialog|html|ajax))(&|$)/', '', $uri);
         // Remove empty query string.
         $uri = preg_replace('/\?$/', '', $uri);
       }
@@ -1724,6 +1797,8 @@ class WebformSubmissionForm extends ContentEntityForm {
       || $this->getWebformSetting('user_limit_total')
       || $this->getWebformSetting('entity_limit_total')
       || $this->getWebformSetting('entity_limit_user')
+      || $this->getWebformSetting('limit_total_unique')
+      || $this->getWebformSetting('limit_user_unique')
     ) {
       Cache::invalidateTags(['webform:' . $this->getWebform()->id()]);
     }
@@ -1753,7 +1828,7 @@ class WebformSubmissionForm extends ContentEntityForm {
     // Create new webform submission.
     /** @var \Drupal\webform\Entity\WebformSubmission $webform_submission */
     $webform_submission = $this->getEntity()->createDuplicate();
-    $webform_submission->setData([]);
+    $webform_submission->setData($this->originalData);
     $this->setEntity($webform_submission);
 
     // Reset user input but preserve form tokens.
@@ -1790,6 +1865,7 @@ class WebformSubmissionForm extends ContentEntityForm {
   protected function setFormPropertiesFromElements(array &$form, array &$elements) {
     foreach ($elements as $key => $value) {
       if (is_string($key) && $key[0] == '#') {
+        $value = $this->tokenManager->replace($value, $this->getEntity());
         if (isset($form[$key]) && is_array($form[$key]) && is_array($value)) {
           $form[$key] = NestedArray::mergeDeep($form[$key], $value);
         }
@@ -1841,24 +1917,10 @@ class WebformSubmissionForm extends ContentEntityForm {
 
     // Get pages from form state.
     $pages = $form_state->get('pages');
-    foreach ($pages as $page_key => &$page) {
-      // Check #access which can set via form alter.
-      if ($page['#access'] === FALSE) {
-        unset($pages[$page_key]);
-      }
-      // Check #states (visible/hidden).
-      elseif (!empty($page['#states'])) {
-        $state = key($page['#states']);
-        $conditions = $page['#states'][$state];
 
-        $result = $this->conditionsValidator->validateState($state, $conditions, $this->getEntity());
-        if ($result !== NULL && !$result) {
-          unset($pages[$page_key]);
-        }
-      }
-    }
-
-    return $pages;
+    /** @var \Drupal\webform\WebformSubmissionInterface $webform_submission */
+    $webform_submission = $this->getEntity();
+    return $this->conditionsValidator->buildPages($pages, $webform_submission);
   }
 
   /**
@@ -2080,7 +2142,14 @@ class WebformSubmissionForm extends ContentEntityForm {
         $confirmation_url = preg_replace('/^' . preg_quote(base_path(), '/') . '/', '/', $confirmation_url);
         // Get system path.
         $confirmation_url = $this->aliasManager->getPathByAlias($confirmation_url);
-        if ($redirect_url = $this->pathValidator->getUrlIfValid($confirmation_url)) {
+        // Get redirect URL if internal or valid.
+        if (strpos($confirmation_url, 'internal:') === 0) {
+          $redirect_url = Url::fromUri($confirmation_url);
+        }
+        else {
+          $redirect_url = $this->pathValidator->getUrlIfValid($confirmation_url);
+        }
+        if ($redirect_url) {
           if ($confirmation_type == WebformInterface::CONFIRMATION_URL_MESSAGE) {
             $this->getMessageManager()->display(WebformMessageManagerInterface::SUBMISSION_CONFIRMATION_MESSAGE);
           }
@@ -2243,23 +2312,96 @@ class WebformSubmissionForm extends ContentEntityForm {
    *   An array of default.
    */
   protected function prepopulateData(array &$data) {
+    // Get prepopulate data.
     if ($this->getWebformSetting('form_prepopulate')) {
-      if ($this->operation === 'test') {
-        // Query string data should override existing test data.
-        $data = $this->getRequest()->query->all() + $data;
-      }
-      else {
-        $data += $this->getRequest()->query->all();
-      }
+      $prepopulate_data = $this->getRequest()->query->all();
     }
     else {
+      $prepopulate_data = [];
       $elements = $this->getWebform()->getElementsPrepopulate();
       foreach ($elements as $element_key) {
         if ($this->getRequest()->query->has($element_key)) {
-          $data[$element_key] = $this->getRequest()->query->get($element_key);
+          $prepopulate_data[$element_key] = $this->getRequest()->query->get($element_key);
         }
       }
     }
+
+    // Validate prepopulate data.
+    foreach ($prepopulate_data as $element_key => &$value) {
+      if ($this->checkPrepopulateDataValid($element_key, $value) === FALSE) {
+        unset($prepopulate_data[$element_key]);
+      }
+    }
+
+    // Set prepopulate data.
+    if ($this->operation === 'test') {
+      // Query string data should override existing test data.
+      $data = $prepopulate_data + $data;
+    }
+    else {
+      $data += $prepopulate_data;
+    }
+  }
+
+  /**
+   * Determine if element prepopulate data is valid.
+   *
+   * @param string $element_key
+   *   An element key
+   * @param string|array &$value
+   *   A value.
+   *
+   * @return bool
+   *   TRUE if element prepopulate data is valid.
+   */
+  protected function checkPrepopulateDataValid($element_key, &$value) {
+    // Make sure the element exists.
+    $element = $this->getWebform()->getElement($element_key);
+    if (!$element) {
+      return FALSE;
+    }
+
+    // Make sure the element is an input.
+    $element_plugin = $this->elementManager->getElementInstance($element);
+    if (!$element_plugin->isInput($element)) {
+      return FALSE;
+    }
+
+    // Validate entity references.
+    // @see \Drupal\Core\Entity\Element\EntityAutocomplete::validateEntityAutocomplete
+    if ($element_plugin instanceof WebformElementEntityReferenceInterface) {
+      $options = $element['#selection_settings'] + [
+        'target_type' => $element['#target_type'],
+        'handler' => $element['#selection_handler'],
+      ];
+      /** @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface $handler */
+      $handler = $this->selectionManager->getInstance($options);
+      $valid_ids = $handler->validateReferenceableEntities((array) $value);
+      if (empty($valid_ids)) {
+        return FALSE;
+      }
+      else {
+        $value = $element_plugin->hasMultipleValues($element) ? $valid_ids : reset($valid_ids);
+        return TRUE;
+      }
+    }
+
+    // Validate options.
+    $is_options_element = isset($element['#options'])
+      && $element_plugin instanceof OptionsBase
+      && !$element_plugin instanceof WebformElementOtherInterface;
+    if ($is_options_element) {
+      $option_values = WebformOptionsHelper::validateOptionValues($element['#options'], (array) $value);
+      if (empty($option_values)) {
+        return FALSE;
+      }
+      else {
+        $value = $element_plugin->hasMultipleValues($element) ? $option_values : reset($option_values);
+        return TRUE;
+      }
+    }
+
+    return TRUE;
   }
 
   /**

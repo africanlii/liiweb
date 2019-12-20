@@ -46,7 +46,7 @@ class WebformSubmissionToggleFlagsTest extends JavascriptTestBase {
 
     $assert = $this->assertSession();
     $submit = $this->getWebformSubmitButtonLabel($webform);
-    $this->drupalPostForm('webform/' . $webform->id(), [], $submit);
+    $this->drupalPostForm('/webform/' . $webform->id(), [], $submit);
     $sid = $this->getLastSubmissionId($webform);
     $this->drupalLogin($this->createUser([
       'view any webform submission',

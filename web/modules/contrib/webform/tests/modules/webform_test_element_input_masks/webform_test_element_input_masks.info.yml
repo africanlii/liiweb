@@ -1,0 +1,7 @@
+name: 'Webform module element input masks tests'
+type: module
+description: 'Support module for webform that provides element input masks hooks.'
+package: Testing
+core: 8.x
+dependencies:
+  - 'webform:webform'

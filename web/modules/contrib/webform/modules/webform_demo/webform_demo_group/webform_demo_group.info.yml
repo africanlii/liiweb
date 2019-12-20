@@ -1,0 +1,12 @@
+name: 'Webform Demo: Group'
+type: module
+description: 'Demonstrate how to use integrate the Webform module with the Group module.'
+package: 'Webform Demo'
+core: 8.x
+dependencies:
+  - 'drupal:path'
+  - 'group:group'
+  - 'group:gnode'
+  - 'webform:webform'
+  - 'webform:webform_node'
+  - 'webform:webform_group'

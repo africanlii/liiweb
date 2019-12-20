@@ -30,6 +30,13 @@ class WebformAttachmentUrl extends WebformAttachmentBase {
   /**
    * {@inheritdoc}
    */
+  public function getTranslatableProperties() {
+    return array_merge(parent::getTranslatableProperties(), ['url']);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
     $form['attachment']['url'] = [
@@ -64,6 +71,11 @@ class WebformAttachmentUrl extends WebformAttachmentBase {
     // Validate URL formatting.
     if ($value !== '' && !UrlHelper::isValid($value, TRUE)) {
       $form_state->setError($element, t('The URL %url is not valid.', ['%url' => $value]));
+    }
+
+    // Skip validating [webform_submission] tokens which can't be replaced.
+    if (strpos($value, '[webform_submission:') !== FALSE) {
+      return;
     }
 
     // Validate URL access.

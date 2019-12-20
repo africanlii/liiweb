@@ -108,23 +108,6 @@
   };
 
   /**
-   * Attach behaviors to trigger submit button from input onchange.
-   *
-   * @type {Drupal~behavior}
-   *
-   * @prop {Drupal~behaviorAttach} attach
-   *   Attaches form trigger submit events.
-   */
-  Drupal.behaviors.webformSubmitTrigger = {
-    attach: function (context) {
-      $('[data-webform-trigger-submit]').once('webform-trigger-submit').on('change', function () {
-        var submit = $(this).attr('data-webform-trigger-submit');
-        $(submit).mousedown();
-      });
-    }
-  };
-
-  /**
    * Custom required and pattern validation error messages.
    *
    * @type {Drupal~behavior}
@@ -151,7 +134,7 @@
             this.setCustomValidity($(this).attr('data-webform-required-error'));
           }
         })
-        .on('input, change', function () {
+        .on('input change', function () {
           // Find all related elements by name and reset custom validity.
           // This specifically applies to required radios and checkboxes.
           var name = $(this).attr('name');
@@ -168,12 +151,5 @@
     $(e.target).filter('[data-webform-required-error]')
       .each(function () {this.setCustomValidity('');});
   });
-
-  if (window.imceInput) {
-    window.imceInput.processUrlInput = function (i, el) {
-      var button = imceInput.createUrlButton(el.id, el.getAttribute('data-imce-type'));
-      el.parentNode.insertAfter(button, el);
-    };
-  }
 
 })(jQuery, Drupal);

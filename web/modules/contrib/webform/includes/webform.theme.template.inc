@@ -140,6 +140,7 @@ function template_preprocess_webform_confirmation(array &$variables) {
     $variables['progress'] = [
       '#theme' => 'webform_progress',
       '#webform' => $webform,
+      '#webform_submission' => $webform_submission,
       '#current_page' => 'webform_confirmation',
     ];
   }
@@ -325,9 +326,14 @@ function template_preprocess_webform_submission_information(array &$variables) {
     $variables['uri'] = Link::fromTextAndUrl($source_url->setAbsolute(FALSE)->toString(), $source_url);
   }
 
+  if ($webform->getSetting('token_view')) {
+    $token_view_url = $webform_submission->getTokenUrl('view');
+    $variables['token_view'] = Link::fromTextAndUrl($token_view_url->setAbsolute(FALSE)->toString(), $token_view_url);
+  }
+
   if ($webform->getSetting('token_update')) {
-    $token_url = $webform_submission->getTokenUrl();
-    $variables['token_update'] = Link::fromTextAndUrl($token_url->setAbsolute(FALSE)->toString(), $token_url);
+    $token_update_url = $webform_submission->getTokenUrl('update');
+    $variables['token_update'] = Link::fromTextAndUrl($token_update_url->setAbsolute(FALSE)->toString(), $token_update_url);
   }
 
   if (($source_entity = $webform_submission->getSourceEntity()) && $source_entity->hasLinkTemplate('canonical')) {
@@ -501,10 +507,11 @@ function template_preprocess_webform_progress(array &$variables) {
 
   /** @var \Drupal\webform\WebformInterface $webform */
   $webform = $variables['webform'];
+  $webform_submission = $variables['webform_submission'];
   $current_page = $variables['current_page'];
   $operation = $variables['operation'];
 
-  $pages = $webform->getPages($operation);
+  $pages = $webform->getPages($operation, $webform_submission);
 
   $page_keys = array_keys($pages);
   $page_indexes = array_flip($page_keys);
@@ -516,6 +523,7 @@ function template_preprocess_webform_progress(array &$variables) {
     $variables['bar'] = [
       '#theme' => ($libraries_manager->isIncluded('progress-tracker')) ? 'webform_progress_tracker' : 'webform_progress_bar',
       '#webform' => $webform,
+      '#webform_submission' => $webform_submission,
       '#current_page' => $current_page,
       '#operation' => $operation,
     ];
@@ -569,10 +577,11 @@ function template_preprocess_webform_progress_tracker(array &$variables) {
 function _template_preprocess_webform_progress(array &$variables) {
   /** @var \Drupal\webform\WebformInterface $webform */
   $webform = $variables['webform'];
+  $webform_submission = $variables['webform_submission'];
   $current_page = $variables['current_page'];
   $operation = $variables['operation'];
 
-  $pages = $webform->getPages($operation);
+  $pages = $webform->getPages($operation, $webform_submission);
 
   $page_keys = array_keys($pages);
   $page_indexes = array_flip($page_keys);
