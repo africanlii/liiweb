@@ -88,7 +88,7 @@
  * ];
  * @endcode
  */
-$dbopts = parse_url(getenv('DATABASE_URL'));
+$dbopts = parse_url(getenv('DATABASE_URL') ?: 'mysql://liiweb:liiweb@localhost:3306/liiweb');
 $databases['default']['default'] = [
   'database' => ltrim($dbopts["path"], '/'),
   'username' => $dbopts["user"],
