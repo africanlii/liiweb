@@ -7,9 +7,12 @@
 
 Make sure you have Drush 9 installed. This guide helps installing the 'default' site on the developer computer.
 
-1. Create a database liiweb in MySQL
-2. Clone this repository this project in `/home/user/work/liiweb/website` folder
-3. Create a virtual host in Apache which should look like this. For consistency please use the same domain.
+1. [Install php](https://www.php.net/manual/en/install.general.php) version 7.3
+2. [Install composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
+3. Create a database liiweb in MySQL
+4. Clone this repository this project in `/home/user/work/liiweb/website` folder
+5. In the repository folder, run `composer install` to install dependencies (this will take a while the first time you do it)
+6. Create a virtual host in Apache which should look like this. For consistency please use the same domain.
 ```apacheconfig
 <VirtualHost *:80>
   ServerName liiweb.test
@@ -29,7 +32,7 @@ cp web/sites/example.settings.local.php web/sites/default/settings.local.php
 ```
 Then open the configuration file and set the missing variables: `$settings['hash_salt']`, `$databases['default']['default'` at minimum. If available, configure additional settings: Solr integration etc.
 
-At this stage if you visit http://liiweb.test it should open the Drupal installation procedure. Proceed further.
+At this stage if you visit http://liiweb.test it should open the Drupal installation procedure. DO NOT FOLLOW THE INSTALLATION. Instead, follow the steps below.
 
 5. Install the instance using Drush
 ```shell script
