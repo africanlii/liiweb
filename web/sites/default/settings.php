@@ -88,17 +88,22 @@
  * ];
  * @endcode
  */
-$dbopts = parse_url(getenv('DATABASE_URL') ?: 'mysql://liiweb:liiweb@localhost:3306/liiweb');
-$databases['default']['default'] = [
-  'database' => ltrim($dbopts["path"], '/'),
-  'username' => $dbopts["user"],
-  'password' => $dbopts["pass"],
-  'host' => $dbopts["host"],
-  'port' => $dbopts["port"],
-  'driver' => $dbopts["scheme"],
-  'prefix' => '',
-  'collation' => 'utf8mb4_general_ci',
-];
+$dburl = getenv('DATABASE_URL');
+if ($dburl) {
+  $dbopts = parse_url($dburl);
+  $databases['default']['default'] = [
+    'database' => ltrim($dbopts["path"], '/'),
+    'username' => $dbopts["user"],
+    'password' => $dbopts["pass"],
+    'host' => $dbopts["host"],
+    'port' => $dbopts["port"],
+    'driver' => $dbopts["scheme"],
+    'prefix' => '',
+    'collation' => 'utf8mb4_general_ci',
+  ];
+} else {
+  $databases = [];
+}
 
 /**
  * Customizing database settings.
