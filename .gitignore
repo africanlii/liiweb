@@ -20,3 +20,5 @@ web/web.config
 web/robots.txt
 web/update.php
 .ht.router.php
+
+vendor/
