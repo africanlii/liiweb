@@ -16,7 +16,7 @@ before_install:
   - phpenv config-rm xdebug.ini
 
 script:
-  - cd $TRAVIS_BUILD_DIR
+  - composer install
   - composer require drupal/entity_browser --dev
   - cd web
   - ./../vendor/bin/drush site-install --existing-config --verbose --yes --db-url=sqlite://tmp/site.sqlite
