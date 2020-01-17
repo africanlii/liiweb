@@ -59,6 +59,8 @@ dokku run countrylii vendor/drush/drush/drush cim sync -y
 dokku run countrylii vendor/drush/drush/drush cr
 ```
 
+Copy the `nginx/liiweb.conf` Nginx config file from the repo into `~dokku/countrylii/nginx.conf.d/`.
+
 ### 5. SSL (optional)
 
 We strongly recommend you include an SSL certificate. You can do this easily, and for free, with Dokku's [letsencrypt plugin](https://github.com/dokku/dokku-letsencrypt).
