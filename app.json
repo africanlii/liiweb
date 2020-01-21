@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "dokku": {
+      "postdeploy": "vendor/drush/drush/drush updatedb -y && vendor/drush/drush/drush cim sync -y && vendor/drush/drush/drush updatedb -y && vendor/drush/drush/drush cr"
+    }
+  }
+}
