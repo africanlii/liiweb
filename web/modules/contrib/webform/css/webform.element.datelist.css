@@ -1,8 +1,0 @@
-/**
- * @file
- * Element datelist styles.
- */
-
-.form-type-datelist input[type="text"] {
-  max-width: 5em;
-}

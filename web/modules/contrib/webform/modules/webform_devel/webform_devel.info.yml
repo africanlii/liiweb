@@ -1,8 +1,0 @@
-name: 'Webform Devel'
-type: module
-description: 'Provides development tools for the Webform module.'
-package: Webform
-core: 8.x
-dependencies:
-  - 'devel:devel'
-  - 'webform:webform'
