@@ -21,4 +21,6 @@ web/robots.txt
 web/update.php
 .ht.router.php
 
+# 3rd-party dependencies
 vendor/
+web/modules/contrib/
