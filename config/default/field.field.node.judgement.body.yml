@@ -1,0 +1,23 @@
+uuid: 6b4b833f-12ab-45b1-a01f-5421f1a204a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.judgement
+  module:
+    - text
+id: node.judgement.body
+field_name: body
+entity_type: node
+bundle: judgement
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

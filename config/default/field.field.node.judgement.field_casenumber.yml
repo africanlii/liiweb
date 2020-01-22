@@ -1,0 +1,19 @@
+uuid: 8dcb3309-0bee-4dc3-9e65-04c271f8f923
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_casenumber
+    - node.type.judgement
+id: node.judgement.field_casenumber
+field_name: field_casenumber
+entity_type: node
+bundle: judgement
+label: 'Case Number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,28 @@
+uuid: ccbf2422-0c21-4095-9bf5-2e7f2a87eb2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_legislation_considered
+    - node.type.judgement
+    - node.type.legislation
+id: node.judgement.field_legislation_considered
+field_name: field_legislation_considered
+entity_type: node
+bundle: judgement
+label: 'Legislation Considered'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      legislation: legislation
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

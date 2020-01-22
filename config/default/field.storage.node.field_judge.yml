@@ -1,0 +1,21 @@
+uuid: 32a1015e-57b1-4a91-a316-5955a6482c12
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_judge
+field_name: field_judge
+entity_type: node
+type: string
+settings:
+  max_length: 500
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

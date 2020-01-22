@@ -1,0 +1,19 @@
+uuid: e5197bf3-7449-48c8-a121-523779bbcc1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_judge
+    - node.type.judgement
+id: node.judgement.field_judge
+field_name: field_judge
+entity_type: node
+bundle: judgement
+label: Judge
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,18 @@
+uuid: 37e93577-c57b-450d-b9d2-8a239fde3efd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.judgement
+id: node.judgement.title
+field_name: title
+entity_type: node
+bundle: judgement
+label: 'Judgment Title'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

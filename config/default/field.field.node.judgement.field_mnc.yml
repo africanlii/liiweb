@@ -1,0 +1,19 @@
+uuid: a36b061a-ad91-4efd-9734-e1583ded2874
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mnc
+    - node.type.judgement
+id: node.judgement.field_mnc
+field_name: field_mnc
+entity_type: node
+bundle: judgement
+label: 'Media Neutral Citation'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

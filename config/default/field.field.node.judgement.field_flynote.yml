@@ -1,0 +1,29 @@
+uuid: dbe8da44-21d8-4568-8368-c53a45322f4f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_flynote
+    - node.type.judgement
+    - taxonomy.vocabulary.tags
+id: node.judgement.field_flynote
+field_name: field_flynote
+entity_type: node
+bundle: judgement
+label: Flynote
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

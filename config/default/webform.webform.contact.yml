@@ -1,9 +1,12 @@
+uuid: b183f969-45c5-45f3-bb67-e8bde03a5cb6
 langcode: en
 status: open
 dependencies:
   enforced:
     module:
       - webform
+_core:
+  default_config_hash: CjLyKc08W5pQDmtIk0iDWmit1eCAlCVJtOzxMdHI51Q
 open: null
 close: null
 weight: 0
@@ -248,6 +251,3 @@ handlers:
       sender_name: ''
       theme_name: ''
       parameters: {  }
-uuid: b183f969-45c5-45f3-bb67-e8bde03a5cb6
-_core:
-  default_config_hash: CjLyKc08W5pQDmtIk0iDWmit1eCAlCVJtOzxMdHI51Q
