@@ -1,0 +1,357 @@
+uuid: d6308cb8-4066-40f5-934b-43d0c2622688
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.judgement.body
+    - field.field.node.judgement.field_case_history
+    - field.field.node.judgement.field_casename
+    - field.field.node.judgement.field_casenumber
+    - field.field.node.judgement.field_cases_considered
+    - field.field.node.judgement.field_court_name
+    - field.field.node.judgement.field_external_link
+    - field.field.node.judgement.field_files
+    - field.field.node.judgement.field_flynote
+    - field.field.node.judgement.field_flynote_sync_local
+    - field.field.node.judgement.field_headnote_and_holding
+    - field.field.node.judgement.field_jno
+    - field.field.node.judgement.field_judge
+    - field.field.node.judgement.field_legislation_considered
+    - field.field.node.judgement.field_mnc
+    - field.field.node.judgement.field_publication_date
+    - field.field.node.judgement.field_search_summary
+    - field.field.node.judgement.field_vendor
+    - node.type.judgement
+  module:
+    - datetime
+    - field_group
+    - file
+    - link
+    - path
+    - text
+third_party_settings:
+  field_group:
+    group_meta:
+      children:
+        - field_court_name
+        - title
+        - field_casename
+        - field_casenumber
+        - field_publication_date
+        - field_jno
+        - field_mnc
+        - field_judge
+        - field_vendor
+      parent_name: group_group
+      weight: 27
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        direction: horizontal
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: Metadata
+    group_editorial:
+      children:
+        - field_flynote
+        - field_search_summary
+        - field_headnote_and_holding
+        - field_cases_considered
+        - field_case_history
+        - field_legislation_considered
+      parent_name: group_group
+      weight: 28
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: 'group-editorialj field-group-htab'
+        direction: horizontal
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: Editorial
+    group_group:
+      children:
+        - group_meta
+        - group_editorial
+        - group_fullj
+        - group_downloadj
+        - group_housej
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        direction: horizontal
+      label: Group
+    group_fullj:
+      children:
+        - body
+      parent_name: group_group
+      weight: 29
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: 'group-fullj field-group-htab'
+        direction: horizontal
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: 'Full View'
+    group_downloadj:
+      children:
+        - field_files
+      parent_name: group_group
+      weight: 30
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: 'group-downloadj field-group-htab'
+        direction: vertical
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: Download
+    group_housej:
+      children:
+        - field_external_link
+      parent_name: group_group
+      weight: 31
+      format_type: tab
+      region: content
+      format_settings:
+        direction: horizontal
+        id: ''
+        classes: 'group-housej field-group-htab'
+        formatter: closed
+        description: ''
+        required_fields: true
+      label: Housekeeping
+id: node.judgement.default
+targetEntityType: node
+bundle: judgement
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 9
+    settings:
+      rows: 20
+      placeholder: ''
+      summary_rows: 3
+      show_summary: false
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_case_history:
+    type: entity_reference_autocomplete
+    weight: 16
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_casename:
+    type: string_textfield
+    weight: 21
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_casenumber:
+    type: string_textfield
+    weight: 22
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_cases_considered:
+    type: entity_reference_autocomplete
+    weight: 15
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_court_name:
+    type: options_select
+    weight: 19
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_external_link:
+    weight: 9
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_files:
+    weight: 10
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_flynote:
+    type: options_select
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_flynote_sync_local:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+    region: content
+  field_headnote_and_holding:
+    type: text_textarea
+    weight: 14
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_jno:
+    type: number
+    weight: 24
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_judge:
+    type: string_textfield
+    weight: 26
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_legislation_considered:
+    type: entity_reference_autocomplete
+    weight: 17
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_mnc:
+    type: string_textfield
+    weight: 25
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_publication_date:
+    weight: 23
+    settings:
+      increment: 15
+      date_order: YMD
+      time_type: '24'
+    third_party_settings: {  }
+    type: datetime_datelist
+    region: content
+  field_search_summary:
+    type: text_textarea_with_summary
+    weight: 13
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_vendor:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 20
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,27 @@
+uuid: 0d1f2756-e2fe-41fd-ac0b-e3331ef60b98
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_case_history
+    - node.type.judgement
+id: node.judgement.field_case_history
+field_name: field_case_history
+entity_type: node
+bundle: judgement
+label: 'Case history/appeal'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      judgement: judgement
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

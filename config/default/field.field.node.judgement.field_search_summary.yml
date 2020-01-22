@@ -1,0 +1,23 @@
+uuid: 019bab30-9e86-4d71-b6d6-f35fdd63a3df
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_search_summary
+    - node.type.judgement
+  module:
+    - text
+id: node.judgement.field_search_summary
+field_name: field_search_summary
+entity_type: node
+bundle: judgement
+label: 'Search Summary'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

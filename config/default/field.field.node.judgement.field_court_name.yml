@@ -1,0 +1,29 @@
+uuid: 8e9ce3a3-a79a-44df-8fa9-5d70b0ed0a6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_court_name
+    - node.type.judgement
+    - taxonomy.vocabulary.court_names
+id: node.judgement.field_court_name
+field_name: field_court_name
+entity_type: node
+bundle: judgement
+label: 'Court Name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      court_names: court_names
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

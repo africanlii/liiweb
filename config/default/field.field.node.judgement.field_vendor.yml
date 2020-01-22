@@ -1,0 +1,19 @@
+uuid: c97ddab0-ee82-4795-b498-2b46b3b18723
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_vendor
+    - node.type.judgement
+id: node.judgement.field_vendor
+field_name: field_vendor
+entity_type: node
+bundle: judgement
+label: 'Law Report Citation'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

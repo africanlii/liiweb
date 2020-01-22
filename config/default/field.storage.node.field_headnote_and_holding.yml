@@ -1,0 +1,19 @@
+uuid: 3afff1b5-3eb9-4f22-8743-bb0adb534886
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_headnote_and_holding
+field_name: field_headnote_and_holding
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

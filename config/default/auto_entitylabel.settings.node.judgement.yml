@@ -1,0 +1,6 @@
+status: 1
+pattern: '[node:field_casename] ([node:field_casenumber]) [node:field_mnc] ([node:field_publication_date:date:custom:d F Y]); [node:field-vendor]'
+escape: false
+dependencies:
+  config:
+    - node.type.judgement
