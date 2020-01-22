@@ -1,0 +1,90 @@
+<?php
+
+/**
+ * @file
+ * Installation hooks for title length module.
+ */
+
+use Drupal\Core\Database\Database;
+use Drupal\Core\Extension\ModuleUninstallValidatorException;
+use Drupal\Core\Site\Settings;
+
+/**
+ * Implements hook_install().
+ */
+function title_length_install() {
+  // Get length of settings.
+  $length = Settings::get('node_title_length_chars');
+  if (empty($length)) {
+    $length = TITLE_LENGTH_CHARS;
+  }
+
+  // Change node title length.
+  $schema = Database::getConnection()->schema();
+  $schema->changeField('node_field_data', 'title', 'title', [
+    'length' => $length,
+    'not null' => TRUE,
+    'type' => 'varchar',
+  ]);
+
+  // Change node title length (revisions table).
+  $schema = Database::getConnection()->schema();
+  $schema->changeField('node_field_revision', 'title', 'title', [
+    'default' => NULL,
+    'length' => $length,
+    'type' => 'varchar',
+  ]);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function title_length_uninstall() {
+  $length_function = 'char_length';
+  switch (Database::getConnection()->databaseType()) {
+    case 'sqlite':
+      $length_function = 'length';
+      break;
+
+    case 'sqlsrv':
+      $length_function = 'len';
+      break;
+  }
+
+  /** @var \Drupal\Core\Database\Query\Select $query */
+  $query = Database::getConnection()->select('node_field_data', 'n');
+  $query->addField('n', 'title');
+  $query->where("$length_function(title) > 255");
+  $long_title_count = $query->countQuery()
+    ->execute()
+    ->fetchField();
+
+  /** @var \Drupal\Core\Database\Query\Select $query */
+  $query = Database::getConnection()->select('node_field_revision', 'n');
+  $query->addField('n', 'title');
+  $query->where("$length_function(title) > 255");
+  $long_revision_title_count = $query->countQuery()
+    ->execute()
+    ->fetchField();
+
+  if ($long_title_count + $long_revision_title_count > 0) {
+    throw new ModuleUninstallValidatorException('Nodes or node revisions exist with long titles. Module cannot be uninstalled.');
+  }
+
+  // Change node title length.
+  $schema = Database::getConnection()->schema();
+  $schema->changeField('node_field_data', 'title', 'title', [
+    'length' => 255,
+    'not null' => TRUE,
+    'type' => 'varchar',
+  ]);
+
+  // Change node title length (revisions table).
+  $schema = Database::getConnection()->schema();
+  $schema->changeField('node_field_revision', 'title', 'title', [
+    'default' => NULL,
+    'length' => 255,
+    'type' => 'varchar',
+  ]);
+
+}

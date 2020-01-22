@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Contains title_length.module.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Site\Settings;
+
+define('TITLE_LENGTH_CHARS', 8000);
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ */
+function title_length_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  // Alter the title field to change length.
+  if ($entity_type->id() == 'node' && !empty($fields['title'])) {
+    // Get length of settings.
+    $length = Settings::get('node_title_length_chars');
+    if (empty($length)) {
+      $length = TITLE_LENGTH_CHARS;
+    }
+    $fields['title']->setSetting('max_length', $length);
+  }
+}
