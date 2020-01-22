@@ -795,3 +795,4 @@ $settings['entity_update_backup'] = TRUE;
  }
 $config_directories['sync'] = '../config/default';
 
+$settings['node_title_length_chars'] = 1023;
