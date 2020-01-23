@@ -77,6 +77,9 @@ function liiweb_db_change_varchar_field($entity_type_id, $field_name, $field_len
  * Update the storage schema and the database schema for the node title field length.
  */
 function liiweb_update_8001() {
+  if (!\Drupal::moduleHandler()->moduleExists('title_length')) {
+    throw new Exception('Module title_length was not enabled yet. Import the configuration first.');
+  }
   liiweb_db_change_varchar_field('node', 'title', Settings::get('node_title_length_chars'));
 }
 
