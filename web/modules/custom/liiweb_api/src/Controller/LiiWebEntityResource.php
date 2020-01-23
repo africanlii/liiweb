@@ -218,10 +218,10 @@ class LiiWebEntityResource extends EntityResource {
     $max = 0;
     $nextMainRevision = NULL;
     foreach ($revisionIds as $revisionId) {
-      $revision = $nodeStorage->loadRevision($revisionId);
-      if ($revision->field_publication_date->value > $max && $revisionId != $revision->getRevisionId()) {
-        $max = $revision->field_publication_date->value;
-        $nextMainRevision = $revision;
+      $otherRevision = $nodeStorage->loadRevision($revisionId);
+      if ($otherRevision->field_publication_date->value > $max && $revisionId != $revision->getRevisionId()) {
+        $max = $otherRevision->field_publication_date->value;
+        $nextMainRevision = $otherRevision;
       }
     }
 
