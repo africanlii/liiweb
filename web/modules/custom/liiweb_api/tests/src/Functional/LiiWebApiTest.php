@@ -31,10 +31,6 @@ class LiiWebApiTest extends LiiWebApiTestBase {
     $this->drupalGet('akn/za/1993/31/fra@1993-01-31');
     $this->assertText('Legislation old fr');
 
-    // This should give us the default revision
-    $this->drupalGet('akn/za/1993/31');
-    $this->assertText('Legislation new');
-
     // Check that we get a JSON as a response when setting the Accept: application/json header.
     $response = $this->getJsonFromUri('/akn/za/1993/31/eng@1994-01-31');
     $this->assertTrue(strpos($response, '"title":"Legislation new"') !== FALSE);
@@ -47,16 +43,14 @@ class LiiWebApiTest extends LiiWebApiTestBase {
 
     $response = $this->getJsonFromUri('/akn/za/1993/31/fra@1993-01-31');
     $this->assertTrue(strpos($response, '"title":"Legislation old fr"') !== FALSE);
-
-    $response = $this->getJsonFromUri('/akn/za/1993/31');
-    $this->assertTrue(strpos($response, '"title":"Legislation new"') !== FALSE);
   }
 
   /**
    * Test delete calls for API.
    */
   public function testApiDelete() {
-    $this->createTestNode();
+    $node = $this->createTestNode();
+    $nid = $node->id();
 
     $this->drupalGet('akn/za/1993/31/fra@1994-01-31');
     $this->assertText('Legislation new fr');
@@ -76,19 +70,14 @@ class LiiWebApiTest extends LiiWebApiTestBase {
     $this->assertEqual($response->getStatusCode(), 204);
 
     // Check that the default revision is now the older one.
-    $this->drupalGet('akn/za/1993/31');
-    $this->assertText('Legislation old');
+    $node = Node::load($nid);
+    $this->assertEqual($node->getTitle(), 'Legislation old');
 
-    // Try to delete the only revision - get an error.
+    // Try to delete the only revision - the node gets deleted.
     $response = $this->apiRequest('/akn/za/1993/31/eng@1993-01-31', 'DELETE', TRUE);
-    $this->assertEqual($response->getStatusCode(), 400);
-
-    // Delete the node.
-    $response = $this->apiRequest('/akn/za/1993/31', 'DELETE', TRUE);
     $this->assertEqual($response->getStatusCode(), 204);
-
-    $this->drupalGet('akn/za/1993/31');
-    $this->assertResponse(404);
+    $node = Node::load($nid);
+    $this->assertNull($node);
   }
 
   /**
@@ -189,23 +178,20 @@ class LiiWebApiTest extends LiiWebApiTestBase {
     $this->assertEqual($node->get('field_tags')->get(0)->entity->getName(), 'Tag #1');
     $this->assertEqual($node->get('field_tags')->get(1)->entity->getName(), 'Tag #2');
 
-    $response = $this->apiRequest('/akn/za/1993/31/eng@1993-01-31', 'POST', TRUE, $data);
-    // Cannot POST an existing revision url.
-    $this->assertEqual($response->getStatusCode(), 400);
-
     $data['data']['attributes']['langcode'] = 'fr';
     $data['data']['attributes']['title'] = 'Title FR';
     // We forgot to change the FRBR URI - cannot have 2 revisions with the same URI.
-    $response = $this->apiRequest('/akn/za/1993/31/fra@1993-01-31', 'POST', TRUE, $data);
+    $response = $this->apiRequest('/akn/za/1993/31/eng@1993-01-31', 'POST', TRUE, $data);
     $this->assertEqual($response->getStatusCode(), 422);
 
     $data['data']['attributes']['field_frbr_uri'] = '/akn/za/1993/31/fra@1993-01-31';
 
     // Cannot create translations for revisions that don't exist.
-    $response = $this->apiRequest('/akn/za/1993/31/fra@1994-01-31', 'POST', TRUE, $data);
+    $response = $this->apiRequest('/akn/za/1993/31/eng@1994xxx-01-31', 'POST', TRUE, $data);
     $this->assertEqual($response->getStatusCode(), 404);
 
-    $response = $this->apiRequest('/akn/za/1993/31/fra@1993-01-31', 'POST', TRUE, $data);
+    // Create french translation.
+    $response = $this->apiRequest('/akn/za/1993/31/eng@1993-01-31', 'POST', TRUE, $data);
     $this->assertEqual($response->getStatusCode(), 201);
 
     $this->drupalGet('akn/za/1993/31/fra@1993-01-31');
@@ -219,12 +205,12 @@ class LiiWebApiTest extends LiiWebApiTestBase {
     $data['data']['attributes']['title'] = 'Title v2';
     $data['data']['attributes']['langcode'] = 'en';
 
-    $response = $this->apiRequest('/akn/za/1993/31/eng@1994-01-31', 'POST', TRUE, $data);
+    $response = $this->apiRequest('/akn/za/1993/31/eng@1993-01-31', 'POST', TRUE, $data);
     // We forgot to change the FRBR URI - cannot have 2 revisions with the same URI.
     $this->assertEqual($response->getStatusCode(), 422);
 
     $data['data']['attributes']['field_frbr_uri'] = '/akn/za/1993/31/eng@1994-01-31';
-    $response = $this->apiRequest('/akn/za/1993/31/eng@1994-01-31', 'POST', TRUE, $data);
+    $response = $this->apiRequest('/akn/za/1993/31/eng@1993-01-31', 'POST', TRUE, $data);
     $this->assertEqual($response->getStatusCode(), 201);
     $this->drupalGet('akn/za/1993/31/eng@1994-01-31');
     $this->assertText('Title v2');
