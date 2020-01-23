@@ -103,7 +103,7 @@ class LiiWebUtils {
    * @return bool
    */
   public function isAknUri($uri) {
-    return (bool) preg_match('/\/akn\/[a-zA-Z]+\/[0-9]+\/[0-9]+\/[a-zA-Z]+\@[0-9]+\-[0-9]+\-[0-9]+/', $uri, $matches);
+    return strpos($uri, '/akn/') === 0;
   }
 
   /**

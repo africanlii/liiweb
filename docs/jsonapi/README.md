@@ -148,11 +148,13 @@ http://liiweb.test/akn/za/1993/31/eng@1993-01-31
 This example creates a new expression to the already existing work.
 
 ```
-curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X POST -u api_user:password --data @docs/jsonapi/create_expression.json \
-http://liiweb.test/akn/za/1993/31/eng@2019-03-11
+curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X POST -u admin:password --data @docs/jsonapi/create_expression.json \
+http://africanlii.local/akn/za/1993/32/eng@1993-01-31
 ```
 
-After the call a new node *revision* is created and set as the current revision. If you visit the "Revisions" tab for this node you will see it now has two revisions, and this one is the newest and the current revision. Visiting both revisions reveals the different field data.
+Where `http://africanlii.local/akn/za/1993/32/eng@1993-01-31` is the FRBR URI of an existing expression.
+
+After the call a new node *revision* is created and set as the current revision if its field_publication_date is the latest. If you visit the "Revisions" tab for this node you will see it now has two revisions, and this one is the newest and the current revision. Visiting both revisions reveals the different field data.
 
 
 ## Translate an expression translation
@@ -161,10 +163,12 @@ This example creates a french translation for the expression above
 
 ```
 curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X POST -u api_user:password --data @docs/jsonapi/create_expression_translation.json \
-http://liiweb.test/akn/za/1993/31/fra@2019-03-11
+http://liiweb.test/akn/za/1993/31/eng@1993-03-11
 ```
 
-After the call a new french translation was created and set as current for French. If you visit the "Translate" tab for this node a french translation will appear.
+Where `http://liiweb.test/akn/za/1993/31/eng@1993-03-11` is the FRBR URI of the original translation for an expression.
+
+After the call a new french translation was created for that expression. If you visit the "Translate" tab for this node a french translation will appear.
 
 
 ## Delete an expression

@@ -90,6 +90,8 @@ abstract class LiiWebApiTestBase extends BrowserTestBase {
     $node->get('field_frbr_uri')->setValue('/akn/za/1993/31/fra@1994-01-31');
     $node->get('field_publication_date')->setValue('1994-01-31');
     $node->save();
+
+    return $node;
   }
 
   /**

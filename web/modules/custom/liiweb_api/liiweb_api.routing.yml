@@ -15,22 +15,31 @@ liiweb.legislation.post:
         type: jsonapi_resource_type
 
 liiweb.legislation.get:
-  path: /akn/{country}/{year}/{number}/{langcode_year}
+  path: /akn/{part1}/{part2}/{part3}/{part4}/{part5}
   methods: [GET]
   defaults:
     _controller: liiweb_api.entity_resource:get
-    langcode_year: 0
+    part1: 0
+    part2: 0
+    part3: 0
+    part4: 0
+    part5: 0
   requirements:
     _permission: 'access content'
   options:
     _auth: ['basic_auth', 'cookie']
 
 liiweb.legislation.post_update:
-  path: /akn/{country}/{year}/{number}/{langcode_year}
+  path: /akn/{part1}/{part2}/{part3}/{part4}/{part5}
   methods: [POST]
   defaults:
     _controller: liiweb_api.entity_resource:post
     resource_type: node--legislation
+    part1: 0
+    part2: 0
+    part3: 0
+    part4: 0
+    part5: 0
   requirements:
     _access: 'TRUE'
     _csrf_request_header_token: 'TRUE'
@@ -42,11 +51,16 @@ liiweb.legislation.post_update:
         type: jsonapi_resource_type
 
 liiweb.legislation.patch:
-  path: /akn/{country}/{year}/{number}/{langcode_year}
+  path: /akn/{part1}/{part2}/{part3}/{part4}/{part5}
   methods: [PATCH]
   defaults:
     _controller: liiweb_api.entity_resource:patch
     resource_type: node--legislation
+    part1: 0
+    part2: 0
+    part3: 0
+    part4: 0
+    part5: 0
   requirements:
     _access: 'TRUE'
     _csrf_request_header_token: 'TRUE'
@@ -58,12 +72,16 @@ liiweb.legislation.patch:
         type: jsonapi_resource_type
 
 liiweb.legislation.delete:
-  path: /akn/{country}/{year}/{number}/{langcode_year}
+  path: /akn/{part1}/{part2}/{part3}/{part4}/{part5}
   methods: [DELETE]
   defaults:
     _controller: liiweb_api.entity_resource:delete
     resource_type: node--legislation
-    langcode_year: 0
+    part1: 0
+    part2: 0
+    part3: 0
+    part4: 0
+    part5: 0
   requirements:
     _access: 'TRUE'
     _csrf_request_header_token: 'TRUE'
