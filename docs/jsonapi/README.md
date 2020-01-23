@@ -186,8 +186,15 @@ After the call the revision for this node will be deleted, both in English and F
 
 ## Delete an entire work
 
+1. Get the UUID of the node (`response.data.id`)
 ```
-curl -X DELETE -u api_user:password http://liiweb.test/akn/za/1993/31
+curl -X GET -H "Accept: application/json" -u api_user:password http://liiweb.test/akn/za/1993/31/eng@2019-03-11
 ```
+2. Delete the node
+
+```
+curl -X DELETE -u api_user:password http://liiweb.test/jsonapi/node/legislation/0a552e15-0fd1-43f7-b619-3b39b333c0ce
+```
+Where `0a552e15-0fd1-43f7-b619-3b39b333c0ce` is the node UUID
 
 This will remove the whole node together with all its revisions.
