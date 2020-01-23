@@ -3,6 +3,7 @@
 namespace Drupal\Tests\liiweb_api\Functional;
 
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 
 /**
  * Class LiiWebApiTest
@@ -76,8 +77,10 @@ class LiiWebApiTest extends LiiWebApiTestBase {
     // Try to delete the only revision - the node gets deleted.
     $response = $this->apiRequest('/akn/za/1993/31/eng@1993-01-31', 'DELETE', TRUE);
     $this->assertEqual($response->getStatusCode(), 204);
+
+    drupal_flush_all_caches();
     $node = Node::load($nid);
-    $this->assertNull($node);
+    $this->assertTrue(!$node instanceof NodeInterface);
   }
 
   /**
