@@ -36,39 +36,10 @@ class LiiWebUtils {
   }
 
   /**
-   * Retrieve the node with a field_frbr_uri, without matching the last part of the url.
-   *
-   * @param $uri
-   *   Example: /akn/za/1993/31/eng@1993-01-01
-   *
-   * @return \Drupal\Core\Entity\EntityInterface|\Drupal\node\Entity\Node|null
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
-   */
-  public function getNodeFromFrbrUri($uri) {
-    $uri = urldecode($uri);
-    $base_uri = explode('/', $uri);
-    array_pop($base_uri);
-    $base_uri = implode('/', $base_uri);
-
-    $node = $this->entityTypeManager->getStorage('node')->getQuery()
-      ->condition('type', 'legislation')
-      ->condition('field_frbr_uri', "$base_uri/%", 'LIKE')
-      ->execute();
-
-    if (empty($node)) {
-      return NULL;
-    }
-
-    $node = reset($node);
-    return Node::load($node);
-  }
-
-  /**
    * Retrieve a revision with a frbr uri.
    *
    * @param $uri
-   *   Example: /akn/za/1993/31/eng@1993-01-01
+   *   Example: /akn/za/act/1993/31/eng@1993-01-01
    *
    * @return |null
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
@@ -98,7 +69,7 @@ class LiiWebUtils {
    * Check if an URI is in AKN format.
    *
    * @param $uri
-   *   Example: /akn/za/1993/31/eng@1993-01-01
+   *   Example: /akn/za/act/1993/31/eng@1993-01-01
    *
    * @return bool
    */
