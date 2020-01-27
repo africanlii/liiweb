@@ -2,11 +2,11 @@
   "data": {
     "type": "node--legislation",
     "attributes": {
-      "title": "Work: /akn/za/1993/31/eng@1993-01-31 - Simple work (expression repealed)",
+      "title": "Work: /akn/za/act/1993/31/eng@1993-01-31 - Simple work (expression repealed)",
       "langcode": "en",
       "field_publication_date": "2019-03-11",
       "field_publication_name": "Newest expression: Publication name",
-      "field_frbr_uri": "/akn/za/1993/31/eng@2019-03-11"
+      "field_frbr_uri": "/akn/za/act/1993/31/eng@2019-03-11"
     },
     "relationships": {
       "field_repeal": {
@@ -26,7 +26,7 @@
                     "nid": "nid",
                     "id": "virtual",
                     "attributes": {
-                      "field_frbr_uri": "/akn/za/2017/15/eng@2017-06-15"
+                      "field_frbr_uri": "/akn/za/act/2017/15/eng@2017-06-15"
                     }
                   }
                 ]
