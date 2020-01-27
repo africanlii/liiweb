@@ -58,19 +58,24 @@ abstract class LiiWebApiTestBase extends BrowserTestBase {
 
   /**
    * Create a node with 2 revisions, both translated.
+   *
+   * @param string $baseUri
+   *   The prefix of FRBR URI.
+   *
+   * @return \Drupal\node\NodeInterface
    */
-  protected function createTestNode() {
+  protected function createTestNode($baseUri = '/akn/za/act/1993/31') {
     $node = Node::create([
       'type' => 'legislation',
       'title' => 'Legislation old',
-      'field_frbr_uri' =>'/akn/za/1993/31/eng@1993-01-31',
+      'field_frbr_uri' => "$baseUri/eng@1993-01-31",
       'field_publication_date' => '1993-01-31',
       'uid' => user_load_by_mail(static::API_USER),
     ]);
     $node->save();
 
     $node->addTranslation('fr', [
-      'field_frbr_uri' =>'/akn/za/1993/31/fra@1993-01-31',
+      'field_frbr_uri' => "$baseUri/fra@1993-01-31",
       'title' => 'Legislation old fr',
       'uid' => user_load_by_mail(static::API_USER),
       'field_publication_date' => '1993-01-31',
@@ -78,7 +83,7 @@ abstract class LiiWebApiTestBase extends BrowserTestBase {
     $node->setNewRevision(FALSE);
     $node->save();
 
-    $node->get('field_frbr_uri')->setValue('/akn/za/1993/31/eng@1994-01-31');
+    $node->get('field_frbr_uri')->setValue("$baseUri/eng@1994-01-31");
     $node->get('field_publication_date')->setValue('1994-01-31');
     $node->setTitle('Legislation new');
     $node->setNewRevision();
@@ -87,7 +92,7 @@ abstract class LiiWebApiTestBase extends BrowserTestBase {
     $node = Node::load($node->id());
     $node = $node->getTranslation('fr');
     $node->setTitle('Legislation new fr');
-    $node->get('field_frbr_uri')->setValue('/akn/za/1993/31/fra@1994-01-31');
+    $node->get('field_frbr_uri')->setValue("$baseUri/fra@1994-01-31");
     $node->get('field_publication_date')->setValue('1994-01-31');
     $node->save();
 

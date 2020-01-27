@@ -149,10 +149,10 @@ This example creates a new expression to the already existing work.
 
 ```
 curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X POST -u admin:password --data @docs/jsonapi/create_expression.json \
-http://africanlii.local/akn/za/1993/32/eng@1993-01-31
+http://liiweb.test/akn/za/1993/32/eng@1993-01-31
 ```
 
-Where `http://africanlii.local/akn/za/1993/32/eng@1993-01-31` is the FRBR URI of an existing expression.
+Where `http://liiweb.test/akn/za/1993/32/eng@1993-01-31` is the FRBR URI of an existing expression.
 
 After the call a new node *revision* is created and set as the current revision if its field_publication_date is the latest. If you visit the "Revisions" tab for this node you will see it now has two revisions, and this one is the newest and the current revision. Visiting both revisions reveals the different field data.
 
