@@ -22,11 +22,6 @@ dependencies:
     - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
-    - datetime
-    - entity_reference_revisions
-    - file
-    - image
-    - link
     - text
     - user
 id: node.legislation.default
@@ -34,142 +29,28 @@ targetEntityType: node
 bundle: legislation
 mode: default
 content:
-  field_commencement_date:
-    weight: 8
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_content:
-    weight: 12
-    label: above
+    weight: 3
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_created:
-    weight: 1
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_expression_date:
-    weight: 15
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_external_link:
-    weight: 16
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings: {  }
-    type: link
-    region: content
-  field_files:
-    weight: 14
-    label: above
-    settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
-    type: file_default
-    region: content
   field_frbr_uri:
-    weight: 4
-    label: above
+    type: string
+    weight: 1
+    region: content
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
-    region: content
-  field_images:
-    weight: 13
-    label: above
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-    region: content
   field_parent_work:
-    weight: 5
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_publication_date:
     weight: 2
     label: above
     settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_publication_name:
-    weight: 3
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_raw_json:
-    weight: 17
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
-    region: content
-  field_repeal:
-    type: entity_reference_revisions_entity_view
-    weight: 7
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    region: content
-  field_stub:
-    weight: 9
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-    region: content
-  field_tags:
-    weight: 6
-    label: above
-    settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-    region: content
-  field_toc:
-    weight: 11
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
     region: content
   links:
     weight: 0
@@ -177,6 +58,19 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_commencement_date: true
+  field_created: true
   field_created_by_api: true
+  field_expression_date: true
+  field_external_link: true
+  field_files: true
+  field_images: true
+  field_publication_date: true
+  field_publication_name: true
+  field_raw_json: true
+  field_repeal: true
+  field_stub: true
+  field_tags: true
+  field_toc: true
   langcode: true
   search_api_excerpt: true
