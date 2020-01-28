@@ -26,7 +26,7 @@ curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+jso
 http://liiweb.test/api/node/legislation
 ```
 
-Notice: In this example the referenced entity `"attributes": { "field_frbr_uri": "/akn/za/1993/31/eng@1993-01-31" }` must exist in order to be successfully linked to this work. 
+Notice: In this example the referenced entity `"attributes": { "field_frbr_uri": "/akn/za/act/1993/31/eng@1993-01-31" }` must exist in order to be successfully linked to this work. 
 
 
 ## 3. Create a work with repeal information
@@ -38,7 +38,7 @@ curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+jso
 http://liiweb.test/api/node/legislation
 ```
 
-Notice: In this example the referenced entity `"attributes": { "field_frbr_uri": "/akn/za/2017/15/eng@2017-06-15" }` must exist in order to be successfully linked to this work. 
+Notice: In this example the referenced entity `"attributes": { "field_frbr_uri": "/akn/za/act/2017/15/eng@2017-06-15" }` must exist in order to be successfully linked to this work. 
 
 ## Update an existing expression
 
@@ -48,7 +48,7 @@ This example corrects the title and publication name of a work previously create
 
 ```
 curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X PATCH -u api_user:password --data @docs/jsonapi/update_expression.json \
-http://liiweb.test/akn/za/1993/31/eng@1993-01-31
+http://liiweb.test/akn/za/act/1993/31/eng@1993-01-31
 ```
 
 After the call the Drupal revision will have its fields updated with the new values (the existing revision has been altered, and a new one was not created). This example removed one of the tags (Tag 1) and added a new tag (Tag 3)  
@@ -140,7 +140,7 @@ WARNING: For the example below to work properly you must edit the IDs from the J
 
 ```
 curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X PATCH -u api_user:password --data @docs/jsonapi/add_files_to_expression.json \
-http://liiweb.test/akn/za/1993/31/eng@1993-01-31
+http://liiweb.test/akn/za/act/1993/31/eng@1993-01-31
 ```
 
 ## Create a new expression
@@ -148,11 +148,13 @@ http://liiweb.test/akn/za/1993/31/eng@1993-01-31
 This example creates a new expression to the already existing work.
 
 ```
-curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X POST -u api_user:password --data @docs/jsonapi/create_expression.json \
-http://liiweb.test/akn/za/1993/31/eng@2019-03-11
+curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X POST -u admin:password --data @docs/jsonapi/create_expression.json \
+http://liiweb.test/akn/za/act/1993/32/eng@1993-01-31
 ```
 
-After the call a new node *revision* is created and set as the current revision. If you visit the "Revisions" tab for this node you will see it now has two revisions, and this one is the newest and the current revision. Visiting both revisions reveals the different field data.
+Where `http://liiweb.test/akn/za/act/1993/32/eng@1993-01-31` is the FRBR URI of an existing expression.
+
+After the call a new node *revision* is created and set as the current revision if its field_publication_date is the latest. If you visit the "Revisions" tab for this node you will see it now has two revisions, and this one is the newest and the current revision. Visiting both revisions reveals the different field data.
 
 
 ## Translate an expression translation
@@ -161,10 +163,12 @@ This example creates a french translation for the expression above
 
 ```
 curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X POST -u api_user:password --data @docs/jsonapi/create_expression_translation.json \
-http://liiweb.test/akn/za/1993/31/fra@2019-03-11
+http://liiweb.test/akn/za/act/1993/31/eng@1993-03-11
 ```
 
-After the call a new french translation was created and set as current for French. If you visit the "Translate" tab for this node a french translation will appear.
+Where `http://liiweb.test/akn/za/act/1993/31/eng@1993-03-11` is the FRBR URI of the original translation for an expression.
+
+After the call a new french translation was created for that expression. If you visit the "Translate" tab for this node a french translation will appear.
 
 
 ## Delete an expression
@@ -172,7 +176,7 @@ After the call a new french translation was created and set as current for Frenc
 This example deletes an expression and all its translations
 
 ```
-curl -X DELETE -u api_user:password http://liiweb.test/akn/za/1993/31/fra@2019-03-11
+curl -X DELETE -u api_user:password http://liiweb.test/akn/za/act/1993/31/fra@2019-03-11
 ```
 
 After the call the revision for this node will be deleted, both in English and French. 
@@ -182,8 +186,15 @@ After the call the revision for this node will be deleted, both in English and F
 
 ## Delete an entire work
 
+1. Get the UUID of the node (`response.data.id`)
 ```
-curl -X DELETE -u api_user:password http://liiweb.test/akn/za/1993/31
+curl -X GET -H "Accept: application/json" -u api_user:password http://liiweb.test/akn/za/act/1993/31/eng@2019-03-11
 ```
+2. Delete the node
+
+```
+curl -X DELETE -u api_user:password http://liiweb.test/jsonapi/node/legislation/0a552e15-0fd1-43f7-b619-3b39b333c0ce
+```
+Where `0a552e15-0fd1-43f7-b619-3b39b333c0ce` is the node UUID
 
 This will remove the whole node together with all its revisions.
