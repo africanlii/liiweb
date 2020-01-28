@@ -1,0 +1,24 @@
+uuid: f342470d-3740-4f52-bb22-5c3a61c02e84
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_case_number
+    - node.type.judgment
+  module:
+    - computed_field
+id: node.judgment.field_case_number
+field_name: field_case_number
+entity_type: node
+bundle: judgment
+label: 'Case number'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings:
+  code: '$value = '''';'
+field_type: computed_string

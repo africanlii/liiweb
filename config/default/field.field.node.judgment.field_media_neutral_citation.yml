@@ -1,0 +1,24 @@
+uuid: d545965d-9a5b-4746-9c42-6f7aef6332f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_neutral_citation
+    - node.type.judgment
+  module:
+    - computed_field
+id: node.judgment.field_media_neutral_citation
+field_name: field_media_neutral_citation
+entity_type: node
+bundle: judgment
+label: 'Media neutral citation'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings:
+  code: '$value = '''';'
+field_type: computed_string

@@ -1,0 +1,161 @@
+uuid: fe24e211-b456-4add-b3e9-a86b4d8d3bb3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.judgment.body
+    - field.field.node.judgment.field_case_name
+    - field.field.node.judgment.field_case_number
+    - field.field.node.judgment.field_case_number_numeric
+    - field.field.node.judgment.field_case_number_year
+    - field.field.node.judgment.field_court_name
+    - field.field.node.judgment.field_external_link
+    - field.field.node.judgment.field_files
+    - field.field.node.judgment.field_flynote
+    - field.field.node.judgment.field_headnote_and_holding
+    - field.field.node.judgment.field_judge
+    - field.field.node.judgment.field_judgment_date
+    - field.field.node.judgment.field_judgment_number
+    - field.field.node.judgment.field_judgment_number_override
+    - field.field.node.judgment.field_law_report_citations
+    - field.field.node.judgment.field_matter_type
+    - field.field.node.judgment.field_media_neutral_citation
+    - field.field.node.judgment.field_searchsummary
+    - node.type.judgment
+  module:
+    - field_group
+    - file
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_group:
+      children:
+        - group_headnote_and_flynote
+        - group_full_judgment
+        - group_download
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        direction: horizontal
+      label: Group
+    group_headnote_and_flynote:
+      children:
+        - field_flynote
+        - field_headnote_and_holding
+        - field_searchsummary
+        - field_law_report_citations
+      parent_name: group_group
+      weight: 20
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: open
+      label: 'Headnote and flynote'
+    group_full_judgment:
+      children:
+        - body
+      parent_name: group_group
+      weight: 21
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: open
+      label: 'Full judgment'
+    group_download:
+      children:
+        - field_files
+      parent_name: group_group
+      weight: 22
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: open
+      label: Download
+id: node.judgment.default
+targetEntityType: node
+bundle: judgment
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_files:
+    weight: 14
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_flynote:
+    weight: 11
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_headnote_and_holding:
+    weight: 12
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_judgment_number_override:
+    weight: 23
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_law_report_citations:
+    weight: 14
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_searchsummary:
+    weight: 13
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  field_case_name: true
+  field_case_number: true
+  field_case_number_numeric: true
+  field_case_number_year: true
+  field_court_name: true
+  field_external_link: true
+  field_judge: true
+  field_judgment_date: true
+  field_judgment_number: true
+  field_matter_type: true
+  field_media_neutral_citation: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

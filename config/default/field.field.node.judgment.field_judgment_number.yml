@@ -1,0 +1,26 @@
+uuid: f3a39e30-f043-4d7f-8bb2-12674f0e054e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_judgment_number
+    - node.type.judgment
+  module:
+    - computed_field
+id: node.judgment.field_judgment_number
+field_name: field_judgment_number
+entity_type: node
+bundle: judgment
+label: 'Judgment number'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  code: '$value = 0;'
+  prefix: ''
+  suffix: ''
+field_type: computed_integer

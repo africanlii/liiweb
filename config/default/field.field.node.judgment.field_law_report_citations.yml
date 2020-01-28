@@ -1,0 +1,19 @@
+uuid: e3a505d3-dd56-442f-846e-f22ed94fdc19
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_law_report_citations
+    - node.type.judgment
+id: node.judgment.field_law_report_citations
+field_name: field_law_report_citations
+entity_type: node
+bundle: judgment
+label: 'Law report citations'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
