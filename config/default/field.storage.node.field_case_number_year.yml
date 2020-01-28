@@ -1,19 +1,19 @@
-uuid: c8021190-a8d4-4877-8080-9a5400b0e2a0
+uuid: 094ba262-d049-4c22-9a0e-963702c3d666
 langcode: en
 status: true
 dependencies:
   module:
     - node
-    - taxonomy
-id: node.field_judge
-field_name: field_judge
+id: node.field_case_number_year
+field_name: field_case_number_year
 entity_type: node
-type: entity_reference
+type: integer
 settings:
-  target_type: taxonomy_term
+  unsigned: false
+  size: normal
 module: core
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

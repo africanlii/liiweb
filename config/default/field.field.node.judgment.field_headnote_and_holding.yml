@@ -1,0 +1,21 @@
+uuid: e56e4100-fbc2-4444-8969-d60265bd6eea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_headnote_and_holding
+    - node.type.judgment
+  module:
+    - text
+id: node.judgment.field_headnote_and_holding
+field_name: field_headnote_and_holding
+entity_type: node
+bundle: judgment
+label: 'Headnote and holding'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

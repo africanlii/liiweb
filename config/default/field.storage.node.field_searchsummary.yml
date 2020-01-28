@@ -1,17 +1,16 @@
-uuid: 01c27ab8-1197-4d68-930f-922145be8a54
+uuid: b93bc999-135c-4116-a7e0-be89ae13280d
 langcode: en
 status: true
 dependencies:
   module:
     - node
-    - taxonomy
-id: node.field_court_name
-field_name: field_court_name
+    - text
+id: node.field_searchsummary
+field_name: field_searchsummary
 entity_type: node
-type: entity_reference
-settings:
-  target_type: taxonomy_term
-module: core
+type: text_long
+settings: {  }
+module: text
 locked: false
 cardinality: 1
 translatable: true

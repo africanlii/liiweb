@@ -1,0 +1,21 @@
+uuid: 3f3cf4ac-aaad-4297-b2dd-bf7faede2e83
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_court_code
+field_name: field_court_code
+entity_type: taxonomy_term
+type: string
+settings:
+  max_length: 30
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

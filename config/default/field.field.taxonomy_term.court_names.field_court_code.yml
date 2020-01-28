@@ -1,0 +1,19 @@
+uuid: c78447aa-f020-4a48-b253-1304af617ed7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_court_code
+    - taxonomy.vocabulary.court_names
+id: taxonomy_term.court_names.field_court_code
+field_name: field_court_code
+entity_type: taxonomy_term
+bundle: court_names
+label: 'Court Code'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
