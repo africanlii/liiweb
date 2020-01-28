@@ -6,7 +6,11 @@
       "langcode": "en",
       "field_publication_date": "2019-03-11",
       "field_publication_name": "Newest expression: Publication name",
-      "field_frbr_uri": "/akn/za/act/1993/31/eng@2019-03-11"
+      "field_frbr_uri": "/akn/za/act/1993/31/eng@2019-03-11",
+      "field_content": {
+        "value": "<p><b>Paragraph #1</b></p><p>Paragraph #2</p>",
+        "format": "full_html"
+      }
     },
     "relationships": {
       "field_repeal": {
