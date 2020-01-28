@@ -75,6 +75,9 @@ git add /path/to/new/file
 git commit -m "refs #123 Added new fields"
 ```
 
+For field changes, you MUST also copy any new and changed files to `web/modules/custom/liiweb/modules/liiweb_features/config/install/` so that they are
+installed during testing.
+
 TODO: Add multi-site configuration details here.
 
 ## How to run the tests locally
