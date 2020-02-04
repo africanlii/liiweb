@@ -5,14 +5,14 @@ dependencies:
   config:
     - field.storage.node.field_matter_type
     - node.type.judgment
-    - taxonomy.vocabulary.legislation_tags
+    - taxonomy.vocabulary.matter_type
 id: node.judgment.field_matter_type
 field_name: field_matter_type
 entity_type: node
 bundle: judgment
 label: 'Matter type'
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      legislation_tags: legislation_tags
+      matter_type: matter_type
     sort:
       field: name
       direction: asc

@@ -11,7 +11,7 @@ entity_type: node
 bundle: judgment
 label: 'Case number year'
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

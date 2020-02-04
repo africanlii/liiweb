@@ -21,7 +21,7 @@ dependencies:
     - field.field.node.judgment.field_law_report_citations
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
-    - field.field.node.judgment.field_searchsummary
+    - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
     - text
@@ -40,6 +40,13 @@ content:
       link: true
     third_party_settings: {  }
   field_headnote_and_holding:
+    type: text_default
+    weight: 2
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_search_summary:
     type: text_default
     weight: 1
     region: content
@@ -62,7 +69,6 @@ hidden:
   field_law_report_citations: true
   field_matter_type: true
   field_media_neutral_citation: true
-  field_searchsummary: true
   langcode: true
   links: true
   search_api_excerpt: true
