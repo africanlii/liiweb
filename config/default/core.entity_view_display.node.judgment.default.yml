@@ -20,7 +20,7 @@ dependencies:
     - field.field.node.judgment.field_law_report_citations
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
-    - field.field.node.judgment.field_searchsummary
+    - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
     - field_group
@@ -46,8 +46,8 @@ third_party_settings:
     group_headnote_and_flynote:
       children:
         - field_flynote
+        - field_search_summary
         - field_headnote_and_holding
-        - field_searchsummary
         - field_law_report_citations
       parent_name: group_group
       weight: 20
@@ -114,20 +114,11 @@ content:
     type: entity_reference_label
     region: content
   field_headnote_and_holding:
-    weight: 12
+    weight: 13
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: content
-  field_judgment_number_override:
-    weight: 23
-    label: above
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
-    third_party_settings: {  }
-    type: number_integer
     region: content
   field_law_report_citations:
     weight: 14
@@ -137,8 +128,8 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_searchsummary:
-    weight: 13
+  field_search_summary:
+    weight: 12
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -154,6 +145,7 @@ hidden:
   field_judge: true
   field_judgment_date: true
   field_judgment_number: true
+  field_judgment_number_override: true
   field_matter_type: true
   field_media_neutral_citation: true
   langcode: true

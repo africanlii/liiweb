@@ -1,14 +1,14 @@
-uuid: 317809db-85ef-4542-bb0b-3090a1042b03
+uuid: 84ac570b-5603-4275-87da-2c60f0a0f0ef
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_searchsummary
+    - field.storage.node.field_search_summary
     - node.type.judgment
   module:
     - text
-id: node.judgment.field_searchsummary
-field_name: field_searchsummary
+id: node.judgment.field_search_summary
+field_name: field_search_summary
 entity_type: node
 bundle: judgment
 label: 'Search summary'
@@ -17,5 +17,7 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: text_long
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

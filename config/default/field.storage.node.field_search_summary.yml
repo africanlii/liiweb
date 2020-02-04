@@ -1,14 +1,14 @@
-uuid: b93bc999-135c-4116-a7e0-be89ae13280d
+uuid: b660081c-2f63-4e43-93f5-0f88da984dc6
 langcode: en
 status: true
 dependencies:
   module:
     - node
     - text
-id: node.field_searchsummary
-field_name: field_searchsummary
+id: node.field_search_summary
+field_name: field_search_summary
 entity_type: node
-type: text_long
+type: text_with_summary
 settings: {  }
 module: text
 locked: false

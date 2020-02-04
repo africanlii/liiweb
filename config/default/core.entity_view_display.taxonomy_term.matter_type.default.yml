@@ -1,0 +1,32 @@
+uuid: 276c7088-5e91-4362-9848-afdeae9d42bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.matter_type.field_matter_code
+    - taxonomy.vocabulary.matter_type
+  module:
+    - text
+id: taxonomy_term.matter_type.default
+targetEntityType: taxonomy_term
+bundle: matter_type
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_matter_code:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
