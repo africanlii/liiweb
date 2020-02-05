@@ -2,11 +2,15 @@
   "data": {
     "type": "node--legislation",
     "attributes": {
-      "title": "Work: /akn/za/2015/15/eng@2015-06-15 - Repealed work (by /akn/za/2017/15/eng@2017-06-15)",
+      "title": "Work: /akn/za/act/2015/15/eng@2015-06-15 - Repealed work (by /akn/za/act/2017/15/eng@2017-06-15)",
       "langcode": "en",
       "field_publication_date": "2015-06-15",
       "field_publication_name": "Publication name",
-      "field_frbr_uri": "/akn/za/2015/15/eng@2015-06-15"
+      "field_frbr_uri": "/akn/za/act/2015/15/eng@2015-06-15",
+      "field_content": {
+        "value": "<p><b>Paragraph #1 - edited</b></p><p>Paragraph #2</p>",
+        "format": "full_html"
+      }
     },
     "relationships": {
       "field_repeal": {
@@ -26,7 +30,7 @@
                     "nid": "nid",
                     "id": "virtual",
                     "attributes": {
-                      "field_frbr_uri": "/akn/za/2017/15/eng@2017-06-15"
+                      "field_frbr_uri": "/akn/za/act/2017/15/eng@2017-06-15"
                     }
                   }
                 ]

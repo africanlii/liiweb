@@ -1,0 +1,19 @@
+uuid: ebed0716-c102-4a6c-bc8b-9f9577bf82a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_raw_json
+    - node.type.legislation
+id: node.legislation.field_raw_json
+field_name: field_raw_json
+entity_type: node
+bundle: legislation
+label: 'Raw JSON'
+description: 'Raw Indigo JSON'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.legislation.field_parent_work
     - field.field.node.legislation.field_publication_date
     - field.field.node.legislation.field_publication_name
+    - field.field.node.legislation.field_raw_json
     - field.field.node.legislation.field_repeal
     - field.field.node.legislation.field_stub
     - field.field.node.legislation.field_tags
@@ -96,6 +97,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
@@ -112,6 +114,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_raw_json:
+    weight: 28
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
     region: content
   field_repeal:
     type: entity_reference_paragraphs
