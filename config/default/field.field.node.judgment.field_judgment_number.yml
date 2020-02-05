@@ -1,0 +1,26 @@
+uuid: f3a39e30-f043-4d7f-8bb2-12674f0e054e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_judgment_number
+    - node.type.judgment
+  module:
+    - computed_field
+id: node.judgment.field_judgment_number
+field_name: field_judgment_number
+entity_type: node
+bundle: judgment
+label: 'Judgment number'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  code: "//Sets Override to the judgment override number value of the node.\r\n$current = $entity->field_judgment_number->value;\r\n$override = $entity->field_judgment_number_override->value;\r\n\r\n//Starts if statement to determine if a value has been entered for judgment number override.\r\nif($override != NULL || $current == NULL)\r\n{\r\nif($override != NULL)\r\n{\r\n   //Sets the value of judgment number to the override value if one has been entered.\r\n\r\n    $value = $override;\r\n}\r\n\r\n//Starts else statement for to determine judgment number if override has not been entered.\r\nelse\r\n{\r\n\r\n //Sets the $court and $courtdate fields to the current nodes court name and judgment date fields respectively, to use in query.\r\n\r\n $court = $value=  $entity->field_court_name->target_id;\r\n $courtdate = $entity->field_judgment_date->value;\r\n\r\n//Converts the court date field to just a year value\r\n\r\n $courtdate_year = date('Y',strtotime($courtdate));\r\n\r\n// Determines the Max judgment number entered for previous judgments under the same court name and judgment date as the current node and fetches an array of the max_num and entity_id's.\r\n\r\n$result = db_query(\"SELECT MAX({field_judgment_number_value}) as max_num, {entity_id}  FROM {node__field_judgment_number } NATURAL JOIN {node__field_judgment_date} NATURAL JOIN {node__field_court_name} WHERE DATE_FORMAT({field_judgment_date_value}, '%Y')=:date AND {field_court_name_target_id}=:name GROUP BY  {entity_id}\", array(':date' => $courtdate_year, ':name' => $court));\r\n\r\n//Checks to see that the query has a result, for cases where this is the first judgment of that particular year\r\n\r\n//Stores the db query results first record as an object of type $record.\r\n\r\n$record = $result->fetchObject();\r\n\r\nif($record)\r\n{\r\n//Sets the value of current judgment number according to the highest previous entry for the set date and court name\r\n\r\n$judgment_num=$record->max_num;\r\n\r\n//Sets the nid for the entity with the max judgement number\r\n$nid=$record->entity_id;\r\n\r\n//sets the value of field_judgment_number to the previously highest for the same year and content type +1 if the current nodes nid is different to the max_nums nid.\r\n\r\nif($entity->nid->value != $nid )\r\n{\r\n\r\n$value= $judgment_num + 1 ;\r\n\r\n}\r\n\r\n// Sets the value of the field judgement_number to the same value if the nids for the current node and max_num node match.\r\n\r\nelse\r\n{\r\n\r\n$value = $judgment_num;\r\n\r\n}\r\n}\r\n\r\n// Sets the value of field_judgment_number to 1 if no other judgments exist for the nodes year.\r\nelse\r\n{ \r\n$value = 1;\r\n}\r\n}\r\n}\r\n\r\n\r\n"
+  prefix: ''
+  suffix: ''
+field_type: computed_integer

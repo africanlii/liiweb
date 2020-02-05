@@ -1,4 +1,5 @@
 module:
+  auto_entitylabel: 0
   basic_auth: 0
   block: 0
   block_content: 0
@@ -8,6 +9,8 @@ module:
   chosen_lib: 0
   ckeditor: 0
   color: 0
+  computed_field: 0
+  computed_field_php_formatter: 0
   config: 0
   config_translation: 0
   datetime: 0
@@ -18,8 +21,10 @@ module:
   entity_reference_revisions: 0
   facets: 0
   field: 0
+  field_group: 0
   field_ui: 0
   file: 0
+  filefield_paths: 0
   filter: 0
   google_analytics: 0
   image: 0
@@ -37,6 +42,7 @@ module:
   path_alias: 0
   recaptcha: 0
   responsive_image: 0
+  s3fs: 0
   search_api: 0
   search_api_attachments: 0
   search_api_solr: 0
@@ -44,9 +50,11 @@ module:
   smtp: 0
   system: 0
   taxonomy: 0
+  taxonomy_manager: 0
   telephone: 0
   text: 0
   title_length: 0
+  token: 0
   toolbar: 0
   toolbar_extras: 0
   update: 0

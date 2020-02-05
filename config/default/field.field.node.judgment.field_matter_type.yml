@@ -1,0 +1,29 @@
+uuid: d7ee5071-2544-4890-9474-8800beedd849
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_matter_type
+    - node.type.judgment
+    - taxonomy.vocabulary.matter_type
+id: node.judgment.field_matter_type
+field_name: field_matter_type
+entity_type: node
+bundle: judgment
+label: 'Matter type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      matter_type: matter_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

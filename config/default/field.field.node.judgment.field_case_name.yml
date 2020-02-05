@@ -1,0 +1,19 @@
+uuid: d5af3874-5e7e-49a3-a7a0-cd76dc0ec13b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_case_name
+    - node.type.judgment
+id: node.judgment.field_case_name
+field_name: field_case_name
+entity_type: node
+bundle: judgment
+label: 'Case name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

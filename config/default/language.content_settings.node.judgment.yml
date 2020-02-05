@@ -1,0 +1,11 @@
+uuid: 31416598-4fbc-45d5-8a8d-e37e8ace00e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.judgment
+id: node.judgment
+target_entity_type_id: node
+target_bundle: judgment
+default_langcode: site_default
+language_alterable: false
