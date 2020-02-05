@@ -1,0 +1,23 @@
+uuid: 707fdc3d-4408-4b1f-a582-eeec32e22263
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_case_number_numeric
+    - node.type.judgment
+id: node.judgment.field_case_number_numeric
+field_name: field_case_number_numeric
+entity_type: node
+bundle: judgment
+label: 'Case number numeric'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

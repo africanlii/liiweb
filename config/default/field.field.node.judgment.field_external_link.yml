@@ -1,0 +1,23 @@
+uuid: a60719c5-4ef7-450e-bc0d-b827c0466224
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_external_link
+    - node.type.judgment
+  module:
+    - link
+id: node.judgment.field_external_link
+field_name: field_external_link
+entity_type: node
+bundle: judgment
+label: 'External URL'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link
