@@ -39,6 +39,7 @@
         "drupal/search_api_solr": "^3.7",
         "drupal/smtp": "^1.0@beta",
         "drupal/taxonomy_manager": "^1.0",
+        "drupal/title_length": "^1.0",
         "drupal/token": "^1.6",
         "drupal/toolbar_extras": "^1.0@beta",
         "drupal/webform": "5.x-dev",

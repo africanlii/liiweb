@@ -4,6 +4,23 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.legislation.field_commencement_date
+    - field.field.node.legislation.field_content
+    - field.field.node.legislation.field_created
+    - field.field.node.legislation.field_created_by_api
+    - field.field.node.legislation.field_expression_date
+    - field.field.node.legislation.field_external_link
+    - field.field.node.legislation.field_files
+    - field.field.node.legislation.field_frbr_uri
+    - field.field.node.legislation.field_images
+    - field.field.node.legislation.field_parent_work
+    - field.field.node.legislation.field_publication_date
+    - field.field.node.legislation.field_publication_name
+    - field.field.node.legislation.field_raw_json
+    - field.field.node.legislation.field_repeal
+    - field.field.node.legislation.field_stub
+    - field.field.node.legislation.field_tags
+    - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
     - user
@@ -30,6 +47,7 @@ hidden:
   field_parent_work: true
   field_publication_date: true
   field_publication_name: true
+  field_raw_json: true
   field_repeal: true
   field_stub: true
   field_tags: true

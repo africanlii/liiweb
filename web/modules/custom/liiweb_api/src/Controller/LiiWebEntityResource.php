@@ -57,19 +57,12 @@ class LiiWebEntityResource extends EntityResource {
   /**
    * @param \Drupal\jsonapi\ResourceType\ResourceType $resource_type
    * @param \Symfony\Component\HttpFoundation\Request $request
-   * @param $country
-   * @param $year
-   * @param $number
-   * @param $langcode_year
    *
    * @return \Drupal\jsonapi\ResourceResponse
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function post(ResourceType $resource_type, Request $request, $country, $year, $number, $langcode_year) {
-    $langcode_year = explode('@', $langcode_year);
-    $date = $langcode_year[1];
-
+  public function post(ResourceType $resource_type, Request $request) {
     /** @var NodeInterface $parsed_entity */
     try {
       $parsed_entity = $this->deserialize($resource_type, $request, JsonApiDocumentTopLevel::class);
@@ -80,34 +73,23 @@ class LiiWebEntityResource extends EntityResource {
       return $this->getResourceResponseError($e->getMessage(), $status_code);
     }
 
-    $create_revision = FALSE;
-    // Try to load the node.
-    $node = $this->liiWebUtils->getNodeFromFrbrUri($request->getRequestUri());
-    if (empty($node)) {
-      return $this->getResourceResponseError('The requested node does not exist.', 404);
-    }
-
     $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
-    if (!empty($revision)) {
-      return $this->getResourceResponseError('Revision already exists.', 400);
+    if (empty($revision)) {
+      return $this->getResourceResponseError("No revision was found with the frbr uri " . $request->getRequestUri(), 404);
     }
 
-    /** @var \Drupal\Core\Entity\TranslatableInterface $revision */
-    $revision = $this->getRevisionWithPublicationDate($node, $date);
-    // A revision with that publication date does not exist, and the langcode is different from the original language - invalid request
-    if (empty($revision) && $node->language()->getId() != $parsed_entity->language()->getId()) {
-      return $this->getResourceResponseError('Cannot create translations for revisions that do not exist. Please create a revision in the default language for that node with the requested date and try again.', 404);
-    }
+    // The langcodes are different between the original revision and the revision in the payload - create a translation
+    if ($revision->language()->getId() != $parsed_entity->language()->getId()) {
+      if ($revision->hasTranslation($parsed_entity->language()->getId())) {
+        return $this->getResourceResponseError('The original revision already has a translation for langcode ' . $parsed_entity->language()->getId(), 400);
+      }
 
-    // If we found the revision for that creation date, just create a translation for it.
-    if (!empty($revision)) {
       $revision = $revision->addTranslation($parsed_entity->language()->getId());
-      return $this->patchIndividual($resource_type, $revision, $request, $create_revision, 201);
+      return $this->patchIndividual($resource_type, $revision, $request, FALSE, 201);
     }
 
-    // If we didn't find the revision for that creation date but the langcode is the same as the node,
-    // just create a revision.
-    return $this->patchIndividual($resource_type, $node, $request, TRUE, 201);
+    // The langcodes are identical - create a new revision
+    return $this->patchIndividual($resource_type, $revision, $request, TRUE, 201);
   }
 
   /**
@@ -133,20 +115,14 @@ class LiiWebEntityResource extends EntityResource {
 
   /**
    * @param \Symfony\Component\HttpFoundation\Request $request
-   * @param null $langcode_year
    *
    * @return array|\Drupal\jsonapi\ResourceResponse
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function get(Request $request, $langcode_year = NULL) {
+  public function get(Request $request) {
     /** @var NodeInterface $revision */
-    if (empty($langcode_year)) {
-      $revision = $this->liiWebUtils->getNodeFromFrbrUri($request->getRequestUri());
-    }
-    else {
-      $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
-    }
+    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
 
     if (empty($revision)) {
       throw new NotFoundHttpException();
@@ -195,80 +171,67 @@ class LiiWebEntityResource extends EntityResource {
 
   /**
    * @param \Symfony\Component\HttpFoundation\Request $request
-   * @param null $langcode_year
    *
    * @return \Drupal\jsonapi\ResourceResponse
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function delete(Request $request, $langcode_year = NULL) {
-    // Request to delete the node.
-    if (empty($langcode_year)) {
-      $node = $this->liiWebUtils->getNodeFromFrbrUri($request->getRequestUri());
-      // Node not found.
-      if (empty($node)) {
-        return $this->getResourceResponseError('The requested node does not exist.', 404);
-      }
-      if (!$node->access('delete')) {
-        throw new AccessDeniedHttpException();
-      }
-      $node->delete();
-      return new ResourceResponse(NULL, 204);
-    }
-
+  public function delete(Request $request) {
     /** @var \Drupal\node\NodeStorage $nodeStorage */
     $nodeStorage = $this->entityTypeManager->getStorage('node');
-    /** @var \Drupal\node\NodeInterface $node */
-    $node = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    /** @var \Drupal\node\NodeInterface $revision */
+    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
 
     // Revision not found.
-    if (empty($node)) {
+    if (empty($revision)) {
       return $this->getResourceResponseError('The requested revision does not exist.', 404);
     }
 
-    if (!$node->access('delete')) {
+    if (!$revision->access('delete')) {
       throw new AccessDeniedHttpException();
     }
 
     // If it is not a revision for the default language, we can safely delete it.
-    if (!$node->isDefaultTranslation()) {
+    if (!$revision->isDefaultTranslation()) {
       /** @var \Drupal\node\NodeInterface $defaultTranslation */
-      $defaultTranslation = $nodeStorage->loadRevision($node->getRevisionId());
-      $defaultTranslation->removeTranslation($node->language()->getId());
+      $defaultTranslation = $nodeStorage->loadRevision($revision->getRevisionId());
+      $defaultTranslation->removeTranslation($revision->language()->getId());
       $defaultTranslation->save();
       return new ResourceResponse(NULL, 204);
     }
 
     // If it is not the default revision, we can safely delete it.
-    if (!$node->isDefaultRevision()) {
-      $nodeStorage->deleteRevision($node->getRevisionId());
+    if (!$revision->isDefaultRevision()) {
+      $nodeStorage->deleteRevision($revision->getRevisionId());
       return new ResourceResponse(NULL, 204);
     }
 
-    $revisionIds = $nodeStorage->revisionIds($node);
+    $revisionIds = $nodeStorage->revisionIds($revision);
+    // If this is the only revision, delete the node.
     if (count($revisionIds) == 1) {
-      return $this->getResourceResponseError('Cannot delete the only revision of a node. Delete the node instead.', 400);
+      $revision->delete();
+      return new ResourceResponse(NULL, 204);
     }
 
     // Before deleting the main revision, we need to set another revision as the main revision.
     $max = 0;
     $nextMainRevision = NULL;
     foreach ($revisionIds as $revisionId) {
-      $revision = $nodeStorage->loadRevision($revisionId);
-      if ($revision->field_publication_date->value > $max && $revisionId != $node->getRevisionId()) {
-        $max = $revision->field_publication_date->value;
-        $nextMainRevision = $revision;
+      $otherRevision = $nodeStorage->loadRevision($revisionId);
+      if ($otherRevision->field_publication_date->value > $max && $revisionId != $revision->getRevisionId()) {
+        $max = $otherRevision->field_publication_date->value;
+        $nextMainRevision = $otherRevision;
       }
     }
 
     $nextMainRevision->isDefaultRevision(TRUE);
     $nextMainRevision->save();
 
-    $node->isDefaultRevision(FALSE);
-    $node->save();
+    $revision->isDefaultRevision(FALSE);
+    $revision->save();
 
-    $nodeStorage->deleteRevision($node->getRevisionId());
+    $nodeStorage->deleteRevision($revision->getRevisionId());
     return new ResourceResponse(NULL, 204);
   }
 
