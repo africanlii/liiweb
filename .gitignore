@@ -21,4 +21,5 @@ web/robots.txt
 web/update.php
 .ht.router.php
 
-vendor/
+/vendor/
+/web/modules/contrib/
