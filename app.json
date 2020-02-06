@@ -1,7 +1,8 @@
 {
   "scripts": {
     "dokku": {
-      "postdeploy": "vendor/drush/drush/drush updatedb -y && vendor/drush/drush/drush cim sync -y && vendor/drush/drush/drush updatedb -y && vendor/drush/drush/drush cr"
+      "predeploy": "mkdir -p web/sites/default/files/translations/",
+      "postdeploy": "bin/post-deploy.sh"
     }
   }
 }
