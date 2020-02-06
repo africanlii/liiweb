@@ -1,7 +1,0 @@
-name: 'Webform Bootstrap'
-type: module
-description: 'Helps support Webform to Bootstrap integration.'
-package: Webform
-core: 8.x
-dependencies:
-  - 'webform:webform'

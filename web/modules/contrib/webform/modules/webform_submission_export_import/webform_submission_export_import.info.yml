@@ -1,8 +1,0 @@
-name: 'Webform Submission Export/Import [EXPERIMENTAL]'
-type: module
-description: 'Provides the ability to export and import submissions.'
-experimental: true
-package: Webform
-core: 8.x
-dependencies:
-  - 'webform:webform'

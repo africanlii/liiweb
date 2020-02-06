@@ -1,8 +1,0 @@
-name: 'Webform module submissions tests'
-type: module
-description: 'Support module for webform that provides a webform with submission tests.'
-package: Testing
-core: 8.x
-dependencies:
-  - 'drupal:node'
-  - 'webform:webform'

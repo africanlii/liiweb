@@ -1,7 +1,0 @@
-name: 'Webform module validate tests'
-type: module
-description: 'Support module for webform that provides form validate hooks for form validate tests.'
-package: Testing
-core: 8.x
-dependencies:
-  - 'webform:webform'
