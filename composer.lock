@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "30684e3a73dcad9588229436adb1e1d0",
+    "content-hash": "7c231deb57d5d2c791f899f360517d61",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4294,27 +4294,24 @@
         },
         {
             "name": "drupal/xmlsitemap",
-            "version": "1.0.0-rc1",
+            "version": "1.0.0-alpha3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/xmlsitemap.git",
-                "reference": "8.x-1.0-rc1"
+                "reference": "8.x-1.0-alpha3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/xmlsitemap-8.x-1.0-rc1.zip",
-                "reference": "8.x-1.0-rc1",
-                "shasum": "9b88caa55f9a45b8c89a1284d2db739fbf0c830f"
+                "url": "https://ftp.drupal.org/files/projects/xmlsitemap-8.x-1.0-alpha3.zip",
+                "reference": "8.x-1.0-alpha3",
+                "shasum": "5318e0eaa1710f5d02021b406135e1a1b038ed4f"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
+                "drupal/core": "~8.0",
                 "ext-xmlwriter": "*"
             },
             "require-dev": {
                 "drupal/robotstxt": "^1.0"
-            },
-            "suggest": {
-                "drush/drush": "Command-line regenerating and rebuilding sitemaps."
             },
             "type": "drupal-module",
             "extra": {
@@ -4322,16 +4319,11 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-rc1",
-                    "datestamp": "1576705928",
+                    "version": "8.x-1.0-alpha3",
+                    "datestamp": "1575402780",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
-                    }
-                },
-                "drush": {
-                    "services": {
-                        "drush.services.yml": "^9 || ^10"
+                        "message": "Alpha releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -11456,8 +11448,7 @@
         "drupal/search_api_attachments": 10,
         "drupal/smtp": 10,
         "drupal/toolbar_extras": 10,
-        "drupal/webform": 20,
-        "drupal/xmlsitemap": 15
+        "drupal/webform": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
