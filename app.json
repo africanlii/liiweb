@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "dokku": {
+      "predeploy": "mkdir -p web/sites/default/files/translations/",
+      "postdeploy": "scripts/post-deploy.sh"
+    }
+  }
+}

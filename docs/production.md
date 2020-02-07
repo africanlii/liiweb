@@ -108,3 +108,5 @@ To deploy, simply push to the dokku remote: `git push dokku`
 This will push your changes to the server, Dokku will build a new Docker container with Drupal and all necessary dependencies.
 Dokku will only swap the new container in place if the deployment succeeds, otherwise the old container is left running
 and nothing changes.
+
+Dokku will automatically run database updates and migrations after each deployment.
