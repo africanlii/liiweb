@@ -2,7 +2,7 @@
   "scripts": {
     "dokku": {
       "predeploy": "mkdir -p web/sites/default/files/translations/",
-      "postdeploy": "bin/post-deploy.sh"
+      "postdeploy": "scripts/post-deploy.sh"
     }
   }
 }
