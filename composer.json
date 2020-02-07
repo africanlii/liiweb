@@ -43,7 +43,7 @@
         "drupal/token": "^1.6",
         "drupal/toolbar_extras": "^1.0@beta",
         "drupal/webform": "5.x-dev",
-        "drupal/xmlsitemap": "^1.0@alpha",
+        "drupal/xmlsitemap": "1.0.0-alpha3",
         "drush/drush": "^9.0.0",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
