@@ -117,7 +117,7 @@ The site is configured to store uploaded files, such as PDFs and images, in AWS 
 is separate from the database and webserver. The user then loads those files and images from S3, rather than from Drupal, using
 an AWS Cloudfront distribution (ie. a CDN).
 
-For example, a user would load the file `gazette.pdf` from `media.namiblii.org/files/public/gazette.pdf`.
+For example, a user would load the file `gazette.pdf` from `https://media.namiblii.org/files/public/gazette.pdf`.
 
 All of these settings are specific to each individual LIIWeb instillation.
 
@@ -169,7 +169,7 @@ This part uses a script to automate most of these steps.
 * Upload [scripts/s3-cdn-user.yaml](scripts/s3-cdn-user.yaml) and click **Next**
 * For **Stack name**, enter the short name of the LII, such as `namiblii`
 * For **CertificateArn** enter the ARN of the certificate that you created above
-* For **LiiName** enter the short name of the LII, such as `namiblii`
+* For **LiiName** enter the short name of the LII, such as `namiblii` - DO NOT include `.org` or spaces
 * For **LiiDomain** entre the domain name of the LII, such as `namiblii.org` - DO NOT include `https` or `www`
 * Click **Next** twice, then check the **I acknowledge that AWS CloudFormation might create IAM resources with custom names** checkbox and click **Create stack**
 
@@ -199,4 +199,4 @@ Log into the DNS provider for your LII, and add a DNS entry:
 
 * Type: CNAME
 * Name: media.your-lii-domain (eg. `media.namiblii.org`)
-* Value: the CDNDomain setting from above (eg. `xxxxx.cloudfront.net`)
+* Value: the CDNDomain output value from above (eg. `xxxxx.cloudfront.net`)
