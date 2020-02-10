@@ -780,6 +780,14 @@ $settings['entity_update_batch_size'] = 50;
 $settings['entity_update_backup'] = TRUE;
 
 /**
+ * S3FS settings
+ */
+$settings['s3fs.access_key'] = getenv('AWS_ACCESS_KEY_ID');
+$settings['s3fs.secret_key'] = getenv('AWS_SECRET_ACCESS_KEY');
+$config['s3fs.settings']['bucket'] = getenv('S3_BUCKET');
+$config['s3fs.settings']['domain'] = getenv('S3_CDN_DOMAIN');
+
+/**
  * Load local development override configuration, if available.
  *
  * Use settings.local.php to override variables on secondary (staging,
@@ -790,9 +798,9 @@ $settings['entity_update_backup'] = TRUE;
  * Keep this code block at the end of this file to take full effect.
  */
 
- if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-   include $app_root . '/' . $site_path . '/settings.local.php';
- }
+if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+  include $app_root . '/' . $site_path . '/settings.local.php';
+}
 $config_directories['sync'] = '../config/default';
 
 $settings['node_title_length_chars'] = 1023;
