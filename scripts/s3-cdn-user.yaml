@@ -85,6 +85,7 @@ Resources:
             - s3:PutObject
             - s3:GetObject
             - s3:ListBucket
+            - s3:ListBucketVersions
             - s3:DeleteObject
             Resource:
             - !GetAtt S3Bucket.Arn

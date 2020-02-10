@@ -784,6 +784,7 @@ $settings['entity_update_backup'] = TRUE;
  */
 $settings['s3fs.access_key'] = getenv('AWS_ACCESS_KEY_ID');
 $settings['s3fs.secret_key'] = getenv('AWS_SECRET_ACCESS_KEY');
+$settings['s3fs.upload_as_private'] = TRUE;
 $config['s3fs.settings']['bucket'] = getenv('S3_BUCKET');
 $config['s3fs.settings']['domain'] = getenv('S3_CDN_DOMAIN');
 
