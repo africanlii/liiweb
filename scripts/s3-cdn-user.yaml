@@ -1,0 +1,111 @@
+Parameters:
+  LiiName:
+    Type: String
+    Description: Short name of the LII, such as namiblii
+    AllowedPattern: '[a-z0-9]{1,63}'
+    ConstraintDescription: lowercase letters and numbers only
+
+  LiiDomain:
+    Type: String
+    Description: Full domain name for the LII, such as namiblii.org
+    AllowedPattern: '[a-z0-9.]{1,63}'
+    ConstraintDescription: lowercase letters, numbers and dots
+
+  CertificateArn:
+    Type: String
+    Description: ARN of the certificate to use for HTTPS on the CDN.
+
+Resources:
+  # Create the bucket to contain the media files
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${LiiName}-media'
+
+  # This gives the CDN permission to talk to S3
+  CloudFrontOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: !Ref S3Bucket
+
+  # Configure the bucket as a CloudFront Origin
+  ReadPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Statement:
+        - Action: s3:GetObject
+          Effect: Allow
+          Resource: !Sub 'arn:aws:s3:::${S3Bucket}/*'
+          Principal:
+            CanonicalUser: !GetAtt CloudFrontOriginAccessIdentity.S3CanonicalUserId
+
+  # Set up a cloudfront distribution (CDN)
+  CDN:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: !Ref S3Bucket
+        HttpVersion: http2
+        Aliases:
+          - !Sub 'media.${LiiDomain}'
+        Origins:
+        - DomainName: !GetAtt 'S3Bucket.DomainName'
+          Id: !Ref S3Bucket
+          S3OriginConfig:
+            OriginAccessIdentity: !Sub 'origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}'
+        DefaultCacheBehavior:
+          TargetOriginId: !Ref S3Bucket
+          AllowedMethods:
+            - GET
+            - HEAD
+          ViewerProtocolPolicy: 'redirect-to-https'
+          ForwardedValues:
+            QueryString: false
+        ViewerCertificate:
+          SslSupportMethod: 'sni-only'
+          AcmCertificateArn: !Ref CertificateArn
+          MinimumProtocolVersion: 'TLSv1.1_2016'
+
+  # IAM user for the lii to use
+  User:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: !Ref LiiName
+      Policies:
+      - PolicyName: !Sub 'readwrite-${S3Bucket}'
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - s3:PutObject
+            - s3:GetObject
+            - s3:ListBucket
+            - s3:DeleteObject
+            Resource:
+            - !GetAtt S3Bucket.Arn
+            - !Sub '${S3Bucket.Arn}/*'
+
+  # Access key pair for the user
+  UserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref User
+
+Outputs:
+  BucketName:
+    Description: 'S3 bucket name'
+    Value: !Ref S3Bucket
+  CDNDomain:
+    Description: 'CDN domain for DNS'
+    Value: !GetAtt CDN.DomainName
+  UserAccessKey:
+    Description: 'AWS access key for Drupal S3 setup'
+    Value: !Ref UserAccessKey
+  UserSecretKey:
+    Description: 'AWS secret access key for Drupal S3 setup'
+    Value: !GetAtt UserAccessKey.SecretAccessKey
