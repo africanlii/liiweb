@@ -200,3 +200,18 @@ Log into the DNS provider for your LII, and add a DNS entry:
 * Type: CNAME
 * Name: media.your-lii-domain (eg. `media.namiblii.org`)
 * Value: the CDNDomain output value from above (eg. `xxxxx.cloudfront.net`)
+
+## Cron job
+
+Optionally, install a cron tab to ensure that drupal's cron is run daily.
+
+* Copy the file `scripts/crontab` to your dokku server's app directory, such as `/home/dokku/liiweb/crontab`.
+* Edit the file and set the `APP` variable to the name of your dokku app
+* Then link in the crontab file, changing `liiweb` where necessary:
+
+```bash
+APP=liiweb
+sudo ln -s /home/dokku/$APP/crontab /etc/cron.d/$APP
+sudo chown root:root /etc/cron.d/$APP
+```
+
