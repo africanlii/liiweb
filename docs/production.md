@@ -203,7 +203,7 @@ Log into the DNS provider for your LII, and add a DNS entry:
 
 ## Cron job
 
-Optionally, install a cron tab to ensure that drupal's cron is run daily.
+Optionally, install a crontab to ensure that Drupal's cron job is run daily.
 
 * Copy the file `scripts/crontab` to your dokku server's app directory, such as `/home/dokku/liiweb/crontab`.
 * Edit the file and set the `APP` variable to the name of your dokku app
@@ -215,3 +215,4 @@ sudo ln -s /home/dokku/$APP/crontab /etc/cron.d/$APP
 sudo chown root:root /etc/cron.d/$APP
 ```
 
+The cron job writes its logs to `/home/dokku/$APP/cron.log`.
