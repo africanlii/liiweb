@@ -1,0 +1,26 @@
+# server cron jobs
+PATH=/usr/local/bin:/usr/bin:/bin
+SHELL=/bin/bash
+
+# NB: change this to the name of your dokku app
+APP=liiweb
+
+# m   h   dom mon dow   username command
+# *   *   *   *   *     dokku    command to be executed
+# -   -   -   -   -
+# |   |   |   |   |
+# |   |   |   |   +----- day of week (0 - 6) (Sunday=0)
+# |   |   |   +------- month (1 - 12)
+# |   |   +--------- day of month (1 - 31)
+# |   +----------- hour (0 - 23)
+# +----------- min (0 - 59)
+
+### RUN YOUR TASKS FROM 02:00 - 04:00
+### KEEP SORTED IN TIME ORDER
+
+### PLACE ALL CRON TASKS BELOW
+
+# run drupal cron
+0 1 * * * dokku date >> /home/dokku/$APP/cron.log && dokku --rm run $APP vendor/drush/drush/drush cron >> /home/dokku/$APP/cron.log 2>&1
+
+### PLACE ALL CRON TASKS ABOVE, DO NOT REMOVE THE WHITESPACE AFTER THIS LINE
