@@ -1,0 +1,11 @@
+uuid: 56c94f34-859c-4ce1-bdb1-c7f1b99980db
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.government_gazette
+id: node.government_gazette
+target_entity_type_id: node
+target_bundle: government_gazette
+default_langcode: site_default
+language_alterable: false

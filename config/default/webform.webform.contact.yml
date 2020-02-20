@@ -216,6 +216,7 @@ handlers:
       sender_name: ''
       theme_name: ''
       parameters: {  }
+      exclude_attachments: false
   email_notification:
     id: email
     label: 'Email notification'
@@ -251,3 +252,5 @@ handlers:
       sender_name: ''
       theme_name: ''
       parameters: {  }
+      exclude_attachments: false
+variants: {  }
