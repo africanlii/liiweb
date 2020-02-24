@@ -1,4 +1,4 @@
-uuid: 746b27b3-922e-49ea-a4ad-60928c527165
+uuid: d745d4bc-00b3-42be-948f-56570a6ad3ea
 langcode: en
 status: true
 dependencies:
@@ -7,10 +7,11 @@ dependencies:
 id: node.field_gazette_issue_number
 field_name: field_gazette_issue_number
 entity_type: node
-type: integer
+type: string
 settings:
-  unsigned: false
-  size: normal
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
 module: core
 locked: false
 cardinality: 1
