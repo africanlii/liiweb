@@ -1,0 +1,19 @@
+uuid: 21d1cc1c-ff99-413f-ac38-637aa6f44c14
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gazette_machine_id
+    - node.type.government_gazette
+id: node.government_gazette.field_gazette_machine_id
+field_name: field_gazette_machine_id
+entity_type: node
+bundle: government_gazette
+label: 'Gazette machine ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
