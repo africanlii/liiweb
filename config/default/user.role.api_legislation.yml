@@ -7,8 +7,14 @@ label: 'Legislation API User'
 weight: 3
 is_admin: null
 permissions:
+  - 'create government_gazette content'
+  - 'create judgment content'
   - 'create legislation content'
   - 'create terms in legislation_tags'
+  - 'delete own government_gazette content'
+  - 'delete own judgment content'
   - 'delete own legislation content'
+  - 'edit own government_gazette content'
+  - 'edit own judgment content'
   - 'edit own legislation content'
   - 'manipulate legislation api'
