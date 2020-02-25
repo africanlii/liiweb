@@ -10,7 +10,7 @@ dependencies:
     - filefield_paths
 third_party_settings:
   filefield_paths:
-    enabled: true
+    enabled: false
     file_path:
       value: ''
       options:
@@ -37,7 +37,7 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_directory: judgment/files
   file_extensions: 'txt doc docx xls pdf ppt pps odt ods odp rtf'
   max_filesize: '50 MB'
   description_field: false
