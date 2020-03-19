@@ -1,0 +1,18 @@
+<?php
+/**
+ * @file
+ * Theme functions
+ */
+
+// Include all files from the includes directory.
+$includes_path = dirname(__FILE__) . '/includes/*.inc';
+foreach (glob($includes_path) as $filename) {
+  require_once dirname(__FILE__) . '/includes/' . basename($filename);
+}
+
+function lii_preprocess_field__node__field_toc__legislation(&$variables) {
+  foreach ($variables['items'] as $item) {
+    // parse JSON
+    $variables['toc'] = json_decode($item['content']['#context']['value']);
+  }
+}

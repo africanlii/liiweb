@@ -1,0 +1,10 @@
+<li>
+  {{ item.title }}
+  {% if item.children %}
+  <ol>
+    {% for kid in item.children %}
+      {{ include('@lii/includes/toc.html.twig', {item: kid}) }}
+    {% endfor %}
+  </ol>
+  {% endif %}
+</li>

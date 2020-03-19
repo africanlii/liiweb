@@ -1,0 +1,5 @@
+<ol class="toc-list">
+  {% for item in toc.toc %}
+    {{ include('@lii/includes/toc.html.twig', {item: item}) }}
+  {% endfor %}
+</ol>
