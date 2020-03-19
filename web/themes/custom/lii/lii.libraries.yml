@@ -3,3 +3,4 @@ indigo-web:
   css:
     theme:
       css/indigo-web.css: {}
+      css/lii.css: {}
