@@ -1,0 +1,18 @@
+global-styling:
+  version: VERSION
+  js:
+    js/popper.min.js: {}
+    js/bootstrap.min.js: {}
+    js/global.js: {}
+  css:
+    component:
+      css/style.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+polyfill-sticky:
+  version: VERSION
+  js:
+    js/vendor/stickyfill.min.js: {}
+    js/polyfill/polyfillSticky.js: {}
