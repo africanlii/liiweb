@@ -1,0 +1,28 @@
+uuid: 363d1046-2fc0-48aa-912d-42e4d27fcd61
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  theme:
+    - liibarrio
+id: pagetitle
+theme: liibarrio
+region: content
+weight: -4
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      government_gazette: government_gazette
+      judgment: judgment
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

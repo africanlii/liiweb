@@ -1,0 +1,27 @@
+uuid: 8932048b-8ea3-47e8-ae25-dacda1ebe101
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.admin
+  module:
+    - system
+  theme:
+    - liibarrio
+_core:
+  default_config_hash: OFEDxrButmQ8Vac1kiVr1gtw6vYKuSJPr9cJQZVKCKg
+id: liibarrio_admin
+theme: liibarrio
+region: highlighted
+weight: 0
+provider: null
+plugin: 'system_menu_block:admin'
+settings:
+  id: 'system_menu_block:admin'
+  label: Administration
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

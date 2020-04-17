@@ -1,0 +1,20 @@
+uuid: fb896c04-d505-4118-bdba-e8daa8805f0d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - liibarrio
+id: mainpagecontent
+theme: liibarrio
+region: content
+weight: -3
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }
