@@ -60,7 +60,6 @@
  */
 #}
 {{ attach_library('bootstrap_barrio/node') }}
-{{ attach_library('liibarrio/polyfill-sticky') }}
 
 {%
   set classes = [
@@ -74,64 +73,29 @@
   ]
 %}
 <article{{ attributes.addClass(classes) }}>
-
-  <header>
-    {{ title_prefix }}    
-      <h2{{ title_attributes.addClass('node__title my-5') }}>{{ label }}</h2>    
-    {{ title_suffix }}
-    {% if display_submitted %}
-      <div class="node__meta">
-        {{ author_picture }}
-        {% block submitted %}
-          <em{{ author_attributes }}>
-            {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-          </em>
-        {% endblock %}
-        {{ metadata }}
-      </div>
-    {% endif %}
-
-    <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">By-law</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Table of Contents</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">History</a>
-      </li>
-    </ul>
-  </header>       
-    
-  <div class="tab-content" id="myTabContent">
-
-    {# Main content tab #}
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <div class="row">
-        <div class="col-lg-3">
-          <aside class="sticky">
-            {{ content.field_toc }}
-          </aside>
+  {% if label and not page %}
+    <header>
+      {{ title_prefix }}
+      {% if not page %}
+        <h2{{ title_attributes.addClass('node__title') }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h2>
+      {% endif %}
+      {{ title_suffix }}
+      {% if display_submitted %}
+        <div class="node__meta">
+          {{ author_picture }}
+          {% block submitted %}
+            <em{{ author_attributes }}>
+              {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+            </em>
+          {% endblock %}
+          {{ metadata }}
         </div>
-        <div class="col-lg-9">
-          <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
-            {{ content|without('field_toc') }}
-          </div>
-        </div>      
-      </div>
-    </div>
-
-    {# TOC tab #}
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <div class="col-md-12">            
-        {{ content.field_toc }}           
-      </div>
-    </div>
-
-    {# History tab #}
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa autem quos dolorem hic ullam atque, cupiditate praesentium, labore dolorum harum nisi numquam ab distinctio. Aliquam minima necessitatibus error non totam mollitia. Facilis voluptatum, inventore maxime ab delectus doloribus cupiditate minus!</div>
-  </div> 
-
-
+      {% endif %}
+    </header>
+  {% endif %}
+  <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+    {{ content }}
+  </div>
 </article>

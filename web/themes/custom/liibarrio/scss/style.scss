@@ -9,57 +9,61 @@ Description: Bootstrap 4 with Sass
 /* GENERAL STYLES
 -------------------------------------------------*/
 
-// body {
-//     background: $white;
-// }
+html {
+  scroll-behavior: smooth;
+}
 
-// /* COLORS
-// --------------------------------------------------*/
+body {
+  background: $white;
+}
 
-// a {
-//     color: $accent-shade;
-// }
+/* COLORS
+--------------------------------------------------*/
 
-// .bg-inverse {
-//     background: $primary-shade !important;
-// }
+a {
+  color: $accent-shade;
+}
 
-// .site-footer {
-//     background: $accent-shade !important;
-// }
+.bg-inverse {
+  background: $primary-shade !important;
+}
 
-// .menu--main li a {
-//     color: $primary-shade;
-// }
+.site-footer {
+  background: $accent-shade !important;
+}
 
-// .menu--account li a {
-//     color: $primary-shade;
-// }
+.menu--main li a {
+  color: $primary-shade;
+}
 
-// .site-name-slogan a {
-//     text-decoration: none;
-// }
+.menu--account li a {
+  color: $primary-shade;
+}
 
-// .card-group img {
-//     margin: 0;
-//     width: 100%;
-//     height: auto;
-// }
+.site-name-slogan a {
+  text-decoration: none;
+}
 
-// .card-group .field--type-image {
-//     margin: 0
-// }
+.card-group img {
+  margin: 0;
+  width: 100%;
+  height: auto;
+}
 
-// .slick {
-//     width: 100%;
-// }
+.card-group .field--type-image {
+  margin: 0;
+}
 
-// .slick>div {
-//     margin: 0 15px;
-// }
+.slick {
+  width: 100%;
+}
+
+.slick > div {
+  margin: 0 15px;
+}
 
 .sticky {
   position: -webkit-sticky;
   position: sticky;
-  top: 0;
+  top: 30px;
 }

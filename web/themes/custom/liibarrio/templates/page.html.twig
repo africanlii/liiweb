@@ -167,7 +167,7 @@
         </aside>
       </div>
     {% endif %}
-    <footer class="site-footer">
+    <footer class="site-footer py-5 mt-5">
       {% block footer %}
         <div class="{{ container }}">
           {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
@@ -185,6 +185,11 @@
           {% endif %}
         </div>
       {% endblock %}
+      <div class="copyright text-white text-center">
+        <div class="container">
+          <p class="m-0">Copyright © AfricanLII. All rights Reserved.</p>
+        </div>        
+      </div>
     </footer>
   </div>
 </div>

@@ -21,6 +21,7 @@
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
         "drupal-composer/drupal-scaffold": "^2.5",
+        "drupal/admin_toolbar": "^2.2",
         "drupal/auto_entitylabel": "^3.0",
         "drupal/bootstrap_barrio": "^4.24",
         "drupal/bootstrap_sass": "^1.10",
@@ -28,6 +29,7 @@
         "drupal/computed_field": "^2.0",
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.7.0",
+        "drupal/devel": "^3.0",
         "drupal/facets": "^1.4",
         "drupal/field_group": "^3.0",
         "drupal/filefield_paths": "^1.0",
@@ -54,6 +56,7 @@
     },
     "require-dev": {
         "drupal/entity_browser": "^2.2",
+        "kint-php/kint": "^3.3",
         "webflo/drupal-core-require-dev": "^8.7.0"
     },
     "conflict": {
