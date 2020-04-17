@@ -69,6 +69,8 @@
 #}
 <div id="page-wrapper">
   <div id="page">
+
+    {# Page - Header #}
     <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t}}">
       {% block head %}
         {% if page.secondary_menu or page.top_header or page.top_header_form %}
@@ -112,14 +114,18 @@
           {% endif %}
         </nav>
       {% endblock %}
-    </header>
+    </header>    
+
+    {# Region - Highlighted #}
     {% if page.highlighted %}
       <div class="highlighted">
         <aside class="{{ container }} section clearfix" role="complementary">
           {{ page.highlighted }}
         </aside>
       </div>
-    {% endif %}
+    {% endif %}    {
+
+    {# Region - Featured Top #}
     {% if page.featured_top %}
       {% block featured %}
         <div class="featured-top">
@@ -129,7 +135,9 @@
         </div>
       {% endblock %}
     {% endif %}
-    <div id="main-wrapper" class="layout-main-wrapper clearfix">
+    
+    {# Page - Main #}
+    <div id="main-wrapper" class="layout-main-wrapper clearfix my-5">
       {% block content %}
         <div id="main" class="{{ container }}">
           {{ page.breadcrumb }}
@@ -157,7 +165,9 @@
           </div>
         </div>
       {% endblock %}
-    </div>
+    </div>   
+
+    {# Region - Featured #}
     {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
       <div class="featured-bottom">
         <aside class="{{ container }} clearfix" role="complementary">
@@ -167,7 +177,9 @@
         </aside>
       </div>
     {% endif %}
-    <footer class="site-footer py-5 mt-5">
+
+    {# Page - Footer #}
+    <footer class="site-footer py-5">
       {% block footer %}
         <div class="{{ container }}">
           {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
@@ -185,11 +197,14 @@
           {% endif %}
         </div>
       {% endblock %}
+      {% block copyright %}
       <div class="copyright text-white text-center">
         <div class="container">
-          <p class="m-0">Copyright © AfricanLII. All rights Reserved.</p>
+          <p class="m-0">Copyright {{ page_date }} © AfricanLII. All rights Reserved.</p>
         </div>        
       </div>
-    </footer>
+      {% endblock %}   
+    </footer>    
+
   </div>
 </div>

@@ -32,6 +32,10 @@ function liibarrio_form_system_theme_settings_alter(&$form, FormStateInterface $
   );
 }
 
+function liibarrio_preprocess_page(&$variables) {
+  $variables['page_date'] = date("Y");
+}
+
 function liibarrio_preprocess_field__node__field_toc__legislation(&$variables, $hook) { 
   $toc_data = $variables['items']['0']['content']['#context']['value'];
   $toc_array = Json::decode($toc_data); 
@@ -64,5 +68,5 @@ function liibarrio_preprocess_field__node__field_toc__legislation(&$variables, $
 }
 
 function liibarrio_preprocess_node(&$variables) {
-  kint($variables['content']);
+  kint($variables);
 }
