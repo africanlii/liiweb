@@ -44,6 +44,22 @@ drush cr
 
 When you open the instance http://liiweb.test again you should be able to log in with the username and passwords set by Drush.
 
+## LIIBarrio theme
+
+The main theme for the site is `liibarrio`, which is a subtheme of [Bootstrap Barrio](https://www.drupal.org/project/bootstrap_barrio).
+It uses SCSS from Bootstrap 4.
+
+The code for the theme lives in [web/themes/custom/liibarrio](web/themes/custom/liibarrio).
+
+### Changing CSS and JS in the liibarrio theme
+
+CSS is compiled from SCSS from various sources using Gulp. If you want to make changes:
+
+1. `cd web/themes/custom/liibarrio`
+2. Install node dependencies: `npm install`
+3. Recompile CSS: `npx gulp styles`
+
+Be sure to commit both the compiled CSS and the changed SCSS.
 
 ## Update local instance
 

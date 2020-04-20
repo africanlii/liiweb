@@ -12,6 +12,7 @@ const paths = {
     src: "./scss/style.scss",
     dest: "./css",
     watch: "./scss/**/*.scss",
+    indigo_web: "./node_modules/indigo-web/css/akoma-ntoso.css",
   },
   js: {
     bootstrap: "./node_modules/bootstrap/dist/js/bootstrap.min.js",
@@ -24,7 +25,7 @@ const paths = {
 // Compile sass into CSS & auto-inject into browsers
 function styles() {
   return gulp
-    .src([paths.scss.src])
+    .src([paths.scss.src, paths.scss.indigo_web])
     .pipe(sourcemaps.init())
     .pipe(sass().on("error", sass.logError))
     .pipe(
@@ -63,7 +64,7 @@ function js() {
 // Static Server + watching scss/html files
 function serve() {
   browserSync.init({
-    proxy: "http://africanlii.dd:8083",
+    proxy: "http://liiweb.test",
   });
 
   gulp
