@@ -1,0 +1,31 @@
+uuid: 9f4de1c9-b0d0-449f-ae43-80e4db6fe716
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+  theme:
+    - liibarrio
+_core:
+  default_config_hash: c-06bbElRY5sKmglk74ppgTW93Et4-EJFyNiUZMb8JY
+id: liibarrio_local_tasks
+theme: liibarrio
+region: highlighted
+weight: -3
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

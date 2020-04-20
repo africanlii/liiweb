@@ -21,5 +21,7 @@ web/robots.txt
 web/update.php
 .ht.router.php
 
+# Ignore additional folders managed by composer
 /vendor/
 /web/modules/contrib/
+/web/themes/contrib/
