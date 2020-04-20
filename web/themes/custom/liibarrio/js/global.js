@@ -6,7 +6,7 @@
 (function ($, Drupal) {
   "use strict";
 
-  Drupal.behaviors.bootstrap_barrio_subtheme = {
+  Drupal.behaviors.liibarrio = {
     attach: function (context, settings) {
       var position = $(window).scrollTop();
       $(window).scroll(function () {
