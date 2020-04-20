@@ -22,4 +22,3 @@ indigo-web:
   css:
     theme:
       css/indigo-web.css: {}
-      css/liibarrio.css: {}

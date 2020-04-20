@@ -12,7 +12,6 @@ const paths = {
     src: "./scss/style.scss",
     dest: "./css",
     watch: "./scss/**/*.scss",
-    bootstrap: "./node_modules/bootstrap/scss/bootstrap.scss",
   },
   js: {
     bootstrap: "./node_modules/bootstrap/dist/js/bootstrap.min.js",
@@ -25,7 +24,7 @@ const paths = {
 // Compile sass into CSS & auto-inject into browsers
 function styles() {
   return gulp
-    .src([paths.scss.bootstrap, paths.scss.src])
+    .src([paths.scss.src])
     .pipe(sourcemaps.init())
     .pipe(sass().on("error", sass.logError))
     .pipe(
@@ -68,7 +67,7 @@ function serve() {
   });
 
   gulp
-    .watch([paths.scss.watch, paths.scss.bootstrap], styles)
+    .watch([paths.scss.watch], styles)
     .on("change", browserSync.reload);
 }
 

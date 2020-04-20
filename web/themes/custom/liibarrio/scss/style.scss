@@ -1,69 +1,18 @@
 /* 
-Theme Name: Bootstrap 4 Sass
-Description: Bootstrap 4 with Sass
+Top-level stylesheet for liibarrio.
 */
 
-// import files
-@import "import";
+// settings for bootstrap
+@import "variables";
+@import "typography";
 
-/* GENERAL STYLES
--------------------------------------------------*/
+// bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
 
-html {
-  scroll-behavior: smooth;
-}
+// barrio drupal styles
+@import "barrio";
+@import "mixins";
 
-body {
-  background: $white;
-}
-
-/* COLORS
---------------------------------------------------*/
-
-a {
-  color: $accent-shade;
-}
-
-.bg-inverse {
-  background: $primary-shade !important;
-}
-
-.site-footer {
-  background: $accent-shade !important;
-}
-
-.menu--main li a {
-  color: $primary-shade;
-}
-
-.menu--account li a {
-  color: $primary-shade;
-}
-
-.site-name-slogan a {
-  text-decoration: none;
-}
-
-.card-group img {
-  margin: 0;
-  width: 100%;
-  height: auto;
-}
-
-.card-group .field--type-image {
-  margin: 0;
-}
-
-.slick {
-  width: 100%;
-}
-
-.slick > div {
-  margin: 0 15px;
-}
-
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 30px;
-}
+// liibarrio
+@import "site";
+@import "akn";
