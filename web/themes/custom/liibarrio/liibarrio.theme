@@ -38,10 +38,10 @@ function liibarrio_preprocess_page(&$variables) {
 
 function liibarrio_preprocess_field__node__field_toc__legislation(&$variables, $hook) { 
   $toc_data = $variables['items']['0']['content']['#context']['value'];
-  $variables['toc'] = Json::decode($toc_data); 
-  //kint($variables['toc']);
+  $variables['toc'] = Json::decode($toc_data);
 }
 
 function liibarrio_preprocess_node(&$variables) {
-  kint($variables);
+  // dump page variables
+  //kint($variables);
 }
