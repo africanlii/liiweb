@@ -64,7 +64,7 @@ function js() {
 // Static Server + watching scss/html files
 function serve() {
   browserSync.init({
-    proxy: "http://africanlii.dd:8083",
+    proxy: "http://liiweb.test",
   });
 
   gulp
