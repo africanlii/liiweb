@@ -22,3 +22,5 @@ indigo-web:
   css:
     theme:
       css/indigo-web.css: {}
+  js:
+    js/legislation.js: {}

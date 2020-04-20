@@ -21,3 +21,13 @@ ol.toc-list li.toc-has-children > a,
 ol.toc-list .toc-item-doc > a {
   font-weight: bold;
 }
+
+.akoma-ntoso {
+  :target {
+    animation: highlight 2s ease;  
+  }
+}
+
+@keyframes highlight {
+  0% { background: yellow; }
+}
