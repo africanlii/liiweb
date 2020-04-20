@@ -38,32 +38,7 @@ function liibarrio_preprocess_page(&$variables) {
 
 function liibarrio_preprocess_field__node__field_toc__legislation(&$variables, $hook) { 
   $toc_data = $variables['items']['0']['content']['#context']['value'];
-  $toc_array = Json::decode($toc_data); 
-  $variables['toc'] = array();
-
-  for ($i = 0; $i < count($toc_array); $i++) {
-    // type
-    if (isset($toc_array[$i]['type'])) {
-      $variables['toc'][$i]['#type'] = $toc_array[$i]['type'];
-    }
-    // component
-    if (isset($toc_array[$i]['component'])) {
-      $variables['toc'][$i]['#component'] = $toc_array[$i]['component'];
-    }
-    // subcomponent
-    if (isset($toc_array[$i]['component'])) {
-      $variables['toc'][$i]['#subcomponent'] = $toc_array[$i]['subcomponent'];
-    }   
-    // title
-    if (isset($toc_array[$i]['title'])) {
-      $variables['toc'][$i]['#title'] = $toc_array[$i]['title'];
-    }
-    // id
-    if (isset($toc_array[$i]['id'])) {
-      $variables['toc'][$i]['#id'] = $toc_array[$i]['id'];
-    }    
-  } 
-
+  $variables['toc'] = Json::decode($toc_data); 
   //kint($variables['toc']);
 }
 

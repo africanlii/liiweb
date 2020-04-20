@@ -16,3 +16,10 @@ polyfill-sticky:
   js:
     js/vendor/stickyfill.min.js: {}
     js/polyfill/polyfillSticky.js: {}
+
+indigo-web:
+  version: 3.10.0
+  css:
+    theme:
+      css/indigo-web.css: {}
+      css/liibarrio.css: {}

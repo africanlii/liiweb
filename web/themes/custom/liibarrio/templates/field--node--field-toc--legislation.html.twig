@@ -39,9 +39,9 @@
 #}
 
 <h5>{{ label }}</h5>
-<ul>
-{% for key in toc|keys %}  
-  <li><a href="#{{ toc[key]['#id'] }}">{{ toc[key]['#title'] }}</a></li>    
-{% endfor %}
 
-</ul>
+<ol class="toc-list">
+  {% for item in toc.toc %}
+    {{ include('@liibarrio/includes/toc.html.twig', {item: item}) }}
+  {% endfor %}
+</ol>
