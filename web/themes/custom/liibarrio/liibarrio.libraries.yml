@@ -17,8 +17,8 @@ polyfill-sticky:
     js/vendor/stickyfill.min.js: {}
     js/polyfill/polyfillSticky.js: {}
 
-indigo-web:
-  version: 3.10.0
+legislation:
+  version: VERSION
   css:
     theme:
       css/akoma-ntoso.css: {}
