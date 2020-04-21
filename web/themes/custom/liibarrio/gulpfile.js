@@ -12,7 +12,7 @@ const paths = {
     src: "./scss/style.scss",
     dest: "./css",
     watch: "./scss/**/*.scss",
-    indigo_web: "./node_modules/indigo-web/css/akoma-ntoso.css",
+    indigo_web: "./node_modules/indigo-web/css/indigo-web.css",
   },
   js: {
     bootstrap: "./node_modules/bootstrap/dist/js/bootstrap.min.js",

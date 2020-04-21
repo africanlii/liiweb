@@ -21,6 +21,6 @@ legislation:
   version: VERSION
   css:
     theme:
-      css/akoma-ntoso.css: {}
+      css/indigo-web.css: {}
   js:
     js/legislation.js: {}
