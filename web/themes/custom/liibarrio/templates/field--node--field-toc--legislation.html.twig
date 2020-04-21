@@ -41,7 +41,7 @@
 <h5>{{ label }}</h5>
 
 <ol class="toc-list">
-  {% for item in toc.toc %}
+  {% for item in toc %}
     {{ include('@liibarrio/includes/toc.html.twig', {item: item}) }}
   {% endfor %}
 </ol>
