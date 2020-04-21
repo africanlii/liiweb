@@ -54,6 +54,13 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_raw_json:
+    type: basic_string
+    weight: 5
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   field_toc:
     type: basic_string
     weight: 1
@@ -76,7 +83,6 @@ hidden:
   field_images: true
   field_publication_date: true
   field_publication_name: true
-  field_raw_json: true
   field_repeal: true
   field_stub: true
   field_tags: true

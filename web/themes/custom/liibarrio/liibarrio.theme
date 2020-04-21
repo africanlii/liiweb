@@ -41,6 +41,14 @@ function liibarrio_preprocess_field__node__field_toc__legislation(&$variables, $
   $variables['toc'] = Json::decode($toc_data);
 }
 
+function liibarrio_preprocess_node__legislation(&$variables, $hook) {
+  // decode raw json field into actual json
+  if (array_key_exists('field_raw_json', $variables['content']) && array_key_exists('0', $variables['content']['field_raw_json'])) {
+    $data = $variables['content']['field_raw_json']['0']['#context']['value'];
+    $variables['content']['field_raw_json']['as_json'] = Json::decode($data);
+  }
+}
+
 function liibarrio_preprocess_node(&$variables) {
   // dump page variables
   //kint($variables);
