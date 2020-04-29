@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.legislation.field_files
     - field.field.node.legislation.field_frbr_uri
     - field.field.node.legislation.field_images
+    - field.field.node.legislation.field_lifecycle_json
     - field.field.node.legislation.field_parent_work
     - field.field.node.legislation.field_publication_date
     - field.field.node.legislation.field_publication_name
@@ -65,6 +66,7 @@ hidden:
   field_external_link: true
   field_files: true
   field_images: true
+  field_lifecycle_json: true
   field_publication_date: true
   field_publication_name: true
   field_raw_json: true
