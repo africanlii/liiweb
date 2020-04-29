@@ -1,0 +1,29 @@
+uuid: b5aab865-09dd-49d7-a272-148139633388
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+  theme:
+    - namiblii
+_core:
+  default_config_hash: PffmQ-ABSz5tFjWmVsR7NesunDnEivvopnJnBjl8KNE
+id: namiblii_local_actions
+theme: namiblii
+region: highlighted
+weight: -2
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
