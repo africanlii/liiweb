@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.legislation.field_files
     - field.field.node.legislation.field_frbr_uri
     - field.field.node.legislation.field_images
+    - field.field.node.legislation.field_lifecycle_json
     - field.field.node.legislation.field_parent_work
     - field.field.node.legislation.field_publication_date
     - field.field.node.legislation.field_publication_name
@@ -45,6 +46,13 @@ content:
     label: hidden
     settings:
       use_description_as_link_text: true
+    third_party_settings: {  }
+  field_lifecycle_json:
+    type: basic_string
+    weight: 6
+    region: content
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
   field_parent_work:
     weight: 3

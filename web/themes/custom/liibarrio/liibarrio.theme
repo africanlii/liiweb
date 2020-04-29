@@ -37,8 +37,13 @@ function liibarrio_preprocess_page(&$variables) {
 }
 
 function liibarrio_preprocess_field__node__field_toc__legislation(&$variables, $hook) { 
-  $toc_data = $variables['items']['0']['content']['#context']['value'];
-  $variables['toc'] = Json::decode($toc_data);
+  $data = $variables['items']['0']['content']['#context']['value'];
+  $variables['toc'] = Json::decode($data);
+}
+
+function liibarrio_preprocess_field__node__field_lifecycle_json__legislation(&$variables, $hook) { 
+  $data = $variables['items']['0']['content']['#context']['value'];
+  $variables['lifecycle'] = Json::decode($data);
 }
 
 function liibarrio_preprocess_node__legislation(&$variables, $hook) {
