@@ -1,12 +1,12 @@
-uuid: 397f9562-a71c-44e1-8ab9-bcc33df082d7
+uuid: 2ae1a50c-3f1c-4f81-8a10-da5e18b57577
 langcode: en
 status: true
 dependencies:
   module:
-    - taxonomy
-id: taxonomy_term.field_court_code
-field_name: field_court_code
-entity_type: taxonomy_term
+    - node
+id: node.field_judgment_mnc_old
+field_name: field_judgment_mnc_old
+entity_type: node
 type: string
 settings:
   max_length: 255

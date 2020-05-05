@@ -1,0 +1,23 @@
+uuid: e94aab0b-d146-4390-af9c-064311fc0196
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_judgment_old_nid
+    - node.type.judgment
+id: node.judgment.field_judgment_old_nid
+field_name: field_judgment_old_nid
+entity_type: node
+bundle: judgment
+label: 'Old NID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

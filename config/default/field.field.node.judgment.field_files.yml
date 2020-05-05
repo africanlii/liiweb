@@ -10,9 +10,9 @@ dependencies:
     - filefield_paths
 third_party_settings:
   filefield_paths:
-    enabled: false
+    enabled: true
     file_path:
-      value: ''
+      value: 'judgments/files/[node:field_court_name:entity]/[node:field_judgment_date:date:custom:Y]/[node:field_judgment_number:value]'
       options:
         slashes: false
         pathauto: false
@@ -21,7 +21,7 @@ third_party_settings:
     retroactive_update: false
     active_updating: false
     file_name:
-      value: '[file:ffp-name-only-original].[file:ffp-extension-original]'
+      value: '[node:field_media_neutral_citation:value].[file:ffp-extension-original]'
       options:
         slashes: false
         pathauto: false
@@ -39,7 +39,7 @@ default_value_callback: ''
 settings:
   file_directory: judgment/files
   file_extensions: 'txt doc docx xls pdf ppt pps odt ods odp rtf'
-  max_filesize: '50 MB'
+  max_filesize: '100 MB'
   description_field: false
   handler: 'default:file'
   handler_settings: {  }

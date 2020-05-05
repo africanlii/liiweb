@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_judge
     - node.type.judgment
-    - taxonomy.vocabulary.legislation_tags
+    - taxonomy.vocabulary.judges
 id: node.judgment.field_judge
 field_name: field_judge
 entity_type: node
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      legislation_tags: legislation_tags
+      judges: judges
     sort:
       field: name
       direction: asc

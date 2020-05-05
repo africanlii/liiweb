@@ -8,7 +8,7 @@ dependencies:
     - content_translation
 third_party_settings:
   content_translation:
-    enabled: true
+    enabled: false
 id: taxonomy_term.court_names
 target_entity_type_id: taxonomy_term
 target_bundle: court_names

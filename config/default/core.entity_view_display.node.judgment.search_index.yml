@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.search_index
     - field.field.node.judgment.body
+    - field.field.node.judgment.feeds_item
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
@@ -16,8 +17,10 @@ dependencies:
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_date
+    - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number
     - field.field.node.judgment.field_judgment_number_override
+    - field.field.node.judgment.field_judgment_old_nid
     - field.field.node.judgment.field_law_report_citations
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
@@ -126,11 +129,14 @@ content:
       cache_duration: 1
     third_party_settings: {  }
 hidden:
+  feeds_item: true
   field_case_number_numeric: true
   field_case_number_year: true
   field_external_link: true
+  field_judgment_mnc_old: true
   field_judgment_number: true
   field_judgment_number_override: true
+  field_judgment_old_nid: true
   field_matter_type: true
   field_search_summary: true
   langcode: true
