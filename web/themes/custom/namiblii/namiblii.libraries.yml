@@ -1,0 +1,6 @@
+styles:
+  version: VERSION
+  css:
+    theme:
+      css/namiblii.css: {}
+  

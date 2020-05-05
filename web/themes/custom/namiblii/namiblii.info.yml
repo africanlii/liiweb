@@ -1,0 +1,11 @@
+name: NamibLII
+type: theme
+description: 'Theme for NamibLII'
+version: 1.0
+core: 8.x
+core_version_requirement: ^8 || ^9
+base theme: liibarrio
+
+logo: logo.png
+libraries:
+  - namiblii/styles
