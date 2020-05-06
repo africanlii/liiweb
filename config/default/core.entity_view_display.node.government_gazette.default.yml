@@ -25,7 +25,7 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 4
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -42,7 +42,7 @@ content:
     type: link
     region: content
   field_file:
-    weight: 6
+    weight: 4
     label: above
     settings:
       use_description_as_link_text: true
@@ -59,7 +59,7 @@ content:
     type: datetime_default
     region: content
   field_gazette_issue_number:
-    weight: 5
+    weight: 0
     label: above
     settings:
       link_to_entity: false
