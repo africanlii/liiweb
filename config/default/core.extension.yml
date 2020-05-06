@@ -16,6 +16,7 @@ module:
   computed_field_php_formatter: 0
   config: 0
   config_translation: 0
+  ctools: 0
   datetime: 0
   datetime_range: 0
   dblog: 0
@@ -25,6 +26,9 @@ module:
   editor: 0
   entity_reference_revisions: 0
   facets: 0
+  feeds: 0
+  feeds_ex: 0
+  feeds_tamper: 0
   field: 0
   field_group: 0
   field_ui: 0
@@ -54,6 +58,7 @@ module:
   serialization: 0
   smtp: 0
   system: 0
+  tamper: 0
   taxonomy: 0
   taxonomy_manager: 0
   telephone: 0
@@ -69,6 +74,7 @@ module:
   webform_ui: 0
   webprofiler: 0
   menu_link_content: 1
+  pathauto: 1
   xmlsitemap: 1
   content_translation: 10
   views: 10

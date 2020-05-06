@@ -1,0 +1,19 @@
+uuid: 4a996842-7b25-42c3-9cc0-6b9708b107bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_judgment_mnc_old
+    - node.type.judgment
+id: node.judgment.field_judgment_mnc_old
+field_name: field_judgment_mnc_old
+entity_type: node
+bundle: judgment
+label: 'MNC old'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
