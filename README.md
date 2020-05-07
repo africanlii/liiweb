@@ -44,23 +44,6 @@ drush cr
 
 When you open the instance http://liiweb.test again you should be able to log in with the username and passwords set by Drush.
 
-## LIIBarrio theme
-
-The main theme for the site is `liibarrio`, which is a subtheme of [Bootstrap Barrio](https://www.drupal.org/project/bootstrap_barrio).
-It uses SCSS from Bootstrap 4.
-
-The code for the theme lives in [web/themes/custom/liibarrio](web/themes/custom/liibarrio).
-
-### Changing CSS and JS in the liibarrio theme
-
-CSS is compiled from SCSS from various sources using Gulp. If you want to make changes:
-
-1. `cd web/themes/custom/liibarrio`
-2. Install node dependencies: `npm install`
-3. Recompile CSS: `npx gulp styles`
-
-Be sure to commit both the compiled CSS and the changed SCSS.
-
 ## Update local instance
 
 If you already have a local instance installed and configured with code and database, use `git` to get the latest developments from the `master` branch or switch to another branch you wish to test and pull changes, then execute the following commands:
@@ -95,6 +78,35 @@ For field changes, you MUST also copy any new and changed files to `web/modules/
 installed during testing.
 
 TODO: Add multi-site configuration details here.
+
+## LIIBarrio theme development
+
+The main theme for the site is `liibarrio`, which is a subtheme of [Bootstrap Barrio](https://www.drupal.org/project/bootstrap_barrio).
+It uses SCSS from Bootstrap 4.
+
+The code for the theme lives in [web/themes/custom/liibarrio](web/themes/custom/liibarrio).
+
+### Setting up local theme development
+
+1. Copy `web/sites/default/default.services.yml` to `web/sites/default/services.yml`
+2. In `web/sites/default/services.yml`:
+    * twig.config.debug: true
+    * twig.config.cache: false
+3. In `web/sites/default/settings.local.php`:
+    * uncomment `$settings['cache']['bins']['render'] = 'cache.backend.null';`
+    * uncomment `$settings['cache']['bins']['page'] = 'cache.backend.null';`
+    * uncomment `$settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';`
+
+### Changing CSS and JS in the liibarrio theme
+
+CSS is compiled from SCSS from various sources using Gulp. If you want to make changes:
+
+1. `cd web/themes/custom/liibarrio`
+2. Install node dependencies: `npm install`
+3. Recompile CSS: `npx gulp styles`
+
+Be sure to commit both the compiled CSS and the changed SCSS.
+
 
 ## How to run the tests locally
 
