@@ -50,7 +50,7 @@ class ConfigEntityListTest extends BrowserTestBase {
 
     // Get a list of ConfigTest entities and confirm that it contains the
     // ConfigTest entity provided by the config_test module.
-    // @see config_test.dynamic.dotted.default.yml
+    // @see config_test.dynamic.dotted.services.yml
     $list = $controller->load();
     $this->assertCount(1, $list, '1 ConfigTest entity found.');
     $entity = $list['dotted.default'];

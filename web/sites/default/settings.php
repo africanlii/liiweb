@@ -805,3 +805,14 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 $config_directories['sync'] = '../config/default';
 
 $settings['node_title_length_chars'] = 1023;
+$databases['default']['default'] = array (
+  'database' => 'liiweb',
+  'username' => 'root',
+  'password' => '',
+  'prefix' => '',
+  'host' => 'localhost',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
+$settings['hash_salt'] = 'G00gGxpC2KbTEVx8oW7_S-6gjx_k73PLDJv6CjvsCJzqQqDIONP1Q0L8G_GsOZoygisXKVMTvw';
