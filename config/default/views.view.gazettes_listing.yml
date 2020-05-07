@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_gazette_date
     - node.type.government_gazette
+    - system.menu.main
   module:
     - datetime
     - node
@@ -290,6 +291,15 @@ display:
     display_options:
       display_extenders: {  }
       path: gazettes
+      menu:
+        type: normal
+        title: Gazettes
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 1
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:
