@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.judgment.body
+    - field.field.node.judgment.feeds_item
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
@@ -15,8 +16,10 @@ dependencies:
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_date
+    - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number
     - field.field.node.judgment.field_judgment_number_override
+    - field.field.node.judgment.field_judgment_old_nid
     - field.field.node.judgment.field_law_report_citations
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
@@ -237,6 +240,14 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
+  field_judgment_mnc_old:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_judgment_number:
     weight: 18
     settings: {  }
@@ -245,6 +256,13 @@ content:
     region: content
   field_judgment_number_override:
     weight: 19
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_judgment_old_nid:
+    weight: 28
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -336,4 +354,5 @@ content:
       match_limit: 10
     region: content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  feeds_item: true

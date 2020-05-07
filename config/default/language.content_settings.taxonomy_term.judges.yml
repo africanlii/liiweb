@@ -1,0 +1,11 @@
+uuid: 2a620c3e-6d6b-4451-b71f-6f16ae4704f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.judges
+id: taxonomy_term.judges
+target_entity_type_id: taxonomy_term
+target_bundle: judges
+default_langcode: site_default
+language_alterable: false
