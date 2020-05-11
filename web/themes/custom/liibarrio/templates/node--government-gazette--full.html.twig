@@ -83,7 +83,17 @@
 
       {{ content.field_external_link }}
 
+      {% if  content.body %}
+        <div class="my-5">
+          <h5> Coverpage: </h5>
+          <div class="mt-2 mb-3 p-3 border small bg-light" style="max-height: 400px; overflow: hidden">
+            {{ content.body }}
+          </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 </article>
+
+<script>console.log({{ _context | json_encode | raw }});</script>
 
