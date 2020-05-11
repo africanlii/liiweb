@@ -61,7 +61,6 @@
 #}
 {{ attach_library('bootstrap_barrio/node') }}
 {{ attach_library('liibarrio/polyfill-sticky') }}
-{{ attach_library('liibarrio/legislation') }}
 
 {%
   set classes = [
@@ -75,68 +74,16 @@
   ]
 %}
 <article{{ attributes.addClass(classes) }}>
+  <div class="col-12">
+    <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+      {{ content.field_gazette_date }}
+      {{ title_prefix }}
+      <h2{{ title_attributes.addClass('node__title mt-2 mb-5') }}>{{ label }}</h2>
+      {{ title_suffix }}
 
-  <header>
-    {{ title_prefix }}
-      <h2{{ title_attributes.addClass('node__title my-5') }}>{{ label }}</h2>
-    {{ title_suffix }}
-    {% if display_submitted %}
-      <div class="node__meta">
-        {{ author_picture }}
-        {% block submitted %}
-          <em{{ author_attributes }}>
-            {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-          </em>
-        {% endblock %}
-        {{ metadata }}
-      </div>
-    {% endif %}
+      {{ content.field_external_link }}
 
-    <ul class="nav nav-tabs mb-4" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="legislation-content-tab" data-toggle="tab" href="#legislation-content" role="tab" aria-controls="legislation-content" aria-selected="true">{{ content.field_raw_json.as_json.type_name }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="toc-tab" data-toggle="tab" href="#toc" role="tab" aria-controls="toc" aria-selected="false">Table of Contents</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history" aria-selected="false">History</a>
-      </li>
-    </ul>
-  </header>
-
-  <div class="tab-content">
-
-    {# Main content tab #}
-    <div class="tab-pane fade show active" id="legislation-content" role="tabpanel" aria-labelledby="legislation-content-tab">
-      <div class="row">
-        <div class="d-none d-md-block col-md-4">
-          <aside class="sticky">
-            {{ content.field_toc }}
-          </aside>
-        </div>
-        <div class="col-md-8">
-          <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
-            {{ content|without('field_toc') }}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {# TOC tab #}
-    <div class="tab-pane fade" id="toc" role="tabpanel" aria-labelledby="toc-tab">
-      <div class="col-md-12">
-        {{ content.field_toc }}
-      </div>
-    </div>
-
-    {# History tab #}
-    <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
-      {{ content.field_lifecycle_json }}
     </div>
   </div>
-
-
 </article>
 
-<script>console.log({{ _context | json_encode | raw }});</script>
