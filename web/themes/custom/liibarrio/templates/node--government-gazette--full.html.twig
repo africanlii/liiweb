@@ -75,14 +75,11 @@
 <article{{ attributes.addClass(classes) }}>
     <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
       {{ content.field_gazette_date }}
-      {{ title_prefix }}
-      <h2{{ title_attributes.addClass('node__title mt-2 mb-5') }}>{{ label }}</h2>
-      {{ title_suffix }}
 
       {{ content.field_external_link }}
 
       {% if  content.body %}
-        <div class="my-5">
+        <div>
           <h5> Coverpage: </h5>
           <div class="mt-2 mb-3 p-3 border small bg-light" style="max-height: 400px; overflow: hidden">
             {{ content.body }}
