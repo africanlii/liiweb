@@ -25,3 +25,7 @@ web/update.php
 /vendor/
 /web/modules/contrib/
 /web/themes/contrib/
+
+/web/sites/default/services.yml
+/web/node_modules
+/web/package-lock.json
