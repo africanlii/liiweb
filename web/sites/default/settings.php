@@ -803,3 +803,5 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
 $config_directories['sync'] = '../config/default';
+
+$settings['node_title_length_chars'] = 1023;
