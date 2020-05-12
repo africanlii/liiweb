@@ -51,7 +51,7 @@
   label_display == 'visually_hidden' ? 'visually-hidden',
 ]
 %}
-{# Not sure how to correclty add href #}
-<button class="btn btn-primary my-3" href="{{ element['#url_title'] }}">
-  {{ element['#title'] }}
-</button>
+
+<a class="btn btn-primary my-3" href="{{ element[0]['#url_title'] }}" target="_blank">
+  Download PDF
+</a>
