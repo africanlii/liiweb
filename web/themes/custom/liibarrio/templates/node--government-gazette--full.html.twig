@@ -73,7 +73,6 @@
   ]
 %}
 <article{{ attributes.addClass(classes) }}>
-  <div class="col-12">
     <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
       {{ content.field_gazette_date }}
       {{ title_prefix }}
@@ -91,7 +90,6 @@
         </div>
       {% endif %}
     </div>
-  </div>
 </article>
 
 <script>console.log({{ _context | json_encode | raw }});</script>
