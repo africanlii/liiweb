@@ -1,0 +1,22 @@
+uuid: ebe7bf96-27fd-48f1-b55c-0622a41658ce
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: gazette_alias
+label: 'Gazette Alias'
+type: 'canonical_entities:node'
+pattern: '/gazettes/[node:field_gazette_machine_id:value]'
+selection_criteria:
+  67bdd8c8-9661-4505-bd51-f01031496da6:
+    id: node_type
+    bundles:
+      government_gazette: government_gazette
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 67bdd8c8-9661-4505-bd51-f01031496da6
+selection_logic: and
+weight: -5
+relationships: {  }
