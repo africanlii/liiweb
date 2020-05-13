@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - node.type.government_gazette
     - node.type.legislation
     - system.menu.main
   module:
@@ -155,7 +154,6 @@ display:
           admin_label: ''
           operator: in
           value:
-            government_gazette: government_gazette
             legislation: legislation
           group: 1
           exposed: false
