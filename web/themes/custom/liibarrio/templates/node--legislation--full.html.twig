@@ -111,11 +111,11 @@
     <div class="tab-pane fade show active" id="legislation-content" role="tabpanel" aria-labelledby="legislation-content-tab">
       <div class="row">
         {%  if content.field_repeal|render is not empty %}
-        <div class="col-12 alert-content">
-          <div class="alert alert-danger" role="alert">
-            {{ content.field_repeal }}
+          <div class="col-12 alert-content">
+            <div class="alert alert-danger d-flex" role="alert">
+              {{ content.field_repeal }}
+            </div>
           </div>
-        </div>
         {% endif %}
         <div class="d-none d-md-block col-md-4">
           <aside class="sticky">
