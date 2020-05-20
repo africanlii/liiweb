@@ -80,3 +80,95 @@
     border-left: $border-width solid #fff4f4;
     border-right: $border-width solid #fff4f4;
 }
+
+.liiweb-content-general {
+    &.sidebar-position-left {
+        flex-direction: row-reverse;
+    }
+
+    > * {
+        margin-bottom: $spacer;
+    }
+
+    .field--label-inline {
+        display: block;
+
+        > .field__label, .field__item, .field__items {
+            display: inline;
+
+            > p:first-child {
+                display: inline;
+            }
+        }
+
+        .field__label {
+            &:after {
+                content: ':';
+            }
+        }
+    }
+
+    .full-width {
+        .field--name-field-judge {
+            overflow: hidden;
+            text-align: center;
+            width: 100%;
+            font-weight: bold;
+
+            &:before {
+                right: 1.5em;
+                margin-left: -50%;
+            }
+
+            &:after {
+                left: 1.5em;
+                margin-right: -50%;
+            }
+
+            .field__label {
+                font-weight: bold;
+                padding-right: 0;
+
+                &:after {
+                    display: none;
+                }
+            }
+
+            &:before, &:after {
+                background-color: #000;
+                content: "";
+                display: inline-block;
+                height: 1px;
+                position: relative;
+                vertical-align: middle;
+                width: 50%;
+            }
+        }
+    }
+
+    .field--type-entity-reference {
+        margin: 0;
+    }
+
+    .content-header {
+        .right {
+            text-align: right;
+        }
+    }
+
+    .content {
+        .field__label {
+            font-weight: bold;
+        }
+
+        .field {
+            margin-bottom: $spacer;
+        }
+    }
+
+    .sidebar {
+        > *:nth-child(2n-1) {
+            background-color: $inverse-color;
+        }
+    }
+}
