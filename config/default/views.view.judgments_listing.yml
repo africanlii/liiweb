@@ -8,7 +8,6 @@ dependencies:
     - field.storage.taxonomy_term.field_court_code
     - node.type.judgment
     - system.menu.main
-    - views.view.judgments_listing_template
   module:
     - datetime
     - node
@@ -565,18 +564,7 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: standard
-      header:
-        view:
-          id: view
-          table: views
-          field: view
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          view_to_insert: 'judgments_listing_template:block_2'
-          inherit_arguments: false
-          plugin_id: view
+      header: {  }
       title: 'Decisions beginning with:'
       footer:
         view:
@@ -587,7 +575,7 @@ display:
           group_type: group
           admin_label: ''
           empty: false
-          view_to_insert: 'judgments_listing_template:block_1'
+          view_to_insert: 'judgments_listing:date_listing_block'
           inherit_arguments: true
           plugin_id: view
       filters:
