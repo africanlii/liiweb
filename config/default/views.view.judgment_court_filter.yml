@@ -1,4 +1,4 @@
-uuid: 667f5bea-30a9-41a3-ba7f-b25e576c8342
+uuid: b08c09b5-f37f-47b2-b91b-7e5768966782
 langcode: en
 status: true
 dependencies:
@@ -9,7 +9,7 @@ dependencies:
   module:
     - taxonomy
     - user
-id: court_names
+id: judgment_court_filter
 label: 'Judgment Court Filter'
 module: views
 description: ''
