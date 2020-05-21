@@ -58,3 +58,32 @@ function liibarrio_preprocess_node(&$variables) {
   // dump page variables
   //kint($variables);
 }
+
+/**
+ * Implements HOOK_preprocess_HOOK for liibarrio_content_general.
+ */
+function liibarrio_preprocess_liibarrio_content_general(&$variables) {
+  // Add social media share links to the layout.
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if (!$node instanceof \Drupal\node\NodeInterface) {
+    return;
+  }
+  if (in_array('no-share-links', $variables['settings']['classes']['layout_class'])) {
+    return;
+  }
+  $url = $node->toUrl('canonical', ['absolute' => TRUE])->toString();
+  $variables['share_links'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['node-share-links']],
+    'facebook' => [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#value' => t("Share on <a href=\"@url\" target=\"_blank\">Facebook</a>", ['@url' => "https://www.facebook.com/sharer/sharer.php?u=$url"]),
+    ],
+    'twitter' => [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#value' => t("Share on <a href=\"@url\" target=\"_blank\">Twitter</a>", ['@url' => "https://twitter.com/share?text=&url=$url"]),
+    ],
+  ];
+}

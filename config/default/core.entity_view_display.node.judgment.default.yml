@@ -35,7 +35,7 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: liibarrio_content_sidebar_right
+      id: liibarrio_content_general
       library: null
       disable_css: false
       entity_classes: all_classes
@@ -54,6 +54,12 @@ third_party_settings:
         link_custom: ''
         classes:
           layout_class: {  }
+          header_left: {  }
+          header_right: {  }
+          full_width: {  }
+          sidebar_share: {  }
+          sidebar: {  }
+          content: {  }
     regions:
       header_left:
         - node_author
@@ -110,7 +116,7 @@ content:
     type: file_default
     weight: 6
     region: sidebar_share
-    label: above
+    label: hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }

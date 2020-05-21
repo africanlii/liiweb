@@ -1,10 +1,10 @@
-liibarrio_content_sidebar_right:
-  label: LII Content with sidebar right
+liibarrio_content_general:
+  label: LII Content general layout
   category: LiiBarrio
   class: '\Drupal\ds\Plugin\DsLayout'
   type: partial
-  template: templates/ds/liibarrio-content-sidebar-right
-  icon: images/liibarrio-content-sidebar-right.png
+  template: templates/ds/liibarrio-content-general
+  icon: images/liibarrio-content-general.png
   regions:
     header_left:
       label: Header left
@@ -15,26 +15,6 @@ liibarrio_content_sidebar_right:
     sidebar_share:
       label: Sidebar share
     sidebar:
-      label: Sidebar right
-    content:
-      label: Content
-liibarrio_content_sidebar_left:
-  label: LII Content with sidebar left
-  category: LiiBarrio
-  class: '\Drupal\ds\Plugin\DsLayout'
-  type: partial
-  template: templates/ds/liibarrio-content-sidebar-left
-  icon: images/liibarrio-content-sidebar-left.png
-  regions:
-    header_left:
-      label: Header left
-    header_right:
-      label: Header right
-    full_width:
-      label: Full width
-    sidebar_share:
-      label: Sidebar share
-    sidebar:
-      label: Sidebar right
+      label: Sidebar
     content:
       label: Content

@@ -82,7 +82,7 @@
 }
 
 .liiweb-content-general {
-    &.sidebar-position-left {
+    &.sidebar-position-left .bottom {
         flex-direction: row-reverse;
     }
 
@@ -135,7 +135,7 @@
             }
 
             &:before, &:after {
-                background-color: #000;
+                background-color: $gray-300;
                 content: "";
                 display: inline-block;
                 height: 1px;
@@ -167,8 +167,23 @@
     }
 
     .sidebar {
-        > *:nth-child(2n-1) {
-            background-color: $inverse-color;
+        > * {
+            padding: $spacer;
         }
+
+        > *:nth-child(2n-1) {
+            background-color: $gray-100;
+            border: 1px solid $gray-200;
+        }
+    }
+
+    .sidebar-share {
+        > * {
+            margin-bottom: $spacer;
+        }
+    }
+
+    .node-share-links {
+        padding: 0;
     }
 }

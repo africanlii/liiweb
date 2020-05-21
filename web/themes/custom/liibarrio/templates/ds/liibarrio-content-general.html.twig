@@ -4,11 +4,7 @@
   {% set content_class = 'col-sm-12' %}
 {% endif %}
 
-{% if sidebar_position is empty %}
-  {% set sidebar_position = 'sidebar-position-right' %}
-{% endif %}
-
-<div {{ attributes.addClass('liiweb-content-general', 'clearfix', sidebar_position) }}>
+<div {{ attributes.addClass('liiweb-content-general', 'clearfix') }}>
   {% if header_left|render or header_right|render %}
     <div class="row content-header">
       <div class="col-sm-6 left">
@@ -36,6 +32,9 @@
           {% if sidebar_share|render %}
             <div class="sidebar-share">
               {{ sidebar_share }}
+              {% if share_links %}
+                {{ share_links }}
+              {% endif %}
             </div>
           {% endif %}
           {% if sidebar|render %}

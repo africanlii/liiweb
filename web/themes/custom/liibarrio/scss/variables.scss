@@ -13,8 +13,10 @@ $yellow: #ffc107;
 $green: #28a745;
 $cyan: #17a2b8;
 $white: #fff;
-$gray-100: #f8f9fa !default;
-$gray-800: #343a40 !default;
+$gray-100: #f8f8f8 !default;
+$gray-200: #f0f0f0 !default;
+$gray-300: #d5d5d5 !default;
+$gray-800: #4a4a4a !default;
 $theme-colors: (
   primary: $accent-shade,
   secondary: $primary-shade,
