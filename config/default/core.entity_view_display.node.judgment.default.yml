@@ -63,7 +63,6 @@ third_party_settings:
     regions:
       header_left:
         - node_author
-        - field_flynote
       header_right:
         - field_judgment_date
         - field_court_name
@@ -74,6 +73,7 @@ third_party_settings:
         - field_files
       content:
         - field_headnote_and_holding
+        - field_flynote
         - field_search_summary
         - body
     fields:
@@ -96,7 +96,7 @@ content:
     region: content
   field_case_number:
     type: computed_string
-    weight: 4
+    weight: 3
     region: header_right
     label: inline
     settings:
@@ -106,7 +106,7 @@ content:
     third_party_settings: {  }
   field_court_name:
     type: entity_reference_label
-    weight: 3
+    weight: 2
     region: header_right
     label: inline
     settings:
@@ -114,14 +114,14 @@ content:
     third_party_settings: {  }
   field_files:
     type: file_default
-    weight: 6
+    weight: 5
     region: sidebar_share
     label: hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
   field_flynote:
-    weight: 1
+    weight: 7
     label: inline
     settings:
       link: false
@@ -129,9 +129,9 @@ content:
       ds:
         ds_limit: ''
     type: entity_reference_label
-    region: header_left
+    region: content
   field_headnote_and_holding:
-    weight: 7
+    weight: 6
     label: inline
     settings: {  }
     third_party_settings: {  }
@@ -139,7 +139,7 @@ content:
     region: content
   field_judge:
     type: entity_reference_label
-    weight: 5
+    weight: 4
     region: full_width
     label: inline
     settings:
@@ -149,7 +149,7 @@ content:
         ds_limit: ''
   field_judgment_date:
     type: datetime_default
-    weight: 2
+    weight: 1
     region: header_right
     label: inline
     settings:
