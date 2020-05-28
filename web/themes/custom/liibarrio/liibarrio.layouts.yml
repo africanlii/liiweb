@@ -12,8 +12,6 @@ liibarrio_content_general:
       label: Header right
     full_width:
       label: Full width
-    sidebar_share:
-      label: Sidebar share
     sidebar:
       label: Sidebar
     content:

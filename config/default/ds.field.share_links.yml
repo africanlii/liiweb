@@ -1,0 +1,11 @@
+id: share_links
+label: 'Share links'
+ui_limit: ''
+properties:
+  content:
+    value: "<div class=\"node-share-links\">\r\n<div>Share on <a class=\"popup-share-link\" href=\"https://www.facebook.com/sharer/sharer.php?u=[node:url:absolute]\" target=\"_blank\">Facebook</a></div>\r\n\r\n<div>Share on <a class=\"popup-share-link\" href=\"https://twitter.com/intent/tweet?url=[node:url:absolute]\" target=\"_blank\">Twitter</a></div>\r\n</div>\r\n"
+    format: full_html
+type: token
+type_label: 'Token field'
+entities:
+  node: node

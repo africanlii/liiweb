@@ -45,7 +45,6 @@ third_party_settings:
           header_left: div
           header_right: div
           full_width: div
-          sidebar_share: div
           sidebar: div
           content: div
         outer_wrapper: div
@@ -57,7 +56,6 @@ third_party_settings:
           header_left: {  }
           header_right: {  }
           full_width: {  }
-          sidebar_share: {  }
           sidebar: {  }
           content: {  }
     regions:
@@ -69,14 +67,21 @@ third_party_settings:
         - field_case_number
       full_width:
         - field_judge
-      sidebar_share:
+      sidebar:
         - field_files
+        - liiweb_share_links
+        - 'dynamic_token_field:node-share_links'
       content:
         - field_headnote_and_holding
         - field_flynote
         - field_search_summary
         - body
     fields:
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 7
+        label: hidden
+        formatter: default
       node_author:
         plugin_id: node_author
         weight: 0
@@ -90,7 +95,7 @@ content:
   body:
     label: above
     type: text_default
-    weight: 9
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -115,13 +120,13 @@ content:
   field_files:
     type: file_default
     weight: 5
-    region: sidebar_share
+    region: sidebar
     label: hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
   field_flynote:
-    weight: 7
+    weight: 9
     label: inline
     settings:
       link: false
@@ -131,7 +136,7 @@ content:
     type: entity_reference_label
     region: content
   field_headnote_and_holding:
-    weight: 6
+    weight: 8
     label: inline
     settings: {  }
     third_party_settings: {  }
@@ -158,11 +163,16 @@ content:
     third_party_settings: {  }
   field_search_summary:
     type: text_summary_or_trimmed
-    weight: 8
+    weight: 10
     region: content
     label: inline
     settings:
       trim_length: 600
+    third_party_settings: {  }
+  liiweb_share_links:
+    weight: 6
+    region: sidebar
+    settings: {  }
     third_party_settings: {  }
 hidden:
   feeds_item: true

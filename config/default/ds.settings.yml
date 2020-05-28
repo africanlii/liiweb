@@ -5,7 +5,6 @@ ft-show-colon: false
 classes:
   region:
     - 'sidebar-position-left|Sidebar position left'
-    - 'no-share-links|No share links'
   field: {  }
 use_field_names: true
 _core:

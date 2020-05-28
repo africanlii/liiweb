@@ -171,19 +171,9 @@
             padding: $spacer;
         }
 
-        > *:nth-child(2n-1) {
+        > *:nth-child(2n) {
             background-color: $gray-100;
             border: 1px solid $gray-200;
         }
-    }
-
-    .sidebar-share {
-        > * {
-            margin-bottom: $spacer;
-        }
-    }
-
-    .node-share-links {
-        padding: 0;
     }
 }

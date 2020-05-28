@@ -27,19 +27,9 @@
       <div class="content {{ content_class }}">
         {{ content }}
       </div>
-      {% if sidebar|render or sidebar_share|render %}
+      {% if sidebar|render  %}
         <div class="col-sm-3 sidebar">
-          {% if sidebar_share|render %}
-            <div class="sidebar-share">
-              {{ sidebar_share }}
-              {% if share_links %}
-                {{ share_links }}
-              {% endif %}
-            </div>
-          {% endif %}
-          {% if sidebar|render %}
-            {{ sidebar }}
-          {% endif %}
+          {{ sidebar }}
         </div>
       {% endif %}
     </div>
