@@ -175,5 +175,22 @@
             background-color: $gray-100;
             border: 1px solid $gray-200;
         }
+
+        .views-row {
+            display: block;
+            width: 100%;
+            margin-bottom: $spacer;
+        }
+
+        .field__label {
+            margin-bottom: $spacer / 2;
+            font-weight: bold;
+        }
+
+        .views-row .views-field-title a {
+            color: unset;
+            font-weight: bold;
+            text-decoration: underline;
+        }
     }
 }

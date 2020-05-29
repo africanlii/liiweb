@@ -24,6 +24,7 @@ dependencies:
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
     - field.field.node.judgment.field_search_summary
+    - field.field.node.judgment.field_tags
     - node.type.judgment
   module:
     - computed_field
@@ -301,6 +302,16 @@ content:
       show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
+    region: content
+  field_tags:
+    weight: 29
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   langcode:
     type: language_select
