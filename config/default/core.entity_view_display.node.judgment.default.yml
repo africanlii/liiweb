@@ -30,7 +30,7 @@ dependencies:
     - computed_field
     - datetime
     - ds
-    - file
+    - liiweb
     - text
     - user
 third_party_settings:
@@ -124,7 +124,7 @@ content:
       link: false
     third_party_settings: {  }
   field_files:
-    type: file_default
+    type: lii_file
     weight: 5
     region: sidebar
     label: hidden
