@@ -174,7 +174,7 @@ This part uses a script to automate most of these steps.
 * You **must** be in the "Ireland" region (eu-west-1), be sure to choose that from the dropdown in the top-right corner.
 * Click **Create stack** and choose **With new resources**
 * Choose **Upload a template file** and click **Choose file**
-* Upload [scripts/s3-cdn-user.yaml](scripts/s3-cdn-user.yaml) and click **Next**
+* Upload [https://github.com/africanlii/liiweb/raw/master/scripts/s3-cdn-user.yaml](scripts/s3-cdn-user.yaml) and click **Next**
 * For **Stack name**, enter the short name of the LII, such as `namiblii`
 * For **CertificateArn** enter the ARN of the certificate that you created above
 * For **LiiName** enter the short name of the LII, such as `namiblii` - DO NOT include `.org` or spaces
