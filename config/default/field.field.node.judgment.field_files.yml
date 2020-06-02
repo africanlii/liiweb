@@ -40,7 +40,7 @@ settings:
   file_directory: judgment/files
   file_extensions: 'txt doc docx xls pdf ppt pps odt ods odp rtf'
   max_filesize: '100 MB'
-  description_field: false
+  description_field: true
   handler: 'default:file'
   handler_settings: {  }
 field_type: file

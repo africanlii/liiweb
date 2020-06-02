@@ -33,9 +33,10 @@ class LiiFileFormatter extends GenericFileFormatter {
 
       /** @var FileInterface $file */
       $file_url = $file->createFileUrl(FALSE);
+      $title = $file->getFilename();
+      $description = $this->getSetting('use_description_as_link_text') ? $item->description : NULL;
       $elements[0]['#files'][] = [
-        'title' => $file->getFilename(),
-        'description' => $this->getSetting('use_description_as_link_text') ? $item->description : NULL,
+        'title' => !empty($description) ? $description : $title,
         'extension' => pathinfo($file->getFilename(), PATHINFO_EXTENSION),
         'link' => $file_url,
         '#cache' => [

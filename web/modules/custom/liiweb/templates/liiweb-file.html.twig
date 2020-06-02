@@ -1,11 +1,7 @@
 <div {{ attributes.addClass('liiweb-file') }}>
   {% for file in files %}
     <a target="_blank" class="extension-{{ file.extension }}" href="{{ file.link }}">
-      {% if file.description %}
-        {{ file.description }}
-      {% else %}
-        {{ file.title }}
-      {% endif %}
+      {{ file.title }}
     </a>
   {% endfor %}
 </div>
