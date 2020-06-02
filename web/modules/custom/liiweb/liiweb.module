@@ -5,6 +5,20 @@ use Drupal\liiweb\Plugin\LanguageNegotiation\LanguageNegotiationFrbrUri;
 use Drupal\language\Plugin\LanguageNegotiation\LanguageNegotiationUrlFallback;
 
 /**
+ * Implements hook_theme().
+ */
+function liiweb_theme($existing, $type, $theme, $path) {
+  return [
+    'liiweb_file' => [
+      'variables' => [
+        'files' => NULL,
+      ],
+      'template' => 'liiweb-file',
+    ],
+  ];
+}
+
+/**
  * Implements hook_language_types_info_alter().
  */
 function liiweb_language_types_info_alter(array &$language_types) {

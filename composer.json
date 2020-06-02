@@ -30,6 +30,7 @@
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.7.0",
         "drupal/devel": "^3.0",
+        "drupal/ds": "^3.6",
         "drupal/facets": "^1.4",
         "drupal/feeds": "^3.0",
         "drupal/feeds_ex": "^1.0",

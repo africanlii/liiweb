@@ -1,0 +1,18 @@
+liibarrio_content_general:
+  label: LII Content general layout
+  category: LiiBarrio
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-content-general
+  icon: images/liibarrio-content-general.png
+  regions:
+    header_left:
+      label: Header left
+    header_right:
+      label: Header right
+    full_width:
+      label: Full width
+    sidebar:
+      label: Sidebar
+    node_content:
+      label: Content

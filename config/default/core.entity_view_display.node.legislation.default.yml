@@ -23,8 +23,51 @@ dependencies:
     - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
+    - ds
     - text
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_content_general
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        classes: {  }
+        wrappers:
+          header_left: div
+          header_right: div
+          full_width: div
+          sidebar_share: div
+          sidebar: div
+          content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+    regions:
+      header_left:
+        - links
+        - field_publication_name
+        - field_created
+        - field_created_by_api
+        - field_expression_date
+        - field_external_link
+        - field_files
+        - field_images
+        - field_commencement_date
+        - field_lifecycle_json
+        - field_raw_json
+        - field_repeal
+        - field_stub
+        - field_tags
+        - field_toc
+        - field_publication_date
+        - langcode
+        - field_frbr_uri
+        - field_parent_work
+        - field_content
 id: node.legislation.default
 targetEntityType: node
 bundle: legislation

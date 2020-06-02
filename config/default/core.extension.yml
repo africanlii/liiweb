@@ -39,6 +39,7 @@ module:
   image: 0
   jsonapi: 0
   language: 0
+  layout_discovery: 0
   liiweb: 0
   liiweb_api: 0
   link: 0
@@ -73,6 +74,7 @@ module:
   webform: 0
   webform_ui: 0
   webprofiler: 0
+  ds: 1
   menu_link_content: 1
   pathauto: 1
   xmlsitemap: 1
