@@ -10,13 +10,13 @@ Throughout this example, we will assume you're creating a website called `countr
 
 On a separate host, install MySQL or you can use an RDS database instance. Create a new database, and make note of the hostname, username and password. We suggest you use `countrylii` as both the username and database name.
 
-Create a new database:
+Create a new database (**change `countrylii` as appropriate**):
 
-    CREATE DATABASE countrylii
+    CREATE DATABASE countrylii;
 
 Create a new user (**change XXX to a random password!***):
 
-    GRANT ALL PRIVILEGES ON countrylii.* TO 'countrylii'@'%' IDENTIFIED BY 'XXX'
+    GRANT ALL PRIVILEGES ON countrylii.* TO 'countrylii'@'%' IDENTIFIED BY 'XXX';
 
 ### 2. Dokku and Docker
 
