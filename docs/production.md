@@ -8,7 +8,15 @@ Throughout this example, we will assume you're creating a website called `countr
 
 ### 1. MySQL Database
 
-On a separate host, install MySQL and setup a new database. Make note of the hostname, username and password. We suggest you use `countrylii` as both the username and database name.
+On a separate host, install MySQL or you can use an RDS database instance. Create a new database, and make note of the hostname, username and password. We suggest you use `countrylii` as both the username and database name.
+
+Create a new database:
+
+    CREATE DATABASE countrylii
+
+Create a new user (**change XXX to a random password!***):
+
+    GRANT ALL PRIVILEGES ON countrylii.* TO 'countrylii'@'%' IDENTIFIED BY 'XXX'
 
 ### 2. Dokku and Docker
 
