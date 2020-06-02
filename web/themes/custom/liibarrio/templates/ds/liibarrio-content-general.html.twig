@@ -22,10 +22,10 @@
       </div>
     </div>
   {% endif %}
-  {% if content|render or sidebar|render or sidebar_share|render %}
+  {% if node_content|render or sidebar|render or sidebar_share|render %}
     <div class="row bottom">
       <div class="content {{ content_class }}">
-        {{ content }}
+        {{ node_content }}
       </div>
       {% if sidebar|render  %}
         <div class="col-sm-3 sidebar">

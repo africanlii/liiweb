@@ -14,5 +14,5 @@ liibarrio_content_general:
       label: Full width
     sidebar:
       label: Sidebar
-    content:
+    node_content:
       label: Content
