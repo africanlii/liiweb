@@ -1,0 +1,59 @@
+name: liiBarrio 2020
+type: theme
+description: "SASS starter kit for a Bootstrap Barrio SubTheme."
+# version: VERSION
+core: 8.x
+core_version_requirement: ^8 || ^9
+base theme: bootstrap_barrio
+
+libraries:
+  - liibarrio2020/global-styling
+
+libraries-override:
+  system/base: false
+  toolbar/toolbar: false
+  views/views.module: false
+  bootstrap_barrio/global-styling: false
+  bootstrap_barrio/file: false
+  bootstrap_barrio/node: false
+  bootstrap_barrio/messages_light: false
+
+regions:
+  header: Header
+  primary_menu: "Primary menu"
+  secondary_menu: "Secondary menu"
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  sidebar_first: "Sidebar first"
+  sidebar_second: "Sidebar second"
+  footer: Footer
+  breadcrumb: Breadcrumb
+
+  # top_header: "Top header"
+  # top_header_form: "Top header form"
+  # header: Header
+  # header_form: "Header form"
+  # primary_menu: "Primary menu"
+  # secondary_menu: "Secondary menu"
+  # page_top: "Page top"
+  # page_bottom: "Page bottom"
+  # highlighted: Highlighted
+  # featured_top: "Featured top"
+  # breadcrumb: Breadcrumb
+  # content: Content
+  # sidebar_first: "Sidebar first"
+  # sidebar_second: "Sidebar second"
+  # featured_bottom_first: "Featured bottom first"
+  # featured_bottom_second: "Featured bottom second"
+  # featured_bottom_third: "Featured bottom third"
+  # footer_first: "Footer first"
+  # footer_second: "Footer second"
+  # footer_third: "Footer third"
+  # footer_fourth: "Footer fourth"
+  # footer_fifth: "Footer fifth"
+
+# Information added by Drupal.org packaging script on 2020-06-18
+version: "5.0.0"
+project: "liibarrio2020"
+datestamp: 1592503302
