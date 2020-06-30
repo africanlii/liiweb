@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1478a0d4eeedbb65bc587d55448fea97",
+    "content-hash": "220eda47801a97f9db6b77f5c3988527",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2313,17 +2313,17 @@
         },
         {
             "name": "drupal/bootstrap_barrio",
-            "version": "4.24.0",
+            "version": "5.0.0-beta2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/bootstrap_barrio.git",
-                "reference": "8.x-4.24"
+                "reference": "5.0.0-beta2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bootstrap_barrio-8.x-4.24.zip",
-                "reference": "8.x-4.24",
-                "shasum": "6b1135eb1862d305ab702baba060b81d682505ce"
+                "url": "https://ftp.drupal.org/files/projects/bootstrap_barrio-5.0.0-beta2.zip",
+                "reference": "5.0.0-beta2",
+                "shasum": "2a647726b38e49154fd2c32592c9219db6928db0"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -2332,17 +2332,17 @@
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "8.x-4.24",
-                    "datestamp": "1586099555",
+                    "version": "5.0.0-beta2",
+                    "datestamp": "1592500658",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
                     }
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -2363,27 +2363,27 @@
         },
         {
             "name": "drupal/bootstrap_sass",
-            "version": "1.10.0",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/bootstrap_sass.git",
-                "reference": "8.x-1.10"
+                "reference": "5.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bootstrap_sass-8.x-1.10.zip",
-                "reference": "8.x-1.10",
-                "shasum": "7513e95e9da3a5e01065c4a4c5ec025e56455e84"
+                "url": "https://ftp.drupal.org/files/projects/bootstrap_sass-5.0.0.zip",
+                "reference": "5.0.0",
+                "shasum": "58da8595e1872ad7fe9b4db7f1b775e4bafe4bc4"
             },
             "require": {
-                "drupal/bootstrap_barrio": "^4.8.0",
+                "drupal/bootstrap_barrio": ">=4.23.0",
                 "drupal/core": "^8 || ^9"
             },
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.10",
-                    "datestamp": "1586099697",
+                    "version": "5.0.0",
+                    "datestamp": "1592503301",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5325,12 +5325,12 @@
             "version": "0.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/njh/easyrdf.git",
+                "url": "https://github.com/easyrdf/easyrdf.git",
                 "reference": "acd09dfe0555fbcfa254291e433c45fdd4652566"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/njh/easyrdf/zipball/acd09dfe0555fbcfa254291e433c45fdd4652566",
+                "url": "https://api.github.com/repos/easyrdf/easyrdf/zipball/acd09dfe0555fbcfa254291e433c45fdd4652566",
                 "reference": "acd09dfe0555fbcfa254291e433c45fdd4652566",
                 "shasum": ""
             },
@@ -9081,16 +9081,16 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v4.4.1",
+            "version": "v4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "dca1ab7d877bc4b664b43604657a2b5fbe2b4ecb"
+                "reference": "7a6da5e3e7ad7c749dde806546a35d4d4259d965"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/dca1ab7d877bc4b664b43604657a2b5fbe2b4ecb",
-                "reference": "dca1ab7d877bc4b664b43604657a2b5fbe2b4ecb",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/7a6da5e3e7ad7c749dde806546a35d4d4259d965",
+                "reference": "7a6da5e3e7ad7c749dde806546a35d4d4259d965",
                 "shasum": ""
             },
             "replace": {
@@ -9128,7 +9128,13 @@
                 "sass",
                 "web"
             ],
-            "time": "2019-11-28T12:59:49+00:00"
+            "funding": [
+                {
+                    "url": "https://opencollective.com/bootstrap",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-05-12T17:44:42+00:00"
         },
         {
             "name": "twig/twig",
@@ -12457,5 +12463,6 @@
         "php": "^7.3",
         "ext-json": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
