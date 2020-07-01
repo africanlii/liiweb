@@ -47,36 +47,51 @@
   {# Header #}
   {% if page.pre_header|render|striptags|trim is not empty or
     page.header|render|striptags|trim is not empty %}
-    <header class="layout-header" role="banner">
-      <div class="container">
-        {% if page.pre_header|render|striptags|trim is not empty %}
-        <div class="layout-header__pre-header">
+    <header class="layout-header" role="banner">      
+      {% if page.pre_header|render|striptags|trim is not empty %}
+      <div class="layout-header__pre-header">
+        <div class="container">
           {{ page.pre_header }}
-        </div>          
-        {% endif %}
-        {% if page.header|render|striptags|trim is not empty %}
-        <div class="layout-header__main-header">
-          {{ page.header }}
-        </div>          
-        {% endif %}
-      </div>
+        </div>
+      </div>          
+      {% endif %}      
+      <div class="layout-header__main-header">
+        <div class="container">
+          {# Header and Primary Nav #}
+          <nav{{ navbar_attributes }}>
+            {% if container_navbar %}
+            <div class="container">
+            {% endif %}
+              {{ page.header }}
+              {% if page.primary_menu %}
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="CollapsingNavbar">
+                  {{ page.primary_menu }}                  
+              </div>
+              {% endif %}             
+            {% if container_navbar %}
+            </div>
+            {% endif %}
+          </nav>
+        </div>
+      </div> 
     </header>
   {% endif %}  
   
   {# Breadcrumb #}
-  {% if page.breadcrumb %}
-  <div class="layout-breadcrumb">
+  {% if page.breadcrumbs|render|striptags|trim is not empty %}
+  <div class="layout-breadcrumbs">
     <div class="container">
-      {{ page.breadcrumb }}
-    </div>    
-  </div>  
+      {{ page.breadcrumbs }}
+    </div>
+  </div>
   {% endif %}
 
   {{ page.highlighted }}
 
   {{ page.help }}
 
-  <main role="main">
+  <main role="main" class="layout-main">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
     <div class="layout-content container">

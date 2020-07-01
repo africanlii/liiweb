@@ -1,5 +1,12 @@
 .layout-footer {
+  margin: 2rem 0 0;
   padding: 1.5rem 0;
   box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
   background: $white;
+
+  .copyright {
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    color: #605e5c;
+  }
 }
