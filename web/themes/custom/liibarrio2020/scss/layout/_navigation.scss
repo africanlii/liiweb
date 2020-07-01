@@ -1,0 +1,35 @@
+#navbar-main {
+  .navbar-brand {
+    //margin-right: 1rem;
+  }
+  .navbar-nav {
+    .nav-link {
+      position: relative;
+      padding: 0;
+      margin: 0.5rem 1.5rem 0;
+      color: $body-color;
+
+      &:hover,
+      &:focus {
+        color: $primary;
+      }
+
+      &:after {
+        content: "";
+        left: -1rem;
+        display: block;
+        margin-top: 0.5rem;
+        margin-left: -1rem;
+        width: calc(100% + 2rem);
+        height: 0.625rem;
+        background: transparent;
+      }
+
+      &.is-active {
+        &:after {
+          background: $secondary;
+        }
+      }
+    }
+  }
+}

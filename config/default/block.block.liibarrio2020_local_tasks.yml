@@ -11,7 +11,7 @@ _core:
 id: liibarrio2020_local_tasks
 theme: liibarrio2020
 region: highlighted
-weight: -3
+weight: -5
 provider: null
 plugin: local_tasks_block
 settings:

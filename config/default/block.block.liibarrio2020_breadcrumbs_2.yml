@@ -8,8 +8,8 @@ dependencies:
     - liibarrio2020
 id: liibarrio2020_breadcrumbs_2
 theme: liibarrio2020
-region: breadcrumb
-weight: 0
+region: breadcrumbs
+weight: -4
 provider: null
 plugin: system_breadcrumb_block
 settings:
