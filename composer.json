@@ -21,7 +21,7 @@
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
         "drupal-composer/drupal-scaffold": "^2.5",
-        "drupal/admin_toolbar": "^2.2",
+        "drupal/admin_toolbar": "^2.3",
         "drupal/auto_entitylabel": "^3.0",
         "drupal/bootstrap_barrio": "^5.0",
         "drupal/bootstrap_sass": "^5.0",
