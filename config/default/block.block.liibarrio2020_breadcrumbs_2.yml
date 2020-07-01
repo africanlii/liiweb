@@ -1,0 +1,25 @@
+uuid: 3e1f4fa3-cb74-42c0-9f11-e65fc2233404
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - liibarrio2020
+id: liibarrio2020_breadcrumbs_2
+theme: liibarrio2020
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

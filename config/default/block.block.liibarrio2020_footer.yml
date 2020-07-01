@@ -1,4 +1,4 @@
-uuid: bb51ff30-591a-41f0-8bba-6fd61bf58296
+uuid: c659ade6-4c33-4362-a93e-a13cafcd48b5
 langcode: en
 status: true
 dependencies:
@@ -7,11 +7,11 @@ dependencies:
   module:
     - system
   theme:
-    - namiblii
-id: namiblii_footer
-theme: namiblii
-region: sidebar_first
-weight: 0
+    - liibarrio2020
+id: liibarrio2020_footer
+theme: liibarrio2020
+region: footer
+weight: -4
 provider: null
 plugin: 'system_menu_block:footer'
 settings:

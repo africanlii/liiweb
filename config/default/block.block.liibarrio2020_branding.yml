@@ -1,17 +1,17 @@
-uuid: d5dca204-90fa-4478-8146-d777a56909ec
+uuid: 50d06277-acd7-49c3-800d-445d7c6d6a14
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - bartik
+    - liibarrio2020
 _core:
   default_config_hash: fRKXNB91UxDvEMkzCR8ZBsawfC6Fqbme2gtobei3gu4
-id: bartik_branding
-theme: bartik
+id: liibarrio2020_branding
+theme: liibarrio2020
 region: header
-weight: 0
+weight: -4
 provider: null
 plugin: system_branding_block
 settings:

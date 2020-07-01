@@ -1,0 +1,25 @@
+uuid: a97f715e-7cb7-4a22-b836-25291300427d
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - liibarrio2020
+id: useraccountmenu
+theme: liibarrio2020
+region: pre_header
+weight: 0
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

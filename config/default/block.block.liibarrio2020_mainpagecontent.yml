@@ -1,13 +1,13 @@
-uuid: b4f33fcd-f1c4-46e4-9230-a86515227d75
+uuid: e1e4cd4d-a5fd-474c-86fb-841d845265c1
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - namiblii
-id: namiblii_mainpagecontent
-theme: namiblii
+    - liibarrio2020
+id: liibarrio2020_mainpagecontent
+theme: liibarrio2020
 region: content
 weight: -3
 provider: null

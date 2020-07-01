@@ -1,13 +1,13 @@
-uuid: 097fe527-98bf-4247-a658-68d78509f023
+uuid: 17120c2f-66b1-4e15-b38b-dfec2045bbe5
 langcode: en
 status: true
 dependencies:
   module:
     - node
   theme:
-    - namiblii
-id: namiblii_pagetitle
-theme: namiblii
+    - liibarrio2020
+id: liibarrio2020_pagetitle
+theme: liibarrio2020
 region: content
 weight: -4
 provider: null
@@ -22,7 +22,6 @@ visibility:
     id: node_type
     bundles:
       government_gazette: government_gazette
-      judgment: judgment
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'

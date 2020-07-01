@@ -1,15 +1,15 @@
-uuid: c72d523b-4e62-4c22-bf74-5c94b6a079e7
+uuid: b6000926-39aa-4e3e-899f-53eea79f1566
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - namiblii
+    - liibarrio2020
 _core:
   default_config_hash: 5MNdk3fpMKx_xxBTcz2T11DL4XEU1H5SgHl8BsYdFsA
-id: namiblii_messages
-theme: namiblii
+id: liibarrio2020_messages
+theme: liibarrio2020
 region: highlighted
 weight: -4
 provider: null
