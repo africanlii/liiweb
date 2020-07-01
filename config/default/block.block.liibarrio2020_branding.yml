@@ -11,7 +11,7 @@ _core:
 id: liibarrio2020_branding
 theme: liibarrio2020
 region: header
-weight: -4
+weight: -5
 provider: null
 plugin: system_branding_block
 settings:
@@ -20,6 +20,6 @@ settings:
   provider: system
   label_display: '0'
   use_site_logo: true
-  use_site_name: true
-  use_site_slogan: true
+  use_site_name: false
+  use_site_slogan: false
 visibility: {  }

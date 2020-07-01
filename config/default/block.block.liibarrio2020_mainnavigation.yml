@@ -10,8 +10,8 @@ dependencies:
     - liibarrio2020
 id: liibarrio2020_mainnavigation
 theme: liibarrio2020
-region: header
-weight: -3
+region: primary_menu
+weight: -4
 provider: null
 plugin: 'system_menu_block:main'
 settings:
