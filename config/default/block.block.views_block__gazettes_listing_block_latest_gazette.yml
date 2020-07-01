@@ -1,0 +1,30 @@
+uuid: 6dff0a6f-0fcf-4279-b333-de0358691ec5
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.gazettes_listing
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: views_block__gazettes_listing_block_latest_gazette
+theme: liibarrio2020
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:gazettes_listing-block_latest_gazette'
+settings:
+  id: 'views_block:gazettes_listing-block_latest_gazette'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

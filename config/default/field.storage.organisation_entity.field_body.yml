@@ -1,0 +1,21 @@
+uuid: 8f0bf0bd-a5fb-41e9-a65d-35aa7848952d
+langcode: en
+status: true
+dependencies:
+  module:
+    - rw_organisation
+    - text
+_core:
+  default_config_hash: G1LcPrQQe_9jowx0iwi3lK1BNuyP7DszG1rWYriYGsI
+id: organisation_entity.field_body
+field_name: field_body
+entity_type: organisation_entity
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -13,7 +13,7 @@ dependencies:
 id: gazettes_listing
 label: 'Gazettes Listing'
 module: views
-description: ''
+description: ' Views for the Gazettes content type '
 tag: ''
 base_table: node_field_data
 base_field: nid
@@ -234,7 +234,20 @@ display:
       title: 'Government Gazettes'
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No Gazettes found, please try again later.'
+            format: full_html
+          plugin_id: text
       relationships: {  }
       arguments:
         field_gazette_date_value_year:
@@ -283,10 +296,46 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_gazette_date'
+  block_latest_gazette:
+    display_plugin: block
+    id: block_latest_gazette
+    display_title: 'BK: Latest Government Gazettes'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      display_description: 'Veiw all recent Latest Government Gazettes'
+      title: 'Latest Government Gazettes'
+      defaults:
+        title: false
+        empty: false
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No latest gazettes found, please try again later.'
+            format: full_html
+          plugin_id: text
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_gazette_date'
   page_gazettes_listing:
     display_plugin: page
     id: page_gazettes_listing
-    display_title: Page
+    display_title: 'PG: Gazettes'
     position: 1
     display_options:
       display_extenders: {  }
@@ -300,6 +349,7 @@ display:
         weight: 1
         context: '0'
         menu_name: main
+      display_description: ''
     cache_metadata:
       max-age: -1
       contexts:

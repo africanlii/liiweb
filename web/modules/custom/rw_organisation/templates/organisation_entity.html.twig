@@ -1,0 +1,45 @@
+{#
+/**
+ * @file organisation_entity.html.twig
+ * Default theme implementation to present Organisation data.
+ *
+ * This template is used when viewing Organisation pages.
+ *
+ *
+ * Available variables:
+ * - organisation_entity: The entity object
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ * - view_mode: The current display mode of the entity
+ *
+ * @see template_preprocess_organisation_entity()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+  'organisation',
+  'organisation--' ~ organisation_entity.bundle|clean_class,
+  not organisation_entity.isPublished() ? 'organisation_entity--unpublished',
+  view_mode ? 'organisation--view-mode-' ~ view_mode|clean_class,
+  'clearfix',
+]
+%}
+<article{{ attributes.addClass(classes) }} itemscope itemtype="http://schema.org/Organization">
+  {# @TODO: Create a field template that has the correct schema markup for org logo #}
+  {{ content.field_image }}
+
+  <div class="content">
+    <header>
+      {{ title_prefix }}
+      <h2 class="organisation-title" itemprop="name">{{ content.name }}</h2>
+      {{ title_suffix }}
+    </header>
+
+    {% if content %}
+      {{- content|without('field_image', 'name') -}}
+    {% endif %}
+  </div>
+
+</article>

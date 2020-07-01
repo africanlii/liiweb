@@ -1,0 +1,35 @@
+/**
+ * @file rw_organisation.theme.entity.css
+ * Default stylesheets for displaying any organisation entity
+ */
+
+/**
+ * Teasers
+ */
+.organisation--view-mode-teaser {
+  margin: 0 0 32px 0;
+  margin: 0 0 var(--rw-gutter, 32px) 0;
+}
+.organisation--view-mode-teaser .field--name-field-image {
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  width: 320px;
+  height: 320px;
+  background: #fff;
+  padding: 32px;
+  padding: var(--rw-gutter, 32px);
+  border: 1px solid #dedede;
+  margin: 0 32px 32px 0;
+}
+.organisation--view-mode-teaser .field--name-field-image img {
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.organisation--view-mode-teaser .content {
+  box-sizing: border-box;
+  float: left;
+  width: calc(100% - 352px);
+  margin: 0 0 32px 0;
+  padding: 0;
+}

@@ -1,0 +1,21 @@
+uuid: 66635363-cdaa-4273-bf7e-26eeb1bf0bbf
+langcode: en
+status: true
+dependencies:
+  module:
+    - address
+    - rw_organisation
+_core:
+  default_config_hash: z9x_3cOMBqnTpTXBSQkdscx7WBNgwVwiPgG1m5SQIJM
+id: organisation_entity.field_address_physical
+field_name: field_address_physical
+entity_type: organisation_entity
+type: address
+settings: {  }
+module: address
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

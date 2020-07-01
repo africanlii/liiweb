@@ -1,0 +1,43 @@
+uuid: 1c3bb4f6-ddbd-4e7e-82ca-77b95ead4749
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.organisation_entity.partner.field_image
+    - rw_organisation.organisation_entity_type.partner
+  module:
+    - image
+    - user
+id: organisation_entity.partner.default
+targetEntityType: organisation_entity
+bundle: partner
+mode: default
+content:
+  field_image:
+    weight: 1
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  organisation_logo__linked: true
+  search_api_excerpt: true

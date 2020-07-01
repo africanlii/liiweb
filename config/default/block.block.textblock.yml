@@ -1,0 +1,29 @@
+uuid: 19d38833-b61d-40a3-85a1-d0ee79919c51
+langcode: en
+status: true
+dependencies:
+  module:
+    - liiweb
+    - system
+  theme:
+    - liibarrio2020
+id: textblock
+theme: liibarrio2020
+region: sidebar_second
+weight: -6
+provider: null
+plugin: text_block
+settings:
+  id: text_block
+  label: 'About <this> LII'
+  provider: liiweb
+  label_display: visible
+  text:
+    value: "<p><span>n publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content</span></p>\r\n"
+    format: full_html
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front> '
+    negate: false
+    context_mapping: {  }

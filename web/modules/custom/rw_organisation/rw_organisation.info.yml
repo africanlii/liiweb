@@ -1,0 +1,10 @@
+name: 'Organisations'
+type: module
+description: 'Provides content entity specifically more suited for capturing businesses or organisations for building directories or references for user-generated content'
+core: 8.x
+package: 'Rogerwilco'
+dependencies:
+  - address
+  - file
+  - media
+  - views_infinite_scroll

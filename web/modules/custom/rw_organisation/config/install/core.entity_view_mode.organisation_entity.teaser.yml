@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - rw_organisation
+id: organisation_entity.teaser
+label: Teaser
+targetEntityType: organisation_entity
+cache: true

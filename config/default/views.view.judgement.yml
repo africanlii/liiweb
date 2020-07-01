@@ -1,19 +1,18 @@
-uuid: 9173f88e-69e2-40d0-87ab-fccb394772f3
+uuid: d411372e-cfc5-4f33-95b6-60a7e57ce583
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - node.type.legislation
-    - system.menu.main
+    - node.type.judgment
   module:
     - node
     - user
     - views_infinite_scroll
-id: legislation
-label: Legislation
+id: judgement
+label: Judgement
 module: views
-description: 'Views for the Legislation content type'
+description: 'Views for the Judgement content type '
 tag: ''
 base_table: node_field_data
 base_field: nid
@@ -52,13 +51,10 @@ display:
       pager:
         type: mini
         options:
-          items_per_page: 3
+          items_per_page: 10
           offset: 0
           id: 0
           total_pages: null
-          tags:
-            previous: ‹‹
-            next: ››
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -67,17 +63,16 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          tags:
+            previous: ‹‹
+            next: ››
       style:
-        type: grid
+        type: default
         options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
           uses_fields: false
-          columns: 3
-          automatic_width: false
-          alignment: horizontal
-          col_class_default: false
-          col_class_custom: col-lg-4
-          row_class_default: false
-          row_class_custom: row
       row:
         type: 'entity:node'
         options:
@@ -150,7 +145,7 @@ display:
           table: node_field_data
           field: type
           value:
-            legislation: legislation
+            judgment: judgment
           entity_type: node
           entity_field: type
           plugin_id: bundle
@@ -173,7 +168,6 @@ display:
           expose:
             label: ''
           granularity: second
-      title: Legislation
       header: {  }
       footer: {  }
       empty:
@@ -187,7 +181,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: 'No legislation found, Please try again later.'
+            value: 'No Judgement found.'
             format: full_html
           plugin_id: text
       relationships: {  }
@@ -202,50 +196,14 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  block_recent_registration:
+  block_recent_judgement:
     display_plugin: block
-    id: block_recent_registration
-    display_title: 'BK: Recent Legislative'
-    position: 2
+    id: block_recent_judgement
+    display_title: 'BK: Most Recent Judgements'
+    position: 1
     display_options:
       display_extenders: {  }
-      display_description: 'Recent Legislative block displays on homepage'
-      title: 'Recent Legislative Amendments'
-      defaults:
-        title: false
-        filters: false
-        filter_groups: false
-        pager: false
-      filters:
-        status:
-          value: '1'
-          table: node_field_data
-          field: status
-          plugin_id: boolean
-          entity_type: node
-          entity_field: status
-          id: status
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-          group: 1
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          value:
-            legislation: legislation
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          expose:
-            operator_limit_selection: false
-            operator_list: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
+      display_description: 'View all recent Judgements'
       pager:
         type: infinite_scroll
         options:
@@ -265,35 +223,25 @@ display:
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'View more Legislation'
+            button_text: 'View more Judgements'
             automatically_load_content: false
-      block_hide_empty: true
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url.query_args
-        - 'user.node_grants:view'
-        - user.permissions
-      tags: {  }
-  page_1:
-    display_plugin: page
-    id: page_1
-    display_title: Page
-    position: 1
-    display_options:
-      display_extenders: {  }
-      path: legislation
-      menu:
-        type: normal
-        title: Legislation
-        description: Legislation
-        expanded: false
-        parent: ''
-        weight: 0
-        context: '0'
-        menu_name: main
+      defaults:
+        pager: false
+        empty: false
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No Recent Judgement found.'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
