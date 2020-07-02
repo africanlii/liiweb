@@ -1,16 +1,15 @@
-uuid: 19d38833-b61d-40a3-85a1-d0ee79919c51
+uuid: df810f0e-b417-4818-9d9f-24c6172faf55
 langcode: en
 status: true
 dependencies:
   module:
     - liiweb
-    - system
   theme:
     - liibarrio2020
 id: textblock
 theme: liibarrio2020
-region: sidebar_second
-weight: -6
+region: footer
+weight: -7
 provider: null
 plugin: text_block
 settings:
@@ -19,11 +18,6 @@ settings:
   provider: liiweb
   label_display: visible
   text:
-    value: "<p><span>n publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content</span></p>\r\n"
+    value: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Negat esse eam, inquit, propter se expetendam. An tu me de L. Sed in rebus apertissimis nimium longi sumus. Duo Reges: constructio interrete. Omnes enim iucundum motum, quo sensus hilaretur. \r\n</p>\r\n<iframe allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"https://www.youtube.com/embed/og2YO8e_Dmc\" width=\"560\"></iframe>\r\n"
     format: full_html
-visibility:
-  request_path:
-    id: request_path
-    pages: '<front> '
-    negate: false
-    context_mapping: {  }
+visibility: {  }

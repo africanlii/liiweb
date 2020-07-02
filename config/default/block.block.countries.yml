@@ -1,0 +1,20 @@
+uuid: dd953c0b-0ed3-4c41-9e4d-d12c658b6cb4
+langcode: en
+status: true
+dependencies:
+  module:
+    - liiweb
+  theme:
+    - liibarrio2020
+id: countries
+theme: liibarrio2020
+region: footer
+weight: -5
+provider: null
+plugin: hero_block
+settings:
+  id: hero_block
+  label: 'Other Legal Information Institutes'
+  provider: liiweb
+  label_display: visible
+visibility: {  }

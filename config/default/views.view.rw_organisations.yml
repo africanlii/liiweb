@@ -180,7 +180,43 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      title: Organisations
+      title: Organisation
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+      tags: {  }
+  block_footer_our_partners:
+    display_plugin: block
+    id: block_footer_our_partners
+    display_title: 'BK: Our Partners'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      title: 'Our Partners'
+      defaults:
+        title: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+      tags: {  }
+  block_footer_support:
+    display_plugin: block
+    id: block_footer_support
+    display_title: 'BK: With support from'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      title: 'With support from'
+      defaults:
+        title: false
     cache_metadata:
       max-age: -1
       contexts:

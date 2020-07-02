@@ -13,10 +13,15 @@ function liiweb_theme($existing, $type, $theme, $path) {
 
   $theme['text_block'] = [
     'variables' => [
+      'title' => Null,
       'text' => Null,
     ],
   ];
-
+  $theme['country_block'] = [
+    'variables' => [
+      'content' => Null,
+    ],
+  ];
   $theme['liiweb_file']  = [
       'variables' => [
         'files' => NULL,
