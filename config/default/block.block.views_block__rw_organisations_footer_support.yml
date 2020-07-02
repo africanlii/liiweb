@@ -10,8 +10,8 @@ dependencies:
     - liibarrio2020
 id: views_block__rw_organisations_footer_support
 theme: liibarrio2020
-region: footer
-weight: 0
+region: footer_second
+weight: -7
 provider: null
 plugin: 'views_block:rw_organisations-block_footer_support'
 settings:

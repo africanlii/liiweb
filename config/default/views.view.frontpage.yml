@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.rss
     - core.entity_view_mode.node.teaser
+    - system.menu.main
   module:
     - node
     - user
@@ -296,6 +297,15 @@ display:
     display_options:
       path: node
       display_extenders: {  }
+      menu:
+        type: normal
+        title: Home
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 0
+        context: '0'
+        menu_name: main
     display_plugin: page
     display_title: Page
     id: page_1
