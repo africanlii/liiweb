@@ -4,40 +4,27 @@ status: true
 dependencies:
   config:
     - field.field.organisation_entity.partner.field_image
+    - image.style.thumbnail
     - rw_organisation.organisation_entity_type.partner
   module:
     - image
-    - user
 id: organisation_entity.partner.default
 targetEntityType: organisation_entity
 bundle: partner
 mode: default
 content:
   field_image:
-    weight: 1
-    label: above
+    weight: 0
+    label: hidden
     settings:
-      image_style: ''
+      image_style: thumbnail
       image_link: ''
     third_party_settings: {  }
     type: image
     region: content
-  name:
-    label: above
-    type: string
-    weight: -4
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  user_id:
-    label: hidden
-    type: author
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
   langcode: true
+  name: true
   organisation_logo__linked: true
   search_api_excerpt: true
+  user_id: true

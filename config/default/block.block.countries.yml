@@ -9,7 +9,7 @@ dependencies:
 id: countries
 theme: liibarrio2020
 region: footer
-weight: -5
+weight: -6
 provider: null
 plugin: hero_block
 settings:

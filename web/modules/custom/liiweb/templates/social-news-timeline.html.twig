@@ -1,0 +1,24 @@
+{#
+ /**
+  * @file
+  * Default template for the JASM place Facebook SDK
+  *
+  * Available variables:
+  * - facebook_app_id: The application ID provided by developers.facebook.com for the Facebook page timeline being added* - twitter_handle: The username of the account to display a timeline widget for
+* - width: The widget width (integer) in pixels
+* - height: The widget height (integer) in pixels
+#}
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId={{ facebook_app_id }}&autoLogAppEvents=1"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<a class="twitter-timeline" data-width="450" data-height="500" data-theme="" data-small-header="true"  data-link-color="#2B7BB9" data-adapt-container-width="true"  href="https://twitter.com/{{ twitter_handle }}">Tweets by
+
+	{{ twitter_handle }}</a>
+
+<div class="fb-page" data-href="{{ facebook_page_url }}" data-tabs="timeline" data-width="" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+	<blockquote cite="{{ facebook_page_url }}" class="fb-xfbml-parse-ignore">
+		<a href="{{ facebook_page_url }}">African Legal Information Institute</a>
+	</blockquote>
+</div>

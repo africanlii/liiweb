@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.organisation_entity.teaser
+    - core.entity_view_mode.organisation_entity.logo
   module:
     - rw_organisation
     - views_infinite_scroll
@@ -79,7 +79,7 @@ display:
         type: 'entity:organisation_entity'
         options:
           relationship: none
-          view_mode: teaser
+          view_mode: logo
       fields:
         name:
           table: organisation_entity_field_data
@@ -215,6 +215,24 @@ display:
       display_extenders: {  }
       display_description: ''
       title: 'With support from'
+      defaults:
+        title: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+      tags: {  }
+  block_partner_hero:
+    display_plugin: block
+    id: block_partner_hero
+    display_title: 'BK: Partner frontpage hero'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      title: 'In partnership & with support of'
       defaults:
         title: false
     cache_metadata:

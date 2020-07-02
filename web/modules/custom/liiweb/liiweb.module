@@ -10,6 +10,7 @@ use Drupal\language\Plugin\LanguageNegotiation\LanguageNegotiationUrlFallback;
 function liiweb_theme($existing, $type, $theme, $path) {
 
   $theme = [];
+  $path = drupal_get_path('module', 'liiweb') . '/templates';
 
   $theme['text_block'] = [
     'variables' => [
@@ -28,6 +29,17 @@ function liiweb_theme($existing, $type, $theme, $path) {
       ],
     'template' => 'liiweb-file',
   ];
+  $theme['social_news_timeline'] = [
+    'template'            => 'social-news-timeline',
+    'variables'           => [
+      'facebook_page_url' => NULL,
+      'facebook_app_id'   => NULL,
+
+      'twitter_handle'    => NULL,
+    ],
+    'path'                => $path,
+  ];
+
 
   return $theme;
 }

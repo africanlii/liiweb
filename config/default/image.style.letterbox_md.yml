@@ -1,0 +1,25 @@
+uuid: 6a5083a6-26ba-41d8-8982-1173a644a561
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: letterbox_md
+label: 'Letterbox medium (16:9) - Tablets or (landscape) mobiles'
+effects:
+  f9266d14-b3a6-408e-9f0d-74e08a5012f9:
+    uuid: f9266d14-b3a6-408e-9f0d-74e08a5012f9
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1024
+      height: 576
+      anchor: center-center
+  8c267046-2f6b-40f9-8e9a-796fa9f49825:
+    uuid: 8c267046-2f6b-40f9-8e9a-796fa9f49825
+    id: focal_point_scale_and_crop
+    weight: 2
+    data:
+      width: 1024
+      height: 576
+      crop_type: focal_point

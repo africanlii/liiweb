@@ -1,0 +1,17 @@
+uuid: 97793c19-0662-4f0a-af69-04635ae1840b
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Basic page'
+type: page
+description: 'description: ''Use <em>pages</em> for your static content or landing pages, such as an ''''About us'''' page.'''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

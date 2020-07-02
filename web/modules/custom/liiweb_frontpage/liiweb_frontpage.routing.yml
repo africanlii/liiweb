@@ -1,0 +1,8 @@
+
+liiweb_frontpage.frontpage_controller_build:
+  path: '/frontpage'
+  defaults:
+    _controller: '\Drupal\liiweb_frontpage\Controller\FrontpageController::build'
+    _title: 'frontpage'
+  requirements:
+    _permission: 'access content'

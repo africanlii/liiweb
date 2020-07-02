@@ -1,0 +1,42 @@
+uuid: 19200607-3216-4659-af4e-0656e5a1658c
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.images
+  module:
+    - entity_browser_entity_form
+    - views
+name: image_browser
+label: 'Image browser'
+display: modal
+display_configuration:
+  width: '1200'
+  height: '800'
+  link_text: 'Select image(s)'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  15790738-ef6a-4c85-a623-edc948bb7f6e:
+    settings:
+      entity_type: media
+      bundle: image
+      form_mode: default
+      submit_text: 'Save image'
+    uuid: 15790738-ef6a-4c85-a623-edc948bb7f6e
+    weight: 1
+    label: 'Upload new image'
+    id: entity_form
+  07fcc187-ce18-47e1-9ed4-267b6d53f7be:
+    settings:
+      view: images
+      view_display: entity_browser_1
+      submit_text: 'Select Image(s)'
+      auto_select: false
+    uuid: 07fcc187-ce18-47e1-9ed4-267b6d53f7be
+    weight: 2
+    label: view
+    id: view

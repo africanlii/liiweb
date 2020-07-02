@@ -1,0 +1,10 @@
+uuid: 7a1f9ac8-704b-4c3f-83d4-00b34365364a
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.letterbox_lg
+label: letterbox_lg
+targetEntityType: media
+cache: true

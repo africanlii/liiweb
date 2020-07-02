@@ -9,7 +9,7 @@ dependencies:
 id: textblock
 theme: liibarrio2020
 region: footer
-weight: -7
+weight: -8
 provider: null
 plugin: text_block
 settings:

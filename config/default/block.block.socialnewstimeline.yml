@@ -1,0 +1,27 @@
+uuid: aa3c2b3e-36fc-4bdc-8adb-4bb0e8cab0f3
+langcode: en
+status: true
+dependencies:
+  module:
+    - liiweb
+  theme:
+    - liibarrio2020
+id: socialnewstimeline
+theme: liibarrio2020
+region: sidebar_first
+weight: -8
+provider: null
+plugin: social_news_timeline
+settings:
+  id: social_news_timeline
+  label: 'Social News timeline'
+  provider: liiweb
+  label_display: visible
+  facebook_window_height: 500
+  twitter_account_name: africanlii
+  twitter_window_width: null
+  twitter_window_height: 600
+  twitter_theme_color: light
+  facebook_page_url: 'https://www.facebook.com/africanlii'
+  facebook_app_id: ''
+visibility: {  }
