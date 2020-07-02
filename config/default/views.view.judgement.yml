@@ -67,12 +67,16 @@ display:
             previous: ‹‹
             next: ››
       style:
-        type: default
+        type: grid
         options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
           uses_fields: false
+          columns: 3
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: ''
+          row_class_default: false
+          row_class_custom: ''
       row:
         type: 'entity:node'
         options:
@@ -187,6 +191,8 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
+      title: 'Most Recent Judgements'
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -207,7 +213,7 @@ display:
       pager:
         type: infinite_scroll
         options:
-          items_per_page: 3
+          items_per_page: 6
           offset: 0
           id: 0
           total_pages: null

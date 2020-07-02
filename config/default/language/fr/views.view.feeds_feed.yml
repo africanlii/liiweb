@@ -1,3 +1,4 @@
+label: Feeds
 display:
   default:
     display_title: Maître
@@ -7,8 +8,15 @@ display:
           submit_button: Appliquer
           reset_button_label: Réinitialiser
           exposed_sorts_label: 'Trier par'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       pager:
         options:
+          tags:
+            previous: '‹ previous'
+            next: 'next ›'
+            first: '« first'
+            last: 'last »'
           expose:
             items_per_page_label: 'Éléments par page'
             items_per_page_options_all_label: '- Tout -'
@@ -16,15 +24,34 @@ display:
       fields:
         feeds_feed_bulk_form:
           label: 'Mise à jour en masse'
+          action_title: 'With selection'
         title:
           label: Titre
+          separator: ', '
+        type:
+          label: Type
+          separator: ', '
         name:
           label: Auteur
+          separator: ', '
         changed:
           label: 'Mis à jour'
+          separator: ', '
+        imported:
+          label: Imported
+          separator: ', '
         operations:
           label: Actions
       filters:
         title:
           expose:
             label: Titre
+        type:
+          expose:
+            label: Type
+      title: Feeds
+  page_1:
+    display_title: Page
+    display_options:
+      menu:
+        title: Feeds

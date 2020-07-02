@@ -32,6 +32,15 @@ $font-size-base: 0.875rem; // 14px
 $font-family-sans-serif: "Lato", sans-serif;
 $line-height-base: 1.428571; // 20 / 14
 
+//$h1-font-size:                $font-size-base * 2.5 !default;
+//$h2-font-size:                $font-size-base * 2 !default;
+$h3-font-size: $font-size-base * 1.142857; //16px or 1rem
+//$h4-font-size:                $font-size-base * 1.5 !default;
+//$h5-font-size:                $font-size-base * 1.25 !default;
+//$h6-font-size:                $font-size-base !default;
+
+$headings-font-weight: 700;
+
 // Body
 $body-bg: $gray-very-light;
 $body-color: $gray-dark;

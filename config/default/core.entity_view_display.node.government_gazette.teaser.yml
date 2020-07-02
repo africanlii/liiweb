@@ -13,32 +13,29 @@ dependencies:
     - field.field.node.government_gazette.field_gazette_supplement
     - node.type.government_gazette
   module:
-    - text
+    - datetime
     - user
 id: node.government_gazette.teaser
 targetEntityType: node
 bundle: government_gazette
 mode: teaser
 content:
-  body:
+  field_gazette_date:
+    type: datetime_custom
+    weight: 0
+    region: content
     label: hidden
-    type: text_summary_or_trimmed
-    weight: 101
     settings:
-      trim_length: 600
+      timezone_override: ''
+      date_format: 'jS F Y'
     third_party_settings: {  }
-    region: content
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
-    region: content
 hidden:
+  body: true
   field_external_link: true
   field_file: true
-  field_gazette_date: true
   field_gazette_issue_number: true
   field_gazette_machine_id: true
   field_gazette_supplement: true
   langcode: true
+  links: true
   search_api_excerpt: true
