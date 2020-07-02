@@ -14,7 +14,6 @@ dependencies:
     - node.type.government_gazette
   module:
     - datetime
-    - file
     - link
     - text
     - user
@@ -26,12 +25,12 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 4
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     region: content
   field_external_link:
-    weight: 2
+    weight: 1
     label: above
     settings:
       trim_length: 80
@@ -42,16 +41,8 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-  field_file:
-    weight: 6
-    label: above
-    settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
-    type: file_default
-    region: content
   field_gazette_date:
-    weight: 1
+    weight: 0
     label: above
     settings:
       timezone_override: ''
@@ -60,7 +51,7 @@ content:
     type: datetime_default
     region: content
   field_gazette_issue_number:
-    weight: 5
+    weight: 3
     label: above
     settings:
       link_to_entity: false
@@ -68,6 +59,7 @@ content:
     type: string
     region: content
 hidden:
+  field_file: true
   field_gazette_machine_id: true
   field_gazette_supplement: true
   langcode: true

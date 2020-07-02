@@ -24,7 +24,6 @@ dependencies:
     - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
-    - file
     - text
     - user
 id: node.legislation.full
@@ -33,29 +32,21 @@ bundle: legislation
 mode: full
 content:
   field_content:
-    weight: 4
+    weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_files:
-    type: file_table
-    weight: 0
-    region: content
-    label: hidden
-    settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
   field_lifecycle_json:
     type: basic_string
-    weight: 6
+    weight: 5
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_parent_work:
-    weight: 3
+    weight: 2
     label: above
     settings:
       link: true
@@ -64,20 +55,20 @@ content:
     region: content
   field_raw_json:
     type: basic_string
-    weight: 5
+    weight: 4
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_toc:
     type: basic_string
-    weight: 1
+    weight: 0
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   links:
-    weight: 2
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -87,6 +78,7 @@ hidden:
   field_created_by_api: true
   field_expression_date: true
   field_external_link: true
+  field_files: true
   field_frbr_uri: true
   field_images: true
   field_publication_date: true

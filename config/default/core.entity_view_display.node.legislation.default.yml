@@ -23,7 +23,12 @@ dependencies:
     - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
+    - datetime
     - ds
+    - link
+    - paragraphs
+    - responsive_image
+    - taxonomy
     - text
     - user
 third_party_settings:
@@ -34,37 +39,42 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
-        classes: {  }
+        label: ''
         wrappers:
           header_left: div
           header_right: div
           full_width: div
-          sidebar_share: div
           sidebar: div
-          content: div
+          node_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
+        classes:
+          layout_class: {  }
+          header_left: {  }
+          header_right: {  }
+          full_width: {  }
+          sidebar: {  }
+          node_content: {  }
     regions:
       header_left:
-        - links
-        - field_publication_name
-        - field_created
-        - field_created_by_api
-        - field_expression_date
-        - field_external_link
-        - field_files
-        - field_images
-        - field_commencement_date
-        - field_lifecycle_json
-        - field_raw_json
-        - field_repeal
-        - field_stub
-        - field_tags
-        - field_toc
-        - field_publication_date
         - langcode
+        - field_commencement_date
+        - field_toc
+        - field_tags
+        - field_stub
+        - field_repeal
+        - field_raw_json
+        - field_publication_name
+        - field_publication_date
+        - field_lifecycle_json
+        - field_images
+        - field_external_link
+        - field_expression_date
+        - field_created_by_api
+        - field_created
+        - links
         - field_frbr_uri
         - field_parent_work
         - field_content
@@ -73,49 +83,163 @@ targetEntityType: node
 bundle: legislation
 mode: default
 content:
+  field_commencement_date:
+    type: datetime_custom
+    weight: 1
+    region: header_left
+    label: above
+    settings:
+      date_format: 'Y-m-d\TH:i:s'
+      timezone_override: ''
+    third_party_settings: {  }
   field_content:
-    weight: 3
+    weight: 18
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: content
+    region: header_left
+  field_created:
+    type: datetime_custom
+    weight: 14
+    region: header_left
+    label: above
+    settings:
+      date_format: 'Y-m-d\TH:i:s'
+      timezone_override: ''
+    third_party_settings: {  }
+  field_created_by_api:
+    type: boolean
+    weight: 13
+    region: header_left
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+  field_expression_date:
+    type: datetime_custom
+    weight: 12
+    region: header_left
+    label: above
+    settings:
+      date_format: 'Y-m-d\TH:i:s'
+      timezone_override: ''
+    third_party_settings: {  }
+  field_external_link:
+    type: link_separate
+    weight: 11
+    region: header_left
+    label: above
+    settings:
+      trim_length: 80
+      rel: ''
+      target: ''
+      url_only: false
+      url_plain: false
+    third_party_settings: {  }
   field_frbr_uri:
     type: string
-    weight: 1
-    region: content
+    weight: 16
+    region: header_left
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  field_images:
+    type: responsive_image
+    weight: 10
+    region: header_left
+    label: above
+    settings:
+      responsive_image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+  field_lifecycle_json:
+    type: basic_string
+    weight: 9
+    region: header_left
+    label: above
+    settings: {  }
+    third_party_settings: {  }
   field_parent_work:
-    weight: 2
+    weight: 17
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-    region: content
-  links:
+    region: header_left
+  field_publication_date:
+    type: datetime_custom
+    weight: 8
+    region: header_left
+    label: above
+    settings:
+      date_format: 'Y-m-d\TH:i:s'
+      timezone_override: ''
+    third_party_settings: {  }
+  field_publication_name:
+    type: string
+    weight: 7
+    region: header_left
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_raw_json:
+    type: basic_string
+    weight: 6
+    region: header_left
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_repeal:
+    type: paragraph_summary
+    weight: 5
+    region: header_left
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_stub:
+    type: boolean
+    weight: 4
+    region: header_left
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+  field_tags:
+    type: entity_reference_rss_category
+    weight: 3
+    region: header_left
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_toc:
+    type: basic_string
+    weight: 2
+    region: header_left
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language
     weight: 0
-    region: content
+    region: header_left
+    label: above
+    settings:
+      link_to_entity: false
+      native_language: false
+    third_party_settings: {  }
+  links:
+    weight: 15
+    region: header_left
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_commencement_date: true
-  field_created: true
-  field_created_by_api: true
-  field_expression_date: true
-  field_external_link: true
   field_files: true
-  field_images: true
-  field_lifecycle_json: true
-  field_publication_date: true
-  field_publication_name: true
-  field_raw_json: true
-  field_repeal: true
-  field_stub: true
-  field_tags: true
-  field_toc: true
-  langcode: true
   search_api_excerpt: true
