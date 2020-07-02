@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.teaser
     - field.storage.node.field_gazette_date
     - node.type.government_gazette
     - system.menu.main
@@ -10,6 +11,7 @@ dependencies:
     - datetime
     - node
     - user
+    - views_infinite_scroll
 id: gazettes_listing
 label: 'Gazettes Listing'
 module: views
@@ -308,6 +310,11 @@ display:
       defaults:
         title: false
         empty: false
+        arguments: false
+        style: false
+        row: false
+        pager: false
+        use_ajax: false
       empty:
         area:
           id: area
@@ -322,12 +329,51 @@ display:
             value: 'No latest gazettes found, please try again later.'
             format: full_html
           plugin_id: text
+      arguments: {  }
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 3
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: col-lg-4
+          row_class_default: false
+          row_class_custom: row
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
+      pager:
+        type: infinite_scroll
+        options:
+          items_per_page: 5
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: '‹ Previous'
+            next: 'Next ›'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'View more government gazettes'
+            automatically_load_content: false
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags:

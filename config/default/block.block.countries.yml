@@ -8,13 +8,13 @@ dependencies:
     - liibarrio2020
 id: countries
 theme: liibarrio2020
-region: footer
-weight: -6
+region: footer_third
+weight: -8
 provider: null
 plugin: hero_block
 settings:
   id: hero_block
-  label: 'Other Legal Information Institutes'
+  label: "Other African Legal Infomration Institutes"
   provider: liiweb
   label_display: visible
-visibility: {  }
+visibility: {}

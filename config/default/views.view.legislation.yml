@@ -216,6 +216,7 @@ display:
         filters: false
         filter_groups: false
         pager: false
+        use_ajax: false
       filters:
         status:
           value: '1'
@@ -249,7 +250,7 @@ display:
       pager:
         type: infinite_scroll
         options:
-          items_per_page: 3
+          items_per_page: 6
           offset: 0
           id: 0
           total_pages: null
@@ -268,6 +269,7 @@ display:
             button_text: 'View more Legislation'
             automatically_load_content: false
       block_hide_empty: true
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:

@@ -113,8 +113,19 @@
   </main>
   
   <footer role="contentinfo" class="layout-footer">
-    <div class="container">
-      {{ page.footer }}
+    <div class="container">      
+      {% if page.footer_first or page.footer_second or page.footer_third %}
+        <div class="layout-footer__top clearfix">
+          {{ page.footer_first }}
+          {{ page.footer_second }}
+          {{ page.footer_third }}            
+        </div>
+      {% endif %}
+      {% if page.footer_last %}
+        <div class="layout-footer__bottom">
+          {{ page.footer_last }}
+        </div>
+      {% endif %}
       <div class="copyright">Copyright &copy;<script>new Date().getFullYear()>2010&&document.write(+new Date().getFullYear());</script> AfricanLii.</div>
     </div>    
   </footer> 

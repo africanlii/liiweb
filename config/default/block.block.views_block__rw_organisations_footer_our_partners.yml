@@ -10,15 +10,15 @@ dependencies:
     - liibarrio2020
 id: views_block__rw_organisations_footer_our_partners
 theme: liibarrio2020
-region: footer
-weight: -5
+region: footer_second
+weight: -8
 provider: null
-plugin: 'views_block:rw_organisations-block_footer_our_partners'
+plugin: "views_block:rw_organisations-block_footer_our_partners"
 settings:
-  id: 'views_block:rw_organisations-block_footer_our_partners'
-  label: ''
+  id: "views_block:rw_organisations-block_footer_our_partners"
+  label: ""
   provider: views
   label_display: visible
-  views_label: ''
+  views_label: ""
   items_per_page: none
-visibility: {  }
+visibility: {}
