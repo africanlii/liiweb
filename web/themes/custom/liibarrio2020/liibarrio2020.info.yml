@@ -29,7 +29,10 @@ regions:
   content: Content
   sidebar_first: "Sidebar first"
   sidebar_second: "Sidebar second"
-  footer: Footer
+  footer_first: "Footer first"
+  footer_second: "Footer second"
+  footer_third: "Footer third"
+  footer_last: "Footer last"
 
   # top_header: "Top header"
   # top_header_form: "Top header form"
