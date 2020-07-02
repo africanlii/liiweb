@@ -14,7 +14,7 @@ provider: null
 plugin: hero_block
 settings:
   id: hero_block
-  label: "Other African Legal Infomration Institutes"
+  label: 'Other African Legal Infomration Institutes'
   provider: liiweb
   label_display: visible
-visibility: {}
+visibility: {  }

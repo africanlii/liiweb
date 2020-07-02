@@ -8,8 +8,8 @@ dependencies:
     - liibarrio2020
 id: liiwebsociallist
 theme: liibarrio2020
-region: header
-weight: 0
+region: pre_header
+weight: -8
 provider: null
 plugin: social_block
 settings:

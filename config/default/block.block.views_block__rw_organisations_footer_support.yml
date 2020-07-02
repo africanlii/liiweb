@@ -13,12 +13,12 @@ theme: liibarrio2020
 region: footer_second
 weight: -7
 provider: null
-plugin: "views_block:rw_organisations-block_footer_support"
+plugin: 'views_block:rw_organisations-block_footer_support'
 settings:
-  id: "views_block:rw_organisations-block_footer_support"
-  label: ""
+  id: 'views_block:rw_organisations-block_footer_support'
+  label: ''
   provider: views
   label_display: visible
-  views_label: ""
+  views_label: ''
   items_per_page: none
-visibility: {}
+visibility: {  }
