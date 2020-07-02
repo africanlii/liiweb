@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - liiweb
+    - user
   theme:
     - liibarrio2020
 id: liiwebsociallist
@@ -18,4 +19,11 @@ settings:
   provider: liiweb
   label_display: '0'
   inline: 1
-visibility: {  }
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

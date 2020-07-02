@@ -8,7 +8,7 @@ dependencies:
     - liibarrio2020
 id: textblock_2
 theme: liibarrio2020
-region: sidebar_first
+region: sidebar_second
 weight: -9
 provider: null
 plugin: text_block
