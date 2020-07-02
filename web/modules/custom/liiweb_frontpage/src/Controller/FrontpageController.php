@@ -94,7 +94,9 @@ class FrontpageController extends ControllerBase
   {
     $query = \Drupal::entityQuery('node')
       ->condition('type', 'page', '=')
-      ->condition('status', 1);
+      ->condition('status', 1)
+      ->condition('promote', 1)
+      ->range(0, 1);
     //    ->range(0, $count);
 
     $node = $query->execute();
