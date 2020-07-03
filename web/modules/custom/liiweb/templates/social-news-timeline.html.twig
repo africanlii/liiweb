@@ -12,13 +12,40 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId={{ facebook_app_id }}&autoLogAppEvents=1"></script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link flex-grow-1 text-center active" id="nav-twitter-tab" data-toggle="tab" href="#nav-twitter" role="tab" aria-controls="nav-twitter" aria-selected="true"><i class="fab fa-twitter fa-lg mr-2"></i>twitter</a>
+    <a class="nav-item nav-link flex-grow-1 text-center" id="nav-facebook-tab" data-toggle="tab" href="#nav-facebook" role="tab" aria-controls="nav-facebook" aria-selected="false"><i class="fab fa-facebook fa-lg mr-2"></i>facebook</a>    
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-twitter" role="tabpanel" aria-labelledby="nav-twitter-tab">    
+    <a class="twitter-timeline" data-height="400" data-theme="" data-small-header="true"  data-link-color="#2B7BB9" data-adapt-container-width="true"  href="https://twitter.com/{{ twitter_handle }}">Tweets by	{{ twitter_handle }}</a>
+  </div>
+  <div class="tab-pane fade" id="nav-facebook" role="tabpanel" aria-labelledby="nav-facebook-tab">
 
-<a class="twitter-timeline" data-width="450" data-height="500" data-theme="" data-small-header="true"  data-link-color="#2B7BB9" data-adapt-container-width="true"  href="https://twitter.com/{{ twitter_handle }}">Tweets by
+    {# Mobile Facebook #}
+    <div class="d-block d-md-none">
+      <div class="fb-page" data-href="{{ facebook_page_url }}" data-tabs="timeline" data-width="500" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+        <blockquote cite="{{ facebook_page_url }}" class="fb-xfbml-parse-ignore">
+          <a href="{{ facebook_page_url }}">African Legal Information Institute</a>
+        </blockquote>
+      </div>
+    </div>  
 
-	{{ twitter_handle }}</a>
+    {# Desktop Facebook - width set to sidebar width #}
+    <div class="d-none d-md-block">
+      <div class="fb-page" data-href="{{ facebook_page_url }}" data-tabs="timeline" data-width="240" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+        <blockquote cite="{{ facebook_page_url }}" class="fb-xfbml-parse-ignore">
+          <a href="{{ facebook_page_url }}">African Legal Information Institute</a>
+        </blockquote>
+      </div>
+    </div>
 
-<div class="fb-page" data-href="{{ facebook_page_url }}" data-tabs="timeline" data-width="" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
-	<blockquote cite="{{ facebook_page_url }}" class="fb-xfbml-parse-ignore">
-		<a href="{{ facebook_page_url }}">African Legal Information Institute</a>
-	</blockquote>
+  </div>  
 </div>
+
+
+
+
+

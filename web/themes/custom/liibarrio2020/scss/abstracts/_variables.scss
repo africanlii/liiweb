@@ -3,6 +3,11 @@
 // Google Fonts
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 
+// Fontawesome
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/fontawesome.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/regular.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/brands.min.css");
+
 // Colors
 $blue: #326fd1;
 $green: #5a9d1c;
@@ -15,6 +20,9 @@ $gray-dark: #4a4a4a;
 $primary: $blue;
 $secondary: $green;
 $danger: $red;
+
+$twitter-brand: #00a0cb;
+$facebook-brand: #0032cc;
 
 $theme-colors: (
   "gray-light": #ebebeb,
