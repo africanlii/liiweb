@@ -4,12 +4,13 @@ status: true
 dependencies:
   module:
     - liiweb
+    - user
   theme:
     - liibarrio2020
 id: liiwebsociallist
 theme: liibarrio2020
-region: header
-weight: 0
+region: pre_header
+weight: -8
 provider: null
 plugin: social_block
 settings:
@@ -18,4 +19,11 @@ settings:
   provider: liiweb
   label_display: '0'
   inline: 1
-visibility: {  }
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

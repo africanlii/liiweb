@@ -80,38 +80,61 @@
   
   {# Breadcrumb #}
   {% if page.breadcrumbs|render|striptags|trim is not empty %}
-  <div class="layout-breadcrumbs">
+  <section class="layout-breadcrumbs">
     <div class="container">
       {{ page.breadcrumbs }}
     </div>
-  </div>
+  </section>
   {% endif %}
 
-  {{ page.highlighted }}
+  {# Highlighted #}
+  {% if page.highlighted|render|striptags|trim is not empty %}
+  <section class="layout-highlighted">
+    <div class="container">
+      {{ page.highlighted }}
+    </div>
+  </section>
+  {% endif %}
 
-  {{ page.help }}
+  {# Help #}
+  {% if page.help|render|striptags|trim is not empty %}
+  <section class="layout-help">
+    <div class="container">
+       {{ page.help }}
+    </div>
+  </section>
+  {% endif %} 
 
-  <main role="main" class="layout-main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
-    <div class="layout-content container">
-      {{ page.content }}
-    </div>{# /.layout-content #}
-
-    {% if page.sidebar_first %}
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
-    {% endif %}
-
-    {% if page.sidebar_second %}
-      <aside class="layout-sidebar-second" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% endif %}
-
-  </main>
+  {# Main #}
+  <div id="main-wrapper" class="layout-main-wrapper">
+    <div id="main" class="container">
+      {{ page.breadcrumb }}
+      <div class="row row-offcanvas row-offcanvas-left clearfix">
+          <main class="layout-main col" id="content" role="main">
+            <section class="section">
+              <a id="main-content" tabindex="-1"></a>
+              {{ page.content }}
+            </section>
+          </main>
+        {% if page.sidebar_first %}
+          <div class="layout-sidebar layout-sidebar--first col" id="sidebar_first">
+            <aside class="section" role="complementary">
+              {{ page.sidebar_first }}
+            </aside>
+          </div>
+        {% endif %}
+        {% if page.sidebar_second %}
+          <div class="layout-sidebar layout-sidebar--second col" id="sidebar_second">
+            <aside class="section" role="complementary">
+              {{ page.sidebar_second }}
+            </aside>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
   
+  {# Footer #}
   <footer role="contentinfo" class="layout-footer">
     <div class="container">      
       {% if page.footer_first or page.footer_second or page.footer_third %}
