@@ -5,7 +5,6 @@ dependencies:
   config:
     - core.entity_view_mode.node.rss
     - core.entity_view_mode.node.teaser
-    - system.menu.main
   module:
     - node
     - user
@@ -265,7 +264,7 @@ display:
       path: node
       display_extenders: {  }
       menu:
-        type: normal
+        type: none
         title: Home
         description: ''
         expanded: false
