@@ -18,17 +18,21 @@ function liiweb_theme($existing, $type, $theme, $path) {
       'text' => Null,
     ],
   ];
+
   $theme['country_block'] = [
     'variables' => [
       'content' => Null,
     ],
   ];
+
   $theme['liiweb_file']  = [
       'variables' => [
         'files' => NULL,
       ],
     'template' => 'liiweb-file',
   ];
+
+
   $theme['social_news_timeline'] = [
     'template'            => 'social-news-timeline',
     'variables'           => [
@@ -40,6 +44,14 @@ function liiweb_theme($existing, $type, $theme, $path) {
     'path'                => $path,
   ];
 
+  $theme['liiweb_contact'] = [
+    'template'       => 'liiweb-contact',
+    'path'           => $path,
+    'variables'      => [
+      'intro'        => NULL,
+      'contact_entities' => [],
+    ],
+  ];
 
   return $theme;
 }

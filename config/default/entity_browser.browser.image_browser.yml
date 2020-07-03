@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - views.view.images
+    - views.view.entity_browser
   module:
     - entity_browser_entity_form
     - views
@@ -27,16 +27,16 @@ widgets:
       form_mode: default
       submit_text: 'Save image'
     uuid: 15790738-ef6a-4c85-a623-edc948bb7f6e
-    weight: 1
+    weight: -9
     label: 'Upload new image'
     id: entity_form
   07fcc187-ce18-47e1-9ed4-267b6d53f7be:
     settings:
-      view: images
+      view: entity_browser
       view_display: entity_browser_1
       submit_text: 'Select Image(s)'
       auto_select: false
     uuid: 07fcc187-ce18-47e1-9ed4-267b6d53f7be
-    weight: 2
-    label: view
+    weight: -10
+    label: 'Select image'
     id: view
