@@ -1,0 +1,10 @@
+uuid: d2d6904f-ad1f-4a0b-b223-cc4d5ec682b4
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.billboard_lg
+label: billboard_lg
+targetEntityType: media
+cache: true

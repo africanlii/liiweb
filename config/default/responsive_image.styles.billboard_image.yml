@@ -1,0 +1,35 @@
+uuid: ba73906f-8c19-4278-bfb9-ee35040d3c9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.billboard_16_9_large
+    - image.style.billboard_16_9_medium
+    - image.style.billboard_16_9_small
+  theme:
+    - bootstrap_barrio
+id: billboard_image
+label: 'Billboard Image'
+image_style_mappings:
+  -
+    breakpoint_id: bootstrap_barrio.extra
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: billboard_16_9_large
+  -
+    breakpoint_id: bootstrap_barrio.large
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: billboard_16_9_large
+  -
+    breakpoint_id: bootstrap_barrio.medium
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: billboard_16_9_medium
+  -
+    breakpoint_id: bootstrap_barrio.small
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: billboard_16_9_small
+breakpoint_group: bootstrap_barrio
+fallback_image_style: billboard_16_9_large

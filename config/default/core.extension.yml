@@ -9,6 +9,7 @@ module:
   bg_image_formatter: 0
   block: 0
   block_content: 0
+  block_field: 0
   breakpoint: 0
   captcha: 0
   chosen: 0
@@ -20,8 +21,8 @@ module:
   computed_field_php_formatter: 0
   config: 0
   config_translation: 0
-  crop: 0
   contextual: 0
+  crop: 0
   ctools: 0
   datetime: 0
   datetime_range: 0
@@ -53,7 +54,6 @@ module:
   layout_discovery: 0
   liiweb: 0
   liiweb_api: 0
-  liiweb_frontpage: 0
   link: 0
   locale: 0
   media: 0
@@ -67,6 +67,7 @@ module:
   responsive_image: 0
   rw_organisation: 0
   s3fs: 0
+  search: 0
   search_api: 0
   search_api_attachments: 0
   search_api_solr: 0

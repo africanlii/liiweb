@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.full
     - node.type.judgment
   module:
     - node
@@ -81,7 +81,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: teaser
+          view_mode: full
       fields:
         title:
           id: title
@@ -248,6 +248,79 @@ display:
             value: 'No Recent Judgement found.'
             format: full_html
           plugin_id: text
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  page_home:
+    display_plugin: page
+    id: page_home
+    display_title: 'PG: Most Recent Judgements'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      display_description: 'View all recent Judgements'
+      pager:
+        type: infinite_scroll
+        options:
+          items_per_page: 6
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'View more Judgements'
+            automatically_load_content: false
+      defaults:
+        pager: false
+        empty: false
+        header: false
+        title: false
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No Recent Judgement found.'
+            format: full_html
+          plugin_id: text
+      path: home
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<h3>Recent Legislative Amendments</h3>'
+            format: full_html
+          plugin_id: text
+      title: 'African Lii'
     cache_metadata:
       max-age: -1
       contexts:

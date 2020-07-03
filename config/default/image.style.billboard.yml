@@ -1,0 +1,15 @@
+uuid: 60cdbf43-3eaf-49d7-8e03-21b5a138a879
+langcode: en
+status: true
+dependencies: {  }
+name: billboard
+label: Billboard
+effects:
+  d2d0574b-e747-4405-b61d-0f9538f32e23:
+    uuid: d2d0574b-e747-4405-b61d-0f9538f32e23
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 900
+      anchor: center-center

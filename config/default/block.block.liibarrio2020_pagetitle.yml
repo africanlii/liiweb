@@ -4,12 +4,13 @@ status: true
 dependencies:
   module:
     - node
+    - system
   theme:
     - liibarrio2020
 id: liibarrio2020_pagetitle
 theme: liibarrio2020
 region: content
-weight: -6
+weight: -8
 provider: null
 plugin: page_title_block
 settings:
@@ -25,3 +26,8 @@ visibility:
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

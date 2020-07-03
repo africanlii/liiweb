@@ -1,0 +1,11 @@
+uuid: 43f299a1-cdad-4563-8ba6-d712c68393c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.billboard
+id: node.billboard
+target_entity_type_id: node
+target_bundle: billboard
+default_langcode: site_default
+language_alterable: false

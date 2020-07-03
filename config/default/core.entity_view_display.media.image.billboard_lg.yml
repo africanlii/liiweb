@@ -1,0 +1,43 @@
+uuid: 9800260b-0ae1-4596-9476-bbbdba8aab74
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.billboard_lg
+    - field.field.media.image.field_media_image
+    - media.type.image
+  module:
+    - responsive_bg_image_formatter
+id: media.image.billboard_lg
+targetEntityType: media
+bundle: image
+mode: billboard_lg
+content:
+  field_media_image:
+    label: visually_hidden
+    weight: 0
+    settings:
+      image_style: billboard_image
+      css_settings:
+        bg_image_selector: '#block-views-block-frontpage-block'
+        bg_image_z_index: auto
+        bg_image_color: '#FFFFFF'
+        bg_image_x: left
+        bg_image_y: top
+        bg_image_attachment: scroll
+        bg_image_repeat: no-repeat
+        bg_image_background_size: ''
+        bg_image_gradient: ''
+        bg_image_important: 1
+        bg_image_path_format: absolute
+        bg_image_background_size_ie8: 0
+    third_party_settings: {  }
+    type: responsive_bg_image_formatter
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true
