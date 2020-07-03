@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - liiweb
+    - system
   theme:
     - liibarrio2020
 id: socialnewstimeline
@@ -24,4 +25,9 @@ settings:
   twitter_theme_color: light
   facebook_page_url: 'https://www.facebook.com/africanlii'
   facebook_app_id: ''
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

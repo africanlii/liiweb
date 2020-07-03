@@ -19,7 +19,7 @@ content:
     settings:
       image_style: billboard_image
       css_settings:
-        bg_image_selector: '#block-views-block-frontpage-block'
+        bg_image_selector: "#block-views-block-frontpage-block\r\n#content"
         bg_image_z_index: auto
         bg_image_color: '#FFFFFF'
         bg_image_x: left
