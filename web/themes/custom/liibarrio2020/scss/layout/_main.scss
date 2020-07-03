@@ -3,8 +3,17 @@
 }
 
 .layout-main {
+  flex: 0 0 100%;
+
+  @include media-breakpoint-up(md) {
+    flex: 1;
+  }
 }
 
 .layout-sidebar {
-  flex: 0 1 270px;
+  flex: 0 0 100%;
+
+  @include media-breakpoint-up(md) {
+    flex: 0 1 270px;
+  }
 }
