@@ -33,48 +33,48 @@ class ContactBlock extends BlockBase {
     foreach ($address as $add => $val) {
       $items['address'][] = [
         '#markup' => '<p> ' . $val . '  </p>',
+        '#wrapper_attributes' => [
+          'class'             => [strtolower($add), 'list-item',],
+        ],
       ];
     }
 
     //Number
     $numbers = [
-      'number_1' => '+27 (xx) xxxx xxx',
+      'fas fa-phone-square' => '+27 (xx) xxxx xxx',
     ];
 
-    foreach ($numbers as $numb => $val) {
+    foreach ($numbers as $icon => $val) {
       $items['number'][] = [
-        '#markup' => '<a href="tel:' . $val . ' " class="icon--phone list-inline-item" >' . $val . ' </a>',
+        '#markup' => '<a href="tel:' . $val . ' " class="icon--phone list-inline-item" > <i class="'. $icon .'"></i>' . $val . ' </a>',
+        '#wrapper_attributes' => [
+          'class'             => ['list-item ' . strrchr($icon, ' ') . 'item'],
+        ],
       ];
     }
 
 
     //website email
     $items['website_email'][] = [
-      '#markup' => '<a href="www.liiaddress.org.za" class="icon--website list-inline-item" >www.liiaddress.org.za</a>',
+      '#markup' => '<a href="www.liiaddress.org.za" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i> www.liiaddress.org.za</a>',
     ];
     $items['website_email'][] = [
-      '#markup' => '<a href="mailto:info@liiaddress.org.za" class="icon--email list-inline-item" >info@liiaddress.org.za</a>',
+      '#markup' => '<a href="mailto:info@liiaddress.org.za" class="icon--email list-inline-item" ><i class="fas fa-at"></i> info@liiaddress.org.za</a>',
     ];
 
     //Social media
     $platforms = [
-      'Facebook'   => 'https://www.facebook.com/African-Unity-Life-Limited-1151981548191155/',
-      'YouTube'    => 'https://www.youtube.com/',
-      'Instagram'  => 'https://www.instagram.com/',
+      'fab fa-facebook-square' => 'https://facebook.com/africanlii/',
+      'fab fa-twitter-square'    => 'https://twitter.com/AfricanLII',
+      'fab fa-linkedin'  => 'https://instagram.com/AfricanLII',
     ];
 
-    foreach ($platforms as $service => $url) {
-      $link = Link::fromTextAndUrl($service, Url::fromUri($url, array(
-        'attributes' => array(
-          'target' => '_blank',
-          'class'  => [strtolower($service)],
-        )
-    )));
+    foreach ($platforms as $icon => $url) {
 
       $items['social_media'][] = [
-        '#markup'             => $link->toString(),
+        '#markup' => '<a href="'.$url. '" class="icon--email list-inline-item" target="_blank"><i class="'. $icon .'"></i>'. preg_replace("#^[^:/.]*[:/]+#i", "", $url) . '</a>',
         '#wrapper_attributes' => [
-          'class'             => [strtolower($service), 'list-inline-item',],
+          'class'             => ['list-item ' . strrchr($icon, ' ') . 'item'],
         ],
       ];
     }
@@ -85,9 +85,8 @@ class ContactBlock extends BlockBase {
       $build[$item] = [
         '#theme'      => 'item_list',
         '#type'       => 'ul',
-        // '#title'      => t('Follow us'),
         '#attributes' => [
-          'class'     => ['list-'. $item . 'list--item' ],
+          'class'     => ['list--item-' . $item ],
         ],
         '#items'      => $items[$item],
       ];

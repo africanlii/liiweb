@@ -1,0 +1,21 @@
+uuid: 76d92e21-ccd7-4dfb-9cc2-2009ad677413
+langcode: en
+status: true
+dependencies:
+  module:
+    - liiweb
+  theme:
+    - liibarrio2020
+id: liiwebsupportnavblock
+theme: liibarrio2020
+region: pre_header
+weight: 0
+provider: null
+plugin: support_nav_block
+settings:
+  id: support_nav_block
+  label: 'liiweb: Support Nav Block'
+  provider: liiweb
+  label_display: '0'
+  inline: 1
+visibility: {  }

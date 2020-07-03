@@ -9,15 +9,15 @@ use Drupal\Core\Link;
 use Drupal\Core\Url;
 
 /**
- * Provides a 'SocialBlock' block.
+ * Provides a 'SupportNavBlock' block.
  *
  * @Block(
- *  id = "social_block",
- *  admin_label = @Translation("liiweb: Social list"),
- *  label = @Translation("Follow us"),
+ *  id = "support_nav_block",
+ *  admin_label = @Translation("liiweb: Support Nav Block"),
+ *  label = @Translation("Get help"),
  * )
  */
-class SocialBlock extends BlockBase {
+class SupportNavBlock extends BlockBase {
 
   /**
    * {@inheritdoc}
@@ -55,22 +55,22 @@ class SocialBlock extends BlockBase {
    */
   public function build() {
     // @TODO: Make these configureable
-    // @TODO: Make these have actual links to social media
 
 
-    //Social media
+    //Help links
     $platforms = [
-      'fa-facebook-square' => 'https://facebook.com/africanlii/',
-      'fa-twitter-square'    => 'https://twitter.com/AfricanLII',
-      'fa-linkedin'  => 'https://instagram.com/AfricanLII',
+      'fab fa-comment-dots' => '/feedback',
+      'fas fa-at'    => '/contact-us',
+      'far fa-question-circle'  => '/help',
+      'fas fa-info-circle'  => '/about',
     ];
 
     foreach ($platforms as $icon => $url) {
 
       $items['social_media'][] = [
-        '#markup' => '<a href="' . $url . '" class="icon--email list-inline-item" target="_blank"><i class="fab ' . $icon . '"></i>' . preg_replace("#^[^:/.]*[:/]+#i", "", $url) . '</a>',
+        '#markup' => '<a href="' . $url . '" class="icon--email list-inline-item" ><i class="' . $icon . '"></i></a>',
         '#wrapper_attributes' => [
-          'class'             => ['list-item item-' . $icon],
+          'class'             => ['list-item ' . strrchr($icon, ' '). '-item'],
         ],
       ];
     }
@@ -79,9 +79,8 @@ class SocialBlock extends BlockBase {
     $build['social_block_inline'] = [
       '#theme'      => 'item_list',
       '#type'       => 'ul',
-      // '#title'      => t('Follow us'),
       '#attributes' => [
-        'class'     => ['list-inline', 'social-item-list'],
+        'class'     => ['list-inline', 'support-links-item-list'],
       ],
       '#items'      => $items,
     ];
