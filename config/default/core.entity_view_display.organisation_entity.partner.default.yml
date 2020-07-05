@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.organisation_entity.partner.field_image
+    - field.field.organisation_entity.partner.field_partner
+    - field.field.organisation_entity.partner.field_support_partner
     - image.style.thumbnail
     - rw_organisation.organisation_entity_type.partner
   module:
@@ -22,7 +24,18 @@ content:
     third_party_settings: {  }
     type: image
     region: content
+  field_partner:
+    weight: 1
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
 hidden:
+  field_support_partner: true
   langcode: true
   name: true
   organisation_logo__linked: true

@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.taxonomy_term.logo
     - taxonomy.vocabulary.country
   module:
+    - slick_views
     - taxonomy
     - user
 id: country
@@ -196,6 +197,51 @@ display:
       title: 'Visit one of the fifteen  Legal Infomration Institutes accross African'
       defaults:
         title: false
+        style: false
+        row: false
+      style:
+        type: slick
+        options:
+          vanilla: true
+          optionset: country
+          skin: default
+          layout: ''
+          caption:
+            name: '0'
+          optionset_thumbnail: ''
+          skin_thumbnail: ''
+          thumbnail_position: ''
+          thumbnail_caption: ''
+          grid: null
+          grid_medium: null
+          grid_small: null
+          visible_items: null
+          preserve_keys: false
+          image: ''
+          thumbnail: ''
+          overlay: ''
+          title: ''
+          link: ''
+          class: ''
+          id: ''
+          override: false
+          overridables:
+            arrows: '0'
+            autoplay: '0'
+            dots: '0'
+            draggable: '0'
+            infinite: '0'
+            mouseWheel: '0'
+            randomize: '0'
+            variableWidth: '0'
+          cache: 0
+          current_view_mode: block_2
+          thumbnail_effect: ''
+      row:
+        type: 'entity:taxonomy_term'
+        options:
+          relationship: none
+          view_mode: logo
     cache_metadata:
       max-age: -1
       contexts:

@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.organisation_entity.partner.field_image
+    - field.field.organisation_entity.partner.field_partner
+    - field.field.organisation_entity.partner.field_support_partner
     - image.style.thumbnail
     - rw_organisation.organisation_entity_type.partner
   module:
@@ -20,6 +22,20 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
+  field_partner:
+    weight: 28
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_support_partner:
+    weight: 27
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   langcode:
     type: language_select

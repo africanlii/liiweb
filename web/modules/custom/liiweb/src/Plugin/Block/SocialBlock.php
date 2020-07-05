@@ -58,18 +58,22 @@ class SocialBlock extends BlockBase {
     // @TODO: Make these have actual links to social media
 
 
-    $items[] = [
-        '#markup' => '<a href="/" class="icon-- list-inline-item" >Chat</a>',
+    //Social media
+    $platforms = [
+      'fa-facebook-square' => 'https://facebook.com/africanlii/',
+      'fa-twitter-square'    => 'https://twitter.com/AfricanLII',
+      'fa-linkedin'  => 'https://instagram.com/AfricanLII',
+    ];
+
+    foreach ($platforms as $icon => $url) {
+
+      $items['social_media'][] = [
+        '#markup' => '<a href="' . $url . '" class="icon--email list-inline-item" target="_blank"><i class="fab ' . $icon . '"></i>' . preg_replace("#^[^:/.]*[:/]+#i", "", $url) . '</a>',
+        '#wrapper_attributes' => [
+          'class'             => ['list-item item-' . $icon],
+        ],
       ];
-    $items[] = [
-      '#markup' => '<a href="/" class="icon-- list-inline-item" >Email</a>',
-    ];
-    $items[] = [
-      '#markup' => '<a href="/" class="icon-- list-inline-item" >Help</a>',
-    ];
-    $items[] = [
-      '#markup' => '<a href="/" class="icon-- list-inline-item" >Question</a>',
-    ];
+    }
 
     $build = [];
     $build['social_block_inline'] = [

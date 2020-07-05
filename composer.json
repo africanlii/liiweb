@@ -53,6 +53,8 @@
         "drupal/search_api": "^1.14",
         "drupal/search_api_attachments": "^1.0@beta",
         "drupal/search_api_solr": "^3.7",
+        "drupal/slick": "^2.2",
+        "drupal/slick_views": "^2.3",
         "drupal/smtp": "^1.0@beta",
         "drupal/svg_formatter": "^1.14",
         "drupal/taxonomy_manager": "^1.0",
