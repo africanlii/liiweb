@@ -8,6 +8,7 @@ dependencies:
     - system.menu.main
   module:
     - node
+    - similarterms
     - user
     - views_infinite_scroll
 id: legislation
@@ -279,10 +280,81 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  page_1:
+  block_related_legislation:
+    display_plugin: block
+    id: block_related_legislation
+    display_title: 'BK: Related Legislation'
+    position: 3
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      title: 'Related Legislation'
+      defaults:
+        title: false
+        arguments: false
+        pager: false
+      arguments:
+        similar_nid:
+          id: similar_nid
+          table: node
+          field: similar_nid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          default_action: default
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: node
+          default_argument_options: {  }
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            items_per_page: 25
+            override: false
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          break_phrase: false
+          not: 0
+          vocabularies:
+            country: 0
+            court_names: 0
+            judges: 0
+            legislation_tags: 0
+            matter_type: 0
+            tags: 0
+          include_args: 0
+          entity_type: node
+          plugin_id: similar_terms_arg
+      pager:
+        type: some
+        options:
+          items_per_page: 4
+          offset: 0
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  page_legislation:
     display_plugin: page
-    id: page_1
-    display_title: Page
+    id: page_legislation
+    display_title: 'PG: Legislation'
     position: 1
     display_options:
       display_extenders: {  }
@@ -293,9 +365,10 @@ display:
         description: Legislation
         expanded: false
         parent: ''
-        weight: 0
+        weight: -5
         context: '0'
         menu_name: main
+      display_description: ''
     cache_metadata:
       max-age: -1
       contexts:

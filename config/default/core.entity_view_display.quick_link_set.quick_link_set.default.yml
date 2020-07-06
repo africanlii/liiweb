@@ -1,0 +1,63 @@
+uuid: 7eafd389-e623-4551-b18e-d49b7e45315c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.quick_link_set.quick_link_set.field_body
+    - field.field.quick_link_set.quick_link_set.field_link
+    - field.field.quick_link_set.quick_link_set.field_link_type
+  module:
+    - link
+    - options
+    - rw_quicklinks
+    - text
+    - user
+id: quick_link_set.quick_link_set.default
+targetEntityType: quick_link_set
+bundle: quick_link_set
+mode: default
+content:
+  field_body:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_link_type:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  name:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  search_api_excerpt: true

@@ -1,4 +1,3 @@
-label: Organisation
 display:
   default:
     display_title: Maître
@@ -22,4 +21,3 @@ display:
       fields:
         name:
           separator: ', '
-      title: Organisation
