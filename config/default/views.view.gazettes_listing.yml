@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.listing
     - field.storage.node.field_gazette_date
     - node.type.government_gazette
     - system.menu.main
@@ -331,21 +331,16 @@ display:
           plugin_id: text
       arguments: {  }
       style:
-        type: grid
+        type: default
         options:
+          row_class: ''
+          default_row_class: true
           uses_fields: false
-          columns: 3
-          automatic_width: false
-          alignment: horizontal
-          col_class_default: false
-          col_class_custom: col-lg-4
-          row_class_default: false
-          row_class_custom: row
       row:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: teaser
+          view_mode: listing
       pager:
         type: infinite_scroll
         options:

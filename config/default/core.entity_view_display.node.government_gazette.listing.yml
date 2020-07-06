@@ -1,8 +1,9 @@
-uuid: b5265099-1aa5-4e0c-86a7-7c0cf62c4d32
+uuid: 7598f454-8e68-4a00-91ac-5e904a894ff1
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.listing
     - field.field.node.government_gazette.body
     - field.field.node.government_gazette.field_external_link
     - field.field.node.government_gazette.field_file
@@ -14,10 +15,10 @@ dependencies:
   module:
     - datetime
     - user
-id: node.government_gazette.default
+id: node.government_gazette.listing
 targetEntityType: node
 bundle: government_gazette
-mode: default
+mode: listing
 content:
   field_gazette_date:
     weight: 0

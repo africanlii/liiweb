@@ -1,0 +1,10 @@
+.node--view-mode-listing {
+  .node {
+    &__title {
+      a {
+        color: $body-color;
+        font-weight: 700;
+      }
+    }
+  }
+}

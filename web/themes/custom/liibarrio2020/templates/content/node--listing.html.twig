@@ -70,6 +70,10 @@
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
     'clearfix',
+    'd-flex',
+    'flex-column',
+    'flex-lg-row',
+    'justify-content-lg-between',
   ]
 %}
 <article{{ attributes.addClass(classes) }}>
@@ -77,7 +81,7 @@
     <header>
       {{ title_prefix }}
       {% if not page %}
-        <h4{{ title_attributes.addClass('node__title', 'h6') }}>
+        <h4{{ title_attributes.addClass('node__title','h6', 'mb-0') }}>
           <a href="{{ url }}" rel="bookmark">{{ label }}</a>
         </h4>
       {% endif %}

@@ -34,6 +34,34 @@
     background: $white;
   }
 
+  .view-content {
+    padding: calc(#{$grid-gutter-width} / 2);
+    border: 1px solid #d5d5d5;
+    border-bottom: none;
+  }
+
+  .views-row {
+    position: relative;
+    &:not(:nth-child(1)) {
+      margin-top: 0.5rem;
+    }
+
+    &:nth-child(5n + 6) {
+      padding-top: calc(#{$grid-gutter-width} / 2);
+      margin-top: calc(#{$grid-gutter-width} / 2);
+
+      &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 0;
+        height: 1px;
+        width: calc(100% - #{$grid-gutter-width});
+        background: #d5d5d5;
+      }
+    }
+  }
+
   .view-empty {
     padding: calc(#{$grid-gutter-width} / 2);
     border: 1px solid #d5d5d5;
@@ -41,12 +69,12 @@
 
   .views-view-grid.horizontal {
     position: relative;
-    padding: calc(#{$grid-gutter-width} / 2);
-    border: 1px solid #d5d5d5;
     border-bottom: none;
 
     &:not(:nth-child(1)) {
       border-top: none;
+      margin-top: calc(#{$grid-gutter-width} / 2);
+      padding-top: calc(#{$grid-gutter-width} / 2);
 
       &:before {
         content: "";
