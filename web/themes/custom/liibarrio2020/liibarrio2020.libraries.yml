@@ -4,9 +4,19 @@ global-styling:
     js/popper.min.js: {}
     js/bootstrap.min.js: {}
     js/global.js: {}
+    js/legislation.js: {} # Need to be own library
   css:
     component:
       css/main.css: {}
+      css/indigo-web.css: {} # Need to be own library
+
   dependencies:
     - core/jquery
     - core/drupal
+# lii-legislation:
+#   version: VERSION
+#   css:
+#     theme:
+#       css/indigo-web.css: {}
+#   js:
+#     js/legislation.js: {}

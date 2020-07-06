@@ -30,12 +30,3 @@ function liibarrio2020_form_system_theme_settings_alter(&$form, FormStateInterfa
     'bg-transparent' => t('Transparent'),
   );
 }
-
-/**
- * Implements hook_preprocess_HOOK() for page templates.
- */
-function liibarrio2020_preprocess_page(&$variables) {
-  $content_width = 'col';
-  $sidebar_first_width = 'col';
-  $sidebar_second_width = 'col';  
-}

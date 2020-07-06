@@ -24,60 +24,12 @@ dependencies:
     - node.type.legislation
   module:
     - datetime
-    - ds
     - link
     - paragraphs
     - responsive_image
     - taxonomy
     - text
     - user
-third_party_settings:
-  ds:
-    layout:
-      id: liibarrio_content_general
-      library: null
-      disable_css: false
-      entity_classes: all_classes
-      settings:
-        label: ''
-        wrappers:
-          header_left: div
-          header_right: div
-          full_width: div
-          sidebar: div
-          node_content: div
-        outer_wrapper: div
-        attributes: ''
-        link_attribute: ''
-        link_custom: ''
-        classes:
-          layout_class: {  }
-          header_left: {  }
-          header_right: {  }
-          full_width: {  }
-          sidebar: {  }
-          node_content: {  }
-    regions:
-      header_left:
-        - langcode
-        - field_commencement_date
-        - field_toc
-        - field_tags
-        - field_stub
-        - field_repeal
-        - field_raw_json
-        - field_publication_name
-        - field_publication_date
-        - field_lifecycle_json
-        - field_images
-        - field_external_link
-        - field_expression_date
-        - field_created_by_api
-        - field_created
-        - links
-        - field_frbr_uri
-        - field_parent_work
-        - field_content
 id: node.legislation.default
 targetEntityType: node
 bundle: legislation
@@ -86,7 +38,7 @@ content:
   field_commencement_date:
     type: datetime_custom
     weight: 1
-    region: header_left
+    region: content
     label: above
     settings:
       date_format: 'Y-m-d\TH:i:s'
@@ -98,11 +50,11 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: header_left
+    region: content
   field_created:
     type: datetime_custom
     weight: 14
-    region: header_left
+    region: content
     label: above
     settings:
       date_format: 'Y-m-d\TH:i:s'
@@ -111,7 +63,7 @@ content:
   field_created_by_api:
     type: boolean
     weight: 13
-    region: header_left
+    region: content
     label: above
     settings:
       format: default
@@ -121,7 +73,7 @@ content:
   field_expression_date:
     type: datetime_custom
     weight: 12
-    region: header_left
+    region: content
     label: above
     settings:
       date_format: 'Y-m-d\TH:i:s'
@@ -130,7 +82,7 @@ content:
   field_external_link:
     type: link_separate
     weight: 11
-    region: header_left
+    region: content
     label: above
     settings:
       trim_length: 80
@@ -142,7 +94,7 @@ content:
   field_frbr_uri:
     type: string
     weight: 16
-    region: header_left
+    region: content
     label: hidden
     settings:
       link_to_entity: false
@@ -150,7 +102,7 @@ content:
   field_images:
     type: responsive_image
     weight: 10
-    region: header_left
+    region: content
     label: above
     settings:
       responsive_image_style: ''
@@ -159,7 +111,7 @@ content:
   field_lifecycle_json:
     type: basic_string
     weight: 9
-    region: header_left
+    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -170,11 +122,11 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-    region: header_left
+    region: content
   field_publication_date:
     type: datetime_custom
     weight: 8
-    region: header_left
+    region: content
     label: above
     settings:
       date_format: 'Y-m-d\TH:i:s'
@@ -183,7 +135,7 @@ content:
   field_publication_name:
     type: string
     weight: 7
-    region: header_left
+    region: content
     label: above
     settings:
       link_to_entity: false
@@ -191,21 +143,21 @@ content:
   field_raw_json:
     type: basic_string
     weight: 6
-    region: header_left
+    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   field_repeal:
     type: paragraph_summary
     weight: 5
-    region: header_left
+    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   field_stub:
     type: boolean
     weight: 4
-    region: header_left
+    region: content
     label: above
     settings:
       format: default
@@ -215,21 +167,21 @@ content:
   field_tags:
     type: entity_reference_rss_category
     weight: 3
-    region: header_left
+    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   field_toc:
     type: basic_string
     weight: 2
-    region: header_left
+    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   langcode:
     type: language
     weight: 0
-    region: header_left
+    region: content
     label: above
     settings:
       link_to_entity: false
@@ -237,7 +189,7 @@ content:
     third_party_settings: {  }
   links:
     weight: 15
-    region: header_left
+    region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
