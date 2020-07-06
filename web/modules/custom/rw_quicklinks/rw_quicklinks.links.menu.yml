@@ -1,0 +1,14 @@
+
+# Quicklink set menu items definition
+entity.quick_link_set.collection:
+  title: 'Quicklink set list'
+  route_name: entity.quick_link_set.collection
+  description: 'List Quicklink set entities'
+  parent: system.admin_structure
+  weight: 100
+
+quick_link_set.admin.structure.settings:
+  title: 'Quicklink set settings'
+  description: 'Configure Quicklink set entities'
+  route_name: quick_link_set.settings
+  parent: system.admin_structure

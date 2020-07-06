@@ -24,6 +24,7 @@
         "drupal/address": "^1.8",
         "drupal/admin_toolbar": "^2.3",
         "drupal/auto_entitylabel": "^3.0",
+        "drupal/better_exposed_filters": "^4.0@beta",
         "drupal/block_field": "^1.0@RC",
         "drupal/bootstrap_barrio": "^5.0",
         "drupal/bootstrap_sass": "^5.0",
