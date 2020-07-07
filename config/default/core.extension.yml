@@ -30,6 +30,8 @@ module:
   dblog: 0
   devel: 0
   devel_generate: 0
+  ds_devel: 0
+  ds_switch_view_mode: 0
   dynamic_page_cache: 0
   editor: 0
   entity_browser: 0
@@ -100,6 +102,7 @@ module:
   menu_link_content: 1
   pathauto: 1
   xmlsitemap: 1
+  ds_extras: 2
   content_translation: 10
   views: 10
   paragraphs: 11
