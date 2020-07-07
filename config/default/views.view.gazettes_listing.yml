@@ -373,6 +373,64 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_gazette_date'
+  block_related_gazettes:
+    display_plugin: block
+    id: block_related_gazettes
+    display_title: 'BK: Related  Gazettes'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      display_description: 'Veiw all related Government Gazettes'
+      title: 'Related  gazettes'
+      defaults:
+        title: false
+        empty: false
+        arguments: false
+        style: false
+        row: false
+        pager: false
+        use_ajax: false
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No latest gazettes found, please try again later.'
+            format: full_html
+          plugin_id: text
+      arguments: {  }
+      style:
+        type: default
+        options:
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: listing
+      pager:
+        type: some
+        options:
+          items_per_page: 3
+          offset: 0
+      use_ajax: true
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_gazette_date'
   page_gazettes_listing:
     display_plugin: page
     id: page_gazettes_listing
@@ -387,7 +445,7 @@ display:
         description: ''
         expanded: false
         parent: ''
-        weight: 1
+        weight: -3
         context: '0'
         menu_name: main
       display_description: ''

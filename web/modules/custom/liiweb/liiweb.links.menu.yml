@@ -1,12 +1,12 @@
-liiweb.contact:
-  title: 'Contact us'
-  description: 'Get in touch with us, or browse contact information '
-  parent: main
-  menu_name: main
-  route_name: liiweb.contact_controller_build
-  options:
-    attributes:
-      class:
-        - contact-link
-        - menu-item--contact-link
-  weight: 9
+# liiweb.contact:
+#   title: 'Contact us'
+#   description: 'Get in touch with us, or browse contact information '
+#   parent: main
+#   menu_name: main
+#   route_name: liiweb.contact_controller_build
+#   options:
+#     attributes:
+#       class:
+#         - contact-link
+#         - menu-item--contact-link
+#   weight: 9

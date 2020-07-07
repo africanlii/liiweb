@@ -1,0 +1,5 @@
+quicklinks:
+  version: 1.x
+  css:
+    layout:
+      css/rw_quicklinks.module.css: {}
