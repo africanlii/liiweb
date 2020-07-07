@@ -12,7 +12,7 @@ dependencies:
 id: views_block__gazettes_listing_block_latest_gazette
 theme: liibarrio2020
 region: content
-weight: -5
+weight: -8
 provider: null
 plugin: 'views_block:gazettes_listing-block_latest_gazette'
 settings:

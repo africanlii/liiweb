@@ -101,7 +101,7 @@ class SocialNewsTimelineBlock extends BlockBase
       '#facebook_app_id'   => $this->configuration['facebook_app_id'],
 
       '#attached' => [
-        'library' => ['jasm/socia_news_timeline'],
+        'library' => ['liiweb/socia_news_timeline'],
       ],
       '#twitter_handle' => $this->configuration['twitter_account_name'],
       '#width'          => $this->configuration['twitter_window_width'],
