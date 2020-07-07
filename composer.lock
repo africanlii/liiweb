@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ffdd8d860dfc5f5f6e5e15fcdbd9123b",
+    "content-hash": "3d5adc7f1efbc5bd14fe62b24ad0ee25",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4650,6 +4650,48 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/inline_entity_form"
             }
+        },
+        {
+            "name": "drupal/jasm",
+            "version": "dev-2.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jasm.git",
+                "reference": "cf5185ac3e8a7425938d3b1980c07ae5da6d4169"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.x-dev",
+                    "datestamp": "1563176887",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "uberEllis",
+                    "homepage": "https://www.drupal.org/user/20502"
+                }
+            ],
+            "description": "Provides an easy way to capture and list 3rd party social media accounts to build links for display in various ways on the front-end of this website",
+            "homepage": "https://www.drupal.org/project/jasm",
+            "support": {
+                "source": "https://git.drupalcode.org/project/jasm"
+            },
+            "time": "2019-07-15T07:42:22+00:00"
         },
         {
             "name": "drupal/kint",
@@ -10024,6 +10066,12 @@
                 "sass",
                 "web"
             ],
+            "funding": [
+                {
+                    "url": "https://opencollective.com/bootstrap",
+                    "type": "open_collective"
+                }
+            ],
             "time": "2020-05-12T17:44:42+00:00"
         },
         {
@@ -13501,6 +13549,7 @@
         "drupal/block_field": 5,
         "drupal/group": 5,
         "drupal/inline_entity_form": 5,
+        "drupal/jasm": 20,
         "drupal/search_api_attachments": 10,
         "drupal/smtp": 10,
         "drupal/toolbar_extras": 10,
@@ -13512,5 +13561,6 @@
         "php": "^7.3",
         "ext-json": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

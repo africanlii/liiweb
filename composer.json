@@ -45,6 +45,7 @@
         "drupal/google_analytics": "^3.0",
         "drupal/group": "^1.0@RC",
         "drupal/inline_entity_form": "^1.0@RC",
+        "drupal/jasm": "2.x-dev",
         "drupal/kint": "^2.1",
         "drupal/paragraphs": "^1.12",
         "drupal/pathauto": "^1.7",
