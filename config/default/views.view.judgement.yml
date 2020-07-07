@@ -371,7 +371,7 @@ display:
   page_home:
     display_plugin: page
     id: page_home
-    display_title: 'PG: Most Recent Judgements'
+    display_title: 'PG: (Homepage) Most Recent Judgements'
     position: 1
     display_options:
       display_extenders: {  }
@@ -432,6 +432,15 @@ display:
             format: full_html
           plugin_id: text
       title: 'African Lii'
+      menu:
+        type: normal
+        title: Home
+        description: ''
+        expanded: false
+        parent: ''
+        weight: -10
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:

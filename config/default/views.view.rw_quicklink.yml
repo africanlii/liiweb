@@ -7,7 +7,6 @@ dependencies:
   module:
     - better_exposed_filters
     - ds
-    - options
     - rw_quicklinks
 id: rw_quicklink
 label: Quicklink
@@ -266,50 +265,6 @@ display:
           entity_type: quick_link_set
           entity_field: status
           plugin_id: boolean
-        field_link_type_value:
-          id: field_link_type_value
-          table: quick_link_set__field_link_type
-          field: field_link_type_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            all: all
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_link_type_value_op
-            label: 'Link Type'
-            description: ''
-            use_operator: false
-            operator: field_link_type_value_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_link_type_value
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: true
-          plugin_id: list_field
       defaults:
         filters: false
         filter_groups: false
@@ -357,6 +312,5 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - url.query_args
       tags: {  }
