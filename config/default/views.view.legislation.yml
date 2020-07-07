@@ -328,10 +328,10 @@ display:
           break_phrase: false
           not: 0
           vocabularies:
+            legislation_tags: legislation_tags
             country: 0
             court_names: 0
             judges: 0
-            legislation_tags: 0
             matter_type: 0
             tags: 0
           include_args: 0

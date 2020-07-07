@@ -1,8 +1,9 @@
-uuid: 1c3bb4f6-ddbd-4e7e-82ca-77b95ead4749
+uuid: 3066c52e-2157-477c-82c9-2c07780cd7a5
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.organisation_entity.logo
     - field.field.organisation_entity.partner.field_image
     - field.field.organisation_entity.partner.field_partner
     - field.field.organisation_entity.partner.field_support_partner
@@ -10,13 +11,13 @@ dependencies:
     - rw_organisation.organisation_entity_type.partner
   module:
     - image
-id: organisation_entity.partner.default
+id: organisation_entity.partner.logo
 targetEntityType: organisation_entity
 bundle: partner
-mode: default
+mode: logo
 content:
   field_image:
-    weight: 2
+    weight: 0
     label: hidden
     settings:
       image_style: thumbnail
@@ -24,27 +25,9 @@ content:
     third_party_settings: {  }
     type: image
     region: content
-  field_partner:
-    type: boolean
-    weight: 1
-    region: content
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-  field_support_partner:
-    type: boolean
-    weight: 0
-    region: content
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
 hidden:
+  field_partner: true
+  field_support_partner: true
   langcode: true
   name: true
   organisation_logo__linked: true
