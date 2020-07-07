@@ -6,7 +6,6 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
-use Drupal\jasm\Entity\JasmServiceEntity;
 
 /**
  * Provides a 'SocialNewsTimelineBlock' block.
@@ -33,16 +32,6 @@ class SocialNewsTimelineBlock extends BlockBase
       'twitter_window_height' => 600,
       'twitter_theme_color'   => 'light',
     ];
-
-    // Load all the JASM service entities
-    $jasm_services = JasmServiceEntity::loadMultiple();
-
-    // Check if any has a "Facebook" preset and use those as defaults
-    foreach ($jasm_services as $jasm_service) {
-      if ($jasm_service->get('preset') == 'facebook') {
-        $configuration['facebook_page_url'] = $jasm_service->get('link');
-      }
-    }
 
     return $configuration + parent::defaultConfiguration();
   }
@@ -105,12 +94,6 @@ class SocialNewsTimelineBlock extends BlockBase
   {
     $build = [];
 
-    // @TODO: Add this as a library somehow. Not sure how to inject a template
-    //        into the site head after the <body> field that way tho 🤔
-    // $build['jasm_facebook_sdk'] = [
-    //   '#theme'           => 'jasm_facebook_sdk',
-    //   '#facebook_app_id' => $this->configuration['facebook_app_id'],
-    // ];
 
     $build['social_news_timeline'] = [
       '#theme'             => 'social_news_timeline',

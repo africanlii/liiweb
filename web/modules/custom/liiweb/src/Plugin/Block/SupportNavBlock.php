@@ -60,7 +60,7 @@ class SupportNavBlock extends BlockBase {
     //Help links
     $platforms = [
       'fab fa-comment-dots' => '/feedback',
-      'fas fa-at'    => '/contact-us',
+      'fas fa-at'    => '/contact',
       'far fa-question-circle'  => '/help',
       'fas fa-info-circle'  => '/about',
     ];

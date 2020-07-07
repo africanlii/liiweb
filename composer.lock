@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d29a4faabd60537e36ea8dcf69a8c116",
+    "content-hash": "ffdd8d860dfc5f5f6e5e15fcdbd9123b",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4652,48 +4652,6 @@
             }
         },
         {
-            "name": "drupal/jasm",
-            "version": "dev-2.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/jasm.git",
-                "reference": "cf5185ac3e8a7425938d3b1980c07ae5da6d4169"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-2.x-dev",
-                    "datestamp": "1563176887",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "uberEllis",
-                    "homepage": "https://www.drupal.org/user/20502"
-                }
-            ],
-            "description": "Provides an easy way to capture and list 3rd party social media accounts to build links for display in various ways on the front-end of this website",
-            "homepage": "https://www.drupal.org/project/jasm",
-            "support": {
-                "source": "https://git.drupalcode.org/project/jasm"
-            },
-            "time": "2019-07-15T07:42:22+00:00"
-        },
-        {
             "name": "drupal/kint",
             "version": "2.1.0",
             "require": {
@@ -5235,58 +5193,6 @@
                 "source": "http://git.drupal.org/project/search_api_solr.git",
                 "issues": "https://www.drupal.org/project/issues/search_api_solr",
                 "irc": "https://drupalchat.me/channel/search"
-            }
-        },
-        {
-            "name": "drupal/similarterms",
-            "version": "1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/similarterms.git",
-                "reference": "8.x-1.4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/similarterms-8.x-1.4.zip",
-                "reference": "8.x-1.4",
-                "shasum": "d821f881203a634d44a174ff7a793e408ea7890f"
-            },
-            "require": {
-                "drupal/core": "^8"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.4",
-                    "datestamp": "1568313784",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "ericpugh",
-                    "homepage": "https://www.drupal.org/user/130084"
-                },
-                {
-                    "name": "rmiddle",
-                    "homepage": "https://www.drupal.org/user/192183"
-                },
-                {
-                    "name": "takim",
-                    "homepage": "https://www.drupal.org/user/252386"
-                }
-            ],
-            "description": "Use Views to show similar content based on taxonomy terms",
-            "homepage": "https://www.drupal.org/project/similarterms",
-            "support": {
-                "source": "https://git.drupalcode.org/project/similarterms"
             }
         },
         {
@@ -11447,6 +11353,58 @@
             }
         },
         {
+            "name": "drupal/similarterms",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/similarterms.git",
+                "reference": "8.x-1.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/similarterms-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "d821f881203a634d44a174ff7a793e408ea7890f"
+            },
+            "require": {
+                "drupal/core": "^8"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.4",
+                    "datestamp": "1568313784",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "ericpugh",
+                    "homepage": "https://www.drupal.org/user/130084"
+                },
+                {
+                    "name": "rmiddle",
+                    "homepage": "https://www.drupal.org/user/192183"
+                },
+                {
+                    "name": "takim",
+                    "homepage": "https://www.drupal.org/user/252386"
+                }
+            ],
+            "description": "Use Views to show similar content based on taxonomy terms",
+            "homepage": "https://www.drupal.org/project/similarterms",
+            "support": {
+                "source": "https://git.drupalcode.org/project/similarterms"
+            }
+        },
+        {
             "name": "fabpot/goutte",
             "version": "v3.2.3",
             "source": {
@@ -13543,7 +13501,6 @@
         "drupal/block_field": 5,
         "drupal/group": 5,
         "drupal/inline_entity_form": 5,
-        "drupal/jasm": 20,
         "drupal/search_api_attachments": 10,
         "drupal/smtp": 10,
         "drupal/toolbar_extras": 10,
