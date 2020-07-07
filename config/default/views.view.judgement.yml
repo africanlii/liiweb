@@ -433,7 +433,7 @@ display:
           plugin_id: text
       title: 'African Lii'
       menu:
-        type: normal
+        type: none
         title: Home
         description: ''
         expanded: false
