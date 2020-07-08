@@ -1,0 +1,21 @@
+uuid: 1fccff27-de22-4a14-92f4-2a6c4eb899a7
+langcode: en
+status: true
+dependencies:
+  module:
+    - views_exposed_filter_blocks
+  theme:
+    - liibarrio2020
+id: viewsexposedfilterblock
+theme: liibarrio2020
+region: pre_header
+weight: 0
+provider: null
+plugin: views_exposed_filter_blocks_block
+settings:
+  id: views_exposed_filter_blocks_block
+  label: 'Advanced search Form'
+  provider: views_exposed_filter_blocks
+  label_display: '0'
+  view_display: 'liiweb_search:page_search'
+visibility: {  }

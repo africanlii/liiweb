@@ -28,16 +28,6 @@ function liiweb_legislation_help($route_name, RouteMatchInterface $route_match) 
 }
 
 
-// function liiweb_legislation_preprocess_node(&$variables)
-// {
-//   dump($variables);
-//   // decode raw json field into actual json
-//   if (array_key_exists('field_toc', $variables['content']) && array_key_exists('0', $variables['content']['field_toc'])) {
-//     $data = $variables['content']['field_toc']['0']['#context']['value'];
-//     $variables['content']['field_toc']['as_json'] = Json::decode($data);
-//     dump($variables['content']['field_toc']['as_json']);
-//   }
-// }
 
 function liiweb_legislation_preprocess_field__node__field_toc__legislation(&$variables, $hook)
 {
@@ -72,14 +62,14 @@ function liiweb_legislation_write_menu_item($menu_item)
     $link = Link::fromTextAndUrl($menu_item['title'], Url::fromUri($menu_item['url'], [
       'attributes' => [
         'target' => '_blank',
-        'class'  => [strtolower($menu_item['title'])],
+        'class'  => ['link-item'],
       ]
     ]));
 
     $item = [
       '#markup'             => $link->toString(),
       '#wrapper_attributes' => [
-        'class'             => [strtolower($menu_item['title']), 'menu-item',],
+        'class'             => ['menu-item'],
       ],
     ];
   } catch (Exception $e) {
@@ -93,7 +83,7 @@ function liiweb_legislation_write_menu_item($menu_item)
       '#theme'      => 'item_list',
       '#type'       => 'ul',
       '#attributes' => [
-        'class'     => ['menu-items-children'],
+        'class'     => ['menu-items has-children'],
       ],
     ];
     foreach ($menu_item['children'] as $key => $menu_item) {
