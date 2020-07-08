@@ -193,8 +193,13 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
+<<<<<<< HEAD
   aggregated_field: {  }
   add_url: {  }
+=======
+  add_url: {  }
+  aggregated_field: {  }
+>>>>>>> theme-liibarrio
   language_with_fallback: {  }
   rendered_item: {  }
   solr_date_range: {  }

@@ -1,8 +1,9 @@
-uuid: d7ebe615-a0bb-4ed9-9ef4-dfe139ef9905
+uuid: f8dba216-410c-4885-89be-b17846239ef5
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.card
     - field.field.node.legislation.field_commencement_date
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
@@ -23,22 +24,64 @@ dependencies:
     - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
-    - text
+    - datetime
+    - ds
     - user
-id: node.legislation.default
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_card_basic
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class:
+            bg-light: bg-light
+          content: {  }
+    regions:
+      content:
+        - node_title
+        - field_publication_date
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h2
+          class: h3
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.legislation.card
 targetEntityType: node
 bundle: legislation
-mode: default
+mode: card
 content:
-  field_content:
-    weight: 0
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
+  field_publication_date:
+    type: datetime_plain
+    weight: 1
     region: content
+    label: above
+    settings:
+      timezone_override: ''
+    third_party_settings: {  }
 hidden:
   field_commencement_date: true
+  field_content: true
   field_created: true
   field_created_by_api: true
   field_expression_date: true
@@ -48,7 +91,6 @@ hidden:
   field_images: true
   field_lifecycle_json: true
   field_parent_work: true
-  field_publication_date: true
   field_publication_name: true
   field_raw_json: true
   field_repeal: true

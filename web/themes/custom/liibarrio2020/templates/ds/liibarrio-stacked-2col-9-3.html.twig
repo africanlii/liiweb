@@ -1,0 +1,30 @@
+<{{ outer_wrapper }}{{ attributes.addClass('row') }}>
+
+  {{ title_suffix.contextual_links }}
+
+  {# Header #}
+  <{{ header_wrapper }}{{ header_attributes.addClass('stacked-header') }}>
+    <{{ header_left_wrapper }}{{ left_attributes.addClass('col') }}>
+      {{ header_left }}
+    </{{ header_left_wrapper }}>
+
+    <{{ header_right_wrapper }}{{ left_attributes.addClass('col') }}>
+      {{ header_right }}
+    </{{ header_right_wrapper }}>
+  </{{ header_wrapper }}>
+
+  {# Main #}
+  <{{ left_wrapper }}{{ left_attributes.addClass('col-lg-9') }}>
+    {{ left }}
+  </{{ left_wrapper }}>
+
+  <{{ right_wrapper }}{{ right_attributes.addClass('col-lg-3') }}>
+    {{ right }}
+  </{{ right_wrapper }}>
+
+  {# Footer #}
+  <{{ footer_wrapper }}{{ footer_attributes.addClass('stacked-footer') }}>
+    {{ footer }}
+  </{{ footer_wrapper }}>
+
+</{{ outer_wrapper }}>

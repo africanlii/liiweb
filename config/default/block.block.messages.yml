@@ -1,4 +1,4 @@
-uuid: e1e4cd4d-a5fd-474c-86fb-841d845265c1
+uuid: 7345013d-c75c-4520-9d88-49291ee3481c
 langcode: en
 status: true
 dependencies:
@@ -6,15 +6,15 @@ dependencies:
     - system
   theme:
     - liibarrio2020
-id: liibarrio2020_mainpagecontent
+id: messages
 theme: liibarrio2020
-region: content
-weight: -11
+region: help
+weight: 0
 provider: null
-plugin: system_main_block
+plugin: system_messages_block
 settings:
-  id: system_main_block
-  label: 'Main page content'
+  id: system_messages_block
+  label: Messages
   provider: system
   label_display: '0'
 visibility: {  }

@@ -24,30 +24,46 @@ dependencies:
     - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
+    - datetime
     - ds
     - text
     - user
 third_party_settings:
   ds:
     layout:
-      id: liibarrio_2col_3_9
+      id: liibarrio_stacked_2col_3_9
       library: null
       disable_css: false
       entity_classes: all_classes
       settings:
         label: ''
         wrappers:
-          left: div
-          right: div
-        outer_wrapper: div
+          header_left: div
+          header_right: div
+          header: div
+          left: aside
+          right: section
+          footer: footer
+        outer_wrapper: article
         attributes: ''
         link_attribute: ''
         link_custom: ''
         classes:
           layout_class: {  }
+          header_left: {  }
+          header_right: {  }
+          header: {  }
           left: {  }
           right: {  }
+          footer: {  }
     regions:
+      header_left:
+        - node_title
+      header_right:
+        - field_publication_name
+        - field_publication_date
+      header:
+        - field_frbr_uri
       left:
         - field_toc
         - links
@@ -56,49 +72,96 @@ third_party_settings:
         - field_content
         - field_raw_json
         - field_lifecycle_json
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h2
+          class: h3
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.legislation.full
 targetEntityType: node
 bundle: legislation
 mode: full
 content:
   field_content:
-    weight: 3
+    weight: 7
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: right
+  field_frbr_uri:
+    type: string
+    weight: 3
+    region: header
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   field_lifecycle_json:
     type: basic_string
-    weight: 5
+    weight: 9
     region: right
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_parent_work:
     type: entity_reference_label
-    weight: 2
+    weight: 6
     region: right
     label: above
     settings:
       link: true
     third_party_settings: {  }
+  field_publication_date:
+    type: datetime_plain
+    weight: 2
+    region: header_right
+    label: hidden
+    settings:
+      timezone_override: ''
+    third_party_settings: {  }
+  field_publication_name:
+    type: string
+    weight: 1
+    region: header_right
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_raw_json:
     type: basic_string
-    weight: 4
+    weight: 8
     region: right
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_toc:
     type: basic_string
-    weight: 0
+    weight: 4
     region: left
     label: hidden
     settings: {  }
     third_party_settings: {  }
   links:
-    weight: 1
+    weight: 5
     region: left
     settings: {  }
     third_party_settings: {  }
@@ -109,10 +172,7 @@ hidden:
   field_expression_date: true
   field_external_link: true
   field_files: true
-  field_frbr_uri: true
   field_images: true
-  field_publication_date: true
-  field_publication_name: true
   field_repeal: true
   field_stub: true
   field_tags: true
