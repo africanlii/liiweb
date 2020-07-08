@@ -25,9 +25,10 @@
 }
 
 // Homepage blocks
-#block-views-block-judgement-block-recent-judgement,
-#block-views-block-legislation-block-recent-registration,
-#block-views-block-gazettes-listing-block-latest-gazette {
+// #block-views-block-judgement-block-recent-judgement,
+// #block-views-block-legislation-block-recent-registration,
+// #block-views-block-gazettes-listing-block-latest-gazette {
+.block.block-views {
   margin-top: 1.5rem;
 
   .content {

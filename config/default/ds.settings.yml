@@ -4,7 +4,9 @@ ft-default: default
 ft-show-colon: false
 classes:
   region:
-    - 'sidebar-position-left|Sidebar position left'
+    - 'text-white|Text: White'
+    - 'bg-secondary|Background: Secondary'
+    - 'bg-light|Background: Light'
   field: {  }
 use_field_names: true
 _core:

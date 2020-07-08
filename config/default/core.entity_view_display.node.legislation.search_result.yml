@@ -1,8 +1,9 @@
-uuid: d7ebe615-a0bb-4ed9-9ef4-dfe139ef9905
+uuid: 3f32f7a6-b40e-4cbf-9d68-b383e31a6829
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.search_result
     - field.field.node.legislation.field_commencement_date
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
@@ -23,22 +24,71 @@ dependencies:
     - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
-    - text
+    - ds
     - user
-id: node.legislation.default
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_2col_9_3
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          left: div
+          right: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          left: {  }
+          right: {  }
+    regions:
+      left:
+        - node_title
+        - search_api_excerpt
+      right:
+        - field_publication_name
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h2
+          class: h3
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.legislation.search_result
 targetEntityType: node
 bundle: legislation
-mode: default
+mode: search_result
 content:
-  field_content:
-    weight: 0
+  field_publication_name:
+    type: string
+    weight: 1
+    region: right
     label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  search_api_excerpt:
+    weight: 2
+    region: left
     settings: {  }
     third_party_settings: {  }
-    type: text_default
-    region: content
 hidden:
   field_commencement_date: true
+  field_content: true
   field_created: true
   field_created_by_api: true
   field_expression_date: true
@@ -49,7 +99,6 @@ hidden:
   field_lifecycle_json: true
   field_parent_work: true
   field_publication_date: true
-  field_publication_name: true
   field_raw_json: true
   field_repeal: true
   field_stub: true
@@ -57,4 +106,3 @@ hidden:
   field_toc: true
   langcode: true
   links: true
-  search_api_excerpt: true
