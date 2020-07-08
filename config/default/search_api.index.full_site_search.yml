@@ -173,6 +173,14 @@ field_settings:
     dependencies:
       module:
         - node
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - node
 datasource_settings:
   'entity:node':
     bundles:
@@ -185,10 +193,10 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
-  add_url: {  }
-  aggregated_field: {  }
-  language_with_fallback: {  }
   rendered_item: {  }
+  add_url: {  }
+  language_with_fallback: {  }
+  aggregated_field: {  }
   solr_date_range: {  }
 tracker_settings:
   default:
