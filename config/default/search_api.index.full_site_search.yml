@@ -55,17 +55,17 @@ third_party_settings:
       boost: false
       interestingTerms: none
     advanced:
-      index_prefix: ''
-      collection: ''
-      timezone: ''
+      index_prefix: ""
+      collection: ""
+      timezone: ""
 id: full_site_search
-name: 'Full Site Search'
-description: ''
+name: "Full Site Search"
+description: ""
 read_only: false
 field_settings:
   body:
     label: Body
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: body
     type: text
     boost: !!float 5
@@ -73,24 +73,24 @@ field_settings:
       config:
         - field.storage.node.body
   field_case_name:
-    label: 'Case name'
-    datasource_id: 'entity:node'
+    label: "Case name"
+    datasource_id: "entity:node"
     property_path: field_case_name
     type: string
     dependencies:
       config:
         - field.storage.node.field_case_name
   field_case_number:
-    label: 'Case number'
-    datasource_id: 'entity:node'
+    label: "Case number"
+    datasource_id: "entity:node"
     property_path: field_case_number
     type: string
     dependencies:
       config:
         - field.storage.node.field_case_number
   field_case_number_numeric:
-    label: 'Case number numeric'
-    datasource_id: 'entity:node'
+    label: "Case number numeric"
+    datasource_id: "entity:node"
     property_path: field_case_number_numeric
     type: integer
     dependencies:
@@ -98,7 +98,7 @@ field_settings:
         - field.storage.node.field_case_number_numeric
   field_content:
     label: Content
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: field_content
     type: text
     boost: !!float 5
@@ -106,24 +106,24 @@ field_settings:
       config:
         - field.storage.node.field_content
   field_gazette_date:
-    label: 'Gazette date'
-    datasource_id: 'entity:node'
+    label: "Gazette date"
+    datasource_id: "entity:node"
     property_path: field_gazette_date
     type: date
     dependencies:
       config:
         - field.storage.node.field_gazette_date
   field_gazette_issue_number:
-    label: 'Gazette issue number'
-    datasource_id: 'entity:node'
+    label: "Gazette issue number"
+    datasource_id: "entity:node"
     property_path: field_gazette_issue_number
     type: string
     dependencies:
       config:
         - field.storage.node.field_gazette_issue_number
   field_headnote_and_holding:
-    label: 'Headnote and holding'
-    datasource_id: 'entity:node'
+    label: "Headnote and holding"
+    datasource_id: "entity:node"
     property_path: field_headnote_and_holding
     type: text
     boost: !!float 3
@@ -131,8 +131,8 @@ field_settings:
       config:
         - field.storage.node.field_headnote_and_holding
   field_judgment_number:
-    label: 'Judgment number'
-    datasource_id: 'entity:node'
+    label: "Judgment number"
+    datasource_id: "entity:node"
     property_path: field_judgment_number
     type: integer
     dependencies:
@@ -140,15 +140,15 @@ field_settings:
         - field.storage.node.field_judgment_number
   field_lifecycle_json:
     label: Lifecycle
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: field_lifecycle_json
     type: text
     dependencies:
       config:
         - field.storage.node.field_lifecycle_json
   field_publication_name:
-    label: 'Publication name'
-    datasource_id: 'entity:node'
+    label: "Publication name"
+    datasource_id: "entity:node"
     property_path: field_publication_name
     type: text
     boost: !!float 13
@@ -156,8 +156,8 @@ field_settings:
       config:
         - field.storage.node.field_publication_name
   field_search_summary:
-    label: 'Search summary'
-    datasource_id: 'entity:node'
+    label: "Search summary"
+    datasource_id: "entity:node"
     property_path: field_search_summary
     type: text
     boost: !!float 3
@@ -166,7 +166,7 @@ field_settings:
         - field.storage.node.field_search_summary
   title:
     label: Title
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: title
     type: text
     boost: !!float 13
@@ -174,15 +174,15 @@ field_settings:
       module:
         - node
   type:
-    label: 'Content type'
-    datasource_id: 'entity:node'
+    label: "Content type"
+    datasource_id: "entity:node"
     property_path: type
     type: string
     dependencies:
       module:
         - node
 datasource_settings:
-  'entity:node':
+  "entity:node":
     bundles:
       default: false
       selected:
@@ -191,18 +191,13 @@ datasource_settings:
         - legislation
     languages:
       default: true
-      selected: {  }
+      selected: {}
 processor_settings:
-<<<<<<< HEAD
-  aggregated_field: {  }
-  add_url: {  }
-=======
-  add_url: {  }
-  aggregated_field: {  }
->>>>>>> theme-liibarrio
-  language_with_fallback: {  }
-  rendered_item: {  }
-  solr_date_range: {  }
+  aggregated_field: {}
+  add_url: {}
+  language_with_fallback: {}
+  rendered_item: {}
+  solr_date_range: {}
 tracker_settings:
   default:
     indexing_order: fifo
