@@ -57,6 +57,7 @@ module:
   layout_discovery: 0
   liiweb: 0
   liiweb_api: 0
+  liiweb_legislation: 0
   link: 0
   locale: 0
   media: 0
