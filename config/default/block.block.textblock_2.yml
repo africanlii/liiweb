@@ -10,7 +10,7 @@ dependencies:
 id: textblock_2
 theme: liibarrio2020
 region: sidebar_second
-weight: -10
+weight: -14
 provider: null
 plugin: text_block
 settings:

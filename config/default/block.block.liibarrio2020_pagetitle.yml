@@ -10,7 +10,7 @@ dependencies:
 id: liibarrio2020_pagetitle
 theme: liibarrio2020
 region: content
-weight: -13
+weight: -15
 provider: null
 plugin: page_title_block
 settings:
