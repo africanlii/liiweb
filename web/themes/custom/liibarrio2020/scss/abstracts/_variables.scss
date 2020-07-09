@@ -1,7 +1,7 @@
 /* Override the Bootstrap 4 variables
 -----------------------------------------*/
 // Google Fonts
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
 
 // Fontawesome
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/fontawesome.min.css");
@@ -45,7 +45,7 @@ $font-size-base: 0.875rem; // 14px
 $font-family-sans-serif: "Lato", sans-serif;
 $line-height-base: 1.428571; // 20 / 14
 
-//$h1-font-size:                $font-size-base * 2.5 !default;
+$h1-font-size: $font-size-base * 3.571428; // 50px or 3.125rem
 //$h2-font-size:                $font-size-base * 2 !default;
 $h3-font-size: $font-size-base * 1.142857; //16px or 1rem
 //$h4-font-size:                $font-size-base * 1.5 !default;
@@ -80,5 +80,11 @@ $navbar-padding-y: 0;
 $navbar-padding-x: 0;
 $navbar-brand-padding-y: $spacer * 0.75;
 
+// Breadcrumbs
+$breadcrumb-padding-x: 0;
+$breadcrumb-bg: transparent;
+$breadcrumb-divider: quote("|");
+
 /* Declare your custom variables
 ----------------------------------*/
+$pre-header-height-desktop: 2.5rem;

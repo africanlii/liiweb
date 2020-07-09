@@ -4,10 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.media.image.field_media_image
-    - image.style.thumbnail
+    - image.style.medium
     - media.type.image
   module:
-    - image
+    - focal_point
     - path
 id: media.image.default
 targetEntityType: media
@@ -23,10 +23,12 @@ content:
   field_media_image:
     weight: 0
     settings:
+      preview_image_style: medium
+      preview_link: true
+      offsets: '50,50'
       progress_indicator: throbber
-      preview_image_style: thumbnail
     third_party_settings: {  }
-    type: image_image
+    type: image_focal_point
     region: content
   langcode:
     type: language_select

@@ -1,15 +1,17 @@
 uuid: 60cdbf43-3eaf-49d7-8e03-21b5a138a879
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: billboard
 label: Billboard
 effects:
-  d2d0574b-e747-4405-b61d-0f9538f32e23:
-    uuid: d2d0574b-e747-4405-b61d-0f9538f32e23
-    id: image_scale_and_crop
-    weight: 1
+  78574b3c-0596-4d7b-bba0-1aba8cfcf633:
+    uuid: 78574b3c-0596-4d7b-bba0-1aba8cfcf633
+    id: focal_point_scale_and_crop
+    weight: 2
     data:
-      width: 1200
-      height: 900
-      anchor: center-center
+      width: 1920
+      height: 350
+      crop_type: focal_point

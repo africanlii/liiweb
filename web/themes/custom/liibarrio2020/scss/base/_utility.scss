@@ -1,3 +1,10 @@
 .visually-hidden {
   @include sr-only;
 }
+
+// Custom alerts
+.alert-red {
+  background: $red;
+  color: $white;
+  border-color: darken($red, 10%);
+}

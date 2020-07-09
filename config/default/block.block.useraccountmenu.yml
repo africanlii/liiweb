@@ -6,12 +6,13 @@ dependencies:
     - system.menu.account
   module:
     - system
+    - user
   theme:
     - liibarrio2020
 id: useraccountmenu
 theme: liibarrio2020
 region: pre_header
-weight: -9
+weight: -14
 provider: null
 plugin: 'system_menu_block:account'
 settings:
@@ -22,4 +23,11 @@ settings:
   level: 1
   depth: 0
   expand_all_items: false
-visibility: {  }
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

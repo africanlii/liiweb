@@ -8,6 +8,7 @@ base theme: bootstrap_barrio
 
 libraries:
   - liibarrio2020/global-styling
+  - liibarrio2020/font-awesome-replace
 
 libraries-override:
   system/base: false
@@ -24,6 +25,7 @@ regions:
   primary_menu: "Primary menu"
   secondary_menu: "Secondary menu"
   breadcrumbs: Breadcrumbs
+  hero: Hero
   highlighted: Highlighted
   help: Help
   content: Content

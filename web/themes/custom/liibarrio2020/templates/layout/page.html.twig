@@ -44,45 +44,57 @@
 #}
 <div class="layout-container">
 
-  {# Header #}
-  {% if page.pre_header|render|striptags|trim is not empty or
-    page.header|render|striptags|trim is not empty %}
-    <header class="layout-header" role="banner">      
-      {% if page.pre_header|render|striptags|trim is not empty %}
-      <div class="layout-header__pre-header">
-        <div class="container">
+  {# Header #}  
+  <header class="layout-header" role="banner">  
+      
+    {% if page.pre_header is not empty %}
+    <div class="layout-header__pre-header">
+      <div class="container">
+        <div class="d-lg-flex justify-content-lg-end">
           {{ page.pre_header }}
         </div>
-      </div>          
-      {% endif %}      
-      <div class="layout-header__main-header">
-        <div class="container">
-          {# Header and Primary Nav #}
-          <nav{{ navbar_attributes }}>
-            {% if container_navbar %}
-            <div class="container">
-            {% endif %}
-              {{ page.header }}
-              {% if page.primary_menu %}
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="CollapsingNavbar">
-                  {{ page.primary_menu }}                  
-              </div>
-              {% endif %}             
-            {% if container_navbar %}
+      </div>
+    </div>          
+    {% endif %}     
+
+    <div class="layout-header__main-header">
+      <div class="container">
+        {# Header and Primary Nav #}
+        <nav{{ navbar_attributes }}>
+          {% if container_navbar %}
+          <div class="container">
+          {% endif %}
+            {{ page.header }}
+            {% if page.primary_menu %}
+              <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+              <div class="collapse navbar-collapse" id="CollapsingNavbar">
+                {{ page.primary_menu }}                  
             </div>
-            {% endif %}
-          </nav>
-        </div>
-      </div> 
-    </header>
-  {% endif %}  
+            {% endif %}             
+          {% if container_navbar %}
+          </div>
+          {% endif %}
+        </nav>
+      </div>
+    </div> 
+  </header> 
   
   {# Breadcrumb #}
   {% if page.breadcrumbs|render|striptags|trim is not empty %}
   <section class="layout-breadcrumbs">
     <div class="container">
       {{ page.breadcrumbs }}
+    </div>
+  </section>
+  {% endif %}
+
+  {# Hero #}
+  {% if page.hero|render|striptags|trim is not empty %}
+  <section class="layout-hero">   
+    <div class="container">
+      <div class="layout-hero__content">
+         {{ page.hero }}
+      </div>     
     </div>
   </section>
   {% endif %}

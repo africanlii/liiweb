@@ -3,32 +3,28 @@
  * Global utilities.
  *
  */
-(function($, Drupal) {
+(function ($, Drupal) {
+  "use strict";
 
-  'use strict';
-
-  Drupal.behaviors.bootstrap_barrio_subtheme = {
-    attach: function(context, settings) {
+  Drupal.behaviors.liibarrio2020_general = {
+    attach: function (context, settings) {
       var position = $(window).scrollTop();
       $(window).scroll(function () {
         if ($(this).scrollTop() > 50) {
-          $('body').addClass("scrolled");
-        }
-        else {
-          $('body').removeClass("scrolled");
+          $("body").addClass("scrolled");
+        } else {
+          $("body").removeClass("scrolled");
         }
         var scroll = $(window).scrollTop();
         if (scroll > position) {
-          $('body').addClass("scrolldown");
-          $('body').removeClass("scrollup");
+          $("body").addClass("scrolldown");
+          $("body").removeClass("scrollup");
         } else {
-          $('body').addClass("scrollup");
-          $('body').removeClass("scrolldown");
+          $("body").addClass("scrollup");
+          $("body").removeClass("scrolldown");
         }
         position = scroll;
       });
-
-    }
+    },
   };
-
 })(jQuery, Drupal);

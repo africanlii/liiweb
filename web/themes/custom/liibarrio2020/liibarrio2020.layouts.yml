@@ -17,6 +17,28 @@ liibarrio_content_general:
     node_content:
       label: Content
 
+# Flex - Horizontal
+liibarrio_flex_horizontal:
+  label: "Flex - Horizontal"
+  category: "LiiBarrio"
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-flex-horizontal
+  regions:
+    content:
+      label: Content
+
+# Flex - Horizontal
+liibarrio_flex_vertical:
+  label: "Flex - Vertical"
+  category: "LiiBarrio"
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-flex-vertical
+  regions:
+    content:
+      label: Content
+
 # Card - Basic
 liibarrio_card_basic:
   label: "Card - Basic"
