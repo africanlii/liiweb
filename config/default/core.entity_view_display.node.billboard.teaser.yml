@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.billboard.body
     - field.field.node.billboard.field_image_ref
+    - field.field.node.billboard.field_page_reference
     - field.field.node.billboard.field_paragraphs
     - field.field.node.billboard.field_sub_title
     - node.type.billboard
@@ -32,6 +33,7 @@ content:
     region: content
 hidden:
   field_image_ref: true
+  field_page_reference: true
   field_paragraphs: true
   field_sub_title: true
   langcode: true

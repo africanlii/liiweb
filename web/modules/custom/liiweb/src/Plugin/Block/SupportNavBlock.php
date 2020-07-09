@@ -59,10 +59,10 @@ class SupportNavBlock extends BlockBase {
 
     //Help links
     $platforms = [
-      'fab fa-comment-dots' => '/feedback',
-      'fas fa-at'    => '/contact',
-      'far fa-question-circle'  => '/help',
-      'fas fa-info-circle'  => '/about',
+      'fal fa-comment-dots' => '/feedback',
+      'fal fa-at'    => '/contact',
+      'fal fa-question-circle'  => '/help',
+      'fal fa-info-circle'  => '/about',
     ];
 
     foreach ($platforms as $icon => $url) {

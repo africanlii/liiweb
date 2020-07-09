@@ -441,6 +441,7 @@ display:
         weight: -10
         context: '0'
         menu_name: main
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -450,6 +451,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
+    deleted: false
   page_judgements:
     display_plugin: page
     id: page_judgements

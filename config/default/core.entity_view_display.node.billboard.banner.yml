@@ -6,45 +6,95 @@ dependencies:
     - core.entity_view_mode.node.banner
     - field.field.node.billboard.body
     - field.field.node.billboard.field_image_ref
+    - field.field.node.billboard.field_page_reference
     - field.field.node.billboard.field_paragraphs
     - field.field.node.billboard.field_sub_title
     - node.type.billboard
   module:
+    - ds
     - entity_reference_revisions
-    - text
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_flex_vertical
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          content: {  }
+    regions:
+      content:
+        - field_image_ref
+        - node_title
+        - field_sub_title
+        - field_paragraphs
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h1
+          class: ''
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.billboard.banner
 targetEntityType: node
 bundle: billboard
 mode: banner
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 0
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_image_ref:
-    weight: 1
+    type: entity_reference_entity_view
+    weight: 0
+    region: content
     label: hidden
     settings:
-      view_mode: billboard_lg
+      view_mode: hero
       link: false
-    third_party_settings: {  }
-    type: entity_reference_entity_view
-    region: content
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_paragraphs:
     type: entity_reference_revisions_entity_view
-    weight: 2
+    weight: 3
+    region: content
     label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+  field_sub_title:
+    type: string
+    weight: 2
     region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
-  field_sub_title: true
+  body: true
+  field_page_reference: true
   langcode: true
   links: true
   search_api_excerpt: true

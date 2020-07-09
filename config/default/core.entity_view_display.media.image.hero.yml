@@ -1,38 +1,48 @@
-uuid: 9800260b-0ae1-4596-9476-bbbdba8aab74
+uuid: 6c9f7ace-f835-43e3-97ba-fa39a72b0c5a
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.billboard_lg
+    - core.entity_view_mode.media.hero
     - field.field.media.image.field_media_image
+    - image.style.billboard
     - media.type.image
   module:
-    - responsive_bg_image_formatter
-id: media.image.billboard_lg
+    - bg_image_formatter
+    - ds
+id: media.image.hero
 targetEntityType: media
 bundle: image
-mode: billboard_lg
+mode: hero
 content:
   field_media_image:
     label: visually_hidden
     weight: 0
     settings:
-      image_style: billboard_image
+      image_style: billboard
       css_settings:
-        bg_image_selector: "#block-views-block-frontpage-block\r\n#content"
+        bg_image_selector: .layout-hero
         bg_image_z_index: auto
         bg_image_color: '#FFFFFF'
-        bg_image_x: left
-        bg_image_y: top
+        bg_image_x: center
+        bg_image_y: center
         bg_image_attachment: scroll
         bg_image_repeat: no-repeat
-        bg_image_background_size: ''
+        bg_image_background_size: cover
         bg_image_gradient: ''
+        bg_image_media_query: all
         bg_image_important: 1
         bg_image_path_format: absolute
         bg_image_background_size_ie8: 0
-    third_party_settings: {  }
-    type: responsive_bg_image_formatter
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: bg_image_formatter
     region: content
 hidden:
   created: true

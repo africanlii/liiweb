@@ -13,6 +13,7 @@ global-styling:
   dependencies:
     - core/jquery
     - core/drupal
+
 # lii-legislation:
 #   version: VERSION
 #   css:
@@ -20,3 +21,10 @@ global-styling:
 #       css/indigo-web.css: {}
 #   js:
 #     js/legislation.js: {}
+
+font-awesome-replace:
+  version: VERSION
+  js:
+    js/fontAwesomeReplace.js: {}
+  dependencies:
+    - core/jquery

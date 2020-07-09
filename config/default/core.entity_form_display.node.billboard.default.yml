@@ -6,6 +6,7 @@ dependencies:
     - entity_browser.browser.image_browser
     - field.field.node.billboard.body
     - field.field.node.billboard.field_image_ref
+    - field.field.node.billboard.field_page_reference
     - field.field.node.billboard.field_paragraphs
     - field.field.node.billboard.field_sub_title
     - node.type.billboard
@@ -49,6 +50,16 @@ content:
       open: false
     third_party_settings: {  }
     type: entity_browser_entity_reference
+    region: content
+  field_page_reference:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_paragraphs:
     type: entity_reference_paragraphs

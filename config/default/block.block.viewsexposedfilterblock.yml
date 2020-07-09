@@ -3,13 +3,14 @@ langcode: en
 status: true
 dependencies:
   module:
+    - system
     - views_exposed_filter_blocks
   theme:
     - liibarrio2020
 id: viewsexposedfilterblock
 theme: liibarrio2020
 region: pre_header
-weight: 0
+weight: -12
 provider: null
 plugin: views_exposed_filter_blocks_block
 settings:
@@ -18,4 +19,9 @@ settings:
   provider: views_exposed_filter_blocks
   label_display: '0'
   view_display: 'liiweb_search:page_search'
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.card
     - core.entity_view_mode.node.teaser
     - node.type.legislation
     - system.menu.main
@@ -53,7 +54,7 @@ display:
       pager:
         type: mini
         options:
-          items_per_page: 3
+          items_per_page: 6
           offset: 0
           id: 0
           total_pages: null
@@ -83,7 +84,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: teaser
+          view_mode: card
       fields:
         title:
           id: title
@@ -218,6 +219,8 @@ display:
         filter_groups: false
         pager: false
         use_ajax: false
+        style: false
+        row: false
       filters:
         status:
           value: '1'
@@ -271,6 +274,22 @@ display:
             automatically_load_content: false
       block_hide_empty: true
       use_ajax: true
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 3
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: col-lg-4
+          row_class_default: false
+          row_class_custom: row
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
     cache_metadata:
       max-age: -1
       contexts:
@@ -369,12 +388,33 @@ display:
         context: '0'
         menu_name: main
       display_description: ''
+      pager:
+        type: some
+        options:
+          items_per_page: 6
+          offset: 0
+      defaults:
+        pager: false
+        header: false
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: '<h2 class="h3">Recent Legislative Amendments</h3>'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

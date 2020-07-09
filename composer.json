@@ -33,8 +33,9 @@
         "drupal/computed_field": "^2.0",
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.7.0",
-        "drupal/devel": "^2.1.0",
+        "drupal/devel": "^2.1",
         "drupal/ds": "^3.7",
+        "drupal/easy_breadcrumb": "^1.12",
         "drupal/facets": "^1.4",
         "drupal/feeds": "^3.0",
         "drupal/feeds_ex": "^1.0",
@@ -46,7 +47,6 @@
         "drupal/group": "^1.0@RC",
         "drupal/inline_entity_form": "^1.0@RC",
         "drupal/jasm": "2.x-dev",
-        "drupal/kint": "^2.1",
         "drupal/paragraphs": "^1.12",
         "drupal/pathauto": "^1.7",
         "drupal/recaptcha": "^2.4",
@@ -76,7 +76,6 @@
     },
     "require-dev": {
         "drupal/entity_browser": "^2.2",
-        "kint-php/kint": "^3.3",
         "webflo/drupal-core-require-dev": "^8.7.0"
     },
     "conflict": {

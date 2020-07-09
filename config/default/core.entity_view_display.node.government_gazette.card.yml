@@ -1,9 +1,9 @@
-uuid: 7598f454-8e68-4a00-91ac-5e904a894ff1
+uuid: 19d02af8-ebd4-4ee3-9171-90b34ad15a32
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.listing
+    - core.entity_view_mode.node.card
     - field.field.node.government_gazette.body
     - field.field.node.government_gazette.field_external_link
     - field.field.node.government_gazette.field_file
@@ -13,21 +13,20 @@ dependencies:
     - field.field.node.government_gazette.field_gazette_supplement
     - node.type.government_gazette
   module:
-    - datetime
     - ds
     - user
 third_party_settings:
   ds:
     layout:
-      id: liibarrio_flex_horizontal
+      id: liibarrio_card_basic
       library: null
       disable_css: false
       entity_classes: all_classes
       settings:
         label: ''
         wrappers:
-          content: section
-        outer_wrapper: article
+          content: div
+        outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
@@ -37,7 +36,7 @@ third_party_settings:
     regions:
       content:
         - node_title
-        - field_gazette_date
+        - field_gazette_issue_number
     fields:
       node_title:
         plugin_id: node_title
@@ -45,33 +44,33 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
-          link: true
-          wrapper: h3
-          class: 'h6 mb-0'
+          wrapper: h2
+          class: h3
+          link: false
         ft:
           id: default
           settings:
             lb: ''
             lb-col: false
             classes: {  }
-id: node.government_gazette.listing
+id: node.government_gazette.card
 targetEntityType: node
 bundle: government_gazette
-mode: listing
+mode: card
 content:
-  field_gazette_date:
-    type: datetime_plain
+  field_gazette_issue_number:
+    type: string
     weight: 1
     region: content
     label: hidden
     settings:
-      timezone_override: ''
+      link_to_entity: false
     third_party_settings: {  }
 hidden:
   body: true
   field_external_link: true
   field_file: true
-  field_gazette_issue_number: true
+  field_gazette_date: true
   field_gazette_machine_id: true
   field_gazette_supplement: true
   langcode: true

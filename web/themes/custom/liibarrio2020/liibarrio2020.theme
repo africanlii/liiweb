@@ -30,3 +30,8 @@ function liibarrio2020_form_system_theme_settings_alter(&$form, FormStateInterfa
     'bg-transparent' => t('Transparent'),
   );
 }
+
+// function liibarrio2020_preprocess_ds_entity_view(&$variables)  {
+//   // dump page variables
+//   kint($variables);
+// }

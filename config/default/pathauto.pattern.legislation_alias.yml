@@ -1,0 +1,22 @@
+uuid: 2127a565-8649-483b-b38f-4f1bdabe2712
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: legislation_alias
+label: 'Legislation Alias'
+type: 'canonical_entities:node'
+pattern: '/legislation/[node:title]'
+selection_criteria:
+  eee616bc-1c21-4323-ac79-119a048b134f:
+    id: node_type
+    bundles:
+      legislation: legislation
+    negate: false
+    context_mapping:
+      node: node
+    uuid: eee616bc-1c21-4323-ac79-119a048b134f
+selection_logic: and
+weight: -5
+relationships: {  }
