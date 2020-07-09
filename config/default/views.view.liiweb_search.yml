@@ -77,6 +77,11 @@ display:
                     filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
+              field_gazette_date:
+                plugin_id: bef_datepicker
+                advanced:
+                  collapsible: false
+                  is_secondary: false
       pager:
         type: mini
         options:
@@ -468,54 +473,8 @@ display:
         filters: false
         filter_groups: false
         use_ajax: false
+        header: false
       filters:
-        type:
-          id: type
-          table: search_api_index_full_site_search
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            article: article
-            government_gazette: government_gazette
-            judgment: judgment
-            legislation: legislation
-          group: 1
-          exposed: true
-          expose:
-            operator_id: type_op
-            label: 'Show result for'
-            description: ''
-            use_operator: false
-            operator: type_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: type
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            reduce: true
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: search_api_options
         search_api_fulltext:
           id: search_api_fulltext
           table: search_api_index_full_site_search
@@ -529,7 +488,7 @@ display:
           exposed: true
           expose:
             operator_id: search_api_fulltext_op
-            label: ''
+            label: search
             description: ''
             use_operator: false
             operator: search_api_fulltext_op
@@ -565,7 +524,18 @@ display:
         operator: AND
         groups:
           1: AND
-      use_ajax: false
+      use_ajax: true
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          content: 'Displaying @start - @end of @total'
+          plugin_id: result
     cache_metadata:
       max-age: -1
       contexts:

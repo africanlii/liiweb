@@ -39,6 +39,7 @@ module:
   entity_browser_entity_form: 0
   entity_reference_revisions: 0
   facets: 0
+  facets_block: 0
   feeds: 0
   feeds_ex: 0
   feeds_tamper: 0
@@ -70,6 +71,7 @@ module:
   recaptcha: 0
   responsive_bg_image_formatter: 0
   responsive_image: 0
+  rest: 0
   rw_organisation: 0
   rw_quicklinks: 0
   s3fs: 0

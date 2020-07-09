@@ -12,7 +12,7 @@ dependencies:
 id: views_block__frontpage_block
 theme: liibarrio2020
 region: content
-weight: -12
+weight: -11
 provider: null
 plugin: 'views_block:frontpage-block_frontpage'
 settings:
