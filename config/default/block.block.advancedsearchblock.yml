@@ -1,0 +1,20 @@
+uuid: eff7fbb8-6641-40a8-96dc-bee6aa5c5985
+langcode: en
+status: true
+dependencies:
+  module:
+    - liiweb_search
+  theme:
+    - liibarrio2020
+id: advancedsearchblock
+theme: liibarrio2020
+region: pre_header
+weight: 0
+provider: null
+plugin: advanced_search_block
+settings:
+  id: advanced_search_block
+  label: 'Advanced Search block'
+  provider: liiweb_search
+  label_display: '0'
+visibility: {  }

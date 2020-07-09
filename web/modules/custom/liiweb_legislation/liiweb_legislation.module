@@ -28,7 +28,12 @@ function liiweb_legislation_help($route_name, RouteMatchInterface $route_match) 
 }
 
 
-
+/**
+ * Implements hook_field().
+ *
+ * Creating menu list using JSON data
+ *
+ */
 function liiweb_legislation_preprocess_field__node__field_toc__legislation(&$variables, $hook)
 {
 
@@ -56,8 +61,18 @@ $variables['table_content']['#items'] = $items;
 
 }
 
+
+/**
+ * Implements liiweb_legislation_write_menu_item().
+ *
+ * Creating list item with nested list item
+ *
+ * @param string $menu_item
+ *
+ */
 function liiweb_legislation_write_menu_item($menu_item)
 {
+
   try {
     $link = Link::fromTextAndUrl($menu_item['title'], Url::fromUri($menu_item['url'], [
       'attributes' => [
@@ -77,6 +92,7 @@ function liiweb_legislation_write_menu_item($menu_item)
     \Drupal::logger($item)->error($e->getMessage());
   }
 
+  // check if list has children
   if (isset($menu_item['children'])) {
     $items = [];
     $menu  = [
@@ -86,10 +102,9 @@ function liiweb_legislation_write_menu_item($menu_item)
         'class'     => ['menu-items has-children'],
       ],
     ];
+    //loop through children and return item_list
     foreach ($menu_item['children'] as $key => $menu_item) {
-
       $items[] = liiweb_legislation_write_menu_item($menu_item);
-
     }
     $menu['#items'] = $items;
     $item['menu_items'] = $menu;
