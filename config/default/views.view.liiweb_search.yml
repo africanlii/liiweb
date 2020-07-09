@@ -27,8 +27,12 @@ display:
         type: none
         options: {  }
       cache:
-        type: tag
-        options: {  }
+        type: search_api_time
+        options:
+          results_lifespan: 300
+          results_lifespan_custom: 0
+          output_lifespan: 300
+          output_lifespan_custom: 0
       query:
         type: views_query
         options:
@@ -39,7 +43,7 @@ display:
         type: bef
         options:
           submit_button: Apply
-          reset_button: false
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
@@ -58,28 +62,12 @@ display:
               secondary_label: 'Advanced options'
               secondary_open: false
             filter:
-              type:
-                plugin_id: bef
-                advanced:
-                  sort_options: false
-                  rewrite:
-                    filter_rewrite_values: '- Any -|All'
-                  collapsible: false
-                  is_secondary: false
-                select_all_none: false
-                select_all_none_nested: false
-                display_inline: 0
               search_api_fulltext:
                 plugin_id: default
                 advanced:
                   placeholder_text: ''
                   rewrite:
                     filter_rewrite_values: ''
-                  collapsible: false
-                  is_secondary: false
-              field_gazette_date:
-                plugin_id: bef_datepicker
-                advanced:
                   collapsible: false
                   is_secondary: false
       pager:
@@ -188,49 +176,6 @@ display:
             multi_type: separator
             multi_separator: ', '
       filters:
-        type:
-          id: type
-          table: search_api_index_full_site_search
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            article: article
-            billboard: billboard
-            government_gazette: government_gazette
-            judgment: judgment
-            legislation: legislation
-            page: page
-          group: 1
-          exposed: true
-          expose:
-            use_operator: false
-            operator: type_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: type
-            label: 'Content type'
-            description: null
-            remember: false
-            multiple: false
-            required: false
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: search_api_options
         search_api_fulltext:
           id: search_api_fulltext
           table: search_api_index_full_site_search
