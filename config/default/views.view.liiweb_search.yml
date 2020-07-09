@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - search_api.index.full_site_search
+    - taxonomy.vocabulary.court_names
   module:
     - better_exposed_filters
     - search_api
@@ -42,7 +43,7 @@ display:
         type: bef
         options:
           submit_button: Apply
-          reset_button: true
+          reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
@@ -53,13 +54,13 @@ display:
           bef:
             general:
               autosubmit: false
-              autosubmit_exclude_textfield: true
+              autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
               autosubmit_hide: true
               input_required: false
               allow_secondary: false
               secondary_label: 'Advanced options'
-              secondary_open: false
+              secondary_open: true
             filter:
               type_1:
                 plugin_id: bef
@@ -92,10 +93,21 @@ display:
                 select_all_none_nested: false
                 display_inline: 0
               created:
-                plugin_id: default
+                plugin_id: bef_datepicker
                 advanced:
                   collapsible: false
                   is_secondary: true
+              field_court_name:
+                plugin_id: bef
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: '- Any -|All Courts'
+                  collapsible: false
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: 0
       pager:
         type: infinite_scroll
         options:
@@ -263,6 +275,7 @@ display:
         operator: AND
         groups:
           1: AND
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -273,9 +286,9 @@ display:
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.full_site_search'
-  attachment_gazettes:
+  attachment_1:
     display_plugin: attachment
-    id: attachment_gazettes
+    id: attachment_1
     display_title: 'BK: search attachment Gazettes'
     position: 1
     display_options:
@@ -286,11 +299,56 @@ display:
         title: false
         filters: false
         filter_groups: false
-        use_ajax: false
+        use_ajax: true
         header: false
         cache: false
-        fields: true
       filters:
+        type_1:
+          id: type_1
+          table: search_api_index_full_site_search
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            government_gazette: government_gazette
+            judgment: judgment
+            legislation: legislation
+          group: 1
+          exposed: true
+          expose:
+            operator_id: type_1_op
+            label: 'Content type'
+            description: ''
+            use_operator: false
+            operator: type_1_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: type_1
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            reduce: true
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          plugin_id: search_api_options
         type:
           id: type
           table: search_api_index_full_site_search
@@ -497,11 +555,58 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
+        field_court_name:
+          id: field_court_name
+          table: search_api_index_full_site_search
+          field: field_court_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_court_name_op
+            label: 'Court name'
+            description: ''
+            use_operator: false
+            operator: field_court_name_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_court_name
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: court_names
+          hierarchy: false
+          error_message: true
+          plugin_id: search_api_term
       filter_groups:
         operator: AND
         groups:
           1: AND
-      use_ajax: true
       header:
         result:
           id: result
@@ -515,14 +620,15 @@ display:
           plugin_id: result
       cache:
         type: none
+      exposed_block: false
+      displays:
+        page_search: page_search
+      attachment_position: after
       inherit_exposed_filters: true
       pager:
         type: none
         options:
           offset: 0
-      attachment_position: after
-      displays:
-        page_search: page_search
       inherit_pager: true
       render_pager: true
     cache_metadata:
@@ -531,6 +637,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.full_site_search'
@@ -547,11 +654,56 @@ display:
         title: false
         filters: false
         filter_groups: false
-        use_ajax: false
+        use_ajax: true
         header: false
         cache: false
-        fields: false
       filters:
+        type_1:
+          id: type_1
+          table: search_api_index_full_site_search
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            government_gazette: government_gazette
+            judgment: judgment
+            legislation: legislation
+          group: 1
+          exposed: true
+          expose:
+            operator_id: type_1_op
+            label: 'Content type'
+            description: ''
+            use_operator: false
+            operator: type_1_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: type_1
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            reduce: true
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          plugin_id: search_api_options
         type:
           id: type
           table: search_api_index_full_site_search
@@ -758,11 +910,58 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
+        field_court_name:
+          id: field_court_name
+          table: search_api_index_full_site_search
+          field: field_court_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_court_name_op
+            label: 'Court name'
+            description: ''
+            use_operator: false
+            operator: field_court_name_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_court_name
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: court_names
+          hierarchy: false
+          error_message: true
+          plugin_id: search_api_term
       filter_groups:
         operator: AND
         groups:
           1: AND
-      use_ajax: true
       header:
         result:
           id: result
@@ -776,138 +975,15 @@ display:
           plugin_id: result
       cache:
         type: none
+      exposed_block: false
+      displays:
+        page_search: page_search
+      attachment_position: after
       inherit_exposed_filters: true
       pager:
         type: none
         options:
           offset: 0
-      fields:
-        nothing:
-          id: nothing
-          table: views
-          field: nothing
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: true
-            text: '@total'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: false
-          plugin_id: custom
-        type:
-          id: type
-          table: search_api_datasource_full_site_search_entity_node
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api_entity
-          fallback_options:
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
-            display_methods:
-              node_type:
-                display_method: label
-          entity_type: node
-          plugin_id: search_api_field
-      attachment_position: after
-      displays:
-        page_search: page_search
       inherit_pager: true
       render_pager: true
     cache_metadata:
@@ -916,6 +992,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.full_site_search'
@@ -1092,7 +1169,7 @@ display:
         title: false
         filters: false
         filter_groups: false
-        use_ajax: false
+        use_ajax: true
         header: false
         cache: false
       filters:
@@ -1348,11 +1425,58 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
+        field_court_name:
+          id: field_court_name
+          table: search_api_index_full_site_search
+          field: field_court_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_court_name_op
+            label: 'Court name'
+            description: ''
+            use_operator: false
+            operator: field_court_name_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_court_name
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: court_names
+          hierarchy: false
+          error_message: true
+          plugin_id: search_api_term
       filter_groups:
         operator: AND
         groups:
           1: AND
-      use_ajax: true
       header:
         result:
           id: result
@@ -1374,6 +1498,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.full_site_search'

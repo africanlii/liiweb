@@ -6,6 +6,9 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\commerce_product\Entity\ProductType;
 use Drupal\node\Entity\NodeType;
+use Drupal\search_api\Query\ResultSetInterface;
+use Solarium\QueryType\Select\Result\Result;
+
 
 /**
  * Class AdvancedSearchForm.
@@ -25,12 +28,19 @@ class AdvancedSearchForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
 
     $types =  $this::NodeTypes();
-    $types['All'] = 'Search Everything';
-    ;
-    // dump(asort($types));
-    $form['type'] = [
+    $types['All'] = 'Search everything';
+    $not_types = ['page','billboard'];
+      unset($types['page']);
+      unset($types['billboard']);
+      unset($types['article']);
+
+    $this::move_to_top($types, 'All');
+    // $test = ;
+    // dump($test);
+
+    $form['type_1'] = [
       '#type' => 'select',
-      '#description' => "Search Everything",
+      '#default_value' => \Drupal::request()->query->get('type_1'),
       '#options' => $types,
     ];
 
@@ -39,7 +49,7 @@ class AdvancedSearchForm extends FormBase {
       '#maxlength' => 64,
       '#size' => 64,
       '#weight' => '0',
-      '#default_value' => $this->configuration['search_api_fulltext'],
+      '#default_value' => \Drupal::request()->query->get('search_api_fulltext'),
       '#placeholder' => 'Search',
       '#required' => TRUE
     ];
@@ -57,8 +67,16 @@ class AdvancedSearchForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $url = \Drupal\Core\Url::fromRoute('view.liiweb_search.page_search')
-          ->setRouteParameters(['type' => $form_state->getValue('type'),'search_api_fulltext' => $form_state->getValue('search_api_fulltext')]);
+          ->setRouteParameters(['type_1' => $form_state->getValue('type_1'),'search_api_fulltext' => $form_state->getValue('search_api_fulltext')]);
     $form_state->setRedirectUrl($url);
+  }
+
+
+  public function move_to_top(&$array, $key)
+  {
+    $temp = array($key => $array[$key]);
+    unset($array[$key]);
+    $array = $temp + $array;
   }
 
   public static function NodeTypes()

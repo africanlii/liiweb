@@ -12,6 +12,7 @@ dependencies:
     - field.storage.node.field_case_number
     - field.storage.node.field_case_number_numeric
     - field.storage.node.field_content
+    - field.storage.node.field_court_name
     - field.storage.node.field_gazette_date
     - field.storage.node.field_gazette_issue_number
     - field.storage.node.field_headnote_and_holding
@@ -113,6 +114,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_content
+  field_court_name:
+    label: 'Court name'
+    datasource_id: 'entity:node'
+    property_path: field_court_name
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_court_name
   field_gazette_date:
     label: 'Gazette date'
     datasource_id: 'entity:node'
