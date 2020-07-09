@@ -1,8 +1,9 @@
-uuid: d7ebe615-a0bb-4ed9-9ef4-dfe139ef9905
+uuid: 2ffad18f-b2e6-40e0-9000-878781e46dbb
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.search_index
     - field.field.node.legislation.field_commencement_date
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
@@ -25,10 +26,10 @@ dependencies:
   module:
     - text
     - user
-id: node.legislation.default
+id: node.legislation.search_index
 targetEntityType: node
 bundle: legislation
-mode: default
+mode: search_index
 content:
   field_content:
     weight: 0
