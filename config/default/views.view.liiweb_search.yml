@@ -520,6 +520,54 @@ display:
           min_length: null
           fields: {  }
           plugin_id: search_api_fulltext
+        created:
+          id: created
+          table: search_api_index_full_site_search
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: between
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: created_op
+            label: 'Custom Date'
+            description: ''
+            use_operator: false
+            operator: created_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: created
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            placeholder: ''
+            min_placeholder: 01/01/2020
+            max_placeholder: 010/01/2020
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_date
       filter_groups:
         operator: AND
         groups:
