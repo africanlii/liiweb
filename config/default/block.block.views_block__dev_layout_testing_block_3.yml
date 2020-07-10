@@ -12,7 +12,7 @@ dependencies:
 id: views_block__dev_layout_testing_block_3
 theme: liibarrio2020
 region: content
-weight: -5
+weight: -6
 provider: null
 plugin: 'views_block:dev_layout_testing-block_3'
 settings:

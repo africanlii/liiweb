@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - liiweb_search
+    - system
   theme:
     - liibarrio2020
 id: advancedsearchblock
@@ -17,4 +18,9 @@ settings:
   label: 'Advanced Search block'
   provider: liiweb_search
   label_display: '0'
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

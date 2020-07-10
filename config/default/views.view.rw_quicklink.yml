@@ -221,7 +221,7 @@ display:
         description: 'Useful links'
         expanded: false
         parent: ''
-        weight: 9
+        weight: 8
         context: '0'
         menu_name: main
       filters:
