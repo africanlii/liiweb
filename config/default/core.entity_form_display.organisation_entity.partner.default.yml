@@ -3,35 +3,43 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - field.field.organisation_entity.partner.field_image
+    - field.field.organisation_entity.partner.field_logo_ref
     - field.field.organisation_entity.partner.field_partner
     - field.field.organisation_entity.partner.field_support_partner
-    - image.style.thumbnail
     - rw_organisation.organisation_entity_type.partner
   module:
-    - image
+    - entity_browser
 id: organisation_entity.partner.default
 targetEntityType: organisation_entity
 bundle: partner
 mode: default
 content:
-  field_image:
-    weight: 3
+  field_logo_ref:
+    weight: 1
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      entity_browser: image_browser
+      field_widget_display: rendered_entity
+      field_widget_display_settings:
+        view_mode: default
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_replace: false
+      open: false
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_entity_reference
     region: content
   field_partner:
-    weight: 1
+    weight: 2
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_support_partner:
-    weight: 2
+    weight: 3
     settings:
       display_label: true
     third_party_settings: {  }
@@ -46,5 +54,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  field_image: true
   langcode: true
   user_id: true

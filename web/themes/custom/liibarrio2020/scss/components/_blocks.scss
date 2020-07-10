@@ -124,6 +124,15 @@
       margin-top: 0;
     }
   }
+
+  // Paragraph - Partner block
+  .block-views-blockrw-organisations-block-partner-hero {
+    .views-infinite-scroll-content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
 }
 
 // Footer blocks
