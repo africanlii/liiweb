@@ -7,12 +7,10 @@ dependencies:
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number_numeric
     - field.field.node.judgment.field_case_number_year
-    - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judgment_date
-    - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number_override
     - field.field.node.judgment.field_judgment_old_nid
     - field.field.node.judgment.field_law_report_citations
@@ -60,10 +58,12 @@ label: 'Judgment Importer'
 description: 'Import content types of Judgment via json'
 help: ''
 import_period: 3600
-fetcher: upload
+fetcher: http
 fetcher_configuration:
-  allowed_extensions: 'txt csv tsv xml opml json'
-  directory: 'public://feeds'
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 6000
 parser: jsonpath
 parser_configuration:
   context:
@@ -75,9 +75,6 @@ parser_configuration:
     body:
       label: Body
       value: Body
-    _court_name_:
-      label: '[''Court Name'']'
-      value: '[''Court Name'']'
     _flynote_tags_:
       label: '[''Flynote tags'']'
       value: '[''Flynote tags'']'
@@ -119,7 +116,7 @@ parser_configuration:
 processor: 'entity:node'
 processor_configuration:
   langcode: en
-  update_existing: 0
+  update_existing: 1
   update_non_existent: _keep
   expire: -1
   owner_feed_author: false
@@ -217,14 +214,6 @@ mappings:
     settings:
       language: ''
       format: full_html
-  -
-    target: field_court_name
-    map:
-      target_id: _court_name_
-    settings:
-      language: ''
-      reference_by: name
-      autocreate: '1'
   -
     target: field_flynote
     map:
