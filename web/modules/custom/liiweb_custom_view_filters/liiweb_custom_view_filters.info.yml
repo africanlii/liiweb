@@ -1,0 +1,7 @@
+name: 'liiweb custom_view_filters'
+type: module
+description: 'Provids extra custom fucntion for view filter'
+core: 8.x
+package: 'liiweb'
+dependencies:
+  - better_exposed_filters
