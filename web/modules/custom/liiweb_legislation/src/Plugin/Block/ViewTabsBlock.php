@@ -35,10 +35,12 @@ class ViewTabsBlock extends BlockBase {
       '#subject' => [],
       '#search' => [],
       '#browser' => [],
+      '#titles' => [],
     ];
 
     //Render legislation bk_legislation_browser
     $block_browser = views_embed_view('legislation', 'bk_legislation_browser');
+
     // dump($block_browser);
     if ($block_browser) {
       $build['#browser'] = $block_browser;
@@ -48,20 +50,46 @@ class ViewTabsBlock extends BlockBase {
       //   ->condition('status', 1);
       // //    ->range(0, $count);
 
-      // $frontpage = $query->execute();
-      // // $frontpage = $this::fetch();
-      // if ($frontpage) {
-      //   foreach ($frontpage as $revision_id => $nid) {
+      // $legislation = $query->execute();
+      // // $legislation = $this::fetch();
+      // if ($legislation) {
+      //   $title = [];
+      //   $output_array = [];
+      //   $first = '';
+      //   $view_mode    = 'teaser';
+      //   foreach ($legislation as $revision_id => $nid) {
       //     $node_storage = \Drupal::entityTypeManager()->getStorage('node');
-      //     $frontpage = $node_storage->load($nid);
-
+      //     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+      //     $legislation = $node_storage->load($nid);
       //     $node = $node_storage->load($nid);
-      //     $title = $node->get('title')->value;
-      //     for ($i = 0; $i < strlen($title); $i++) {
-      //       dump($title[$i]);
-      //     }
 
+      //     $title[] = $node->get('title')->value;
+      //     $browser_block = $view_builder->view($node, $view_mode);
+
+      //     $charecters = [];
+      //       // for ($i = 0; $i < strlen($title); $i++) {
+      //       //   $charecters[] = $title[$i];
       //     }
+      //   // dump($title);
+      //   // sort($title, SORT_STRING | SORT_FLAG_CASE);
+      //   // Loop over the one you have...
+      //   // foreach ($title as $state) {
+      //   //   $first = strtoupper($state[0]);
+      //   //   // Create the sub-array if it doesn't exist
+      //   //   if (!isset($output_array[$first])) {
+      //   //     $ouput_array[$first] = array();
+      //   //   }
+
+      //   //   $output_array[$first][] = $state;
+      //   //   // dump($state);
+
+      //   // }
+      //   sort($title);
+      //   $result= [];
+      //   foreach ($title as $sWord) {
+      //     $result[strtoupper(substr($sWord, 0, 1))][] = render($browser_block);
+      //   }
+
       //   }
       }
     //Render legislation bk_legislation_subject
@@ -80,4 +108,15 @@ class ViewTabsBlock extends BlockBase {
     return $build;
   }
 
+  public function sortAndIndexArray($aArray)
+  {
+    sort($aArray);
+    foreach ($aArray as $sWord) {
+      $aFinal[strtoupper(substr($sWord, 0, 1))][] = ucfirst($sWord);
+    }
+    ksort($aFinal);
+    return $aFinal;
+  }
+
 }
+
