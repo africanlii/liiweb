@@ -127,15 +127,26 @@
 
   // Paragraph - Partner block
   .block-views-blockrw-organisations-block-partner-hero {
-    .views-infinite-scroll-content-wrapper {
+    .view-content {
       display: flex;
+      flex-wrap: nowrap;
       justify-content: space-between;
       align-items: center;
     }
   }
 }
 
+// Main
+#block-liibarrio2020-mainpagecontent {
+  & + .block {
+    margin-top: 0;
+  }
+}
+
 // Footer blocks
+#block-views-block-rw-organisations-footer-our-partners {
+  margin-bottom: calc(#{$grid-gutter-width} * 1);
+}
 #block-views-block-footer-country {
   img {
     max-width: 1.25rem;
@@ -161,6 +172,10 @@
 
   & > h3 {
     padding-left: calc(#{$grid-gutter-width} / 1.333333);
+  }
+
+  a {
+    color: $body-color;
   }
 
   .content {
@@ -242,6 +257,16 @@
 }
 
 //Sidebar blocks
+#block-views-block-rw-organisations-block-1 {
+  margin-bottom: calc(#{$grid-gutter-width} * 1.6);
+  .view-content {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
 #block-socialnewstimeline {
   & > nav {
     position: relative;

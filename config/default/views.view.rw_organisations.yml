@@ -242,6 +242,7 @@ display:
         title: false
         filters: false
         filter_groups: false
+        pager: false
       filters:
         type:
           id: type
@@ -330,12 +331,16 @@ display:
         groups:
           1: AND
       block_hide_empty: true
+      pager:
+        type: some
+        options:
+          items_per_page: 3
+          offset: 0
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
       tags: {  }
   block_footer_our_partners:
     display_plugin: block
@@ -640,6 +645,7 @@ display:
         title: false
         filters: false
         filter_groups: false
+        pager: false
       filters:
         type:
           id: type
@@ -727,10 +733,14 @@ display:
         operator: AND
         groups:
           1: AND
+      pager:
+        type: some
+        options:
+          items_per_page: 5
+          offset: 0
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
       tags: {  }

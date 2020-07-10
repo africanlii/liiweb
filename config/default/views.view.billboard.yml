@@ -205,7 +205,7 @@ display:
           relationship: none
           group_type: group
           admin_label: 'field_page_reference: Content'
-          required: true
+          required: false
           plugin_id: standard
     cache_metadata:
       max-age: -1
