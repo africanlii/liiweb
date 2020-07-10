@@ -12,7 +12,7 @@ dependencies:
 id: views_block__country_block_carousel
 theme: liibarrio2020
 region: content
-weight: -8
+weight: -9
 provider: null
 plugin: 'views_block:country-block_2'
 settings:

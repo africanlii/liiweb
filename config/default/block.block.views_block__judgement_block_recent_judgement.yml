@@ -1,22 +1,22 @@
-uuid: 5010c24e-728a-40f2-96e8-704dec2062a9
+uuid: 962263af-da76-4c73-8b36-881783d43bc7
 langcode: en
 status: true
 dependencies:
   config:
-    - views.view.dev_layout_testing
+    - views.view.judgement
   module:
     - system
     - views
   theme:
     - liibarrio2020
-id: views_block__dev_layout_testing_block_4
+id: views_block__judgement_block_recent_judgement
 theme: liibarrio2020
 region: content
-weight: -5
+weight: -12
 provider: null
-plugin: 'views_block:dev_layout_testing-block_4'
+plugin: 'views_block:judgement-block_recent_judgement'
 settings:
-  id: 'views_block:dev_layout_testing-block_4'
+  id: 'views_block:judgement-block_recent_judgement'
   label: ''
   provider: views
   label_display: visible
@@ -25,6 +25,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: /layout-testing
+    pages: '<front>'
     negate: false
     context_mapping: {  }

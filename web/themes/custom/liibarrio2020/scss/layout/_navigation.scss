@@ -20,12 +20,20 @@
         width: calc(100% + 2rem);
         height: 0.625rem;
         background: transparent;
+        transition: all 0.2s ease-in-out;
       }
 
-      &.is-active {
+      &.is-active,
+      &:hover,
+      &:focus {
         &:after {
           background: $secondary;
         }
+      }
+
+      &:hover,
+      &:focus {
+        color: $secondary;
       }
     }
   }

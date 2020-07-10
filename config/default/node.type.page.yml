@@ -6,8 +6,9 @@ dependencies:
     - menu_ui
 third_party_settings:
   menu_ui:
-    available_menus: {  }
-    parent: ''
+    available_menus:
+      - main
+    parent: 'main:'
 name: 'Basic page'
 type: page
 description: 'Use <em>pages</em> for your static content or landing pages, such as an ''''About us'''' page.'
