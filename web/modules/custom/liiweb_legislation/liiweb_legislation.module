@@ -136,6 +136,7 @@ function liiweb_legislation_theme() {
       'subject' => Null,
       'search'  => Null,
       'browser' => Null,
+      'glossary_filter' => Null,
     ],
   ];
   return $theme;

@@ -35,7 +35,7 @@ class ViewTabsBlock extends BlockBase {
       '#subject' => [],
       '#search' => [],
       '#browser' => [],
-      '#titles' => [],
+      '#glossary_filter' => [],
     ];
 
     //Render legislation bk_legislation_browser
@@ -45,53 +45,47 @@ class ViewTabsBlock extends BlockBase {
     if ($block_browser) {
       $build['#browser'] = $block_browser;
 
-      // $query = \Drupal::entityQuery('node')
-      //   ->condition('type', 'legislation', '=')
-      //   ->condition('status', 1);
-      // //    ->range(0, $count);
+      $query = \Drupal::entityQuery('node')
+        ->condition('type', 'legislation', '=')
+        ->condition('status', 1)
+        ->sort('title', 'ASC');
 
-      // $legislation = $query->execute();
-      // // $legislation = $this::fetch();
-      // if ($legislation) {
-      //   $title = [];
-      //   $output_array = [];
-      //   $first = '';
-      //   $view_mode    = 'teaser';
-      //   foreach ($legislation as $revision_id => $nid) {
-      //     $node_storage = \Drupal::entityTypeManager()->getStorage('node');
-      //     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
-      //     $legislation = $node_storage->load($nid);
-      //     $node = $node_storage->load($nid);
+      $legislation = $query->execute();
 
-      //     $title[] = $node->get('title')->value;
-      //     $browser_block = $view_builder->view($node, $view_mode);
+      // $legislation = $this::fetch();
+      if ($legislation) {
+        $title = [];
+        $items = [];
+        foreach ($legislation as $revision_id => $nid) {
+          $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+          $node = $node_storage->load($nid);
+          $title[] = $node->get('title')->value;
+          $titles = $this->sortAndIndexArray($title);
+          }
+        // dump($titles);
 
-      //     $charecters = [];
-      //       // for ($i = 0; $i < strlen($title); $i++) {
-      //       //   $charecters[] = $title[$i];
-      //     }
-      //   // dump($title);
-      //   // sort($title, SORT_STRING | SORT_FLAG_CASE);
-      //   // Loop over the one you have...
-      //   // foreach ($title as $state) {
-      //   //   $first = strtoupper($state[0]);
-      //   //   // Create the sub-array if it doesn't exist
-      //   //   if (!isset($output_array[$first])) {
-      //   //     $ouput_array[$first] = array();
-      //   //   }
+        if ($titles) {
+          foreach ($titles as $char => $title) {
+            //     // dump($nodes);
+            $items[] = [
+              '#markup' => '<a href="#'.  $char .'">' . $char . '</a>',
+              '#wrapper_attributes' => [
+                'class'             => [strtolower($char), 'list-item',],
+              ],
+            ];
+          }
+        }
 
-      //   //   $output_array[$first][] = $state;
-      //   //   // dump($state);
-
-      //   // }
-      //   sort($title);
-      //   $result= [];
-      //   foreach ($title as $sWord) {
-      //     $result[strtoupper(substr($sWord, 0, 1))][] = render($browser_block);
-      //   }
-
-      //   }
+        $build['#glossary_filter'] = [
+        '#theme'      => 'item_list',
+        '#type'       => 'ul',
+        '#attributes' => [
+          'class'     => ['list-items', 'glossary-filter'],
+        ],
+        '#items'      => $items,
+        ];
       }
+    }
     //Render legislation bk_legislation_subject
     $block_subject = views_embed_view('legislation', 'bk_legislation_subject');
     if ($block_subject) {
