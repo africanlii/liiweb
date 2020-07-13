@@ -9,7 +9,7 @@ dependencies:
 id: liibarrio2020_mainpagecontent
 theme: liibarrio2020
 region: content
-weight: -13
+weight: -14
 provider: null
 plugin: system_main_block
 settings:

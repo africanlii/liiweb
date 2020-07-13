@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\liiweb_legislation\Plugin\Block;
+namespace Drupal\liiweb_judgment\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -12,8 +12,8 @@ use Drupal\node\Entity\Node;
  * Provides a 'ViewTabsBlock' block.
  *
  * @Block(
- *  id = "view_tabs_block",
- *  admin_label = @Translation("Legislation View tabs block"),
+ *  id = "view_judgment_tabs_block",
+ *  admin_label = @Translation("judgment View tabs block"),
  * )
  */
 class ViewTabsBlock extends BlockBase {
@@ -34,25 +34,25 @@ class ViewTabsBlock extends BlockBase {
       '#glossary_filter' => [],
     ];
 
-    //Render legislation bk_legislation_browser
-    $block_browser = views_embed_view('legislation', 'bk_legislation_browser');
+    //Render judgment bk_legislation_browser
+    $block_browser = views_embed_view('judgment', 'bk_judgment_browser');
 
     // dump($block_browser);
     if ($block_browser) {
       $build['#browser'] = $block_browser;
 
       $query = \Drupal::entityQuery('node')
-        ->condition('type', 'legislation', '=')
+        ->condition('type', 'judgment', '=')
         ->condition('status', 1)
         ->sort('title', 'ASC');
 
-      $legislation = $query->execute();
-
-      // $legislation = $this::fetch();
-      if ($legislation) {
+      $judgment = $query->execute();
+// dump($judgment);
+      // $judgment = $this::fetch();
+      if ($judgment) {
         $title = [];
         $items = [];
-        foreach ($legislation as $revision_id => $nid) {
+        foreach ($judgment as $revision_id => $nid) {
           $node_storage = \Drupal::entityTypeManager()->getStorage('node');
           $node = $node_storage->load($nid);
           $title[] = $node->get('title')->value;
@@ -82,14 +82,14 @@ class ViewTabsBlock extends BlockBase {
         ];
       }
     }
-    //Render legislation bk_legislation_subject
-    $block_subject = views_embed_view('legislation', 'bk_legislation_subject');
+    //Render judgment bk_legislation_subject
+    $block_subject = views_embed_view('judgment', 'bk_judgment_subject');
     if ($block_subject) {
       $build['#subject'] = $block_subject;
     }
 
-    //Render legislation bk_legislation_search
-    $block_search = views_embed_view('index_search_legislation', 'bk_legislation_search');
+    //Render judgment bk_legislation_search
+    $block_search = views_embed_view('index_search_judgement', 'bk_judgment_search');
     if ($block_search) {
       $build['#search'] = $block_search;
     }

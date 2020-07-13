@@ -61,6 +61,7 @@ module:
   liiweb: 0
   liiweb_api: 0
   liiweb_custom_view_filters: 0
+  liiweb_judgment: 0
   liiweb_legislation: 0
   liiweb_search: 0
   link: 0

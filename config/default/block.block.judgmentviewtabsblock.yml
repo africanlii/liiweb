@@ -1,26 +1,26 @@
-uuid: b48f0f3a-3fa7-46e9-9cd3-49c629167db0
+uuid: a5b39648-961b-4724-b0ea-efae125812e3
 langcode: en
 status: true
 dependencies:
   module:
-    - liiweb_legislation
+    - liiweb_judgment
     - system
   theme:
     - liibarrio2020
-id: viewtabsblock
+id: judgmentviewtabsblock
 theme: liibarrio2020
 region: content
-weight: -4
+weight: 0
 provider: null
-plugin: view_tabs_block
+plugin: view_judgment_tabs_block
 settings:
-  id: view_tabs_block
-  label: 'View tabs block'
-  provider: liiweb_legislation
+  id: view_judgment_tabs_block
+  label: 'judgment View tabs block'
+  provider: liiweb_judgment
   label_display: '0'
 visibility:
   request_path:
     id: request_path
-    pages: /legislation
+    pages: /judgments
     negate: false
     context_mapping: {  }

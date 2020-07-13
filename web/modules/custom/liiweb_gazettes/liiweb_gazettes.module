@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains liiweb_gazettes.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function liiweb_gazettes_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the liiweb_gazettes module.
+    case 'help.page.liiweb_gazettes':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides custom functionality for Gzazettes') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function liiweb_gazettes_theme() {
+  return [
+    'liiweb_gazettes' => [
+      'render element' => 'children',
+    ],
+  ];
+}
