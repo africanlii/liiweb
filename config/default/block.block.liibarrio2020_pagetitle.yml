@@ -10,7 +10,7 @@ dependencies:
 id: liibarrio2020_pagetitle
 theme: liibarrio2020
 region: content
-weight: -15
+weight: -16
 provider: null
 plugin: page_title_block
 settings:
@@ -19,11 +19,6 @@ settings:
   provider: core
   label_display: '0'
 visibility:
-  request_path:
-    id: request_path
-    pages: '<front>'
-    negate: true
-    context_mapping: {  }
   node_type:
     id: node_type
     bundles:
@@ -34,3 +29,8 @@ visibility:
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

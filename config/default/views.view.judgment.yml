@@ -1,6 +1,6 @@
-uuid: d411372e-cfc5-4f33-95b6-60a7e57ce583
+uuid: e89b7557-b592-41da-83b3-b926357a7f21
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - core.entity_view_mode.node.full
@@ -11,8 +11,8 @@ dependencies:
     - node
     - user
     - views_infinite_scroll
-id: judgement
-label: Judgement
+id: judgment
+label: Judgment
 module: views
 description: 'Views for the Judgement content type '
 tag: ''
@@ -187,7 +187,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: 'No Judgement found.'
+            value: 'No judgment found, Please try again later'
             format: full_html
           plugin_id: text
       relationships: {  }
@@ -204,9 +204,9 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  bk_judgement_browser:
+  bk_judgment_browser:
     display_plugin: block
-    id: bk_judgement_browser
+    id: bk_judgment_browser
     display_title: 'BK: Browser All'
     position: 6
     display_options:
@@ -363,9 +363,9 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  bk_judgement_subject:
+  bk_judgment_subject:
     display_plugin: block
-    id: bk_judgement_subject
+    id: bk_judgment_subject
     display_title: 'BK: By Subject'
     position: 8
     display_options:
@@ -476,7 +476,7 @@ display:
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'View more Judgements'
+            button_text: 'View more Judgment'
             automatically_load_content: false
       defaults:
         pager: false
@@ -493,10 +493,10 @@ display:
           empty: true
           tokenize: false
           content:
-            value: 'No Recent Judgement found.'
+            value: 'No Recent Judgment found.'
             format: full_html
           plugin_id: text
-      title: 'Frequesnty Cited/Topca/Interesting Judgements'
+      title: 'Frequesnty Cited/Topca/Interesting judgments'
     cache_metadata:
       max-age: -1
       contexts:
@@ -509,11 +509,11 @@ display:
   block_latest_judgement:
     display_plugin: block
     id: block_latest_judgement
-    display_title: 'BK: Latest Judgements'
+    display_title: 'BK: Latest Judgment'
     position: 1
     display_options:
       display_extenders: {  }
-      display_description: 'View all recent Judgements'
+      display_description: 'View all recent Judgment'
       pager:
         type: some
         options:
@@ -536,7 +536,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: 'No Recent Judgement found.'
+            value: 'No Recent Judgment found.'
             format: full_html
           plugin_id: text
       style:
@@ -550,7 +550,7 @@ display:
         options:
           relationship: none
           view_mode: full
-      title: 'Latest Judgements'
+      title: 'Latest Judgment'
     cache_metadata:
       max-age: -1
       contexts:
@@ -586,7 +586,7 @@ display:
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'View more Judgements'
+            button_text: 'View more Judgment'
             automatically_load_content: false
       defaults:
         pager: false
@@ -602,7 +602,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: 'No Recent Judgement found.'
+            value: 'No Recent Judgment found.'
             format: full_html
           plugin_id: text
     cache_metadata:
@@ -617,7 +617,7 @@ display:
   page_1:
     display_plugin: page
     id: page_1
-    display_title: 'PG: Judgements Subject'
+    display_title: 'PG: Judgment Subject'
     position: 7
     display_options:
       display_extenders: {  }
@@ -640,7 +640,7 @@ display:
         options:
           relationship: none
           view_mode: teaser
-      path: Judgements/subject
+      path: judgments/subject
       arguments:
         title:
           id: title
@@ -687,6 +687,15 @@ display:
         type: none
         options:
           offset: 0
+      menu:
+        type: none
+        title: Judgments
+        description: ''
+        expanded: false
+        parent: ''
+        weight: -7
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:
@@ -699,11 +708,11 @@ display:
   page_home:
     display_plugin: page
     id: page_home
-    display_title: 'PG: (Homepage) Most Recent Judgements'
+    display_title: 'PG: (Homepage) Most Recent judgment'
     position: 1
     display_options:
       display_extenders: {  }
-      display_description: 'View all recent Judgements'
+      display_description: 'View all recent Judgment'
       pager:
         type: infinite_scroll
         options:
@@ -783,7 +792,7 @@ display:
   page_judgements:
     display_plugin: page
     id: page_judgements
-    display_title: 'PG:Judgements'
+    display_title: 'PG: Judgments'
     position: 1
     display_options:
       display_extenders: {  }
@@ -807,7 +816,7 @@ display:
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'View more Judgements'
+            button_text: 'View more Judgment'
             automatically_load_content: false
       defaults:
         pager: false
@@ -828,7 +837,7 @@ display:
             value: 'No content found, Please try again later.'
             format: full_html
           plugin_id: text
-      title: Judgements
+      title: Judgments
       header:
         area:
           id: area
@@ -840,17 +849,17 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<h3>Frequesnty Cited/Topca/Interesting Judgements</h3>'
+            value: '<h3>Frequesnty Cited/Topca/Interesting judgments</h3>'
             format: full_html
           plugin_id: text
-      path: judgements
+      path: judgments
       menu:
         type: normal
-        title: Judgements
+        title: Judgments
         description: ''
         expanded: false
         parent: ''
-        weight: 1
+        weight: -7
         context: '0'
         menu_name: main
     cache_metadata:

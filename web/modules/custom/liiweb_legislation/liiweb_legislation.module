@@ -121,9 +121,24 @@ function liiweb_legislation_theme() {
   $theme = [];
   $path  = drupal_get_path('module', 'liiweb_legislation') . '/templates';
 
+  // table content field
   $theme['field__node__field_toc__legislation'] = [
     'base hook' => 'field',
     'path'      => $path,
   ];
+
+  // view custom block tab
+
+  $theme['view_tabs_block'] = [
+    'template'  => 'view-tabs-block',
+    'path'      => $path,
+    'variables' => [
+      'subject' => Null,
+      'search'  => Null,
+      'browser' => Null,
+      'glossary_filter' => Null,
+    ],
+  ];
   return $theme;
 }
+
