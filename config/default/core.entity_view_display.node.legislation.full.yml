@@ -59,31 +59,47 @@ third_party_settings:
     regions:
       header_left:
         - node_title
+        - field_parent_work
       header_right:
         - field_publication_name
         - field_publication_date
       header:
         - field_frbr_uri
       left:
+        - 'dynamic_token_field:node-share_links'
         - field_toc
         - 'dynamic_block_field:node-related_gazettes'
         - 'dynamic_block_field:node-related_legislation'
       right:
-        - field_parent_work
         - field_content
-        - field_raw_json
-        - field_lifecycle_json
       footer:
         - links
     fields:
       'dynamic_block_field:node-related_gazettes':
         plugin_id: 'dynamic_block_field:node-related_gazettes'
-        weight: 5
+        weight: 7
         label: hidden
         formatter: default
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
       'dynamic_block_field:node-related_legislation':
         plugin_id: 'dynamic_block_field:node-related_legislation'
-        weight: 6
+        weight: 8
+        label: hidden
+        formatter: default
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 5
         label: hidden
         formatter: default
       node_title:
@@ -107,7 +123,7 @@ bundle: legislation
 mode: full
 content:
   field_content:
-    weight: 8
+    weight: 9
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -115,7 +131,7 @@ content:
     region: right
   field_frbr_uri:
     type: string
-    weight: 3
+    weight: 4
     region: header
     label: above
     settings:
@@ -131,24 +147,17 @@ content:
               - alert
               - alert-red
             lb-col: false
-  field_lifecycle_json:
-    type: basic_string
-    weight: 10
-    region: right
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
   field_parent_work:
     type: entity_reference_label
-    weight: 7
-    region: right
+    weight: 1
+    region: header_left
     label: above
     settings:
       link: true
     third_party_settings: {  }
   field_publication_date:
     type: datetime_plain
-    weight: 2
+    weight: 3
     region: header_right
     label: hidden
     settings:
@@ -156,7 +165,7 @@ content:
     third_party_settings: {  }
   field_publication_name:
     type: string
-    weight: 1
+    weight: 2
     region: header_right
     label: hidden
     settings:
@@ -169,22 +178,15 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-  field_raw_json:
-    type: basic_string
-    weight: 9
-    region: right
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
   field_toc:
     type: basic_string
-    weight: 4
+    weight: 6
     region: left
     label: hidden
     settings: {  }
     third_party_settings: {  }
   links:
-    weight: 11
+    weight: 10
     region: footer
     settings: {  }
     third_party_settings: {  }
@@ -196,6 +198,8 @@ hidden:
   field_external_link: true
   field_files: true
   field_images: true
+  field_lifecycle_json: true
+  field_raw_json: true
   field_repeal: true
   field_stub: true
   field_tags: true

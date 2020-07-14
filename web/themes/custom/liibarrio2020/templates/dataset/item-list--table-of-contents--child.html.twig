@@ -19,15 +19,13 @@
  * @see template_preprocess_item_list()
  */
 #}
-{% set title = 'Table of contents' %}
-{{ attach_library('liibarrio2020/nicescroll') }}
 
 {% if context.list_style %}
   {%- set wrapper_attributes = wrapper_attributes.addClass('item-list--' ~ context.list_style) %}
   {%- set attributes = attributes.addClass('item-list__' ~ context.list_style) %}
 {% endif %}
 {% if items or empty -%}
-  <div{{ wrapper_attributes.addClass('table-of-contents', 'table-of-contents--main') }}>
+  <div{{ wrapper_attributes.addClass('table-of-contents', 'table-of-contents--child') }}>
     {%- if title is not empty -%}
       <h3>{{ title }}</h3>
     {%- endif -%}

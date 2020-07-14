@@ -1,7 +1,4 @@
 .table-of-contents {
-  max-height: 29rem;
-  overflow: auto;
-
   &__wrapper {
     padding: 1rem 0.5rem 1rem 1rem;
     margin-bottom: 2rem;
@@ -18,6 +15,7 @@
       position: relative;
       line-height: 1.25rem;
       padding-left: 1.5rem;
+      margin-bottom: 0.25rem;
 
       &:before {
         content: "";
@@ -29,6 +27,23 @@
         height: 10px;
         border-radius: 50%;
         background: $body-color;
+      }
+    }
+  }
+
+  &--main {
+    max-height: 29rem;
+    overflow: auto;
+  }
+
+  &--child {
+    margin-top: 0.5rem;
+    .menu-item {
+      &:before {
+        background: lighten($body-color, 20%);
+      }
+      &:last-child {
+        margin-bottom: 1rem;
       }
     }
   }

@@ -19,18 +19,16 @@ settings:
   provider: core
   label_display: '0'
 visibility:
-  node_type:
-    id: node_type
-    bundles:
-      article: article
-      billboard: billboard
-      judgment: judgment
-      page: page
-    negate: false
-    context_mapping:
-      node: '@node.node_route_context:node'
   request_path:
     id: request_path
     pages: '<front>'
     negate: true
     context_mapping: {  }
+  node_type:
+    id: node_type
+    bundles:
+      billboard: billboard
+      page: page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

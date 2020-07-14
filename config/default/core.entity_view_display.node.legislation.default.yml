@@ -1,4 +1,4 @@
-uuid: d7ebe615-a0bb-4ed9-9ef4-dfe139ef9905
+uuid: f71340bc-e641-4921-a4a7-3df001dcf764
 langcode: en
 status: true
 dependencies:
@@ -23,22 +23,24 @@ dependencies:
     - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
-    - text
+    - datetime
     - user
 id: node.legislation.default
 targetEntityType: node
 bundle: legislation
 mode: default
 content:
-  field_content:
-    weight: 0
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
+  field_publication_date:
+    type: datetime_plain
+    weight: 1
     region: content
+    label: above
+    settings:
+      timezone_override: ''
+    third_party_settings: {  }
 hidden:
   field_commencement_date: true
+  field_content: true
   field_created: true
   field_created_by_api: true
   field_expression_date: true
@@ -48,7 +50,6 @@ hidden:
   field_images: true
   field_lifecycle_json: true
   field_parent_work: true
-  field_publication_date: true
   field_publication_name: true
   field_raw_json: true
   field_repeal: true

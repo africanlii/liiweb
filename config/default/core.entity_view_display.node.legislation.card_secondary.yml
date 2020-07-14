@@ -1,9 +1,9 @@
-uuid: f8dba216-410c-4885-89be-b17846239ef5
+uuid: d78bffb0-9958-4cf1-a494-da9486b1a8b6
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.card
+    - core.entity_view_mode.node.card_secondary
     - field.field.node.legislation.field_commencement_date
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
@@ -30,7 +30,7 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: liibarrio_card_basic
+      id: liibarrio_card_secondary
       library: null
       disable_css: false
       entity_classes: all_classes
@@ -43,7 +43,8 @@ third_party_settings:
         link_attribute: ''
         link_custom: ''
         classes:
-          layout_class: {  }
+          layout_class:
+            bg-light: bg-light
           content: {  }
     regions:
       content:
@@ -56,7 +57,7 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
-          wrapper: h2
+          wrapper: h3
           class: h6
           link: false
         ft:
@@ -65,10 +66,10 @@ third_party_settings:
             lb: ''
             lb-col: false
             classes: {  }
-id: node.legislation.card
+id: node.legislation.card_secondary
 targetEntityType: node
 bundle: legislation
-mode: card
+mode: card_secondary
 content:
   field_publication_date:
     type: datetime_plain

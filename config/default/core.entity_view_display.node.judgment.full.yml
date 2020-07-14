@@ -1,8 +1,9 @@
-uuid: fe24e211-b456-4add-b3e9-a86b4d8d3bb3
+uuid: 110c4a2e-1892-405f-9c89-682f9c6f4f20
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.full
     - field.field.node.judgment.body
     - field.field.node.judgment.feeds_item
     - field.field.node.judgment.field_case_name
@@ -36,7 +37,7 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: liibarrio_content_general
+      id: liibarrio_stacked_2col_9_3
       library: null
       disable_css: false
       entity_classes: all_classes
@@ -45,9 +46,10 @@ third_party_settings:
         wrappers:
           header_left: div
           header_right: div
-          full_width: div
-          sidebar: div
-          node_content: div
+          header: div
+          left: div
+          right: div
+          footer: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
@@ -56,9 +58,10 @@ third_party_settings:
           layout_class: {  }
           header_left: {  }
           header_right: {  }
-          full_width: {  }
-          sidebar: {  }
-          node_content: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
     regions:
       header_left:
         - node_author
@@ -66,26 +69,31 @@ third_party_settings:
         - field_judgment_date
         - field_court_name
         - field_case_number
-      full_width:
-        - field_judge
-      sidebar:
-        - field_files
-        - 'dynamic_token_field:node-share_links'
-        - 'dynamic_block_field:node-related_legislation'
-      node_content:
+      left:
         - field_headnote_and_holding
         - field_flynote
         - field_search_summary
+        - field_judge
         - body
+      right:
+        - field_files
+        - 'dynamic_token_field:node-share_links'
+        - 'dynamic_block_field:node-related_legislation'
     fields:
       'dynamic_block_field:node-related_legislation':
         plugin_id: 'dynamic_block_field:node-related_legislation'
-        weight: 7
-        label: above
+        weight: 11
+        label: hidden
         formatter: default
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 6
+        weight: 10
         label: hidden
         formatter: default
       node_author:
@@ -93,18 +101,24 @@ third_party_settings:
         weight: 0
         label: inline
         formatter: author
-id: node.judgment.default
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.judgment.full
 targetEntityType: node
 bundle: judgment
-mode: default
+mode: full
 content:
   body:
-    label: above
+    label: hidden
     type: text_default
-    weight: 11
+    weight: 8
     settings: {  }
     third_party_settings: {  }
-    region: node_content
+    region: left
   field_case_number:
     type: computed_string
     weight: 3
@@ -125,14 +139,14 @@ content:
     third_party_settings: {  }
   field_files:
     type: lii_file
-    weight: 5
-    region: sidebar
+    weight: 9
+    region: right
     label: hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
   field_flynote:
-    weight: 9
+    weight: 5
     label: inline
     settings:
       link: false
@@ -140,18 +154,18 @@ content:
       ds:
         ds_limit: ''
     type: entity_reference_label
-    region: node_content
+    region: left
   field_headnote_and_holding:
-    weight: 8
+    weight: 4
     label: inline
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: node_content
+    region: left
   field_judge:
     type: entity_reference_label
-    weight: 4
-    region: full_width
+    weight: 7
+    region: left
     label: inline
     settings:
       link: false
@@ -169,12 +183,19 @@ content:
     third_party_settings: {  }
   field_search_summary:
     type: text_summary_or_trimmed
-    weight: 10
-    region: node_content
+    weight: 6
+    region: left
     label: inline
     settings:
       trim_length: 600
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: 'Case summary:'
+            lb-col: false
+            classes: {  }
   liiweb_share_links:
     weight: 6
     region: sidebar

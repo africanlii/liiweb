@@ -96,7 +96,7 @@ function liiweb_legislation_write_menu_item($menu_item)
   if (isset($menu_item['children'])) {
     $items = [];
     $menu  = [
-      '#theme'      => 'item_list',
+      '#theme'      => 'item_list__table_of_contents__child',
       '#type'       => 'ul',
       '#attributes' => [
         'class'     => ['menu-items has-children'],

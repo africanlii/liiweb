@@ -1,3 +1,5 @@
+// 7-1 Sass structure (8-1 for Drupal)
+
 // Abstracts
 @import "abstracts/variables";
 //@import "abstracts/mixins";
@@ -19,11 +21,15 @@
 @import "layout/footer";
 
 // Components
-@import "components/blocks";
-@import "components/teaser";
-@import "components/listing";
+@import "components/block";
+@import "components/card";
 @import "components/breadcrumbs";
 @import "components/table-of-contents";
+
+// View modes (Drupal specific)
+@import "view-modes/listing";
+@import "view-modes/full";
+@import "view-modes/teaser";
 
 // Pages
 @import "pages/about";

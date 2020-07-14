@@ -50,6 +50,17 @@ liibarrio_card_basic:
     content:
       label: Content
 
+# Card - Secondary
+liibarrio_card_secondary:
+  label: "Card - Secondary"
+  category: "LiiBarrio"
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-card-secondary
+  regions:
+    content:
+      label: Content
+
 # Two column - 9/3
 liibarrio_2col_9_3:
   label: "Two column - 9/3"

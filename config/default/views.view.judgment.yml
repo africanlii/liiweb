@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.full
+    - core.entity_view_mode.node.listing
     - core.entity_view_mode.node.teaser
     - node.type.judgment
     - system.menu.main
@@ -591,6 +592,8 @@ display:
       defaults:
         pager: false
         empty: false
+        style: false
+        row: false
       empty:
         area:
           id: area
@@ -605,6 +608,22 @@ display:
             value: 'No Recent Judgment found.'
             format: full_html
           plugin_id: text
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 3
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: ''
+          row_class_default: false
+          row_class_custom: ''
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: listing
     cache_metadata:
       max-age: -1
       contexts:
