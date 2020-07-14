@@ -1,6 +1,6 @@
 uuid: d411372e-cfc5-4f33-95b6-60a7e57ce583
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - core.entity_view_mode.node.full
@@ -208,7 +208,7 @@ display:
     display_plugin: block
     id: bk_judgement_browser
     display_title: 'BK: Browser All'
-    position: 6
+    position: 7
     display_options:
       display_extenders: {  }
       display_description: ''
@@ -453,7 +453,7 @@ display:
     display_plugin: block
     id: block_1
     display_title: 'BK: Frequesnty Cited/Topca/Interesting Judgements'
-    position: 1
+    position: 4
     display_options:
       display_extenders: {  }
       display_description: ''
@@ -510,7 +510,7 @@ display:
     display_plugin: block
     id: block_latest_judgement
     display_title: 'BK: Latest Judgements'
-    position: 1
+    position: 5
     display_options:
       display_extenders: {  }
       display_description: 'View all recent Judgements'
@@ -563,7 +563,7 @@ display:
     display_plugin: block
     id: block_recent_judgement
     display_title: 'BK: Most Recent Judgements'
-    position: 1
+    position: 6
     display_options:
       display_extenders: {  }
       display_description: 'View all recent Judgements'
@@ -618,7 +618,7 @@ display:
     display_plugin: page
     id: page_1
     display_title: 'PG: Judgements Subject'
-    position: 7
+    position: 2
     display_options:
       display_extenders: {  }
       display_description: ''
@@ -700,7 +700,7 @@ display:
     display_plugin: page
     id: page_home
     display_title: 'PG: (Homepage) Most Recent Judgements'
-    position: 1
+    position: 3
     display_options:
       display_extenders: {  }
       display_description: 'View all recent Judgements'
@@ -814,6 +814,9 @@ display:
         empty: false
         title: false
         header: false
+        style: false
+        row: false
+        css_class: false
       empty:
         area:
           id: area
@@ -840,7 +843,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<h3>Frequesnty Cited/Topca/Interesting Judgements</h3>'
+            value: '<h3>Frequenty Cited/Topical/Interesting Judgements</h3>'
             format: full_html
           plugin_id: text
       path: judgements
@@ -853,6 +856,23 @@ display:
         weight: 1
         context: '0'
         menu_name: main
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 3
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: col-lg-4
+          row_class_default: false
+          row_class_custom: row
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
+      css_class: test-class
     cache_metadata:
       max-age: -1
       contexts:

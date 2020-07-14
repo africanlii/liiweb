@@ -1,26 +1,26 @@
-uuid: a5b39648-961b-4724-b0ea-efae125812e3
+uuid: 47e8b90e-f731-4090-9d7e-66ac90df266b
 langcode: en
 status: true
 dependencies:
   module:
-    - liiweb_judgment
+    - liiweb_judgement
     - system
   theme:
     - liibarrio2020
-id: judgmentviewtabsblock
+id: judgementviewtabsblock
 theme: liibarrio2020
 region: content
 weight: 0
 provider: null
-plugin: view_judgment_tabs_block
+plugin: view_judgement_tabs_block
 settings:
-  id: view_judgment_tabs_block
-  label: 'judgment View tabs block'
-  provider: liiweb_judgment
+  id: view_judgement_tabs_block
+  label: 'judgement View tabs block'
+  provider: liiweb_judgement
   label_display: '0'
 visibility:
   request_path:
     id: request_path
-    pages: /judgments
+    pages: /judgements
     negate: false
     context_mapping: {  }

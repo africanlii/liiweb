@@ -165,7 +165,7 @@
 }
 
 // Homepage blocks
-#block-views-block-judgement-block-recent-judgement,
+#block-views-block-judgment-block-recent-judgement,
 #block-views-block-legislation-block-recent-registration,
 #block-views-block-gazettes-listing-block-latest-gazette {
   margin-top: 1.5rem;
@@ -185,7 +185,10 @@
   .view-content {
     padding: calc(#{$grid-gutter-width} / 1.333333);
     border: 1px solid #d5d5d5;
-    border-bottom: none;
+
+    &:not(:only-child) {
+      border-bottom: none;
+    }
   }
 
   .views-row {
