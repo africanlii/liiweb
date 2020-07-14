@@ -1,0 +1,39 @@
+.table-of-contents {
+  max-height: 29rem;
+  overflow: auto;
+
+  &__wrapper {
+    padding: 1rem 0.5rem 1rem 1rem;
+    margin-bottom: 2rem;
+    background-color: $white;
+    border: solid 1px #d5d5d5;
+  }
+
+  &__list-group {
+    @include list-unstyled();
+    margin-right: 1.5rem;
+    margin-bottom: 0;
+
+    &__item {
+      position: relative;
+      line-height: 1.25rem;
+      padding-left: 1.5rem;
+
+      &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 0.25rem;
+        left: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: $body-color;
+      }
+    }
+  }
+
+  .link-item {
+    color: $body-color;
+  }
+}

@@ -23,3 +23,12 @@
 @import "components/teaser";
 @import "components/listing";
 @import "components/breadcrumbs";
+@import "components/table-of-contents";
+
+// Pages
+@import "pages/about";
+@import "pages/links";
+@import "pages/contact";
+
+// Themes
+@import "themes/admin";

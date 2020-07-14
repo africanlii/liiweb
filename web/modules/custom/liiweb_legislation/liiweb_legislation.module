@@ -45,7 +45,7 @@ function liiweb_legislation_preprocess_field__node__field_toc__legislation(&$var
   $values = [];
 
   $variables['table_content'] = [
-    '#theme'      => 'item_list',
+    '#theme'      => 'item_list__table_of_contents',
     '#type'       => 'ul',
     '#attributes' => [
       'class'     => ['menu-items'],
