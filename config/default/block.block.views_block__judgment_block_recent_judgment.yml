@@ -1,0 +1,30 @@
+uuid: 2fe28ded-0c34-4166-a75f-2703b554843f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.judgment
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: views_block__judgment_block_recent_judgment
+theme: liibarrio2020
+region: content
+weight: -13
+provider: null
+plugin: 'views_block:judgment-block_recent_judgment'
+settings:
+  id: 'views_block:judgment-block_recent_judgment'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

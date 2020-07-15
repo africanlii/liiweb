@@ -1,6 +1,6 @@
 uuid: e89b7557-b592-41da-83b3-b926357a7f21
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - core.entity_view_mode.node.full
@@ -14,7 +14,7 @@ dependencies:
 id: judgment
 label: Judgment
 module: views
-description: 'Views for the Judgement content type '
+description: 'Views for the Judgment content type '
 tag: ''
 base_table: node_field_data
 base_field: nid
@@ -193,7 +193,7 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      title: 'Most Recent Judgements'
+      title: 'Most Recent Judgments'
       use_ajax: true
     cache_metadata:
       max-age: -1
@@ -559,14 +559,14 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  block_recent_judgement:
+  block_recent_judgment:
     display_plugin: block
-    id: block_recent_judgement
-    display_title: 'BK: Most Recent Judgements'
+    id: block_recent_judgment
+    display_title: 'BK: Most Recent Judgments'
     position: 5
     display_options:
       display_extenders: {  }
-      display_description: 'View all recent Judgements'
+      display_description: 'View all recent Judgments'
       pager:
         type: infinite_scroll
         options:

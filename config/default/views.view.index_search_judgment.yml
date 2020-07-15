@@ -8,9 +8,9 @@ dependencies:
     - better_exposed_filters
     - search_api
 id: index_search_judgment
-label: 'Search Judgement'
+label: 'Search Judgment'
 module: views
-description: ''
+description: 'Index full Judgment search'
 tag: ''
 base_table: search_api_index_full_site_search
 base_field: search_api_id
@@ -304,7 +304,7 @@ display:
   bk_judgment_search:
     display_plugin: block
     id: bk_judgment_search
-    display_title: Search
+    display_title: 'BK: Search'
     position: 1
     display_options:
       display_extenders: {  }
