@@ -204,7 +204,7 @@ display:
         options:
           vanilla: true
           optionset: country
-          skin: default
+          skin: ''
           layout: ''
           caption:
             name: '0'

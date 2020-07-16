@@ -25,11 +25,14 @@
 @import "components/card";
 @import "components/breadcrumbs";
 @import "components/table-of-contents";
+@import "components/quick-link";
+@import "components/view";
 
 // View modes (Drupal specific)
 @import "view-modes/listing";
 @import "view-modes/full";
 @import "view-modes/teaser";
+@import "view-modes/banner";
 
 // Pages
 @import "pages/about";

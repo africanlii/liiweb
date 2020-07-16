@@ -77,8 +77,8 @@
 }
 
 // Hero
-#block-views-block-billboard-block-1,
-#block-views-block-billboard-block-1--2 {
+#block-views-block-billboard-block-billboard-hero,
+#block-views-block-billboard-block-billboard-hero--2 {
   h1,
   .field--name-field-sub-title {
     font-weight: 300;
@@ -136,6 +136,26 @@
   }
 }
 
+// Billboard - Intro
+#block-views-block-billboard-block-billboard-intro {
+  margin-bottom: 1.75rem;
+
+  .block-views-blockrw-organisations-block-partner-hero {
+    h3 {
+      font-weight: 400;
+      font-size: 0.75rem;
+    }
+
+    .view-content {
+      display: flex;
+    }
+
+    .views-row:not(:first-child) {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
 // Main
 #block-liibarrio2020-mainpagecontent {
   & + .block {
@@ -143,10 +163,58 @@
   }
 }
 
+// Sidebar - Second
+#block-webform.block-second-sidebar {
+  margin-bottom: 1rem;
+  padding: 0.875rem;
+  border: 1px solid #d5d5d5;
+  background-color: $white;
+
+  button {
+    width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 0.625rem;
+  }
+
+  .webform-actions {
+    margin-bottom: 0;
+  }
+}
+
+#block-contactblock.block-second-sidebar {
+  padding: 0.875rem;
+  border: 1px solid #d5d5d5;
+  background: $white;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .content {
+    padding-left: 0.4rem;
+  }
+
+  .list-group-item {
+    padding: 0;
+    padding-top: 0.875rem;
+    border: none;
+    background-color: transparent;
+  }
+
+  .fas,
+  .fa,
+  .fab {
+    padding-right: 1rem;
+  }
+}
+
 // Footer blocks
 #block-views-block-rw-organisations-footer-our-partners {
   margin-bottom: calc(#{$grid-gutter-width} * 1);
 }
+
 #block-views-block-footer-country {
   img {
     max-width: 1.25rem;
@@ -165,7 +233,7 @@
 }
 
 // Homepage blocks
-#block-views-block-judgment-block-recent-judgement,
+#block-views-block-judgment-block-recent-judgment,
 #block-views-block-legislation-block-recent-registration,
 #block-views-block-gazettes-listing-block-latest-gazette {
   margin-top: 1.5rem;

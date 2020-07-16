@@ -12,7 +12,7 @@ id: newsletter_sign_up
 title: 'Newsletter sign up'
 description: ''
 category: ''
-elements: "email_address:\n  '#type': email\n  '#title': 'Email Address'\n  '#required': true\n  '#required_error': 'Please provide your email address'\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': 'Sign Up'"
+elements: "email_address:\n  '#type': email\n  '#title': 'Email Address'\n  '#title_display': invisible\n  '#placeholder': 'Email Address'\n  '#required': true\n  '#required_error': 'Please provide your email address'\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': 'Sign Up'"
 css: ''
 javascript: ''
 settings:

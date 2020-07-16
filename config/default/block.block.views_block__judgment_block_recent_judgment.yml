@@ -12,14 +12,14 @@ dependencies:
 id: views_block__judgment_block_recent_judgment
 theme: liibarrio2020
 region: content
-weight: -13
+weight: -12
 provider: null
 plugin: 'views_block:judgment-block_recent_judgment'
 settings:
   id: 'views_block:judgment-block_recent_judgment'
   label: ''
   provider: views
-  label_display: '0'
+  label_display: visible
   views_label: ''
   items_per_page: none
 visibility:
