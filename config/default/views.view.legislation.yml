@@ -412,8 +412,7 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: string
-      displays:
-        bk_legislation_browser: bk_legislation_browser
+      displays: {  }
       attachment_position: after
     cache_metadata:
       max-age: -1

@@ -1,9 +1,10 @@
 uuid: d411372e-cfc5-4f33-95b6-60a7e57ce583
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.node.full
+    - core.entity_view_mode.node.teaser
     - node.type.judgment
     - system.menu.main
   module:
@@ -203,11 +204,256 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
+  bk_judgement_browser:
+    display_plugin: block
+    id: bk_judgement_browser
+    display_title: 'BK: Browser All'
+    position: 7
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      title: 'Browser All'
+      defaults:
+        title: false
+        style: false
+        row: false
+        filters: false
+        filter_groups: false
+        fields: false
+        pager: false
+        sorts: false
+        use_ajax: false
+      style:
+        type: default
+        options:
+          grouping:
+            -
+              field: title
+              rendered: true
+              rendered_strip: false
+          row_class: ''
+          default_row_class: true
+          uses_fields: true
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          value:
+            judgment: judgment
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 1
+            word_boundary: false
+            ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: true
+            preserve_tags: ''
+            html: true
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+      pager:
+        type: none
+        options:
+          offset: 0
+      sorts:
+        title:
+          id: title
+          table: node_field_revision
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: standard
+      use_ajax: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  bk_judgement_subject:
+    display_plugin: block
+    id: bk_judgement_subject
+    display_title: 'BK: By Subject'
+    position: 8
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      title: 'By Subject'
+      defaults:
+        title: false
+        arguments: false
+        style: false
+        row: false
+        pager: false
+      arguments:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          default_action: summary
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: fixed
+          default_argument_options:
+            argument: ''
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            items_per_page: 25
+            override: false
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: true
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          glossary: false
+          limit: 1
+          case: ucfirst
+          path_case: upper
+          transform_dash: true
+          break_phrase: false
+          entity_type: node
+          entity_field: title
+          plugin_id: string
+      style:
+        type: default
+        options:
+          grouping:
+            -
+              field: title
+              rendered: true
+              rendered_strip: false
+          row_class: ''
+          default_row_class: true
+          uses_fields: true
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
+      pager:
+        type: none
+        options:
+          offset: 0
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
   block_1:
     display_plugin: block
     id: block_1
     display_title: 'BK: Frequesnty Cited/Topca/Interesting Judgements'
-    position: 1
+    position: 4
     display_options:
       display_extenders: {  }
       display_description: ''
@@ -264,7 +510,7 @@ display:
     display_plugin: block
     id: block_latest_judgement
     display_title: 'BK: Latest Judgements'
-    position: 1
+    position: 5
     display_options:
       display_extenders: {  }
       display_description: 'View all recent Judgements'
@@ -317,7 +563,7 @@ display:
     display_plugin: block
     id: block_recent_judgement
     display_title: 'BK: Most Recent Judgements'
-    position: 1
+    position: 6
     display_options:
       display_extenders: {  }
       display_description: 'View all recent Judgements'
@@ -368,11 +614,93 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
+  page_1:
+    display_plugin: page
+    id: page_1
+    display_title: 'PG: Judgements Subject'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      title: 'By Subject'
+      defaults:
+        title: false
+        style: false
+        row: false
+        arguments: false
+        pager: false
+      style:
+        type: default
+        options:
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
+      path: Judgements/subject
+      arguments:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          default_action: ignore
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: fixed
+          default_argument_options:
+            argument: ''
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            items_per_page: 25
+            override: false
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: true
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          glossary: false
+          limit: 0
+          case: upper
+          path_case: lower
+          transform_dash: true
+          break_phrase: false
+          entity_type: node
+          entity_field: title
+          plugin_id: string
+      pager:
+        type: none
+        options:
+          offset: 0
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
   page_home:
     display_plugin: page
     id: page_home
     display_title: 'PG: (Homepage) Most Recent Judgements'
-    position: 1
+    position: 3
     display_options:
       display_extenders: {  }
       display_description: 'View all recent Judgements'
@@ -486,6 +814,9 @@ display:
         empty: false
         title: false
         header: false
+        style: false
+        row: false
+        css_class: false
       empty:
         area:
           id: area
@@ -512,7 +843,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<h3>Frequesnty Cited/Topca/Interesting Judgements</h3>'
+            value: '<h3>Frequenty Cited/Topical/Interesting Judgements</h3>'
             format: full_html
           plugin_id: text
       path: judgements
@@ -525,6 +856,23 @@ display:
         weight: 1
         context: '0'
         menu_name: main
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 3
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: col-lg-4
+          row_class_default: false
+          row_class_custom: row
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
+      css_class: test-class
     cache_metadata:
       max-age: -1
       contexts:

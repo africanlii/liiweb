@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\block\Entity\Block;
 
 /**
  * Implements hook_form_system_theme_settings_alter() for settings form.
@@ -29,6 +30,20 @@ function liibarrio2020_form_system_theme_settings_alter(&$form, FormStateInterfa
     'bg-white' => t('White'),
     'bg-transparent' => t('Transparent'),
   );
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() (block)
+ */
+function liibarrio2020_theme_suggestions_block_alter(array &$suggestions, array $variables)
+{
+  if (!empty($variables['elements']['#id'])) {
+    $block = Block::load($variables['elements']['#id']);
+    array_unshift($suggestions, 'block__' . $block->getRegion());
+    array_unshift($suggestions, 'block__' . $block->getRegion() . '__' . $variables['elements']['#id']);   
+  }
+  
+  return $suggestions;
 }
 
 // function liibarrio2020_preprocess_ds_entity_view(&$variables)  {

@@ -21,15 +21,13 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
+    pages: "<front>\r\n/about"
     negate: true
     context_mapping: {  }
   node_type:
     id: node_type
     bundles:
-      article: article
       billboard: billboard
-      judgment: judgment
       page: page
     negate: false
     context_mapping:

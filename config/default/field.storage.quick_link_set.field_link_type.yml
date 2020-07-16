@@ -10,7 +10,16 @@ field_name: field_link_type
 entity_type: quick_link_set
 type: list_string
 settings:
-  allowed_values: {  }
+  allowed_values:
+    -
+      value: link_type_1
+      label: 'Link type 1'
+    -
+      value: link_type_2
+      label: 'Link type 2'
+    -
+      value: link_type_3
+      label: 'Link type 3'
   allowed_values_function: ''
 module: options
 locked: false

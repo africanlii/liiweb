@@ -10,7 +10,7 @@ dependencies:
 id: viewtabsblock
 theme: liibarrio2020
 region: content
-weight: 0
+weight: -4
 provider: null
 plugin: view_tabs_block
 settings:

@@ -1,0 +1,85 @@
+uuid: 23d6018f-b7c7-4639-8726-993f742658d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card_secondary
+    - field.field.node.government_gazette.body
+    - field.field.node.government_gazette.field_external_link
+    - field.field.node.government_gazette.field_file
+    - field.field.node.government_gazette.field_gazette_date
+    - field.field.node.government_gazette.field_gazette_issue_number
+    - field.field.node.government_gazette.field_gazette_machine_id
+    - field.field.node.government_gazette.field_gazette_supplement
+    - node.type.government_gazette
+  module:
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_card_secondary
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          content: {  }
+    regions:
+      content:
+        - node_title
+        - field_gazette_issue_number
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: h6
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.government_gazette.card_secondary
+targetEntityType: node
+bundle: government_gazette
+mode: card_secondary
+content:
+  field_gazette_issue_number:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: 'Issue number'
+            lb-col: false
+            classes: {  }
+hidden:
+  body: true
+  field_external_link: true
+  field_file: true
+  field_gazette_date: true
+  field_gazette_machine_id: true
+  field_gazette_supplement: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

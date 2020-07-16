@@ -1,0 +1,102 @@
+uuid: d78bffb0-9958-4cf1-a494-da9486b1a8b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card_secondary
+    - field.field.node.legislation.field_commencement_date
+    - field.field.node.legislation.field_content
+    - field.field.node.legislation.field_created
+    - field.field.node.legislation.field_created_by_api
+    - field.field.node.legislation.field_expression_date
+    - field.field.node.legislation.field_external_link
+    - field.field.node.legislation.field_files
+    - field.field.node.legislation.field_frbr_uri
+    - field.field.node.legislation.field_images
+    - field.field.node.legislation.field_lifecycle_json
+    - field.field.node.legislation.field_parent_work
+    - field.field.node.legislation.field_publication_date
+    - field.field.node.legislation.field_publication_name
+    - field.field.node.legislation.field_raw_json
+    - field.field.node.legislation.field_repeal
+    - field.field.node.legislation.field_stub
+    - field.field.node.legislation.field_tags
+    - field.field.node.legislation.field_toc
+    - node.type.legislation
+  module:
+    - datetime
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_card_secondary
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class:
+            bg-light: bg-light
+          content: {  }
+    regions:
+      content:
+        - node_title
+        - field_publication_date
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h3
+          class: h6
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.legislation.card_secondary
+targetEntityType: node
+bundle: legislation
+mode: card_secondary
+content:
+  field_publication_date:
+    type: datetime_plain
+    weight: 1
+    region: content
+    label: above
+    settings:
+      timezone_override: ''
+    third_party_settings: {  }
+hidden:
+  field_commencement_date: true
+  field_content: true
+  field_created: true
+  field_created_by_api: true
+  field_expression_date: true
+  field_external_link: true
+  field_files: true
+  field_frbr_uri: true
+  field_images: true
+  field_lifecycle_json: true
+  field_parent_work: true
+  field_publication_name: true
+  field_raw_json: true
+  field_repeal: true
+  field_stub: true
+  field_tags: true
+  field_toc: true
+  langcode: true
+  links: true
+  search_api_excerpt: true
