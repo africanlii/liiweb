@@ -55,12 +55,12 @@ module:
   image: 0
   inline_entity_form: 0
   jsonapi: 0
-  kint: 0
   language: 0
   layout_discovery: 0
   liiweb: 0
   liiweb_api: 0
   liiweb_custom_view_filters: 0
+  liiweb_gazettes: 0
   liiweb_judgment: 0
   liiweb_legislation: 0
   liiweb_search: 0
