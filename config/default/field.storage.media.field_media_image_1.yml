@@ -1,14 +1,14 @@
-uuid: c13e2798-21b7-4206-90fb-86cdf5655f1e
+uuid: ad368c18-b3d7-409f-8922-a94441e7b2ba
 langcode: en
 status: true
 dependencies:
   module:
     - file
     - image
-    - taxonomy
-id: taxonomy_term.field_image
-field_name: field_image
-entity_type: taxonomy_term
+    - media
+id: media.field_media_image_1
+field_name: field_media_image_1
+entity_type: media
 type: image
 settings:
   uri_scheme: public
