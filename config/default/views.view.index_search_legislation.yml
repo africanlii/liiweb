@@ -174,8 +174,8 @@ display:
                 title: 'Last 5 years'
                 operator: '='
                 value:
-                  type: date
-                  value: '+1 day'
+                  type: offset
+                  value: '-5 years'
                   min: ''
                   max: ''
               2:
@@ -183,7 +183,7 @@ display:
                 operator: '='
                 value:
                   type: date
-                  value: +day
+                  value: '-1 years'
                   min: ''
                   max: ''
           plugin_id: search_api_date

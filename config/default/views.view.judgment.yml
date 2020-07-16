@@ -9,6 +9,7 @@ dependencies:
     - system.menu.main
   module:
     - node
+    - taxonomy
     - user
     - views_infinite_scroll
 id: judgment
@@ -84,54 +85,7 @@ display:
         options:
           relationship: none
           view_mode: full
-      fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          entity_type: node
-          entity_field: title
-          label: ''
-          alter:
-            alter_text: false
-            make_link: false
-            absolute: false
-            trim: false
-            word_boundary: false
-            ellipsis: false
-            strip_tags: false
-            html: false
-          hide_empty: false
-          empty_zero: false
-          settings:
-            link_to_entity: true
-          plugin_id: field
-          relationship: none
-          group_type: group
-          admin_label: ''
-          exclude: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
+      fields: {  }
       filters:
         status:
           value: '1'
@@ -198,7 +152,6 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
         - 'user.node_grants:view'
@@ -378,15 +331,18 @@ display:
         style: false
         row: false
         pager: false
+        relationships: false
+        sorts: false
+        fields: false
       arguments:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_tags
           group_type: group
           admin_label: ''
-          default_action: summary
+          default_action: ignore
           exception:
             value: all
             title_enable: false
@@ -406,19 +362,21 @@ display:
             sort_order: asc
             number_of_records: 0
             format: default_summary
-          specify_validation: true
+          specify_validation: false
           validate:
             type: none
             fail: 'not found'
           validate_options: {  }
           glossary: false
-          limit: 1
-          case: ucfirst
-          path_case: upper
+          limit: 0
+          case: none
+          path_case: lower
           transform_dash: true
           break_phrase: false
-          entity_type: node
-          entity_field: title
+          add_table: false
+          require_value: false
+          entity_type: taxonomy_term
+          entity_field: name
           plugin_id: string
       style:
         type: default
@@ -432,14 +390,108 @@ display:
           default_row_class: true
           uses_fields: true
       row:
-        type: 'entity:node'
+        type: fields
         options:
-          relationship: none
-          view_mode: teaser
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
       pager:
         type: none
         options:
           offset: 0
+      relationships:
+        field_tags:
+          id: field_tags
+          table: node__field_tags
+          field: field_tags
+          relationship: none
+          group_type: group
+          admin_label: 'field_tags: Taxonomy term'
+          required: false
+          plugin_id: standard
+      sorts:
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_tags
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: standard
+      fields:
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_tags
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          convert_spaces: false
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
     cache_metadata:
       max-age: -1
       contexts:
@@ -500,7 +552,6 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
         - 'user.node_grants:view'
@@ -559,7 +610,6 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - 'user.node_grants:view'
         - user.permissions
@@ -631,7 +681,6 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
         - 'user.node_grants:view'
@@ -652,6 +701,7 @@ display:
         row: false
         arguments: false
         pager: false
+        relationships: false
       style:
         type: default
         options:
@@ -665,11 +715,11 @@ display:
           view_mode: teaser
       path: judgments/subject
       arguments:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_tags
           group_type: group
           admin_label: ''
           default_action: ignore
@@ -692,24 +742,43 @@ display:
             sort_order: asc
             number_of_records: 0
             format: default_summary
-          specify_validation: true
+          specify_validation: false
           validate:
             type: none
             fail: 'not found'
           validate_options: {  }
           glossary: false
           limit: 0
-          case: upper
+          case: none
           path_case: lower
           transform_dash: true
           break_phrase: false
-          entity_type: node
-          entity_field: title
+          add_table: false
+          require_value: false
+          entity_type: taxonomy_term
+          entity_field: name
           plugin_id: string
       pager:
-        type: none
+        type: infinite_scroll
         options:
+          items_per_page: 20
           offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: '‹ Previous'
+            next: 'Next ›'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: true
       menu:
         type: none
         title: Judgments
@@ -719,12 +788,22 @@ display:
         weight: -7
         context: '0'
         menu_name: main
+      relationships:
+        field_tags:
+          id: field_tags
+          table: node__field_tags
+          field: field_tags
+          relationship: none
+          group_type: group
+          admin_label: 'field_tags: Taxonomy term'
+          required: false
+          plugin_id: standard
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -805,7 +884,6 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
         - 'user.node_grants:view'
@@ -906,7 +984,6 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
         - 'user.node_grants:view'

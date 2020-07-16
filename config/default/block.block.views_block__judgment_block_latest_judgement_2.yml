@@ -1,0 +1,30 @@
+uuid: f7e849d4-50a8-4882-9458-5efc50d8442b
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.judgment
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: views_block__judgment_block_latest_judgement_2
+theme: liibarrio2020
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'views_block:judgment-block_latest_judgement'
+settings:
+  id: 'views_block:judgment-block_latest_judgement'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: /judgments
+    negate: false
+    context_mapping: {  }
