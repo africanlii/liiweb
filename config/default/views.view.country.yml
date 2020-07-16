@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.taxonomy_term.listing
+    - core.entity_view_mode.taxonomy_term.slide
     - taxonomy.vocabulary.country
   module:
+    - slick_views
     - taxonomy
     - user
 id: country
@@ -182,9 +184,72 @@ display:
         - 'languages:language_interface'
         - user.permissions
       tags: {  }
-  block_1:
+  block_country_carousel:
     display_plugin: block
-    id: block_1
+    id: block_country_carousel
+    display_title: 'BK: Country carousel'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      title: 'Vist one of the other fifteen Legal Information Institutes across Africa'
+      defaults:
+        title: false
+        style: false
+        row: false
+      style:
+        type: slick
+        options:
+          vanilla: true
+          optionset: country
+          skin: ''
+          layout: ''
+          caption:
+            name: '0'
+          optionset_thumbnail: ''
+          skin_thumbnail: ''
+          thumbnail_position: ''
+          thumbnail_caption: ''
+          grid: null
+          grid_medium: null
+          grid_small: null
+          visible_items: null
+          preserve_keys: false
+          image: ''
+          thumbnail: ''
+          overlay: ''
+          title: ''
+          link: ''
+          class: ''
+          id: ''
+          override: false
+          overridables:
+            arrows: '0'
+            autoplay: '0'
+            dots: '0'
+            draggable: '0'
+            infinite: '0'
+            mouseWheel: '0'
+            randomize: '0'
+            variableWidth: '0'
+          cache: 0
+          current_view_mode: block_1
+          thumbnail_effect: ''
+      row:
+        type: 'entity:taxonomy_term'
+        options:
+          relationship: none
+          view_mode: slide
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - user.permissions
+      tags: {  }
+  block_country_footer:
+    display_plugin: block
+    id: block_country_footer
     display_title: 'BK: Country footer'
     position: 1
     display_options:

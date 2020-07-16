@@ -884,7 +884,7 @@ display:
         description: ''
         expanded: false
         parent: ''
-        weight: -7
+        weight: 1
         context: '0'
         menu_name: main
       style:

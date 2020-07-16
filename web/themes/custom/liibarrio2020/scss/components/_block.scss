@@ -215,7 +215,13 @@
   margin-bottom: calc(#{$grid-gutter-width} * 1);
 }
 
-#block-views-block-footer-country {
+#block-views-block-country-block-country-footer {
+  .title {
+    max-width: 14rem;
+  }
+  .content {
+    padding-left: 1.25rem;
+  }
 }
 
 // Homepage blocks
