@@ -1,4 +1,4 @@
-uuid: e70cf2f6-bbb0-4fde-b714-141f17268f52
+uuid: 51e0116d-3f77-410d-9121-454c1ebf27b2
 langcode: en
 status: true
 dependencies:
@@ -8,14 +8,14 @@ dependencies:
     - views
   theme:
     - liibarrio2020
-id: views_block__country_block_1
+id: views_block__country_block_country_footer
 theme: liibarrio2020
 region: footer_third
 weight: 0
 provider: null
-plugin: 'views_block:country-block_1'
+plugin: 'views_block:country-block_country_footer'
 settings:
-  id: 'views_block:country-block_1'
+  id: 'views_block:country-block_country_footer'
   label: ''
   provider: views
   label_display: visible
