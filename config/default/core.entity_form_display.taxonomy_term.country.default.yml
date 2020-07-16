@@ -3,12 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.country.field_image
+    - entity_browser.browser.image_browser
     - field.field.taxonomy_term.country.field_link
-    - field.field.taxonomy_term.country.field_svg
+    - field.field.taxonomy_term.country.field_media_ref
     - taxonomy.vocabulary.country
   module:
-    - file
+    - entity_browser
     - link
     - path
 id: taxonomy_term.country.default
@@ -24,12 +24,20 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_svg:
+  field_media_ref:
     weight: 4
     settings:
-      progress_indicator: throbber
+      entity_browser: image_browser
+      field_widget_display: rendered_entity
+      field_widget_display_settings:
+        view_mode: default
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_replace: false
+      open: false
     third_party_settings: {  }
-    type: file_generic
+    type: entity_browser_entity_reference
     region: content
   name:
     type: string_textfield
@@ -54,5 +62,4 @@ content:
     third_party_settings: {  }
 hidden:
   description: true
-  field_image: true
   langcode: true

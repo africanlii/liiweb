@@ -1,11 +1,12 @@
-uuid: d2aad476-09b6-498b-ad6b-61432cf02caa
+uuid: 0eebb550-43ed-4a3c-ab44-adfd73844a91
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.taxonomy_term.field_image
-    - taxonomy.vocabulary.country
+    - field.storage.media.field_media_image_1
+    - media.type.icon
   module:
+    - content_translation
     - filefield_paths
     - image
 third_party_settings:
@@ -26,19 +27,24 @@ third_party_settings:
         slashes: false
         pathauto: false
         transliterate: false
-id: taxonomy_term.country.field_image
-field_name: field_image
-entity_type: taxonomy_term
-bundle: country
+  content_translation:
+    translation_sync:
+      alt: alt
+      title: title
+      file: '0'
+id: media.icon.field_media_image_1
+field_name: field_media_image_1
+entity_type: media
+bundle: icon
 label: Image
 description: ''
-required: false
-translatable: false
+required: true
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
   file_directory: '[date:custom:Y]-[date:custom:m]'
-  file_extensions: 'svg png gif jpg jpeg'
+  file_extensions: 'png gif jpg jpeg svg'
   max_filesize: ''
   max_resolution: ''
   min_resolution: ''

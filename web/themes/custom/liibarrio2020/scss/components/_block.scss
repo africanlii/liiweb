@@ -216,20 +216,6 @@
 }
 
 #block-views-block-footer-country {
-  img {
-    max-width: 1.25rem;
-    margin: 0 1.25rem;
-  }
-
-  .countries {
-    ul {
-      @include list-unstyled();
-    }
-
-    span {
-      padding-top: 2px;
-    }
-  }
 }
 
 // Homepage blocks

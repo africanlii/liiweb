@@ -1,17 +1,17 @@
-uuid: 4203fff1-6bd2-47e4-b7ea-595a67878b1e
+uuid: 8fd84b1f-7c15-4ef1-a956-9eeefcdb8ff0
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.media.image.field_media_image
-    - image.style.large
-    - media.type.image
+    - field.field.media.icon.field_media_image_1
+    - image.style.medium
+    - media.type.icon
   module:
-    - focal_point
     - path
-id: media.image.default
+    - svg_image
+id: media.icon.default
 targetEntityType: media
-bundle: image
+bundle: icon
 mode: default
 content:
   created:
@@ -20,15 +20,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_media_image:
+  field_media_image_1:
     weight: 0
     settings:
-      preview_image_style: large
-      preview_link: true
-      offsets: '50,50'
+      preview_image_style: medium
       progress_indicator: throbber
     third_party_settings: {  }
-    type: image_focal_point
+    type: image_image
     region: content
   langcode:
     type: language_select
