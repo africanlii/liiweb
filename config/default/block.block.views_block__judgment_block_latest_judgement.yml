@@ -1,4 +1,4 @@
-uuid: 0e7a612e-db92-4c19-9602-1659cbb8488e
+uuid: 68c76c50-e262-4f04-8044-eae08b60721b
 langcode: en
 status: true
 dependencies:
@@ -12,7 +12,7 @@ dependencies:
 id: views_block__judgment_block_latest_judgement
 theme: liibarrio2020
 region: sidebar_second
-weight: 0
+weight: -10
 provider: null
 plugin: 'views_block:judgment-block_latest_judgement'
 settings:

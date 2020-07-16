@@ -44,7 +44,7 @@ third_party_settings:
         link_custom: ''
         classes:
           layout_class:
-            bg-light: bg-light
+            bg-secondary: bg-secondary
           content: {  }
     regions:
       content:

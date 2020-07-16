@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.card_secondary
     - core.entity_view_mode.node.full
     - core.entity_view_mode.node.teaser
     - node.type.judgment
@@ -597,15 +598,15 @@ display:
           columns: 1
           automatic_width: true
           alignment: horizontal
-          col_class_default: true
-          col_class_custom: col-lg-12
+          col_class_default: false
+          col_class_custom: ''
           row_class_default: true
           row_class_custom: ''
       row:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: teaser
+          view_mode: card_secondary
       title: 'Latest Judgment'
     cache_metadata:
       max-age: -1
@@ -641,13 +642,14 @@ display:
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'View more Judgment'
+            button_text: 'View more judgments'
             automatically_load_content: false
       defaults:
         pager: false
         empty: false
         style: false
         row: false
+        css_class: false
       empty:
         area:
           id: area
@@ -678,6 +680,7 @@ display:
         options:
           relationship: none
           view_mode: teaser
+      css_class: view--liibarrio
     cache_metadata:
       max-age: -1
       contexts:
@@ -926,6 +929,7 @@ display:
         header: false
         style: false
         row: false
+        css_class: false
       empty:
         area:
           id: area
@@ -973,14 +977,15 @@ display:
           automatic_width: false
           alignment: horizontal
           col_class_default: false
-          col_class_custom: ''
-          row_class_default: false
-          row_class_custom: ''
+          col_class_custom: col-lg-4
+          row_class_default: true
+          row_class_custom: row
       row:
         type: 'entity:node'
         options:
           relationship: none
           view_mode: teaser
+      css_class: 'view--liibarrio view--liibarrio--bg'
     cache_metadata:
       max-age: -1
       contexts:

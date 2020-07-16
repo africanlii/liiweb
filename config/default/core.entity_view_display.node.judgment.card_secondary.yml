@@ -1,0 +1,113 @@
+uuid: 56279b01-8b1e-480c-b003-78245dce41d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card_secondary
+    - field.field.node.judgment.body
+    - field.field.node.judgment.feeds_item
+    - field.field.node.judgment.field_case_name
+    - field.field.node.judgment.field_case_number
+    - field.field.node.judgment.field_case_number_numeric
+    - field.field.node.judgment.field_case_number_year
+    - field.field.node.judgment.field_court_name
+    - field.field.node.judgment.field_external_link
+    - field.field.node.judgment.field_files
+    - field.field.node.judgment.field_flynote
+    - field.field.node.judgment.field_headnote_and_holding
+    - field.field.node.judgment.field_judge
+    - field.field.node.judgment.field_judgment_date
+    - field.field.node.judgment.field_judgment_mnc_old
+    - field.field.node.judgment.field_judgment_number
+    - field.field.node.judgment.field_judgment_number_override
+    - field.field.node.judgment.field_judgment_old_nid
+    - field.field.node.judgment.field_law_report_citations
+    - field.field.node.judgment.field_matter_type
+    - field.field.node.judgment.field_media_neutral_citation
+    - field.field.node.judgment.field_search_summary
+    - field.field.node.judgment.field_tags
+    - node.type.judgment
+  module:
+    - ds
+    - taxonomy
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_card_secondary
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          content: {  }
+    regions:
+      content:
+        - node_title
+        - field_court_name
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: h6
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.judgment.card_secondary
+targetEntityType: node
+bundle: judgment
+mode: card_secondary
+content:
+  field_court_name:
+    type: entity_reference_rss_category
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  liiweb_share_links:
+    weight: 6
+    region: sidebar
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  feeds_item: true
+  field_case_name: true
+  field_case_number: true
+  field_case_number_numeric: true
+  field_case_number_year: true
+  field_external_link: true
+  field_files: true
+  field_flynote: true
+  field_headnote_and_holding: true
+  field_judge: true
+  field_judgment_date: true
+  field_judgment_mnc_old: true
+  field_judgment_number: true
+  field_judgment_number_override: true
+  field_judgment_old_nid: true
+  field_law_report_citations: true
+  field_matter_type: true
+  field_media_neutral_citation: true
+  field_search_summary: true
+  field_tags: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

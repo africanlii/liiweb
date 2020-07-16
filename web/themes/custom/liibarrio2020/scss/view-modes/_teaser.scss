@@ -1,7 +1,9 @@
 .node--view-mode-teaser {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  &.node--type-legislation {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 
   .node {
     &__title {

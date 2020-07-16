@@ -234,89 +234,17 @@
     padding-left: calc(#{$grid-gutter-width} / 1.333333);
   }
 
-  a {
-    color: $body-color;
-  }
-
   .content {
     background: $white;
   }
+}
 
-  .view-content {
-    padding: calc(#{$grid-gutter-width} / 1.333333);
-    border: 1px solid #d5d5d5;
-
-    &:not(:only-child) {
-      border-bottom: none;
-    }
-  }
-
-  .views-row {
-    position: relative;
-    &:not(:nth-child(1)) {
-      margin-top: 0.5rem;
-    }
-
-    &:nth-child(5n + 6) {
-      padding-top: calc(#{$grid-gutter-width} / 1.333333);
-      margin-top: calc(#{$grid-gutter-width} / 1.333333);
-
-      &:before {
-        content: "";
-        position: absolute;
-        display: block;
-        top: 0;
-        height: 1px;
-        width: calc(100% - #{$grid-gutter-width});
-        background: #d5d5d5;
-      }
-    }
-  }
-
-  .view-empty {
-    padding: calc(#{$grid-gutter-width} / 1.333333);
-    border: 1px solid #d5d5d5;
-  }
-
-  .views-view-grid.horizontal {
-    position: relative;
-    border-bottom: none;
-
-    &:not(:nth-child(1)) {
-      border-top: none;
-      margin-top: calc(#{$grid-gutter-width} / 1.333333);
-      padding-top: calc(#{$grid-gutter-width} / 1.333333);
-
-      &:before {
-        content: "";
-        position: absolute;
-        display: block;
-        top: 0;
-        height: 1px;
-        width: calc(100% - #{$grid-gutter-width});
-        background: #d5d5d5;
-      }
-    }
-
-    @include media-breakpoint-up(lg) {
-      .row:not(:first-child) {
-        padding: $grid-gutter-width 0 0;
-      }
-    }
-  }
-
-  .pager {
-    @include list-unstyled();
-
-    .button {
-      display: block;
-      width: 100%;
-      padding: 0.625rem 0;
-      background: $primary;
-      text-align: center;
-      color: $white;
-    }
-  }
+// Judgment landing
+#block-viewtabsblock,
+#block-judgmentviewtabsblock {
+  background: $white;
+  padding: calc(#{$grid-gutter-width} / 2);
+  border: 1px solid #d5d5d5;
 }
 
 //Sidebar blocks

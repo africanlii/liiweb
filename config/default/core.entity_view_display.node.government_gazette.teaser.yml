@@ -14,25 +14,90 @@ dependencies:
     - node.type.government_gazette
   module:
     - datetime
+    - ds
+    - file
+    - text
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_2col_9_3
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          left: div
+          right: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          left: {  }
+          right: {  }
+    regions:
+      left:
+        - node_title
+        - body
+      right:
+        - field_gazette_date
+        - field_file
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h3
+          class: h6
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.government_gazette.teaser
 targetEntityType: node
 bundle: government_gazette
 mode: teaser
 content:
+  body:
+    type: text_trimmed
+    weight: 1
+    region: left
+    label: hidden
+    settings:
+      trim_length: 140
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_file:
+    type: file_url_plain
+    weight: 3
+    region: right
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   field_gazette_date:
-    type: datetime_custom
-    weight: 0
-    region: content
+    type: datetime_plain
+    weight: 2
+    region: right
     label: hidden
     settings:
       timezone_override: ''
-      date_format: 'jS F Y'
     third_party_settings: {  }
 hidden:
-  body: true
   field_external_link: true
-  field_file: true
   field_gazette_issue_number: true
   field_gazette_machine_id: true
   field_gazette_supplement: true

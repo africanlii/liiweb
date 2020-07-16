@@ -9,13 +9,13 @@ dependencies:
     - liibarrio2020
 id: viewtabsblock
 theme: liibarrio2020
-region: content
-weight: -5
+region: content_bottom
+weight: -13
 provider: null
 plugin: view_tabs_block
 settings:
   id: view_tabs_block
-  label: 'View tabs block'
+  label: 'Legislation browser'
   provider: liiweb_legislation
   label_display: '0'
 visibility:

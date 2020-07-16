@@ -1,4 +1,8 @@
 .card {
+  &-body {
+    padding: calc(#{$grid-gutter-width} / 2);
+  }
+
   a {
     color: $white;
   }

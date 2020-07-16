@@ -51,7 +51,7 @@ display:
       pager:
         type: infinite_scroll
         options:
-          items_per_page: 20
+          items_per_page: 10
           offset: 0
           id: 0
           total_pages: null
@@ -67,8 +67,8 @@ display:
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'Load More'
-            automatically_load_content: true
+            button_text: 'View more gazettes'
+            automatically_load_content: false
       style:
         type: default
         options:
@@ -304,6 +304,7 @@ display:
       defaults:
         fields: false
         cache: false
+        use_ajax: false
       cache:
         type: none
       display_description: ''
@@ -316,6 +317,7 @@ display:
         weight: 3
         context: '0'
         menu_name: main
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:

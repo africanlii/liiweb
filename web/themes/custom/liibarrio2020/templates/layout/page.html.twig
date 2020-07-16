@@ -125,7 +125,16 @@
           <main class="layout-main col" id="content" role="main">
             <section class="section">
               <a id="main-content" tabindex="-1"></a>
+              {% if page.content_top %}
+                {{ page.content_top }}
+              {% endif %}
+
+              {# Content #}
               {{ page.content }}
+
+              {% if page.content_bottom %}
+                {{ page.content_bottom }}
+              {% endif %}
             </section>
           </main>
         {% if page.sidebar_first %}

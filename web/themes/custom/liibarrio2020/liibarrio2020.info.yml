@@ -28,7 +28,9 @@ regions:
   hero: Hero
   highlighted: Highlighted
   help: Help
+  content_top: "Content top"
   content: Content
+  content_bottom: "Content bottom"
   sidebar_first: "Sidebar first"
   sidebar_second: "Sidebar second"
   footer_first: "Footer first"

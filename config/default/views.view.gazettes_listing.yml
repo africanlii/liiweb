@@ -56,7 +56,11 @@ display:
         options:
           offset: 0
       style:
-        type: html_list
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
       row:
         type: fields
         options:
@@ -252,6 +256,7 @@ display:
         row: false
         pager: false
         use_ajax: false
+        css_class: false
       empty:
         area:
           id: area
@@ -300,6 +305,7 @@ display:
             button_text: 'View more government gazettes'
             automatically_load_content: false
       use_ajax: true
+      css_class: view--liibarrio
     cache_metadata:
       max-age: -1
       contexts:

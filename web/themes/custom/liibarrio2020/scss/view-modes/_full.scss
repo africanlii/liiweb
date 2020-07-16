@@ -24,7 +24,7 @@
     }
 
     .card {
-      padding: calc(#{$grid-gutter-width} / 2);
+      //padding: calc(#{$grid-gutter-width} / 2);
       margin-bottom: calc(#{$grid-gutter-width} / 2);
 
       &.bg-light {
