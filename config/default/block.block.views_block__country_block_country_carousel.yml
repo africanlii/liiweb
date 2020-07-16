@@ -1,22 +1,22 @@
-uuid: 7deef4d9-f697-40a1-8977-9e3806548bd0
+uuid: 2f5387a4-777b-4313-ba02-e6d34dc3cb6e
 langcode: en
 status: true
 dependencies:
   config:
-    - views.view.dev_layout_testing
+    - views.view.country
   module:
     - system
     - views
   theme:
     - liibarrio2020
-id: views_block__dev_layout_testing_block_2
+id: views_block__country_block_country_carousel
 theme: liibarrio2020
 region: content
-weight: -8
+weight: -3
 provider: null
-plugin: 'views_block:dev_layout_testing-block_2'
+plugin: 'views_block:country-block_country_carousel'
 settings:
-  id: 'views_block:dev_layout_testing-block_2'
+  id: 'views_block:country-block_country_carousel'
   label: ''
   provider: views
   label_display: visible
@@ -25,6 +25,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: /layout-testing
+    pages: /about
     negate: false
     context_mapping: {  }

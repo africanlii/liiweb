@@ -10,7 +10,7 @@ id: taxonomy_term.country.field_media_ref
 field_name: field_media_ref
 entity_type: taxonomy_term
 bundle: country
-label: Logo
+label: Flag
 description: ''
 required: true
 translatable: false
