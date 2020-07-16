@@ -4,10 +4,10 @@ status: true
 dependencies: {  }
 id: country
 name: country
-label: country
+label: Country
 weight: 0
 group: ''
-skin: default
+skin: ''
 breakpoints: 5
 optimized: false
 options:

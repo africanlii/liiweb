@@ -1,0 +1,10 @@
+uuid: d6a72100-1980-4390-8e98-a63565131aec
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.banner_intro
+label: 'Banner - Intro'
+targetEntityType: node
+cache: true

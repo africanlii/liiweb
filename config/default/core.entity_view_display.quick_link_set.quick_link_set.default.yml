@@ -7,9 +7,32 @@ dependencies:
     - field.field.quick_link_set.quick_link_set.field_link
     - field.field.quick_link_set.quick_link_set.field_link_type
   module:
+    - ds
     - link
     - rw_quicklinks
     - text
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_flex_vertical
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          content: {  }
+    regions:
+      content:
+        - field_link
+        - field_body
 id: quick_link_set.quick_link_set.default
 targetEntityType: quick_link_set
 bundle: quick_link_set
@@ -23,17 +46,17 @@ content:
     type: text_default
     region: content
   field_link:
+    type: link
     weight: 0
+    region: content
     label: hidden
     settings:
       trim_length: 80
-      url_only: false
-      url_plain: false
       rel: ''
       target: ''
+      url_only: false
+      url_plain: false
     third_party_settings: {  }
-    type: link
-    region: content
 hidden:
   field_link_type: true
   langcode: true
