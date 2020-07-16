@@ -1,4 +1,4 @@
-uuid: e145ca74-5973-4736-8547-07b008f2322e
+uuid: e70cf2f6-bbb0-4fde-b714-141f17268f52
 langcode: en
 status: true
 dependencies:
@@ -8,7 +8,7 @@ dependencies:
     - views
   theme:
     - liibarrio2020
-id: views_block__footer_country
+id: views_block__country_block_1
 theme: liibarrio2020
 region: footer_third
 weight: 0

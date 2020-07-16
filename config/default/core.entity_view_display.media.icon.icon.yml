@@ -1,0 +1,46 @@
+uuid: d0fb1cff-0556-43fc-b5a3-960711d4bb89
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.icon
+    - field.field.media.icon.field_media_image_1
+    - media.type.icon
+  module:
+    - ds
+    - svg_formatter
+id: media.icon.icon
+targetEntityType: media
+bundle: icon
+mode: icon
+content:
+  field_media_image_1:
+    label: visually_hidden
+    weight: 0
+    settings:
+      sanitize: true
+      apply_dimensions: true
+      width: 20
+      height: 20
+      enable_alt: true
+      alt_string: ''
+      enable_title: true
+      title_string: ''
+      inline: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: svg_formatter
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true
