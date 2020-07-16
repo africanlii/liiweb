@@ -1,4 +1,4 @@
-uuid: 9f49c731-4e3c-44a1-8a69-a5c8ed62295a
+uuid: 7d312035-9fde-4821-8434-1eef77bfdd23
 langcode: en
 status: true
 dependencies:
@@ -7,21 +7,23 @@ dependencies:
     - system
   theme:
     - liibarrio2020
-id: facetsblock
+id: facetsblock_2
 theme: liibarrio2020
-region: content
-weight: -15
+region: sidebar_first
+weight: 0
 provider: null
 plugin: facets_block
 settings:
   id: facets_block
-  label: 'Facets Block - Content Type'
+  label: 'Filter Results'
   provider: facets_block
-  label_display: '0'
+  label_display: visible
   show_title: false
-  exclude_empty_facets: false
+  exclude_empty_facets: true
   facets_to_include:
-    'facet_block:content_type': 'facet_block:content_type'
+    'facet_block:court_name': 'facet_block:court_name'
+    'facet_block:tags': 'facet_block:tags'
+    'facet_block:content_type': '0'
 visibility:
   request_path:
     id: request_path

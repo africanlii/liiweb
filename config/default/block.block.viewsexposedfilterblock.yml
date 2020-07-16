@@ -1,0 +1,27 @@
+uuid: 0328f445-160a-4664-9fa6-8a92fec02298
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+    - views_exposed_filter_blocks
+  theme:
+    - liibarrio2020
+id: viewsexposedfilterblock
+theme: liibarrio2020
+region: content
+weight: -16
+provider: null
+plugin: views_exposed_filter_blocks_block
+settings:
+  id: views_exposed_filter_blocks_block
+  label: 'Views exposed filter block - Search'
+  provider: views_exposed_filter_blocks
+  label_display: '0'
+  view_display: 'liiweb_search:page_search'
+visibility:
+  request_path:
+    id: request_path
+    pages: /search
+    negate: false
+    context_mapping: {  }
