@@ -20,6 +20,7 @@ dependencies:
     - field.storage.node.field_lifecycle_json
     - field.storage.node.field_publication_name
     - field.storage.node.field_search_summary
+    - field.storage.node.field_tags
     - search_api.server.solr
 third_party_settings:
   search_api_solr:
@@ -181,6 +182,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_search_summary
+  field_tags:
+    label: Tags
+    datasource_id: 'entity:node'
+    property_path: field_tags
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_tags
   title:
     label: Title
     datasource_id: 'entity:node'

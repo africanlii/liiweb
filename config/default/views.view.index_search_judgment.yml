@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - search_api.index.full_site_search
+    - taxonomy.vocabulary.legislation_tags
   module:
     - better_exposed_filters
     - search_api
@@ -235,6 +236,54 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
+        field_tags:
+          id: field_tags
+          table: search_api_index_full_site_search
+          field: field_tags
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_tags_op
+            label: 'All Subjects'
+            description: ''
+            use_operator: false
+            operator: field_tags_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_tags
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: legislation_tags
+          hierarchy: false
+          error_message: true
+          plugin_id: search_api_term
         search_api_fulltext:
           id: search_api_fulltext
           table: search_api_index_full_site_search
@@ -298,6 +347,7 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.full_site_search'
@@ -361,6 +411,7 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.full_site_search'
