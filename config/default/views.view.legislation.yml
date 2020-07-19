@@ -192,7 +192,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: 'No legislation found, Please try again later.'
+            value: 'No legislation found. Please try again later.'
             format: full_html
           plugin_id: text
       relationships: {  }
@@ -454,6 +454,7 @@ display:
         filter_groups: false
         use_ajax: false
         exposed_form: false
+        css_class: false
       row:
         type: 'entity:node'
         options:
@@ -528,7 +529,7 @@ display:
       pager:
         type: infinite_scroll
         options:
-          items_per_page: 20
+          items_per_page: 10
           offset: 0
           id: 0
           total_pages: null
@@ -544,8 +545,8 @@ display:
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'Load More'
-            automatically_load_content: true
+            button_text: 'View more legislation'
+            automatically_load_content: false
       sorts:
         title:
           id: title
@@ -773,6 +774,7 @@ display:
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: 1
+      css_class: view--liibarrio-browser
     cache_metadata:
       max-age: -1
       contexts:

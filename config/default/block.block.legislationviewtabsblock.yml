@@ -1,4 +1,4 @@
-uuid: b48f0f3a-3fa7-46e9-9cd3-49c629167db0
+uuid: 91ecbd6f-b893-48ed-bbb9-f14c48b15d5e
 langcode: en
 status: true
 dependencies:
@@ -7,10 +7,10 @@ dependencies:
     - system
   theme:
     - liibarrio2020
-id: viewtabsblock
+id: legislationviewtabsblock
 theme: liibarrio2020
 region: content_bottom
-weight: -13
+weight: 0
 provider: null
 plugin: view_tabs_block
 settings:

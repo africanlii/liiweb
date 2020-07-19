@@ -240,11 +240,47 @@
 }
 
 // Judgment landing
-#block-viewtabsblock,
+#block-legislationviewtabsblock,
 #block-judgmentviewtabsblock {
   background: $white;
   padding: calc(#{$grid-gutter-width} / 2);
   border: 1px solid #d5d5d5;
+
+  & > .content {
+    & .nav {
+      margin-bottom: 1.5rem;
+
+      .nav-item {
+        padding: 0.5rem 1rem;
+      }
+      .nav-link {
+        text-decoration: underline;
+        padding: 0 0.625rem;
+
+        &.active {
+          position: relative;
+          background: transparent;
+          color: $body-color;
+          font-weight: 700;
+          text-decoration: none;
+
+          &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.75rem;
+            height: 0.625rem;
+            width: 100%;
+            background: $secondary;
+          }
+        }
+      }
+    }
+  }
+
+  .view {
+    margin-top: 1rem;
+  }
 }
 
 //Sidebar blocks

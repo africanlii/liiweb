@@ -1,6 +1,6 @@
 .view-rw-quicklink {
   padding: 0.875rem;
-  border: solid 1px #d5d5d5;
+  border: solid 1px $border-color;
   background: $white;
 
   .views-row:last-child {
@@ -27,9 +27,10 @@
     }
   }
 
-  .view-content {
+  .view-content,
+  .view-empty {
     padding: calc(#{$grid-gutter-width} / 1.333333);
-    border: 1px solid #d5d5d5;
+    border: 1px solid $border-color;
 
     &:not(:last-child) {
       border-bottom: none;
@@ -53,7 +54,7 @@
         top: 0;
         height: 1px;
         width: calc(100% - #{$grid-gutter-width});
-        background: #d5d5d5;
+        background: $border-color;
       }
     }
   }
@@ -74,7 +75,7 @@
         top: 0;
         height: 1px;
         width: calc(100% - #{$grid-gutter-width});
-        background: #d5d5d5;
+        background: $border-color;
       }
     }
 
@@ -88,6 +89,116 @@
   .pager {
     @include list-unstyled();
     margin-bottom: 0;
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: 0.625rem 0;
+      background: $primary;
+      text-align: center;
+      color: $white;
+    }
+  }
+}
+
+.view--liibarrio-browser {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .view-filters {
+    flex: 0 0 100%;
+
+    .form-row > fieldset {
+      flex: 0 0 100%;
+      margin-bottom: 0;
+    }
+
+    .form-radios {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+    }
+
+    .custom-control {
+      padding-left: 0;
+    }
+
+    input:checked + label,
+    label:hover {
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 100%;
+        background: $secondary;
+      }
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    .form-actions {
+      @include sr-only();
+    }
+  }
+
+  .view-content {
+    flex: 0 0 100%;
+
+    &__title {
+      position: relative;
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        height: 1px;
+        width: 45%;
+        background: $border-color;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:before {
+        left: 0;
+      }
+      &:after {
+        right: 0;
+      }
+      &:not(:first-of-type) {
+        margin-top: 0.625rem;
+      }
+    }
+
+    .views-row {
+      background: $body-bg;
+      padding: 0.3125rem 0.625rem;
+
+      &:not(:first-child) {
+        margin-top: 0.625rem;
+      }
+    }
+  }
+
+  .view-empty {
+    flex: 0 0 100%;
+    background: $body-bg;
+    padding: 1rem;
+  }
+
+  .pager {
+    @include list-unstyled();
+    margin-bottom: 0;
+    flex: 0 0 calc(100% + #{$grid-gutter-width});
+    margin-top: calc(#{$grid-gutter-width} / 2);
+    margin-left: calc(-#{$grid-gutter-width} / 2);
+    margin-right: calc(-#{$grid-gutter-width} / 2);
+    margin-bottom: calc(-#{$grid-gutter-width} / 2);
 
     .button {
       display: block;
