@@ -29,7 +29,6 @@ dependencies:
     - node.type.judgment
   module:
     - ds
-    - taxonomy
     - user
 third_party_settings:
   ds:
@@ -75,11 +74,12 @@ bundle: judgment
 mode: card_secondary
 content:
   field_court_name:
-    type: entity_reference_rss_category
+    type: entity_reference_label
     weight: 1
     region: content
     label: hidden
-    settings: {  }
+    settings:
+      link: true
     third_party_settings: {  }
   liiweb_share_links:
     weight: 6
