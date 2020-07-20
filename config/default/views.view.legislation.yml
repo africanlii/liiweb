@@ -428,7 +428,7 @@ display:
   bk_legislation_browser:
     display_plugin: block
     id: bk_legislation_browser
-    display_title: 'BK: Browser All (Grouped)'
+    display_title: 'BK: Browser All (Glossary)'
     position: 6
     display_options:
       display_extenders: {  }
@@ -1008,7 +1008,7 @@ display:
   bk_legislation_subject:
     display_plugin: block
     id: bk_legislation_subject
-    display_title: 'BK: By Subject (Grouped)'
+    display_title: 'BK: By Subject (Grouped by Tags)'
     position: 4
     display_options:
       display_extenders: {  }
