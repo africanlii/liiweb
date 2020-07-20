@@ -205,7 +205,7 @@ display:
           exposed: true
           expose:
             operator_id: created_1_op
-            label: 'Authored on'
+            label: 'Custom Date'
             description: ''
             use_operator: false
             operator: created_1_op
@@ -354,7 +354,7 @@ display:
   bk_legislation_search:
     display_plugin: block
     id: bk_legislation_search
-    display_title: 'BK: Search'
+    display_title: 'BK: Search legislation'
     position: 1
     display_options:
       display_extenders: {  }
@@ -387,7 +387,7 @@ display:
                 advanced:
                   placeholder_text: ''
                   rewrite:
-                    filter_rewrite_values: ''
+                    filter_rewrite_values: '- Any -|All'
                   collapsible: false
                   is_secondary: false
                 select_all_none: false
@@ -398,10 +398,20 @@ display:
                 advanced:
                   collapsible: false
                   is_secondary: false
-              title:
+              field_tags:
+                plugin_id: default
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: false
+                  is_secondary: false
+              search_api_fulltext:
                 plugin_id: default
                 advanced:
                   placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: '- Any -|All'
                   collapsible: false
                   is_secondary: false
       defaults:

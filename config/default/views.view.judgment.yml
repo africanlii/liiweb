@@ -9,6 +9,7 @@ dependencies:
     - node.type.judgment
     - system.menu.main
   module:
+    - better_exposed_filters
     - node
     - taxonomy
     - user
@@ -177,6 +178,8 @@ display:
         pager: false
         sorts: false
         use_ajax: false
+        exposed_form: false
+        css_class: false
       style:
         type: default
         options:
@@ -219,6 +222,151 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: title_op
+            label: Title
+            description: null
+            use_operator: false
+            operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: null
+          is_grouped: true
+          group_info:
+            label: ''
+            description: ''
+            identifier: title
+            optional: true
+            widget: radios
+            multiple: false
+            remember: false
+            default_group: '1'
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: A
+                operator: starts
+                value: A
+              2:
+                title: B
+                operator: starts
+                value: B
+              3:
+                title: C
+                operator: starts
+                value: C
+              4:
+                title: D
+                operator: starts
+                value: D
+              5:
+                title: E
+                operator: starts
+                value: E
+              6:
+                title: F
+                operator: starts
+                value: F
+              7:
+                title: G
+                operator: starts
+                value: G
+              8:
+                title: H
+                operator: starts
+                value: H
+              9:
+                title: I
+                operator: starts
+                value: I
+              10:
+                title: J
+                operator: starts
+                value: J
+              11:
+                title: K
+                operator: starts
+                value: K
+              12:
+                title: L
+                operator: starts
+                value: L
+              13:
+                title: M
+                operator: starts
+                value: M
+              14:
+                title: 'N'
+                operator: starts
+                value: 'N'
+              15:
+                title: O
+                operator: starts
+                value: O
+              16:
+                title: P
+                operator: starts
+                value: P
+              17:
+                title: Q
+                operator: starts
+                value: Q
+              18:
+                title: R
+                operator: starts
+                value: R
+              19:
+                title: S
+                operator: starts
+                value: S
+              20:
+                title: T
+                operator: starts
+                value: T
+              21:
+                title: U
+                operator: starts
+                value: U
+              22:
+                title: V
+                operator: starts
+                value: V
+              23:
+                title: W
+                operator: starts
+                value: W
+              24:
+                title: X
+                operator: starts
+                value: X
+              25:
+                title: 'Y'
+                operator: starts
+                value: 'Y'
+              26:
+                title: Z
+                operator: starts
+                value: Z
+          entity_type: node
+          entity_field: title
+          plugin_id: string
       filter_groups:
         operator: AND
         groups:
@@ -290,9 +438,26 @@ display:
           entity_field: title
           plugin_id: field
       pager:
-        type: none
+        type: infinite_scroll
         options:
+          items_per_page: 10
           offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: '‹ Previous'
+            next: 'Next ›'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'View more judgment'
+            automatically_load_content: false
       sorts:
         title:
           id: title
@@ -308,12 +473,49 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: standard
-      use_ajax: false
+      use_ajax: true
+      exposed_form:
+        type: bef
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          text_input_required: 'Select any filter and click on Apply to see results'
+          text_input_required_format: full_html
+          bef:
+            general:
+              autosubmit: true
+              autosubmit_exclude_textfield: true
+              autosubmit_textfield_delay: 500
+              autosubmit_hide: true
+              input_required: false
+              allow_secondary: false
+              secondary_label: 'Advanced options'
+              secondary_open: false
+            filter:
+              title:
+                plugin_id: bef
+                advanced:
+                  placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: '- Any -|'
+                  collapsible: false
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: 1
+      css_class: view--liibarrio-browser
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
