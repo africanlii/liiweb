@@ -800,6 +800,7 @@ display:
         filter_groups: false
         exposed_form: false
         pager: false
+        css_class: false
       filters:
         status:
           value: '1'
@@ -994,6 +995,7 @@ display:
         type: none
         options:
           offset: 0
+      css_class: view--liibarrio-search
     cache_metadata:
       max-age: -1
       contexts:
@@ -1021,6 +1023,7 @@ display:
         pager: false
         fields: false
         relationships: false
+        css_class: false
       style:
         type: default
         options:
@@ -1175,6 +1178,7 @@ display:
           admin_label: 'field_tags: Taxonomy term'
           required: false
           plugin_id: standard
+      css_class: view--liibarrio-summary
     cache_metadata:
       max-age: -1
       contexts:

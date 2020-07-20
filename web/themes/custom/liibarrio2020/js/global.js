@@ -28,6 +28,22 @@
     },
   };
 
+  Drupal.behaviors.legislationSearch = {
+    attach: function (context, settings) {
+      var inputs = $(
+        "#views-exposed-form-index-search-legislation-bk-legislation-search input"
+      );
+
+      // Add 'for' attribute to label with corrosponding id.
+      inputs.each(function (index) {
+        //alert(index + ": " + $(this).attr("id"));
+
+        var id = $(this).attr("id");
+        $(this).next("label").attr("for", id);
+      });
+    },
+  };
+
   Drupal.behaviors.legislationBrowser = {
     attach: function (context, settings) {
       var inputs = $(

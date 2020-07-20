@@ -310,7 +310,7 @@ display:
       display_description: ''
       menu:
         type: normal
-        title: gazettes
+        title: Gazettes
         description: ''
         expanded: false
         parent: ''
