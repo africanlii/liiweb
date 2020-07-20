@@ -5,15 +5,14 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.government_gazette.body
+    - field.field.node.government_gazette.field_date
     - field.field.node.government_gazette.field_external_link
     - field.field.node.government_gazette.field_file
-    - field.field.node.government_gazette.field_gazette_date
     - field.field.node.government_gazette.field_gazette_issue_number
     - field.field.node.government_gazette.field_gazette_machine_id
     - field.field.node.government_gazette.field_gazette_supplement
     - node.type.government_gazette
   module:
-    - datetime
     - ds
     - file
     - link
@@ -105,16 +104,8 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-  field_gazette_date:
-    weight: 1
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: html_date
-    third_party_settings: {  }
-    type: datetime_default
-    region: header_right
 hidden:
+  field_date: true
   field_gazette_issue_number: true
   field_gazette_machine_id: true
   field_gazette_supplement: true

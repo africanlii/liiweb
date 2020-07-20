@@ -21,7 +21,10 @@ settings:
   show_title: false
   exclude_empty_facets: true
   facets_to_include:
+    'facet_block:date_range': 'facet_block:date_range'
+    'facet_block:commencement_date': 'facet_block:commencement_date'
     'facet_block:court_name': 'facet_block:court_name'
+    'facet_block:expression_date': 'facet_block:expression_date'
     'facet_block:tags': 'facet_block:tags'
     'facet_block:content_type': '0'
 visibility:

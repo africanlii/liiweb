@@ -11,11 +11,13 @@ dependencies:
     - field.storage.node.field_case_name
     - field.storage.node.field_case_number
     - field.storage.node.field_case_number_numeric
+    - field.storage.node.field_commencement_date
     - field.storage.node.field_content
     - field.storage.node.field_court_name
-    - field.storage.node.field_gazette_date
+    - field.storage.node.field_expression_date
     - field.storage.node.field_gazette_issue_number
     - field.storage.node.field_headnote_and_holding
+    - field.storage.node.field_date
     - field.storage.node.field_judgment_number
     - field.storage.node.field_lifecycle_json
     - field.storage.node.field_publication_name
@@ -106,6 +108,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_case_number_numeric
+  field_commencement_date:
+    label: 'Commencement date'
+    datasource_id: 'entity:node'
+    property_path: field_commencement_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_commencement_date
   field_content:
     label: Content
     datasource_id: 'entity:node'
@@ -123,14 +133,22 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_court_name
-  field_gazette_date:
-    label: 'Gazette date'
+  field_date:
+    label: 'Index Search Date'
     datasource_id: 'entity:node'
-    property_path: field_gazette_date
+    property_path: field_date
     type: date
     dependencies:
       config:
-        - field.storage.node.field_gazette_date
+        - field.storage.node.field_date
+  field_expression_date:
+    label: 'Expression date'
+    datasource_id: 'entity:node'
+    property_path: field_expression_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_expression_date
   field_gazette_issue_number:
     label: 'Gazette issue number'
     datasource_id: 'entity:node'

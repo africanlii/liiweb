@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
     - field.field.node.legislation.field_created_by_api
+    - field.field.node.legislation.field_date
     - field.field.node.legislation.field_expression_date
     - field.field.node.legislation.field_external_link
     - field.field.node.legislation.field_files
@@ -14,7 +15,6 @@ dependencies:
     - field.field.node.legislation.field_images
     - field.field.node.legislation.field_lifecycle_json
     - field.field.node.legislation.field_parent_work
-    - field.field.node.legislation.field_publication_date
     - field.field.node.legislation.field_publication_name
     - field.field.node.legislation.field_raw_json
     - field.field.node.legislation.field_repeal
@@ -48,6 +48,12 @@ content:
     region: content
   field_created:
     weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_date:
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -91,12 +97,6 @@ content:
       match_limit: 10
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
-  field_publication_date:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
     region: content
   field_publication_name:
     weight: 8
