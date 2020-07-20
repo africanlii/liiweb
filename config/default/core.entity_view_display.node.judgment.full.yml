@@ -78,11 +78,23 @@ third_party_settings:
       right:
         - field_files
         - 'dynamic_token_field:node-share_links'
+        - 'dynamic_block_field:node-related_judgments'
         - 'dynamic_block_field:node-related_legislation'
     fields:
+      'dynamic_block_field:node-related_judgments':
+        plugin_id: 'dynamic_block_field:node-related_judgments'
+        weight: 11
+        label: hidden
+        formatter: default
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
       'dynamic_block_field:node-related_legislation':
         plugin_id: 'dynamic_block_field:node-related_legislation'
-        weight: 11
+        weight: 12
         label: hidden
         formatter: default
         ft:

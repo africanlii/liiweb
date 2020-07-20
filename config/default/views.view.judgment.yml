@@ -760,6 +760,63 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
+  block_judgments_related:
+    display_plugin: block
+    id: block_judgments_related
+    display_title: 'BK: Related judgments'
+    position: 4
+    display_options:
+      display_extenders: {  }
+      display_description: 'View all recent Judgment'
+      pager:
+        type: some
+        options:
+          items_per_page: 5
+          offset: 0
+      defaults:
+        pager: false
+        empty: false
+        style: false
+        row: false
+        title: false
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No Recent Judgment found.'
+            format: full_html
+          plugin_id: text
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 1
+          automatic_width: true
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: ''
+          row_class_default: true
+          row_class_custom: ''
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: card_secondary
+      title: 'Related judgments'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
   block_latest_judgement:
     display_plugin: block
     id: block_latest_judgement
