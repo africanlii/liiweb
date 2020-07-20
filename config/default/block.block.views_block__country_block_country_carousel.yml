@@ -6,6 +6,7 @@ dependencies:
     - views.view.country
   module:
     - system
+    - user
     - views
   theme:
     - liibarrio2020
@@ -28,3 +29,10 @@ visibility:
     pages: /about
     negate: false
     context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
