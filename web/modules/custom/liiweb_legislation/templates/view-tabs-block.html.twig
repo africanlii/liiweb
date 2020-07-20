@@ -13,37 +13,29 @@
  * @ingroup themeable
  */
 #}
-<div class="container">
-	<ul class="nav nav-tabs">
-		<li class="active">
-			<a data-toggle="tab" href="#subject">By Subject</a>
-		</li>
-		<li>
-			<a data-toggle="tab" href="#search">search</a>
-		</li>
-		<li>
-			<a data-toggle="tab" href="#browser">browser</a>
-		</li>
-	</ul>
+<ul class="nav nav-pills">
+	<li class="nav-item">
+		<a data-toggle="tab" href="#subject" class="nav-link active">Subject</a>
+	</li>
+	<li class="nav-item">
+		<a data-toggle="tab" href="#search"  class="nav-link">Search</a>
+	</li>
+	<li class="nav-item">
+		<a data-toggle="tab" href="#browser"  class="nav-link">Browse All</a>
+	</li>
+</ul>
 
-	<div class="tab-content">
-		<div id="subject" class="tab-pane fade in active">
-      {{ subject }}
-		</div>
-		<div id="search" class="tab-pane fade">
-      {{ search }}
-		</div>
-		<div id="browser" class="tab-pane fade">
-			<div class="row">
-				<div class="col-lg-8">
-					{{ browser }}
-				</div>
-				<div class="col-lg-2">
-					{{ glossary_filter }}
-				</div>
-			</div>
-		</div>
+<div class="tab-content">
+	<div id="subject" class="tab-pane fade in active show">
+		{{ subject }}
+	</div>
+	<div id="search" class="tab-pane fade">
+		{{ search }}
+	</div>
+	<div id="browser" class="tab-pane fade">
+			{{ browser }}
 	</div>
 </div>
+
 
 

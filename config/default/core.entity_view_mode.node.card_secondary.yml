@@ -1,0 +1,10 @@
+uuid: e06275eb-4b3e-437c-994e-7c640dd1f83d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.card_secondary
+label: 'Card - Secondary'
+targetEntityType: node
+cache: true

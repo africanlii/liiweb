@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.card
+    - core.entity_view_mode.node.card_secondary
     - core.entity_view_mode.node.teaser
     - node.type.legislation
     - system.menu.main
@@ -11,6 +12,7 @@ dependencies:
     - better_exposed_filters
     - node
     - similarterms
+    - taxonomy
     - user
     - views_infinite_scroll
 id: legislation
@@ -190,7 +192,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: 'No legislation found, Please try again later.'
+            value: 'No legislation found. Please try again later.'
             format: full_html
           plugin_id: text
       relationships: {  }
@@ -426,7 +428,7 @@ display:
   bk_legislation_browser:
     display_plugin: block
     id: bk_legislation_browser
-    display_title: 'BK: Browser All'
+    display_title: 'BK: Browser All (Grouped)'
     position: 6
     display_options:
       display_extenders: {  }
@@ -448,6 +450,11 @@ display:
         pager: false
         sorts: false
         title: false
+        filters: false
+        filter_groups: false
+        use_ajax: false
+        exposed_form: false
+        css_class: false
       row:
         type: 'entity:node'
         options:
@@ -520,9 +527,26 @@ display:
           entity_field: title
           plugin_id: field
       pager:
-        type: none
+        type: infinite_scroll
         options:
+          items_per_page: 10
           offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: '‹ Previous'
+            next: 'Next ›'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'View more legislation'
+            automatically_load_content: false
       sorts:
         title:
           id: title
@@ -534,17 +558,230 @@ display:
           order: ASC
           exposed: false
           expose:
-            label: ''
+            label: Title
           entity_type: node
           entity_field: title
           plugin_id: standard
       display_description: ''
       title: 'Browser All'
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          value:
+            legislation: legislation
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: title_op
+            label: Title
+            description: null
+            use_operator: false
+            operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: null
+          is_grouped: true
+          group_info:
+            label: ''
+            description: ''
+            identifier: title
+            optional: true
+            widget: radios
+            multiple: false
+            remember: false
+            default_group: '1'
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: A
+                operator: starts
+                value: A
+              2:
+                title: B
+                operator: starts
+                value: B
+              3:
+                title: C
+                operator: starts
+                value: C
+              4:
+                title: D
+                operator: starts
+                value: D
+              5:
+                title: E
+                operator: starts
+                value: E
+              6:
+                title: F
+                operator: starts
+                value: F
+              7:
+                title: G
+                operator: starts
+                value: G
+              8:
+                title: H
+                operator: starts
+                value: H
+              9:
+                title: I
+                operator: starts
+                value: I
+              10:
+                title: J
+                operator: '='
+                value: J
+              11:
+                title: K
+                operator: starts
+                value: K
+              12:
+                title: L
+                operator: starts
+                value: L
+              13:
+                title: M
+                operator: starts
+                value: M
+              14:
+                title: 'N'
+                operator: starts
+                value: 'N'
+              15:
+                title: O
+                operator: starts
+                value: O
+              16:
+                title: P
+                operator: starts
+                value: P
+              17:
+                title: Q
+                operator: starts
+                value: Q
+              18:
+                title: R
+                operator: starts
+                value: R
+              19:
+                title: S
+                operator: starts
+                value: S
+              20:
+                title: T
+                operator: starts
+                value: T
+              21:
+                title: U
+                operator: starts
+                value: U
+              22:
+                title: V
+                operator: starts
+                value: V
+              23:
+                title: W
+                operator: starts
+                value: W
+              24:
+                title: X
+                operator: starts
+                value: X
+              25:
+                title: 'Y'
+                operator: starts
+                value: 'Y'
+              26:
+                title: Z
+                operator: starts
+                value: Z
+          entity_type: node
+          entity_field: title
+          plugin_id: string
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      use_ajax: true
+      exposed_form:
+        type: bef
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          text_input_required: 'Select any filter and click on Apply to see results'
+          text_input_required_format: full_html
+          bef:
+            general:
+              autosubmit: true
+              autosubmit_exclude_textfield: true
+              autosubmit_textfield_delay: 500
+              autosubmit_hide: true
+              input_required: false
+              allow_secondary: false
+              secondary_label: 'Advanced options'
+              secondary_open: false
+            filter:
+              title:
+                plugin_id: bef
+                advanced:
+                  placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: '- Any -|'
+                  collapsible: false
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: 1
+      css_class: view--liibarrio-browser
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -563,6 +800,7 @@ display:
         filter_groups: false
         exposed_form: false
         pager: false
+        css_class: false
       filters:
         status:
           value: '1'
@@ -757,6 +995,7 @@ display:
         type: none
         options:
           offset: 0
+      css_class: view--liibarrio-search
     cache_metadata:
       max-age: -1
       contexts:
@@ -769,7 +1008,7 @@ display:
   bk_legislation_subject:
     display_plugin: block
     id: bk_legislation_subject
-    display_title: 'BK: Subject (Grouped)'
+    display_title: 'BK: By Subject (Grouped)'
     position: 4
     display_options:
       display_extenders: {  }
@@ -782,28 +1021,29 @@ display:
         arguments: false
         sorts: false
         pager: false
+        fields: false
+        relationships: false
+        css_class: false
       style:
-        type: grid
+        type: default
         options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
           uses_fields: true
-          columns: 3
-          automatic_width: false
-          alignment: horizontal
-          col_class_default: false
-          col_class_custom: col-lg-4
-          row_class_default: false
-          row_class_custom: row
       row:
-        type: 'entity:node'
+        type: fields
         options:
-          relationship: none
-          view_mode: card
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
       arguments:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_tags
           group_type: group
           admin_label: ''
           default_action: summary
@@ -837,28 +1077,108 @@ display:
           path_case: lower
           transform_dash: true
           break_phrase: false
-          entity_type: node
-          entity_field: title
+          add_table: false
+          require_value: false
+          entity_type: taxonomy_term
+          entity_field: name
           plugin_id: string
       sorts:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_tags
           group_type: group
           admin_label: ''
           order: ASC
           exposed: false
           expose:
             label: ''
-          entity_type: node
-          entity_field: title
+          entity_type: taxonomy_term
+          entity_field: name
           plugin_id: standard
       pager:
         type: none
         options:
           offset: 0
+      fields:
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_tags
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          convert_spaces: false
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
+      relationships:
+        field_tags:
+          id: field_tags
+          table: node__field_tags
+          field: field_tags
+          relationship: none
+          group_type: group
+          admin_label: 'field_tags: Taxonomy term'
+          required: false
+          plugin_id: standard
+      css_class: view--liibarrio-summary
     cache_metadata:
       max-age: -1
       contexts:
@@ -868,15 +1188,15 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  block_recent_registration:
+  block_latest_legistration:
     display_plugin: block
-    id: block_recent_registration
-    display_title: 'BK: Recent Legislative'
+    id: block_latest_legistration
+    display_title: 'BK: Latest Legislation'
     position: 2
     display_options:
       display_extenders: {  }
-      display_description: 'Recent Legislative block displays on homepage'
-      title: 'Recent Legislative Amendments'
+      display_description: 'Latest Legislative block displays on Legislation page'
+      title: 'Latest Legislation'
       defaults:
         title: false
         filters: false
@@ -916,6 +1236,85 @@ display:
         groups:
           1: AND
       pager:
+        type: some
+        options:
+          items_per_page: 4
+          offset: 0
+      block_hide_empty: true
+      use_ajax: true
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 1
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: ''
+          row_class_default: true
+          row_class_custom: ''
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: card_secondary
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  block_recent_legislation:
+    display_plugin: block
+    id: block_recent_legislation
+    display_title: 'BK: Recent Legislative'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      display_description: 'Recent Legislative block displays on homepage'
+      title: 'Recent Legislative Amendments'
+      defaults:
+        title: false
+        filters: false
+        filter_groups: false
+        pager: false
+        use_ajax: false
+        style: false
+        row: false
+        css_class: false
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          value:
+            legislation: legislation
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      pager:
         type: infinite_scroll
         options:
           items_per_page: 6
@@ -923,8 +1322,8 @@ display:
           id: 0
           total_pages: null
           tags:
-            previous: ‹‹
-            next: ››
+            previous: '‹ Previous'
+            next: 'Next ›'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -934,7 +1333,7 @@ display:
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'View more Legislation'
+            button_text: 'View more legislation'
             automatically_load_content: false
       block_hide_empty: true
       use_ajax: true
@@ -954,6 +1353,7 @@ display:
         options:
           relationship: none
           view_mode: teaser
+      css_class: view--liibarrio
     cache_metadata:
       max-age: -1
       contexts:
@@ -1043,11 +1443,11 @@ display:
       display_extenders: {  }
       path: legislation/subject
       arguments:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: field_tags
           group_type: group
           admin_label: ''
           default_action: ignore
@@ -1070,23 +1470,71 @@ display:
             sort_order: asc
             number_of_records: 0
             format: default_summary
-          specify_validation: true
+          specify_validation: false
           validate:
             type: none
             fail: 'not found'
           validate_options: {  }
           glossary: false
-          limit: null
-          case: upper
-          path_case: lower
+          limit: 0
+          case: lower
+          path_case: upper
           transform_dash: true
           break_phrase: false
-          entity_type: node
-          entity_field: title
+          add_table: false
+          require_value: false
+          entity_type: taxonomy_term
+          entity_field: name
           plugin_id: string
       defaults:
         arguments: false
+        relationships: false
+        pager: false
+        style: false
+        row: false
       display_description: ''
+      relationships:
+        field_tags:
+          id: field_tags
+          table: node__field_tags
+          field: field_tags
+          relationship: none
+          group_type: group
+          admin_label: 'field_tags: Taxonomy term'
+          required: false
+          plugin_id: standard
+      pager:
+        type: infinite_scroll
+        options:
+          items_per_page: 20
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: true
+      style:
+        type: default
+        options:
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
     cache_metadata:
       max-age: -1
       contexts:
@@ -1116,13 +1564,33 @@ display:
         menu_name: main
       display_description: ''
       pager:
-        type: some
+        type: infinite_scroll
         options:
           items_per_page: 6
           offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: '‹ Previous'
+            next: 'Next ›'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'View more legislation'
+            automatically_load_content: false
       defaults:
         pager: false
         header: false
+        style: false
+        row: false
+        css_class: false
+        use_ajax: false
       header:
         area:
           id: area
@@ -1137,11 +1605,30 @@ display:
             value: '<h2 class="h3">Recent Legislative Amendments</h3>'
             format: full_html
           plugin_id: text
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 3
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: col-lg-4
+          row_class_default: false
+          row_class_custom: row
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
+      css_class: 'view--liibarrio view--liibarrio--bg'
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

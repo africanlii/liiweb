@@ -7,7 +7,6 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.storage.node.field_gazette_date
     - node.type.government_gazette
-    - system.menu.main
   module:
     - datetime
     - node
@@ -57,7 +56,11 @@ display:
         options:
           offset: 0
       style:
-        type: html_list
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
       row:
         type: fields
         options:
@@ -253,6 +256,7 @@ display:
         row: false
         pager: false
         use_ajax: false
+        css_class: false
       empty:
         area:
           id: area
@@ -301,6 +305,7 @@ display:
             button_text: 'View more government gazettes'
             automatically_load_content: false
       use_ajax: true
+      css_class: view--liibarrio
     cache_metadata:
       max-age: -1
       contexts:
@@ -378,7 +383,7 @@ display:
       display_extenders: {  }
       path: gazettes
       menu:
-        type: normal
+        type: none
         title: Gazettes
         description: ''
         expanded: false
@@ -509,6 +514,7 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:

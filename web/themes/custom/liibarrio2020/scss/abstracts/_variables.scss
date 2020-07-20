@@ -21,6 +21,7 @@ $gray-dark: #4a4a4a;
 $primary: $blue;
 $secondary: $green;
 $danger: $red;
+$border-color: #d5d5d5;
 
 $twitter-brand: #00a0cb;
 $facebook-brand: #0032cc;
@@ -57,6 +58,14 @@ $headings-font-weight: 700;
 // Body
 $body-bg: $gray-very-light;
 $body-color: $gray-dark;
+
+// Links
+$link-color: $body-color;
+//$link-decoration:                         none !default;
+//$link-hover-color:                        darken($link-color, 15%) !default;
+//$link-hover-decoration:                   underline !default;
+// Darken percentage for links with `.text-*` class (e.g. `.text-success`)
+$emphasized-link-hover-darken-percentage: 15% !default;
 
 // Options
 $enable-caret: true;

@@ -51,6 +51,9 @@
     label_display == 'visually_hidden' ? 'visually-hidden',
   ]
 %}
+{% block libraries %}
+  {# use this block to include libraries in extends #}
+{% endblock %}
 
 {% if label_hidden %}
   {% if multiple %}

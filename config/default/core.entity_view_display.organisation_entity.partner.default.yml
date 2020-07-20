@@ -4,25 +4,23 @@ status: true
 dependencies:
   config:
     - field.field.organisation_entity.partner.field_image
+    - field.field.organisation_entity.partner.field_logo_ref
     - field.field.organisation_entity.partner.field_partner
     - field.field.organisation_entity.partner.field_support_partner
-    - image.style.thumbnail
     - rw_organisation.organisation_entity_type.partner
-  module:
-    - image
 id: organisation_entity.partner.default
 targetEntityType: organisation_entity
 bundle: partner
 mode: default
 content:
-  field_image:
+  field_logo_ref:
+    type: entity_reference_entity_view
     weight: 2
-    label: hidden
+    label: above
     settings:
-      image_style: thumbnail
-      image_link: ''
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    type: image
     region: content
   field_partner:
     type: boolean
@@ -45,6 +43,7 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
 hidden:
+  field_image: true
   langcode: true
   name: true
   organisation_logo__linked: true

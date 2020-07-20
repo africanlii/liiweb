@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.media.image.field_media_image
-    - image.style.medium
+    - image.style.large
     - media.type.image
   module:
     - focal_point
@@ -23,7 +23,7 @@ content:
   field_media_image:
     weight: 0
     settings:
-      preview_image_style: medium
+      preview_image_style: large
       preview_link: true
       offsets: '50,50'
       progress_indicator: throbber

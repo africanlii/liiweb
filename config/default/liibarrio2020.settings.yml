@@ -81,3 +81,7 @@ bootstrap_barrio_region_clean_footer_last: 1
 bootstrap_barrio_region_class_footer_last: ''
 bootstrap_barrio_region_clean_hero: 1
 bootstrap_barrio_region_class_hero: ''
+bootstrap_barrio_region_clean_content_top: 1
+bootstrap_barrio_region_class_content_top: ''
+bootstrap_barrio_region_clean_content_bottom: 1
+bootstrap_barrio_region_class_content_bottom: ''

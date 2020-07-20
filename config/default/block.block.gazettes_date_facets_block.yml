@@ -1,0 +1,31 @@
+uuid: 605b2101-3a3d-43bf-a7d9-4a48b6560ee5
+langcode: en
+status: true
+dependencies:
+  module:
+    - facets_block
+    - system
+  theme:
+    - liibarrio2020
+id: gazettes_date_facets_block
+theme: liibarrio2020
+region: sidebar_second
+weight: -11
+provider: null
+plugin: facets_block
+settings:
+  id: facets_block
+  label: 'Facets Block'
+  provider: facets_block
+  label_display: '0'
+  show_title: true
+  exclude_empty_facets: true
+  facets_to_include:
+    'facet_block:gazette_date': 'facet_block:gazette_date'
+    'facet_block:search_type': '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /gazettes
+    negate: false
+    context_mapping: {  }

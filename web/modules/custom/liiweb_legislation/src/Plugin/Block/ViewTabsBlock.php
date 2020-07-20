@@ -37,6 +37,13 @@ class ViewTabsBlock extends BlockBase {
     //Render legislation bk_legislation_browser
     $block_browser = views_embed_view('legislation', 'bk_legislation_browser');
 
+
+    $alphas = range('A', 'Z');
+
+        // dump($alphas);
+
+
+
     // dump($block_browser);
     if ($block_browser) {
       $build['#browser'] = $block_browser;
@@ -49,38 +56,44 @@ class ViewTabsBlock extends BlockBase {
       $legislation = $query->execute();
 
       // $legislation = $this::fetch();
-      if ($legislation) {
-        $title = [];
-        $items = [];
-        foreach ($legislation as $revision_id => $nid) {
-          $node_storage = \Drupal::entityTypeManager()->getStorage('node');
-          $node = $node_storage->load($nid);
-          $title[] = $node->get('title')->value;
-          $titles = $this->sortAndIndexArray($title);
-          }
-        // dump($titles);
+      // if ($legislation) {
+      //   $title = [];
+      //   $items = [];
+      //   $firstchar = [];
 
-        if ($titles) {
-          foreach ($titles as $char => $title) {
-            //     // dump($nodes);
-            $items[] = [
-              '#markup' => '<a href="#'.  $char .'">' . $char . '</a>',
-              '#wrapper_attributes' => [
-                'class'             => [strtolower($char), 'list-item',],
-              ],
-            ];
-          }
-        }
+      //   foreach ($legislation as $revision_id => $nid) {
+      //     $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+      //     $node = $node_storage->load($nid);
+      //     $title = $node->get('title')->value;
+      //     // $titles = $this->sortAndIndexArray($title);
 
-        $build['#glossary_filter'] = [
-        '#theme'      => 'item_list',
-        '#type'       => 'ul',
-        '#attributes' => [
-          'class'     => ['list-items', 'glossary-filter'],
-        ],
-        '#items'      => $items,
-        ];
-      }
+      //     $firstchar[] = strtoupper(substr($title, 0, 1));
+      //     // dump($firstchar);
+      //     $chars = array_intersect($alphas, $firstchar);
+
+      //   }
+
+      //   // dump($result);
+      //   if ($chars) {
+      //     foreach ($chars as $key => $char) {
+      //       $items[] = [
+      //         '#markup' => '<a href="#'.  $char .'">' . $char . '</a>',
+      //         '#wrapper_attributes' => [
+      //           'class'             => [strtolower($char), 'list-item',],
+      //         ],
+      //       ];
+      //     }
+      //   }
+
+      //   $build['#glossary_filter'] = [
+      //   '#theme'      => 'item_list',
+      //   '#type'       => 'ul',
+      //   '#attributes' => [
+      //     'class'     => ['list-items', 'glossary-filter'],
+      //   ],
+      //   '#items'      => $items,
+      //   ];
+      // }
     }
     //Render legislation bk_legislation_subject
     $block_subject = views_embed_view('legislation', 'bk_legislation_subject');

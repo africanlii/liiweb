@@ -13,6 +13,10 @@
 .layout-sidebar {
   flex: 0 0 100%;
 
+  @include media-breakpoint-down(md) {
+    margin-top: 1.5rem;
+  }
+
   @include media-breakpoint-up(md) {
     flex: 0 1 270px;
   }

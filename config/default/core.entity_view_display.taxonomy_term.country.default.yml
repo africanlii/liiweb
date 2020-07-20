@@ -3,13 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.country.field_image
     - field.field.taxonomy_term.country.field_link
-    - field.field.taxonomy_term.country.field_svg
+    - field.field.taxonomy_term.country.field_media_ref
     - taxonomy.vocabulary.country
   module:
     - link
-    - svg_formatter
     - text
 id: taxonomy_term.country.default
 targetEntityType: taxonomy_term
@@ -35,23 +33,15 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-  field_svg:
-    weight: 0
+  field_media_ref:
+    type: entity_reference_entity_view
+    weight: 3
     label: above
     settings:
-      sanitize: true
-      apply_dimensions: true
-      width: 100
-      height: 100
-      enable_alt: true
-      alt_string: '[file:basename]'
-      enable_title: true
-      title_string: '[file:basename]'
-      inline: false
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    type: svg_formatter
     region: content
 hidden:
-  field_image: true
   langcode: true
   search_api_excerpt: true

@@ -4,13 +4,14 @@ status: true
 dependencies:
   config:
     - search_api.index.full_site_search
+    - taxonomy.vocabulary.legislation_tags
   module:
     - better_exposed_filters
     - search_api
 id: index_search_legislation
 label: 'Search Legislation'
 module: views
-description: ''
+description: 'Index full legislation search'
 tag: ''
 base_table: search_api_index_full_site_search
 base_field: search_api_id
@@ -174,8 +175,8 @@ display:
                 title: 'Last 5 years'
                 operator: '='
                 value:
-                  type: date
-                  value: '+1 day'
+                  type: offset
+                  value: '-5 years'
                   min: ''
                   max: ''
               2:
@@ -183,7 +184,7 @@ display:
                 operator: '='
                 value:
                   type: date
-                  value: +day
+                  value: '-1 years'
                   min: ''
                   max: ''
           plugin_id: search_api_date
@@ -204,7 +205,7 @@ display:
           exposed: true
           expose:
             operator_id: created_1_op
-            label: 'Authored on'
+            label: 'Custom Date'
             description: ''
             use_operator: false
             operator: created_1_op
@@ -235,6 +236,54 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
+        field_tags:
+          id: field_tags
+          table: search_api_index_full_site_search
+          field: field_tags
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_tags_op
+            label: 'All Subjects'
+            description: ''
+            use_operator: false
+            operator: field_tags_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_tags
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: legislation_tags
+          hierarchy: false
+          error_message: true
+          plugin_id: search_api_term
         search_api_fulltext:
           id: search_api_fulltext
           table: search_api_index_full_site_search
@@ -298,13 +347,14 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.full_site_search'
   bk_legislation_search:
     display_plugin: block
     id: bk_legislation_search
-    display_title: Search
+    display_title: 'BK: Search legislation'
     position: 1
     display_options:
       display_extenders: {  }
@@ -337,7 +387,7 @@ display:
                 advanced:
                   placeholder_text: ''
                   rewrite:
-                    filter_rewrite_values: ''
+                    filter_rewrite_values: '- Any -|All'
                   collapsible: false
                   is_secondary: false
                 select_all_none: false
@@ -348,10 +398,20 @@ display:
                 advanced:
                   collapsible: false
                   is_secondary: false
-              title:
+              field_tags:
+                plugin_id: default
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: '- Any -|All'
+                  collapsible: false
+                  is_secondary: false
+              search_api_fulltext:
                 plugin_id: default
                 advanced:
                   placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
       defaults:
@@ -361,6 +421,7 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.full_site_search'

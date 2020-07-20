@@ -1,0 +1,35 @@
+.node--view-mode-full {
+  .field--name-dynamic-token-fieldnode-share-links {
+    padding: calc(#{$grid-gutter-width} / 2);
+    margin-bottom: $grid-gutter-width;
+
+    a {
+      color: $body-color;
+    }
+  }
+
+  .content-header--wrapper {
+    border-bottom: solid 1px #d5d5d5;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .content-aside {
+    .block {
+      margin-bottom: $grid-gutter-width;
+
+      .title {
+        margin-right: calc(#{$grid-gutter-width} / 2);
+      }
+    }
+
+    .card {
+      //padding: calc(#{$grid-gutter-width} / 2);
+      margin-bottom: calc(#{$grid-gutter-width} / 2);
+
+      &.bg-light {
+        background: $white;
+      }
+    }
+  }
+}

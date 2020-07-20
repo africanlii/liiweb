@@ -41,46 +41,46 @@ class ViewTabsBlock extends BlockBase {
     if ($block_browser) {
       $build['#browser'] = $block_browser;
 
-      $query = \Drupal::entityQuery('node')
-        ->condition('type', 'judgment', '=')
-        ->condition('status', 1)
-        ->sort('title', 'ASC');
+//       $query = \Drupal::entityQuery('node')
+//         ->condition('type', 'judgment', '=')
+//         ->condition('status', 1)
+//         ->sort('title', 'ASC');
 
-      $judgment = $query->execute();
-// dump($judgment);
-      // $judgment = $this::fetch();
-      if ($judgment) {
-        $title = [];
-        $items = [];
-        foreach ($judgment as $revision_id => $nid) {
-          $node_storage = \Drupal::entityTypeManager()->getStorage('node');
-          $node = $node_storage->load($nid);
-          $title[] = $node->get('title')->value;
-          $titles = $this->sortAndIndexArray($title);
-          }
-        // dump($titles);
+//       $judgment = $query->execute();
+// // dump($judgment);
+//       // $judgment = $this::fetch();
+//       if ($judgment) {
+//         $title = [];
+//         $items = [];
+//         foreach ($judgment as $revision_id => $nid) {
+//           $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+//           $node = $node_storage->load($nid);
+//           $title[] = $node->get('title')->value;
+//           $titles = $this->sortAndIndexArray($title);
+//           }
+//         // dump($titles);
 
-        if ($titles) {
-          foreach ($titles as $char => $title) {
-            //     // dump($nodes);
-            $items[] = [
-              '#markup' => '<a href="#'.  $char .'">' . $char . '</a>',
-              '#wrapper_attributes' => [
-                'class'             => [strtolower($char), 'list-item',],
-              ],
-            ];
-          }
-        }
+//         if ($titles) {
+//           foreach ($titles as $char => $title) {
+//             //     // dump($nodes);
+//             $items[] = [
+//               '#markup' => '<a href="#'.  $char .'">' . $char . '</a>',
+//               '#wrapper_attributes' => [
+//                 'class'             => [strtolower($char), 'list-item',],
+//               ],
+//             ];
+//           }
+//         }
 
-        $build['#glossary_filter'] = [
-        '#theme'      => 'item_list',
-        '#type'       => 'ul',
-        '#attributes' => [
-          'class'     => ['list-items', 'glossary-filter'],
-        ],
-        '#items'      => $items,
-        ];
-      }
+//         $build['#glossary_filter'] = [
+//         '#theme'      => 'item_list',
+//         '#type'       => 'ul',
+//         '#attributes' => [
+//           'class'     => ['list-items', 'glossary-filter'],
+//         ],
+//         '#items'      => $items,
+//         ];
+//       }
     }
     //Render judgment bk_legislation_subject
     $block_subject = views_embed_view('judgment', 'bk_judgment_subject');

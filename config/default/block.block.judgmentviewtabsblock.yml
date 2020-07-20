@@ -1,4 +1,4 @@
-uuid: a5b39648-961b-4724-b0ea-efae125812e3
+uuid: c832248c-2d23-42db-8946-c367b39fabe0
 langcode: en
 status: true
 dependencies:
@@ -9,13 +9,13 @@ dependencies:
     - liibarrio2020
 id: judgmentviewtabsblock
 theme: liibarrio2020
-region: content
-weight: -4
+region: content_bottom
+weight: -14
 provider: null
 plugin: view_judgment_tabs_block
 settings:
   id: view_judgment_tabs_block
-  label: 'judgment View tabs block'
+  label: 'Judgment browser'
   provider: liiweb_judgment
   label_display: '0'
 visibility:

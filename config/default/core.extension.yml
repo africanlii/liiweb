@@ -55,12 +55,12 @@ module:
   image: 0
   inline_entity_form: 0
   jsonapi: 0
-  kint: 0
   language: 0
   layout_discovery: 0
   liiweb: 0
   liiweb_api: 0
   liiweb_custom_view_filters: 0
+  liiweb_gazettes: 0
   liiweb_judgment: 0
   liiweb_legislation: 0
   liiweb_search: 0
@@ -72,6 +72,7 @@ module:
   options: 0
   path: 0
   path_alias: 0
+  quick_node_clone: 0
   recaptcha: 0
   responsive_image: 0
   rest: 0
@@ -89,6 +90,7 @@ module:
   slick_views: 0
   smtp: 0
   svg_formatter: 0
+  svg_image: 0
   system: 0
   tamper: 0
   taxonomy: 0

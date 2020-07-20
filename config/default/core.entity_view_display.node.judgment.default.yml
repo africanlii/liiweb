@@ -78,15 +78,15 @@ third_party_settings:
         - field_search_summary
         - body
     fields:
-      'dynamic_token_field:node-share_links':
-        plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 6
-        label: hidden
-        formatter: default
       'dynamic_block_field:node-related_legislation':
         plugin_id: 'dynamic_block_field:node-related_legislation'
         weight: 7
         label: above
+        formatter: default
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 6
+        label: hidden
         formatter: default
       node_author:
         plugin_id: node_author
