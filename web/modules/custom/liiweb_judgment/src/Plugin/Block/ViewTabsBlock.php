@@ -89,7 +89,7 @@ class ViewTabsBlock extends BlockBase {
     }
 
     //Render judgment bk_legislation_search
-    $block_search = views_embed_view('index_search_judgement', 'bk_judgment_search');
+    $block_search = views_embed_view('index_search_judgment', 'bk_judgment_search');
     if ($block_search) {
       $build['#search'] = $block_search;
     }

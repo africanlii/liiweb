@@ -1,4 +1,4 @@
-uuid: 29541580-ba22-408a-b09b-12da2bd826db
+uuid: 9f49c731-4e3c-44a1-8a69-a5c8ed62295a
 langcode: en
 status: true
 dependencies:
@@ -15,13 +15,13 @@ provider: null
 plugin: facets_block
 settings:
   id: facets_block
-  label: 'Facets Block'
+  label: 'Facets Block - Content Type'
   provider: facets_block
   label_display: '0'
-  show_title: true
-  exclude_empty_facets: true
+  show_title: false
+  exclude_empty_facets: false
   facets_to_include:
-    'facet_block:search_type': 'facet_block:search_type'
+    'facet_block:content_type': 'facet_block:content_type'
 visibility:
   request_path:
     id: request_path

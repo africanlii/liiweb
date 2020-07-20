@@ -1,17 +1,17 @@
-uuid: e786b273-12c5-4dbe-8a9b-94bcb7f4532b
+uuid: c5d98030-1902-4aeb-8eed-56cc8c6d819c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_publication_date
+    - field.storage.node.field_date
     - node.type.legislation
   module:
     - datetime
-id: node.legislation.field_publication_date
-field_name: field_publication_date
+id: node.legislation.field_date
+field_name: field_date
 entity_type: node
 bundle: legislation
-label: 'Publication date'
+label: 'Publication Date'
 description: 'Date of original publication of the work.'
 required: true
 translatable: true

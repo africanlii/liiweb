@@ -1,20 +1,20 @@
-uuid: 4b2911ba-d900-40a5-af10-23d70c0174bd
+uuid: debadc77-9e75-4165-b839-f1f04cc7f68a
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_gazette_date
+    - field.storage.node.field_date
     - node.type.government_gazette
   module:
     - datetime
-id: node.government_gazette.field_gazette_date
-field_name: field_gazette_date
+id: node.government_gazette.field_date
+field_name: field_date
 entity_type: node
 bundle: government_gazette
 label: 'Gazette date'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }
