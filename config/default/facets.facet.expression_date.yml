@@ -72,6 +72,12 @@ processor_configs:
         condition: null
         values: ''
         negate: false
+  raw_value_widget_order:
+    processor_id: raw_value_widget_order
+    weights:
+      sort: 50
+    settings:
+      sort: DESC
   url_processor_handler:
     processor_id: url_processor_handler
     weights:
