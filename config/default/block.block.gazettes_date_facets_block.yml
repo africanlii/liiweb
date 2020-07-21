@@ -18,7 +18,7 @@ settings:
   label: 'Facets Block'
   provider: facets_block
   label_display: '0'
-  show_title: true
+  show_title: false
   exclude_empty_facets: true
   facets_to_include:
     'facet_block:index_search_date': 'facet_block:index_search_date'
