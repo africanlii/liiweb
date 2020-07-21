@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judge
+    - field.field.node.judgment.field_judgment_date
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number
     - field.field.node.judgment.field_judgment_number_override
@@ -167,6 +168,15 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
+  field_judgment_date:
+    weight: 13
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_search_summary:
     type: text_summary_or_trimmed
     weight: 10
