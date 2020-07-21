@@ -162,7 +162,7 @@ display:
   bk_judgment_browser:
     display_plugin: block
     id: bk_judgment_browser
-    display_title: 'BK: Browser All'
+    display_title: 'BK: Browser All (Glossary)'
     position: 6
     display_options:
       display_extenders: {  }
@@ -522,7 +522,7 @@ display:
   bk_judgment_subject:
     display_plugin: block
     id: bk_judgment_subject
-    display_title: 'BK: By Subject'
+    display_title: 'BK: By Subject (Grouped by Tags)'
     position: 8
     display_options:
       display_extenders: {  }
@@ -545,7 +545,7 @@ display:
           relationship: field_tags
           group_type: group
           admin_label: ''
-          default_action: ignore
+          default_action: summary
           exception:
             value: all
             title_enable: false
@@ -572,7 +572,7 @@ display:
           validate_options: {  }
           glossary: false
           limit: 0
-          case: none
+          case: ucfirst
           path_case: lower
           transform_dash: true
           break_phrase: false

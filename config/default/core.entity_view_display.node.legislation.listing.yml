@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
     - field.field.node.legislation.field_created_by_api
+    - field.field.node.legislation.field_date
     - field.field.node.legislation.field_expression_date
     - field.field.node.legislation.field_external_link
     - field.field.node.legislation.field_files
@@ -15,7 +16,6 @@ dependencies:
     - field.field.node.legislation.field_images
     - field.field.node.legislation.field_lifecycle_json
     - field.field.node.legislation.field_parent_work
-    - field.field.node.legislation.field_publication_date
     - field.field.node.legislation.field_publication_name
     - field.field.node.legislation.field_raw_json
     - field.field.node.legislation.field_repeal
@@ -24,27 +24,18 @@ dependencies:
     - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
-    - datetime
     - user
 id: node.legislation.listing
 targetEntityType: node
 bundle: legislation
 mode: listing
-content:
-  field_publication_date:
-    type: datetime_default
-    weight: 0
-    region: content
-    label: hidden
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
+content: {  }
 hidden:
   field_commencement_date: true
   field_content: true
   field_created: true
   field_created_by_api: true
+  field_date: true
   field_expression_date: true
   field_external_link: true
   field_files: true

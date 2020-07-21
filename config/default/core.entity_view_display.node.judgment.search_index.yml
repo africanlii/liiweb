@@ -11,12 +11,12 @@ dependencies:
     - field.field.node.judgment.field_case_number_numeric
     - field.field.node.judgment.field_case_number_year
     - field.field.node.judgment.field_court_name
+    - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judge
-    - field.field.node.judgment.field_judgment_date
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number
     - field.field.node.judgment.field_judgment_number_override
@@ -29,7 +29,6 @@ dependencies:
     - node.type.judgment
   module:
     - computed_field
-    - datetime
     - file
     - text
     - user
@@ -102,15 +101,6 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-  field_judgment_date:
-    type: datetime_default
-    weight: 9
-    region: content
-    label: inline
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
   field_law_report_citations:
     weight: 10
     label: above
@@ -133,6 +123,7 @@ hidden:
   feeds_item: true
   field_case_number_numeric: true
   field_case_number_year: true
+  field_date: true
   field_external_link: true
   field_judgment_mnc_old: true
   field_judgment_number: true

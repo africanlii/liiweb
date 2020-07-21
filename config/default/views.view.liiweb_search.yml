@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - search_api.index.full_site_search
-    - taxonomy.vocabulary.court_names
   module:
     - better_exposed_filters
     - search_api
@@ -111,7 +110,7 @@ display:
       pager:
         type: infinite_scroll
         options:
-          items_per_page: 4
+          items_per_page: 20
           offset: 0
           id: 0
           total_pages: null
@@ -127,14 +126,15 @@ display:
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'View all @total  Results'
+            button_text: 'View More Results (@total)'
             automatically_load_content: false
       style:
         type: default
         options:
+          grouping: {  }
           row_class: ''
           default_row_class: true
-          uses_fields: true
+          uses_fields: false
       row:
         type: search_api
         options:
@@ -283,716 +283,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'user.node_grants:view'
-      tags:
-        - 'config:search_api.index.full_site_search'
-  attachment_1:
-    display_plugin: attachment
-    id: attachment_1
-    display_title: 'BK: search attachment Gazettes'
-    position: 1
-    display_options:
-      display_extenders: {  }
-      display_description: 'View all search result for gazettes'
-      title: 'Search: Gazettes'
-      defaults:
-        title: false
-        filters: false
-        filter_groups: false
-        use_ajax: true
-        header: false
-        cache: false
-      filters:
-        type_1:
-          id: type_1
-          table: search_api_index_full_site_search
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            government_gazette: government_gazette
-            judgment: judgment
-            legislation: legislation
-          group: 1
-          exposed: true
-          expose:
-            operator_id: type_1_op
-            label: 'Content type'
-            description: ''
-            use_operator: false
-            operator: type_1_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: type_1
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            reduce: true
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: search_api_options
-        type:
-          id: type
-          table: search_api_index_full_site_search
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            government_gazette: government_gazette
-          group: 1
-          exposed: false
-          expose:
-            operator_id: type_op
-            label: type
-            description: ''
-            use_operator: false
-            operator: type_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: type
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            reduce: true
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: search_api_options
-        search_api_fulltext:
-          id: search_api_fulltext
-          table: search_api_index_full_site_search
-          field: search_api_fulltext
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: and
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: search_api_fulltext_op
-            label: search
-            description: ''
-            use_operator: false
-            operator: search_api_fulltext_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: search_api_fulltext
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          parse_mode: terms
-          min_length: null
-          fields: {  }
-          plugin_id: search_api_fulltext
-        created_1:
-          id: created_1
-          table: search_api_index_full_site_search
-          field: created
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-          group: 1
-          exposed: true
-          expose:
-            operator_id: created_1_op
-            label: 'Authored on'
-            description: null
-            use_operator: false
-            operator: created_1_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: created_1
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            placeholder: null
-            min_placeholder: null
-            max_placeholder: null
-          is_grouped: true
-          group_info:
-            label: 'Authored on'
-            description: ''
-            identifier: created_1
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items:
-              1:
-                title: 'Last 10 years'
-                operator: '<='
-                value:
-                  type: offset
-                  value: '-365 day'
-                  min: ''
-                  max: ''
-              2:
-                title: 'Last 5 years'
-                operator: '='
-                value:
-                  type: offset
-                  value: +day
-                  min: ''
-                  max: ''
-              3:
-                title: 'Last year'
-                operator: between
-                value:
-                  type: offset
-                  value: ''
-                  min: '+365'
-                  max: today
-          plugin_id: search_api_date
-        created:
-          id: created
-          table: search_api_index_full_site_search
-          field: created
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: between
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: offset
-          group: 1
-          exposed: true
-          expose:
-            operator_id: created_op
-            label: 'Custom Date'
-            description: ''
-            use_operator: false
-            operator: created_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: created
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            placeholder: ''
-            min_placeholder: 01/01/2020
-            max_placeholder: 010/01/2020
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: search_api_date
-        field_court_name:
-          id: field_court_name
-          table: search_api_index_full_site_search
-          field: field_court_name
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_court_name_op
-            label: 'Court name'
-            description: ''
-            use_operator: false
-            operator: field_court_name_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_court_name
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: court_names
-          hierarchy: false
-          error_message: true
-          plugin_id: search_api_term
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          content: 'Gazettes (@total)'
-          plugin_id: result
-      cache:
-        type: none
-      exposed_block: false
-      displays:
-        page_search: page_search
-      attachment_position: after
-      inherit_exposed_filters: true
-      pager:
-        type: none
-        options:
-          offset: 0
-      inherit_pager: true
-      render_pager: true
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - user
-        - 'user.node_grants:view'
-      tags:
-        - 'config:search_api.index.full_site_search'
-  attachment_legislation:
-    display_plugin: attachment
-    id: attachment_legislation
-    display_title: 'BK: search attachment legislation'
-    position: 1
-    display_options:
-      display_extenders: {  }
-      display_description: 'View all search result for legislation'
-      title: 'Search: Legislation'
-      defaults:
-        title: false
-        filters: false
-        filter_groups: false
-        use_ajax: true
-        header: false
-        cache: false
-      filters:
-        type_1:
-          id: type_1
-          table: search_api_index_full_site_search
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            government_gazette: government_gazette
-            judgment: judgment
-            legislation: legislation
-          group: 1
-          exposed: true
-          expose:
-            operator_id: type_1_op
-            label: 'Content type'
-            description: ''
-            use_operator: false
-            operator: type_1_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: type_1
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            reduce: true
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: search_api_options
-        type:
-          id: type
-          table: search_api_index_full_site_search
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            legislation: legislation
-          group: 1
-          exposed: false
-          expose:
-            operator_id: type_op
-            label: type
-            description: ''
-            use_operator: false
-            operator: type_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: type
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            reduce: true
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: search_api_options
-        search_api_fulltext:
-          id: search_api_fulltext
-          table: search_api_index_full_site_search
-          field: search_api_fulltext
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: and
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: search_api_fulltext_op
-            label: search
-            description: ''
-            use_operator: false
-            operator: search_api_fulltext_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: search_api_fulltext
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          parse_mode: terms
-          min_length: null
-          fields: {  }
-          plugin_id: search_api_fulltext
-        created_1:
-          id: created_1
-          table: search_api_index_full_site_search
-          field: created
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-          group: 1
-          exposed: true
-          expose:
-            operator_id: created_1_op
-            label: 'Authored on'
-            description: null
-            use_operator: false
-            operator: created_1_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: created_1
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            placeholder: null
-            min_placeholder: null
-            max_placeholder: null
-          is_grouped: true
-          group_info:
-            label: 'Authored on'
-            description: ''
-            identifier: created_1
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items:
-              1:
-                title: 'Last 10 years'
-                operator: '<='
-                value:
-                  type: offset
-                  value: '-365 day'
-                  min: ''
-                  max: ''
-              2:
-                title: 'Last 5 years'
-                operator: '='
-                value:
-                  type: offset
-                  value: +day
-                  min: ''
-                  max: ''
-              3:
-                title: 'Last year'
-                operator: between
-                value:
-                  type: offset
-                  value: ''
-                  min: '+365'
-                  max: today
-          plugin_id: search_api_date
-        created:
-          id: created
-          table: search_api_index_full_site_search
-          field: created
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: between
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: offset
-          group: 1
-          exposed: true
-          expose:
-            operator_id: created_op
-            label: 'Custom Date'
-            description: ''
-            use_operator: false
-            operator: created_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: created
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            placeholder: ''
-            min_placeholder: 01/01/2020
-            max_placeholder: 010/01/2020
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: search_api_date
-        field_court_name:
-          id: field_court_name
-          table: search_api_index_full_site_search
-          field: field_court_name
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_court_name_op
-            label: 'Court name'
-            description: ''
-            use_operator: false
-            operator: field_court_name_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_court_name
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: court_names
-          hierarchy: false
-          error_message: true
-          plugin_id: search_api_term
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          content: 'Legislation (@total)'
-          plugin_id: result
-      cache:
-        type: none
-      exposed_block: false
-      displays:
-        page_search: page_search
-      attachment_position: after
-      inherit_exposed_filters: true
-      pager:
-        type: none
-        options:
-          offset: 0
-      inherit_pager: true
-      render_pager: true
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - user
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.full_site_search'
@@ -1172,97 +462,9 @@ display:
         use_ajax: true
         header: false
         cache: false
+        sorts: false
+        query: false
       filters:
-        type_1:
-          id: type_1
-          table: search_api_index_full_site_search
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            government_gazette: government_gazette
-            judgment: judgment
-            legislation: legislation
-          group: 1
-          exposed: true
-          expose:
-            operator_id: type_1_op
-            label: 'Content type'
-            description: ''
-            use_operator: false
-            operator: type_1_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: type_1
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            reduce: true
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: search_api_options
-        type:
-          id: type
-          table: search_api_index_full_site_search
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            judgment: judgment
-          group: 1
-          exposed: false
-          expose:
-            operator_id: type_op
-            label: type
-            description: ''
-            use_operator: false
-            operator: type_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: type
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            reduce: true
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: search_api_options
         search_api_fulltext:
           id: search_api_fulltext
           table: search_api_index_full_site_search
@@ -1270,13 +472,13 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: and
+          operator: or
           value: ''
           group: 1
           exposed: true
           expose:
             operator_id: search_api_fulltext_op
-            label: search
+            label: 'Search | '
             description: ''
             use_operator: false
             operator: search_api_fulltext_op
@@ -1291,7 +493,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
-            placeholder: ''
+            placeholder: 'Results For'
           is_grouped: false
           group_info:
             label: ''
@@ -1304,79 +506,31 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: terms
+          parse_mode: direct
           min_length: null
           fields: {  }
           plugin_id: search_api_fulltext
-        created_1:
-          id: created_1
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      header: {  }
+      cache:
+        type: none
+      exposed_block: true
+      sorts:
+        search_api_relevance:
+          id: search_api_relevance
           table: search_api_index_full_site_search
-          field: created
+          field: search_api_relevance
           relationship: none
           group_type: group
           admin_label: ''
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-          group: 1
-          exposed: true
+          order: DESC
+          exposed: false
           expose:
-            operator_id: created_1_op
-            label: 'Authored on'
-            description: null
-            use_operator: false
-            operator: created_1_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: created_1
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            placeholder: null
-            min_placeholder: null
-            max_placeholder: null
-          is_grouped: true
-          group_info:
-            label: 'Authored on'
-            description: ''
-            identifier: created_1
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items:
-              1:
-                title: 'Last 10 years'
-                operator: '<='
-                value:
-                  type: offset
-                  value: '-365 day'
-                  min: ''
-                  max: ''
-              2:
-                title: 'Last 5 years'
-                operator: '='
-                value:
-                  type: offset
-                  value: +day
-                  min: ''
-                  max: ''
-              3:
-                title: 'Last year'
-                operator: between
-                value:
-                  type: offset
-                  value: ''
-                  min: '+365'
-                  max: today
-          plugin_id: search_api_date
+            label: ''
+          plugin_id: search_api
         created:
           id: created
           table: search_api_index_full_site_search
@@ -1384,113 +538,17 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: between
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: offset
-          group: 1
-          exposed: true
+          order: DESC
+          exposed: false
           expose:
-            operator_id: created_op
-            label: 'Custom Date'
-            description: ''
-            use_operator: false
-            operator: created_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: created
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            placeholder: ''
-            min_placeholder: 01/01/2020
-            max_placeholder: 010/01/2020
-          is_grouped: false
-          group_info:
             label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: search_api_date
-        field_court_name:
-          id: field_court_name
-          table: search_api_index_full_site_search
-          field: field_court_name
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_court_name_op
-            label: 'Court name'
-            description: ''
-            use_operator: false
-            operator: field_court_name_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_court_name
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: court_names
-          hierarchy: false
-          error_message: true
-          plugin_id: search_api_term
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          content: 'Jugements (@total)'
-          plugin_id: result
-      cache:
-        type: none
-      exposed_block: false
+          plugin_id: search_api
+      query:
+        type: views_query
+        options:
+          skip_access: 0
+          bypass_access: 0
+          preserve_facet_query_args: 1
     cache_metadata:
       max-age: -1
       contexts:
@@ -1498,7 +556,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.full_site_search'

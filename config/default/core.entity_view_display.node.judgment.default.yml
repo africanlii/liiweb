@@ -10,12 +10,12 @@ dependencies:
     - field.field.node.judgment.field_case_number_numeric
     - field.field.node.judgment.field_case_number_year
     - field.field.node.judgment.field_court_name
+    - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judge
-    - field.field.node.judgment.field_judgment_date
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number
     - field.field.node.judgment.field_judgment_number_override
@@ -123,6 +123,15 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+  field_date:
+    weight: 12
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_files:
     type: lii_file
     weight: 5
@@ -158,15 +167,6 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
-  field_judgment_date:
-    type: datetime_default
-    weight: 1
-    region: header_right
-    label: inline
-    settings:
-      timezone_override: ''
-      format_type: html_date
-    third_party_settings: {  }
   field_search_summary:
     type: text_summary_or_trimmed
     weight: 10
