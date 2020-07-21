@@ -494,7 +494,7 @@ display:
             max_placeholder: null
           is_grouped: true
           group_info:
-            label: 'Index Search Date'
+            label: Gazetted
             description: ''
             identifier: field_date
             optional: true

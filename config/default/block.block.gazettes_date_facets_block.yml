@@ -21,8 +21,13 @@ settings:
   show_title: true
   exclude_empty_facets: true
   facets_to_include:
-    'facet_block:gazette_date': 'facet_block:gazette_date'
-    'facet_block:search_type': '0'
+    'facet_block:index_search_date': 'facet_block:index_search_date'
+    'facet_block:content_type': '0'
+    'facet_block:date_range': '0'
+    'facet_block:commencement_date': '0'
+    'facet_block:expression_date': '0'
+    'facet_block:court_name': '0'
+    'facet_block:tags': '0'
 visibility:
   request_path:
     id: request_path
