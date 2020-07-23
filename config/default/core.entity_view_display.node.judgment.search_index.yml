@@ -83,14 +83,10 @@ hidden:
   field_court_name: true
   field_date: true
   field_external_link: true
-<<<<<<< HEAD
-  field_judgment_date: true
-=======
   field_files: true
   field_flynote: true
   field_headnote_and_holding: true
   field_judge: true
->>>>>>> origin/theme-liibarrio
   field_judgment_mnc_old: true
   field_judgment_number: true
   field_judgment_number_override: true
