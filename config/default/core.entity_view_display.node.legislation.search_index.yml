@@ -24,22 +24,53 @@ dependencies:
     - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
-    - text
+    - ds
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_flex_vertical
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          content: {  }
+    regions:
+      content:
+        - node_title
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: h6
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.legislation.search_index
 targetEntityType: node
 bundle: legislation
 mode: search_index
-content:
-  field_content:
-    weight: 0
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
+content: {  }
 hidden:
   field_commencement_date: true
+  field_content: true
   field_created: true
   field_created_by_api: true
   field_date: true

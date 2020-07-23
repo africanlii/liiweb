@@ -63,8 +63,8 @@ third_party_settings:
     regions:
       header_left:
         - node_author
+        - field_date
       header_right:
-        - field_judgment_date
         - field_court_name
         - field_case_number
       full_width:
@@ -132,7 +132,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
-    region: content
+    region: header_left
   field_files:
     type: lii_file
     weight: 5

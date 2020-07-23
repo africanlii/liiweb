@@ -16,6 +16,24 @@
   }
 }
 
+.view-liiweb-search {
+  //background: $white;
+  //border: 1px solid $border-color;
+  //padding: calc(#{$grid-gutter-width} / 2);
+
+  .view-content {
+    .views-row {
+      &:not(:first-child) {
+        margin-top: calc(#{$grid-gutter-width} / 2);
+      }
+    }
+  }
+
+  .pagination {
+    margin-top: $grid-gutter-width;
+  }
+}
+
 // Custom classes applied via Views UI
 .view--liibarrio {
   margin-bottom: $grid-gutter-width;
