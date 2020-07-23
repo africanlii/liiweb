@@ -122,35 +122,45 @@
     <div id="main" class="container">
       {{ page.breadcrumb }}
       <div class="row row-offcanvas row-offcanvas-left clearfix">
-          <main class="layout-main col" id="content" role="main">
-            <section class="section">
-              <a id="main-content" tabindex="-1"></a>
-              {% if page.content_top %}
-                {{ page.content_top }}
-              {% endif %}
 
-              {# Content #}
-              {{ page.content }}
+        {% if page.featured_top %}
+        <section class="layout-featured layout-featured--top col-12">          
+          {{ page.featured_top }}          
+        </section>
+        {% endif %}
 
-              {% if page.content_bottom %}
-                {{ page.content_bottom }}
-              {% endif %}
-            </section>
-          </main>
         {% if page.sidebar_first %}
-          <div class="layout-sidebar layout-sidebar--first col" id="sidebar_first">
-            <aside class="section" role="complementary">
-              {{ page.sidebar_first }}
-            </aside>
-          </div>
+        <div class="layout-sidebar layout-sidebar--first col" id="sidebar_first">
+          <aside class="section" role="complementary">
+            {{ page.sidebar_first }}
+          </aside>
+        </div>
         {% endif %}
+
+        <main class="layout-main col" id="content" role="main">
+          <section class="section">
+            <a id="main-content" tabindex="-1"></a>
+            {% if page.content_top %}
+              {{ page.content_top }}
+            {% endif %}
+
+            {# Content #}
+            {{ page.content }}
+
+            {% if page.content_bottom %}
+              {{ page.content_bottom }}
+            {% endif %}
+          </section>
+        </main>
+
         {% if page.sidebar_second %}
-          <div class="layout-sidebar layout-sidebar--second col" id="sidebar_second">
-            <aside class="section" role="complementary">
-              {{ page.sidebar_second }}
-            </aside>
-          </div>
+        <div class="layout-sidebar layout-sidebar--second col" id="sidebar_second">
+          <aside class="section" role="complementary">
+            {{ page.sidebar_second }}
+          </aside>
+        </div>
         {% endif %}
+
       </div>
     </div>
   </div>

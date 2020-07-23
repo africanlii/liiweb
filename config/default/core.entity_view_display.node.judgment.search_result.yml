@@ -1,9 +1,9 @@
-uuid: 25d8e908-cbd0-41f6-9188-f29a39a786ee
+uuid: ff9700ab-ca48-43d2-8321-97e5b4096d63
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.search_index
+    - core.entity_view_mode.node.search_result
     - field.field.node.judgment.body
     - field.field.node.judgment.feeds_item
     - field.field.node.judgment.field_case_name
@@ -67,11 +67,16 @@ third_party_settings:
             lb: ''
             lb-col: false
             classes: {  }
-id: node.judgment.search_index
+id: node.judgment.search_result
 targetEntityType: node
 bundle: judgment
-mode: search_index
-content: {  }
+mode: search_result
+content:
+  liiweb_share_links:
+    weight: 6
+    region: sidebar
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   body: true
   feeds_item: true

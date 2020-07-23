@@ -1,6 +1,6 @@
 name: liiBarrio 2020
 type: theme
-description: "Custom theme created for AfricanLii. Based off the Bootstrap Barrio SubTheme, built using the Bootstrap 4 framework."
+description: "Custom theme created for AfricanLii. Based off the Bootstrap Barrio Subtheme, built using the Bootstrap 4 framework."
 # version: VERSION
 core: 8.x
 core_version_requirement: ^8 || ^9
@@ -28,6 +28,7 @@ regions:
   hero: Hero
   highlighted: Highlighted
   help: Help
+  featured_top: "Featured top"
   content_top: "Content top"
   content: Content
   content_bottom: "Content bottom"
