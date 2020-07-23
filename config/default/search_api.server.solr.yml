@@ -60,8 +60,8 @@ backend_config:
   disabled_request_dispatchers:
     - request_dispatcher_httpcachingnever_default_7_0_0
   rows: 10
-  retrieve_data: false
-  highlight_data: false
+  retrieve_data: true
+  highlight_data: true
   skip_schema_check: false
   server_prefix: ''
   domain: generic

@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judge
+    - field.field.node.judgment.field_judgment_date
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number
     - field.field.node.judgment.field_judgment_number_override
@@ -210,6 +211,7 @@ hidden:
   field_case_number_year: true
   field_date: true
   field_external_link: true
+  field_judgment_date: true
   field_judgment_mnc_old: true
   field_judgment_number: true
   field_judgment_number_override: true

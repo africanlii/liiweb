@@ -382,7 +382,7 @@ display:
               secondary_label: 'Advanced options'
               secondary_open: false
             filter:
-              created:
+              field_date:
                 plugin_id: bef
                 advanced:
                   placeholder_text: ''
@@ -392,9 +392,9 @@ display:
                   is_secondary: false
                 select_all_none: false
                 select_all_none_nested: false
-                display_inline: 0
-              created_1:
-                plugin_id: bef_datepicker
+                display_inline: 1
+              field_date_1:
+                plugin_id: default
                 advanced:
                   collapsible: false
                   is_secondary: false
@@ -460,10 +460,10 @@ display:
             group_items: {  }
           reduce_duplicates: false
           plugin_id: search_api_options
-        created:
-          id: created
+        field_date:
+          id: field_date
           table: search_api_index_full_site_search
-          field: created
+          field: field_date
           relationship: none
           group_type: group
           admin_label: ''
@@ -476,14 +476,14 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: created_op
-            label: 'Authored on'
+            operator_id: field_date_op
+            label: 'Index Search Date'
             description: null
             use_operator: false
-            operator: created_op
+            operator: field_date_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: created
+            identifier: field_date
             required: false
             remember: false
             multiple: false
@@ -496,9 +496,9 @@ display:
           group_info:
             label: Gazetted
             description: ''
-            identifier: created
+            identifier: field_date
             optional: true
-            widget: select
+            widget: radios
             multiple: false
             remember: false
             default_group: All
@@ -506,25 +506,25 @@ display:
             group_items:
               1:
                 title: 'Last 5 years'
-                operator: '='
+                operator: '>='
                 value:
-                  type: date
-                  value: '+1 day'
+                  type: offset
+                  value: '-5 years'
                   min: ''
                   max: ''
               2:
                 title: 'This year'
-                operator: '='
+                operator: '<='
                 value:
                   type: date
-                  value: +day
+                  value: '-1 year'
                   min: ''
                   max: ''
           plugin_id: search_api_date
-        created_1:
-          id: created_1
+        field_date_1:
+          id: field_date_1
           table: search_api_index_full_site_search
-          field: created
+          field: field_date
           relationship: none
           group_type: group
           admin_label: ''
@@ -537,14 +537,14 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: created_1_op
+            operator_id: field_date_1_op
             label: 'Custom Date'
             description: ''
             use_operator: false
-            operator: created_1_op
+            operator: field_date_1_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: created_1
+            identifier: field_date_1
             required: false
             remember: false
             multiple: false
@@ -553,7 +553,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
-            placeholder: D/M/YYY
+            placeholder: ''
             min_placeholder: D/M/YYY
             max_placeholder: D/M/YYY
           is_grouped: false

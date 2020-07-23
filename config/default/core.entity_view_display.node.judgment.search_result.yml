@@ -1,9 +1,9 @@
-uuid: 3185950b-e6ad-4f04-b71f-df32e26d94e8
+uuid: ff9700ab-ca48-43d2-8321-97e5b4096d63
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.listing
+    - core.entity_view_mode.node.search_result
     - field.field.node.judgment.body
     - field.field.node.judgment.feeds_item
     - field.field.node.judgment.field_case_name
@@ -17,7 +17,6 @@ dependencies:
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judge
-    - field.field.node.judgment.field_judgment_date
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number
     - field.field.node.judgment.field_judgment_number_override
@@ -34,7 +33,7 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: liibarrio_flex_horizontal
+      id: liibarrio_flex_vertical
       library: null
       disable_css: false
       entity_classes: all_classes
@@ -68,10 +67,10 @@ third_party_settings:
             lb: ''
             lb-col: false
             classes: {  }
-id: node.judgment.listing
+id: node.judgment.search_result
 targetEntityType: node
 bundle: judgment
-mode: listing
+mode: search_result
 content:
   liiweb_share_links:
     weight: 6
@@ -92,7 +91,6 @@ hidden:
   field_flynote: true
   field_headnote_and_holding: true
   field_judge: true
-  field_judgment_date: true
   field_judgment_mnc_old: true
   field_judgment_number: true
   field_judgment_number_override: true
