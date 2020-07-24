@@ -390,6 +390,17 @@
       border: none;
       font-size: 0;
 
+      &:before,
+      &:after {
+        position: absolute;
+        top: 0;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 2rem;
+        line-height: 1;
+        color: $body-color;
+      }
+
       &.slick-prev {
         left: 0;
 
@@ -406,15 +417,6 @@
           content: "\f054";
           right: 0;
         }
-      }
-
-      &:before,
-      &:after {
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        font-size: 2rem;
-        line-height: 1;
-        color: $body-color;
       }
     }
   }

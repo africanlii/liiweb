@@ -11,7 +11,7 @@ dependencies:
     - liibarrio2020
 id: views_block__country_block_country_carousel
 theme: liibarrio2020
-region: content_bottom
+region: content_top
 weight: -15
 provider: null
 plugin: 'views_block:country-block_country_carousel'
