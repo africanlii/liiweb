@@ -317,6 +317,21 @@
   }
 }
 
+#block-gazettes-date-facets-block,
+.block-facets-ajax.js-facet-block-id-gazettes_date_facets_block {
+  .facet-block {
+    ul {
+      display: flex;
+      flex-direction: column-reverse;
+      padding: $spacer-sm;
+
+      .is-active {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
 // Footer blocks
 #block-views-block-rw-organisations-footer-our-partners {
   margin-bottom: $spacer-xl;

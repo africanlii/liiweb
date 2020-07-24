@@ -1,5 +1,15 @@
 .page-view-index-search-gazettes {
+  .layout-main,
+  .layout-sidebar {
+    @include liibarrio-box();
+  }
+
+  .layout-main {
+    border-right: none;
+  }
+
   .layout-sidebar {
     flex: 0 1 80px;
+    border-left: none;
   }
 }

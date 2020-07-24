@@ -19,4 +19,10 @@
       margin-top: auto;
     }
   }
+
+  &.node--type-government-gazette {
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
 }
