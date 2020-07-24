@@ -15,7 +15,6 @@ dependencies:
   module:
     - ds
     - file
-    - text
     - user
 third_party_settings:
   ds:
@@ -40,9 +39,7 @@ third_party_settings:
     regions:
       left:
         - node_title
-        - body
       right:
-        - field_gazette_date
         - field_file
     fields:
       node_title:
@@ -51,9 +48,9 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: true
           wrapper: h3
           class: h6
-          link: false
         ft:
           id: default
           settings:
@@ -65,29 +62,15 @@ targetEntityType: node
 bundle: government_gazette
 mode: teaser
 content:
-  body:
-    type: text_trimmed
-    weight: 1
-    region: left
-    label: hidden
-    settings:
-      trim_length: 140
-    third_party_settings:
-      ds:
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
   field_file:
     type: file_url_plain
-    weight: 3
+    weight: 1
     region: right
     label: hidden
     settings: {  }
     third_party_settings: {  }
 hidden:
+  body: true
   field_date: true
   field_external_link: true
   field_gazette_issue_number: true
