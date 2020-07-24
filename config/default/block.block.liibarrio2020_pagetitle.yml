@@ -21,7 +21,7 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: "<front>\r\n/about"
+    pages: "<front>\r\n/about\r\n/feedback"
     negate: true
     context_mapping: {  }
   node_type:

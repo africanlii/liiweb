@@ -123,7 +123,7 @@
       {{ page.breadcrumb }}
       <div class="row row-offcanvas row-offcanvas-left clearfix">
 
-        {% if page.featured_top %}
+        {% if page.featured_top|render|striptags|trim is not empty %}
         <section class="layout-featured layout-featured--top col-12">          
           {{ page.featured_top }}          
         </section>
@@ -140,14 +140,14 @@
         <main class="layout-main col" id="content" role="main">
           <section class="section">
             <a id="main-content" tabindex="-1"></a>
-            {% if page.content_top %}
+            {% if page.content_top|render|striptags|trim is not empty %}
               {{ page.content_top }}
             {% endif %}
 
             {# Content #}
             {{ page.content }}
 
-            {% if page.content_bottom %}
+            {% if page.content_bottom|render|striptags|trim is not empty %}
               {{ page.content_bottom }}
             {% endif %}
           </section>
