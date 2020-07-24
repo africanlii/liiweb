@@ -46,6 +46,33 @@ function liibarrio2020_theme_suggestions_block_alter(array &$suggestions, array 
   return $suggestions;
 }
 
+/**
+ * Implements hook_page_attachments_alter() for page templates.
+ */
+function liibarrio2020_page_attachments_alter(&$page) {
+  $viewport = [
+    '#type' => 'html_tag',
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'viewport',
+      'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1',
+    ],
+  ];
+  $page['#attached']['html_head'][] = [$viewport, 'viewport'];
+}
+
+/**
+ * Implements hook_input_alter()
+ */
+function liibarrio2020_theme_suggestions_input_alter(&$suggestions, array $variables) {
+  $element = $variables['element'];
+  if (isset($element['#attributes']['data-drupal-selector'])) {
+    $suggestion_suffix = str_replace(['-'], '_', $element['#attributes']['data-drupal-selector']);
+    $suggestions[] = 'input__' . $element['#type'] . '__' . $suggestion_suffix;
+  }
+}
+
+
 // function liibarrio2020_preprocess_ds_entity_view(&$variables)  {
 //   // dump page variables
 //   kint($variables);

@@ -1,5 +1,4 @@
 label: 'Par défaut'
 options:
   settings:
-    prevArrow: Previous
     nextArrow: Suivant

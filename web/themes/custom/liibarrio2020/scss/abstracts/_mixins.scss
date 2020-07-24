@@ -1,18 +1,16 @@
 /* MIXINS */
 
-//
-// Alternate buttons
-//
-@each $color,
-$value in $theme-colors {
-    .btn-#{$color} a {
-        @include button-variant($value, $value);
-    }
+// Absolute center
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-@each $color,
-$value in $theme-colors {
-    .btn-outline-#{$color} a {
-        @include button-outline-variant($value);
-    }
+// Liibarrio box
+@mixin liibarrio-box($padding: #{$spacer-md}) {
+  background: $white;
+  border: 1px solid $border-color;
+  padding: $padding;
 }

@@ -16,6 +16,7 @@
       border: none;
       line-height: $pre-header-height-desktop;
     }
+
     svg {
       width: 1.125rem;
       height: 1.125rem;
@@ -33,46 +34,69 @@
   }
 
   & + .block {
-    margin-left: $grid-gutter-width;
+    margin-left: $spacer-xl;
   }
 }
 // Search
 #block-advancedsearchblock {
-  @include media-breakpoint-up(lg) {
-    .btn {
-      height: $pre-header-height-desktop;
+  .btn {
+    height: $pre-header-height-desktop;
+  }
+
+  fieldset,
+  .form-row > div {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  .form-text:focus,
+  .custom-select:focus {
+    box-shadow: inset 0 0 0 0.2rem rgba(50, 111, 209, 0.25);
+  }
+
+  .form-text {
+    height: $pre-header-height-desktop;
+    max-width: 17.5rem;
+    margin-top: 0;
+    border: none;
+  }
+
+  .js-form-type-select {
+    position: relative;
+    @include media-breakpoint-down(sm) {
+      @include sr-only();
     }
 
-    fieldset,
-    .form-row > div {
-      padding-left: 0;
-      padding-right: 0;
+    &:before {
+      content: "\f107";
+      display: block;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      color: $body-color;
+      z-index: 1;
     }
+  }
 
-    .form-group {
-      margin-bottom: 0;
-    }
+  .custom-select {
+    height: $pre-header-height-desktop;
+    border-bottom: 0;
+    border-top: 0;
+    background: $white;
+  }
 
-    .form-text:focus,
-    .custom-select:focus {
-      box-shadow: inset 0 0 0 0.2rem rgba(50, 111, 209, 0.25);
-    }
-
-    .form-text {
-      height: $pre-header-height-desktop;
-      max-width: 17.5rem;
-      margin-top: 0;
-      border: none;
-    }
-
-    .custom-select {
-      height: $pre-header-height-desktop;
-      border-bottom: 0;
-      border-top: 0;
-    }
-
-    #search-form {
-      display: flex;
+  #search-form {
+    display: flex;
+    @include media-breakpoint-down(sm) {
+      max-width: 14rem;
     }
   }
 }
@@ -95,13 +119,13 @@
 
   .field--name-field-sub-title {
     font-size: 1.5rem;
-    margin-bottom: $grid-gutter-width;
+    margin-bottom: $spacer-xl;
   }
 
   // Paragraph - Search block
   .search-form {
     display: flex;
-    margin-bottom: calc(#{$grid-gutter-width} / 1.428571);
+    margin-bottom: $spacer-lg;
 
     .form-group {
       margin-bottom: 0;
@@ -130,9 +154,14 @@
   .block-views-blockrw-organisations-block-partner-hero {
     .view-content {
       display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
       align-items: center;
+
+      @include media-breakpoint-up(md) {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+      }
     }
   }
 }
@@ -190,15 +219,13 @@
 }
 
 .block-facets-block.block-sidebar-first {
-  background: $white;
-  border: 1px solid $border-color;
-  padding: calc(#{$grid-gutter-width} / 2);
+  @include liibarrio-box();
 }
 
 .block-facets-block {
   &.block-content-top {
-    padding: calc(#{$grid-gutter-width} / 2) 0;
-    margin-bottom: $grid-gutter-width;
+    padding: $spacer-md 0;
+    margin-bottom: $spacer-xl;
 
     .facet-item a {
       position: relative;
@@ -214,22 +241,19 @@
 
     .facet-item__count {
       position: absolute;
-      top: calc(-#{$grid-gutter-width} / 2);
+      top: -$spacer-md;
       color: $white;
       font-size: 0.5rem;
       line-height: 1;
 
       &:before {
+        @include absolute-center();
         content: "";
         display: block;
         width: 1.25rem;
         height: 1.25rem;
         background: $green-light;
         z-index: -1;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         border-radius: 50%;
       }
     }
@@ -252,10 +276,8 @@
 
 // Sidebar - Second
 #block-webform.block-second-sidebar {
+  @include liibarrio-box($spacer-lg);
   margin-bottom: 1rem;
-  padding: 0.875rem;
-  border: 1px solid #d5d5d5;
-  background-color: $white;
 
   button {
     width: 100%;
@@ -271,9 +293,7 @@
 }
 
 #block-contactblock.block-second-sidebar {
-  padding: 0.875rem;
-  border: 1px solid #d5d5d5;
-  background: $white;
+  @include liibarrio-box($spacer-lg);
 
   p {
     margin-bottom: 0;
@@ -299,7 +319,7 @@
 
 // Footer blocks
 #block-views-block-rw-organisations-footer-our-partners {
-  margin-bottom: calc(#{$grid-gutter-width} * 1);
+  margin-bottom: $spacer-xl;
 }
 
 #block-views-block-country-block-country-footer {
@@ -318,7 +338,7 @@
   margin-top: 1.5rem;
 
   & > h3 {
-    padding-left: calc(#{$grid-gutter-width} / 1.333333);
+    padding-left: $spacer-lg;
   }
 
   .content {
@@ -329,9 +349,7 @@
 // Judgment landing
 #block-legislationviewtabsblock,
 #block-judgmentviewtabsblock {
-  background: $white;
-  padding: calc(#{$grid-gutter-width} / 2);
-  border: 1px solid #d5d5d5;
+  @include liibarrio-box();
 
   & > .content {
     & .nav {
@@ -342,7 +360,7 @@
       }
       .nav-link {
         text-decoration: underline;
-        padding: 0 0.625rem;
+        padding: 0 $spacer-md;
 
         &.active {
           position: relative;
@@ -356,7 +374,7 @@
             position: absolute;
             left: 0;
             bottom: -0.75rem;
-            height: 0.625rem;
+            height: $spacer-md;
             width: 100%;
             background: $secondary;
           }
@@ -372,7 +390,8 @@
 
 //Sidebar blocks
 #block-views-block-rw-organisations-block-1 {
-  margin-bottom: calc(#{$grid-gutter-width} * 1.6);
+  margin-bottom: $spacer-lg;
+
   .view-content {
     display: flex;
     flex-wrap: nowrap;
@@ -392,7 +411,7 @@
   }
 
   .tab-content {
-    border: 1px solid #d5d5d5;
+    border: 1px solid $border-color;
     border-top: none;
   }
 
@@ -420,7 +439,7 @@
       bottom: -1px;
       width: 1px;
       height: 1px;
-      background: #d5d5d5;
+      background: $border-color;
     }
   }
 

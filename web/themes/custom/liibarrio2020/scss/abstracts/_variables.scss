@@ -83,7 +83,12 @@ $enable-validation-icons: true;
 $enable-deprecation-messages: true;
 
 // Spacing
-$spacer: 1rem;
+$spacer: 1.25rem; //20px
+
+$spacer-sm: $spacer * 0.25;
+$spacer-md: $spacer * 0.5;
+$spacer-lg: $spacer * 0.75;
+$spacer-xl: $spacer;
 
 // Navbar
 $navbar-padding-y: 0;

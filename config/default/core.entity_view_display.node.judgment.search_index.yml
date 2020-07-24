@@ -87,6 +87,7 @@ hidden:
   field_flynote: true
   field_headnote_and_holding: true
   field_judge: true
+  field_judgment_date: true
   field_judgment_mnc_old: true
   field_judgment_number: true
   field_judgment_number_override: true
