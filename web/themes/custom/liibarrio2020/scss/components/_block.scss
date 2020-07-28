@@ -82,7 +82,7 @@
       font-family: "Font Awesome 5 Free";
       font-weight: 900;
       color: $body-color;
-      z-index: 1;
+      z-index: -1;
     }
   }
 
@@ -90,7 +90,7 @@
     height: $pre-header-height-desktop;
     border-bottom: 0;
     border-top: 0;
-    background: $white;
+    background: transparent;
   }
 
   #search-form {

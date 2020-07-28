@@ -39,31 +39,31 @@
 
 .views-view-grid.horizontal.cols-1 {
   .views-row {
-    margin-bottom: calc(#{$grid-gutter-width} / 2);
+    margin-bottom: $spacer-md;
   }
 }
 
 .view-liiweb-search {
   //background: $white;
   //border: 1px solid $border-color;
-  //padding: calc(#{$grid-gutter-width} / 2);
+  //padding: $spacer-md;
 
   .view-content {
     .views-row {
       &:not(:first-child) {
-        margin-top: calc(#{$grid-gutter-width} / 2);
+        margin-top: $spacer-md;
       }
     }
   }
 
   .pagination {
-    margin-top: $grid-gutter-width;
+    margin-top: $spacer-xl;
   }
 }
 
 // Custom classes applied via Views UI
 .view--liibarrio {
-  margin-bottom: $grid-gutter-width;
+  margin-bottom: $spacer-xl;
 
   &--bg {
     // for when the block title is NOT used
@@ -74,7 +74,7 @@
 
   .view-content,
   .view-empty {
-    padding: calc(#{$grid-gutter-width} / 1.333333);
+    padding: $spacer-lg;
     border: 1px solid $border-color;
 
     &:not(:last-child) {
@@ -89,8 +89,8 @@
     }
 
     &:nth-child(5n + 6) {
-      padding-top: calc(#{$grid-gutter-width} / 1.333333);
-      margin-top: calc(#{$grid-gutter-width} / 1.333333);
+      padding-top: $spacer-lg;
+      margin-top: $spacer-lg;
 
       &:before {
         content: "";
@@ -98,7 +98,7 @@
         display: block;
         top: 0;
         height: 1px;
-        width: calc(100% - #{$grid-gutter-width});
+        width: calc(100% - #{$spacer-xl});
         background: $border-color;
       }
     }
@@ -110,8 +110,8 @@
 
     &:not(:nth-child(1)) {
       border-top: none;
-      margin-top: calc(#{$grid-gutter-width} / 1.333333);
-      padding-top: calc(#{$grid-gutter-width} / 1.333333);
+      margin-top: $spacer-lg;
+      padding-top: $spacer-lg;
 
       &:before {
         content: "";
@@ -119,7 +119,7 @@
         display: block;
         top: 0;
         height: 1px;
-        width: calc(100% - #{$grid-gutter-width});
+        width: calc(100% - #{$spacer-xl});
         background: $border-color;
       }
     }
@@ -138,7 +138,7 @@
     .button {
       display: block;
       width: 100%;
-      padding: 0.625rem 0;
+      padding: $spacer-md 0;
       background: $primary;
       text-align: center;
       color: $white;
@@ -155,18 +155,12 @@
   }
 }
 
-.view-id-index_search_legislation {
-  //padding: 0 0.625rem;
+.view-id-index_search_legislation,
+.view-id-index_search_judgment {
+  //padding: 0 $spacer-md;
 
   .view-filters {
-    padding: 0 0.625rem 0.625rem;
-
-    .form-row {
-      & > fieldset,
-      & > .form-actions {
-        flex: 0 0 100%;
-      }
-    }
+    padding: 0 $spacer-md $spacer-md;
 
     fieldset {
       display: flex;
@@ -174,7 +168,7 @@
       margin-bottom: 0;
 
       &:not(:first-child) {
-        margin-top: 0.625rem;
+        margin-top: $spacer-md;
       }
 
       legend {
@@ -193,7 +187,7 @@
       input {
         margin-top: 0;
       }
-
+      #edit-field-date.radio,
       .form-radios {
         display: flex;
 
@@ -203,28 +197,42 @@
       }
     }
 
+    .form-row {
+      & > fieldset,
+      & > .form-actions {
+        flex: 0 0 100%;
+      }
+    }
+
     .form-actions {
       display: flex;
       justify-content: space-between;
-      margin-top: 0.625rem;
+      margin-top: $spacer-md;
       margin-bottom: 0;
 
       button {
-        flex: 0 0 calc(50% - 0.3125rem);
+        flex: 0 0 calc(50% - #{$spacer-sm});
       }
+    }
+
+    .custom-control-input {
+      position: static;
+      width: auto;
+      height: auto;
+      opacity: 1;
     }
   }
 
   .view-content {
     border-top: 1px solid $border-color;
-    padding-top: 0.625rem;
+    padding-top: $spacer-md;
 
     .views-row {
       background: $body-bg;
-      padding: 0.3125rem 0.625rem;
+      padding: $spacer-sm $spacer-md;
 
       &:not(:first-child) {
-        margin-top: 0.625rem;
+        margin-top: $spacer-md;
       }
     }
   }
@@ -238,21 +246,6 @@
 
   .view-filters {
     flex: 0 0 100%;
-
-    .form-row > fieldset {
-      flex: 0 0 100%;
-      margin-bottom: 0;
-    }
-
-    .form-radios {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 1rem;
-    }
-
-    .custom-control {
-      padding-left: 0;
-    }
 
     input:checked + label,
     label:hover {
@@ -272,6 +265,21 @@
       cursor: pointer;
     }
 
+    .form-row > fieldset {
+      flex: 0 0 100%;
+      margin-bottom: 0;
+    }
+
+    .form-radios {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+    }
+
+    .custom-control {
+      padding-left: 0;
+    }
+
     .form-actions {
       @include sr-only();
     }
@@ -282,10 +290,10 @@
 
     .views-row {
       background: $body-bg;
-      padding: 0.3125rem 0.625rem;
+      padding: $spacer-sm $spacer-md;
 
       &:not(:first-child) {
-        margin-top: 0.625rem;
+        margin-top: $spacer-md;
       }
     }
   }
@@ -299,16 +307,16 @@
   .pager {
     @include list-unstyled();
     margin-bottom: 0;
-    flex: 0 0 calc(100% + #{$grid-gutter-width});
-    margin-top: calc(#{$grid-gutter-width} / 2);
-    margin-left: calc(-#{$grid-gutter-width} / 2);
-    margin-right: calc(-#{$grid-gutter-width} / 2);
-    margin-bottom: calc(-#{$grid-gutter-width} / 2);
+    flex: 0 0 calc(100% + #{$spacer-xl});
+    margin-top: $spacer-md;
+    margin-left: calc(-#{$spacer-xl} / 2);
+    margin-right: calc(-#{$spacer-xl} / 2);
+    margin-bottom: calc(-#{$spacer-xl} / 2);
 
     .button {
       display: block;
       width: 100%;
-      padding: 0.625rem 0;
+      padding: $spacer-md 0;
       background: $primary;
       text-align: center;
       color: $white;
