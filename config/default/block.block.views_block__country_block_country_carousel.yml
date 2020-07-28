@@ -6,14 +6,13 @@ dependencies:
     - views.view.country
   module:
     - system
-    - user
     - views
   theme:
     - liibarrio2020
 id: views_block__country_block_country_carousel
 theme: liibarrio2020
-region: content
-weight: -13
+region: content_top
+weight: -15
 provider: null
 plugin: 'views_block:country-block_country_carousel'
 settings:
@@ -29,10 +28,3 @@ visibility:
     pages: /about
     negate: false
     context_mapping: {  }
-  user_role:
-    id: user_role
-    roles:
-      authenticated: authenticated
-    negate: false
-    context_mapping:
-      user: '@user.current_user_context:current_user'

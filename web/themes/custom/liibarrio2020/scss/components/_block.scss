@@ -193,6 +193,12 @@
   }
 }
 
+// Content Top
+#block-views-block-country-block-country-carousel,
+#block-views-block-country-block-country-carousel--2 {
+  margin-bottom: $spacer-lg;
+}
+
 // Sidebar - First
 .block-views-exposed-filter-blocks-block.block-sidebar-first {
   .form-item-search-api-fulltext {
@@ -264,6 +270,15 @@
     }
   }
 
+  &.block-sidebar-first {
+    .facets-widget-links {
+      margin-top: $spacer-xl;
+    }
+    .facet-hidden {
+      @include sr-only();
+    }
+  }
+
   .facet-block {
     &__content {
       .item-list__links {
@@ -308,6 +323,13 @@
     padding-top: 0.875rem;
     border: none;
     background-color: transparent;
+  }
+
+  .item-list {
+    margin-bottom: $spacer-lg;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 
   .fas,
