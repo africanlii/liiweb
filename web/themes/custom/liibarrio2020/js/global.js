@@ -46,7 +46,7 @@
 
   Drupal.behaviors.judgmentBrowser = {
     attach: function (context, settings) {
-      var inputs = $("#views-exposed-form-judgment-bk-judgment-browser input");
+      var inputs = $(".view-id-index_search_judgment input");
 
       // Add 'for' attribute to label with corrosponding id.
       inputs.each(function (index) {
@@ -60,9 +60,7 @@
 
   Drupal.behaviors.legislationBrowser = {
     attach: function (context, settings) {
-      var inputs = $(
-        "#views-exposed-form-legislation-bk-legislation-browser input"
-      );
+      var inputs = $(".view-id-index_search_legislation input");
 
       // Add 'for' attribute to label with corrosponding id.
       inputs.each(function (index) {
