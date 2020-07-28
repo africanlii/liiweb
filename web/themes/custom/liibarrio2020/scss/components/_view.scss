@@ -72,6 +72,10 @@
     }
   }
 
+  &-box {
+    @include liibarrio-box();
+  }
+
   .view-content,
   .view-empty {
     padding: $spacer-lg;
@@ -187,7 +191,7 @@
       input {
         margin-top: 0;
       }
-      #edit-field-date.radio,
+
       .form-radios {
         display: flex;
 

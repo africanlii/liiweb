@@ -406,6 +406,22 @@ display:
               secondary_label: 'Advanced options'
               secondary_open: false
             filter:
+              field_date:
+                plugin_id: bef
+                advanced:
+                  placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: '- Any -|All'
+                  collapsible: false
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: 1
+              field_date_1:
+                plugin_id: bef_datepicker
+                advanced:
+                  collapsible: false
+                  is_secondary: false
               field_tags:
                 plugin_id: default
                 advanced:
@@ -422,24 +438,12 @@ display:
                     filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
-              field_date:
-                plugin_id: default
-                advanced:
-                  placeholder_text: ''
-                  rewrite:
-                    filter_rewrite_values: '- Any -|All'
-                  collapsible: false
-                  is_secondary: false
-              field_date_1:
-                plugin_id: bef_datepicker
-                advanced:
-                  collapsible: false
-                  is_secondary: false
       defaults:
         exposed_form: false
         style: false
         row: false
         fields: false
+        css_class: false
       style:
         type: default
         options:
@@ -527,6 +531,7 @@ display:
             multi_separator: ', '
           entity_type: node
           plugin_id: search_api_field
+      css_class: view--liibarrio-search
     cache_metadata:
       max-age: -1
       contexts:

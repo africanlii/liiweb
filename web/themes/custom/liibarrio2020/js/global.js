@@ -28,47 +28,25 @@
     },
   };
 
-  Drupal.behaviors.legislationSearch = {
+  Drupal.behaviors.liibarrioSummarySearchBrowserInput = {
     attach: function (context, settings) {
-      var inputs = $(
-        "#views-exposed-form-index-search-legislation-bk-legislation-search input"
-      );
+      var viewSummary = ".view--liibarrio-summary :input";
+      var viewSearch = ".view--liibarrio-search :input";
+      var viewBrowser = ".view--liibarrio-browser :input";
 
-      // Add 'for' attribute to label with corrosponding id.
-      inputs.each(function (index) {
-        //alert(index + ": " + $(this).attr("id"));
+      var viewClasses = [viewSummary, viewSearch, viewBrowser];
 
-        var id = $(this).attr("id");
-        $(this).next("label").attr("for", id);
-      });
-    },
-  };
+      for (var i = 0; i < viewClasses.length; i++) {
+        var inputs = $(viewClasses[i]);
 
-  Drupal.behaviors.judgmentBrowser = {
-    attach: function (context, settings) {
-      var inputs = $(".view-id-index_search_judgment input");
+        // Add 'for' attribute to label with corrosponding id.
+        inputs.each(function (index) {
+          //alert(index + ": " + $(this).attr("id"));
 
-      // Add 'for' attribute to label with corrosponding id.
-      inputs.each(function (index) {
-        //alert(index + ": " + $(this).attr("id"));
-
-        var id = $(this).attr("id");
-        $(this).next("label").attr("for", id);
-      });
-    },
-  };
-
-  Drupal.behaviors.legislationBrowser = {
-    attach: function (context, settings) {
-      var inputs = $(".view-id-index_search_legislation input");
-
-      // Add 'for' attribute to label with corrosponding id.
-      inputs.each(function (index) {
-        //alert(index + ": " + $(this).attr("id"));
-
-        var id = $(this).attr("id");
-        $(this).next("label").attr("for", id);
-      });
+          var id = $(this).attr("id");
+          $(this).next("label").attr("for", id);
+        });
+      }
     },
   };
 })(jQuery, Drupal);

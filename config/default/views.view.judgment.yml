@@ -537,6 +537,7 @@ display:
         relationships: false
         sorts: false
         fields: false
+        css_class: false
       arguments:
         name:
           id: name
@@ -695,6 +696,7 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: term_name
+      css_class: view--liibarrio-subject
     cache_metadata:
       max-age: -1
       contexts:
@@ -964,6 +966,7 @@ display:
         arguments: false
         pager: false
         relationships: false
+        css_class: false
       style:
         type: default
         options:
@@ -1060,6 +1063,7 @@ display:
           admin_label: 'field_tags: Taxonomy term'
           required: false
           plugin_id: standard
+      css_class: view--liibarrio-box
     cache_metadata:
       max-age: -1
       contexts:

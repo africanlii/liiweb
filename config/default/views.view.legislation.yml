@@ -1492,6 +1492,7 @@ display:
         pager: false
         style: false
         row: false
+        css_class: false
       display_description: ''
       relationships:
         field_tags:
@@ -1535,6 +1536,7 @@ display:
         options:
           relationship: none
           view_mode: teaser
+      css_class: view--liibarrio-subject
     cache_metadata:
       max-age: -1
       contexts:

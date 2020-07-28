@@ -418,6 +418,7 @@ display:
         exposed_form: false
         filters: false
         filter_groups: false
+        css_class: false
       filters:
         type:
           id: type
@@ -666,6 +667,7 @@ display:
         operator: AND
         groups:
           1: AND
+      css_class: view--liibarrio-search
     cache_metadata:
       max-age: -1
       contexts:
