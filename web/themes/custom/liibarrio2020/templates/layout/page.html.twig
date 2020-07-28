@@ -60,7 +60,7 @@
     <div class="layout-header__main-header">
       <div class="container">
         {# Header and Primary Nav #}
-        <nav{{ navbar_attributes }}>
+        <nav{{ navbar_attributes.addClass('navbar-light') }}>
           {% if container_navbar %}
           <div class="container">
           {% endif %}
@@ -69,8 +69,8 @@
               <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
               <div class="collapse navbar-collapse" id="CollapsingNavbar">
                 {{ page.primary_menu }}                  
-            </div>
-            {% endif %}             
+              </div>
+            {% endif %}     
           {% if container_navbar %}
           </div>
           {% endif %}

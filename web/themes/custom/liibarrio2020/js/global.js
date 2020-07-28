@@ -30,7 +30,7 @@
 
   Drupal.behaviors.liibarrioSummarySearchBrowserInput = {
     attach: function (context, settings) {
-      var viewSummary = ".view--liibarrio-summary :input";
+      var viewSummary = ".view--liibarrio-subject :input";
       var viewSearch = ".view--liibarrio-search :input";
       var viewBrowser = ".view--liibarrio-browser :input";
 

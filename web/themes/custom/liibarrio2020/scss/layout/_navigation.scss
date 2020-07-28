@@ -3,8 +3,11 @@
     .nav-link {
       position: relative;
       padding: 0;
-      margin: 0.5rem 1.5rem 0;
+      margin: 0 0 $spacer-md;
       color: $body-color;
+      @include media-breakpoint-up(lg) {
+        margin: 0.5rem 1.5rem 0;
+      }
 
       &:hover,
       &:focus {
@@ -13,14 +16,20 @@
 
       &:after {
         content: "";
-        left: -1rem;
         display: block;
-        margin-top: 0.5rem;
-        margin-left: -1rem;
-        width: calc(100% + 2rem);
-        height: 0.625rem;
-        background: transparent;
+        margin-top: $spacer-md;
+        width: auto;
+        height: 2px;
+        background: $border-color;
         transition: all 0.2s ease-in-out;
+
+        @include media-breakpoint-up(lg) {
+          background: transparent;
+          height: $spacer-md;
+          left: -1rem;
+          margin-left: -1rem;
+          width: calc(100% + 2rem);
+        }
       }
 
       &.is-active,
@@ -28,12 +37,20 @@
       &:focus {
         &:after {
           background: $secondary;
+          height: $spacer-md;
         }
       }
 
       &:hover,
       &:focus {
         color: $secondary;
+      }
+    }
+    .nav-item:last-child {
+      .nav-link:not(.is-active):after {
+        @include media-breakpoint-down(lg) {
+          background: transparent;
+        }
       }
     }
   }
