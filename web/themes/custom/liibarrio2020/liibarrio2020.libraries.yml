@@ -3,12 +3,11 @@ global-styling:
   js:
     js/popper.min.js: {}
     js/bootstrap.min.js: {}
+    js/ie11.js: {}
     js/global.js: {}
-    # js/legislation.js: {} # Need to be own library
   css:
     component:
       css/main.css: {}
-      # css/indigo-web.css: {} # Need to be own library
 
   dependencies:
     - core/jquery
@@ -22,7 +21,8 @@ nicescroll:
     url: https://github.com/inuyaksa/jquery.nicescroll/blob/master/MIT.LICENSE
     gpl-compatible: true
   js:
-    //cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js: { type: external, minified: true }
+    ? //cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js
+    : { type: external, minified: true }
     js/niceScroll.js: {}
 
 legislation-content:

@@ -1,6 +1,6 @@
 .layout-hero {
   position: relative;
-  margin: calc(#{$grid-gutter-width} / 2) 0;
+  margin: $spacer-md 0;
   border-top: $white 2px solid;
   border-bottom: $white 2px solid;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -16,9 +16,9 @@
   }
 
   &__content {
-    max-width: 35.5rem;
+    height: 0; //height value needed for IE11
     min-height: 21.875rem; //350px
-    padding: 0 calc(#{$grid-gutter-width} * 1.5);
+    padding: 0 $spacer-lg;
     display: flex;
     justify-content: flex-start;
     align-items: center;

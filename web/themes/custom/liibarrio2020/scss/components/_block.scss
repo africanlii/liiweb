@@ -504,6 +504,7 @@
   }
 
   .tab-content {
+    background: $white;
     border: 1px solid $border-color;
     border-top: none;
   }
@@ -513,7 +514,13 @@
   }
 
   #nav-twitter {
+    position: relative;
     margin-bottom: -6px;
+
+    .ie11-twitter-message {
+      @include absolute-center();
+      text-align: center;
+    }
   }
 
   #nav-twitter-tab {
