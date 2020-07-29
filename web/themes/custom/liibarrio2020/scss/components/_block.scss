@@ -1,8 +1,11 @@
 .block {
   & > h6 {
-    margin-bottom: 0.6875rem;
-    max-width: 11rem;
+    margin-bottom: $spacer-md;
     line-height: 1.25rem;
+
+    @include media-breakpoint-up(md) {
+      max-width: 11rem;
+    }
   }
 }
 
@@ -357,28 +360,41 @@
 // Footer blocks
 #block-views-block-rw-organisations-footer-our-partners {
   margin: $spacer-xl 0 0;
+  text-align: center;
 
   @include media-breakpoint-up(md) {
     margin: 0 0 $spacer-xl;
+    text-align: left;
   }
 }
 
 #block-views-block-rw-organisations-footer-support {
+  text-align: center;
   margin-top: $spacer-xl;
+
+  @include media-breakpoint-up(md) {
+    text-align: left;
+  }
 }
 
 #block-views-block-country-block-country-footer {
   @include media-breakpoint-down(md) {
     margin-top: $spacer-xl;
+    text-align: center;
   }
+
   .title {
     font-size: $h6-font-size;
     @include media-breakpoint-up(md) {
       max-width: 14rem;
     }
   }
+
   .content {
-    padding-left: 1.25rem;
+    padding-left: 35%;
+    @include media-breakpoint-up(md) {
+      padding-left: 1.25rem;
+    }
   }
 }
 
