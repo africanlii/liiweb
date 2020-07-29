@@ -184,7 +184,11 @@
 
       label {
         margin-bottom: 0;
-        flex-basis: 7.5rem;
+        flex: 0 0 100%;
+
+        @include media-breakpoint-up(md) {
+          flex-basis: 7.5rem;
+        }
       }
 
       input {
@@ -208,11 +212,19 @@
       & > fieldset > .fieldset-inner-wrapper,
       & > .form-actions {
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         flex: 0 0 100%;
         justify-items: center;
         align-items: center;
+
+        @include media-breakpoint-up(md) {
+          flex-wrap: nowrap;
+        }
       }
+    }
+
+    #edit-field-date--wrapper .fieldset-inner-wrapper {
+      flex-wrap: nowrap;
     }
 
     .form-actions {

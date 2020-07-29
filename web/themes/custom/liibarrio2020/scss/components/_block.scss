@@ -170,7 +170,8 @@
 }
 
 // Billboard - Intro
-#block-views-block-billboard-block-billboard-intro {
+#block-views-block-billboard-block-billboard-intro,
+#block-views-block-billboard-block-billboard-intro--2 {
   margin-bottom: 1.75rem;
 
   .block-views-blockrw-organisations-block-partner-hero {
@@ -181,6 +182,7 @@
 
     .view-content {
       display: flex;
+      justify-content: space-between;
     }
 
     .views-row:not(:first-child) {
