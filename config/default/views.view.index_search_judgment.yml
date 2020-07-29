@@ -687,6 +687,7 @@ display:
         groups:
           1: AND
       css_class: view--liibarrio-search
+      block_hide_empty: true
     cache_metadata:
       max-age: -1
       contexts:
