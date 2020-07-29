@@ -356,12 +356,26 @@
 
 // Footer blocks
 #block-views-block-rw-organisations-footer-our-partners {
-  margin-bottom: $spacer-xl;
+  margin: $spacer-xl 0 0;
+
+  @include media-breakpoint-up(md) {
+    margin: 0 0 $spacer-xl;
+  }
+}
+
+#block-views-block-rw-organisations-footer-support {
+  margin-top: $spacer-xl;
 }
 
 #block-views-block-country-block-country-footer {
+  @include media-breakpoint-down(md) {
+    margin-top: $spacer-xl;
+  }
   .title {
-    max-width: 14rem;
+    font-size: $h6-font-size;
+    @include media-breakpoint-up(md) {
+      max-width: 14rem;
+    }
   }
   .content {
     padding-left: 1.25rem;
@@ -426,14 +440,32 @@
 }
 
 //Sidebar blocks
+#block-textblock-2 {
+  @include media-breakpoint-down(md) {
+    padding: 0 $spacer-md;
+  }
+
+  @include media-breakpoint-up(md) {
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
 #block-views-block-rw-organisations-block-1 {
-  margin-bottom: $spacer-lg;
+  margin-bottom: $spacer-xl;
 
   .view-content {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
+    padding-bottom: $spacer-xl;
+
+    @include media-breakpoint-up(md) {
+      padding-bottom: 0;
+      justify-content: space-between;
+    }
   }
 }
 
