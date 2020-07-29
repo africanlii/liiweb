@@ -8,6 +8,7 @@ dependencies:
   module:
     - better_exposed_filters
     - search_api
+    - views_infinite_scroll
 id: index_search_judgment
 label: 'Search Judgment'
 module: views
@@ -66,9 +67,26 @@ display:
               title:
                 plugin_id: default
       pager:
-        type: none
+        type: infinite_scroll
         options:
+          items_per_page: 20
           offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: '‹ Previous'
+            next: 'Next ›'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'View More Results (@total)'
+            automatically_load_content: false
       style:
         type: default
         options:
@@ -347,6 +365,7 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
+        - url.query_args
         - user
         - 'user.node_grants:view'
       tags:
@@ -673,6 +692,7 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
+        - url.query_args
         - user
         - 'user.node_grants:view'
       tags:
