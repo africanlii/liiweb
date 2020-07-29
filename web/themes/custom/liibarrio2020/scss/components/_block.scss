@@ -456,6 +456,12 @@
 }
 
 //Sidebar blocks
+#block-textblock {
+  @include media-breakpoint-down(md) {
+    padding: 0 $spacer-md;
+  }
+}
+
 #block-textblock-2 {
   @include media-breakpoint-down(md) {
     padding: 0 $spacer-md;
