@@ -44,10 +44,6 @@
 }
 
 .view-liiweb-search {
-  //background: $white;
-  //border: 1px solid $border-color;
-  //padding: $spacer-md;
-
   .view-content {
     .views-row {
       &:not(:first-child) {
@@ -58,104 +54,6 @@
 
   .pagination {
     margin-top: $spacer-xl;
-  }
-}
-
-// Custom classes applied via Views UI
-.view--liibarrio {
-  margin-bottom: $spacer-xl;
-
-  &--bg {
-    // for when the block title is NOT used
-    .view-content {
-      background: $white;
-    }
-  }
-
-  &-box {
-    @include liibarrio-box();
-  }
-
-  .view-content,
-  .view-empty {
-    padding: $spacer-lg;
-    border: 1px solid $border-color;
-
-    &:not(:last-child) {
-      border-bottom: none;
-    }
-  }
-
-  .views-row {
-    position: relative;
-    &:not(:nth-child(1)) {
-      margin-top: 0.5rem;
-    }
-
-    &:nth-child(5n + 6) {
-      padding-top: $spacer-lg;
-      margin-top: $spacer-lg;
-
-      &:before {
-        content: "";
-        position: absolute;
-        display: block;
-        top: 0;
-        height: 1px;
-        width: calc(100% - #{$spacer-xl});
-        background: $border-color;
-      }
-    }
-  }
-
-  .views-view-grid.horizontal {
-    position: relative;
-    border-bottom: none;
-
-    &:not(:nth-child(1)) {
-      border-top: none;
-      margin-top: $spacer-lg;
-      padding-top: $spacer-lg;
-
-      &:before {
-        content: "";
-        position: absolute;
-        display: block;
-        top: 0;
-        height: 1px;
-        width: calc(100% - #{$spacer-xl});
-        background: $border-color;
-      }
-    }
-
-    @include media-breakpoint-up(lg) {
-      .row:not(:first-child) {
-        padding: $grid-gutter-width 0 0;
-      }
-    }
-  }
-
-  .pager {
-    @include list-unstyled();
-    margin-bottom: 0;
-
-    .button {
-      display: block;
-      width: 100%;
-      padding: $spacer-md 0;
-      background: $primary;
-      text-align: center;
-      color: $white;
-    }
-  }
-}
-
-.view--liibarrio-summary {
-  .item-list {
-    padding: 0 1rem;
-  }
-  .views-summary {
-    @include list-unstyled();
   }
 }
 
@@ -260,94 +158,6 @@
       &:not(:first-child) {
         margin-top: $spacer-md;
       }
-    }
-  }
-}
-
-.view--liibarrio-browser {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  .view-filters {
-    flex: 0 0 100%;
-
-    input:checked + label,
-    label:hover {
-      position: relative;
-      &:after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 3px;
-        width: 100%;
-        background: $secondary;
-      }
-    }
-
-    label {
-      cursor: pointer;
-    }
-
-    .form-row > fieldset {
-      flex: 0 0 100%;
-      margin-bottom: 0;
-    }
-
-    .form-radios {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 1rem;
-    }
-
-    .custom-control {
-      padding-left: 0;
-    }
-
-    .form-actions {
-      @include sr-only();
-    }
-  }
-
-  .view-content {
-    flex: 0 0 100%;
-
-    .views-row {
-      background: $body-bg;
-      padding: $spacer-sm $spacer-md;
-
-      &:not(:first-child) {
-        margin-top: $spacer-md;
-      }
-    }
-  }
-
-  .view-empty {
-    flex: 0 0 auto;
-    background: $body-bg;
-    padding: 1rem;
-    width: 100%;
-  }
-
-  .pager {
-    @include list-unstyled();
-    margin-bottom: 0;
-    flex: 0 0 calc(100% + #{$spacer-xl});
-    flex-basis: calc(100% + #{$spacer-xl});
-    margin-top: $spacer-md;
-    margin-left: calc(-#{$spacer-xl} / 2);
-    margin-right: calc(-#{$spacer-xl} / 2);
-    margin-bottom: calc(-#{$spacer-xl} / 2);
-
-    .button {
-      display: block;
-      width: 100%;
-      padding: $spacer-md 0;
-      background: $primary;
-      text-align: center;
-      color: $white;
     }
   }
 }
@@ -460,6 +270,214 @@
           right: 0;
         }
       }
+    }
+  }
+}
+
+// Custom classes applied via Views UI
+.view--liibarrio {
+  margin-bottom: $spacer-xl;
+
+  &--bg {
+    // for when the block title is NOT used
+    .view-content {
+      background: $white;
+    }
+  }
+
+  &-box {
+    @include liibarrio-box();
+  }
+
+  .view-content,
+  .view-empty {
+    padding: $spacer-lg;
+    border: 1px solid $border-color;
+
+    &:not(:last-child) {
+      border-bottom: none;
+    }
+  }
+
+  .views-row {
+    position: relative;
+    &:not(:nth-child(1)) {
+      margin-top: 0.5rem;
+    }
+
+    &:nth-child(5n + 6) {
+      padding-top: $spacer-lg;
+      margin-top: $spacer-lg;
+
+      &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 0;
+        height: 1px;
+        width: calc(100% - #{$spacer-xl});
+        background: $border-color;
+      }
+    }
+  }
+
+  .views-view-grid.horizontal {
+    position: relative;
+    border-bottom: none;
+
+    &:not(:nth-child(1)) {
+      border-top: none;
+      margin-top: $spacer-lg;
+      padding-top: $spacer-lg;
+
+      &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 0;
+        height: 1px;
+        width: calc(100% - #{$spacer-xl});
+        background: $border-color;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      .row:not(:first-child) {
+        padding: $grid-gutter-width 0 0;
+      }
+    }
+  }
+
+  .pager {
+    @include list-unstyled();
+    margin-bottom: 0;
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: $spacer-md 0;
+      background: $primary;
+      text-align: center;
+      color: $white;
+    }
+  }
+}
+
+.view--liibarrio-summary {
+  .item-list {
+    padding: 0 1rem;
+  }
+  .views-summary {
+    @include list-unstyled();
+  }
+}
+
+.view--liibarrio-search {
+  .pager {
+    @include list-unstyled();
+    margin-bottom: 0;
+    flex: 0 0 calc(100% + #{$spacer-xl});
+    flex-basis: calc(100% + #{$spacer-xl});
+    margin-top: $spacer-md;
+    margin-left: calc(-#{$spacer-xl} / 2);
+    margin-right: calc(-#{$spacer-xl} / 2);
+    margin-bottom: calc(-#{$spacer-xl} / 2);
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: $spacer-md 0;
+      background: $primary;
+      text-align: center;
+      color: $white;
+    }
+  }
+}
+
+.view--liibarrio-browser {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .view-filters {
+    flex: 0 0 100%;
+
+    input:checked + label,
+    label:hover {
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 100%;
+        background: $secondary;
+      }
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    .form-row > fieldset {
+      flex: 0 0 100%;
+      margin-bottom: 0;
+    }
+
+    .form-radios {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+    }
+
+    .custom-control {
+      padding-left: 0;
+    }
+
+    .form-actions {
+      @include sr-only();
+    }
+  }
+
+  .view-content {
+    flex: 0 0 100%;
+
+    .views-row {
+      background: $body-bg;
+      padding: $spacer-sm $spacer-md;
+
+      &:not(:first-child) {
+        margin-top: $spacer-md;
+      }
+    }
+  }
+
+  .view-empty {
+    flex: 0 0 auto;
+    background: $body-bg;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .pager {
+    @include list-unstyled();
+    margin-bottom: 0;
+    flex: 0 0 calc(100% + #{$spacer-xl});
+    flex-basis: calc(100% + #{$spacer-xl});
+    margin-top: $spacer-md;
+    margin-left: calc(-#{$spacer-xl} / 2);
+    margin-right: calc(-#{$spacer-xl} / 2);
+    margin-bottom: calc(-#{$spacer-xl} / 2);
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: $spacer-md 0;
+      background: $primary;
+      text-align: center;
+      color: $white;
     }
   }
 }
