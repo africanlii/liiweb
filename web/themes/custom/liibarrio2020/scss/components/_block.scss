@@ -238,6 +238,10 @@
     padding: $spacer-md 0;
     margin-bottom: $spacer-xl;
 
+    @include media-breakpoint-down(md) {
+      margin-top: $spacer-xl;
+    }
+
     .facet-item a {
       position: relative;
 
@@ -269,9 +273,53 @@
       }
     }
 
+    a[data-drupal-facet-item-id="content-type-government-gazette"]
+      .facet-item__count:before {
+      background: $brand-yellow;
+    }
+
+    a[data-drupal-facet-item-id="content-type-legislation"]
+      .facet-item__count:before {
+      background: $brand-blue;
+    }
+
+    a[data-drupal-facet-item-id="content-type-judgment"]
+      .facet-item__count:before {
+      background: $brand-magenta;
+    }
+
     .facet-block .item-list__links {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
+      text-align: center;
+
+      .facet-item {
+        flex: 0 1 auto;
+
+        @include media-breakpoint-down(md) {
+          margin: 0 1.2rem;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+
+        @include media-breakpoint-up(md) {
+          margin: 0 0.4rem;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+
+        @include media-breakpoint-up(lg) {
+          margin: 0 2.5rem;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
     }
   }
 
@@ -289,6 +337,10 @@
       .item-list__links {
         @include list-unstyled();
         margin-bottom: 0;
+
+        a.is-active {
+          font-weight: 700;
+        }
       }
     }
   }

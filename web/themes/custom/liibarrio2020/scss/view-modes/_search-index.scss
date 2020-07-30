@@ -48,6 +48,10 @@
   }
 
   &.node--type-judgment {
+    &:before,
+    &:after {
+      color: $brand-magenta;
+    }
     &:before {
       content: "\f0e3";
       font-family: "Font Awesome 5 Free";
