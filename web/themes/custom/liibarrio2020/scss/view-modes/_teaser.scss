@@ -26,3 +26,26 @@
     }
   }
 }
+
+.organisation--view-mode-teaser {
+  margin: 0 0 $spacer-sm;
+
+  header {
+    margin-left: $spacer-xl;
+  }
+
+  h3 {
+    font-size: $h6-font-size;
+    margin-bottom: 0;
+  }
+
+  .content {
+    display: flex;
+    float: none;
+    flex-direction: row-reverse;
+    width: auto;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+  }
+}

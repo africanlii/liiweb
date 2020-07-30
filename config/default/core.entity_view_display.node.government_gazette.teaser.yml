@@ -63,11 +63,12 @@ bundle: government_gazette
 mode: teaser
 content:
   field_file:
-    type: file_url_plain
+    type: file_default
     weight: 1
     region: right
     label: hidden
-    settings: {  }
+    settings:
+      use_description_as_link_text: true
     third_party_settings: {  }
 hidden:
   body: true

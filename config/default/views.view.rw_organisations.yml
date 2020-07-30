@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.organisation_entity.logo
+    - core.entity_view_mode.organisation_entity.teaser
     - rw_organisation.organisation_entity_type.partner
   module:
     - rw_organisation
@@ -80,7 +80,7 @@ display:
         type: 'entity:organisation_entity'
         options:
           relationship: none
-          view_mode: logo
+          view_mode: teaser
       fields:
         name:
           table: organisation_entity_field_data
