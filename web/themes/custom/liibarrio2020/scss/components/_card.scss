@@ -3,7 +3,9 @@
     padding: calc(#{$grid-gutter-width} / 2);
   }
 
-  a {
-    color: $white;
+  &.bg-secondary {
+    a {
+      color: $white;
+    }
   }
 }
