@@ -373,6 +373,10 @@
 }
 
 .view--liibarrio-search {
+  .view-empty + .pager {
+    @include sr-only(); //hide empty pager
+  }
+
   .pager {
     @include list-unstyled();
     margin-bottom: 0;
