@@ -12,10 +12,13 @@
 
       if (isIE11) {
         $("#nav-twitter a").hide();
+
+        // display message re IE11
         $("#nav-twitter").append(
           '<div class="ie11-twitter-message"><p>Your browser is no longer supported by Twitter Feeds</p></div>'
         );
 
+        // default to the facebook feed
         $("#nav-facebook-tab").click();
       }
     },

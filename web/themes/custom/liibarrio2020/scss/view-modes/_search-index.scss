@@ -1,9 +1,8 @@
 .node--view-mode-search-index {
   position: relative;
   background: $white;
-  padding: calc(#{$grid-gutter-width} / 2);
+  padding: $spacer-md;
   padding-top: 2rem;
-  //padding-left: 50px;
   border: 1px solid $border-color;
 
   h3 {
@@ -17,28 +16,30 @@
   &:before,
   &:after {
     position: absolute;
-    top: calc(#{$grid-gutter-width} / 2);
-    left: calc(#{$grid-gutter-width} / 2);
+    top: $spacer-md;
+    left: $spacer-md;
     font-size: 0.75rem;
     line-height: 1;
     color: $green-light;
   }
 
   &:after {
-    top: calc(#{$grid-gutter-width} / 2);
+    top: $spacer-md;
     left: 2rem;
   }
 
   &.node--type-government-gazette {
-    &:before {
-      content: "\f19c";
-      font-family: "Font Awesome 5 Free";
-      font-weight: 900;
+    &:before,
+    &:after {
+      color: $brand-yellow;
     }
 
     &:before {
-      top: calc(#{$grid-gutter-width} / 2);
-      left: calc(#{$grid-gutter-width} / 2);
+      content: "\f1ea";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      top: $spacer-md;
+      left: $spacer-md;
     }
 
     &:after {
@@ -48,7 +49,7 @@
 
   &.node--type-judgment {
     &:before {
-      content: "\f1ea";
+      content: "\f0e3";
       font-family: "Font Awesome 5 Free";
       font-weight: 900;
     }
@@ -59,8 +60,13 @@
   }
 
   &.node--type-legislation {
+    &:before,
+    &:after {
+      color: $brand-blue;
+    }
+
     &:before {
-      content: "\f0e3";
+      content: "\f19c";
       font-family: "Font Awesome 5 Free";
       font-weight: 900;
     }
