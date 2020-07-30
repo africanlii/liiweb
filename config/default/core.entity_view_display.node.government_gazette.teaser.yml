@@ -14,7 +14,7 @@ dependencies:
     - node.type.government_gazette
   module:
     - ds
-    - file
+    - liiweb
     - user
 third_party_settings:
   ds:
@@ -63,7 +63,7 @@ bundle: government_gazette
 mode: teaser
 content:
   field_file:
-    type: file_default
+    type: lii_file
     weight: 1
     region: right
     label: hidden
