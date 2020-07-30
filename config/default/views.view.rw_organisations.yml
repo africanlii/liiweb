@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.organisation_entity.listing
     - core.entity_view_mode.organisation_entity.teaser
     - rw_organisation.organisation_entity_type.partner
   module:
@@ -80,7 +81,7 @@ display:
         type: 'entity:organisation_entity'
         options:
           relationship: none
-          view_mode: teaser
+          view_mode: listing
       fields:
         name:
           table: organisation_entity_field_data
@@ -243,6 +244,8 @@ display:
         filters: false
         filter_groups: false
         pager: false
+        style: false
+        row: false
       filters:
         type:
           id: type
@@ -336,6 +339,18 @@ display:
         options:
           items_per_page: 3
           offset: 0
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      row:
+        type: 'entity:organisation_entity'
+        options:
+          relationship: none
+          view_mode: teaser
     cache_metadata:
       max-age: -1
       contexts:
@@ -646,6 +661,8 @@ display:
         filters: false
         filter_groups: false
         pager: false
+        style: false
+        row: false
       filters:
         type:
           id: type
@@ -738,6 +755,18 @@ display:
         options:
           items_per_page: 5
           offset: 0
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      row:
+        type: 'entity:organisation_entity'
+        options:
+          relationship: none
+          view_mode: teaser
     cache_metadata:
       max-age: -1
       contexts:
