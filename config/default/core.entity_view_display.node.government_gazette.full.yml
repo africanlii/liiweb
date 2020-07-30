@@ -14,14 +14,14 @@ dependencies:
     - node.type.government_gazette
   module:
     - ds
-    - file
+    - liiweb
     - link
     - text
     - user
 third_party_settings:
   ds:
     layout:
-      id: liibarrio_stacked_2col_3_9
+      id: liibarrio_stacked_2col_9_3
       library: null
       disable_css: false
       entity_classes: all_classes
@@ -49,14 +49,12 @@ third_party_settings:
     regions:
       header_left:
         - node_title
-      header_right:
-        - field_gazette_date
       header:
         - field_external_link
       left:
-        - field_file
-      right:
         - body
+      right:
+        - field_file
     fields:
       node_title:
         plugin_id: node_title
@@ -81,13 +79,13 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 4
+    weight: 2
     settings: {  }
     third_party_settings: {  }
-    region: right
+    region: left
   field_external_link:
     type: link_separate
-    weight: 2
+    weight: 1
     region: header
     label: above
     settings:
@@ -98,11 +96,12 @@ content:
       url_plain: false
     third_party_settings: {  }
   field_file:
-    type: file_url_plain
+    type: lii_file
     weight: 3
-    region: left
+    region: right
     label: hidden
-    settings: {  }
+    settings:
+      use_description_as_link_text: true
     third_party_settings: {  }
 hidden:
   field_date: true

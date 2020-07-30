@@ -48,7 +48,6 @@ third_party_settings:
     regions:
       content:
         - node_title
-        - field_publication_date
     fields:
       node_title:
         plugin_id: node_title
@@ -56,9 +55,9 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: true
           wrapper: h3
           class: h6
-          link: false
         ft:
           id: default
           settings:
