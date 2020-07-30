@@ -1538,7 +1538,7 @@ display:
         options:
           relationship: none
           view_mode: teaser
-      css_class: view--liibarrio-subject
+      css_class: view--liibarrio-box
       header:
         area:
           id: area
