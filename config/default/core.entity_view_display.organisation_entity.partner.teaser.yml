@@ -9,6 +9,8 @@ dependencies:
     - field.field.organisation_entity.partner.field_partner
     - field.field.organisation_entity.partner.field_support_partner
     - rw_organisation.organisation_entity_type.partner
+  module:
+    - ds
 id: organisation_entity.partner.teaser
 targetEntityType: organisation_entity
 bundle: partner
@@ -20,15 +22,36 @@ content:
     region: content
     label: hidden
     settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
+      view_mode: logo
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  name:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 hidden:
   field_image: true
   field_partner: true
   field_support_partner: true
   langcode: true
-  name: true
   organisation_logo__linked: true
   search_api_excerpt: true
   user_id: true
