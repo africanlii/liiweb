@@ -1,0 +1,10 @@
+uuid: 4a466b75-95ae-4d10-9469-74f144962e46
+langcode: en
+status: true
+dependencies:
+  module:
+    - rw_organisation
+id: organisation_entity.listing
+label: Listing
+targetEntityType: organisation_entity
+cache: true
