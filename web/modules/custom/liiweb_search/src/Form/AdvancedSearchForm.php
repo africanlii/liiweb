@@ -37,10 +37,9 @@ class AdvancedSearchForm extends FormBase {
     $this::move_to_top($types, 'All');
     // $test = ;
     // dump($test);
-
-    $form['type_1'] = [
+    $form['type'] = [
       '#type' => 'select',
-      '#default_value' => \Drupal::request()->query->get('type_1'),
+      '#default_value' => \Drupal::request()->query->get('type'),
       '#options' => $types,
     ];
 
@@ -61,14 +60,27 @@ class AdvancedSearchForm extends FormBase {
 
     return $form;
   }
-
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
-    $url = \Drupal\Core\Url::fromRoute('view.liiweb_search.page_search')
-          ->setRouteParameters(['type_1' => $form_state->getValue('type_1'),'search_api_fulltext' => $form_state->getValue('search_api_fulltext')]);
-    $form_state->setRedirectUrl($url);
+  public function submitForm(array &$form, FormStateInterface $form_state)
+  {
+    $content_type = 'content_type:';
+    $search_api_fulltext = 'search_api_fulltext';
+    $type = $form_state->getValue('type');
+    $full_text_serach = $form_state->getValue('search_api_fulltext');
+    if ($type == 'All') {
+      $url = \Drupal\Core\Url::fromRoute('view.liiweb_search.page_search')
+        ->setRouteParameters([$search_api_fulltext => $full_text_serach]);
+      $form_state->setRedirectUrl($url);
+
+    }
+    else {
+      $url = \Drupal\Core\Url::fromRoute('view.liiweb_search.page_search')
+        ->setRouteParameters([$search_api_fulltext => $full_text_serach, 'f[0]' => $content_type . $type]);
+      $form_state->setRedirectUrl($url);
+
+    }
   }
 
 
