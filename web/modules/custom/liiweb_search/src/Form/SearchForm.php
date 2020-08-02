@@ -26,7 +26,7 @@ class SearchForm extends FormBase {
       '#maxlength' => 64,
       '#size' => 64,
       '#weight' => '0',
-      '#placeholder' => 'Start by searchig for a judgment or bill',
+      '#placeholder' => 'Start by searching for a judgment or bill',
       '#required' => TRUE
     ];
     $form['submit'] = [
