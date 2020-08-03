@@ -1284,6 +1284,11 @@ display:
         style: false
         row: false
         css_class: false
+        link_display: false
+        link_url: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
       filters:
         status:
           value: '1'
@@ -1315,26 +1320,10 @@ display:
         groups:
           1: AND
       pager:
-        type: infinite_scroll
+        type: some
         options:
           items_per_page: 6
           offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: '‹ Previous'
-            next: 'Next ›'
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          views_infinite_scroll:
-            button_text: 'View more legislation'
-            automatically_load_content: false
       block_hide_empty: true
       use_ajax: true
       style:
@@ -1354,12 +1343,16 @@ display:
           relationship: none
           view_mode: teaser
       css_class: view--liibarrio
+      link_display: page_legislation
+      link_url: ''
+      use_more: true
+      use_more_always: true
+      use_more_text: 'View more legislation'
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -1550,7 +1543,7 @@ display:
           empty: false
           tokenize: true
           content:
-            value: '<h2 class="subject_title">Subject : <span>{{ arguments.name }}</span> </h2>'
+            value: '<h2 class="subject_title {{ arguments.name }}">Subject : <span>{{ arguments.name }}</span> </h2>'
             format: full_html
           plugin_id: text
       title: ''
