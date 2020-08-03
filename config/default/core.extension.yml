@@ -56,7 +56,6 @@ module:
   image: 0
   inline_entity_form: 0
   jsonapi: 0
-  kint: 0
   language: 0
   layout_discovery: 0
   liiweb: 0

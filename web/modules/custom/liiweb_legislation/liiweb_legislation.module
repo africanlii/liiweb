@@ -27,6 +27,19 @@ function liiweb_legislation_help($route_name, RouteMatchInterface $route_match) 
   }
 }
 
+/**
+ * Implements hook_views_pre_render().
+ *
+ * Creating menu list using JSON data
+ *
+ */
+
+function liiweb_legislation_views_pre_render( $view)
+{
+  if ($view->id() == 'legislation') {
+
+  }
+}
 
 /**
  * Implements hook_field().
@@ -70,9 +83,12 @@ $variables['table_content']['#items'] = $items;
  * @param string $menu_item
  *
  */
-function liiweb_legislation_write_menu_item($menu_item)
+function liiweb_legislation_write_menu_item($menu_item , $parent_id = Null)
 {
 
+  // $parent_id = $menu_item['id'];
+  // exit;
+//  dump($menu_item);
   try {
     $link = Link::fromTextAndUrl($menu_item['title'], Url::fromUri($menu_item['url'], [
       'attributes' => [
@@ -82,11 +98,12 @@ function liiweb_legislation_write_menu_item($menu_item)
     ]));
 
     $item = [
-      '#markup'             => $link->toString(),
+      '#markup' => '<a href="#'  . $parent_id . $menu_item['id'] . '" class="link-item" >' . $menu_item['title'] . '</a>',
       '#wrapper_attributes' => [
         'class'             => ['menu-item'],
       ],
     ];
+
   } catch (Exception $e) {
     // Generic exception handling if something else gets thrown.
     \Drupal::logger($item)->error($e->getMessage());
@@ -102,9 +119,17 @@ function liiweb_legislation_write_menu_item($menu_item)
         'class'     => ['menu-items has-children'],
       ],
     ];
+
+
+    $parent_id = $parent_id . $menu_item['component'];
     //loop through children and return item_list
     foreach ($menu_item['children'] as $key => $menu_item) {
-      $items[] = liiweb_legislation_write_menu_item($menu_item);
+      // dump($menu_item);
+
+      $items[] = liiweb_legislation_write_menu_item($menu_item, $parent_id . '/');
+
+      // if ($menu_item['children']) {
+      // }
     }
     $menu['#items'] = $items;
     $item['menu_items'] = $menu;

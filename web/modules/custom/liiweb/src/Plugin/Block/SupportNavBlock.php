@@ -59,19 +59,16 @@ class SupportNavBlock extends BlockBase {
 
     //Help links
     $platforms = [
-      'fal fa-comment-dots' => '/feedback',
-      'fal fa-at'    => '/contact',
-      'fal fa-question-circle'  => '/help',
-      'fal fa-info-circle'  => '/about',
+      'Feedback, fal fa-comment-dots' => '/feedback',
+      'Contact, fal fa-at'    => '/contact',
+      'Help, fal fa-question-circle'  => '/help',
+      'About, fal fa-info-circle'  => '/about',
     ];
 
     foreach ($platforms as $icon => $url) {
-
+      $link_title = strtok($icon, ',');
       $items['social_media'][] = [
-        '#markup' => '<a href="' . $url . '" class="icon--email list-inline-item" ><i class="' . $icon . '"></i></a>',
-        '#wrapper_attributes' => [
-          'class'             => ['list-item ' . strrchr($icon, ' '). '-item'],
-        ],
+        '#markup' => '<a href="' . $url . '" class="icon--'. $link_title .' list-inline-item" ><i class="' . $icon . '"></i>'. $link_title .'</a>',
       ];
     }
 

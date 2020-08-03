@@ -911,6 +911,11 @@ display:
         style: false
         row: false
         css_class: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+        link_display: false
+        link_url: false
       empty:
         area:
           id: area
@@ -942,6 +947,11 @@ display:
           relationship: none
           view_mode: teaser
       css_class: view--liibarrio
+      use_more: true
+      use_more_always: true
+      use_more_text: 'View more judgments'
+      link_display: page_judgements
+      link_url: ''
     cache_metadata:
       max-age: -1
       contexts:
