@@ -121,7 +121,7 @@ function liiweb_legislation_write_menu_item($menu_item , $parent_id = Null)
     ];
 
 
-    $parent_id = $parent_id . $menu_item['component'];
+    $parent_id = $menu_item['component'];
     //loop through children and return item_list
     foreach ($menu_item['children'] as $key => $menu_item) {
       // dump($menu_item);
