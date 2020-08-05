@@ -23,6 +23,8 @@
     svg {
       width: 1.125rem;
       height: 1.125rem;
+      margin-right: 0.2rem;
+      margin-left: 1rem;
 
       &:hover {
         path {
@@ -86,6 +88,18 @@
       font-weight: 900;
       color: $body-color;
       z-index: -1;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: -2;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $white;
     }
   }
 
