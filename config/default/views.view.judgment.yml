@@ -911,6 +911,11 @@ display:
         style: false
         row: false
         css_class: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+        link_display: false
+        link_url: false
       empty:
         area:
           id: area
@@ -942,6 +947,11 @@ display:
           relationship: none
           view_mode: teaser
       css_class: view--liibarrio
+      use_more: true
+      use_more_always: true
+      use_more_text: 'View more judgments'
+      link_display: page_judgements
+      link_url: ''
     cache_metadata:
       max-age: -1
       contexts:
@@ -958,7 +968,7 @@ display:
     display_options:
       display_extenders: {  }
       display_description: ''
-      title: 'By Subject'
+      title: ''
       defaults:
         title: false
         style: false
@@ -967,6 +977,8 @@ display:
         pager: false
         relationships: false
         css_class: false
+        header: false
+        fields: false
       style:
         type: default
         options:
@@ -1064,6 +1076,21 @@ display:
           required: false
           plugin_id: standard
       css_class: view--liibarrio-box
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: true
+          content:
+            value: '<h2 class="subject_title">Subject : <span>{{ arguments.name }}</span> </h2>'
+            format: full_html
+          plugin_id: text
+      fields: {  }
     cache_metadata:
       max-age: -1
       contexts:
