@@ -348,10 +348,12 @@
     }
   }
 
-  .pager {
+  .pager,
+  .more-link {
     @include list-unstyled();
     margin-bottom: 0;
 
+    a,
     .button {
       display: block;
       width: 100%;
