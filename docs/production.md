@@ -29,6 +29,7 @@ Create a new dokku application:
 ```
 dokku apps:create countrylii
 dokku domains:add countrylii countrylii.org
+dokku config:set countrylii WEB_CONCURRENCY=8
 ```
 
 Set a secret hash salt. This should be at least 20 random characters and numbers.
