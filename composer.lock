@@ -12745,7 +12745,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3",
+        "php": "~7.3",
         "ext-json": "*"
     },
     "platform-dev": []
