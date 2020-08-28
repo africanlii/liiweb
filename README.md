@@ -154,4 +154,3 @@ section of composer.json:
 }
 ```
 
-
