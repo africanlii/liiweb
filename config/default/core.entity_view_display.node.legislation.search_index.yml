@@ -24,6 +24,7 @@ dependencies:
     - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
+    - datetime
     - ds
     - user
 third_party_settings:
@@ -47,6 +48,8 @@ third_party_settings:
     regions:
       content:
         - node_title
+        - search_api_excerpt
+        - field_commencement_date
     fields:
       node_title:
         plugin_id: node_title
@@ -67,9 +70,22 @@ id: node.legislation.search_index
 targetEntityType: node
 bundle: legislation
 mode: search_index
-content: {  }
+content:
+  field_commencement_date:
+    type: datetime_default
+    weight: 2
+    region: content
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+  search_api_excerpt:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
-  field_commencement_date: true
   field_content: true
   field_created: true
   field_created_by_api: true
@@ -89,4 +105,3 @@ hidden:
   field_toc: true
   langcode: true
   links: true
-  search_api_excerpt: true

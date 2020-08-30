@@ -68,7 +68,14 @@ content:
     region: right
     label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 hidden:
   body: true
   field_date: true

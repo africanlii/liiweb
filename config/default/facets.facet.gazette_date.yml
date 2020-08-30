@@ -1,4 +1,4 @@
-uuid: daa4316a-fe1f-446b-9700-8d3b687badbf
+uuid: 254067b1-5cf2-4e6b-9bac-38aab1d95d40
 langcode: en
 status: true
 dependencies:
@@ -7,9 +7,9 @@ dependencies:
     - views.view.index_search_gazettes
   module:
     - search_api
-id: index_search_date
-name: 'Gazette Grouped by date'
-url_alias: index_search_date
+id: gazette_date
+name: 'Gazette Date'
+url_alias: gazette_date
 weight: 0
 min_count: 1
 show_only_one_result: true
@@ -18,13 +18,13 @@ facet_source_id: 'search_api:views_page__index_search_gazettes__page_gazettes'
 widget:
   type: links
   config:
-    show_numbers: false
+    show_numbers: true
     soft_limit: 0
     soft_limit_settings:
       show_less_label: 'Show less'
       show_more_label: 'Show more'
     show_reset_link: false
-    reset_text: 'Show all'
+    reset_text: Gazettes
     hide_reset_when_no_selection: false
 query_operator: or
 use_hierarchy: false
@@ -32,14 +32,8 @@ expand_hierarchy: false
 enable_parent_when_child_gets_disabled: true
 hard_limit: 0
 exclude: false
-only_visible_when_facet_source_is_visible: true
+only_visible_when_facet_source_is_visible: false
 processor_configs:
-  count_widget_order:
-    processor_id: count_widget_order
-    weights:
-      sort: 30
-    settings:
-      sort: ASC
   date_item:
     processor_id: date_item
     weights:
