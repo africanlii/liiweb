@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.search_index
+    - field.field.node.legislation.field_as_at
     - field.field.node.legislation.field_commencement_date
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
@@ -50,6 +51,7 @@ third_party_settings:
         - node_title
         - search_api_excerpt
         - field_commencement_date
+        - field_as_at
     fields:
       node_title:
         plugin_id: node_title
@@ -71,6 +73,15 @@ targetEntityType: node
 bundle: legislation
 mode: search_index
 content:
+  field_as_at:
+    type: datetime_default
+    weight: 3
+    region: content
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
   field_commencement_date:
     type: datetime_default
     weight: 2
