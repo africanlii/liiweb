@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.full
+    - field.field.node.legislation.field_as_at
     - field.field.node.legislation.field_commencement_date
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
@@ -191,6 +192,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_as_at: true
   field_commencement_date: true
   field_created: true
   field_created_by_api: true

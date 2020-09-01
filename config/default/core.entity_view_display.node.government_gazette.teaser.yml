@@ -67,9 +67,21 @@ content:
     weight: 1
     region: right
     label: hidden
+<<<<<<< HEAD
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
+=======
+    settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+>>>>>>> rogerwilco-stage
 hidden:
   body: true
   field_date: true
