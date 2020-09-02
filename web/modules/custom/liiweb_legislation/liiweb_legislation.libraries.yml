@@ -1,0 +1,7 @@
+timeline-graph:
+  version: 1.x
+  js:
+    js/timeline-graph.js: {}
+    https://code.highcharts.com/highcharts.js: { type: external, minified: true }
+    https://code.highcharts.com/modules/timeline.js: { type: external, minified: true }
+    https://code.highcharts.com/modules/accessibility.js: { type: external, minified: true }
