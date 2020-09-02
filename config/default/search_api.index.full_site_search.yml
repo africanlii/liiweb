@@ -14,10 +14,10 @@ dependencies:
     - field.storage.node.field_commencement_date
     - field.storage.node.field_content
     - field.storage.node.field_court_name
+    - field.storage.node.field_date
     - field.storage.node.field_expression_date
     - field.storage.node.field_gazette_issue_number
     - field.storage.node.field_headnote_and_holding
-    - field.storage.node.field_date
     - field.storage.node.field_judgment_number
     - field.storage.node.field_lifecycle_json
     - field.storage.node.field_publication_name
@@ -239,9 +239,21 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  highlight:
+    highlight: always
+    highlight_partial: true
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
   language_with_fallback: {  }
   rendered_item: {  }
-  solr_date_range: {  }
+  solr_date_range:
+    weights:
+      preprocess_index: 0
 tracker_settings:
   default:
     indexing_order: fifo

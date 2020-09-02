@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.listing
+    - field.field.node.legislation.field_as_at
     - field.field.node.legislation.field_commencement_date
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
@@ -31,6 +32,7 @@ bundle: legislation
 mode: listing
 content: {  }
 hidden:
+  field_as_at: true
   field_commencement_date: true
   field_content: true
   field_created: true
