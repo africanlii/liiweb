@@ -24,18 +24,18 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
-        label: ""
+        label: ''
         wrappers:
           left: div
           right: div
         outer_wrapper: div
-        attributes: ""
-        link_attribute: ""
-        link_custom: ""
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
         classes:
-          layout_class: {}
-          left: {}
-          right: {}
+          layout_class: {  }
+          left: {  }
+          right: {  }
     regions:
       left:
         - node_title
@@ -54,9 +54,9 @@ third_party_settings:
         ft:
           id: default
           settings:
-            lb: ""
+            lb: ''
             lb-col: false
-            classes: {}
+            classes: {  }
 id: node.government_gazette.teaser
 targetEntityType: node
 bundle: government_gazette
@@ -67,15 +67,15 @@ content:
     weight: 1
     region: right
     label: hidden
-    settings: {}
+    settings: {  }
     third_party_settings:
       ds:
         ft:
           id: default
           settings:
-            lb: ""
+            lb: ''
             lb-col: false
-            classes: {}
+            classes: {  }
 hidden:
   body: true
   field_date: true

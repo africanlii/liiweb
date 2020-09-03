@@ -1,6 +1,6 @@
 uuid: 605b2101-3a3d-43bf-a7d9-4a48b6560ee5
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - facets_block

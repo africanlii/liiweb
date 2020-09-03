@@ -1571,7 +1571,7 @@ display:
         description: Legislation
         expanded: false
         parent: ''
-        weight: 2
+        weight: -48
         context: '0'
         menu_name: main
       display_description: ''
