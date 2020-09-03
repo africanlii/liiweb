@@ -27,6 +27,7 @@ dependencies:
   module:
     - ds
     - liiweb
+    - liiweb_legislation
     - text
     - user
 third_party_settings:
@@ -64,6 +65,7 @@ third_party_settings:
       header_right:
         - field_publication_name
       header:
+        - field_lifecycle_json
         - field_frbr_uri
       left:
         - field_files
@@ -76,6 +78,26 @@ third_party_settings:
       footer:
         - links
     fields:
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 5
+        label: hidden
+        formatter: default
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h2
+          class: h3
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
       'dynamic_block_field:node-related_gazettes':
         plugin_id: 'dynamic_block_field:node-related_gazettes'
         weight: 7
@@ -92,26 +114,6 @@ third_party_settings:
         weight: 8
         label: hidden
         formatter: default
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
-      'dynamic_token_field:node-share_links':
-        plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 5
-        label: hidden
-        formatter: default
-      node_title:
-        plugin_id: node_title
-        weight: 0
-        label: hidden
-        formatter: default
-        settings:
-          wrapper: h2
-          class: h3
-          link: false
         ft:
           id: default
           settings:
@@ -154,8 +156,21 @@ content:
             classes:
               - text-center
               - alert
-              - alert-red
             lb-col: false
+  field_lifecycle_json:
+    type: timeline_field_formatter
+    weight: 3
+    region: header
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_parent_work:
     type: entity_reference_label
     weight: 1
@@ -200,7 +215,6 @@ hidden:
   field_expression_date: true
   field_external_link: true
   field_images: true
-  field_lifecycle_json: true
   field_raw_json: true
   field_repeal: true
   field_stub: true
