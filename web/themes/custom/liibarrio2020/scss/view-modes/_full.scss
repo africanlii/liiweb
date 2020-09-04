@@ -41,6 +41,13 @@
     }
   }
 
+  &.node--type-legislation {
+    .content-aside--inner-wrapper {
+      position: sticky;
+      top: 2rem;
+    }
+  }
+
   .field--name-field-files {
     background: #fff;
 

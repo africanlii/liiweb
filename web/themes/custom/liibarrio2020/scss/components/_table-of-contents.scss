@@ -1,54 +1,35 @@
-.table-of-contents {
-  &__wrapper {
-    padding: 1rem 0.5rem 1rem 1rem;
-    margin-bottom: 2rem;
-    background-color: $white;
-    border: solid 1px #d5d5d5;
+.toc-list {
+  padding: 1rem;
+  margin-bottom: 2rem;
+  background-color: $white;
+  border: solid 1px #d5d5d5;
+  list-style-type: none;
+
+  ul,
+  ol {
+    list-style-type: none;
+    padding: 0 0 $spacer-md $spacer-md;
   }
 
-  &__list-group {
-    @include list-unstyled();
-    margin-right: 1.5rem;
-    margin-bottom: 0;
+  li {
+    line-height: 1.25;
+    margin-bottom: 4px;
 
-    &__item {
-      position: relative;
-      line-height: 1.25rem;
-      padding-left: 1.5rem;
-      margin-bottom: 0.25rem;
-
-      &:before {
-        content: "";
-        position: absolute;
-        display: block;
-        top: 0.25rem;
-        left: 0;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: $body-color;
-      }
+    &.toc-has-children {
+      margin-bottom: $spacer-md;
     }
   }
 
-  &--main {
-    max-height: 29rem;
-    overflow: auto;
+  & > li > a {
+    font-weight: bold;
   }
 
-  &--child {
-    margin-top: 0.5rem;
-    .menu-item {
-      &:before {
-        background: lighten($body-color, 20%);
-      }
-      &:last-child {
-        margin-bottom: 1rem;
-      }
-    }
+  li.toc-has-children > a,
+  .toc-item-doc > a {
+    font-weight: bold;
   }
 
-  .link-item {
-    color: $body-color;
+  .table-of-contents--child {
+    padding-top: $spacer-sm;
   }
 }
