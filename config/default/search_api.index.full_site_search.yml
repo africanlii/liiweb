@@ -241,12 +241,12 @@ processor_settings:
   aggregated_field: {  }
   highlight:
     highlight: always
-    highlight_partial: true
+    highlight_partial: false
     excerpt: true
     excerpt_length: 256
     exclude_fields: {  }
-    prefix: '<strong>'
-    suffix: '</strong>'
+    prefix: '<span class="search-highlight">'
+    suffix: '</span>'
     weights:
       postprocess_query: 0
   language_with_fallback: {  }
