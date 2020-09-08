@@ -45,7 +45,7 @@ third_party_settings:
         link_custom: ''
         classes:
           layout_class: {  }
-          content: {  }
+          ds_content: {  }
     regions:
       ds_content:
         - node_title
@@ -61,7 +61,7 @@ third_party_settings:
         settings:
           link: true
           wrapper: h3
-          class: h6
+          class: ''
         ft:
           id: default
           settings:

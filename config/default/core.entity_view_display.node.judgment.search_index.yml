@@ -63,9 +63,9 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: true
           wrapper: h3
           class: ''
-          link: false
         ft:
           id: default
           settings:
