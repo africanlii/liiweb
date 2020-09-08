@@ -56,10 +56,10 @@ class ContactBlock extends BlockBase {
 
     //website email
     $items['website_email'][] = [
-      '#markup' => '<a href="www.liiaddress.org.za" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i> www.liiaddress.org.za</a>',
+      '#markup' => '<a href="https://africanlii.org/" target="_blank" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i>africanlii.org</a>',
     ];
     $items['website_email'][] = [
-      '#markup' => '<a href="mailto:info@liiaddress.org.za" class="icon--email list-inline-item" ><i class="fas fa-at"></i> info@liiaddress.org.za</a>',
+      '#markup' => '<a href="mailto:info@liiaddress.org.za" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@africanlii.org</a>',
     ];
 
     //Social media
