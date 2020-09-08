@@ -21,3 +21,9 @@
     flex: 0 1 270px;
   }
 }
+
+body.layout-sidebar-first.path-search {
+  .layout-sidebar--first > aside.section {
+    @include liibarrio-box();
+  }
+}

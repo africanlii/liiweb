@@ -17,6 +17,7 @@ libraries-override:
   bootstrap_barrio/file: false
   bootstrap_barrio/node: false
   bootstrap_barrio/messages_light: false
+  bootstrap_barrio/form: false
   rw_organisation/entity_display: false
 
 regions:

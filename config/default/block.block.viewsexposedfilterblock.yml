@@ -15,9 +15,9 @@ provider: null
 plugin: views_exposed_filter_blocks_block
 settings:
   id: views_exposed_filter_blocks_block
-  label: 'Views exposed filter block - Search'
+  label: 'Filter Results'
   provider: views_exposed_filter_blocks
-  label_display: '0'
+  label_display: visible
   view_display: 'liiweb_search:page_search'
 visibility:
   request_path:

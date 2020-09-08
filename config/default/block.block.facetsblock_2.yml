@@ -15,9 +15,9 @@ provider: null
 plugin: facets_block
 settings:
   id: facets_block
-  label: 'Filter Results'
+  label: 'Search facets'
   provider: facets_block
-  label_display: visible
+  label_display: '0'
   show_title: false
   exclude_empty_facets: false
   facets_to_include:
@@ -27,7 +27,7 @@ settings:
     'facet_block:court_name': 'facet_block:court_name'
     'facet_block:tags': 'facet_block:tags'
     'facet_block:content_type': '0'
-    'facet_block:index_search_date': '0'
+    'facet_block:gazette_date': '0'
 visibility:
   request_path:
     id: request_path
