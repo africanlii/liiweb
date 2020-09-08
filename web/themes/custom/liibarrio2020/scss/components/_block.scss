@@ -18,6 +18,10 @@
       padding: 0;
       border: none;
       line-height: $pre-header-height-desktop;
+
+      @include media-breakpoint-down(lg) {
+        font-size: 0;
+      }
     }
 
     svg {
