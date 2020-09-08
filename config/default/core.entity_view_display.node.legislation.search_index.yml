@@ -31,14 +31,14 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: liibarrio_flex_vertical
+      id: ds_1col
       library: null
       disable_css: false
       entity_classes: all_classes
       settings:
         label: ''
         wrappers:
-          content: div
+          ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
@@ -47,7 +47,7 @@ third_party_settings:
           layout_class: {  }
           content: {  }
     regions:
-      content:
+      ds_content:
         - node_title
         - search_api_excerpt
         - field_commencement_date
@@ -76,7 +76,7 @@ content:
   field_as_at:
     type: datetime_default
     weight: 3
-    region: content
+    region: ds_content
     label: inline
     settings:
       timezone_override: ''
@@ -85,7 +85,7 @@ content:
   field_commencement_date:
     type: datetime_default
     weight: 2
-    region: content
+    region: ds_content
     label: inline
     settings:
       timezone_override: ''
@@ -93,7 +93,7 @@ content:
     third_party_settings: {  }
   search_api_excerpt:
     weight: 1
-    region: content
+    region: ds_content
     settings: {  }
     third_party_settings: {  }
 hidden:

@@ -1,4 +1,5 @@
-.node--view-mode-search-index {
+.node--view-mode-search-index,
+.view-mode-search_index {
   position: relative;
   background: $white;
   padding: $spacer-md;
@@ -11,6 +12,15 @@
     & + * {
       margin-bottom: 0.5rem;
     }
+  }
+
+  .search-highlight {
+    font-weight: 700;
+  }
+
+  .field__label {
+    margin-top: $spacer-sm;
+    font-weight: 700;
   }
 
   &:before,
