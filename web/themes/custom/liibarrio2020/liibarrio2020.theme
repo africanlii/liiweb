@@ -72,6 +72,16 @@ function liibarrio2020_theme_suggestions_input_alter(&$suggestions, array $varia
   }
 }
 
+/**
+ * Implements template_preprocess_HOOK() (html)
+ */
+function liibarrio2020_preprocess_html(&$variables) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+  $path_alias = ltrim($path_alias, '/');
+  $variables['attributes']['class'][] = \Drupal\Component\Utility\Html::cleanCssIdentifier($path_alias);
+}
+
 
 // function liibarrio2020_preprocess_ds_entity_view(&$variables)  {
 //   // dump page variables

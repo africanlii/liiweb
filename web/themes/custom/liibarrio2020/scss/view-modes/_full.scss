@@ -1,10 +1,89 @@
 .node--view-mode-full {
+  &.node--type-judgment {
+    .field__label {
+      font-weight: 700;
+    }
+    .content-main {
+      .field--label-inline .field__label {
+        float: left;
+        margin-right: $spacer-sm;
+      }
+
+      .field--name-field-judge {
+        position: relative;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        font-weight: 700;
+
+        &:before,
+        &:after {
+          content: "";
+          flex: 1 1 25%;
+          height: 1px;
+          background: #d5d5d5;
+        }
+
+        &:before {
+          margin-right: 2rem;
+        }
+
+        &:after {
+          margin-left: 2rem;
+        }
+
+        .field__label {
+          float: none;
+        }
+      }
+    }
+  }
+
+  &.node--type-legislation {
+    .content-aside--inner-wrapper {
+      position: sticky;
+      top: 2rem;
+    }
+  }
+
+  .field--name-field-files {
+    background: #fff;
+
+    a {
+      padding: calc(#{$grid-gutter-width} / 2);
+      padding-bottom: 0;
+      display: block;
+    }
+  }
   .field--name-dynamic-token-fieldnode-share-links {
     padding: calc(#{$grid-gutter-width} / 2);
     margin-bottom: $grid-gutter-width;
+    background: #fff;
 
     a {
       color: $body-color;
+      font-weight: 700;
+    }
+
+    .node-share-links {
+      & > div:after {
+        margin-left: $spacer-sm;
+        font-family: "Font Awesome 5 Brands";
+      }
+
+      & > div:nth-child(1) {
+        &:after {
+          content: "\f09a";
+        }
+      }
+
+      & > div:nth-child(2) {
+        &:after {
+          content: "\f099";
+        }
+      }
     }
   }
 

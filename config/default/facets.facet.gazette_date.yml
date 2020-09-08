@@ -24,7 +24,7 @@ widget:
       show_less_label: 'Show less'
       show_more_label: 'Show more'
     show_reset_link: true
-    reset_text: Gazettes
+    reset_text: 'Total gazettes: '
     hide_reset_when_no_selection: false
 query_operator: or
 use_hierarchy: false

@@ -59,9 +59,9 @@ function liiweb_legislation_preprocess_field__node__field_toc__legislation(&$var
 
   $variables['table_content'] = [
     '#theme'      => 'item_list__table_of_contents',
-    '#type'       => 'ul',
+    '#type'       => 'ol',
     '#attributes' => [
-      'class'     => ['menu-items'],
+      'class'     => ['toc-list menu-items'],
     ],
   ];
 
