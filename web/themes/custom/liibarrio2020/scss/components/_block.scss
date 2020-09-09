@@ -251,6 +251,23 @@
 //   @include liibarrio-box();
 // }
 
+.block-gazettes-search-block {
+  margin-bottom: 1.5rem;
+
+  #gazettes-search-form {
+    display: flex;
+
+    & > .js-form-item {
+      margin-bottom: 0;
+      flex: 0 1 100%;
+
+      input {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
 .block-views-exposed-filter-blocks-block {
   #views-exposed-form-liiweb-search-page-search {
     label {
