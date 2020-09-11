@@ -84,7 +84,7 @@
         margin-bottom: 0;
         flex: 0 0 100%;
 
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(lg) {
           flex-basis: 7.5rem;
         }
       }
@@ -115,7 +115,7 @@
         justify-items: center;
         align-items: center;
 
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(lg) {
           flex-wrap: nowrap;
         }
       }
