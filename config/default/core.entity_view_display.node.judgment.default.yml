@@ -8,7 +8,6 @@ dependencies:
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
-    - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_external_link
@@ -79,11 +78,6 @@ third_party_settings:
         - field_search_summary
         - body
     fields:
-      node_author:
-        plugin_id: node_author
-        weight: 0
-        label: inline
-        formatter: author
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
         weight: 6
@@ -190,7 +184,6 @@ hidden:
   feeds_item: true
   field_case_name: true
   field_case_number_numeric: true
-  field_case_number_old: true
   field_case_number_year: true
   field_external_link: true
   field_judgment_mnc_old: true

@@ -20,5 +20,5 @@ default_value:
     value: ''
 default_value_callback: ''
 settings:
-  code: "//Sets old to the old case number value of the node if it exists.\r\n$old = $entity->field_case_number_old->value;\r\n$casecurrent = $entity->field_case_number->value;\r\n\r\nif($old != NULL || $casecurrent == NULL)\r\n{\r\n  //Sets the value of judgment number to the override value if one has been entered.\r\n$value = $old;\r\n}\r\nelse\r\n{\r\n$value = $entity->field_matter_type->entity->field_matter_code->value . \" number \" . $fields['field_case_number_numeric'][0]['value'] . \" of \" . $fields['field_case_number_year'][0]['value'];\r\n}\r\n"
+  code: "$value = $entity->field_matter_type->entity->field_matter_code->value . \" number \" . $fields['field_case_number_numeric'][0]['value'] . \" of \" . $fields['field_case_number_year'][0]['value'];\r\n\r\n"
 field_type: computed_string
