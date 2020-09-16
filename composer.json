@@ -51,7 +51,6 @@
         "drupal/title_length": "^1.0",
         "drupal/token": "^1.6",
         "drupal/toolbar_extras": "^1.0@beta",
-        "drupal/views_data_export": "^1.0",
         "drupal/webform": "5.x-dev",
         "drupal/xmlsitemap": "1.0.0-alpha3",
         "drush/drush": "^9.0.0",
