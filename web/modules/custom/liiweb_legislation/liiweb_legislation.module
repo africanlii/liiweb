@@ -177,8 +177,22 @@ function liiweb_legislation_theme() {
  * Implements hook_ENTITY_view().
  */
 function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
-  if($entity->getType() == 'legislation' && $view_mode == 'full') {
-    if($build['#node']->isDefaultRevision()) {
+  if($entity->getType() == 'legislation' && $view_mode == 'full') {  
+    $repeal = $build['#node']->get('field_repeal');
+    if($repeal->getValue()) {
+      $paragraph = \Drupal\paragraphs\Entity\Paragraph::load($repeal->getValue()[0]['target_id']);
+      $date = $paragraph->get('field_repeal_date')->getValue()[0]['value'];
+
+      $repeal_id = $paragraph->get('field_repeal_work')->getValue()[0]['target_id'];
+      $repeal_entity = \Drupal::entityTypeManager()->getStorage('node')->load($repeal_id);
+      $repeal_name = $repeal_entity->getTitle();
+      $link_to_repeal = $repeal_entity->url();
+
+      $build['field_frbr_uri']['#attributes']['class'][] = 'alert-red';
+      $build['field_frbr_uri'][0]['#template'] = '{{ value|raw }}';
+      $build['field_frbr_uri'][0]['#context']['value'] = "This legislation was repealed on $date by <h3 class='h6'><a href='$link_to_repeal'>$repeal_name.</a></h3>";
+    }
+    elseif($build['#node']->isDefaultRevision()) {
       $build['field_frbr_uri']['#attributes']['class'][] = 'alert-primary';
       $build['field_frbr_uri'][0]['#context']['value'] = 'This is the latest version of this legislation.';
     }

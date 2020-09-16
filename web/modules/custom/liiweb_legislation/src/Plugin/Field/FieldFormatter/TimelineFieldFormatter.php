@@ -94,23 +94,33 @@ class TimelineFieldFormatter extends FormatterBase {
     foreach($value as $event) {
       foreach($event['events'] as $event_array){
         if(isset($event_array['amending_title'])) {
-          $title = ' - '.$event_array['amending_title'];
+          $title = $event_array['amending_title'];
         }
         else {
-          $title = NULL;
+          $title = '';
         }
         if($event['expression_frbr_uri']) {
-          $description = " <a href='".$event['expression_frbr_uri']."'>Read More</a>";
+          $description = "<br><b><a href='".$event['expression_frbr_uri']."'>Read More</a></b>";
         }
         else {
           $description = "";
         }
         $historic_events[] = [
-          'name' => date('Y', strtotime($event['date'])).': '.ucfirst($event_array['event']).$description,
-          'description' => $event['date'].$title
+          'name' => date('Y-m-d', strtotime($event['date'])).': '.ucfirst($event_array['event']),
+          'description' => $title.$description,
+          'x' =>  strtotime($event['date']) * 1000,
+          'y' => 1,
+          'color' => '#4a4a4a'
         ];
       }
     }
+    $historic_events[] = [
+      'name' => date('Y-m-d'),
+      'description' => 'Today',
+      'x' =>  time() * 1000,
+      'y' => 1,
+      'color' => '#5a9d1c'
+    ];
 
     return $historic_events;
 
