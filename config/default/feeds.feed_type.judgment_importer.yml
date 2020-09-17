@@ -13,7 +13,6 @@ dependencies:
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judgment_date
-    - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number_override
     - field.field.node.judgment.field_judgment_old_nid
     - field.field.node.judgment.field_law_report_citations
@@ -56,18 +55,46 @@ third_party_settings:
         weight: -10
         label: 'Set value or default value'
         uuid: 34bebc22-0567-404c-9ab5-664657d6b1bf
+      b40a9aae-8ec0-4c03-96ac-24639330eb56:
+        plugin: html_entity_decode
+        source: _case_name_
+        weight: -9
+        label: 'HTML entity decode'
+        uuid: b40a9aae-8ec0-4c03-96ac-24639330eb56
+      4db556c9-d064-4a44-84c8-facc2ec1ba17:
+        invert: false
+        plugin: required
+        source: _case_name_
+        weight: -10
+        label: Required
+        uuid: 4db556c9-d064-4a44-84c8-facc2ec1ba17
+      42c37c97-7918-4cc3-9b11-2ffb2f0c58be:
+        find: '/^(.*? ){2}/'
+        replace: ''
+        limit: null
+        plugin: find_replace_regex
+        source: _media_neutral_citation_
+        weight: 0
+        label: 'Find replace REGEX'
+        uuid: 42c37c97-7918-4cc3-9b11-2ffb2f0c58be
+      ca53a213-5ccd-4684-a07e-07aa6b810a9c:
+        plugin: cast_to_int
+        source: _media_neutral_citation_
+        weight: 1
+        label: 'Cast to integer'
+        uuid: ca53a213-5ccd-4684-a07e-07aa6b810a9c
 id: judgment_importer
 label: 'Judgment Importer'
 description: 'Import content types of Judgment via json'
 help: ''
-import_period: 3600
+import_period: -1
 fetcher: http
 fetcher_configuration:
   auto_detect_feeds: false
   use_pubsubhubbub: false
+  always_download: true
   fallback_hub: ''
   request_timeout: 6000
-  always_download: false
 parser: jsonpath
 parser_configuration:
   context:
@@ -88,9 +115,6 @@ parser_configuration:
     _judgment_date_:
       label: '[''Judgment Date'']'
       value: '[''Judgment Date'']'
-    _judgment_number_:
-      label: '[''Judgment Number'']'
-      value: '[''Judgment Number'']'
     _law_report_citation_:
       label: '[''Law Report Citation'']'
       value: '[''Law Report Citation'']'
@@ -109,15 +133,15 @@ parser_configuration:
     nid:
       label: Nid
       value: Nid
-    _media_neutral_citation_:
-      label: '[''Media Neutral Citation'']'
-      value: '[''Media Neutral Citation'']'
     _case_number_:
       label: '[''Case number'']'
       value: '[''Case number'']'
     _court_name_:
       label: '[''Court Name'']'
       value: '[''Court Name'']'
+    _media_neutral_citation_:
+      label: '[''Media Neutral Citation'']'
+      value: '[''Media Neutral Citation'']'
   display_errors: false
   source_encoding:
     - auto
@@ -251,13 +275,6 @@ mappings:
       language: null
       timezone: UTC
   -
-    target: field_judgment_number_override
-    map:
-      value: _judgment_number_
-    unique: {  }
-    settings:
-      language: null
-  -
     target: field_law_report_citations
     map:
       value: _law_report_citation_
@@ -305,14 +322,6 @@ mappings:
     settings:
       language: null
   -
-    target: field_judgment_mnc_old
-    map:
-      value: _media_neutral_citation_
-    unique:
-      value: '1'
-    settings:
-      language: null
-  -
     target: field_case_number_old
     map:
       value: _case_number_
@@ -327,3 +336,10 @@ mappings:
       language: ''
       reference_by: name
       autocreate: 0
+  -
+    target: field_judgment_number_override
+    map:
+      value: _media_neutral_citation_
+    unique: {  }
+    settings:
+      language: null
