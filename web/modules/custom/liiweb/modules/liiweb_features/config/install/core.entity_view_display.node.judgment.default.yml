@@ -94,11 +94,6 @@ third_party_settings:
         weight: 7
         label: above
         formatter: default
-      node_author:
-        plugin_id: node_author
-        weight: 0
-        label: inline
-        formatter: author
 id: node.judgment.default
 targetEntityType: node
 bundle: judgment
