@@ -7,4 +7,13 @@
   background: $red;
   color: $white;
   border-color: darken($red, 10%);
+
+  a {
+    color: $white;
+    text-decoration: underline;
+  }
+
+  h6 {
+    margin-bottom: 0;
+  }
 }
