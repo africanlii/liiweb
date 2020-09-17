@@ -4,45 +4,50 @@
   
     Drupal.behaviors.mybehavior = {
       attach: function (context, settings) {
-        console.log('hello');
 
         var data = settings.liiweb_legislation.timeline.data;
 
         Highcharts.chart('container', {
             chart: {
-                type: 'timeline'
-            },
-            accessibility: {
-                screenReaderSection: {
-                    beforeChartFormat: '<h5>{chartTitle}</h5>' +
-                        '<div>{typeDescription}</div>' +
-                        '<div>{chartSubtitle}</div>' +
-                        '<div>{chartLongdesc}</div>' +
-                        '<div>{viewTableButton}</div>'
-                },
-                point: {
-                    valueDescriptionFormat: '{index}. {point.label}. {point.description}.'
-                }
-            },
-            xAxis: {
-                visible: false
-            },
-            yAxis: {
-                visible: false
+              zoomType: 'x',
+              height: 250
             },
             title: {
-                text: 'Legislation Historic Timeline'
+              text: 'Legislation Historic Timeline'
             },
-            colors: [
-                '#5a9d1c',
-                '#4a4a4a',
-                '#326fd1'
-            ],
+            tooltip: {
+                formatter: function () {
+                    var string = '<b>' + this.point.name + '</b><br>' + this.point.description;
+                    return string;
+                },
+                style: {
+                    pointerEvents: 'auto'
+                },
+                hideDelay: 1500,
+                distance: 30
+            },
+            xAxis: {
+              type: 'datetime',
+              opposite: true
+            },
+            yAxis: {
+              labels: false,
+              title: '',
+              gridLineWidth: 0
+            },
+            plotOptions: {
+                column: {
+                    pointWidth: 10
+                }
+            },
+            legend: {
+              enabled: false
+            },
             series: [{
-                data: data
+              type: 'column',
+              data: data
             }]
         });
-        
       }
     };
   
