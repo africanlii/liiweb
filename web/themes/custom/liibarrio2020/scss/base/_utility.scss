@@ -7,4 +7,9 @@
   background: $red;
   color: $white;
   border-color: darken($red, 10%);
+
+  a {
+    color: $white;
+    text-decoration: underline;
+  }
 }
