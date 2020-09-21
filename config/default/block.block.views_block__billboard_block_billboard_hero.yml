@@ -1,0 +1,31 @@
+uuid: 571cb25c-5548-491c-b1d8-f7e6857fd532
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.billboard
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: views_block__billboard_block_billboard_hero
+theme: liibarrio2020
+region: hero
+weight: 0
+provider: null
+plugin: 'views_block:billboard-block_billboard_hero'
+settings:
+  id: 'views_block:billboard-block_billboard_hero'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+  context_mapping: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: /about
+    negate: true
+    context_mapping: {  }

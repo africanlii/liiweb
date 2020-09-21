@@ -1,0 +1,10 @@
+uuid: cf574d34-c75c-4282-93fe-77bfa598c962
+langcode: en
+status: true
+dependencies:
+  module:
+    - rw_organisation
+id: organisation_entity.logo
+label: Logo
+targetEntityType: organisation_entity
+cache: true

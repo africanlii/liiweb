@@ -1,0 +1,8 @@
+
+liiweb.contact_controller_build:
+  path: '/contact'
+  defaults:
+    _controller: '\Drupal\liiweb\Controller\ContactController::build'
+    _title: 'Build'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,29 @@
+.layout-main-wrapper {
+  margin-top: 1.5rem;
+}
+
+.layout-main {
+  flex: 0 0 100%;
+
+  @include media-breakpoint-up(md) {
+    flex: 1;
+  }
+}
+
+.layout-sidebar {
+  flex: 0 0 100%;
+
+  @include media-breakpoint-down(md) {
+    margin-top: 1.5rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    flex: 0 1 270px;
+  }
+}
+
+body.layout-sidebar-first.path-search {
+  .layout-sidebar--first > aside.section {
+    @include liibarrio-box();
+  }
+}

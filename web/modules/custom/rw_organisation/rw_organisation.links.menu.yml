@@ -1,0 +1,18 @@
+
+# Organisation menu items definition
+entity.organisation_entity.collection:
+  title: 'Organisation list'
+  route_name: entity.organisation_entity.collection
+  description: 'List Organisation entities'
+  parent: system.admin_content
+  weight: 100
+
+
+# Organisation type menu items definition
+entity.organisation_entity_type.collection:
+  title: 'Organisation type'
+  route_name: entity.organisation_entity_type.collection
+  description: 'List Organisation type (bundles)'
+  parent: system.admin_structure
+  weight: 99
+

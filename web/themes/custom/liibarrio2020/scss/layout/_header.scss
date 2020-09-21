@@ -1,0 +1,15 @@
+.layout-header {
+  &__pre-header {
+    min-height: $pre-header-height-desktop;
+  }
+
+  &__main-header {
+    min-height: 3.75rem;
+    position: relative;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+    border-top: 1px solid $gray;
+    border-bottom: 1px solid $gray;
+    background-color: $white;
+    z-index: 1;
+  }
+}

@@ -1,0 +1,28 @@
+uuid: 3f280b4e-3659-45f4-a6c6-c4f23b547c04
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_media_ref
+    - media.type.icon
+    - taxonomy.vocabulary.country
+id: taxonomy_term.country.field_media_ref
+field_name: field_media_ref
+entity_type: taxonomy_term
+bundle: country
+label: Flag
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      icon: icon
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: icon
+field_type: entity_reference

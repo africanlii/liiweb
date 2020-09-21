@@ -1,4 +1,4 @@
-uuid: 695dda27-49d4-4410-bb01-42a79484509c
+uuid: 94334176-aa30-4687-8741-4ed9ec52d185
 langcode: en
 status: true
 dependencies:
@@ -11,9 +11,9 @@ id: node.judgment.field_judgment_date
 field_name: field_judgment_date
 entity_type: node
 bundle: judgment
-label: 'Judgment date'
+label: 'Old date field'
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''

@@ -1,0 +1,57 @@
+#navbar-main {
+  .navbar-nav {
+    .nav-link {
+      position: relative;
+      padding: 0;
+      margin: 0 0 $spacer-md;
+      color: $body-color;
+      @include media-breakpoint-up(lg) {
+        margin: 0.5rem 1.5rem 0;
+      }
+
+      &:hover,
+      &:focus {
+        color: $primary;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        margin-top: $spacer-md;
+        width: auto;
+        height: 2px;
+        background: $border-color;
+        transition: all 0.2s ease-in-out;
+
+        @include media-breakpoint-up(lg) {
+          background: transparent;
+          height: $spacer-md;
+          left: -1rem;
+          margin-left: -1rem;
+          width: calc(100% + 2rem);
+        }
+      }
+
+      &.is-active,
+      &:hover,
+      &:focus {
+        &:after {
+          background: $secondary;
+          height: $spacer-md;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        color: $secondary;
+      }
+    }
+    .nav-item:last-child {
+      .nav-link:not(.is-active):after {
+        @include media-breakpoint-down(lg) {
+          background: transparent;
+        }
+      }
+    }
+  }
+}

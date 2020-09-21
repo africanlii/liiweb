@@ -1,0 +1,5 @@
+name: 'Liiweb Search'
+type: module
+description: 'Supplies a search block'
+core: 8.x
+package: 'Liiweb'

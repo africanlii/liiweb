@@ -1,0 +1,19 @@
+add quicklink set entities:
+  title: 'Create new Quicklink set entities'
+
+administer quicklink set entities:
+  title: 'Administer Quicklink set entities'
+  description: 'Allow to access the administration form to configure Quicklink set entities.'
+  restrict access: true
+
+delete quicklink set entities:
+  title: 'Delete Quicklink set entities'
+
+edit quicklink set entities:
+  title: 'Edit Quicklink set entities'
+
+view published quicklink set entities:
+  title: 'View published Quicklink set entities'
+
+view unpublished quicklink set entities:
+  title: 'View unpublished Quicklink set entities'

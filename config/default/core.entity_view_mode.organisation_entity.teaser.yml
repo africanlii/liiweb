@@ -1,0 +1,12 @@
+uuid: f184d85b-1929-4f63-b846-df2699a8e903
+langcode: en
+status: true
+dependencies:
+  module:
+    - rw_organisation
+_core:
+  default_config_hash: KB42NvrEeBxj164OLh2B-udoV_2vSYMkb2IN5GLZ5B0
+id: organisation_entity.teaser
+label: Teaser
+targetEntityType: organisation_entity
+cache: true

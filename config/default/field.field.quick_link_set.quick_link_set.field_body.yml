@@ -1,0 +1,21 @@
+uuid: e8b4b9ca-2495-44ae-8a25-13557ba93ed6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.quick_link_set.field_body
+  module:
+    - rw_quicklinks
+    - text
+id: quick_link_set.quick_link_set.field_body
+field_name: field_body
+entity_type: quick_link_set
+bundle: quick_link_set
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

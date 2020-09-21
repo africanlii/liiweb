@@ -1,0 +1,21 @@
+uuid: bc76c742-f253-4858-92e3-33b36cdafe23
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.quick_link_set.field_link_type
+  module:
+    - options
+    - rw_quicklinks
+id: quick_link_set.quick_link_set.field_link_type
+field_name: field_link_type
+entity_type: quick_link_set
+bundle: quick_link_set
+label: 'Link Type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

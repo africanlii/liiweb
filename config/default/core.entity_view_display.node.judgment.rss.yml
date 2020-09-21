@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.judgment.field_case_number_numeric
     - field.field.node.judgment.field_case_number_year
     - field.field.node.judgment.field_court_name
+    - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
@@ -88,6 +89,7 @@ hidden:
   field_case_number_numeric: true
   field_case_number_year: true
   field_court_name: true
+  field_date: true
   field_external_link: true
   field_judge: true
   field_judgment_date: true

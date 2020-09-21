@@ -1,0 +1,5 @@
+name: 'Quicklink sets'
+type: module
+description: 'Provides custom content entities to save sets of links to be used in paragraphs and other entities'
+core: 8.x
+package: 'rw'

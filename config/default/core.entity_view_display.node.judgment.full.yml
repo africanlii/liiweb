@@ -1,0 +1,240 @@
+uuid: 110c4a2e-1892-405f-9c89-682f9c6f4f20
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.judgment.body
+    - field.field.node.judgment.feeds_item
+    - field.field.node.judgment.field_case_name
+    - field.field.node.judgment.field_case_number
+    - field.field.node.judgment.field_case_number_numeric
+    - field.field.node.judgment.field_case_number_year
+    - field.field.node.judgment.field_court_name
+    - field.field.node.judgment.field_date
+    - field.field.node.judgment.field_external_link
+    - field.field.node.judgment.field_files
+    - field.field.node.judgment.field_flynote
+    - field.field.node.judgment.field_headnote_and_holding
+    - field.field.node.judgment.field_judge
+    - field.field.node.judgment.field_judgment_date
+    - field.field.node.judgment.field_judgment_mnc_old
+    - field.field.node.judgment.field_judgment_number
+    - field.field.node.judgment.field_judgment_number_override
+    - field.field.node.judgment.field_judgment_old_nid
+    - field.field.node.judgment.field_law_report_citations
+    - field.field.node.judgment.field_matter_type
+    - field.field.node.judgment.field_media_neutral_citation
+    - field.field.node.judgment.field_search_summary
+    - field.field.node.judgment.field_tags
+    - node.type.judgment
+  module:
+    - computed_field
+    - datetime
+    - ds
+    - liiweb
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_stacked_2col_9_3
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          header_left: div
+          header_right: div
+          header: div
+          left: div
+          right: div
+          footer: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          header_left: {  }
+          header_right: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
+    regions:
+      header_left:
+        - node_author
+      header_right:
+        - field_judgment_date
+        - field_court_name
+        - field_case_number
+      left:
+        - field_headnote_and_holding
+        - field_flynote
+        - field_search_summary
+        - field_judge
+        - body
+      right:
+        - field_files
+        - 'dynamic_token_field:node-share_links'
+        - 'dynamic_block_field:node-related_judgments'
+        - 'dynamic_block_field:node-related_legislation'
+    fields:
+      'dynamic_block_field:node-related_judgments':
+        plugin_id: 'dynamic_block_field:node-related_judgments'
+        weight: 11
+        label: hidden
+        formatter: default
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      'dynamic_block_field:node-related_legislation':
+        plugin_id: 'dynamic_block_field:node-related_legislation'
+        weight: 12
+        label: hidden
+        formatter: default
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 10
+        label: hidden
+        formatter: default
+      node_author:
+        plugin_id: node_author
+        weight: 0
+        label: inline
+        formatter: author
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.judgment.full
+targetEntityType: node
+bundle: judgment
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    region: left
+  field_case_number:
+    type: computed_string
+    weight: 3
+    region: header_right
+    label: inline
+    settings:
+      sanitized: true
+      cache_unit: -1
+      cache_duration: 1
+    third_party_settings: {  }
+  field_court_name:
+    type: entity_reference_label
+    weight: 2
+    region: header_right
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+  field_files:
+    type: lii_file
+    weight: 9
+    region: right
+    label: hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+  field_flynote:
+    weight: 5
+    label: inline
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+    type: entity_reference_label
+    region: left
+  field_headnote_and_holding:
+    weight: 4
+    label: inline
+    settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: 'Headnote and holding:'
+            lb-col: false
+            classes: {  }
+    type: text_default
+    region: left
+  field_judge:
+    type: entity_reference_label
+    weight: 7
+    region: left
+    label: inline
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+  field_judgment_date:
+    type: datetime_plain
+    weight: 0
+    region: header_right
+    label: above
+    settings:
+      timezone_override: ''
+    third_party_settings: {  }
+  field_search_summary:
+    type: text_summary_or_trimmed
+    weight: 6
+    region: left
+    label: inline
+    settings:
+      trim_length: 600
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: 'Case summary:'
+            lb-col: false
+            classes: {  }
+  liiweb_share_links:
+    weight: 6
+    region: sidebar
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  feeds_item: true
+  field_case_name: true
+  field_case_number_numeric: true
+  field_case_number_year: true
+  field_date: true
+  field_external_link: true
+  field_judgment_mnc_old: true
+  field_judgment_number: true
+  field_judgment_number_override: true
+  field_judgment_old_nid: true
+  field_law_report_citations: true
+  field_matter_type: true
+  field_media_neutral_citation: true
+  field_tags: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

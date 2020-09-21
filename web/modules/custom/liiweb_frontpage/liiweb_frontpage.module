@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Contains liiweb_frontpage.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function liiweb_frontpage_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the liiweb_frontpage module.
+    case 'help.page.liiweb_frontpage':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides routes and logic to manage the frontpage') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function liiweb_frontpage_theme() {
+  $theme = [];
+
+  $path = drupal_get_path('module', 'liiweb_frontpage') . '/templates';
+  $theme['frontpage'] = [
+    'template'           => 'frontpage',
+    'path'               => $path,
+    'variables'          => [
+      'title'            => NULL,
+      'sub_title'        => Null,
+      'background_image' => Null,
+      'block_partner'    => Null,
+      'search_form'      => Null,
+    ],
+  ];
+  return $theme;
+}

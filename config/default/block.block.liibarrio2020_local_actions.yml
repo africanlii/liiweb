@@ -1,0 +1,29 @@
+uuid: bbcbe314-e66b-437b-8dd6-6d1004326989
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+  theme:
+    - liibarrio2020
+_core:
+  default_config_hash: PffmQ-ABSz5tFjWmVsR7NesunDnEivvopnJnBjl8KNE
+id: liibarrio2020_local_actions
+theme: liibarrio2020
+region: highlighted
+weight: -4
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

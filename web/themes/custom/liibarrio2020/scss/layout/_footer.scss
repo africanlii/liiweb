@@ -1,0 +1,32 @@
+.layout-footer {
+  margin: 2rem 0 0;
+  padding: 1.5rem 0;
+  box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
+  border-top: 1px solid $gray;
+  border-bottom: 1px solid $gray;
+  background: $white;
+
+  .copyright {
+    margin: 2rem 0 0;
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    color: #605e5c;
+
+    @include media-breakpoint-up(md) {
+      margin: 3.125rem 0 3.75rem;
+    }
+  }
+
+  &__top {
+    @include make-row();
+
+    & > .region {
+      @include make-col-ready();
+
+      @include media-breakpoint-up(md) {
+        @include make-col(4);
+      }
+    }
+  }
+}

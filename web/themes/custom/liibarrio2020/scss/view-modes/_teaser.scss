@@ -1,0 +1,59 @@
+.node--view-mode-teaser {
+  &.node--type-legislation {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .node {
+    &__title {
+      a {
+        color: $body-color;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &.node--type-legislation {
+    .node__content {
+      margin-top: auto;
+    }
+  }
+
+  &.node--type-government-gazette {
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .field--name-field-file {
+      text-align: right;
+    }
+  }
+}
+
+.organisation--view-mode-teaser {
+  margin: 0 0 $spacer-sm;
+
+  header {
+    margin-left: $spacer-xl;
+  }
+
+  h3 {
+    font-size: $h6-font-size;
+    margin-bottom: 0;
+  }
+
+  .content {
+    display: flex;
+    float: none;
+    flex-direction: row-reverse;
+    width: auto;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+  }
+
+  .field--name-field-logo-ref {
+    flex: 0 0 6rem;
+  }
+}

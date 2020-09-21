@@ -1,0 +1,53 @@
+uuid: b62529d5-e206-4c67-9f90-703042d65952
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.intro
+    - field.field.media.image.field_media_image
+    - image.style.intro
+    - media.type.image
+  module:
+    - bg_image_formatter
+    - ds
+id: media.image.intro
+targetEntityType: media
+bundle: image
+mode: intro
+content:
+  field_media_image:
+    label: visually_hidden
+    weight: 0
+    settings:
+      image_style: intro
+      css_settings:
+        bg_image_selector: '#block-views-block-billboard-block-billboard-intro'
+        bg_image_z_index: auto
+        bg_image_color: '#FFFFFF'
+        bg_image_x: center
+        bg_image_y: center
+        bg_image_attachment: scroll
+        bg_image_repeat: no-repeat
+        bg_image_background_size: cover
+        bg_image_gradient: ''
+        bg_image_media_query: all
+        bg_image_important: 1
+        bg_image_path_format: absolute
+        bg_image_background_size_ie8: 0
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: bg_image_formatter
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

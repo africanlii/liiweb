@@ -3,10 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.legislation.field_as_at
     - field.field.node.legislation.field_commencement_date
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
     - field.field.node.legislation.field_created_by_api
+    - field.field.node.legislation.field_date
     - field.field.node.legislation.field_expression_date
     - field.field.node.legislation.field_external_link
     - field.field.node.legislation.field_files
@@ -14,19 +16,15 @@ dependencies:
     - field.field.node.legislation.field_images
     - field.field.node.legislation.field_lifecycle_json
     - field.field.node.legislation.field_parent_work
-    - field.field.node.legislation.field_publication_date
     - field.field.node.legislation.field_publication_name
     - field.field.node.legislation.field_raw_json
     - field.field.node.legislation.field_repeal
     - field.field.node.legislation.field_stub
     - field.field.node.legislation.field_tags
     - field.field.node.legislation.field_toc
-    - image.style.thumbnail
     - node.type.legislation
   module:
     - datetime
-    - file
-    - image
     - link
     - paragraphs
     - text
@@ -35,6 +33,12 @@ targetEntityType: node
 bundle: legislation
 mode: default
 content:
+  field_as_at:
+    weight: 27
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_commencement_date:
     weight: 9
     settings: {  }
@@ -50,7 +54,13 @@ content:
     type: text_textarea
     region: content
   field_created:
-    weight: 17
+    weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_date:
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -62,19 +72,12 @@ content:
     type: datetime_default
     region: content
   field_external_link:
-    weight: 16
+    weight: 14
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
-  field_files:
-    weight: 15
-    settings:
-      progress_indicator: throbber
-    third_party_settings: {  }
-    type: file_generic
     region: content
   field_frbr_uri:
     weight: 1
@@ -84,16 +87,8 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_images:
-    weight: 14
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
-    region: content
   field_lifecycle_json:
-    weight: 19
+    weight: 17
     settings:
       rows: 5
       placeholder: ''
@@ -110,12 +105,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_publication_date:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_publication_name:
     weight: 8
     settings:
@@ -125,7 +114,7 @@ content:
     type: string_textfield
     region: content
   field_raw_json:
-    weight: 20
+    weight: 18
     settings:
       rows: 5
       placeholder: ''
@@ -158,7 +147,7 @@ content:
     type: options_select
     region: content
   field_toc:
-    weight: 18
+    weight: 16
     settings:
       rows: 5
       placeholder: ''
@@ -195,6 +184,8 @@ content:
 hidden:
   created: true
   field_created_by_api: true
+  field_files: true
+  field_images: true
   path: true
   promote: true
   sticky: true
