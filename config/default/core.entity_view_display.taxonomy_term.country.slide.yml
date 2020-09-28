@@ -1,0 +1,64 @@
+uuid: 76aeb9e1-7dd3-439c-a9b4-fd45a193b30d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.slide
+    - field.field.taxonomy_term.country.field_link
+    - field.field.taxonomy_term.country.field_media_ref
+    - taxonomy.vocabulary.country
+  module:
+    - ds
+    - link
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_flex_vertical
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          content: {  }
+    regions:
+      content:
+        - field_media_ref
+        - field_link
+id: taxonomy_term.country.slide
+targetEntityType: taxonomy_term
+bundle: country
+mode: slide
+content:
+  field_link:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_media_ref:
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  description: true
+  langcode: true
+  search_api_excerpt: true

@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Default template for the e.tv contact page content
+ *
+ * Available variables:
+ * - intro: @TODO: Provide a simple configuration to build intro text, perhaps
+ *                 hardcode into template?
+ * - contact_entities: (array) Entities to render, includes the contact form
+ *
+ * @ingroup themeable
+ */
+#}
+
+<p class="contact-us--intro">
+  {#  {{ intro }} #}
+  {# I'm not sure if this translateable string will work with markup inside #}
+  {# @TODO Create variables/simple configuration or include text into webform #}
+  {% trans %}
+  {% endtrans %}
+</p>
+<div class="contact-us contact-us--wrapper ">
+  {% for entity in contact_entities %}
+  <div class="contact-us--entity">
+    {{ entity }}
+  </div><!-- .contact-us--entity -->
+  {% endfor %}
+</div>

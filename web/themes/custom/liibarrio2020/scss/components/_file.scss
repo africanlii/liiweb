@@ -1,0 +1,26 @@
+.liiweb-file {
+  a {
+    font-size: 0;
+    text-decoration: none;
+
+    &:before {
+      content: "Download as PDF";
+      font-size: $font-size-base;
+    }
+
+    &:after {
+      content: "\f1c1";
+      margin-left: $spacer-sm;
+      font-size: $font-size-base;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+    }
+
+    &:hover,
+    &:focus {
+      &:before {
+        text-decoration: underline;
+      }
+    }
+  }
+}

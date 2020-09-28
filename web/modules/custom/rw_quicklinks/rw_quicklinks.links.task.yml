@@ -1,0 +1,22 @@
+# Quicklink set routing definition
+quick_link_set.settings_tab:
+  route_name: quick_link_set.settings
+  title: 'Settings'
+  base_route: quick_link_set.settings
+
+entity.quick_link_set.canonical:
+  route_name: entity.quick_link_set.canonical
+  base_route: entity.quick_link_set.canonical
+  title: 'View'
+
+entity.quick_link_set.edit_form:
+  route_name: entity.quick_link_set.edit_form
+  base_route: entity.quick_link_set.canonical
+  title: 'Edit'
+
+entity.quick_link_set.delete_form:
+  route_name:  entity.quick_link_set.delete_form
+  base_route:  entity.quick_link_set.canonical
+  title: Delete
+  weight: 10
+

@@ -1,0 +1,10 @@
+uuid: 46d02340-3010-418c-974f-b7ce99b534fd
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.intro
+label: Intro
+targetEntityType: media
+cache: true

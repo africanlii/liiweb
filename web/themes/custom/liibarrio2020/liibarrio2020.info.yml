@@ -1,0 +1,41 @@
+name: liiBarrio 2020
+type: theme
+description: "Custom theme created for AfricanLii. Based off the Bootstrap Barrio Subtheme, built using the Bootstrap 4 framework."
+# version: VERSION
+core: 8.x
+core_version_requirement: ^8 || ^9
+base theme: bootstrap_barrio
+
+libraries:
+  - liibarrio2020/global-styling
+  - liibarrio2020/font-awesome-replace
+
+libraries-override:
+  system/base: false
+  views/views.module: false
+  bootstrap_barrio/global-styling: false
+  bootstrap_barrio/file: false
+  bootstrap_barrio/node: false
+  bootstrap_barrio/messages_light: false
+  bootstrap_barrio/form: false
+  rw_organisation/entity_display: false
+
+regions:
+  pre_header: Pre-header
+  header: Header
+  primary_menu: "Primary menu"
+  secondary_menu: "Secondary menu"
+  breadcrumbs: Breadcrumbs
+  hero: Hero
+  highlighted: Highlighted
+  help: Help
+  featured_top: "Featured top"
+  content_top: "Content top"
+  content: Content
+  content_bottom: "Content bottom"
+  sidebar_first: "Sidebar first"
+  sidebar_second: "Sidebar second"
+  footer_first: "Footer first"
+  footer_second: "Footer second"
+  footer_third: "Footer third"
+  footer_last: "Footer last"

@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.thumbnail
+    - image.style.medium
   module:
-    - image
     - media
+    - svg_image
     - user
 _core:
   default_config_hash: rRzAWaXpJGYA2gPG6BmGxy8gfFd4srCc-LQY3JB6tR8
@@ -240,8 +240,12 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: thumbnail
+            image_style: medium
             image_link: ''
+            svg_render_as_image: true
+            svg_attributes:
+              width: 220
+              height: 220
           group_column: ''
           group_columns: {  }
           group_rows: true

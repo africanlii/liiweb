@@ -1,0 +1,26 @@
+uuid: a56da0a1-f69e-4624-9d8a-06c58234a3a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.billboard_block.field_block
+    - paragraphs.paragraphs_type.billboard_block
+  module:
+    - block_field
+id: paragraph.billboard_block.default
+targetEntityType: paragraph
+bundle: billboard_block
+mode: default
+content:
+  field_block:
+    weight: 0
+    settings:
+      plugin_id: ''
+      settings: {  }
+      configuration_form: full
+    third_party_settings: {  }
+    type: block_field_default
+    region: content
+hidden:
+  created: true
+  status: true

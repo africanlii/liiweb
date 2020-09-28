@@ -1,0 +1,8 @@
+uuid: bdcffa07-ecc1-42ef-9510-0bcd896f3a83
+langcode: en
+status: true
+dependencies: {  }
+name: Country
+vid: country
+description: 'List of Legal information institutes in diffrent countries '
+weight: 0

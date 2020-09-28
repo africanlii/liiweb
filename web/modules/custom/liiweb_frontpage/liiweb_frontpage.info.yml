@@ -1,0 +1,5 @@
+name: 'liiweb frontpage'
+type: module
+description: 'Provides routes and logic to manage the frontpage'
+core: 8.x
+package: 'Liiweb'

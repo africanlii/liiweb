@@ -1,0 +1,11 @@
+.card {
+  &-body {
+    padding: calc(#{$grid-gutter-width} / 2);
+  }
+
+  &.bg-secondary {
+    a {
+      color: $white;
+    }
+  }
+}

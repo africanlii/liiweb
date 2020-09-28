@@ -1,0 +1,130 @@
+liibarrio_content_general:
+  label: LII Content general layout
+  category: LiiBarrio
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-content-general
+  icon: images/liibarrio-content-general.png
+  regions:
+    header_left:
+      label: Header left
+    header_right:
+      label: Header right
+    full_width:
+      label: Full width
+    sidebar:
+      label: Sidebar
+    node_content:
+      label: Content
+
+# Flex - Horizontal
+liibarrio_flex_horizontal:
+  label: "Flex - Horizontal"
+  category: "LiiBarrio"
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-flex-horizontal
+  regions:
+    content:
+      label: Content
+
+# Flex - Horizontal
+liibarrio_flex_vertical:
+  label: "Flex - Vertical"
+  category: "LiiBarrio"
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-flex-vertical
+  regions:
+    content:
+      label: Content
+
+# Card - Basic
+liibarrio_card_basic:
+  label: "Card - Basic"
+  category: "LiiBarrio"
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-card-basic
+  regions:
+    content:
+      label: Content
+
+# Card - Secondary
+liibarrio_card_secondary:
+  label: "Card - Secondary"
+  category: "LiiBarrio"
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-card-secondary
+  regions:
+    content:
+      label: Content
+
+# Two column - 9/3
+liibarrio_2col_9_3:
+  label: "Two column - 9/3"
+  category: "LiiBarrio"
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-2col-9-3
+  regions:
+    left:
+      label: Left
+    right:
+      label: Right
+
+# Two column - 3/9
+liibarrio_2col_3_9:
+  label: "Two column - 3/9"
+  category: "LiiBarrio"
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-2col-3-9
+  regions:
+    left:
+      label: Left
+    right:
+      label: Right
+
+# Stacked - Two column - 9/3
+liibarrio_stacked_2col_9_3:
+  label: "Stacked - Two column - 9/3"
+  category: "LiiBarrio"
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-stacked-2col-9-3
+  regions:
+    header_left:
+      label: Header - Left
+    header_right:
+      label: Header - Right
+    header:
+      label: Header
+    left:
+      label: Content
+    right:
+      label: Sidebar
+    footer:
+      label: Footer
+
+# Stacked - Two column - 3/9
+liibarrio_stacked_2col_3_9:
+  label: "Stacked - Two column - 3/9"
+  category: "LiiBarrio"
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds/liibarrio-stacked-2col-3-9
+  regions:
+    header_left:
+      label: Header - Left
+    header_right:
+      label: Header - Right
+    header:
+      label: Header
+    left:
+      label: Sidebar
+    right:
+      label: Content
+    footer:
+      label: Footer

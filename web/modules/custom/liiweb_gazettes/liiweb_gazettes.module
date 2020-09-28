@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * @file
+ * Contains liiweb_gazettes.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\node\Entity\Node;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_help().
+ */
+function liiweb_gazettes_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the liiweb_gazettes module.
+    case 'help.page.liiweb_gazettes':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides custom functionality for Gzazettes') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+function liiweb_gazettes_preprocess_views_view(&$variable)
+{
+  $years = range(date('Y'), 1900);
+  // if ($variable['id'] == "gazettes_listing" && $variable['display_id']== "page_gazettes_listing") {
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'government_gazette', '=')
+      ->condition('status', 1)
+      ->sort('title', 'ASC');
+    $gazettes = $query->execute();
+
+    // $gazettes = $this::fetch();
+    if ($gazettes) {
+      $date = [];
+      $items = [];
+      $gazette_year = [];
+      $grouped_years = '';
+
+
+      foreach ($gazettes as $revision_id => $nid) {
+
+        $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+        $node = $node_storage->load($nid);
+
+        if($node->hasField('field_gazette_date') && !$node->get('field_gazette_date')->isEmpty()) {
+          $date = $node->get('field_gazette_date')->value;
+          $gazette_year[] = strtoupper(substr($date, 0, 4));
+          $grouped_years = array_intersect($years, $gazette_year);
+
+        }
+      }
+      if ($grouped_years) {
+        foreach ($grouped_years as $key => $year) {
+          $items[] = [
+            '#markup' => '<a href="#' .  $year . '">' . $year . '</a>',
+            '#wrapper_attributes' => [
+              'class'             => [strtolower($year), 'list-item',],
+            ],
+          ];
+        }
+      }
+      // dump($items);
+      $variable['years'] = [
+        '#theme'      => 'item_list',
+        '#type'       => 'ul',
+        '#attributes' => [
+          'class'     => ['list-items', 'glossary-filter'],
+        ],
+        '#items'      => $items,
+      ];
+      // dump($variable['years']);
+    // }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function liiweb_gazettes_theme() {
+  $theme = [];
+  $path  = drupal_get_path('module', 'liiweb_gazettes') . '/templates';
+
+  // table content field
+  $theme['views_view'] = [
+    'base hook' => 'views_view',
+    'path'      => $path,
+  ];
+  return $theme;
+}

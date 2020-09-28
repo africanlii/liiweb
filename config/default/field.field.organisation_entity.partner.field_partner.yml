@@ -1,0 +1,23 @@
+uuid: f63a21e4-168b-42d2-8961-f21efbc7c029
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.organisation_entity.field_partner
+    - rw_organisation.organisation_entity_type.partner
+id: organisation_entity.partner.field_partner
+field_name: field_partner
+entity_type: organisation_entity
+bundle: partner
+label: Partner
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

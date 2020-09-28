@@ -1,0 +1,21 @@
+uuid: 6582bfb7-2ea2-4c48-80d7-e2f825ca6877
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date
+    - node.type.judgment
+  module:
+    - datetime
+id: node.judgment.field_date
+field_name: field_date
+entity_type: node
+bundle: judgment
+label: 'Judgment date'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

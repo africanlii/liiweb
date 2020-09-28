@@ -1,0 +1,24 @@
+uuid: bd9ea89c-9a9f-4d85-94d8-cbf259b71ff5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_block
+    - paragraphs.paragraphs_type.billboard_block
+  module:
+    - block_field
+id: paragraph.billboard_block.field_block
+field_name: field_block
+entity_type: paragraph
+bundle: billboard_block
+label: Block
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  selection: blocks
+  selection_settings:
+    plugin_ids: {  }
+field_type: block_field

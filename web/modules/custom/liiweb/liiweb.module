@@ -8,14 +8,52 @@ use Drupal\language\Plugin\LanguageNegotiation\LanguageNegotiationUrlFallback;
  * Implements hook_theme().
  */
 function liiweb_theme($existing, $type, $theme, $path) {
-  return [
-    'liiweb_file' => [
+
+  $theme = [];
+  $path = drupal_get_path('module', 'liiweb') . '/templates';
+
+  $theme['text_block'] = [
+    'variables' => [
+      'title' => Null,
+      'text' => Null,
+    ],
+  ];
+
+  $theme['country_block'] = [
+    'variables' => [
+      'content' => Null,
+    ],
+  ];
+
+  $theme['liiweb_file']  = [
       'variables' => [
         'files' => NULL,
       ],
-      'template' => 'liiweb-file',
+    'template' => 'liiweb-file',
+  ];
+
+
+  $theme['social_news_timeline'] = [
+    'template'            => 'social-news-timeline',
+    'variables'           => [
+      'facebook_page_url' => NULL,
+      'facebook_app_id'   => NULL,
+
+      'twitter_handle'    => NULL,
+    ],
+    'path'                => $path,
+  ];
+
+  $theme['liiweb_contact'] = [
+    'template'       => 'liiweb-contact',
+    'path'           => $path,
+    'variables'      => [
+      'intro'        => NULL,
+      'contact_entities' => [],
     ],
   ];
+
+  return $theme;
 }
 
 /**

@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Default for view tabs block
+ *
+ * Available variables:
+ * - subject: view legislation subject block view
+ * - search: view legislation search block view
+ * - browser: view legislation browser block view
+ *
+ * @see template_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+<ul class="nav nav-pills">
+	<li class="nav-item">
+		<a data-toggle="tab" href="#subject" class="nav-link active">Subject</a>
+	</li>
+	<li class="nav-item">
+		<a data-toggle="tab" href="#search"  class="nav-link">Search</a>
+	</li>
+	<li class="nav-item">
+		<a data-toggle="tab" href="#browser"  class="nav-link">Browse All</a>
+	</li>
+</ul>
+
+<div class="tab-content">
+	<div id="subject" class="tab-pane fade in active show">
+		{{ subject }}
+	</div>
+	<div id="search" class="tab-pane fade">
+		{{ search }}
+	</div>
+	<div id="browser" class="tab-pane fade">
+			{{ browser }}
+	</div>
+</div>
+
+
+

@@ -1,0 +1,28 @@
+uuid: 2bfa7cd5-2eb1-4658-a58e-1f519b59daaa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.organisation_entity.field_logo_ref
+    - media.type.image
+    - rw_organisation.organisation_entity_type.partner
+id: organisation_entity.partner.field_logo_ref
+field_name: field_logo_ref
+entity_type: organisation_entity
+bundle: partner
+label: Logo
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

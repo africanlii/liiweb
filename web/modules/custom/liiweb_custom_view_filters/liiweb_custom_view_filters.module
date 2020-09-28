@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Contains liiweb_custom_view_filters.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+/**
+ * Implements hook_help().
+ */
+function liiweb_custom_view_filters_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the liiweb_custom_view_filters module.
+    case 'help.page.liiweb_custom_view_filters':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provids extra custom fucntion for view filter') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+function liiweb_custom_view_filters_form_alter(&$form, FormStateInterface $form_state, $form_id){
+  if($form_id == 'views_exposed_form') {
+
+    // dump($form);
+    // exit;
+  }
+}

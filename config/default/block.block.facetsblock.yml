@@ -1,0 +1,30 @@
+uuid: 9f49c731-4e3c-44a1-8a69-a5c8ed62295a
+langcode: en
+status: true
+dependencies:
+  module:
+    - facets_block
+    - system
+  theme:
+    - liibarrio2020
+id: facetsblock
+theme: liibarrio2020
+region: content_top
+weight: -14
+provider: null
+plugin: facets_block
+settings:
+  id: facets_block
+  label: 'Facets Block - Content Type'
+  provider: facets_block
+  label_display: '0'
+  show_title: false
+  exclude_empty_facets: false
+  facets_to_include:
+    'facet_block:content_type': 'facet_block:content_type'
+visibility:
+  request_path:
+    id: request_path
+    pages: /search
+    negate: false
+    context_mapping: {  }

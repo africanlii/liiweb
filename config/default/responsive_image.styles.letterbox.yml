@@ -1,0 +1,67 @@
+uuid: 36015cdc-30f7-4f4c-9708-106ecb01fb6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.letterbox_lg
+    - image.style.letterbox_md
+    - image.style.letterbox_sml
+  module:
+    - liiweb
+_core:
+  default_config_hash: FEYl_yMhNGJbAHXAn0Xr93ZpCSYBGG_8fSN3j6gOYfA
+id: letterbox
+label: 'Letterbox (Wide 16:9)'
+image_style_mappings:
+  -
+    breakpoint_id: theme_name.xxlarge
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: letterbox_lg
+  -
+    breakpoint_id: theme_name.xxlarge
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: letterbox_lg
+  -
+    breakpoint_id: theme_name.xlarge
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: letterbox_lg
+  -
+    breakpoint_id: theme_name.xlarge
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: letterbox_lg
+  -
+    breakpoint_id: theme_name.large
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: letterbox_lg
+  -
+    breakpoint_id: theme_name.large
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: letterbox_lg
+  -
+    breakpoint_id: theme_name.medium
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: letterbox_md
+  -
+    breakpoint_id: theme_name.medium
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: letterbox_md
+  -
+    breakpoint_id: theme_name.small
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: letterbox_sml
+  -
+    breakpoint_id: theme_name.small
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: letterbox_sml
+breakpoint_group: liiweb
+fallback_image_style: letterbox_lg

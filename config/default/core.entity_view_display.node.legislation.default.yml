@@ -1,12 +1,14 @@
-uuid: d7ebe615-a0bb-4ed9-9ef4-dfe139ef9905
+uuid: f71340bc-e641-4921-a4a7-3df001dcf764
 langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.legislation.field_as_at
     - field.field.node.legislation.field_commencement_date
     - field.field.node.legislation.field_content
     - field.field.node.legislation.field_created
     - field.field.node.legislation.field_created_by_api
+    - field.field.node.legislation.field_date
     - field.field.node.legislation.field_expression_date
     - field.field.node.legislation.field_external_link
     - field.field.node.legislation.field_files
@@ -14,7 +16,6 @@ dependencies:
     - field.field.node.legislation.field_images
     - field.field.node.legislation.field_lifecycle_json
     - field.field.node.legislation.field_parent_work
-    - field.field.node.legislation.field_publication_date
     - field.field.node.legislation.field_publication_name
     - field.field.node.legislation.field_raw_json
     - field.field.node.legislation.field_repeal
@@ -23,94 +24,35 @@ dependencies:
     - field.field.node.legislation.field_toc
     - node.type.legislation
   module:
-    - ds
-    - text
+    - datetime
     - user
-third_party_settings:
-  ds:
-    layout:
-      id: liibarrio_content_general
-      library: null
-      disable_css: false
-      entity_classes: all_classes
-      settings:
-        classes: {  }
-        wrappers:
-          header_left: div
-          header_right: div
-          full_width: div
-          sidebar_share: div
-          sidebar: div
-          content: div
-        outer_wrapper: div
-        attributes: ''
-        link_attribute: ''
-        link_custom: ''
-    regions:
-      header_left:
-        - links
-        - field_publication_name
-        - field_created
-        - field_created_by_api
-        - field_expression_date
-        - field_external_link
-        - field_files
-        - field_images
-        - field_commencement_date
-        - field_lifecycle_json
-        - field_raw_json
-        - field_repeal
-        - field_stub
-        - field_tags
-        - field_toc
-        - field_publication_date
-        - langcode
-        - field_frbr_uri
-        - field_parent_work
-        - field_content
 id: node.legislation.default
 targetEntityType: node
 bundle: legislation
 mode: default
 content:
-  field_content:
-    weight: 3
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
-  field_frbr_uri:
-    type: string
-    weight: 1
-    region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  field_parent_work:
-    weight: 2
+  field_date:
+    weight: 0
     label: above
     settings:
-      link: true
+      format_type: medium
+      timezone_override: ''
     third_party_settings: {  }
-    type: entity_reference_label
+    type: datetime_default
     region: content
-  links:
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
+  field_as_at: true
   field_commencement_date: true
+  field_content: true
   field_created: true
   field_created_by_api: true
   field_expression_date: true
   field_external_link: true
   field_files: true
+  field_frbr_uri: true
   field_images: true
   field_lifecycle_json: true
-  field_publication_date: true
+  field_parent_work: true
   field_publication_name: true
   field_raw_json: true
   field_repeal: true
@@ -118,4 +60,5 @@ hidden:
   field_tags: true
   field_toc: true
   langcode: true
+  links: true
   search_api_excerpt: true

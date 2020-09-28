@@ -1,0 +1,10 @@
+uuid: 7f2fd2b9-e304-448c-8d08-184a667c0a15
+langcode: en
+status: true
+dependencies: {  }
+id: billboard_block
+label: 'Billboard block'
+icon_uuid: null
+icon_default: null
+description: 'Use to render block on billboard pages and view blocks.'
+behavior_plugins: {  }

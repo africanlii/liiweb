@@ -1,0 +1,12 @@
+rw_organisation.organisation_entity_type.*:
+  type: config_entity
+  label: 'Organisation type config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Organisation name'
+    uuid:
+      type: string

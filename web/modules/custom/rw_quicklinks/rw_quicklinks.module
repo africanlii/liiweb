@@ -1,0 +1,188 @@
+<?php
+
+/**
+ * @file
+ * Contains rw_quicklinks.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+
+/**
+ * Implements hook_entity_exrta_field_info().
+ *
+ * Provide a pseudo-field to generate an HTML list of links for field_links
+ *
+ * @TODO: Create more options to display links in a special way, e.g. block
+ */
+function rw_quicklinks_entity_extra_field_info() {
+  $extra = [];
+
+  $extra['entity']['quick_link_set']['display']['quicklinks_list'] = [
+    'description' => t('Places the provided links from field_links into a rendered list with options'),
+    'label'       => t('Quicklinks'),
+    'weight'      => 0,
+    'visible'     => TRUE,
+  ];
+
+  return $extra;
+}
+
+/**
+ * Implements hook_preprocess_HOOK(). (paragraph)
+ */
+function rw_quicklinks_preprocess_paragraph(&$variables) {
+  $paragraph = $variables['paragraph'];
+
+  if ($paragraph->bundle() == 'rw_quicklink') {
+    $subtitle       = $paragraph->get('field_subtitle')->value;
+
+    $quicklink_sets = $paragraph->get('field_quicklink_set_ref')->referencedEntities();
+    $quicklink_set  = reset($quicklink_sets);
+    $class          = !($quicklink_set->get('field_class_string')->isEmpty()) ? $quicklink_set->get('field_class_string')->value : '';
+
+    $variables['subtitle_class_string']      = 'quicklinks--' . _rw_quicklinks_string_to_class($subtitle) . '--wrapper';
+    $variables['quicklink_set_class_string'] = _rw_quicklinks_string_to_class($class);
+
+    // kint($quicklink_set, $paragraph);
+  }
+}
+
+/**
+ * Implements hook_preprocess_entity().
+ */
+function rw_quicklinks_preprocess_quick_link_set(&$variables) {
+  // $entity = $variables['entity'];
+  // kint($variables);
+}
+
+/**
+ * Implements hook_help().
+ */
+function rw_quicklinks_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rw_quicklinks module.
+    case 'help.page.rw_quicklinks':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides custom content entities to save sets of links to be used in paragraphs and other entities') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_ENTITY_TYPE_view() (quicklink set)
+ *
+ * Display a quicklink set
+ */
+function rw_quicklinks_quick_link_set_view(array &$build, EntityInterface $quickset, EntityViewDisplayInterface $display, $view_mode) {
+  // Add the stylesheets for displaying quicklink sets
+  $build['#attached']['library'][] = 'rw_quicklinks/quicklinks';
+
+//  if (!$quickset->get('field_links')->isEmpty) {
+//    foreach ($quickset->field_links->getIterator() as $link) {
+//      // kint($link);
+//    }
+//  }
+
+  // kint($build);
+}
+
+/**
+ * Implements hook_preprocess_paragraph()
+ *
+ * Customise the output of the referenced entitied depending on the
+ * display mode chosen for the paragraph. The "display mode" here is
+ * ambigious, as it's not a view mode, instead referring to a value
+ * of a field of said paragraph.
+ */
+//function rw_quicklinks_preprocess_paragraph(&$variables) {
+//  $paragraph = $variables['paragraph'];
+//
+//  if ($paragraph->bundle() == 'rw_quicklink') {
+//    // AE: dammit.. I messed up the machine name for this paragraph type
+//    // @TODO: Duplicate paragraph bundle machine name
+//    // @TODO: While we're duping the bundle, pluralise the bundle name
+//
+//    // Let's add a theme function in here to test options
+//    $items = [
+//      '#theme' => 'item_list',
+//      '#type' => 'ul',
+//      '#attributes' => [],
+//      '#wrapper_attributes' => [],
+//      '#items' => ['apple', 'orange', 'leaf'],
+//    ];
+//    $quicklinks_list = [
+//      '#theme'         => 'quicklinks__list',
+//      '#quicklinks'    => $items,
+//      '#is_inline'     => FALSE,
+//      '#use_link_text' => TRUE,
+//      '#use_link_url'  => FALSE,
+//    ];
+//
+//    $variables['rw_quicklink_set'] = $quicklinks_list;
+//    kint($variables);
+//  }
+//  // kint($variables);
+//
+//}
+
+/**
+ * Implements hook_preprocess_HOOK (quick_link_set)
+ *
+ * Format the links into a list as defined by passed variables
+ */
+//function rw_quicklinks_preprocess_entity(&$variables) {
+//  kint($variables);
+//}
+
+/**
+ * Provide a custom template for the paragraph bundle
+ */
+function rw_quicklinks_theme() {
+  $theme = array();
+
+  $theme['paragraph__rw_quicklink'] = array(
+    'base hook' => 'paragraph',
+    'path'      => drupal_get_path('module', 'rw_quicklinks') . '/templates',
+  );
+
+  // A formatter for the quicklink set list
+  // @TODO: Add options for display into either entity or block (?)
+  $theme['quicklinks__list'] = array(
+    'render element'  => 'quicklinks',
+    'variables'       => array(
+      'quicklinks'    => array(),
+      'is_inline'     => FALSE,
+      'use_link_text' => TRUE,
+      'use_link_url'  => FALSE,
+    ),
+  );
+
+  return $theme;
+}
+
+
+/**
+ * Local function to convert user input into a friendly class name *
+ *
+ * @param $string
+ *   The raw user input string
+ *
+ * @return null|string|string[]
+ *   The cleaned string
+ */
+function _rw_quicklinks_string_to_class($string) {
+  //Lower case everything
+  $string = strtolower($string);
+  //Make alphanumeric (removes all other characters)
+  $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+  //Clean up multiple dashes or whitespaces
+  $string = preg_replace("/[\s-]+/", " ", $string);
+  //Convert whitespaces and underscore to dash
+  $string = preg_replace("/[\s_]/", "-", $string);
+  return $string;
+}

@@ -1,0 +1,5 @@
+entity_display:
+  version: 1.0
+  css:
+    theme:
+      css/rw_organisation.theme.entity.css: {}

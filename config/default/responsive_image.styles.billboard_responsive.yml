@@ -1,0 +1,13 @@
+uuid: 8f9bf6bf-a1bf-4731-8a29-0d4d74fef2a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.billboard
+  theme:
+    - liibarrio2020
+id: billboard_responsive
+label: Billboard
+image_style_mappings: {  }
+breakpoint_group: liibarrio2020
+fallback_image_style: billboard

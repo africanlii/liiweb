@@ -1,0 +1,14 @@
+{#
+/**
+* @file
+* Default theme implementation to display a block.
+*
+* @see template_preprocess_block()
+*
+* @ingroup themeable
+*/
+#}
+
+<div{{ attributes.addClass('custom-text-block') }}>
+	{{ text|raw }}
+</div>

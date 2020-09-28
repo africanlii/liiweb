@@ -1,0 +1,30 @@
+add organisation entities:
+  title: 'Create new Organisation entities'
+
+administer organisation entities:
+  title: 'Administer Organisation entities'
+  description: 'Allow to access the administration form to configure Organisation entities.'
+  restrict access: true
+
+delete organisation entities:
+  title: 'Delete Organisation entities'
+
+edit organisation entities:
+  title: 'Edit Organisation entities'
+
+view published organisation entities:
+  title: 'View published Organisation entities'
+
+view unpublished organisation entities:
+  title: 'View unpublished Organisation entities'
+
+view all organisation revisions:
+  title: 'View all Organisation revisions'
+
+revert all organisation revisions:
+  title: 'Revert all Organisation revisions'
+  description: 'Role requires permission <em>view Organisation revisions</em> and <em>edit rights</em> for organisation entities in question or <em>administer organisation entities</em>.'
+
+delete all organisation revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Organisation revisions</em> and <em>delete rights</em> for organisation entities in question or <em>administer organisation entities</em>.'

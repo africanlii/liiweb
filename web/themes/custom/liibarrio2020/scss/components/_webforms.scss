@@ -1,0 +1,10 @@
+#webform-submission-contact-add-form {
+  .form-actions {
+    margin-top: $spacer-lg;
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+      text-align: left;
+    }
+  }
+}

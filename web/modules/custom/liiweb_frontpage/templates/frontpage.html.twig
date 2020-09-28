@@ -1,0 +1,28 @@
+
+
+<div{{attributes.addClass(classes)}}>
+
+	{% block content %}
+			<div class="hero--content"> <div class="container">
+					{{ background_image }}
+				<div class="content">
+					<div class="title-area">
+						<h1 {{ title_attributes.addClass('hero--page-title', 'page-title') }}>{{ title }}</h1>
+						<span>{{ sub_title }}</span>
+					</div>
+					<div class="hero--search_form-block">
+						{{ search_form }}
+					</div>
+					<div class="hero--partner-block">
+						<h2>In partnership & with support of<h2>
+						{{ block_partner }}
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+</div>
+<!-- .block-node-hero-block -->
+

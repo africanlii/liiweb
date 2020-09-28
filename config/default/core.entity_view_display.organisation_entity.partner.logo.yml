@@ -1,0 +1,43 @@
+uuid: 3066c52e-2157-477c-82c9-2c07780cd7a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.organisation_entity.logo
+    - field.field.organisation_entity.partner.field_image
+    - field.field.organisation_entity.partner.field_logo_ref
+    - field.field.organisation_entity.partner.field_partner
+    - field.field.organisation_entity.partner.field_support_partner
+    - rw_organisation.organisation_entity_type.partner
+  module:
+    - ds
+id: organisation_entity.partner.logo
+targetEntityType: organisation_entity
+bundle: partner
+mode: logo
+content:
+  field_logo_ref:
+    type: entity_reference_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: logo
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+hidden:
+  field_image: true
+  field_partner: true
+  field_support_partner: true
+  langcode: true
+  name: true
+  organisation_logo__linked: true
+  search_api_excerpt: true
+  user_id: true

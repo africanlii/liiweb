@@ -23,12 +23,6 @@ dependencies:
 third_party_settings:
   feeds_tamper:
     tampers:
-      cab2777c-11cd-427a-8735-d93d9f0c45a8:
-        plugin: strtotime
-        source: _judgment_date_
-        weight: -9
-        label: 'String to Unix Timestamp'
-        uuid: cab2777c-11cd-427a-8735-d93d9f0c45a8
       985cab1b-6dec-4831-84ba-89545ec6350a:
         separator: ',%s'
         limit: null
@@ -45,14 +39,6 @@ third_party_settings:
         weight: -10
         label: 'Set value or default value'
         uuid: 14c0c7f9-ed8b-4a00-958d-4d5b26c9404a
-      34bebc22-0567-404c-9ab5-664657d6b1bf:
-        default_value: ' '
-        only_if_empty: true
-        plugin: default_value
-        source: _judgment_date_
-        weight: -10
-        label: 'Set value or default value'
-        uuid: 34bebc22-0567-404c-9ab5-664657d6b1bf
 id: judgment_importer
 label: 'Judgment Importer'
 description: 'Import content types of Judgment via json'
@@ -229,13 +215,6 @@ mappings:
     settings:
       language: ''
       format: full_html
-  -
-    target: field_judgment_date
-    map:
-      value: _judgment_date_
-    settings:
-      language: null
-      timezone: UTC
   -
     target: field_judgment_number_override
     map:
