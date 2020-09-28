@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
+    - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
@@ -130,6 +131,9 @@ third_party_settings:
     group_housekeeping:
       children:
         - field_external_link
+        - field_judgment_mnc_old
+        - field_judgment_old_nid
+        - field_case_number_old
       parent_name: group_group
       weight: 25
       format_type: tab
@@ -184,6 +188,14 @@ content:
     third_party_settings: {  }
     type: number
     region: content
+  field_case_number_old:
+    type: string_textfield
+    weight: 25
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_case_number_year:
     weight: 15
     settings:
@@ -243,13 +255,13 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_judgment_mnc_old:
-    weight: 8
+    type: string_textfield
+    weight: 23
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_judgment_number:
     weight: 17
     settings: {  }
@@ -264,12 +276,12 @@ content:
     type: number
     region: content
   field_judgment_old_nid:
-    weight: 9
+    type: number
+    weight: 24
+    region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
-    region: content
   field_law_report_citations:
     weight: 22
     settings:
@@ -305,7 +317,7 @@ content:
     type: text_textarea_with_summary
     region: content
   field_tags:
-    weight: 10
+    weight: 8
     settings:
       match_operator: CONTAINS
       match_limit: 10

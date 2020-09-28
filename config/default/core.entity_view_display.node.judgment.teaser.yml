@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
+    - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
@@ -103,6 +104,10 @@ hidden:
   feeds_item: true
   field_case_name: true
   field_case_number: true
+  field_case_number_numeric: true
+  field_case_number_old: true
+  field_case_number_year: true
+  field_court_name: true
   field_date: true
   field_external_link: true
   field_files: true
