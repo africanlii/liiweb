@@ -1,0 +1,140 @@
+.page-view-index-search-gazettes {
+  .layout-main,
+  .layout-sidebar {
+    @include liibarrio-box();
+  }
+
+  .layout-main {
+    border-right: none;
+  }
+
+  .layout-sidebar {
+    flex: 0 1 80px;
+    border-left: none;
+  }
+}
+
+body.gazettes.path-node {
+  .gazette-date-facet-list {
+    @include liibarrio-box();
+
+    .js-facets-links {
+      @include make-row();
+      margin: 0;
+      margin-top: $spacer-md;
+
+      .facet-item {
+        @include make-col-ready();
+
+        a {
+          text-decoration: none;
+        }
+
+        &.facets-reset {
+          font-size: $h2-font-size;
+          margin-bottom: 1rem;
+
+          a {
+            cursor: default;
+          }
+        }
+      }
+
+      .facet-item:not(.facets-reset) {
+        margin-bottom: $spacer-md;
+
+        @include media-breakpoint-up(md) {
+          @include make-col(3);
+          justify-content: center;
+        }
+
+        a {
+          display: block;
+          padding-top: 2rem;
+          padding-bottom: 2rem;
+          background: $gray-very-light;
+
+          &:hover,
+          &:focus {
+            background: darken($gray-very-light, 5%);
+          }
+        }
+
+        .facet-item {
+          &__value,
+          &__count {
+            display: block;
+            text-align: center;
+          }
+
+          &__value {
+            font-size: $h2-font-size;
+            font-weight: 700;
+          }
+
+          &__count {
+            font-size: $h3-font-size;
+
+            &:before {
+              content: "\f080";
+              color: $primary;
+              font-family: "Font Awesome 5 Free";
+              font-weight: 900;
+              margin-right: 0.5rem;
+            }
+
+            &:after {
+              content: " gazette(s)";
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+body.gazettes-search-year {
+  .gazette-date-facet-list {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    margin-left: 1rem;
+    padding-left: 2rem;
+
+    &:before {
+      content: "\f080";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      color: $primary;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      margin-right: 0.5rem;
+    }
+
+    .facet-item {
+      display: inline-block;
+      &.facets-reset {
+        display: block;
+        margin-bottom: 0.5rem;
+
+        a {
+          text-decoration: none;
+          cursor: default;
+          color: lighten($body-color, 20%);
+        }
+      }
+
+      &:not(.facets-reset) {
+        .facet-item__count {
+          display: none;
+        }
+
+        .facet-item__value {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}

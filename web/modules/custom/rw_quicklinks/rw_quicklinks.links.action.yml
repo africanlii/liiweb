@@ -1,0 +1,6 @@
+entity.quick_link_set.add_form:
+  route_name: entity.quick_link_set.add_form
+  title: 'Add Quicklink set'
+  appears_on:
+    - entity.quick_link_set.collection
+    - view.rw_quicklinks.pg_collection

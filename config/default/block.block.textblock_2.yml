@@ -1,0 +1,29 @@
+uuid: cd513cb8-0036-4065-b10d-281ea484162a
+langcode: en
+status: true
+dependencies:
+  module:
+    - liiweb
+    - system
+  theme:
+    - liibarrio2020
+id: textblock_2
+theme: liibarrio2020
+region: sidebar_second
+weight: -15
+provider: null
+plugin: text_block
+settings:
+  id: text_block
+  label: 'About <this> LII'
+  provider: liiweb
+  label_display: visible
+  text:
+    value: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Atqui reperies, inquit, in hoc quidem pertinacem; Quodsi ipsam honestatem undique pertectam atque absolutam. Primum quid tu dicis breve? Negat enim summo bono afferre incrementum diem.</p>\r\n"
+    format: full_html
+visibility:
+  request_path:
+    id: request_path
+    pages: "<front>\r\n/about"
+    negate: false
+    context_mapping: {  }

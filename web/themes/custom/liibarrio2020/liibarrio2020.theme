@@ -1,0 +1,89 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the SASS Starterkit subtheme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\block\Entity\Block;
+
+/**
+ * Implements hook_form_system_theme_settings_alter() for settings form.
+ *
+ * Replace Barrio setting options with subtheme ones.
+ */
+function liibarrio2020_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
+  $form['components']['navbar']['bootstrap_barrio_navbar_top_background']['#options'] = array(
+    'bg-primary' => t('Primary'),
+    'bg-secondary' => t('Secondary'),
+    'bg-light' => t('Light'),
+    'bg-dark' => t('Dark'),
+    'bg-white' => t('White'),
+    'bg-transparent' => t('Transparent'),
+  );
+  $form['components']['navbar']['bootstrap_barrio_navbar_background']['#options'] = array(
+    'bg-primary' => t('Primary'),
+    'bg-secondary' => t('Secondary'),
+    'bg-light' => t('Light'),
+    'bg-dark' => t('Dark'),
+    'bg-white' => t('White'),
+    'bg-transparent' => t('Transparent'),
+  );
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() (block)
+ */
+function liibarrio2020_theme_suggestions_block_alter(array &$suggestions, array $variables)
+{
+  if (!empty($variables['elements']['#id'])) {
+    $block = Block::load($variables['elements']['#id']);
+    array_unshift($suggestions, 'block__' . $block->getRegion());
+    array_unshift($suggestions, 'block__' . $block->getRegion() . '__' . $variables['elements']['#id']);   
+  }
+  
+  return $suggestions;
+}
+
+/**
+ * Implements hook_page_attachments_alter() for page templates.
+ */
+function liibarrio2020_page_attachments_alter(&$page) {
+  $viewport = [
+    '#type' => 'html_tag',
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'viewport',
+      'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1',
+    ],
+  ];
+  $page['#attached']['html_head'][] = [$viewport, 'viewport'];
+}
+
+/**
+ * Implements hook_input_alter()
+ */
+function liibarrio2020_theme_suggestions_input_alter(&$suggestions, array $variables) {
+  $element = $variables['element'];
+  if (isset($element['#attributes']['data-drupal-selector'])) {
+    $suggestion_suffix = str_replace(['-'], '_', $element['#attributes']['data-drupal-selector']);
+    $suggestions[] = 'input__' . $element['#type'] . '__' . $suggestion_suffix;
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK() (html)
+ */
+function liibarrio2020_preprocess_html(&$variables) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+  $path_alias = ltrim($path_alias, '/');
+  $variables['attributes']['class'][] = \Drupal\Component\Utility\Html::cleanCssIdentifier($path_alias);
+}
+
+
+// function liibarrio2020_preprocess_ds_entity_view(&$variables)  {
+//   // dump page variables
+//   kint($variables);
+// }

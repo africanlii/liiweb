@@ -1,0 +1,86 @@
+<?php
+
+/**
+ * @file
+ * Contains rw_organisation.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\rw_organisation\Entity\OrganisationEntityType;
+
+/**
+ * Implements hook_help().
+ */
+function rw_organisation_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rw_organisation module.
+    case 'help.page.rw_organisation':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides content entity specifically more suited for capturing businesses or organisations for building directories or references for user-generated content') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_extra_field_info()
+ *
+ * Provide a pseudo-field that renders the logo of an organisation to the
+ * provided url (in a new window) if provided
+ */
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function rw_organisation_entity_extra_field_info() {
+  $extra = [];
+  
+  foreach (OrganisationEntityType::loadMultiple() as $bundle) {
+    $extra['organisation_entity'][$bundle->id()]['display']['organisation_logo__linked'] = [
+      'label'       => t('Logo/Image (linked)'),
+      'description' => t('Logo/Image linked to the URL provided in the Link field (field_url)'),
+      'weight'      => 100,
+      'visible'     => FALSE, // Not enabled by default, because reasons
+    ];
+  }
+  
+  return $extra;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function rw_organisation_theme() {
+  $theme = [];
+  $theme['organisation_entity'] = [
+    'render element' => 'elements',
+    'file'           => 'organisation_entity.page.inc',
+    'template'       => 'organisation_entity',
+  ];
+  $theme['organisation_entity_content_add_list'] = [
+    'render element' => 'content',
+    'variables'      => ['content' => NULL],
+    'file'           => 'organisation_entity.page.inc',
+  ];
+  return $theme;
+}
+
+/**
+* Implements hook_theme_suggestions_HOOK().
+*/
+function rw_organisation_theme_suggestions_organisation_entity(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#organisation_entity'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'organisation_entity__' . $sanitized_view_mode;
+  $suggestions[] = 'organisation_entity__' . $entity->bundle();
+  $suggestions[] = 'organisation_entity__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'organisation_entity__' . $entity->id();
+  $suggestions[] = 'organisation_entity__' . $entity->id() . '__' . $sanitized_view_mode;
+
+  return $suggestions;
+}

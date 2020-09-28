@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies: {  }
+name: square_scale_md
+label: 'Scale to square (no cropping or upscaling) - Medium'
+effects:
+  6f50a55b-d6d6-4f3d-9cda-d9cfb9b3256a:
+    uuid: 6f50a55b-d6d6-4f3d-9cda-d9cfb9b3256a
+    id: image_scale
+    weight: 1
+    data:
+      width: 800
+      height: 800
+      upscale: false
+  cdd6f914-747d-4ef5-a6fa-c37fc70c8c6c:
+    uuid: cdd6f914-747d-4ef5-a6fa-c37fc70c8c6c
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 640
+      height: 640
+      anchor: center-center

@@ -1,0 +1,26 @@
+.layout-hero {
+  position: relative;
+  margin: $spacer-md 0;
+  border-top: $white 2px solid;
+  border-bottom: $white 2px solid;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  &:before {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: $white;
+    opacity: 0.5;
+  }
+
+  &__content {
+    height: 0; //height value needed for IE11
+    min-height: 21.875rem; //350px
+    padding: 0 $spacer-lg;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}

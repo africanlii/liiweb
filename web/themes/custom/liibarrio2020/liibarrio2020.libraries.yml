@@ -1,0 +1,41 @@
+global-styling:
+  version: VERSION
+  js:
+    js/popper.min.js: {}
+    js/bootstrap.min.js: {}
+    js/ie11.js: {}
+    js/global.js: {}
+  css:
+    component:
+      css/main.css: {}
+
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+nicescroll:
+  remote: https://github.com/inuyaksa/jquery.nicescroll
+  version: 3.7.6
+  license:
+    name: MIT
+    url: https://github.com/inuyaksa/jquery.nicescroll/blob/master/MIT.LICENSE
+    gpl-compatible: true
+  js:
+    ? //cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js
+    : { type: external, minified: true }
+    js/niceScroll.js: {}
+
+legislation-content:
+  version: VERSION
+  css:
+    theme:
+      css/indigo-web.css: {}
+  js:
+    js/legislation.js: {}
+
+font-awesome-replace:
+  version: VERSION
+  js:
+    js/fontAwesomeReplace.js: {}
+  dependencies:
+    - core/jquery

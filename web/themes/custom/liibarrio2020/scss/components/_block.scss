@@ -1,0 +1,691 @@
+.block {
+  & > h6 {
+    margin-bottom: $spacer-md;
+    line-height: 1.25rem;
+
+    @include media-breakpoint-up(md) {
+      max-width: 11rem;
+    }
+  }
+}
+
+// Pre-header
+// Navigation
+#block-liiwebsupportnavblock {
+  .item-list {
+    .list-group-item {
+      background: transparent;
+      padding: 0;
+      border: none;
+      line-height: $pre-header-height-desktop;
+
+      @include media-breakpoint-down(lg) {
+        font-size: 0;
+      }
+    }
+
+    svg {
+      width: 1.125rem;
+      height: 1.125rem;
+      margin-right: 0.2rem;
+      margin-left: 1rem;
+
+      &:hover {
+        path {
+          fill: $primary;
+        }
+      }
+
+      path {
+        fill: $body-color;
+      }
+    }
+  }
+
+  & + .block {
+    margin-left: $spacer-xl;
+  }
+}
+// Search
+#block-advancedsearchblock {
+  .btn {
+    height: $pre-header-height-desktop;
+  }
+
+  fieldset,
+  .form-row > div {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  .form-text:focus,
+  .custom-select:focus {
+    box-shadow: inset 0 0 0 0.2rem rgba(50, 111, 209, 0.25);
+  }
+
+  .form-text {
+    height: $pre-header-height-desktop;
+    max-width: 17.5rem;
+    margin-top: 0;
+    border: none;
+  }
+
+  .js-form-type-select {
+    position: relative;
+    @include media-breakpoint-down(sm) {
+      @include sr-only();
+    }
+
+    &:before {
+      content: "\f107";
+      display: block;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      color: $body-color;
+      z-index: -1;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: -2;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $white;
+    }
+  }
+
+  .custom-select {
+    height: $pre-header-height-desktop;
+    border-bottom: 0;
+    border-top: 0;
+    background: transparent;
+  }
+
+  #search-form {
+    display: flex;
+    @include media-breakpoint-down(sm) {
+      max-width: 14rem;
+    }
+  }
+}
+
+// Hero
+#block-views-block-billboard-block-billboard-hero,
+#block-views-block-billboard-block-billboard-hero--2 {
+  h1,
+  .field--name-field-sub-title {
+    font-weight: 300;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    line-height: 1;
+  }
+
+  h3 {
+    font-size: 0.75rem;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    font-weight: 400;
+  }
+
+  .field--name-field-sub-title {
+    font-size: 1.5rem;
+    margin-bottom: $spacer-xl;
+  }
+
+  // Paragraph - Search block
+  .search-form {
+    display: flex;
+    margin-bottom: $spacer-lg;
+
+    .form-group {
+      margin-bottom: 0;
+    }
+
+    .form-item-search {
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control:focus {
+      box-shadow: inset 0 0 0 0.2rem rgba(50, 111, 209, 0.25);
+    }
+
+    input,
+    .btn {
+      height: 2.5rem;
+      border: none;
+    }
+
+    input {
+      margin-top: 0;
+    }
+  }
+
+  // Paragraph - Partner block
+  .block-views-blockrw-organisations-block-partner-hero {
+    .view-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+
+      @include media-breakpoint-up(md) {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+// Billboard - Intro
+#block-views-block-billboard-block-billboard-intro,
+#block-views-block-billboard-block-billboard-intro--2 {
+  margin-bottom: 1.75rem;
+
+  .block-views-blockrw-organisations-block-partner-hero {
+    h3 {
+      font-weight: 400;
+      font-size: 0.75rem;
+    }
+
+    .view-content {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .views-row:not(:first-child) {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+// Main
+#block-liibarrio2020-mainpagecontent {
+  & + .block {
+    margin-top: 0;
+  }
+}
+
+// Content Top
+#block-views-block-country-block-country-carousel,
+#block-views-block-country-block-country-carousel--2 {
+  margin-bottom: $spacer-lg;
+}
+
+// Sidebar - First
+.block-views-exposed-filter-blocks-block.block-sidebar-first {
+  .form-item-search-api-fulltext {
+    width: 100%;
+    flex: auto;
+    padding-right: 0;
+  }
+
+  // label {
+  //   @include sr-only();
+  // }
+
+  .form-control:focus {
+    box-shadow: inset 0 0 0 0.2rem rgba(50, 111, 209, 0.25);
+  }
+
+  // .form-row {
+  //   flex-wrap: nowrap;
+  // }
+
+  .form-actions {
+    padding-left: 0;
+  }
+}
+
+// .block-facets-block.block-sidebar-first {
+//   @include liibarrio-box();
+// }
+
+.block-gazettes-search-block {
+  margin-bottom: 1.5rem;
+
+  #gazettes-search-form {
+    display: flex;
+
+    & > .js-form-item {
+      margin-bottom: 0;
+      flex: 0 1 100%;
+
+      input {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.block-views-exposed-filter-blocks-block {
+  #views-exposed-form-liiweb-search-page-search {
+    label {
+      margin-bottom: 0;
+    }
+
+    .form-row {
+      & > .js-form-item,
+      & > .form-actions {
+        @include make-col-ready();
+        margin-bottom: $spacer-md;
+
+        label {
+          font-weight: 700;
+        }
+      }
+
+      .js-form-item-field-date-min {
+        @include make-col(12);
+
+        @include media-breakpoint-up(md) {
+          @include make-col(6);
+          padding-right: $spacer-sm;
+        }
+      }
+      .js-form-item-field-date-max {
+        @include make-col(12);
+
+        @include media-breakpoint-up(md) {
+          @include make-col(6);
+          padding-left: $spacer-sm;
+        }
+
+        label {
+          @include media-breakpoint-down(sm) {
+            @include sr-only();
+          }
+          @include media-breakpoint-up(md) {
+            visibility: hidden;
+          }
+        }
+      }
+
+      .js-form-submit {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.block-facets-block {
+  &.block-content-top {
+    padding: $spacer-md 0;
+    margin-bottom: $spacer-xl;
+
+    @include media-breakpoint-down(md) {
+      margin-top: $spacer-xl;
+    }
+
+    .facet-item a {
+      position: relative;
+
+      .js-facet-deactivate .facet-item__value {
+        font-weight: 700;
+      }
+    }
+
+    .facets-widget-title {
+      font-weight: 700;
+    }
+
+    .facet-item__count {
+      position: absolute;
+      top: -$spacer-md;
+      color: $white;
+      font-size: 0.5rem;
+      line-height: 1;
+
+      &:before {
+        @include absolute-center();
+        content: "";
+        display: block;
+        width: 1.25rem;
+        height: 1.25rem;
+        background: $green-light;
+        z-index: -1;
+        border-radius: 50%;
+      }
+    }
+
+    a[data-drupal-facet-item-id="content-type-government-gazette"]
+      .facet-item__count:before {
+      background: $brand-yellow;
+    }
+
+    a[data-drupal-facet-item-id="content-type-legislation"]
+      .facet-item__count:before {
+      background: $brand-blue;
+    }
+
+    a[data-drupal-facet-item-id="content-type-judgment"]
+      .facet-item__count:before {
+      background: $brand-magenta;
+    }
+
+    .facet-block .item-list__links {
+      display: flex;
+      justify-content: flex-start;
+      text-align: center;
+
+      .facet-item {
+        flex: 0 1 auto;
+
+        @include media-breakpoint-down(md) {
+          margin: 0 1.2rem;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+
+        @include media-breakpoint-up(md) {
+          margin: 0 0.4rem;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+
+        @include media-breakpoint-up(lg) {
+          margin: 0 2.5rem;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  &.block-sidebar-first {
+    .facets-widget-links {
+      margin-top: $spacer-md;
+    }
+    .facet-hidden {
+      @include sr-only();
+    }
+  }
+
+  .facet-block {
+    &__content {
+      .item-list__links {
+        @include list-unstyled();
+        margin: 0 5px;
+        margin-bottom: 0;
+
+        a.is-active {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+
+// Sidebar - Second
+#block-webform.block-second-sidebar {
+  @include liibarrio-box($spacer-lg);
+  margin-bottom: 1rem;
+
+  button {
+    width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 0.625rem;
+  }
+
+  .webform-actions {
+    margin-bottom: 0;
+  }
+}
+
+#block-contactblock.block-second-sidebar {
+  @include liibarrio-box($spacer-lg);
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .content {
+    padding-left: 0.4rem;
+  }
+
+  .list-group-item {
+    padding: 0;
+    padding-top: 0.875rem;
+    border: none;
+    background-color: transparent;
+  }
+
+  .item-list {
+    margin-bottom: $spacer-lg;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .fas,
+  .fa,
+  .fab {
+    padding-right: 1rem;
+  }
+}
+
+#block-gazettes-date-facets-block,
+.block-facets-ajax.js-facet-block-id-gazettes_date_facets_block {
+  .facet-block {
+    ul {
+      display: flex;
+      flex-direction: column-reverse;
+      padding: $spacer-sm;
+
+      .is-active {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+// Footer blocks
+#block-views-block-rw-organisations-footer-our-partners {
+  margin: $spacer-xl 0 0;
+  text-align: center;
+
+  @include media-breakpoint-up(md) {
+    margin: 0 0 $spacer-xl;
+    text-align: left;
+  }
+}
+
+#block-views-block-rw-organisations-footer-support {
+  text-align: center;
+  margin-top: $spacer-xl;
+
+  @include media-breakpoint-up(md) {
+    text-align: left;
+  }
+}
+
+#block-views-block-country-block-country-footer {
+  @include media-breakpoint-down(md) {
+    margin-top: $spacer-xl;
+    text-align: center;
+  }
+
+  .title {
+    font-size: $h6-font-size;
+    @include media-breakpoint-up(md) {
+      max-width: 14rem;
+    }
+  }
+
+  .content {
+    padding-left: 38%;
+    @include media-breakpoint-up(md) {
+      padding-left: 1.25rem;
+    }
+  }
+}
+
+// Homepage blocks
+#block-views-block-judgment-block-recent-judgment,
+#block-views-block-legislation-block-recent-registration,
+#block-views-block-gazettes-listing-block-latest-gazette {
+  margin-top: 1.5rem;
+
+  & > h3 {
+    padding-left: $spacer-lg;
+  }
+
+  .content {
+    background: $white;
+  }
+}
+
+// Judgment landing
+#block-legislationviewtabsblock,
+#block-judgmentviewtabsblock {
+  @include liibarrio-box();
+
+  & > .content {
+    & .nav {
+      margin-bottom: 1.5rem;
+
+      .nav-item {
+        padding: 0.5rem 1rem;
+      }
+      .nav-link {
+        text-decoration: underline;
+        padding: 0 $spacer-md;
+
+        &.active {
+          position: relative;
+          background: transparent;
+          color: $body-color;
+          font-weight: 700;
+          text-decoration: none;
+
+          &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.75rem;
+            height: $spacer-md;
+            width: 100%;
+            background: $secondary;
+          }
+        }
+      }
+    }
+  }
+
+  .view {
+    margin-top: 1rem;
+  }
+}
+
+//Sidebar blocks
+#block-textblock {
+  @include media-breakpoint-down(md) {
+    padding: 0 $spacer-md;
+  }
+}
+
+#block-textblock-2 {
+  @include media-breakpoint-down(md) {
+    padding: 0 $spacer-md;
+  }
+
+  @include media-breakpoint-up(md) {
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+#block-views-block-rw-organisations-block-1 {
+  margin-bottom: $spacer-xl;
+
+  .view-content {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-bottom: $spacer-xl;
+
+    @include media-breakpoint-up(md) {
+      padding-bottom: 0;
+      justify-content: space-between;
+    }
+  }
+}
+
+#block-socialnewstimeline {
+  & > nav {
+    position: relative;
+  }
+
+  .nav-link.active {
+    background: $white;
+    border-bottom: 1px solid $white;
+  }
+
+  .tab-content {
+    background: $white;
+    border: 1px solid $border-color;
+    border-top: none;
+  }
+
+  .tab-pane {
+    min-height: 25rem;
+  }
+
+  #nav-twitter {
+    position: relative;
+    margin-bottom: -6px;
+
+    .ie11-twitter-message {
+      @include absolute-center();
+      text-align: center;
+    }
+  }
+
+  #nav-twitter-tab {
+    position: relative;
+    color: $twitter-brand;
+
+    &:hover {
+      color: darken($twitter-brand, 10%);
+    }
+
+    // Needed to hide the missing border - JA
+    &:before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      bottom: -1px;
+      width: 1px;
+      height: 1px;
+      background: $border-color;
+    }
+  }
+
+  #nav-facebook-tab {
+    color: $facebook-brand;
+
+    &:hover {
+      color: darken($facebook-brand, 10%);
+    }
+  }
+}

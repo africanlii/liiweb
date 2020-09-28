@@ -1,0 +1,110 @@
+uuid: 3f32f7a6-b40e-4cbf-9d68-b383e31a6829
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.legislation.field_as_at
+    - field.field.node.legislation.field_commencement_date
+    - field.field.node.legislation.field_content
+    - field.field.node.legislation.field_created
+    - field.field.node.legislation.field_created_by_api
+    - field.field.node.legislation.field_date
+    - field.field.node.legislation.field_expression_date
+    - field.field.node.legislation.field_external_link
+    - field.field.node.legislation.field_files
+    - field.field.node.legislation.field_frbr_uri
+    - field.field.node.legislation.field_images
+    - field.field.node.legislation.field_lifecycle_json
+    - field.field.node.legislation.field_parent_work
+    - field.field.node.legislation.field_publication_name
+    - field.field.node.legislation.field_raw_json
+    - field.field.node.legislation.field_repeal
+    - field.field.node.legislation.field_stub
+    - field.field.node.legislation.field_tags
+    - field.field.node.legislation.field_toc
+    - node.type.legislation
+  module:
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_2col_9_3
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          left: div
+          right: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          left: {  }
+          right: {  }
+    regions:
+      left:
+        - node_title
+        - search_api_excerpt
+      right:
+        - field_publication_name
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h2
+          class: h3
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.legislation.search_result
+targetEntityType: node
+bundle: legislation
+mode: search_result
+content:
+  field_publication_name:
+    type: string
+    weight: 1
+    region: right
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  search_api_excerpt:
+    weight: 2
+    region: left
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_as_at: true
+  field_commencement_date: true
+  field_content: true
+  field_created: true
+  field_created_by_api: true
+  field_date: true
+  field_expression_date: true
+  field_external_link: true
+  field_files: true
+  field_frbr_uri: true
+  field_images: true
+  field_lifecycle_json: true
+  field_parent_work: true
+  field_raw_json: true
+  field_repeal: true
+  field_stub: true
+  field_tags: true
+  field_toc: true
+  langcode: true
+  links: true

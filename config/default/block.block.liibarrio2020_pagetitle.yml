@@ -1,0 +1,34 @@
+uuid: 17120c2f-66b1-4e15-b38b-dfec2045bbe5
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - system
+  theme:
+    - liibarrio2020
+id: liibarrio2020_pagetitle
+theme: liibarrio2020
+region: content_top
+weight: -17
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      billboard: billboard
+      page: page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: "<front>\r\n/about\r\n/feedback\r\n/help\r\n/gazettes"
+    negate: true
+    context_mapping: {  }

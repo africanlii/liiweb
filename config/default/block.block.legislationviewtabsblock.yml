@@ -1,0 +1,26 @@
+uuid: 91ecbd6f-b893-48ed-bbb9-f14c48b15d5e
+langcode: en
+status: true
+dependencies:
+  module:
+    - liiweb_legislation
+    - system
+  theme:
+    - liibarrio2020
+id: legislationviewtabsblock
+theme: liibarrio2020
+region: content_bottom
+weight: -16
+provider: null
+plugin: view_tabs_block
+settings:
+  id: view_tabs_block
+  label: 'Legislation browser'
+  provider: liiweb_legislation
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /legislation
+    negate: false
+    context_mapping: {  }

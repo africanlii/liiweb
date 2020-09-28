@@ -1,0 +1,18 @@
+uuid: 366440da-16a9-430e-9511-13d0194deced
+langcode: en
+status: true
+dependencies:
+  module:
+    - rw_organisation
+id: organisation_entity.field_support_partner
+field_name: field_support_partner
+entity_type: organisation_entity
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

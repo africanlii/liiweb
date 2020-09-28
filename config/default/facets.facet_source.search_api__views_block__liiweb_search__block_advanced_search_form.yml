@@ -1,0 +1,9 @@
+uuid: 255f957b-6767-4c85-a8c2-b5b965593402
+langcode: en
+status: true
+dependencies: {  }
+id: search_api__views_block__liiweb_search__block_advanced_search_form
+name: 'search_api:views_block__liiweb_search__block_advanced_search_form'
+filter_key: null
+url_processor: query_string
+breadcrumb: {  }

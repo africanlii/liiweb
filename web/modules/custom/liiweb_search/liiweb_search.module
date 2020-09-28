@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Contains liiweb_search.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function liiweb_search_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the liiweb_search module.
+    case 'help.page.liiweb_search':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Supplies a search block') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function liiweb_search_form_views_exposed_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $form_ids = [
+    'views-exposed-form-index-page'
+  ];
+  if(in_array($form['#id'], $form_ids)){
+    $form["search"]['#title_display'] = 'after';
+  }
+}

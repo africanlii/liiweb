@@ -1,11 +1,18 @@
 module:
+  address: 0
   admin_toolbar: 0
   admin_toolbar_links_access_filter: 0
+  admin_toolbar_search: 0
   admin_toolbar_tools: 0
+  ajax_loader: 0
   auto_entitylabel: 0
   basic_auth: 0
+  better_exposed_filters: 0
+  bg_image_formatter: 0
+  blazy: 0
   block: 0
   block_content: 0
+  block_field: 0
   breakpoint: 0
   captcha: 0
   chosen: 0
@@ -16,16 +23,25 @@ module:
   computed_field_php_formatter: 0
   config: 0
   config_translation: 0
+  contextual: 0
+  crop: 0
   ctools: 0
+  ctools_block: 0
+  ctools_views: 0
   datetime: 0
   datetime_range: 0
   dblog: 0
   devel: 0
   devel_generate: 0
+  ds_switch_view_mode: 0
   dynamic_page_cache: 0
+  easy_breadcrumb: 0
   editor: 0
+  entity_browser: 0
+  entity_browser_entity_form: 0
   entity_reference_revisions: 0
   facets: 0
+  facets_block: 0
   feeds: 0
   feeds_ex: 0
   feeds_tamper: 0
@@ -35,13 +51,20 @@ module:
   file: 0
   filefield_paths: 0
   filter: 0
+  focal_point: 0
   google_analytics: 0
   image: 0
+  inline_entity_form: 0
   jsonapi: 0
   language: 0
   layout_discovery: 0
   liiweb: 0
   liiweb_api: 0
+  liiweb_custom_view_filters: 0
+  liiweb_gazettes: 0
+  liiweb_judgment: 0
+  liiweb_legislation: 0
+  liiweb_search: 0
   link: 0
   locale: 0
   media: 0
@@ -50,19 +73,30 @@ module:
   options: 0
   path: 0
   path_alias: 0
+  quick_node_clone: 0
   recaptcha: 0
   responsive_image: 0
+  rest: 0
+  rw_organisation: 0
+  rw_quicklinks: 0
   s3fs: 0
   search_api: 0
   search_api_attachments: 0
   search_api_solr: 0
   serialization: 0
+  similarterms: 0
+  slick: 0
+  slick_ui: 0
+  slick_views: 0
   smtp: 0
+  svg_formatter: 0
+  svg_image: 0
   system: 0
   tamper: 0
   taxonomy: 0
   taxonomy_manager: 0
   telephone: 0
+  term_csv_export_import: 0
   text: 0
   title_length: 0
   token: 0
@@ -70,14 +104,16 @@ module:
   toolbar_extras: 0
   update: 0
   user: 0
+  views_exposed_filter_blocks: 0
+  views_infinite_scroll: 0
   views_ui: 0
   webform: 0
   webform_ui: 0
-  webprofiler: 0
   ds: 1
   menu_link_content: 1
   pathauto: 1
   xmlsitemap: 1
+  ds_extras: 2
   content_translation: 10
   views: 10
   paragraphs: 11
@@ -85,11 +121,9 @@ module:
 theme:
   stable: 0
   classy: 0
-  bartik: 0
   seven: 0
   bootstrap_barrio: 0
-  liibarrio: 0
-  namiblii: 0
+  liibarrio2020: 0
 profile: minimal
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

@@ -1,0 +1,26 @@
+{#
+/**
+ * @file quick_link_set.html.twig
+ * Default theme implementation to present Quicklink set data.
+ *
+ * This template is used when viewing Quicklink set pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * Additional variables:
+ * - wrapper_class: A user-supplied string that can be used as an additional
+ *                  class
+ *
+ * @see template_preprocess_quick_link_set()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('quick_link_set') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

@@ -1,0 +1,489 @@
+.view-content {
+  &__title {
+    position: relative;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      width: 45%;
+      background: $border-color;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &:before {
+      left: 0;
+    }
+    &:after {
+      right: 0;
+    }
+    &:not(:first-of-type) {
+      margin-top: $spacer-md;
+    }
+  }
+}
+
+.view-rw-quicklink {
+  padding: 0.875rem;
+  border: solid 1px $border-color;
+  background: $white;
+
+  .views-row:last-child {
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.views-view-grid.horizontal.cols-1 {
+  .views-row {
+    margin-bottom: $spacer-md;
+  }
+}
+
+.view-liiweb-search {
+  .view-content {
+    .views-row {
+      &:not(:first-child) {
+        margin-top: $spacer-md;
+      }
+    }
+  }
+
+  .pagination {
+    margin-top: $spacer-xl;
+  }
+}
+
+.view-id-index_search_legislation,
+.view-id-index_search_judgment {
+  //padding: 0 $spacer-md;
+
+  .view-filters {
+    padding: 0 $spacer-md $spacer-md;
+
+    fieldset {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+
+      &:not(:first-child) {
+        margin-top: $spacer-md;
+      }
+
+      legend {
+        min-width: 5.5rem;
+        margin-bottom: 0;
+        font-size: $font-size-base;
+        width: auto;
+      }
+
+      label {
+        margin-bottom: 0;
+        flex: 0 0 100%;
+
+        @include media-breakpoint-up(lg) {
+          flex-basis: 7.5rem;
+        }
+      }
+
+      input {
+        margin-top: 0;
+      }
+
+      .form-radios {
+        display: flex;
+
+        .custom-control {
+          flex: 0 0 auto;
+        }
+      }
+    }
+
+    .form-row > fieldset {
+      width: 100%;
+    }
+
+    .form-row {
+      & > fieldset > .fieldset-inner-wrapper,
+      & > .form-actions {
+        display: flex;
+        flex-wrap: wrap;
+        flex: 0 0 100%;
+        justify-items: center;
+        align-items: center;
+
+        @include media-breakpoint-up(lg) {
+          flex-wrap: nowrap;
+        }
+      }
+    }
+
+    #edit-field-date--wrapper .fieldset-inner-wrapper {
+      flex-wrap: nowrap;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: $spacer-md;
+      margin-bottom: 0;
+
+      button {
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 45%;
+        flex: 0 0 calc(50% - #{$spacer-sm});
+      }
+    }
+
+    .custom-control-input {
+      position: static;
+      width: auto;
+      height: auto;
+      opacity: 1;
+    }
+  }
+
+  .view-content {
+    border-top: 1px solid $border-color;
+    padding-top: $spacer-md;
+
+    .views-row {
+      background: $body-bg;
+      padding: $spacer-sm $spacer-md;
+
+      &:not(:first-child) {
+        margin-top: $spacer-md;
+      }
+    }
+  }
+}
+
+.view-id-index_search_gazettes.view-display-id-page_gazettes {
+  view-content {
+    &__title {
+      margin-bottom: $spacer-xl;
+    }
+
+    & > h3,
+    & > .views-infinite-scroll-content-wrapper > h3 {
+      margin-bottom: 0;
+    }
+  }
+
+  .views-row {
+    background: $body-bg;
+    padding: $spacer-md;
+    &:first-of-type {
+      margin-top: 0;
+    }
+    &:not(:first-of-type) {
+      margin-top: $spacer-md;
+    }
+  }
+
+  .pager {
+    @include list-unstyled();
+    margin-bottom: 0;
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: $spacer-md 0;
+      background: $primary;
+      text-align: center;
+      color: $white;
+    }
+  }
+}
+
+.view-billboard.view-display-id-block_billboard_hero {
+  .view-content {
+    max-width: 35.5rem;
+  }
+}
+
+.view-id-country.view-display-id-block_country_carousel {
+  .view-content {
+    .slick--view--country--block-country-carousel {
+      position: relative;
+    }
+    .slick__slider {
+      padding: 0 2rem;
+    }
+
+    .slick-slide {
+      img {
+        display: block;
+        max-width: 5rem;
+        margin: 0 auto;
+      }
+
+      .field--name-field-link {
+        text-align: center;
+      }
+    }
+
+    .slick__arrow {
+      position: absolute;
+      top: 1.5rem;
+      width: 100%;
+    }
+
+    .slick-arrow {
+      position: absolute;
+      top: 0;
+      width: 2rem;
+      height: 2rem;
+      background: transparent;
+      border: none;
+      font-size: 0;
+
+      &:before,
+      &:after {
+        position: absolute;
+        top: 0;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 2rem;
+        line-height: 1;
+        color: $body-color;
+      }
+
+      &.slick-prev {
+        left: 0;
+
+        &:before {
+          content: "\f053";
+          left: 0;
+        }
+      }
+
+      &.slick-next {
+        right: 0;
+
+        &:after {
+          content: "\f054";
+          right: 0;
+        }
+      }
+    }
+  }
+}
+
+// Custom classes applied via Views UI
+.view--liibarrio {
+  margin-bottom: $spacer-xl;
+
+  &--bg {
+    // for when the block title is NOT used
+    .view-content {
+      background: $white;
+    }
+  }
+
+  &-box {
+    @include liibarrio-box();
+  }
+
+  .view-content,
+  .view-empty {
+    padding: $spacer-lg;
+    border: 1px solid $border-color;
+
+    &:not(:last-child) {
+      border-bottom: none;
+    }
+  }
+
+  .views-row {
+    position: relative;
+    &:not(:nth-child(1)) {
+      margin-top: 0.5rem;
+    }
+
+    &:nth-child(5n + 6) {
+      padding-top: $spacer-lg;
+      margin-top: $spacer-lg;
+
+      &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 0;
+        height: 1px;
+        width: calc(100% - #{$spacer-xl});
+        background: $border-color;
+      }
+    }
+  }
+
+  .views-view-grid.horizontal {
+    position: relative;
+    border-bottom: none;
+
+    &:not(:nth-child(1)) {
+      border-top: none;
+      margin-top: $spacer-lg;
+      padding-top: $spacer-lg;
+
+      &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 0;
+        height: 1px;
+        width: calc(100% - #{$spacer-xl});
+        background: $border-color;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      .row:not(:first-child) {
+        padding: $grid-gutter-width 0 0;
+      }
+    }
+  }
+
+  .pager,
+  .more-link {
+    @include list-unstyled();
+    margin-bottom: 0;
+
+    a,
+    .button {
+      display: block;
+      width: 100%;
+      padding: $spacer-md 0;
+      background: $primary;
+      text-align: center;
+      color: $white;
+    }
+  }
+}
+
+.view--liibarrio-summary {
+  .item-list {
+    padding: 0 1rem;
+  }
+  .views-summary {
+    @include list-unstyled();
+  }
+}
+
+.view--liibarrio-search {
+  .view-empty + .pager {
+    @include sr-only(); //hide empty pager
+  }
+
+  .pager {
+    @include list-unstyled();
+    margin-bottom: 0;
+    flex: 0 0 calc(100% + #{$spacer-xl});
+    flex-basis: calc(100% + #{$spacer-xl});
+    margin-top: $spacer-md;
+    margin-left: calc(-#{$spacer-xl} / 2);
+    margin-right: calc(-#{$spacer-xl} / 2);
+    margin-bottom: calc(-#{$spacer-xl} / 2);
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: $spacer-md 0;
+      background: $primary;
+      text-align: center;
+      color: $white;
+    }
+  }
+}
+
+.view--liibarrio-browser {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .view-filters {
+    flex: 0 0 100%;
+
+    input:checked + label,
+    label:hover {
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 100%;
+        background: $secondary;
+      }
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    .form-row > fieldset {
+      flex: 0 0 100%;
+      margin-bottom: 0;
+    }
+
+    .form-radios {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+    }
+
+    .custom-control {
+      padding-left: 0;
+    }
+
+    .form-actions {
+      @include sr-only();
+    }
+  }
+
+  .view-content {
+    flex: 0 0 100%;
+
+    .views-row {
+      background: $body-bg;
+      padding: $spacer-sm $spacer-md;
+
+      &:not(:first-child) {
+        margin-top: $spacer-md;
+      }
+    }
+  }
+
+  .view-empty {
+    flex: 0 0 auto;
+    background: $body-bg;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .pager {
+    @include list-unstyled();
+    margin-bottom: 0;
+    flex: 0 0 calc(100% + #{$spacer-xl});
+    flex-basis: calc(100% + #{$spacer-xl});
+    margin-top: $spacer-md;
+    margin-left: calc(-#{$spacer-xl} / 2);
+    margin-right: calc(-#{$spacer-xl} / 2);
+    margin-bottom: calc(-#{$spacer-xl} / 2);
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: $spacer-md 0;
+      background: $primary;
+      text-align: center;
+      color: $white;
+    }
+  }
+}

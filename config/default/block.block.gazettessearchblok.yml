@@ -1,0 +1,26 @@
+uuid: fa551b2b-e960-4d7c-93f1-5d78bc6306b7
+langcode: en
+status: true
+dependencies:
+  module:
+    - liiweb_search
+    - system
+  theme:
+    - liibarrio2020
+id: gazettessearchblok
+theme: liibarrio2020
+region: content
+weight: -18
+provider: null
+plugin: gazettes_search_block
+settings:
+  id: gazettes_search_block
+  label: 'Gazettes Search Blok'
+  provider: liiweb_search
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /gazettes/search/year
+    negate: false
+    context_mapping: {  }

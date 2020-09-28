@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
     - field.field.node.judgment.field_court_name
+    - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
@@ -79,8 +80,8 @@ third_party_settings:
         - field_case_number_numeric
         - field_case_number_year
         - field_case_number
-        - field_judgment_date
         - field_judgment_number
+        - field_date
         - field_judgment_number_override
         - field_media_neutral_citation
         - field_judge
@@ -208,6 +209,12 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
+  field_date:
+    weight: 18
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_external_link:
     weight: 22
     settings:
@@ -247,12 +254,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_judgment_date:
-    weight: 17
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_judgment_mnc_old:
     type: string_textfield
     weight: 23
@@ -262,7 +263,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_judgment_number:
-    weight: 18
+    weight: 17
     settings: {  }
     third_party_settings: {  }
     type: computed_number_widget
@@ -379,3 +380,4 @@ content:
     third_party_settings: {  }
 hidden:
   feeds_item: true
+  field_judgment_date: true

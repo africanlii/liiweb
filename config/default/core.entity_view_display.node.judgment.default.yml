@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
     - field.field.node.judgment.field_court_name
+    - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
@@ -63,8 +64,8 @@ third_party_settings:
     regions:
       header_left:
         - node_author
+        - field_date
       header_right:
-        - field_judgment_date
         - field_court_name
         - field_case_number
       full_width:
@@ -79,20 +80,15 @@ third_party_settings:
         - field_search_summary
         - body
     fields:
-      node_author:
-        plugin_id: node_author
-        weight: 0
-        label: inline
-        formatter: author
-      'dynamic_token_field:node-share_links':
-        plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 6
-        label: hidden
-        formatter: default
       'dynamic_block_field:node-related_legislation':
         plugin_id: 'dynamic_block_field:node-related_legislation'
         weight: 7
         label: above
+        formatter: default
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 6
+        label: hidden
         formatter: default
       node_author:
         plugin_id: node_author
@@ -129,6 +125,15 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+  field_date:
+    weight: 12
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: header_left
   field_files:
     type: lii_file
     weight: 5
@@ -165,14 +170,14 @@ content:
       ds:
         ds_limit: ''
   field_judgment_date:
-    type: datetime_default
-    weight: 1
-    region: header_right
-    label: inline
+    weight: 13
+    label: above
     settings:
+      format_type: medium
       timezone_override: ''
-      format_type: html_date
     third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_search_summary:
     type: text_summary_or_trimmed
     weight: 10

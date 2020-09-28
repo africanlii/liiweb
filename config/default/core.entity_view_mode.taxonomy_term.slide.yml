@@ -1,0 +1,10 @@
+uuid: 8022fb05-0dfd-4d39-af7b-6a12ab5a3b75
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.slide
+label: Slide
+targetEntityType: taxonomy_term
+cache: true

@@ -1,0 +1,17 @@
+uuid: 20d8a170-a4ee-4806-bba9-2ff2dae2b8ea
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: letterbox_sml
+label: 'Letterbox small (16:9) - Mobile (portrait) devices'
+effects:
+  cf9b8521-2021-4295-ba64-cbf6dbc41431:
+    uuid: cf9b8521-2021-4295-ba64-cbf6dbc41431
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 320
+      height: 180
+      crop_type: focal_point

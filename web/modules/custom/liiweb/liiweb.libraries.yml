@@ -1,0 +1,5 @@
+socia_news_timeline:
+  version: 1.x
+  js:
+    https://platform.twitter.com/widgets.js: {type: external, async: true}
+    https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=323754998056442&autoLogAppEvents=1: {type: external, async: true}

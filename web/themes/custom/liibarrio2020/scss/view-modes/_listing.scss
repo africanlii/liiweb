@@ -1,0 +1,57 @@
+// Nodes
+.node--view-mode-listing {
+  .node {
+    &__title {
+      a {
+        color: $body-color;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &.node--type-government-gazette {
+    & > section {
+      justify-content: space-between;
+    }
+  }
+}
+
+// Taxonomy terms
+.taxonomy-term--view-mode-listing {
+  &.taxonomy-term--type-country {
+    .field--name-field-media-image-1 {
+      margin-right: 1.25rem;
+    }
+    .field--type-link {
+      padding-top: 0.1875rem;
+    }
+  }
+}
+
+
+.organisation--view-mode-listing {
+  margin: 0 0 $spacer-sm;
+
+  header {
+    margin-left: $spacer-xl;
+  }
+
+  h3 {
+    font-size: $h6-font-size;
+    margin-bottom: 0;
+  }
+
+  .content {
+    display: flex;
+    float: none;
+    flex-direction: row-reverse;
+    width: auto;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+  }
+
+  .field--name-field-logo-ref {
+    flex: 0 0 6rem;
+  }
+}

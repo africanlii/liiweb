@@ -1,0 +1,48 @@
+<{{ outer_wrapper }}{{ attributes.addClass('row') }}>
+
+  {{ title_suffix.contextual_links }}
+
+  {# Header #}
+  {% if header_left|render or header_right|render or header|render %}
+  <header class="content-header--wrapper col-12">
+    {% if header_left|render or header_right|render %}
+    <div class="content-header--top row">    
+      {% if header_left|render %}
+      <{{ header_left_wrapper }}{{ header_left_attributes.addClass('content-header--left col') }}>
+        {{ header_left }}
+      </{{ header_left_wrapper }}>
+      {% endif %}
+      {% if header_right|render %}
+      <{{ header_right_wrapper }}{{ header_right_attributes.addClass('content-header--right col text-right') }}>
+        {{ header_right }}
+      </{{ header_right_wrapper }}>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% if header|render %}
+    <div class="content-header--bottom">
+      <{{ header_wrapper }}{{ header_attributes.addClass('content-header w-100 pt-2') }}>
+        {{ header}}
+      </{{ header_wrapper }}>
+    </div>
+    {% endif %}
+
+  </header>
+  {% endif %}
+
+  {# Main #}
+  <{{ left_wrapper }}{{ left_attributes.addClass('content-main col-md-9') }}>
+    {{ left }}
+  </{{ left_wrapper }}>
+
+  <{{ right_wrapper }}{{ right_attributes.addClass('content-aside col-md-3') }}>
+    {{ right }}
+  </{{ right_wrapper }}>  
+
+  {# Footer #}
+  <{{ footer_wrapper }}{{ footer_attributes.addClass('content-footer') }}>
+    {{ footer }}
+  </{{ footer_wrapper }}>
+
+</{{ outer_wrapper }}>

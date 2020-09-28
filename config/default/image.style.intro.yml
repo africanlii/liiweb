@@ -1,0 +1,17 @@
+uuid: 08dfc681-b221-480a-a6b0-68f4f8105e31
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: intro
+label: Intro
+effects:
+  fd560767-1936-4914-b585-0c569fa2909f:
+    uuid: fd560767-1936-4914-b585-0c569fa2909f
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 720
+      height: 360
+      crop_type: focal_point
