@@ -224,6 +224,7 @@ hidden:
   feeds_item: true
   field_case_name: true
   field_case_number_numeric: true
+  field_case_number_old: true
   field_case_number_year: true
   field_date: true
   field_external_link: true

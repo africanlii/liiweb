@@ -83,6 +83,7 @@ hidden:
   field_case_name: true
   field_case_number: true
   field_case_number_numeric: true
+  field_case_number_old: true
   field_case_number_year: true
   field_court_name: true
   field_date: true
