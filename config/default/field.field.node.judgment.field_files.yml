@@ -12,7 +12,7 @@ third_party_settings:
   filefield_paths:
     enabled: true
     file_path:
-      value: 'judgments/files/[node:field_court_name:entity:field_court_code]/[node:field_judgment_date:date:custom:Y]/[node:field_judgment_number:value]'
+      value: 'judgments/files/[node:field_court_name:entity:field_court_code]/[node:field_date:date:custom:Y]/[node:field_judgment_number:value]'
       options:
         slashes: false
         pathauto: true

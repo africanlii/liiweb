@@ -7,16 +7,16 @@ dependencies:
 id: judgment_alias
 label: 'Judgment Alias'
 type: 'canonical_entities:node'
-pattern: 'na/judgment/[node:field_court_name:entity]/[node:field_judgment_date:date:custom:Y]/[node:field_judgment_number:value]'
+pattern: 'na/judgment/[node:field_court_name:entity]/[node:field_date:date:custom:Y]/[node:field_judgment_number:value]'
 selection_criteria:
-  4fc3aff2-b972-4f65-9467-0ea2e3859d41:
+  65a73126-811d-473b-8c7c-55a4454de033:
     id: node_type
     bundles:
       judgment: judgment
     negate: false
     context_mapping:
       node: node
-    uuid: 4fc3aff2-b972-4f65-9467-0ea2e3859d41
+    uuid: 65a73126-811d-473b-8c7c-55a4454de033
 selection_logic: and
 weight: -5
 relationships: {  }
