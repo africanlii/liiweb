@@ -543,7 +543,7 @@ display:
           id: name
           table: taxonomy_term_field_data
           field: name
-          relationship: field_tags
+          relationship: field_flynote
           group_type: group
           admin_label: ''
           default_action: summary
@@ -605,13 +605,13 @@ display:
         options:
           offset: 0
       relationships:
-        field_tags:
-          id: field_tags
-          table: node__field_tags
-          field: field_tags
+        field_flynote:
+          id: field_flynote
+          table: node__field_flynote
+          field: field_flynote
           relationship: none
           group_type: group
-          admin_label: 'field_tags: Taxonomy term'
+          admin_label: 'field_flynote: Taxonomy term'
           required: false
           plugin_id: standard
       sorts:
@@ -619,7 +619,7 @@ display:
           id: name
           table: taxonomy_term_field_data
           field: name
-          relationship: field_tags
+          relationship: field_flynote
           group_type: group
           admin_label: ''
           order: ASC
@@ -634,7 +634,7 @@ display:
           id: name
           table: taxonomy_term_field_data
           field: name
-          relationship: field_tags
+          relationship: field_flynote
           group_type: group
           admin_label: ''
           label: ''
@@ -979,7 +979,7 @@ display:
           id: name
           table: taxonomy_term_field_data
           field: name
-          relationship: field_tags
+          relationship: field_flynote
           group_type: group
           admin_label: ''
           default_action: ignore
@@ -1049,13 +1049,13 @@ display:
         context: '0'
         menu_name: main
       relationships:
-        field_tags:
-          id: field_tags
-          table: node__field_tags
-          field: field_tags
+        field_flynote:
+          id: field_flynote
+          table: node__field_flynote
+          field: field_flynote
           relationship: none
           group_type: group
-          admin_label: 'field_tags: Taxonomy term'
+          admin_label: 'field_flynote: Taxonomy term'
           required: false
           plugin_id: standard
       css_class: view--liibarrio-box

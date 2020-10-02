@@ -71,6 +71,7 @@
         "drupal/token": "^1.6",
         "drupal/toolbar_extras": "^1.0@beta",
         "drupal/views_bulk_operations": "^3.8",
+        "drupal/views_data_export": "^1.0",
         "drupal/views_exposed_filter_blocks": "^1.1",
         "drupal/views_infinite_scroll": "^1.7",
         "drupal/webform": "5.x-dev",
