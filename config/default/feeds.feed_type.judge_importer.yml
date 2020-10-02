@@ -1,0 +1,64 @@
+uuid: 5e245447-f610-443b-b149-b012fdf04d61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.judgment.field_judge
+    - field.field.node.judgment.field_judgment_old_nid
+    - node.type.judgment
+  module:
+    - node
+id: judge_importer
+label: 'Judge  Importer'
+description: ''
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 6000
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  langcode: en
+  update_existing: 2
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+  authorize: true
+  skip_hash_check: false
+  values:
+    type: judgment
+custom_sources:
+  node_id:
+    label: 'Node  ID'
+    value: 'Node  ID'
+    machine_name: node_id
+  judge:
+    label: Judge
+    value: Judge
+    machine_name: judge
+mappings:
+  -
+    target: field_judgment_old_nid
+    map:
+      value: node_id
+    unique:
+      value: '1'
+    settings:
+      language: null
+  -
+    target: field_judge
+    map:
+      target_id: judge
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
