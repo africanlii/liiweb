@@ -65,14 +65,12 @@ third_party_settings:
       header_right:
         - field_publication_name
       header:
-        - field_lifecycle_json
         - field_frbr_uri
+        - field_lifecycle_json
       left:
         - field_files
         - 'dynamic_token_field:node-share_links'
         - field_toc
-        - 'dynamic_block_field:node-related_gazettes'
-        - 'dynamic_block_field:node-related_legislation'
       right:
         - field_content
       footer:
@@ -80,7 +78,7 @@ third_party_settings:
     fields:
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 5
+        weight: 6
         label: hidden
         formatter: default
       node_title:
@@ -98,35 +96,13 @@ third_party_settings:
             lb: ''
             lb-col: false
             classes: {  }
-      'dynamic_block_field:node-related_gazettes':
-        plugin_id: 'dynamic_block_field:node-related_gazettes'
-        weight: 7
-        label: hidden
-        formatter: default
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
-      'dynamic_block_field:node-related_legislation':
-        plugin_id: 'dynamic_block_field:node-related_legislation'
-        weight: 8
-        label: hidden
-        formatter: default
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
 id: node.legislation.full
 targetEntityType: node
 bundle: legislation
 mode: full
 content:
   field_content:
-    weight: 9
+    weight: 8
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -134,7 +110,7 @@ content:
     region: right
   field_files:
     type: lii_file
-    weight: 4
+    weight: 5
     region: left
     label: hidden
     settings:
@@ -159,14 +135,14 @@ content:
             lb-col: false
   field_lifecycle_json:
     type: timeline_field_formatter
-    weight: 3
+    weight: 4
     region: header
     label: hidden
     settings: {  }
     third_party_settings:
       ds:
         ft:
-          id: default
+          id: minimal
           settings:
             lb: ''
             lb-col: false
@@ -196,13 +172,13 @@ content:
             classes: {  }
   field_toc:
     type: basic_string
-    weight: 6
+    weight: 7
     region: left
     label: hidden
     settings: {  }
     third_party_settings: {  }
   links:
-    weight: 10
+    weight: 9
     region: footer
     settings: {  }
     third_party_settings: {  }

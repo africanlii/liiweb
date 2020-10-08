@@ -15,11 +15,11 @@ provider: null
 plugin: text_block
 settings:
   id: text_block
-  label: 'About <this> LII'
+  label: 'About NamibLII'
   provider: liiweb
   label_display: visible
   text:
-    value: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Atqui reperies, inquit, in hoc quidem pertinacem; Quodsi ipsam honestatem undique pertectam atque absolutam. Primum quid tu dicis breve? Negat enim summo bono afferre incrementum diem.</p>\r\n"
+    value: "<p>NamibLII publishes the laws of Namibia for free online access. NamibLII is operated by the Law Reform and Development Commission of Namibia.</p>\r\n"
     format: full_html
 visibility:
   request_path:

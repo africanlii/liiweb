@@ -21,12 +21,12 @@ settings:
   show_title: false
   exclude_empty_facets: false
   facets_to_include:
+    'facet_block:content_type': 'facet_block:content_type'
     'facet_block:date_range': 'facet_block:date_range'
     'facet_block:commencement_date': 'facet_block:commencement_date'
     'facet_block:expression_date': 'facet_block:expression_date'
     'facet_block:court_name': 'facet_block:court_name'
     'facet_block:tags': 'facet_block:tags'
-    'facet_block:content_type': '0'
     'facet_block:gazette_date': '0'
 visibility:
   request_path:

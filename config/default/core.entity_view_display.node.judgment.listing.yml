@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
+    - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
@@ -30,6 +31,7 @@ dependencies:
     - node.type.judgment
   module:
     - ds
+    - text
     - user
 third_party_settings:
   ds:
@@ -52,6 +54,7 @@ third_party_settings:
     regions:
       content:
         - node_title
+        - field_search_summary
     fields:
       node_title:
         plugin_id: node_title
@@ -73,6 +76,13 @@ targetEntityType: node
 bundle: judgment
 mode: listing
 content:
+  field_search_summary:
+    type: text_default
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   liiweb_share_links:
     weight: 6
     region: sidebar
@@ -101,7 +111,6 @@ hidden:
   field_law_report_citations: true
   field_matter_type: true
   field_media_neutral_citation: true
-  field_search_summary: true
   field_tags: true
   langcode: true
   links: true

@@ -32,31 +32,45 @@ dependencies:
   module:
     - datetime
     - ds
+    - taxonomy
+    - text
     - user
 third_party_settings:
   ds:
     layout:
-      id: ds_1col
-      library: null
+      id: ds_2col_stacked
+      library: ds/ds_2col_stacked
       disable_css: false
       entity_classes: all_classes
       settings:
         label: ''
         wrappers:
-          ds_content: div
+          header: div
+          left: div
+          right: div
+          footer: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
         classes:
           layout_class: {  }
-          ds_content: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
     regions:
-      ds_content:
+      header:
         - node_title
         - search_api_excerpt
+      left:
         - field_court_name
+        - field_judge
+      right:
         - field_date
+        - field_law_report_citations
+      footer:
+        - field_search_summary
     fields:
       node_title:
         plugin_id: node_title
@@ -81,22 +95,44 @@ content:
   field_court_name:
     type: entity_reference_label
     weight: 2
-    region: ds_content
+    region: left
     label: inline
     settings:
       link: true
     third_party_settings: {  }
   field_date:
     type: datetime_plain
-    weight: 3
-    region: ds_content
+    weight: 4
+    region: right
     label: inline
     settings:
       timezone_override: ''
     third_party_settings: {  }
+  field_judge:
+    type: entity_reference_rss_category
+    weight: 3
+    region: left
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+  field_law_report_citations:
+    type: string
+    weight: 5
+    region: right
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_search_summary:
+    type: text_default
+    weight: 6
+    region: footer
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   search_api_excerpt:
     weight: 1
-    region: ds_content
+    region: header
     settings: {  }
     third_party_settings: {  }
 hidden:
@@ -111,16 +147,13 @@ hidden:
   field_files: true
   field_flynote: true
   field_headnote_and_holding: true
-  field_judge: true
   field_judgment_date: true
   field_judgment_mnc_old: true
   field_judgment_number: true
   field_judgment_number_override: true
   field_judgment_old_nid: true
-  field_law_report_citations: true
   field_matter_type: true
   field_media_neutral_citation: true
-  field_search_summary: true
   field_tags: true
   langcode: true
   links: true

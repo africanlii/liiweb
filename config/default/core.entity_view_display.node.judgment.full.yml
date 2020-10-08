@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
+    - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
@@ -65,15 +66,18 @@ third_party_settings:
           footer: {  }
     regions:
       header_left:
-        - node_author
-      header_right:
-        - field_judgment_date
         - field_court_name
         - field_case_number
-      left:
-        - field_headnote_and_holding
+      header_right:
+        - field_case_name
+        - field_law_report_citations
+        - field_judgment_date
+        - field_media_neutral_citation
+      header:
         - field_flynote
         - field_search_summary
+      left:
+        - field_headnote_and_holding
         - field_judge
         - body
       right:
@@ -84,7 +88,7 @@ third_party_settings:
     fields:
       'dynamic_block_field:node-related_judgments':
         plugin_id: 'dynamic_block_field:node-related_judgments'
-        weight: 11
+        weight: 13
         label: hidden
         formatter: default
         ft:
@@ -95,7 +99,7 @@ third_party_settings:
             classes: {  }
       'dynamic_block_field:node-related_legislation':
         plugin_id: 'dynamic_block_field:node-related_legislation'
-        weight: 12
+        weight: 14
         label: hidden
         formatter: default
         ft:
@@ -106,20 +110,9 @@ third_party_settings:
             classes: {  }
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 10
+        weight: 12
         label: hidden
         formatter: default
-      node_author:
-        plugin_id: node_author
-        weight: 0
-        label: inline
-        formatter: author
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
 id: node.judgment.full
 targetEntityType: node
 bundle: judgment
@@ -128,14 +121,22 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 8
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     region: left
+  field_case_name:
+    type: string
+    weight: 2
+    region: header_right
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   field_case_number:
     type: computed_string
-    weight: 3
-    region: header_right
+    weight: 1
+    region: header_left
     label: inline
     settings:
       sanitized: true
@@ -144,32 +145,33 @@ content:
     third_party_settings: {  }
   field_court_name:
     type: entity_reference_label
-    weight: 2
-    region: header_right
+    weight: 0
+    region: header_left
     label: inline
     settings:
       link: false
     third_party_settings: {  }
   field_files:
     type: lii_file
-    weight: 9
+    weight: 11
     region: right
     label: hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
   field_flynote:
-    weight: 5
+    weight: 6
     label: inline
     settings:
       link: false
+      view_mode: default
     third_party_settings:
       ds:
         ds_limit: ''
-    type: entity_reference_label
-    region: left
+    type: entity_reference_entity_view
+    region: header
   field_headnote_and_holding:
-    weight: 4
+    weight: 8
     label: inline
     settings: {  }
     third_party_settings:
@@ -184,7 +186,7 @@ content:
     region: left
   field_judge:
     type: entity_reference_label
-    weight: 7
+    weight: 9
     region: left
     label: inline
     settings:
@@ -194,16 +196,41 @@ content:
         ds_limit: ''
   field_judgment_date:
     type: datetime_plain
-    weight: 0
+    weight: 4
     region: header_right
     label: above
     settings:
       timezone_override: ''
     third_party_settings: {  }
+  field_law_report_citations:
+    type: string
+    weight: 3
+    region: header_right
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_media_neutral_citation:
+    type: computed_string
+    weight: 5
+    region: header_right
+    label: inline
+    settings:
+      sanitized: '1'
+      cache_unit: '-1'
+      cache_duration: '1'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_search_summary:
     type: text_summary_or_trimmed
-    weight: 6
-    region: left
+    weight: 7
+    region: header
     label: inline
     settings:
       trim_length: 600
@@ -222,7 +249,6 @@ content:
     third_party_settings: {  }
 hidden:
   feeds_item: true
-  field_case_name: true
   field_case_number_numeric: true
   field_case_number_old: true
   field_case_number_year: true
@@ -232,9 +258,7 @@ hidden:
   field_judgment_number: true
   field_judgment_number_override: true
   field_judgment_old_nid: true
-  field_law_report_citations: true
   field_matter_type: true
-  field_media_neutral_citation: true
   field_tags: true
   langcode: true
   links: true
