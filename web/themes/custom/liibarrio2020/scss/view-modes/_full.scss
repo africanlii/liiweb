@@ -44,7 +44,12 @@
   &.node--type-legislation {
     .content-aside--inner-wrapper {
       position: sticky;
-      top: 2rem;
+      top: -6rem;
+
+      .toc-list {
+        max-height: 80vh;
+        overflow-y: auto;
+      }
     }
   }
 

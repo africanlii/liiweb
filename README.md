@@ -81,10 +81,10 @@ TODO: Add multi-site configuration details here.
 
 ## LIIBarrio theme development
 
-The main theme for the site is `liibarrio`, which is a subtheme of [Bootstrap Barrio](https://www.drupal.org/project/bootstrap_barrio).
+The main theme for the site is `liibarrio2020`, which is a subtheme of [Bootstrap Barrio](https://www.drupal.org/project/bootstrap_barrio).
 It uses SCSS from Bootstrap 4.
 
-The code for the theme lives in [web/themes/custom/liibarrio](web/themes/custom/liibarrio).
+The code for the theme lives in [web/themes/custom/liibarrio2020](web/themes/custom/liibarrio2020).
 
 ### Setting up local theme development
 
@@ -97,11 +97,11 @@ The code for the theme lives in [web/themes/custom/liibarrio](web/themes/custom/
     * uncomment `$settings['cache']['bins']['page'] = 'cache.backend.null';`
     * uncomment `$settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';`
 
-### Changing CSS and JS in the liibarrio theme
+### Changing CSS and JS in the liibarrio2020 theme
 
 CSS is compiled from SCSS from various sources using Gulp. If you want to make changes:
 
-1. `cd web/themes/custom/liibarrio`
+1. `cd web/themes/custom/liibarrio2020`
 2. Install node dependencies: `npm install`
 3. Recompile CSS: `npx gulp styles`
 
