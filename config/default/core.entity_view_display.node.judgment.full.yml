@@ -16,9 +16,9 @@ dependencies:
     - field.field.node.judgment.field_external_link
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
+    - field.field.node.judgment.field_flynote_local
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judge
-    - field.field.node.judgment.field_judgment_date
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number
     - field.field.node.judgment.field_judgment_number_override
@@ -27,11 +27,9 @@ dependencies:
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
     - field.field.node.judgment.field_search_summary
-    - field.field.node.judgment.field_tags
     - node.type.judgment
   module:
     - computed_field
-    - datetime
     - ds
     - liiweb
     - text
@@ -194,14 +192,6 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
-  field_judgment_date:
-    type: datetime_plain
-    weight: 4
-    region: header_right
-    label: above
-    settings:
-      timezone_override: ''
-    third_party_settings: {  }
   field_law_report_citations:
     type: string
     weight: 3
@@ -254,12 +244,12 @@ hidden:
   field_case_number_year: true
   field_date: true
   field_external_link: true
+  field_flynote_local: true
   field_judgment_mnc_old: true
   field_judgment_number: true
   field_judgment_number_override: true
   field_judgment_old_nid: true
   field_matter_type: true
-  field_tags: true
   langcode: true
   links: true
   search_api_excerpt: true

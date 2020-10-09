@@ -1,26 +1,26 @@
-uuid: 948eeb28-312f-4f3f-9d39-9454fef23148
+uuid: fdf87220-b84a-4138-b40e-455a0b2267c5
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_tags
+    - field.storage.node.field_flynote_local
     - node.type.judgment
-    - taxonomy.vocabulary.legislation_tags
-id: node.judgment.field_tags
-field_name: field_tags
+    - taxonomy.vocabulary.tags_local
+id: node.judgment.field_flynote_local
+field_name: field_flynote_local
 entity_type: node
 bundle: judgment
-label: Tags
+label: 'Flynote local'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      legislation_tags: legislation_tags
+      tags_local: tags_local
     sort:
       field: name
       direction: asc

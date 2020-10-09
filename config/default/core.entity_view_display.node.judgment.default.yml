@@ -15,9 +15,9 @@ dependencies:
     - field.field.node.judgment.field_external_link
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
+    - field.field.node.judgment.field_flynote_local
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judge
-    - field.field.node.judgment.field_judgment_date
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number
     - field.field.node.judgment.field_judgment_number_override
@@ -26,7 +26,6 @@ dependencies:
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
     - field.field.node.judgment.field_search_summary
-    - field.field.node.judgment.field_tags
     - node.type.judgment
   module:
     - computed_field
@@ -65,6 +64,7 @@ third_party_settings:
       header_left:
         - node_author
         - field_date
+        - field_judgment_date
       header_right:
         - field_court_name
         - field_case_number
@@ -76,25 +76,26 @@ third_party_settings:
         - 'dynamic_block_field:node-related_legislation'
       node_content:
         - field_headnote_and_holding
+        - field_flynote_local
         - field_flynote
         - field_search_summary
         - body
     fields:
-      'dynamic_block_field:node-related_legislation':
-        plugin_id: 'dynamic_block_field:node-related_legislation'
-        weight: 7
-        label: above
-        formatter: default
-      'dynamic_token_field:node-share_links':
-        plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 6
-        label: hidden
-        formatter: default
       node_author:
         plugin_id: node_author
         weight: 0
         label: inline
         formatter: author
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 7
+        label: hidden
+        formatter: default
+      'dynamic_block_field:node-related_legislation':
+        plugin_id: 'dynamic_block_field:node-related_legislation'
+        weight: 8
+        label: above
+        formatter: default
 id: node.judgment.default
 targetEntityType: node
 bundle: judgment
@@ -103,13 +104,13 @@ content:
   body:
     label: above
     type: text_default
-    weight: 11
+    weight: 13
     settings: {  }
     third_party_settings: {  }
     region: node_content
   field_case_number:
     type: computed_string
-    weight: 3
+    weight: 4
     region: header_right
     label: inline
     settings:
@@ -119,14 +120,14 @@ content:
     third_party_settings: {  }
   field_court_name:
     type: entity_reference_label
-    weight: 2
+    weight: 3
     region: header_right
     label: inline
     settings:
       link: false
     third_party_settings: {  }
   field_date:
-    weight: 12
+    weight: 1
     label: above
     settings:
       format_type: medium
@@ -136,14 +137,14 @@ content:
     region: header_left
   field_files:
     type: lii_file
-    weight: 5
+    weight: 6
     region: sidebar
     label: hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
   field_flynote:
-    weight: 9
+    weight: 11
     label: inline
     settings:
       link: false
@@ -152,8 +153,24 @@ content:
         ds_limit: ''
     type: entity_reference_label
     region: node_content
+  field_flynote_local:
+    weight: 10
+    label: inline
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: entity_reference_label
+    region: node_content
   field_headnote_and_holding:
-    weight: 8
+    weight: 9
     label: inline
     settings: {  }
     third_party_settings: {  }
@@ -161,7 +178,7 @@ content:
     region: node_content
   field_judge:
     type: entity_reference_label
-    weight: 4
+    weight: 5
     region: full_width
     label: inline
     settings:
@@ -169,18 +186,9 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
-  field_judgment_date:
-    weight: 13
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_search_summary:
     type: text_summary_or_trimmed
-    weight: 10
+    weight: 12
     region: node_content
     label: inline
     settings:
@@ -205,7 +213,6 @@ hidden:
   field_law_report_citations: true
   field_matter_type: true
   field_media_neutral_citation: true
-  field_tags: true
   langcode: true
   links: true
   search_api_excerpt: true
