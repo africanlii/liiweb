@@ -1,0 +1,8 @@
+uuid: e9b2cefd-9fe5-4f88-95b2-b4b102081159
+langcode: en
+status: true
+dependencies: {  }
+name: 'Tags Local'
+vid: tags_local
+description: ''
+weight: 0
