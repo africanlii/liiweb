@@ -1,0 +1,29 @@
+uuid: 587e5678-7cfe-456d-98e0-2f6ed90a3aa1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_flynote_tag_local
+    - node.type.judgment
+    - taxonomy.vocabulary.tags_local
+id: node.judgment.field_flynote_tag_local
+field_name: field_flynote_tag_local
+entity_type: node
+bundle: judgment
+label: 'Flynote Tag Local'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags_local: tags_local
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

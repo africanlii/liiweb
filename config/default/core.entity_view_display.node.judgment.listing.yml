@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.judgment.field_external_link
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
+    - field.field.node.judgment.field_flynote_tag_local
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_date
@@ -101,6 +102,7 @@ hidden:
   field_external_link: true
   field_files: true
   field_flynote: true
+  field_flynote_tag_local: true
   field_headnote_and_holding: true
   field_judge: true
   field_judgment_date: true

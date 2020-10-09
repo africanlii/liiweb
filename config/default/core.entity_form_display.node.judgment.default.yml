@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.judgment.field_external_link
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
+    - field.field.node.judgment.field_flynote_tag_local
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_date
@@ -57,6 +58,7 @@ third_party_settings:
     group_editorial:
       children:
         - field_flynote
+        - field_flynote_tag_local
         - field_search_summary
         - field_headnote_and_holding
       parent_name: group_group
@@ -236,8 +238,18 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
+  field_flynote_tag_local:
+    weight: 19
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_headnote_and_holding:
-    weight: 20
+    weight: 21
     settings:
       rows: 5
       placeholder: ''
@@ -307,7 +319,7 @@ content:
     type: computed_string_widget
     region: content
   field_search_summary:
-    weight: 19
+    weight: 20
     settings:
       rows: 9
       summary_rows: 3
