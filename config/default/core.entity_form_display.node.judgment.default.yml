@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.judgment.field_external_link
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
+    - field.field.node.judgment.field_flynote_tag_local
     - field.field.node.judgment.field_headnote_and_holding
     - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_date
@@ -26,7 +27,6 @@ dependencies:
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
     - field.field.node.judgment.field_search_summary
-    - field.field.node.judgment.field_tags
     - node.type.judgment
   module:
     - computed_field
@@ -236,6 +236,16 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
+  field_flynote_tag_local:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_headnote_and_holding:
     weight: 20
     settings:
@@ -315,16 +325,6 @@ content:
       show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
-    region: content
-  field_tags:
-    weight: 8
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
     region: content
   langcode:
     type: language_select

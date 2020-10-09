@@ -1,0 +1,99 @@
+uuid: ef4b5ea8-f0cb-4b78-87a1-7a00b5379946
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.judgment.field_flynote_tag_local
+    - node.type.judgment
+  module:
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      795559ec-1613-4d51-bd01-cc5473b47380:
+        default_value: ''
+        only_if_empty: true
+        plugin: default_value
+        source: flynote_tag
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 795559ec-1613-4d51-bd01-cc5473b47380
+      425cdf52-770d-42f1-ac4b-6e4b8c204821:
+        separator: '|%s'
+        limit: null
+        plugin: explode
+        source: flynote_tag
+        weight: 1
+        label: Explode
+        uuid: 425cdf52-770d-42f1-ac4b-6e4b8c204821
+      b3e881b9-6738-4ddd-89b7-7925c9b72913:
+        default_value: ''
+        only_if_empty: true
+        plugin: default_value
+        source: flynote_tags_local
+        weight: 0
+        label: 'Set value or default value'
+        uuid: b3e881b9-6738-4ddd-89b7-7925c9b72913
+      def50182-8f81-4973-ae39-884e607c7831:
+        separator: '|%s'
+        limit: null
+        plugin: explode
+        source: flynote_tags_local
+        weight: 1
+        label: Explode
+        uuid: def50182-8f81-4973-ae39-884e607c7831
+id: tag_importer
+label: 'Tag Importer'
+description: ''
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 6000
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  langcode: en
+  update_existing: 2
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+  authorize: true
+  skip_hash_check: false
+  values:
+    type: judgment
+custom_sources:
+  flynote_tag:
+    label: Flynote_tag
+    value: Flynote_tag
+    machine_name: flynote_tag
+  flynote_tags_local:
+    label: Flynote_tags_local
+    value: Flynote_tags_local
+    machine_name: flynote_tags_local
+mappings:
+  -
+    target: field_flynote_tag_local
+    map:
+      target_id: flynote_tag
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
+  -
+    target: field_flynote_tag_local
+    map:
+      target_id: flynote_tags_local
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
