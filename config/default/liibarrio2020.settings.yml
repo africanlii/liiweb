@@ -33,9 +33,12 @@ features:
   comment_user_verification: true
   favicon: 1
 logo:
-  use_default: 1
+  use_default: 0
+  path: 's3://namiblii-2-2.png'
 favicon:
-  use_default: 1
+  use_default: 0
+  path: 's3://favicon_nam.png'
+  mimetype: image/png
 bootstrap_barrio_region_clean_pre_header: 1
 bootstrap_barrio_region_class_pre_header: ''
 bootstrap_barrio_region_clean_header: 1
@@ -69,7 +72,7 @@ bootstrap_barrio_sidebar_second_affix: 0
 bootstrap_barrio_scroll_spy: ''
 bootstrap_barrio_google_fonts: ''
 bootstrap_barrio_bootstrap_icons: 0
-bootstrap_barrio_icons: ''
+bootstrap_barrio_icons: fontawesome
 bootstrap_barrio_table_head: ''
 bootstrap_barrio_region_clean_footer_first: 0
 bootstrap_barrio_region_class_footer_first: ''

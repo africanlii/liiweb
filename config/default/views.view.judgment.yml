@@ -753,7 +753,7 @@ display:
             value: 'No Recent Judgment found.'
             format: full_html
           plugin_id: text
-      title: 'Frequesnty Cited/Topca/Interesting judgments'
+      title: 'Interesting judgments'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1239,7 +1239,7 @@ display:
         description: ''
         expanded: false
         parent: ''
-        weight: -49
+        weight: -50
         context: '0'
         menu_name: main
       style:

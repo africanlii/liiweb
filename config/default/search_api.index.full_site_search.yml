@@ -14,10 +14,12 @@ dependencies:
     - field.storage.node.field_commencement_date
     - field.storage.node.field_content
     - field.storage.node.field_court_name
-    - field.storage.node.field_date
     - field.storage.node.field_expression_date
+    - field.storage.node.field_flynote
     - field.storage.node.field_gazette_issue_number
     - field.storage.node.field_headnote_and_holding
+    - field.storage.node.field_date
+    - field.storage.node.field_judge
     - field.storage.node.field_judgment_number
     - field.storage.node.field_lifecycle_json
     - field.storage.node.field_publication_name
@@ -149,6 +151,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_expression_date
+  field_flynote:
+    label: Flynote
+    datasource_id: 'entity:node'
+    property_path: field_flynote
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_flynote
   field_gazette_issue_number:
     label: 'Gazette issue number'
     datasource_id: 'entity:node'
@@ -166,6 +176,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_headnote_and_holding
+  field_judge:
+    label: Judge
+    datasource_id: 'entity:node'
+    property_path: field_judge
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_judge
   field_judgment_number:
     label: 'Judgment number'
     datasource_id: 'entity:node'

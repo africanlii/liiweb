@@ -4,7 +4,8 @@ status: true
 dependencies:
   config:
     - search_api.index.full_site_search
-    - taxonomy.vocabulary.legislation_tags
+    - taxonomy.vocabulary.judges
+    - taxonomy.vocabulary.tags
   module:
     - better_exposed_filters
     - search_api
@@ -254,10 +255,10 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
-        field_tags:
-          id: field_tags
+        field_flynote:
+          id: field_flynote
           table: search_api_index_full_site_search
-          field: field_tags
+          field: field_flynote
           relationship: none
           group_type: group
           admin_label: ''
@@ -266,14 +267,14 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_tags_op
+            operator_id: field_flynote_op
             label: 'All Subjects'
             description: ''
             use_operator: false
-            operator: field_tags_op
+            operator: field_flynote_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_tags
+            identifier: field_flynote
             required: false
             remember: false
             multiple: false
@@ -298,7 +299,55 @@ display:
           reduce_duplicates: false
           type: select
           limit: true
-          vid: legislation_tags
+          vid: tags
+          hierarchy: false
+          error_message: true
+          plugin_id: search_api_term
+        field_judge:
+          id: field_judge
+          table: search_api_index_full_site_search
+          field: field_judge
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_judge_op
+            label: 'Judge Name'
+            description: ''
+            use_operator: false
+            operator: field_judge_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_judge
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: judges
           hierarchy: false
           error_message: true
           plugin_id: search_api_term
@@ -358,7 +407,7 @@ display:
         operator: AND
         groups:
           1: AND
-      title: 'Find Legislation'
+      title: 'Find Judgment'
       use_ajax: true
     cache_metadata:
       max-age: -1
@@ -589,10 +638,10 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
-        field_tags:
-          id: field_tags
+        field_flynote:
+          id: field_flynote
           table: search_api_index_full_site_search
-          field: field_tags
+          field: field_flynote
           relationship: none
           group_type: group
           admin_label: ''
@@ -601,14 +650,14 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_tags_op
+            operator_id: field_flynote_op
             label: 'All Subjects'
             description: ''
             use_operator: false
-            operator: field_tags_op
+            operator: field_flynote_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_tags
+            identifier: field_flynote
             required: false
             remember: false
             multiple: false
@@ -633,7 +682,55 @@ display:
           reduce_duplicates: false
           type: select
           limit: true
-          vid: legislation_tags
+          vid: tags
+          hierarchy: false
+          error_message: true
+          plugin_id: search_api_term
+        field_judge:
+          id: field_judge
+          table: search_api_index_full_site_search
+          field: field_judge
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_judge_op
+            label: 'Judge Name'
+            description: ''
+            use_operator: false
+            operator: field_judge_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_judge
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: judges
           hierarchy: false
           error_message: true
           plugin_id: search_api_term
