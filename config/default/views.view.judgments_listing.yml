@@ -60,7 +60,11 @@ display:
       style:
         type: default
         options:
-          grouping: {  }
+          grouping:
+            -
+              field: field_date
+              rendered: true
+              rendered_strip: false
           row_class: ''
           default_row_class: false
       row:
@@ -805,7 +809,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
