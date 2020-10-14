@@ -293,10 +293,6 @@
   .view-empty {
     padding: $spacer-lg;
     border: 1px solid $border-color;
-
-    &:not(:last-child) {
-      border-bottom: none;
-    }
   }
 
   .views-row {
@@ -320,6 +316,7 @@
       }
     }
   }
+
 
   .views-view-grid.horizontal {
     position: relative;
@@ -486,4 +483,10 @@
       color: $white;
     }
   }
+}
+
+//Judgment Listings Edits//
+
+.view-judgments-listing .view-display-id-subject_group .views-summary li:first-child {
+  display: none;
 }
