@@ -758,7 +758,7 @@ display:
         options:
           offset: 0
       empty: {  }
-      css_class: view--liibarrio
+      css_class: 'view--liibarrio view--liibarrio--bg'
       relationships:
         field_court_name:
           id: field_court_name
@@ -805,7 +805,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -833,7 +833,7 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: ''
+          element_type: h3
           element_class: ''
           element_label_type: ''
           element_label_class: ''
@@ -1053,7 +1053,7 @@ display:
             value: '<h2 class="h3">{{ arguments.field_court_code_value }} judgments  for the year... {{ arguments.field_date_value_year }}<h2>'
             format: full_html
           plugin_id: text
-      css_class: view--liibarrio
+      css_class: 'view--liibarrio view--liibarrio--bg'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1366,7 +1366,7 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       block_category: ''
-      css_class: view--liibarrio
+      css_class: 'view--liibarrio view--liibarrio--bg'
     cache_metadata:
       max-age: -1
       contexts:

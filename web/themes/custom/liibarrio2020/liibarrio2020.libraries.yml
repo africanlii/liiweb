@@ -8,7 +8,6 @@ global-styling:
   css:
     component:
       css/main.css: {}
-      css/custom.css: {}
 
   dependencies:
     - core/jquery
