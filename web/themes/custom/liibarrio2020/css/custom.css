@@ -1,0 +1,9 @@
+/*Judgment Listing View*/
+
+.view--liibarrio .view-content:not(:last-child){
+border-bottom: 1px solid #d5d5d5 !important;
+}
+
+.view--liibarrio.view.view-judgments-listing.view-id-judgments_listing.view-display-id-alphabetised_listing_page .view-content{
+    background: white;
+}

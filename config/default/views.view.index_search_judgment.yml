@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - search_api.index.full_site_search
+    - taxonomy.vocabulary.court_names
     - taxonomy.vocabulary.judges
     - taxonomy.vocabulary.tags
   module:
@@ -47,7 +48,7 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
           text_input_required: 'Select any filter and click on Apply to see results'
-          text_input_required_format: null
+          text_input_required_format: full_html
           bef:
             general:
               autosubmit: false
@@ -58,15 +59,44 @@ display:
               allow_secondary: false
               secondary_label: 'Advanced options'
               secondary_open: false
-            sort:
-              plugin_id: default
             filter:
               created:
                 plugin_id: default
+                advanced:
+                  placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: false
+                  is_secondary: false
               created_1:
+                plugin_id: bef_datepicker
+                advanced:
+                  collapsible: false
+                  is_secondary: false
+              field_flynote:
                 plugin_id: default
-              title:
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: false
+                  is_secondary: false
+              field_judge:
                 plugin_id: default
+                advanced:
+                  placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: false
+                  is_secondary: false
+              search_api_fulltext:
+                plugin_id: default
+                advanced:
+                  placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: false
+                  is_secondary: false
       pager:
         type: infinite_scroll
         options:
@@ -180,7 +210,7 @@ display:
             max_placeholder: null
           is_grouped: true
           group_info:
-            label: Gazetted
+            label: Dated
             description: ''
             identifier: created
             optional: true
@@ -224,7 +254,7 @@ display:
           exposed: true
           expose:
             operator_id: created_1_op
-            label: 'Authored on'
+            label: 'Authored between'
             description: ''
             use_operator: false
             operator: created_1_op
@@ -268,7 +298,7 @@ display:
           exposed: true
           expose:
             operator_id: field_flynote_op
-            label: 'All Subjects'
+            label: Citation
             description: ''
             use_operator: false
             operator: field_flynote_op
@@ -303,6 +333,53 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: search_api_term
+        field_case_number:
+          id: field_case_number
+          table: search_api_index_full_site_search
+          field: field_case_number
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_case_number_op
+            label: 'Case number'
+            description: ''
+            use_operator: false
+            operator: field_case_number_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_case_number
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_string
         field_judge:
           id: field_judge
           table: search_api_index_full_site_search
@@ -316,7 +393,7 @@ display:
           exposed: true
           expose:
             operator_id: field_judge_op
-            label: 'Judge Name'
+            label: Judge
             description: ''
             use_operator: false
             operator: field_judge_op
@@ -351,6 +428,54 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: search_api_term
+        field_court_name:
+          id: field_court_name
+          table: search_api_index_full_site_search
+          field: field_court_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_court_name_op
+            label: Court
+            description: ''
+            use_operator: false
+            operator: field_court_name_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_court_name
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: court_names
+          hierarchy: false
+          error_message: true
+          plugin_id: search_api_term
         search_api_fulltext:
           id: search_api_fulltext
           table: search_api_index_full_site_search
@@ -379,7 +504,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
-            placeholder: 'Act Name'
+            placeholder: 'Full text search'
           is_grouped: false
           group_info:
             label: ''
@@ -462,14 +587,22 @@ display:
                 select_all_none_nested: false
                 display_inline: 1
               field_date_1:
-                plugin_id: default
+                plugin_id: bef_datepicker
                 advanced:
                   collapsible: false
                   is_secondary: false
-              field_tags:
+              field_flynote:
                 plugin_id: default
                 advanced:
                   sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: false
+                  is_secondary: false
+              field_judge:
+                plugin_id: default
+                advanced:
+                  placeholder_text: ''
                   rewrite:
                     filter_rewrite_values: ''
                   collapsible: false
@@ -563,7 +696,7 @@ display:
             max_placeholder: null
           is_grouped: true
           group_info:
-            label: Gazetted
+            label: Dated
             description: ''
             identifier: field_date
             optional: true
@@ -607,7 +740,7 @@ display:
           exposed: true
           expose:
             operator_id: field_date_1_op
-            label: 'Custom Date'
+            label: 'Authored between'
             description: ''
             use_operator: false
             operator: field_date_1_op
@@ -638,10 +771,57 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
-        field_flynote:
-          id: field_flynote
+        field_case_number:
+          id: field_case_number
           table: search_api_index_full_site_search
-          field: field_flynote
+          field: field_case_number
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_case_number_op
+            label: 'Case number'
+            description: ''
+            use_operator: false
+            operator: field_case_number_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_case_number
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_string
+        field_court_name_1:
+          id: field_court_name_1
+          table: search_api_index_full_site_search
+          field: field_court_name
           relationship: none
           group_type: group
           admin_label: ''
@@ -650,14 +830,14 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_flynote_op
-            label: 'All Subjects'
+            operator_id: field_court_name_1_op
+            label: Court
             description: ''
             use_operator: false
-            operator: field_flynote_op
+            operator: field_court_name_1_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_flynote
+            identifier: field_court_name_1
             required: false
             remember: false
             multiple: false
@@ -682,7 +862,7 @@ display:
           reduce_duplicates: false
           type: select
           limit: true
-          vid: tags
+          vid: court_names
           hierarchy: false
           error_message: true
           plugin_id: search_api_term
@@ -699,7 +879,7 @@ display:
           exposed: true
           expose:
             operator_id: field_judge_op
-            label: 'Judge Name'
+            label: Judge
             description: ''
             use_operator: false
             operator: field_judge_op
@@ -734,6 +914,54 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: search_api_term
+        field_flynote:
+          id: field_flynote
+          table: search_api_index_full_site_search
+          field: field_flynote
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_flynote_op
+            label: Citation
+            description: ''
+            use_operator: false
+            operator: field_flynote_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_flynote
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: tags
+          hierarchy: false
+          error_message: true
+          plugin_id: search_api_term
         search_api_fulltext:
           id: search_api_fulltext
           table: search_api_index_full_site_search
@@ -762,7 +990,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
-            placeholder: 'Act Name'
+            placeholder: 'Full text search'
           is_grouped: false
           group_info:
             label: ''
