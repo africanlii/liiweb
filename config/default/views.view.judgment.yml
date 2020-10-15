@@ -8,6 +8,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - node.type.judgment
     - system.menu.main
+    - views.view.judgment_court_filter
   module:
     - better_exposed_filters
     - node
@@ -585,11 +586,7 @@ display:
       style:
         type: default
         options:
-          grouping:
-            -
-              field: title
-              rendered: true
-              rendered_strip: false
+          grouping: {  }
           row_class: ''
           default_row_class: true
           uses_fields: true
@@ -1219,6 +1216,17 @@ display:
           plugin_id: text
       title: Judgments
       header:
+        view:
+          id: view
+          table: views
+          field: view
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          view_to_insert: 'judgment_court_filter:page_1'
+          inherit_arguments: true
+          plugin_id: view
         area:
           id: area
           table: views
