@@ -1,4 +1,4 @@
-label: Feeds
+label: Flux
 display:
   default:
     display_title: Maître
@@ -24,7 +24,7 @@ display:
       fields:
         feeds_feed_bulk_form:
           label: 'Mise à jour en masse'
-          action_title: 'With selection'
+          action_title: 'Pour la sélection'
         title:
           label: Titre
           separator: ', '
@@ -38,7 +38,7 @@ display:
           label: 'Mis à jour'
           separator: ', '
         imported:
-          label: Imported
+          label: Importé
           separator: ', '
         operations:
           label: Actions
@@ -49,9 +49,9 @@ display:
         type:
           expose:
             label: Type
-      title: Feeds
+      title: Flux
   page_1:
     display_title: Page
     display_options:
       menu:
-        title: Feeds
+        title: Flux

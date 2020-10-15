@@ -13,7 +13,7 @@ third_party_settings:
   filefield_paths:
     enabled: true
     file_path:
-      value: '[date:custom:Y]-[date:custom:m]'
+      value: media/images
       options:
         slashes: false
         pathauto: false
