@@ -1154,7 +1154,7 @@ display:
           limit: 0
           case: ucfirst
           path_case: lower
-          transform_dash: false
+          transform_dash: true
           break_phrase: false
           add_table: false
           require_value: false
