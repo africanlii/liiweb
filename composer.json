@@ -53,6 +53,7 @@
         "drupal/jasm": "2.x-dev",
         "drupal/paragraphs": "^1.12",
         "drupal/pathauto": "^1.7",
+        "drupal/pdf": "^1.0",
         "drupal/quick_node_clone": "^1.12",
         "drupal/recaptcha": "^2.4",
         "drupal/s3fs": "^3.0",
