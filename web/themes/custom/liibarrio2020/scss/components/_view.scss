@@ -487,6 +487,16 @@
 
 //Judgment Listings Edits//
 
+
+//Hides content types without a subject matter type
 .view-judgments-listing .view-display-id-subject_group .views-summary li:first-child {
   display: none;
+
+}
+.view-judgments-listing .view-header .h3 {
+ padding-top: 10px;   
+}
+
+.view-judgments-listing .view-content h3 {
+    padding-top: 10px;
 }
