@@ -30,7 +30,7 @@ dependencies:
     - node.type.judgment
   module:
     - ds
-    - taxonomy
+    - text
     - user
 third_party_settings:
   ds:
@@ -53,9 +53,8 @@ third_party_settings:
     regions:
       content:
         - node_title
-        - field_court_name
-        - field_case_number_numeric
-        - field_case_number_year
+        - field_search_summary
+        - search_api_excerpt
     fields:
       node_title:
         plugin_id: node_title
@@ -77,25 +76,17 @@ targetEntityType: node
 bundle: judgment
 mode: teaser
 content:
-  field_case_number_numeric:
-    type: number_unformatted
-    weight: 2
-    region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-  field_case_number_year:
-    type: number_unformatted
-    weight: 3
-    region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-  field_court_name:
-    type: entity_reference_rss_category
+  field_search_summary:
+    type: text_trimmed
     weight: 1
     region: content
     label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  search_api_excerpt:
+    weight: 2
+    region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
@@ -121,7 +112,5 @@ hidden:
   field_law_report_citations: true
   field_matter_type: true
   field_media_neutral_citation: true
-  field_search_summary: true
   langcode: true
   links: true
-  search_api_excerpt: true

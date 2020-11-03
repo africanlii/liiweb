@@ -1,0 +1,11 @@
+uuid: 5185c964-7d9c-4621-8fea-3fcbe8b41c04
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.law_reform_reports
+id: node.law_reform_reports
+target_entity_type_id: node
+target_bundle: law_reform_reports
+default_langcode: site_default
+language_alterable: false
