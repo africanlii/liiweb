@@ -775,6 +775,7 @@ display:
                 select_all_none_nested: false
                 display_inline: 1
       css_class: view--liibarrio-browser
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -996,6 +997,7 @@ display:
         options:
           offset: 0
       css_class: view--liibarrio-search
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -1179,6 +1181,7 @@ display:
           required: false
           plugin_id: standard
       css_class: view--liibarrio-summary
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -1418,6 +1421,7 @@ display:
         options:
           items_per_page: 4
           offset: 0
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -1660,6 +1664,7 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: term_name
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:

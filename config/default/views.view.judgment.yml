@@ -510,6 +510,7 @@ display:
                 select_all_none_nested: false
                 display_inline: 1
       css_class: view--liibarrio-browser
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -694,6 +695,7 @@ display:
           entity_field: name
           plugin_id: term_name
       css_class: view--liibarrio-subject
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -1071,6 +1073,7 @@ display:
             format: full_html
           plugin_id: text
       fields: {  }
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:

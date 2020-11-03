@@ -1,6 +1,6 @@
 uuid: c832248c-2d23-42db-8946-c367b39fabe0
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - liiweb_judgment

@@ -1013,6 +1013,7 @@ display:
           1: AND
       css_class: view--liibarrio-search
       block_hide_empty: true
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
