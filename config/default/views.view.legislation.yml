@@ -1418,6 +1418,7 @@ display:
         options:
           items_per_page: 4
           offset: 0
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
