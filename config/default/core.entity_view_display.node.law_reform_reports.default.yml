@@ -1,0 +1,121 @@
+uuid: b96876ac-31f8-4428-855e-55b6973a35d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.law_reform_reports.body
+    - field.field.node.law_reform_reports.field_citation
+    - field.field.node.law_reform_reports.field_date
+    - field.field.node.law_reform_reports.field_file
+    - field.field.node.law_reform_reports.field_title
+    - node.type.law_reform_reports
+  module:
+    - datetime
+    - ds
+    - pdf
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_stacked_2col_9_3
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          header_left: div
+          header_right: div
+          header: div
+          left: div
+          right: div
+          footer: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          header_left: {  }
+          header_right: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
+    regions:
+      header_right:
+        - field_file
+      header:
+        - field_citation
+        - field_title
+        - field_date
+      left:
+        - body
+id: node.law_reform_reports.default
+targetEntityType: node
+bundle: law_reform_reports
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    region: left
+  field_citation:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: header
+  field_date:
+    weight: 3
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: html_month
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: datetime_default
+    region: header
+  field_file:
+    weight: 0
+    label: above
+    settings:
+      keep_pdfjs: '1'
+      width: 100%
+      height: ''
+      page: ''
+      zoom: ''
+      custom_zoom: ''
+      pagemode: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: pdf_default
+    region: header_right
+  field_title:
+    weight: 2
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: header
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true
