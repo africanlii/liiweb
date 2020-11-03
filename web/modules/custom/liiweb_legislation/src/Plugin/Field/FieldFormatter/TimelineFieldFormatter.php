@@ -118,7 +118,7 @@ class TimelineFieldFormatter extends FormatterBase {
       'name' => date('Y-m-d'),
       'description' => 'Today',
       'x' =>  time() * 1000,
-      'y' => 1,
+      'y' => 0,
       'color' => '#5a9d1c'
     ];
 
