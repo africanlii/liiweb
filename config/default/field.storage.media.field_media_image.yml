@@ -11,7 +11,7 @@ field_name: field_media_image
 entity_type: media
 type: image
 settings:
-  uri_scheme: public
+  uri_scheme: s3
   default_image:
     uuid: ''
     alt: ''

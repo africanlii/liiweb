@@ -11,9 +11,9 @@ dependencies:
     - image
 third_party_settings:
   filefield_paths:
-    enabled: true
+    enabled: false
     file_path:
-      value: '[date:custom:Y]-[date:custom:m]'
+      value: media/images
       options:
         slashes: false
         pathauto: false
@@ -43,7 +43,7 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_directory: media/images
   file_extensions: 'png gif jpg jpeg svg tiff'
   max_filesize: ''
   max_resolution: ''
