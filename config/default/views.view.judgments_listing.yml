@@ -58,7 +58,7 @@ display:
           items_per_page: 1
           offset: 0
       style:
-        type: default
+        type: html_list
         options:
           grouping:
             -
@@ -67,6 +67,9 @@ display:
               rendered_strip: false
           row_class: ''
           default_row_class: false
+          type: ul
+          wrapper_class: item-list
+          class: ''
       row:
         type: fields
         options:
@@ -599,17 +602,6 @@ display:
           admin_label: ''
           empty: false
           view_to_insert: 'judgments_listing:date_listing_block'
-          inherit_arguments: true
-          plugin_id: view
-        view_1:
-          id: view_1
-          table: views
-          field: view
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          view_to_insert: 'judgments_listing:subject_group'
           inherit_arguments: true
           plugin_id: view
       filters:
@@ -1371,6 +1363,7 @@ display:
           sort_desc_label: Desc
       block_category: ''
       css_class: 'view--liibarrio view--liibarrio--bg'
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
