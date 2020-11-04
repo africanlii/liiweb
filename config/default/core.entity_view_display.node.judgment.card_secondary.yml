@@ -67,8 +67,9 @@ third_party_settings:
           id: default
           settings:
             lb: ''
+            classes:
+              - ''
             lb-col: false
-            classes: {  }
 id: node.judgment.card_secondary
 targetEntityType: node
 bundle: judgment
