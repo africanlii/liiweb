@@ -1,0 +1,27 @@
+uuid: e4e9574c-840c-4679-aae8-bcb4a03d9d33
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_file
+    - node.type.law_reform_reports
+  module:
+    - file
+id: node.law_reform_reports.field_file
+field_name: field_file
+entity_type: node
+bundle: law_reform_reports
+label: Download
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_extensions: txt
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file
