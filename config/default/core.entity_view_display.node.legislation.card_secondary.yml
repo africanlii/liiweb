@@ -43,8 +43,7 @@ third_party_settings:
         link_attribute: ''
         link_custom: ''
         classes:
-          layout_class:
-            bg-secondary: bg-secondary
+          layout_class: {  }
           content: {  }
     regions:
       content:
