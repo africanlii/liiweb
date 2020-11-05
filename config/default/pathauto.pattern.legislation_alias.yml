@@ -7,16 +7,16 @@ dependencies:
 id: legislation_alias
 label: 'Legislation Alias'
 type: 'canonical_entities:node'
-pattern: '/legislation/[node:title]'
+pattern: '/legislation[node:field_frbr_uri:value]'
 selection_criteria:
-  eee616bc-1c21-4323-ac79-119a048b134f:
+  a60b5079-cb80-417b-94af-51e7111da891:
     id: node_type
     bundles:
       legislation: legislation
     negate: false
     context_mapping:
       node: node
-    uuid: eee616bc-1c21-4323-ac79-119a048b134f
+    uuid: a60b5079-cb80-417b-94af-51e7111da891
 selection_logic: and
 weight: -5
 relationships: {  }
