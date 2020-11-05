@@ -35,24 +35,22 @@ name: 'Apache Solr'
 description: 'Default Apache Solr search server'
 backend: search_api_solr
 backend_config:
-  connector: basic_auth
+  connector: standard
   connector_config:
     scheme: http
-    host: 46.101.197.248
+    host: solr.africanlii.org
     port: 8983
     path: /
-    core: africanlii
+    core: ApacheSolrLiiWeb
     timeout: 5
     index_timeout: 20
     optimize_timeout: 10
     finalize_timeout: 30
     commit_within: 1000
-    username: RW-Admin
-    password: SOLR.psw-123@
-    solr_version: '7'
+    solr_version: ''
     http_method: AUTO
     jmx: false
-    solr_install_dir: /opt/solr
+    solr_install_dir: /opt/bitnami/solr
   disabled_field_types: {  }
   disabled_caches: {  }
   disabled_request_handlers:
