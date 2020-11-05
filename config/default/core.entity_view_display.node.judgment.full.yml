@@ -69,7 +69,6 @@ third_party_settings:
       header_right:
         - field_case_name
         - field_law_report_citations
-        - field_judgment_date
         - field_media_neutral_citation
       header:
         - field_flynote
@@ -81,33 +80,15 @@ third_party_settings:
       right:
         - field_files
         - 'dynamic_token_field:node-share_links'
-        - 'dynamic_block_field:node-related_judgments'
-        - 'dynamic_block_field:node-related_legislation'
+        - 'dynamic_block_field:node-similar_judgments'
     fields:
-      'dynamic_block_field:node-related_judgments':
-        plugin_id: 'dynamic_block_field:node-related_judgments'
-        weight: 13
-        label: hidden
-        formatter: default
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
-      'dynamic_block_field:node-related_legislation':
-        plugin_id: 'dynamic_block_field:node-related_legislation'
-        weight: 14
-        label: hidden
-        formatter: default
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 11
+        label: hidden
+        formatter: default
+      'dynamic_block_field:node-similar_judgments':
+        plugin_id: 'dynamic_block_field:node-similar_judgments'
         weight: 12
         label: hidden
         formatter: default
@@ -119,7 +100,7 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 10
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     region: left
@@ -151,14 +132,14 @@ content:
     third_party_settings: {  }
   field_files:
     type: lii_file
-    weight: 11
+    weight: 10
     region: right
     label: hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
   field_flynote:
-    weight: 6
+    weight: 5
     label: inline
     settings:
       link: false
@@ -169,7 +150,7 @@ content:
     type: entity_reference_entity_view
     region: header
   field_headnote_and_holding:
-    weight: 8
+    weight: 7
     label: inline
     settings: {  }
     third_party_settings:
@@ -184,7 +165,7 @@ content:
     region: left
   field_judge:
     type: entity_reference_label
-    weight: 9
+    weight: 8
     region: left
     label: inline
     settings:
@@ -202,7 +183,7 @@ content:
     third_party_settings: {  }
   field_media_neutral_citation:
     type: computed_string
-    weight: 5
+    weight: 4
     region: header_right
     label: inline
     settings:
@@ -219,7 +200,7 @@ content:
             classes: {  }
   field_search_summary:
     type: text_summary_or_trimmed
-    weight: 7
+    weight: 6
     region: header
     label: inline
     settings:
