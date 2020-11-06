@@ -1,0 +1,29 @@
+uuid: 474b16fb-8265-48ee-a683-d52aa3b0a99d
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.liiweb_search
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: exposedformliiweb_searchpage_search_judgments
+theme: liibarrio2020
+region: content_top
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:liiweb_search-page_search_judgments'
+settings:
+  id: 'views_exposed_filter_block:liiweb_search-page_search_judgments'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: /judgments
+    negate: false
+    context_mapping: {  }

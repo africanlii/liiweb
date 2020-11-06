@@ -98,7 +98,7 @@ field_settings:
     label: 'Case number'
     datasource_id: 'entity:node'
     property_path: field_case_number
-    type: string
+    type: text
     dependencies:
       config:
         - field.storage.node.field_case_number
@@ -155,7 +155,7 @@ field_settings:
     label: Flynote
     datasource_id: 'entity:node'
     property_path: field_flynote
-    type: integer
+    type: text
     dependencies:
       config:
         - field.storage.node.field_flynote
@@ -180,7 +180,7 @@ field_settings:
     label: Judge
     datasource_id: 'entity:node'
     property_path: field_judge
-    type: integer
+    type: text
     dependencies:
       config:
         - field.storage.node.field_judge
@@ -188,7 +188,7 @@ field_settings:
     label: 'Judgment number'
     datasource_id: 'entity:node'
     property_path: field_judgment_number
-    type: integer
+    type: text
     dependencies:
       config:
         - field.storage.node.field_judgment_number
@@ -222,7 +222,7 @@ field_settings:
     label: Tags
     datasource_id: 'entity:node'
     property_path: field_tags
-    type: integer
+    type: text
     dependencies:
       config:
         - field.storage.node.field_tags
