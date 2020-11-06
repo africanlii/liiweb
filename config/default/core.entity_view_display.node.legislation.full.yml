@@ -76,11 +76,6 @@ third_party_settings:
       footer:
         - links
     fields:
-      'dynamic_token_field:node-share_links':
-        plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 6
-        label: hidden
-        formatter: default
       node_title:
         plugin_id: node_title
         weight: 0
@@ -96,6 +91,11 @@ third_party_settings:
             lb: ''
             lb-col: false
             classes: {  }
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 6
+        label: hidden
+        formatter: default
 id: node.legislation.full
 targetEntityType: node
 bundle: legislation
@@ -120,7 +120,7 @@ content:
     type: string
     weight: 3
     region: header
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings:

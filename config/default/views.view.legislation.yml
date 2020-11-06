@@ -10,6 +10,7 @@ dependencies:
     - system.menu.main
   module:
     - better_exposed_filters
+    - datetime
     - node
     - similarterms
     - taxonomy
@@ -1205,6 +1206,7 @@ display:
         use_ajax: false
         style: false
         row: false
+        sorts: false
       filters:
         status:
           value: '1'
@@ -1258,6 +1260,20 @@ display:
         options:
           relationship: none
           view_mode: card_secondary
+      sorts:
+        field_expression_date_value:
+          id: field_expression_date_value
+          table: node__field_expression_date
+          field: field_expression_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+          plugin_id: datetime
     cache_metadata:
       max-age: -1
       contexts:
@@ -1274,7 +1290,7 @@ display:
     display_options:
       display_extenders: {  }
       display_description: 'Recent Legislative block displays on homepage'
-      title: 'Recent Legislative Amendments'
+      title: 'Most Recent Legislation'
       defaults:
         title: false
         filters: false
@@ -1289,6 +1305,7 @@ display:
         use_more: false
         use_more_always: false
         use_more_text: false
+        sorts: false
       filters:
         status:
           value: '1'
@@ -1348,6 +1365,20 @@ display:
       use_more: true
       use_more_always: true
       use_more_text: 'View more legislation'
+      sorts:
+        field_expression_date_value:
+          id: field_expression_date_value
+          table: node__field_expression_date
+          field: field_expression_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+          plugin_id: datetime
     cache_metadata:
       max-age: -1
       contexts:
@@ -1717,6 +1748,8 @@ display:
         row: false
         css_class: false
         use_ajax: false
+        fields: false
+        sorts: false
       header:
         area:
           id: area
@@ -1728,20 +1761,23 @@ display:
           empty: false
           tokenize: false
           content:
-            value: '<h2 class="h3">Recent Legislative Amendments</h3>'
+            value: '<h2 class="h3">Legislation</h3>'
             format: full_html
           plugin_id: text
       style:
-        type: grid
+        type: html_list
         options:
-          uses_fields: false
-          columns: 3
-          automatic_width: false
-          alignment: horizontal
-          col_class_default: false
-          col_class_custom: col-lg-4
-          row_class_default: false
-          row_class_custom: row
+          grouping:
+            -
+              field: title_1
+              rendered: true
+              rendered_strip: false
+          row_class: ''
+          default_row_class: true
+          uses_fields: true
+          type: ul
+          wrapper_class: item-list
+          class: ''
       row:
         type: 'entity:node'
         options:
@@ -1749,6 +1785,134 @@ display:
           view_mode: teaser
       css_class: 'view--liibarrio view--liibarrio--bg'
       use_ajax: true
+      fields:
+        title_1:
+          id: title_1
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: 'Single Letter Index'
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 1
+            word_boundary: false
+            ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: true
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          entity_type: node
+          entity_field: title
+          label: ''
+          alter:
+            alter_text: false
+            make_link: false
+            absolute: false
+            trim: false
+            word_boundary: false
+            ellipsis: false
+            strip_tags: false
+            html: false
+          hide_empty: false
+          empty_zero: false
+          settings:
+            link_to_entity: true
+          plugin_id: field
+          relationship: none
+          group_type: group
+          admin_label: ''
+          exclude: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      sorts:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: standard
     cache_metadata:
       max-age: -1
       contexts:
