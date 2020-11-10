@@ -222,7 +222,7 @@ field_settings:
     label: Tags
     datasource_id: 'entity:node'
     property_path: field_tags
-    type: text
+    type: string
     dependencies:
       config:
         - field.storage.node.field_tags

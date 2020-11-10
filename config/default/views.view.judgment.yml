@@ -8,7 +8,6 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - node.type.judgment
     - system.menu.main
-    - views.view.index_search_judgment
     - views.view.judgment_court_filter
   module:
     - better_exposed_filters
@@ -760,21 +759,6 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  block_2:
-    display_plugin: block
-    id: block_2
-    display_title: 'Block 2'
-    position: 10
-    display_options:
-      display_extenders: {  }
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_interface'
-        - url.query_args
-        - 'user.node_grants:view'
-        - user.permissions
-      tags: {  }
   block_judgments_related:
     display_plugin: block
     id: block_judgments_related
@@ -1242,17 +1226,6 @@ display:
           empty: false
           view_to_insert: 'judgment_court_filter:page_1'
           inherit_arguments: true
-          plugin_id: view
-        view_1:
-          id: view_1
-          table: views
-          field: view
-          relationship: none
-          group_type: group
-          admin_label: 'Search View'
-          empty: false
-          view_to_insert: 'index_search_judgment:bk_judgment_search'
-          inherit_arguments: false
           plugin_id: view
         area:
           id: area
