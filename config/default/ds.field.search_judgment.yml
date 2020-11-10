@@ -1,0 +1,11 @@
+id: search_judgment
+label: 'Search Judgment'
+ui_limit: ''
+properties:
+  block: 'views_block:index_search_judgment-bk_judgment_search'
+  use_block_title: false
+  add_block_wrappers: true
+type: block
+type_label: 'Block field'
+entities:
+  node: node

@@ -650,6 +650,47 @@ display:
         row: false
         pager: false
       filters:
+        type:
+          id: type
+          table: search_api_index_full_site_search
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            judgment: judgment
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          plugin_id: search_api_options
         search_api_fulltext:
           id: search_api_fulltext
           table: search_api_index_full_site_search
@@ -883,93 +924,6 @@ display:
           fields:
             - field_judge
           plugin_id: search_api_fulltext
-        search_api_fulltext_3:
-          id: search_api_fulltext_3
-          table: search_api_index_full_site_search
-          field: search_api_fulltext
-          relationship: none
-          group_type: group
-          admin_label: 'Flynote Search'
-          operator: or
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: search_api_fulltext_3_op
-            label: 'Fulltext search'
-            description: ''
-            use_operator: false
-            operator: search_api_fulltext_3_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: search_api_fulltext_3
-            required: false
-            remember: false
-            multiple: true
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          parse_mode: terms
-          min_length: null
-          fields:
-            - field_flynote
-          plugin_id: search_api_fulltext
-        type:
-          id: type
-          table: search_api_index_full_site_search
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            judgment: judgment
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: search_api_options
       filter_groups:
         operator: AND
         groups:
