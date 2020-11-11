@@ -24,3 +24,22 @@
     }
   }
 }
+
+.liiweb-download {
+  a {
+    text-decoration: none;
+
+    &:after {
+      content: "\f15c";
+      margin-left: $spacer-sm;
+      font-size: $font-size-base;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+    }
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+  }
+}

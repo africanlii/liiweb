@@ -144,11 +144,32 @@ content:
       ds:
         ds_limit: ''
         ft:
-          id: default
+          id: expert
           settings:
             lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: 'field field--name-field-files field--type-file field--label-hidden field__items'
+            ow-at: ''
+            ow-def-at: true
+            fis: true
+            fis-el: div
+            fis-cl: 'field__items liiweb-download'
+            fis-at: ''
+            fis-def-at: true
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
             lb-col: false
-            classes: {  }
+            ow-def-cl: false
+            fi: false
+            fi-def-at: false
   field_flynote:
     weight: 5
     label: inline
