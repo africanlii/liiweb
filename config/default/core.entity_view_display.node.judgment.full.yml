@@ -31,7 +31,7 @@ dependencies:
   module:
     - computed_field
     - ds
-    - liiweb
+    - file_download_link
     - text
     - user
 third_party_settings:
@@ -131,13 +131,45 @@ content:
       link: false
     third_party_settings: {  }
   field_files:
-    type: lii_file
+    type: file_download_link
     weight: 10
     region: right
     label: hidden
     settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
+      link_text: "Download as [file:ffp-extension-original]\t"
+      new_tab: true
+      force_download: true
+      custom_classes: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: 'field field--name-field-files field--type-file field--label-hidden field__items'
+            ow-at: ''
+            ow-def-at: true
+            fis: true
+            fis-el: div
+            fis-cl: 'field__items liiweb-download'
+            fis-at: ''
+            fis-def-at: true
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-cl: false
+            fi: false
+            fi-def-at: false
   field_flynote:
     weight: 5
     label: inline
