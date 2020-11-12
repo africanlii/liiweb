@@ -4,8 +4,9 @@
     "attributes": {
       "title": "Expression: /akn/za/act/1900/00/eng@1900-02-02",
       "langcode": "en",
-      "field_date": "1902-02-02",
-      "field_publication_name": "Newest expression: Publication name",
+      "field_date": "1900-01-0",
+      "field_expression_date": "1902-02-02",
+      "field_publication_name": "Updated publication name",
       "field_frbr_uri": "/akn/za/act/1900/00/eng@1900-02-02",
       "field_content": {
         "value": "<p>A new expression of <pre>/akn/za/act/1900/00/eng@1900-01-01</pre></p>",
