@@ -219,8 +219,8 @@ class LiiWebEntityResource extends EntityResource {
     $nextMainRevision = NULL;
     foreach ($revisionIds as $revisionId) {
       $otherRevision = $nodeStorage->loadRevision($revisionId);
-      if ($otherRevision->field_publication_date->value > $max && $revisionId != $revision->getRevisionId()) {
-        $max = $otherRevision->field_publication_date->value;
+      if ($otherRevision->field_expression_date->value > $max && $revisionId != $revision->getRevisionId()) {
+        $max = $otherRevision->field_expression_date->value;
         $nextMainRevision = $otherRevision;
       }
     }
@@ -288,7 +288,7 @@ class LiiWebEntityResource extends EntityResource {
       $entity->setNewRevision($create_revision);
       if ($create_revision) {
         $default_revision = Node::load($entity->id());
-        if ($entity->field_publication_date->value > $default_revision->field_publication_date->value) {
+        if ($entity->field_expression_date->value > $default_revision->field_expression_date->value) {
           $entity->isDefaultRevision(TRUE);
         }
         else {
