@@ -1,4 +1,4 @@
-uuid: ba1beb03-b4a4-495c-842d-c4302051dac1
+uuid: 0d30ba4f-705c-493c-b9a6-465ff52e0d8a
 langcode: en
 status: true
 dependencies:
@@ -7,21 +7,21 @@ dependencies:
     - views_exposed_filter_blocks
   theme:
     - liibarrio2020
-id: viewsexposedfilterblock_2
+id: viewsexposedfilterblock_3
 theme: liibarrio2020
-region: content_top
+region: sidebar_first
 weight: 0
 provider: null
 plugin: views_exposed_filter_blocks_block
 settings:
   id: views_exposed_filter_blocks_block
-  label: 'Search Judgments'
+  label: 'Judgment Search'
   provider: views_exposed_filter_blocks
   label_display: visible
   view_display: 'liiweb_search:page_search_judgments'
 visibility:
   request_path:
     id: request_path
-    pages: /judgments
+    pages: "/judgments\r\n/search-judgments"
     negate: false
     context_mapping: {  }

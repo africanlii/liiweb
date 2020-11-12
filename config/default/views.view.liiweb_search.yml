@@ -634,7 +634,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: search
+      path: search-judgments
       display_description: ''
       title: 'Search Judgments'
       defaults:
@@ -939,7 +939,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: '<h2 class="view-header-title">Search Results</h3>'
+            value: '<h2 class="view-header-title">Search Judgments</h3>'
             format: full_html
           plugin_id: text
       cache:
