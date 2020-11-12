@@ -5,7 +5,7 @@ PASSWORD="password"
 
 echo "Creating new work: /akn/za/act/1900/00/eng@1900-01-01"
 curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X POST -u $USER:$PASSWORD --data @01-create-work.json http://liiweb.test/api/node/legislation
-curl -H "Accept: application/vnd.api+json" -u $USER:$PASSWORD http://liiweb.test/akn/za/act/1900/00/eng@1900-01-01
+curl -sD - -H "Accept: application/vnd.api+json" -u $USER:$PASSWORD http://liiweb.test/akn/za/act/1900/00/eng@1900-01-01 -o /dev/null
 
 echo ""
 echo "Creating new work (/akn/za/act/2000/00/eng@2000-01-01) with previous work as parent (/akn/za/act/1900/00/eng@1900-01-01)"
