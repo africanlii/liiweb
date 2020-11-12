@@ -2,13 +2,13 @@
   "data": {
     "type": "node--legislation",
     "attributes": {
-      "title": "Work: /akn/za/act/1993/31/eng@1993-01-31 - Simple work (first expression)",
+      "title": "Work /akn/za/act/1900/00/eng@1900-01-01",
       "langcode": "en",
-      "field_publication_date": "1993-01-31",
-      "field_publication_name": "Work: Original publication name",
-      "field_frbr_uri": "/akn/za/act/1993/31/eng@1993-01-31",
+      "field_date": "1900-01-01",
+      "field_publication_name": "Publication name",
+      "field_frbr_uri": "/akn/za/act/1900/00/eng@1900-01-01",
       "field_content": {
-        "value": "<p><b>Paragraph #1</b></p><p>Paragraph #2</p>",
+        "value": "<p>This is a work</p>",
         "format": "full_html"
       }
     },
