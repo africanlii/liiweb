@@ -151,25 +151,6 @@ class LiiWebEntityResource extends EntityResource {
   }
 
   /**
-   * @param \Drupal\node\NodeInterface $node
-   * @param $date
-   *
-   * @return \Drupal\Core\Entity\EntityInterface|\Drupal\Core\Entity\RevisionableInterface|mixed|null
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
-   */
-  protected function getRevisionWithPublicationDate(NodeInterface $node, $date) {
-    $revisions = $this->getNodeRevisions($node);
-    foreach ($revisions as $revision) {
-      if ($revision->field_publication_date->value == $date) {
-        return $revision;
-      }
-    }
-
-    return NULL;
-  }
-
-  /**
    * @param \Symfony\Component\HttpFoundation\Request $request
    *
    * @return \Drupal\jsonapi\ResourceResponse
