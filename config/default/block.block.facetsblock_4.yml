@@ -21,12 +21,12 @@ settings:
   show_title: true
   exclude_empty_facets: true
   facets_to_include:
-    'facet_block:judge': 'facet_block:judge'
-    'facet_block:date_range_judgments': 'facet_block:date_range_judgments'
-    'facet_block:court_name_judgments': 'facet_block:court_name_judgments'
-    'facet_block:flynote': 'facet_block:flynote'
+    'facet_block:judgments_date': 'facet_block:judgments_date'
+    'facet_block:judgments_flynote': 'facet_block:judgments_flynote'
+    'facet_block:judgments_court': 'facet_block:judgments_court'
     'facet_block:content_type': '0'
     'facet_block:date_range': '0'
+    'facet_block:duplicate_of_date_range': '0'
     'facet_block:commencement_date': '0'
     'facet_block:expression_date': '0'
     'facet_block:gazette_date': '0'

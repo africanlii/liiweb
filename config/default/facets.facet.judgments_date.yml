@@ -1,20 +1,20 @@
-uuid: e2753dce-2965-4b78-8961-d08f2b5972ac
+uuid: 1f2aa91a-e4a3-4efc-9164-d805ef78ae43
 langcode: en
 status: true
 dependencies:
   config:
     - search_api.index.full_site_search
-    - views.view.liiweb_search
+    - views.view.search_judgments
   module:
     - search_api
-id: date_range_judgments
-name: 'Date Range Judgments'
+id: judgments_date
+name: 'Judgments Date'
 url_alias: date_range
 weight: -2
 min_count: 1
 show_only_one_result: true
 field_identifier: field_date
-facet_source_id: 'search_api:views_page__liiweb_search__page_search_judgments'
+facet_source_id: 'search_api:views_page__search_judgments__search_judgments'
 widget:
   type: links
   config:

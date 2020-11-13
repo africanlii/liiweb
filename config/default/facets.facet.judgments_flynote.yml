@@ -1,24 +1,31 @@
-uuid: 8df62e95-0fbc-4825-876e-ccff31a5555d
+uuid: 2f6745fd-689d-47ad-bb87-43c3fe6e0625
 langcode: en
 status: true
 dependencies:
   config:
     - search_api.index.full_site_search
-    - views.view.liiweb_search
+    - views.view.search_judgments
   module:
     - search_api
-id: judge
-name: Judge
-url_alias: judge
-weight: -4
+id: judgments_flynote
+name: 'Judgments Flynote'
+url_alias: judgments_flynote
+weight: 0
 min_count: 1
 show_only_one_result: false
-field_identifier: field_judge
-facet_source_id: 'search_api:views_page__liiweb_search__page_search_judgments'
+field_identifier: field_flynote
+facet_source_id: 'search_api:views_page__search_judgments__search_judgments'
 widget:
-  type: array
+  type: links
   config:
     show_numbers: false
+    soft_limit: 0
+    soft_limit_settings:
+      show_less_label: 'Show less'
+      show_more_label: 'Show more'
+    show_reset_link: false
+    reset_text: 'Show all'
+    hide_reset_when_no_selection: false
 query_operator: or
 use_hierarchy: false
 expand_hierarchy: false

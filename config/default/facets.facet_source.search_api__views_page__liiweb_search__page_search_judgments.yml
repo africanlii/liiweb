@@ -1,9 +1,0 @@
-uuid: 920c1189-a9f2-4dbb-8604-34ac7a8709ef
-langcode: en
-status: true
-dependencies: {  }
-id: search_api__views_page__liiweb_search__page_search_judgments
-name: 'search_api:views_page__liiweb_search__page_search_judgments'
-filter_key: null
-url_processor: query_string
-breadcrumb: {  }
