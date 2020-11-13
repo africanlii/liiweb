@@ -295,8 +295,8 @@ display:
           admin_label: Date
           operator: between
           value:
-            min: From
-            max: To
+            min: ''
+            max: ''
             value: ''
             type: date
           group: 1
