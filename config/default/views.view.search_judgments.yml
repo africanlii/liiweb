@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.body
     - search_api.index.full_site_search
-    - taxonomy.vocabulary.tags
   module:
     - better_exposed_filters
     - search_api
@@ -118,6 +117,12 @@ display:
         type: default
       row:
         type: search_api
+        options:
+          view_modes:
+            'entity:node':
+              government_gazette: search_index
+              judgment: search_index
+              legislation: search_index
       fields:
         body:
           table: search_api_index_full_site_search
@@ -295,8 +300,8 @@ display:
           admin_label: Date
           operator: between
           value:
-            min: From
-            max: To
+            min: ''
+            max: ''
             value: ''
             type: date
           group: 1
@@ -426,35 +431,35 @@ display:
           fields:
             - field_case_number
           plugin_id: search_api_fulltext
-        field_flynote:
-          id: field_flynote
+        search_api_fulltext_3:
+          id: search_api_fulltext_3
           table: search_api_index_full_site_search
-          field: field_flynote
+          field: search_api_fulltext
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: Flynote
           operator: or
-          value: {  }
+          value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: field_flynote_op
+            operator_id: search_api_fulltext_3_op
             label: Flynote
             description: ''
             use_operator: false
-            operator: field_flynote_op
+            operator: search_api_fulltext_3_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_flynote
+            identifier: search_api_fulltext_flynote
             required: false
             remember: false
-            multiple: true
+            multiple: false
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
               system: '0'
               api_legislation: '0'
-            reduce: false
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -467,14 +472,24 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          reduce_duplicates: false
-          type: textfield
-          limit: true
-          vid: tags
-          hierarchy: false
-          error_message: true
-          plugin_id: search_api_term
-      sorts: {  }
+          parse_mode: terms
+          min_length: null
+          fields:
+            - field_flynote
+          plugin_id: search_api_fulltext
+      sorts:
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_full_site_search
+          field: search_api_relevance
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
       title: 'Search Judgments'
       header: {  }
       footer: {  }
@@ -494,7 +509,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.body'
@@ -519,7 +533,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.body'
