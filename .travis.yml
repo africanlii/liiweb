@@ -24,7 +24,7 @@ before_script:
 
 script:
   - composer install
-  - composer require drupal/entity_browser --dev
+  - composer require drupal/entity_browser --dev # https://www.drupal.org/project/paragraphs/issues/2981850
   - cd web
   - ./../vendor/bin/drush site-install --existing-config --verbose --yes --db-url=sqlite://tmp/site.sqlite
   - ./../vendor/bin/drush runserver $SIMPLETEST_BASE_URL &
