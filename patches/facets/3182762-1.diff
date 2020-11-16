@@ -1,0 +1,60 @@
+diff --git a/modules/facets_rest/tests/rest_view/rest_view.info.yml b/modules/facets_rest/tests/rest_view/rest_view.info.yml
+index 5e4d681..de2f769 100644
+--- a/modules/facets_rest/tests/rest_view/rest_view.info.yml
++++ b/modules/facets_rest/tests/rest_view/rest_view.info.yml
+@@ -3,6 +3,7 @@ type: module
+ description: 'Provides a Search API + rest dependency to execute tests.'
+ package: 'Testing'
+ hidden: true
++core_version_requirement: ^8.8 || ^9
+ dependencies:
+   - drupal:rest
+   - drupal:views
+diff --git a/tests/facets_custom_widget/facets_custom_widget.info.yml b/tests/facets_custom_widget/facets_custom_widget.info.yml
+index fcd3a15..49d2ddd 100644
+--- a/tests/facets_custom_widget/facets_custom_widget.info.yml
++++ b/tests/facets_custom_widget/facets_custom_widget.info.yml
+@@ -3,6 +3,7 @@ type: module
+ description: 'Facets custom widget'
+ package: 'Testing'
+ hidden: true
++core_version_requirement: ^8.8 || ^9
+ 
+ # Information added by Drupal.org packaging script on 2020-11-03
+ version: '8.x-1.6'
+diff --git a/tests/facets_events_test/facets_events_test.info.yml b/tests/facets_events_test/facets_events_test.info.yml
+index b362da1..58e2e7a 100644
+--- a/tests/facets_events_test/facets_events_test.info.yml
++++ b/tests/facets_events_test/facets_events_test.info.yml
+@@ -3,6 +3,7 @@ type: module
+ description: 'Facets events test'
+ package: 'Testing'
+ hidden: true
++core_version_requirement: ^8.8 || ^9
+ 
+ # Information added by Drupal.org packaging script on 2020-11-03
+ version: '8.x-1.6'
+diff --git a/tests/facets_query_processor/facets_query_processor.info.yml b/tests/facets_query_processor/facets_query_processor.info.yml
+index e4a53bb..35bb4d0 100644
+--- a/tests/facets_query_processor/facets_query_processor.info.yml
++++ b/tests/facets_query_processor/facets_query_processor.info.yml
+@@ -3,6 +3,7 @@ type: module
+ description: 'Facets query processor'
+ package: 'Testing'
+ hidden: true
++core_version_requirement: ^8.8 || ^9
+ 
+ # Information added by Drupal.org packaging script on 2020-11-03
+ version: '8.x-1.6'
+diff --git a/tests/facets_search_api_dependency/facets_search_api_dependency.info.yml b/tests/facets_search_api_dependency/facets_search_api_dependency.info.yml
+index 180180a..52b21ed 100644
+--- a/tests/facets_search_api_dependency/facets_search_api_dependency.info.yml
++++ b/tests/facets_search_api_dependency/facets_search_api_dependency.info.yml
+@@ -3,6 +3,7 @@ type: module
+ description: 'Provides a Search API dependecy.'
+ package: 'Testing'
+ hidden: true
++core_version_requirement: ^8.8 || ^9
+ dependencies:
+   - search_api:search_api
+   - search_api:search_api_test_db
