@@ -496,7 +496,8 @@ display:
           group_type: group
           admin_label: ''
           operator: in
-          value: {  }
+          value:
+            '***LANGUAGE_language_interface***': '***LANGUAGE_language_interface***'
           group: 1
           exposed: true
           expose:
@@ -505,6 +506,8 @@ display:
             description: ''
             use_operator: false
             operator: langcode_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: langcode
             required: false
             remember: false
@@ -512,10 +515,9 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
-              administrator: '0'
+              system: '0'
+              api_legislation: '0'
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
