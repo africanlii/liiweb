@@ -3,7 +3,8 @@
 use Drupal\Core\Site\Settings;
 
 function liiweb_install() {
-  liiweb_db_change_varchar_field('node', 'title', Settings::get('node_title_length_chars'));
+  $length = Settings::get('node_title_length_chars') ?: 255;
+  liiweb_db_change_varchar_field('node', 'title', $length);
 }
 
 function liiweb_uninstall() {
