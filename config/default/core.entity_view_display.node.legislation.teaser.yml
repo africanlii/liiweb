@@ -48,7 +48,6 @@ third_party_settings:
     regions:
       content:
         - node_title
-        - field_publication_date
     fields:
       node_title:
         plugin_id: node_title

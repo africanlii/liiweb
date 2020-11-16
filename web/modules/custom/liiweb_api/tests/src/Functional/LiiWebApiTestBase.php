@@ -69,7 +69,7 @@ abstract class LiiWebApiTestBase extends BrowserTestBase {
       'type' => 'legislation',
       'title' => 'Legislation old',
       'field_frbr_uri' => "$baseUri/eng@1993-01-31",
-      'field_publication_date' => '1993-01-31',
+      'field_expression_date' => '1993-01-31',
       'uid' => user_load_by_mail(static::API_USER),
     ]);
     $node->save();
@@ -78,13 +78,13 @@ abstract class LiiWebApiTestBase extends BrowserTestBase {
       'field_frbr_uri' => "$baseUri/fra@1993-01-31",
       'title' => 'Legislation old fr',
       'uid' => user_load_by_mail(static::API_USER),
-      'field_publication_date' => '1993-01-31',
+      'field_expression_date' => '1993-01-31',
     ]);
     $node->setNewRevision(FALSE);
     $node->save();
 
     $node->get('field_frbr_uri')->setValue("$baseUri/eng@1994-01-31");
-    $node->get('field_publication_date')->setValue('1994-01-31');
+    $node->get('field_expression_date')->setValue('1994-01-31');
     $node->setTitle('Legislation new');
     $node->setNewRevision();
     $node->save();
@@ -93,7 +93,7 @@ abstract class LiiWebApiTestBase extends BrowserTestBase {
     $node = $node->getTranslation('fr');
     $node->setTitle('Legislation new fr');
     $node->get('field_frbr_uri')->setValue("$baseUri/fra@1994-01-31");
-    $node->get('field_publication_date')->setValue('1994-01-31');
+    $node->get('field_expression_date')->setValue('1994-01-31');
     $node->save();
 
     return $node;

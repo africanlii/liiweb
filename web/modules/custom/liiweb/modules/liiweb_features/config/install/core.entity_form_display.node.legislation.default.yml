@@ -13,7 +13,6 @@ dependencies:
     - field.field.node.legislation.field_frbr_uri
     - field.field.node.legislation.field_images
     - field.field.node.legislation.field_parent_work
-    - field.field.node.legislation.field_publication_date
     - field.field.node.legislation.field_publication_name
     - field.field.node.legislation.field_raw_json
     - field.field.node.legislation.field_repeal
@@ -100,12 +99,6 @@ content:
       match_limit: 10
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
-  field_publication_date:
-    weight: 5
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
     region: content
   field_publication_name:
     weight: 6

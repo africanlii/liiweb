@@ -48,7 +48,7 @@ Notice: In this example the referenced entity `"attributes": { "field_frbr_uri":
 
 This example corrects the title and publication name of a work previously created. In this way any other fields could be changed.
 
-**Important**: If the date of this expression (field_publication_date) is the newest for this work, this expression is set as the 'latest' expression. Otherwise it's just another expression attached to the history of this work.
+**Important**: If the date of this expression (field_expression_date) is the newest for this work, this expression is set as the 'latest' expression. Otherwise it's just another expression attached to the history of this work.
 
 ```
 curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" -X PATCH -u $HTTP_USER:$HTTP_PASSWORD --data @04-update-expression.json http://liiweb.test/akn/za/act/1900/00/eng@1900-01-01
@@ -102,7 +102,7 @@ curl -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+jso
 
 Where `http://liiweb.test/akn/za/act/1900/00/eng@1900-01-01` is the FRBR URI of an existing expression.
 
-After the call a new node *revision* is created and set as the current revision if its field_publication_date is the latest. If you visit the "Revisions" tab for this node you will see it now has two revisions, and this one is the newest and the current revision. Visiting both revisions reveals the different field data.
+After the call a new node *revision* is created and set as the current revision if its field_expression_date is the latest. If you visit the "Revisions" tab for this node you will see it now has two revisions, and this one is the newest and the current revision. Visiting both revisions reveals the different field data.
 
 
 ## Translate an expression translation

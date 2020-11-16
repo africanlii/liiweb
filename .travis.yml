@@ -30,3 +30,4 @@ script:
   - ./../vendor/bin/drush runserver $SIMPLETEST_BASE_URL &
   - until curl -s $SIMPLETEST_BASE_URL; do sleep 1; done > /dev/null
   - ./../vendor/bin/phpunit -c core --group liiweb
+  - cd docs/jsonapi && ./run.sh
