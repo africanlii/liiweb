@@ -3,12 +3,13 @@
     "type": "node--legislation",
     "attributes": {
       "langcode": "fr",
-      "title": "Français: /akn/za/act/2000/00/fra@2000-01-01",
+      "title": "Français: /akn/za/act/2000/00/fre@2000-01-01",
       "field_date": "2000-01-01",
+      "field_expression_date": "2000-01-01",
       "field_publication_name": {
         "value": "Nouvelle expression: Nom de publication"
       },
-      "field_frbr_uri": "/akn/za/act/2000/00/fra@2000-01-01",
+      "field_frbr_uri": "/akn/za/act/2000/00/fre@2000-01-01",
       "field_content": {
         "value": "<p><b>Paragraph #1</b></p><p>Paragraph #3</p>",
         "format": "full_html"
@@ -16,4 +17,3 @@
     }
   }
 }
-

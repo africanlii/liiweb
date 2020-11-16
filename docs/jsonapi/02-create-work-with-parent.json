@@ -5,6 +5,7 @@
       "title": "Work: 2000/00/eng@2000-01-01",
       "langcode": "en",
       "field_date": "2000-01-01",
+      "field_expression_date": "2000-01-01",
       "field_publication_name": "Publication name",
       "field_frbr_uri": "/akn/za/act/2000/00/eng@2000-01-01",
       "field_content": {

@@ -127,7 +127,7 @@ class LiiWebEntityResource extends EntityResource {
       return $this->getResourceResponseError("No revision was found with the frbr uri " . $request->getPathInfo(), 404);
     }
 
-    if ($request->headers->get('Accept') == 'application/vnd.api+json') {
+    if ($request->headers->get('Accept') == 'application/json') {
       $revision->addCacheContexts(['url']);
       $response =  $this->getIndividual($revision, $request);
       $cacheability = (new CacheableMetadata())->addCacheContexts(['headers:Accept', 'url']);
