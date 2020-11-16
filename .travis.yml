@@ -20,10 +20,7 @@ before_script:
   # At job start-up Composer is installed at 1.8.4 then self-update is run. From
   # 24 October 2020 this bumped the version to Composer 2. Drupal Core 8.8 has
   # plugins that only run with composer-plugin-api ^1.0 so revert to Composer 1.
-  - if [ "$DRUPAL_CORE" == "8.8.x" ]; then
-    travis_retry composer self-update --1;
-    fi
-  - travis_retry composer install
+  - travis_retry composer self-update --1;
 
 script:
   - composer install
