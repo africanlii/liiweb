@@ -1,0 +1,11 @@
+.node--type-legislation {
+
+ @keyframes fadeout {
+   from { background-color: yellow; }
+   to { background-color: none; }
+ }
+
+ .akoma-ntoso :target {
+   animation: fadeout 2s;
+ }
+}
