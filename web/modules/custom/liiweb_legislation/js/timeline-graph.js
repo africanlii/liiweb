@@ -18,7 +18,7 @@
 
       // link to read this version
       if (entry.expression_frbr_uri && entry.date != expressionInfo.expression_date) {
-        link = '<br/><a style="text-decoration: underline; font-weight: bold" href="/legislation' +
+        link = '<br/><a style="text-decoration: underline; font-weight: bold" href="' +
                entry.expression_frbr_uri + '">Read version</a>';
       }
 
