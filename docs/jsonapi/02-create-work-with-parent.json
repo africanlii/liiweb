@@ -2,13 +2,14 @@
   "data": {
     "type": "node--legislation",
     "attributes": {
-      "title": "Work: /akn/za/act/2017/15/eng@2017-06-15 - Child work (of /akn/za/act/1993/31/eng@1993-01-31)",
+      "title": "Work: 2000/00/eng@2000-01-01",
       "langcode": "en",
-      "field_publication_date": "2017-06-15",
+      "field_date": "2000-01-01",
+      "field_expression_date": "2000-01-01",
       "field_publication_name": "Publication name",
-      "field_frbr_uri": "/akn/za/act/2017/15/eng@2017-06-15",
+      "field_frbr_uri": "/akn/za/act/2000/00/eng@2000-01-01",
       "field_content": {
-        "value": "<p><b>Paragraph #1</b></p><p>Paragraph #2</p>",
+        "value": "<p><b>This work is child of work <pre>1900/00/eng@1900-01-01</pre></b></p>",
         "format": "full_html"
       }
     },
@@ -20,7 +21,7 @@
             "nid": "nid",
             "id": "virtual",
             "attributes": {
-              "field_frbr_uri": "/akn/za/act/1993/31/eng@1993-01-31"
+              "field_frbr_uri": "/akn/za/act/1900/00/eng@1900-01-01"
             }
           }
         ]

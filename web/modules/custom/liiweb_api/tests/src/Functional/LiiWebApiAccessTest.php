@@ -34,7 +34,7 @@ class LiiWebApiAccessTest extends LiiWebApiTestBase {
       'status' => 1,
       'field_frbr_uri' => '/frbr1',
       'field_publication_name' => 'name',
-      'field_publication_date' => '2000-01-01',
+      'field_expression_date' => '2000-01-01',
     ]);
     /** @var \Drupal\Core\Entity\EntityConstraintViolationListInterface $v */
     $v = $node->validate();
@@ -60,7 +60,7 @@ class LiiWebApiAccessTest extends LiiWebApiTestBase {
       'status' => 1,
       'field_frbr_uri' => '/frbr2',
       'field_publication_name' => 'name',
-      'field_publication_date' => '2000-01-01',
+      'field_expression_date' => '2000-01-01',
     ]);
     /** @var \Drupal\Core\Entity\EntityConstraintViolationListInterface $v */
     $v = $node->validate();

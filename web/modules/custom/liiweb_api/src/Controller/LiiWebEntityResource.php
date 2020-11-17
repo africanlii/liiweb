@@ -33,7 +33,6 @@ use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class LiiWebEntityResource extends EntityResource {
@@ -122,10 +121,10 @@ class LiiWebEntityResource extends EntityResource {
    */
   public function get(Request $request) {
     /** @var NodeInterface $revision */
-    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getPathInfo());
 
     if (empty($revision)) {
-      throw new NotFoundHttpException();
+      return $this->getResourceResponseError("No revision was found with the frbr uri " . $request->getPathInfo(), 404);
     }
 
     if ($request->headers->get('Accept') == 'application/json') {
@@ -148,25 +147,6 @@ class LiiWebEntityResource extends EntityResource {
   protected function getResourceResponseError($message, $status_code = 400) {
     $response = new ResourceResponse(new JsonApiDocumentTopLevel(new ErrorCollection([new HttpException($status_code, $message)]), new NullIncludedData(), new LinkCollection([])), $status_code);
     return $response;
-  }
-
-  /**
-   * @param \Drupal\node\NodeInterface $node
-   * @param $date
-   *
-   * @return \Drupal\Core\Entity\EntityInterface|\Drupal\Core\Entity\RevisionableInterface|mixed|null
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
-   */
-  protected function getRevisionWithPublicationDate(NodeInterface $node, $date) {
-    $revisions = $this->getNodeRevisions($node);
-    foreach ($revisions as $revision) {
-      if ($revision->field_publication_date->value == $date) {
-        return $revision;
-      }
-    }
-
-    return NULL;
   }
 
   /**
@@ -219,8 +199,8 @@ class LiiWebEntityResource extends EntityResource {
     $nextMainRevision = NULL;
     foreach ($revisionIds as $revisionId) {
       $otherRevision = $nodeStorage->loadRevision($revisionId);
-      if ($otherRevision->field_publication_date->value > $max && $revisionId != $revision->getRevisionId()) {
-        $max = $otherRevision->field_publication_date->value;
+      if ($otherRevision->field_expression_date->value > $max && $revisionId != $revision->getRevisionId()) {
+        $max = $otherRevision->field_expression_date->value;
         $nextMainRevision = $otherRevision;
       }
     }
@@ -288,7 +268,7 @@ class LiiWebEntityResource extends EntityResource {
       $entity->setNewRevision($create_revision);
       if ($create_revision) {
         $default_revision = Node::load($entity->id());
-        if ($entity->field_publication_date->value > $default_revision->field_publication_date->value) {
+        if ($entity->field_expression_date->value > $default_revision->field_expression_date->value) {
           $entity->isDefaultRevision(TRUE);
         }
         else {

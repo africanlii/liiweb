@@ -13,7 +13,6 @@ dependencies:
     - field.field.node.legislation.field_frbr_uri
     - field.field.node.legislation.field_images
     - field.field.node.legislation.field_parent_work
-    - field.field.node.legislation.field_publication_date
     - field.field.node.legislation.field_publication_name
     - field.field.node.legislation.field_raw_json
     - field.field.node.legislation.field_repeal
@@ -112,15 +111,6 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-    region: content
-  field_publication_date:
-    weight: 2
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
     region: content
   field_publication_name:
     weight: 3
