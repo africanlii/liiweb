@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.body
     - search_api.index.full_site_search
+    - taxonomy.vocabulary.judges
   module:
     - better_exposed_filters
     - search_api
@@ -339,52 +340,6 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
-        search_api_fulltext_2:
-          id: search_api_fulltext_2
-          table: search_api_index_full_site_search
-          field: search_api_fulltext
-          relationship: none
-          group_type: group
-          admin_label: Judge
-          operator: or
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: search_api_fulltext_2_op
-            label: Judge
-            description: ''
-            use_operator: false
-            operator: search_api_fulltext_2_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: search_api_fulltext_judge
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              system: '0'
-              api_legislation: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          parse_mode: terms
-          min_length: null
-          fields:
-            - field_judge
-          plugin_id: search_api_fulltext
         search_api_fulltext_1:
           id: search_api_fulltext_1
           table: search_api_index_full_site_search
@@ -431,35 +386,35 @@ display:
           fields:
             - field_case_number
           plugin_id: search_api_fulltext
-        search_api_fulltext_3:
-          id: search_api_fulltext_3
+        field_judge:
+          id: field_judge
           table: search_api_index_full_site_search
-          field: search_api_fulltext
+          field: field_judge
           relationship: none
           group_type: group
-          admin_label: Flynote
+          admin_label: Judge
           operator: or
-          value: ''
+          value: {  }
           group: 1
           exposed: true
           expose:
-            operator_id: search_api_fulltext_3_op
-            label: Flynote
+            operator_id: field_judge_op
+            label: Judge
             description: ''
             use_operator: false
-            operator: search_api_fulltext_3_op
+            operator: field_judge_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: search_api_fulltext_flynote
+            identifier: field_judge
             required: false
             remember: false
-            multiple: false
+            multiple: true
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
               system: '0'
               api_legislation: '0'
-            placeholder: ''
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -472,11 +427,13 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: terms
-          min_length: null
-          fields:
-            - field_flynote
-          plugin_id: search_api_fulltext
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: judges
+          hierarchy: false
+          error_message: true
+          plugin_id: search_api_term
       sorts:
         search_api_relevance:
           id: search_api_relevance
@@ -509,6 +466,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.body'
@@ -533,6 +491,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.body'
