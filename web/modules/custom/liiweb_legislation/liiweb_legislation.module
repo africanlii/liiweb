@@ -98,7 +98,7 @@ function liiweb_legislation_write_menu_item($menu_item , $parent_id = Null)
     ]));
 
     $item = [
-      '#markup' => '<a href="#'  . $parent_id . $menu_item['id'] . '" class="link-item" >' . $menu_item['title'] . '</a>',
+      '#markup' => '<a href="#'  . $menu_item['id'] . '" class="link-item" >' . $menu_item['title'] . '</a>',
       '#wrapper_attributes' => [
         'class'             => ['toc-item-' . $menu_item['type']],
       ],
