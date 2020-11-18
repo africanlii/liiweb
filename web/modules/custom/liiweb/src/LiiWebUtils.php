@@ -66,6 +66,39 @@ class LiiWebUtils {
   }
 
   /**
+   * Retrieve the frbr uri of the latest expression of a work frbr uri.
+   *
+   * @param $uri
+   *   Example: /akn/za/act/1993/31
+   *
+   * @return |null
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  public function getLatestExpressionFromWorkFrbrUri($uri) {
+    $uri = urldecode($uri);
+
+    if (!$this->isAknUri($uri)) {
+      return NULL;
+    }
+
+    // ensure the frbr uri ends with / to avoid incorrect partial matches
+    $uri = $this->ensureEndingSlash($uri);
+
+    $query = $this->database->select('node_revision__field_frbr_uri', 'n');
+    $query->fields('n', ['field_frbr_uri_value']);
+    $query->condition('field_frbr_uri_value', db_like($uri) . '%', 'LIKE');
+    $query->orderBy('field_frbr_uri_value', 'DESC');
+    $result = $query->execute()->fetchAssoc();
+
+    if (!empty($result['field_frbr_uri_value'])) {
+      return $result['field_frbr_uri_value'];
+    }
+
+    return NULL;
+  }
+
+  /**
    * Check if an URI is in AKN format.
    *
    * @param $uri
@@ -75,6 +108,21 @@ class LiiWebUtils {
    */
   public function isAknUri($uri) {
     return strpos($uri, '/akn/') === 0;
+  }
+
+  /**
+   * Ensure this URI ends with a /
+   *
+   * @param $uri
+   *   Example: /akn/za/act/1993/31
+   *
+   * @return string
+   */
+  public function ensureEndingSlash($uri) {
+    if (substr($uri, -1) === '/') {
+      return $uri;
+    }
+    return $uri . '/';
   }
 
   /**
