@@ -15,18 +15,16 @@ provider: null
 plugin: facets_block
 settings:
   id: facets_block
-  label: 'Judgment Facets'
+  label: 'Filter Results'
   provider: facets_block
   label_display: visible
-  show_title: true
-  exclude_empty_facets: true
+  show_title: false
+  exclude_empty_facets: false
   facets_to_include:
     'facet_block:judgments_date': 'facet_block:judgments_date'
-    'facet_block:judgments_flynote': 'facet_block:judgments_flynote'
     'facet_block:judgments_court': 'facet_block:judgments_court'
     'facet_block:content_type': '0'
     'facet_block:date_range': '0'
-    'facet_block:duplicate_of_date_range': '0'
     'facet_block:commencement_date': '0'
     'facet_block:expression_date': '0'
     'facet_block:gazette_date': '0'
