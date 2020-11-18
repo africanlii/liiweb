@@ -68,16 +68,8 @@ display:
                   collapsible: false
                   is_secondary: false
               field_date:
-                plugin_id: default
+                plugin_id: bef_datepicker
                 advanced:
-                  collapsible: false
-                  is_secondary: false
-              search_api_fulltext_2:
-                plugin_id: default
-                advanced:
-                  placeholder_text: ''
-                  rewrite:
-                    filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
               search_api_fulltext_1:
@@ -88,7 +80,7 @@ display:
                     filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
-              field_flynote:
+              field_judge:
                 plugin_id: default
                 advanced:
                   placeholder_text: ''

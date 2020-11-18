@@ -12,6 +12,7 @@ dependencies:
     - views.view.judgment_court_filter
   module:
     - better_exposed_filters
+    - datetime
     - node
     - taxonomy
     - user
@@ -117,21 +118,19 @@ display:
             operator_limit_selection: false
             operator_list: {  }
       sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          order: DESC
-          entity_type: node
-          entity_field: created
-          plugin_id: date
+        field_date_value:
+          id: field_date_value
+          table: node__field_date
+          field: field_date_value
           relationship: none
           group_type: group
           admin_label: ''
+          order: DESC
           exposed: false
           expose:
             label: ''
           granularity: second
+          plugin_id: datetime
       header: {  }
       footer: {  }
       empty:
@@ -737,6 +736,7 @@ display:
         pager: false
         empty: false
         title: false
+        sorts: false
       empty:
         area:
           id: area
@@ -751,7 +751,21 @@ display:
             value: 'No Recent Judgment found.'
             format: full_html
           plugin_id: text
-      title: 'Interesting judgments'
+      title: 'Latest judgments'
+      sorts:
+        field_date_value_1:
+          id: field_date_value_1
+          table: node__field_date
+          field: field_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+          plugin_id: datetime
     cache_metadata:
       max-age: -1
       contexts:
@@ -867,6 +881,7 @@ display:
           relationship: none
           view_mode: card_secondary
       title: 'Latest Judgment'
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -898,6 +913,7 @@ display:
         use_more_text: false
         link_display: false
         link_url: false
+        sorts: false
       empty:
         area:
           id: area
@@ -934,6 +950,20 @@ display:
       use_more_text: 'View more judgments'
       link_display: page_judgements
       link_url: ''
+      sorts:
+        field_date_value:
+          id: field_date_value
+          table: node__field_date
+          field: field_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+          plugin_id: datetime
     cache_metadata:
       max-age: -1
       contexts:
@@ -1251,7 +1281,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<h2 class="h3">Frequenty Cited/Topical/Interesting Judgements</h2>'
+            value: '<h2 class="h3">Latest judgments</h2>'
             format: full_html
           plugin_id: text
       path: judgments
