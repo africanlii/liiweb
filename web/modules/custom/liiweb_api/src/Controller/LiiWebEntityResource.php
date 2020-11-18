@@ -31,8 +31,10 @@ use Drupal\liiweb\LiiWebUtils;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class LiiWebEntityResource extends EntityResource {
@@ -120,14 +122,28 @@ class LiiWebEntityResource extends EntityResource {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function get(Request $request) {
+    $is_json = $request->headers->get('Accept') == 'application/json';
+
     /** @var NodeInterface $revision */
     $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getPathInfo());
 
     if (empty($revision)) {
-      return $this->getResourceResponseError("No revision was found with the frbr uri " . $request->getPathInfo(), 404);
+      // try getting a partial match assuming a work uri, rather than an expression uri
+      $expression_uri = $this->liiWebUtils->getLatestExpressionFromWorkFrbrUri($request->getPathInfo());
+      if (!empty($expression_uri)) {
+        // redirect to the full expression URI
+        return new RedirectResponse($expression_uri, 307);
+      }
     }
 
-    if ($request->headers->get('Accept') == 'application/json') {
+    if (empty($revision)) {
+      if ($is_json) {
+        return $this->getResourceResponseError("No revision was found with the frbr uri " . $request->getPathInfo(), 404);
+      }
+      throw new NotFoundHttpException();
+    }
+
+    if ($is_json) {
       $revision->addCacheContexts(['url']);
       $response =  $this->getIndividual($revision, $request);
       $cacheability = (new CacheableMetadata())->addCacheContexts(['headers:Accept', 'url']);
