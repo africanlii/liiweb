@@ -4,7 +4,7 @@
 
   function parseDate(date) {
     var parts = date.split('-');
-    return new Date(parseInt(parts[0]), parseInt(parts[1]), parseInt(parts[2]));
+    return Date.UTC(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
   }
 
   // Transform an array of {date: xx, events: [...]} objects into an array of events
@@ -24,7 +24,6 @@
 
       for (var event of entry.events) {
         event.x = date;
-        event.date = date.getTime();
         event.link = link;
         events.push(event);
 
@@ -55,10 +54,8 @@
       }
     }
 
-    var today = new Date();
     events.push({
-      x: today,
-      date: today.getTime(),
+      x: Date.now(),
       name: 'Today',
       label: 'Today'
     });
@@ -101,7 +98,7 @@
           dataLabels: {
             allowOverlap: false,
             format: '<span style="color:{point.color}">●</span>' +
-                    ' <span style="font-weight: bold;"> {point.date:%d %b %Y}</span><br/>{point.label}{point.link}'
+                    ' <span style="font-weight: bold;"> {point.x:%d %b %Y}</span><br/>{point.label}{point.link}'
           },
           marker: {
             symbol: 'circle'
