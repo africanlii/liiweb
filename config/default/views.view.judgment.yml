@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - block.block.viewsexposedfilterblock_2
     - core.entity_view_mode.node.card_secondary
     - core.entity_view_mode.node.full
     - core.entity_view_mode.node.teaser
@@ -1227,6 +1228,19 @@ display:
           view_to_insert: 'judgment_court_filter:page_1'
           inherit_arguments: true
           plugin_id: view
+        entity_block_1:
+          id: entity_block_1
+          table: views
+          field: entity_block
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          target: viewsexposedfilterblock_2
+          view_mode: default
+          bypass_access: true
+          plugin_id: entity
         area:
           id: area
           table: views

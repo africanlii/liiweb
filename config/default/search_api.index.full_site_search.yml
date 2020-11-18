@@ -155,7 +155,7 @@ field_settings:
     label: Flynote
     datasource_id: 'entity:node'
     property_path: field_flynote
-    type: text
+    type: string
     dependencies:
       config:
         - field.storage.node.field_flynote
@@ -180,7 +180,7 @@ field_settings:
     label: Judge
     datasource_id: 'entity:node'
     property_path: field_judge
-    type: text
+    type: string
     dependencies:
       config:
         - field.storage.node.field_judge
