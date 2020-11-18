@@ -210,7 +210,7 @@ display:
           exposed: true
           expose:
             operator_id: search_api_fulltext_op
-            label: 'Fulltext search'
+            label: 'Search the full text of judgments'
             description: ''
             use_operator: false
             operator: search_api_fulltext_op
@@ -244,9 +244,7 @@ display:
             - body
             - field_case_number
             - field_content
-            - field_flynote
             - field_headnote_and_holding
-            - field_judge
             - field_judgment_number
             - field_search_summary
             - title
@@ -309,7 +307,7 @@ display:
           exposed: true
           expose:
             operator_id: field_date_op
-            label: 'Index Search Date'
+            label: 'Search by judgment date'
             description: ''
             use_operator: false
             operator: field_date_op
