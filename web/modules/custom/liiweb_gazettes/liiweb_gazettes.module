@@ -28,8 +28,7 @@ function liiweb_gazettes_help($route_name, RouteMatchInterface $route_match) {
 }
 
 function liiweb_gazettes_preprocess_views_view(&$variable)
-{	
-  return;
+{
   $years = range(date('Y'), 1900);
   // if ($variable['id'] == "gazettes_listing" && $variable['display_id']== "page_gazettes_listing") {
     $query = \Drupal::entityQuery('node')
