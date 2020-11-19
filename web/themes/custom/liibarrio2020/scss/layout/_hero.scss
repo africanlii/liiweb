@@ -16,10 +16,7 @@
   }
 
   &__content {
-    height: 100; //height value needed for IE11
-    min-height: 21.875rem; //350px
     padding: 0 $spacer-lg;
-    display: flex;
     justify-content: flex-start;
     align-items: center;
   }
