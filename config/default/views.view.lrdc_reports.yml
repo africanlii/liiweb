@@ -5,9 +5,11 @@ dependencies:
   config:
     - field.storage.node.field_citation
     - field.storage.node.field_date
+    - field.storage.node.field_file
     - node.type.law_reform_reports
   module:
     - datetime
+    - file_download_link
     - node
     - text
     - user
@@ -80,34 +82,96 @@ display:
           summary: ''
           description: ''
           columns:
-            title: title
             field_citation: field_citation
+            title: title
             field_date: field_date
           info:
-            title:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
             field_citation:
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_date:
-              sortable: false
+            title:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-          default: '-1'
+            field_date:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: field_date
           empty_table: false
       row:
         type: fields
       fields:
+        field_citation:
+          id: field_citation
+          table: node__field_citation
+          field: field_citation
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Citation
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -219,14 +283,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_citation:
-          id: field_citation
-          table: node__field_citation
-          field: field_citation
+        field_file:
+          id: field_file
+          table: node__field_file
+          field: field_file
           relationship: none
           group_type: group
           admin_label: ''
-          label: Citation
+          label: Download
           exclude: false
           alter:
             alter_text: false
@@ -259,7 +323,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -267,10 +331,14 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: text_default
-          settings: {  }
-          group_column: value
+          click_sort_column: target_id
+          type: file_download_link
+          settings:
+            link_text: Download
+            new_tab: false
+            force_download: false
+            custom_classes: ''
+          group_column: ''
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -322,6 +390,18 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: standard
+        field_citation_value:
+          id: field_citation_value
+          table: node__field_citation
+          field: field_citation_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: 'Citation (field_citation)'
+          plugin_id: standard
       title: 'LRDC Reports'
       header:
         area:
@@ -363,6 +443,7 @@ display:
       tags:
         - 'config:field.storage.node.field_citation'
         - 'config:field.storage.node.field_date'
+        - 'config:field.storage.node.field_file'
   page_1:
     display_plugin: page
     id: page_1
@@ -382,3 +463,4 @@ display:
       tags:
         - 'config:field.storage.node.field_citation'
         - 'config:field.storage.node.field_date'
+        - 'config:field.storage.node.field_file'

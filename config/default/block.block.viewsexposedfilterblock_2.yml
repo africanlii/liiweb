@@ -17,7 +17,7 @@ settings:
   id: views_exposed_filter_blocks_block
   label: 'Search Judgments'
   provider: views_exposed_filter_blocks
-  label_display: visible
+  label_display: '0'
   view_display: 'search_judgments:search_judgments'
 visibility:
   request_path:

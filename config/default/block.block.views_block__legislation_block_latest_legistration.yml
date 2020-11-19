@@ -11,8 +11,8 @@ dependencies:
     - liibarrio2020
 id: views_block__legislation_block_latest_legistration
 theme: liibarrio2020
-region: sidebar_second
-weight: -9
+region: content_bottom
+weight: -17
 provider: null
 plugin: 'views_block:legislation-block_latest_legistration'
 settings:

@@ -1,0 +1,11 @@
+uuid: 75474087-57aa-4f42-b84b-12e14ee7706e
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.namlex
+id: block_content.namlex
+target_entity_type_id: block_content
+target_bundle: namlex
+default_langcode: site_default
+language_alterable: false

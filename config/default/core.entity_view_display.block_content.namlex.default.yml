@@ -1,0 +1,24 @@
+uuid: b51d46c5-7e4e-4ea7-b1cc-2daf1cfdcba5
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.namlex
+    - field.field.block_content.namlex.body
+  module:
+    - text
+id: block_content.namlex.default
+targetEntityType: block_content
+bundle: namlex
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

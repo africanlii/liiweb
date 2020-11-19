@@ -12,7 +12,7 @@ dependencies:
   module:
     - datetime
     - ds
-    - pdf
+    - file
     - text
     - user
 third_party_settings:
@@ -44,14 +44,14 @@ third_party_settings:
           right: {  }
           footer: {  }
     regions:
-      header_right:
-        - field_file
       header:
-        - field_citation
         - field_title
         - field_date
+        - field_file
       left:
         - body
+      footer:
+        - field_citation
 id: node.law_reform_reports.default
 targetEntityType: node
 bundle: law_reform_reports
@@ -60,20 +60,20 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 4
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     region: left
   field_citation:
-    weight: 1
-    label: above
+    weight: 4
+    label: inline
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: header
+    region: footer
   field_date:
-    weight: 3
-    label: above
+    weight: 1
+    label: inline
     settings:
       timezone_override: ''
       format_type: html_month
@@ -88,16 +88,10 @@ content:
     type: datetime_default
     region: header
   field_file:
-    weight: 0
-    label: above
+    weight: 2
+    label: hidden
     settings:
-      keep_pdfjs: '1'
-      width: 100%
-      height: ''
-      page: ''
-      zoom: ''
-      custom_zoom: ''
-      pagemode: ''
+      use_description_as_link_text: true
     third_party_settings:
       ds:
         ft:
@@ -106,11 +100,11 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: pdf_default
-    region: header_right
+    type: file_table
+    region: header
   field_title:
-    weight: 2
-    label: inline
+    weight: 0
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default

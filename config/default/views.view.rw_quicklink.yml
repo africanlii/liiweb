@@ -221,9 +221,10 @@ display:
         description: 'Useful links'
         expanded: false
         parent: ''
-        weight: -47
+        weight: -46
         context: '0'
         menu_name: main
+        enabled: false
       filters:
         status:
           id: status

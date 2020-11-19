@@ -1203,7 +1203,7 @@ display:
       display_extenders: {  }
       display_description: ''
       pager:
-        type: infinite_scroll
+        type: mini
         options:
           items_per_page: 6
           offset: 0
@@ -1220,9 +1220,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          views_infinite_scroll:
-            button_text: 'View more Judgment'
-            automatically_load_content: false
       defaults:
         pager: false
         empty: false
@@ -1291,7 +1288,7 @@ display:
         description: ''
         expanded: false
         parent: ''
-        weight: -50
+        weight: -49
         context: '0'
         menu_name: main
       style:
