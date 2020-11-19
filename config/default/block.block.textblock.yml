@@ -14,10 +14,10 @@ provider: null
 plugin: text_block
 settings:
   id: text_block
-  label: 'About <this> LII'
+  label: 'About NamibLII'
   provider: liiweb
   label_display: visible
   text:
-    value: "<p>NamibLII publishes the laws of Namibia for free online access. NamibLII is operated by the Law Reform and Development Commission of Namibia.</p>\r\n\r\n<div class=\"embed-responsive embed-responsive-16by9\"><iframe allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"https://www.youtube.com/embed/og2YO8e_Dmc\" width=\"560\"></iframe></div>\r\n\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -25px; top: -13px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>\r\n"
+    value: "<p>NamibLII is a project of the Law Reform and Development Commission managed by the Directorate: Law Reform of the Ministry of Justice of the Republic of Namibia. In terms of the Law Reform and Development Commission Act, 1991 (Act No. 29 of 1991) the Commission is mandated to consolidate or codify any branch of the law or to introduce other measures aimed at making the law more readily accessible. NamibLII is the embodiment of this mandate making annotated statutes, judgments and&nbsp;<i>gazettes</i>&nbsp;available in a user-friendly format.</p>\r\n\r\n<div class=\"embed-responsive embed-responsive-16by9\"><iframe allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"https://www.youtube.com/embed/og2YO8e_Dmc\" width=\"560\"></iframe></div>\r\n\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -25px; top: -13px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>\r\n"
     format: full_html
 visibility: {  }
