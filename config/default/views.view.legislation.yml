@@ -58,7 +58,7 @@ display:
       pager:
         type: mini
         options:
-          items_per_page: 6
+          items_per_page: 0
           offset: 0
           id: 0
           total_pages: null
@@ -163,22 +163,45 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
-      sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          order: DESC
-          entity_type: node
-          entity_field: created
-          plugin_id: date
+        field_stub_value:
+          id: field_stub_value
+          table: node__field_stub
+          field: field_stub_value
           relationship: none
           group_type: group
           admin_label: ''
+          operator: '='
+          value: '0'
+          group: 1
           exposed: false
           expose:
+            operator_id: ''
             label: ''
-          granularity: second
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
+      sorts: {  }
       title: Legislation
       header: {  }
       footer: {  }
@@ -1716,7 +1739,7 @@ display:
         description: Legislation
         expanded: false
         parent: ''
-        weight: -49
+        weight: -48
         context: '0'
         menu_name: main
       display_description: ''
@@ -1744,7 +1767,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: '<h2 class="h3">Legislation</h3>'
+            value: "<h2 class=\"h3\">Namibian consolidated legislation</h3>\r\n<p> <b>This collection of consolidated and updated legislation is provided in partnership with the <a href = \"http://www.lac.org.na/\" target=\"_blank\"> LAC </a> .</b></p>\r\n<p> View <a href=\"http://www.lac.org.na/index.php/laws/namlex/\" target=\"_blank\"> NAMLEX  2020 </a> and the NAMLEX appendix on the LAC website </p>\r\n"
             format: full_html
           plugin_id: text
       style:

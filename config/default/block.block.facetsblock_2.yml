@@ -10,7 +10,7 @@ dependencies:
 id: facetsblock_2
 theme: liibarrio2020
 region: sidebar_first
-weight: -16
+weight: -18
 provider: null
 plugin: facets_block
 settings:

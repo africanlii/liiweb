@@ -18,6 +18,6 @@ settings:
   provider: liiweb
   label_display: visible
   text:
-    value: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Negat esse eam, inquit, propter se expetendam. An tu me de L. Sed in rebus apertissimis nimium longi sumus. Duo Reges: constructio interrete. Omnes enim iucundum motum, quo sensus hilaretur.</p>\r\n\r\n<div class=\"embed-responsive embed-responsive-16by9\">\r\n<iframe allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"https://www.youtube.com/embed/og2YO8e_Dmc\" width=\"560\"></iframe>\r\n</div>\r\n"
+    value: "<p>NamibLII publishes the laws of Namibia for free online access. NamibLII is operated by the Law Reform and Development Commission of Namibia.</p>\r\n\r\n<div class=\"embed-responsive embed-responsive-16by9\"><iframe allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"https://www.youtube.com/embed/og2YO8e_Dmc\" width=\"560\"></iframe></div>\r\n\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -25px; top: -13px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>\r\n"
     format: full_html
 visibility: {  }

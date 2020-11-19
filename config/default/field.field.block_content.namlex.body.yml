@@ -1,0 +1,23 @@
+uuid: ae81a49a-23be-46a5-aca7-eee6b3f14e7d
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.namlex
+    - field.storage.block_content.body
+  module:
+    - text
+id: block_content.namlex.body
+field_name: body
+entity_type: block_content
+bundle: namlex
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary
