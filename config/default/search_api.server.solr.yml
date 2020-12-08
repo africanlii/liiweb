@@ -38,19 +38,19 @@ backend_config:
   connector: standard
   connector_config:
     scheme: http
-    host: solr.africanlii.org
+    host: ip-172-31-28-35.eu-west-1.compute.internal
     port: 8983
     path: /
-    core: ApacheSolrLiiWeb
+    core: africanlii
     timeout: 5
     index_timeout: 20
     optimize_timeout: 10
     finalize_timeout: 30
     commit_within: 1000
-    solr_version: ''
+    solr_version: '7'
     http_method: AUTO
     jmx: false
-    solr_install_dir: /opt/bitnami/solr
+    solr_install_dir: /opt/bitnami/apache-solr
   disabled_field_types: {  }
   disabled_caches: {  }
   disabled_request_handlers:
