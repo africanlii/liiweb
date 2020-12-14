@@ -13,10 +13,12 @@ dependencies:
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_headnote_and_holding
+    - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number_override
     - field.field.node.judgment.field_judgment_old_nid
     - field.field.node.judgment.field_law_report_citations
+    - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
@@ -27,7 +29,7 @@ third_party_settings:
   feeds_tamper:
     tampers:
       985cab1b-6dec-4831-84ba-89545ec6350a:
-        separator: ',%s'
+        separator: '|%s'
         limit: null
         plugin: explode
         source: download
@@ -98,12 +100,12 @@ parser_configuration:
     _law_report_citation_:
       label: '[''Law Report Citation'']'
       value: '[''Law Report Citation'']'
-    field_case_number_numeric:
-      label: field_case_number_numeric
-      value: field_case_number_numeric
-    field_case_number_year:
-      label: field_case_number_year
-      value: field_case_number_year
+    case_number_numeric:
+      label: case_number_numeric
+      value: case_number_numeric
+    case_number_year:
+      label: case_number_year
+      value: case_number_year
     flynote:
       label: Flynote
       value: Flynote
@@ -125,6 +127,12 @@ parser_configuration:
     _judgment_date_:
       label: '[''Judgment Date'']'
       value: '[''Judgment Date'']'
+    judge_1:
+      label: 'Judge 1'
+      value: 'Judge 1'
+    matter_type:
+      label: matter_type
+      value: matter_type
   display_errors: false
   source_encoding:
     - auto
@@ -219,6 +227,22 @@ custom_sources:
     label: '[''Case number'']'
     value: '[''Case number'']'
     machine_name: _case_number_
+  case_number_numeric:
+    label: case_number_numeric
+    value: case_number_numeric
+    machine_name: case_number_numeric
+  case_number_year:
+    label: case_number_year
+    value: case_number_year
+    machine_name: case_number_year
+  judge_1:
+    label: 'Judge 1'
+    value: 'Judge 1'
+    machine_name: judge_1
+  matter_type:
+    label: matter_type
+    value: matter_type
+    machine_name: matter_type
 mappings:
   -
     target: field_case_name
@@ -267,14 +291,14 @@ mappings:
   -
     target: field_case_number_numeric
     map:
-      value: field_case_number_numeric
+      value: case_number_numeric
     unique: {  }
     settings:
       language: null
   -
     target: field_case_number_year
     map:
-      value: field_case_number_year
+      value: case_number_year
     unique: {  }
     settings:
       language: null
@@ -334,3 +358,19 @@ mappings:
     settings:
       language: null
       timezone: UTC
+  -
+    target: field_judge
+    map:
+      target_id: judge_1
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
+  -
+    target: field_matter_type
+    map:
+      target_id: matter_type
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false

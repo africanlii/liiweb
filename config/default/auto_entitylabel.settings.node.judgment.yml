@@ -1,5 +1,5 @@
 status: 1
-pattern: '[node:field_case_name] ([node:field_case_number]) [node:field_media_neutral_citation] ([node:field_date:date:custom:d F Y]); [node:field_law_report_citation]'
+pattern: '[node:field_case_name] ([node:field_case_number]) [node:field_media_neutral_citation] ([node:field_date:date:custom:d F Y]); '
 escape: false
 dependencies:
   config:
