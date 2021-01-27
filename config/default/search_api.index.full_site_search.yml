@@ -14,11 +14,11 @@ dependencies:
     - field.storage.node.field_commencement_date
     - field.storage.node.field_content
     - field.storage.node.field_court_name
+    - field.storage.node.field_date
     - field.storage.node.field_expression_date
     - field.storage.node.field_flynote
     - field.storage.node.field_gazette_issue_number
     - field.storage.node.field_headnote_and_holding
-    - field.storage.node.field_date
     - field.storage.node.field_judge
     - field.storage.node.field_judgment_number
     - field.storage.node.field_lifecycle_json

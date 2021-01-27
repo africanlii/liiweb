@@ -11,7 +11,7 @@ dependencies:
     - node.type.page
   module:
     - entity_reference_revisions
-    - image
+    - svg_image
     - text
     - user
 id: node.page.default

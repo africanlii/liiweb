@@ -196,7 +196,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          order: ASC
+          order: DESC
           exposed: false
           expose:
             label: ''
@@ -365,7 +365,7 @@ display:
     display_options:
       display_extenders: {  }
       display_description: ''
-      title: 'Our Partners'
+      title: 'Our Stakeholders'
       defaults:
         title: false
         filters: false

@@ -13,9 +13,9 @@ dependencies:
     - node.type.page
   module:
     - entity_browser
-    - image
     - paragraphs
     - path
+    - svg_image
     - text
 id: node.page.default
 targetEntityType: node

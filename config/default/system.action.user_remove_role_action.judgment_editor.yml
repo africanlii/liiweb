@@ -1,0 +1,14 @@
+uuid: 798f6072-2749-4cab-9b80-520bff8ad6a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.judgment_editor
+  module:
+    - user
+id: user_remove_role_action.judgment_editor
+label: 'Remove the Judgment editor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: judgment_editor

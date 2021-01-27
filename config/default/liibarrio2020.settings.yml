@@ -31,13 +31,13 @@ features:
   node_user_picture: false
   comment_user_picture: true
   comment_user_verification: true
-  favicon: 1
+  favicon: 0
 logo:
   use_default: 0
-  path: 's3://namiblii-2-2.png'
+  path: 's3://ulii_logo_vsm.png'
 favicon:
   use_default: 0
-  path: 's3://favicon_nam.png'
+  path: ''
   mimetype: image/png
 bootstrap_barrio_region_clean_pre_header: 1
 bootstrap_barrio_region_class_pre_header: ''

@@ -1,0 +1,14 @@
+uuid: 9e3bee8c-ac83-4e1d-aefa-1043468fca54
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.judgment_editor
+  module:
+    - user
+id: user_add_role_action.judgment_editor
+label: 'Add the Judgment editor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: judgment_editor
