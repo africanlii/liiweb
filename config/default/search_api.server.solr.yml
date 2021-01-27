@@ -8,16 +8,16 @@ dependencies:
     - search_api_solr.solr_cache.cache_filter_default_7_0_0
     - search_api_solr.solr_cache.cache_persegfilter_default_7_0_0
     - search_api_solr.solr_cache.cache_queryresult_default_7_0_0
-    - search_api_solr.solr_field_type.text_edge_und_6_0_0
+    - search_api_solr.solr_field_type.text_edge_und_7_0_0
     - search_api_solr.solr_field_type.text_edgestring_und_6_0_0
-    - search_api_solr.solr_field_type.text_en_6_0_0
-    - search_api_solr.solr_field_type.text_fr_6_0_0
-    - search_api_solr.solr_field_type.text_ngram_und_6_0_0
+    - search_api_solr.solr_field_type.text_en_7_0_0
+    - search_api_solr.solr_field_type.text_fr_7_0_0
+    - search_api_solr.solr_field_type.text_ngram_und_7_0_0
     - search_api_solr.solr_field_type.text_ngramstring_und_6_0_0
     - search_api_solr.solr_field_type.text_phonetic_en_7_0_0
     - search_api_solr.solr_field_type.text_phonetic_fr_7_0_0
     - search_api_solr.solr_field_type.text_phonetic_und_7_0_0
-    - search_api_solr.solr_field_type.text_und_6_0_0
+    - search_api_solr.solr_field_type.text_und_7_0_0
     - search_api_solr.solr_request_dispatcher.request_dispatcher_httpcaching_default_7_0_0
     - search_api_solr.solr_request_handler.request_handler_autocomplete_default_7_0_0
     - search_api_solr.solr_request_handler.request_handler_elevate_default_7_0_0
@@ -38,19 +38,19 @@ backend_config:
   connector: standard
   connector_config:
     scheme: http
-    host: solr.africanlii.org
+    host: ip-172-31-28-35.eu-west-1.compute.internal
     port: 8983
     path: /
-    core: ApacheSolrLiiWeb
+    core: africanlii
     timeout: 5
     index_timeout: 20
     optimize_timeout: 10
     finalize_timeout: 30
     commit_within: 1000
-    solr_version: ''
+    solr_version: '7'
     http_method: AUTO
     jmx: false
-    solr_install_dir: /opt/bitnami/solr
+    solr_install_dir: /opt/bitnami/apache-solr
   disabled_field_types: {  }
   disabled_caches: {  }
   disabled_request_handlers:
