@@ -1767,7 +1767,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: "<h2 class=\"h3\">Namibian consolidated legislation</h3>\r\n<p> <b>This collection of consolidated and updated legislation is provided in partnership with the <a href = \"http://www.lac.org.na/\" target=\"_blank\"> LAC </a> .</b></p>\r\n<p> View <a href=\"http://www.lac.org.na/index.php/laws/namlex/\" target=\"_blank\"> NAMLEX  2020 </a> and the NAMLEX appendix on the LAC website </p>\r\n"
+            value: "<h2 class=\"h3\">Uganda consolidated and updated legislation</h3>\r\n<p> <b>This collection of consolidated and updated legislation is provided in partnership with the <a href = \"https://laws.africa/\" target=\"_blank\"> Laws.Africa </a> .</b> Laws.Africa digitizes and consolidated African legislation for free public use.</p>\r\n"
             format: full_html
           plugin_id: text
       style:

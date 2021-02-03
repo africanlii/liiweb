@@ -39,7 +39,7 @@ default_value_callback: ''
 settings:
   file_directory: government_gazette/files
   file_extensions: pdf
-  max_filesize: '50 MB'
+  max_filesize: '500 MB'
   description_field: false
   handler: 'default:file'
   handler_settings: {  }
