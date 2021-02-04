@@ -19,7 +19,7 @@ settings:
   provider: liiweb
   label_display: visible
   text:
-    value: "<p>ULII publishes the laws of Uganda for free online access.</p>\r\n"
+    value: "<p>ULII publishes the laws of Uganda for free online access. ULII is part of the Law Reporting Committee of the Judiciary of Uganda.</p>\r\n"
     format: full_html
 visibility:
   request_path:
