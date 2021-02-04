@@ -50,11 +50,11 @@ third_party_settings:
       header_left:
         - node_title
       header:
-        - field_external_link
+        - field_file
       left:
         - body
-      right:
-        - field_file
+      footer:
+        - field_external_link
     fields:
       node_title:
         plugin_id: node_title
@@ -81,24 +81,38 @@ content:
     type: text_default
     weight: 2
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     region: left
   field_external_link:
     type: link_separate
-    weight: 1
-    region: header
+    weight: 3
+    region: footer
     label: above
     settings:
       trim_length: 80
-      rel: ''
-      target: ''
       url_only: false
       url_plain: false
-    third_party_settings: {  }
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_file:
     type: lii_file
-    weight: 3
-    region: right
+    weight: 1
+    region: header
     label: hidden
     settings:
       use_description_as_link_text: true
