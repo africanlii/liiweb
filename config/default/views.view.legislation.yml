@@ -1355,6 +1355,44 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        field_stub_value:
+          id: field_stub_value
+          table: node__field_stub
+          field: field_stub_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '!='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
       filter_groups:
         operator: AND
         groups:
@@ -1767,7 +1805,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: "<h2 class=\"h3\">Uganda consolidated and updated legislation</h3>\r\n<p> <b>This collection of consolidated and updated legislation is provided in partnership with the <a href = \"https://laws.africa/\" target=\"_blank\"> Laws.Africa </a> .</b> Laws.Africa digitizes and consolidated African legislation for free public use.</p>\r\n"
+            value: "<h2 class=\"h3\">Uganda consolidated and updated legislation</h3>\r\n<p> <b>This collection of consolidated and updated legislation is provided in partnership with the <a href = \"https://laws.africa/\" target=\"_blank\"> Laws.Africa </a> .</b> </p>\r\n<p>Laws.Africa digitizes and consolidates African legislation for free public use.</p>\r\n"
             format: full_html
           plugin_id: text
       style:

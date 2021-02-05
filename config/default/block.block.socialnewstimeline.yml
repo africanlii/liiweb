@@ -18,10 +18,10 @@ settings:
   label: 'Social News timeline'
   provider: liiweb
   label_display: '0'
-  facebook_window_height: 500
+  facebook_window_height: 600
   twitter_account_name: Uganda_LII
   twitter_window_width: null
-  twitter_window_height: 600
+  twitter_window_height: 500
   twitter_theme_color: light
   facebook_page_url: 'https://www.facebook.com/UgandaLII/'
   facebook_app_id: ''
