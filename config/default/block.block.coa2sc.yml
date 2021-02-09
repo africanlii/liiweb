@@ -1,0 +1,31 @@
+uuid: 184ae719-48b3-48e9-af4f-dd315dfd0ea9
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:namlex:75bae786-9aaf-46a6-ba99-720bdf730307'
+  module:
+    - block_content
+    - system
+  theme:
+    - liibarrio2020
+id: coa2sc
+theme: liibarrio2020
+region: content_top
+weight: 0
+provider: null
+plugin: 'block_content:75bae786-9aaf-46a6-ba99-720bdf730307'
+settings:
+  id: 'block_content:75bae786-9aaf-46a6-ba99-720bdf730307'
+  label: CoA2SC
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: "/ug/judgment/supreme-court-uganda/1981/*\r\nug/judgment/supreme-court-uganda/1978/*\r\nug/judgment/supreme-court-uganda/1982/*\r\nug/judgment/supreme-court-uganda/1979/*\r\nug/judgment/supreme-court-uganda/1980/*\r\nug/judgment/supreme-court-uganda/1983/*\r\nug/judgment/supreme-court-uganda/1984/*\r\nug/judgment/supreme-court-uganda/1985/*\r\nug/judgment/supreme-court-uganda/1986/*\r\nug/judgment/supreme-court-uganda/1987/*\r\nug/judgment/supreme-court-uganda/1988/*\r\nug/judgment/supreme-court-uganda/1989/*\r\nug/judgment/supreme-court-uganda/1990/*\r\nug/judgment/supreme-court-uganda/1991/*\r\nug/judgment/supreme-court-uganda/1992/*\r\nug/judgment/supreme-court-uganda/1993/*\r\nug/judgment/supreme-court-uganda/1994/*\r\nug/judgment/supreme-court-uganda/1995/*"
+    negate: false
+    context_mapping: {  }
