@@ -1779,7 +1779,7 @@ const PDFViewerApplication = {
 exports.PDFViewerApplication = PDFViewerApplication;
 let validateFileURL;
 {
-  const HOSTED_VIEWER_ORIGINS = ["null", "http://mozilla.github.io", "https://mozilla.github.io","http://media.ulii.org","https://media.ulii.org","s3://ulii-media","https://new.ulii.org"];
+  const HOSTED_VIEWER_ORIGINS = ["null", "http://mozilla.github.io", "https://mozilla.github.io", "https://media.ulii.org", "s3://ulii-media", "https://new.ulii.org"];
 
   validateFileURL = function (file) {
     if (file === undefined) {
