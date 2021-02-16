@@ -58,7 +58,11 @@ display:
           items_per_page: 5
           offset: 0
       style:
-        type: html_list
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
       row:
         type: fields
       fields:
@@ -310,8 +314,8 @@ display:
           if: body
           condition: '5'
           equalto: ''
-          then: '{{ body }}'
-          or: '{{ field_files }}'
+          then: '{{ field_files }}'
+          or: '{{ body }}'
           strip_tags: 0
           plugin_id: views_conditional_field
       filters:
