@@ -181,7 +181,7 @@ display:
           settings:
             keep_pdfjs: 0
             width: 100%
-            height: 500px
+            height: 800px
             page: ''
             zoom: ''
             custom_zoom: ''
