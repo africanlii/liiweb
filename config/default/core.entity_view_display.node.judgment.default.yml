@@ -79,16 +79,16 @@ third_party_settings:
         - field_search_summary
         - body
     fields:
-      node_author:
-        plugin_id: node_author
-        weight: 0
-        label: inline
-        formatter: author
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
         weight: 6
         label: hidden
         formatter: default
+      node_author:
+        plugin_id: node_author
+        weight: 0
+        label: inline
+        formatter: author
 id: node.judgment.default
 targetEntityType: node
 bundle: judgment
@@ -179,6 +179,12 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: Coram
+            lb-col: false
+            classes: {  }
   field_search_summary:
     type: text_summary_or_trimmed
     weight: 10
