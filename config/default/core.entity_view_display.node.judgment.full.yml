@@ -76,12 +76,18 @@ third_party_settings:
       left:
         - field_headnote_and_holding
         - field_judge
-        - body
+        - download_conditional_entity_view_1
       right:
         - field_files
         - 'dynamic_token_field:node-share_links'
         - 'dynamic_block_field:node-similar_judgments'
     fields:
+
+      node_title:
+        plugin_id: node_title
+        weight: 3
+        label: hidden
+        formatter: default
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
         weight: 11
@@ -89,7 +95,7 @@ third_party_settings:
         formatter: default
       'dynamic_block_field:node-similar_judgments':
         plugin_id: 'dynamic_block_field:node-similar_judgments'
-        weight: 12
+        weight: 13
         label: hidden
         formatter: default
 id: node.judgment.full
@@ -97,20 +103,10 @@ targetEntityType: node
 bundle: judgment
 mode: full
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 9
-    settings: {  }
-    third_party_settings: {  }
+  download_conditional_entity_view_1:
+    weight: 10
     region: left
-  field_case_name:
-    type: string
-    weight: 2
-    region: header_right
-    label: inline
-    settings:
-      link_to_entity: false
+    settings: {  }
     third_party_settings: {  }
   field_case_number:
     type: computed_string
@@ -251,6 +247,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  body: true
   feeds_item: true
   field_case_number_numeric: true
   field_case_number_old: true
