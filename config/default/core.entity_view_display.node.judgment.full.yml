@@ -218,6 +218,12 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: Coram
+            lb-col: false
+            classes: {  }
   field_law_report_citations:
     type: string
     weight: 4
