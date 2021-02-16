@@ -789,6 +789,10 @@ $config['s3fs.settings']['bucket'] = getenv('S3_BUCKET');
 $config['s3fs.settings']['domain'] = getenv('S3_CDN_DOMAIN');
 
 /**
+ * SMTP settings
+ */
+$config['smtp.settings']['smtp_password'] = getenv('SMTP_PASS');
+/**
  * Load local development override configuration, if available.
  *
  * Use settings.local.php to override variables on secondary (staging,
