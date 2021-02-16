@@ -56,6 +56,7 @@ module:
   focal_point: 0
   google_analytics: 0
   image: 0
+  image_captcha: 0
   inline_entity_form: 0
   jquery_ui: 0
   jsonapi: 0
