@@ -35,3 +35,26 @@ function liiweb_search_form_views_exposed_form_alter(&$form, \Drupal\Core\Form\F
     $form["search"]['#title_display'] = 'after';
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function liiweb_search_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  $route_name = \Drupal::routeMatch()->getRouteName();
+
+  if ($route_name == 'view.liiweb_search.page_search') {
+    $form['type']['#access'] = FALSE;
+  } else {
+    $form['field_date']['#access'] = FALSE;
+    $form['search_api_fulltext']['#attributes']['placeholder'] = t("Search");
+  }
+
+  if ($form['#id'] == 'views-exposed-form-liiweb-search-page-search') {
+    $form['type']['#chosen'] = TRUE;
+    unset($form['type']['#options']['billboard']);
+    unset($form['type']['#options']['page']);
+    $form['type']['#options']['All'] = t('Search everything');
+    $form['search_api_fulltext']['#required'] = TRUE;
+  }
+}
