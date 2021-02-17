@@ -1,0 +1,6 @@
+services:
+  liiweb_search.event_subscriber:
+    class: Drupal\liiweb_search\EventSubscriber\LiiWebSearchEventSubscriber
+    arguments: [ '@current_route_match' ]
+    tags:
+      - { name: event_subscriber }
