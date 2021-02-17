@@ -47,7 +47,20 @@
   }
 }
 // Search
-#block-advancedsearchblock {
+header {
+  #edit-submit-liiweb-search {
+    font-size: 0;
+    &:after {
+      display: block;
+      content: ' ';
+      background-image: url('../images/icons/search-icon.svg');
+      background-size: 18px 18px;
+      height: 18px;
+      width: 18px;
+    }
+  }
+}
+#block-exposedformliiweb-searchpage-search {
   .btn {
     height: $pre-header-height-desktop;
   }
@@ -60,6 +73,12 @@
 
   .form-group {
     margin-bottom: 0;
+  }
+
+  fieldset {
+    input {
+      background-image: none;
+    }
   }
 
   .form-text:focus,
