@@ -19,7 +19,7 @@ third_party_settings:
         transliterate: false
     redirect: false
     retroactive_update: false
-    active_updating: false
+    active_updating: true
     file_name:
       value: '[file:ffp-name-only-original].[file:ffp-extension-original]'
       options:

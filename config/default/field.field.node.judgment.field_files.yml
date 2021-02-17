@@ -19,7 +19,7 @@ third_party_settings:
         transliterate: false
     redirect: false
     retroactive_update: false
-    active_updating: false
+    active_updating: true
     file_name:
       value: '[node:field_media_neutral_citation:value].[file:ffp-extension-original]'
       options:
@@ -39,7 +39,7 @@ default_value_callback: ''
 settings:
   file_directory: judgment/files
   file_extensions: 'txt doc docx xls pdf ppt pps odt ods odp rtf'
-  max_filesize: '100 MB'
+  max_filesize: '500 MB'
   description_field: false
   handler: 'default:file'
   handler_settings: {  }
