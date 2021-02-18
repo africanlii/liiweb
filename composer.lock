@@ -5645,6 +5645,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Allow for wildcards within redirects": "patches/redirect/support-for-wildcard-2831605-83.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
