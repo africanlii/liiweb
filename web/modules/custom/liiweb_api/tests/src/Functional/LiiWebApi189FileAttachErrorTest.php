@@ -100,6 +100,6 @@ class LiiWebApi189FileAttachErrorTest extends LiiWebApiTestBase {
     $request_options[RequestOptions::JSON] = $payload;
     $self_link = Url::fromUri("base:")->setAbsolute()->toString(TRUE)->getGeneratedUrl();
     $response = $this->getHttpClient()->request('PATCH', $self_link . 'akn/za/act/1900/00/eng@1900-01-01', $request_options);
-    $this->assertEquals(201, $response->getStatusCode(), 'Failed to attach the file');
+    $this->assertEquals(200, $response->getStatusCode(), 'Failed to attach the file');
   }
 }
