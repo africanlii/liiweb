@@ -48,6 +48,17 @@
 }
 // Search
 header {
+  #block-exposedformliiweb-searchpage-search {
+    fieldset {
+      .fieldset-inner-wrapper {
+        label {
+          display: unset;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
   #edit-submit-liiweb-search {
     font-size: 0;
     &:after {
@@ -76,6 +87,7 @@ header {
   }
 
   fieldset {
+
     input {
       background-image: none;
     }
