@@ -1,19 +1,19 @@
-uuid: 91595ede-7b9c-4719-a787-2a115adbb0f0
+uuid: c5d98030-1902-4aeb-8eed-56cc8c6d819c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_created
+    - field.storage.node.field_date
     - node.type.legislation
   module:
     - datetime
-id: node.legislation.field_created
-field_name: field_created
+id: node.legislation.field_date
+field_name: field_date
 entity_type: node
 bundle: legislation
-label: Created
-description: 'Timestamp of when the work was first created.'
-required: false
+label: 'Publication Date'
+description: 'Date of original publication of the work.'
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''

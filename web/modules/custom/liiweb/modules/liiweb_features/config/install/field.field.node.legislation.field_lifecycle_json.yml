@@ -1,0 +1,19 @@
+uuid: 0c1cd859-ccae-45b3-b563-a4c3f7099552
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lifecycle_json
+    - node.type.legislation
+id: node.legislation.field_lifecycle_json
+field_name: field_lifecycle_json
+entity_type: node
+bundle: legislation
+label: Lifecycle
+description: 'Lifecycle of this work, in JSON format.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
