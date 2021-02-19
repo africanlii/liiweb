@@ -51,7 +51,7 @@ function liiweb_search_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
   }
 
   if ($form['#id'] == 'views-exposed-form-liiweb-search-page-search') {
-    $form['type']['#chosen'] = TRUE;
+    $form['type']['#pre_render'][] = '\Drupal\chosen\ChosenFormRender::preRenderSelect';
     unset($form['type']['#options']['billboard']);
     unset($form['type']['#options']['page']);
     $form['type']['#options']['All'] = t('Search everything');
