@@ -43,9 +43,9 @@ function liiweb_search_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $
 
   $route_name = \Drupal::routeMatch()->getRouteName();
 
-  if ($route_name == 'view.liiweb_search.page_search') {
+  if ($route_name == 'view.liiweb_search.page_search' && $form['#id'] == 'views-exposed-form-liiweb-search-page-search') {
     $form['type']['#access'] = FALSE;
-  } else {
+  } elseif ($form['#id'] == 'views-exposed-form-liiweb-search-page-search') {
     $form['field_date']['#access'] = FALSE;
     $form['search_api_fulltext']['#attributes']['placeholder'] = t("Search");
   }
