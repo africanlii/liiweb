@@ -74,9 +74,9 @@ class LiiWebEntityResource extends EntityResource {
       return $this->getResourceResponseError($e->getMessage(), $status_code);
     }
 
-    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getPathInfo());
     if (empty($revision)) {
-      return $this->getResourceResponseError("No revision was found with the frbr uri " . $request->getRequestUri(), 404);
+      return $this->getResourceResponseError("No revision was found with the frbr uri " . $request->getPathInfo(), 404);
     }
 
     // The langcodes are different between the original revision and the revision in the payload - create a translation
@@ -102,7 +102,7 @@ class LiiWebEntityResource extends EntityResource {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function patch(ResourceType $resource_type, Request $request) {
-    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getPathInfo());
     if (empty($revision)) {
       return $this->getResourceResponseError('The requested revision does not exist.', 404);
     }
@@ -177,7 +177,7 @@ class LiiWebEntityResource extends EntityResource {
     /** @var \Drupal\node\NodeStorage $nodeStorage */
     $nodeStorage = $this->entityTypeManager->getStorage('node');
     /** @var \Drupal\node\NodeInterface $revision */
-    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getRequestUri());
+    $revision = $this->liiWebUtils->getRevisionFromFrbrUri($request->getPathInfo());
 
     // Revision not found.
     if (empty($revision)) {
@@ -260,7 +260,6 @@ class LiiWebEntityResource extends EntityResource {
 
     $body = Json::decode($request->getContent());
     $data = $body['data'];
-
     $data += ['attributes' => [], 'relationships' => []];
     $field_names = array_merge(array_keys($data['attributes']), array_keys($data['relationships']));
 
