@@ -134,13 +134,14 @@ class LiiWebEntityResource extends EntityResource {
         // redirect to the full expression URI
         return new RedirectResponse($expression_uri, 307);
       }
-    }
-
-    if (empty($revision)) {
       if ($is_json) {
         return $this->getResourceResponseError("No revision was found with the frbr uri " . $request->getPathInfo(), 404);
       }
       throw new NotFoundHttpException();
+    }
+
+    if (!$revision->access()) {
+      throw new AccessDeniedHttpException();
     }
 
     if ($is_json) {
@@ -149,10 +150,6 @@ class LiiWebEntityResource extends EntityResource {
       $cacheability = (new CacheableMetadata())->addCacheContexts(['headers:Accept', 'url']);
       $response->addCacheableDependency($cacheability);
       return $response;
-    }
-
-    if (!$revision->access()) {
-      throw new AccessDeniedHttpException();
     }
 
     $build = $this->entityTypeManager->getViewBuilder('node')->view($revision);
