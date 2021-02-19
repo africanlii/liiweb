@@ -188,9 +188,10 @@ function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityI
       $date = $paragraph->get('field_repeal_date')->getValue()[0]['value'];
 
       $repeal_id = $paragraph->get('field_repeal_work')->getValue()[0]['target_id'];
-      $repeal_entity = \Drupal::entityTypeManager()->getStorage('node')->load($repeal_id);
-      $repeal_name = $repeal_entity->getTitle();
-      $link_to_repeal = $repeal_entity->url();
+      if ($repeal_entity = \Drupal::entityTypeManager()->getStorage('node')->load($repeal_id)) {
+        $repeal_name = $repeal_entity->getTitle();
+        $link_to_repeal = $repeal_entity->toUrl();
+      }
 
       $build['field_frbr_uri']['#attributes']['class'][] = 'alert-red';
       $build['field_frbr_uri'][0]['#template'] = '{{ value|raw }}';
