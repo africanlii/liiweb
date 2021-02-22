@@ -15,3 +15,7 @@ header #search-block-form {
 #search-block-form {
     display: flex;
 }
+
+#block-views-block-billboard-block-billboard-hero .search-form input, #block-views-block-billboard-block-billboard-hero--2 .search-form input {
+    border: 1px solid $primary;
+}
