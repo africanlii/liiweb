@@ -52,6 +52,7 @@ third_party_settings:
       header:
         - field_file
       left:
+        - download_conditional_gazette_entity_view_1
         - body
       footer:
         - field_external_link
@@ -79,7 +80,7 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings:
       ds:
@@ -90,9 +91,14 @@ content:
             lb-col: false
             classes: {  }
     region: left
+  download_conditional_gazette_entity_view_1:
+    weight: 2
+    region: left
+    settings: {  }
+    third_party_settings: {  }
   field_external_link:
     type: link_separate
-    weight: 3
+    weight: 4
     region: footer
     label: above
     settings:
