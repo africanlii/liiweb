@@ -250,7 +250,6 @@ datasource_settings:
       selected:
         - government_gazette
         - judgment
-        - law_reform_reports
         - legislation
     languages:
       default: true
