@@ -11,6 +11,8 @@ dependencies:
     - field.field.node.judgment.field_case_number_numeric
     - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
+    - field.field.node.judgment.field_counsel_for_defendant
+    - field.field.node.judgment.field_counsel_for_plantiff
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
@@ -26,6 +28,8 @@ dependencies:
     - field.field.node.judgment.field_law_report_citations
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
+    - field.field.node.judgment.field_related_cases
+    - field.field.node.judgment.field_related_legislation
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
@@ -66,10 +70,14 @@ third_party_settings:
       header_left:
         - field_court_name
         - field_case_number
+        - field_related_cases
+        - field_counsel_for_plantiff
       header_right:
         - field_case_name
         - field_law_report_citations
         - field_media_neutral_citation
+        - field_related_legislation
+        - field_counsel_for_defendant
       header:
         - field_flynote
         - field_search_summary
@@ -84,12 +92,12 @@ third_party_settings:
     fields:
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 11
+        weight: 15
         label: hidden
         formatter: default
       'dynamic_block_field:node-similar_judgments':
         plugin_id: 'dynamic_block_field:node-similar_judgments'
-        weight: 12
+        weight: 16
         label: hidden
         formatter: default
 id: node.judgment.full
@@ -100,13 +108,13 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 9
+    weight: 13
     settings: {  }
     third_party_settings: {  }
     region: left
   field_case_name:
     type: string
-    weight: 2
+    weight: 4
     region: header_right
     label: inline
     settings:
@@ -122,6 +130,22 @@ content:
       cache_unit: -1
       cache_duration: 1
     third_party_settings: {  }
+  field_counsel_for_defendant:
+    type: string
+    weight: 8
+    region: header_right
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_counsel_for_plantiff:
+    type: string
+    weight: 3
+    region: header_left
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   field_court_name:
     type: entity_reference_label
     weight: 0
@@ -132,7 +156,7 @@ content:
     third_party_settings: {  }
   field_files:
     type: file_download_link
-    weight: 10
+    weight: 14
     region: right
     label: hidden
     settings:
@@ -171,7 +195,7 @@ content:
             fi: false
             fi-def-at: false
   field_flynote:
-    weight: 5
+    weight: 9
     label: inline
     settings:
       link: false
@@ -182,7 +206,7 @@ content:
     type: entity_reference_entity_view
     region: header
   field_headnote_and_holding:
-    weight: 7
+    weight: 11
     label: inline
     settings: {  }
     third_party_settings:
@@ -197,7 +221,7 @@ content:
     region: left
   field_judge:
     type: entity_reference_label
-    weight: 8
+    weight: 12
     region: left
     label: inline
     settings:
@@ -207,7 +231,7 @@ content:
         ds_limit: ''
   field_law_report_citations:
     type: string
-    weight: 3
+    weight: 5
     region: header_right
     label: inline
     settings:
@@ -215,7 +239,7 @@ content:
     third_party_settings: {  }
   field_media_neutral_citation:
     type: computed_string
-    weight: 4
+    weight: 6
     region: header_right
     label: inline
     settings:
@@ -230,9 +254,25 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+  field_related_cases:
+    type: entity_reference_label
+    weight: 2
+    region: header_left
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_related_legislation:
+    type: entity_reference_label
+    weight: 7
+    region: header_right
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
   field_search_summary:
     type: text_summary_or_trimmed
-    weight: 6
+    weight: 10
     region: header
     label: inline
     settings:

@@ -1,0 +1,19 @@
+uuid: 1b3cd3ef-b9ba-4de9-ac32-71e624d414ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_counsel_for_plantiff
+    - node.type.judgment
+id: node.judgment.field_counsel_for_plantiff
+field_name: field_counsel_for_plantiff
+entity_type: node
+bundle: judgment
+label: 'Counsel for plantiff'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

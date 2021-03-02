@@ -1,0 +1,19 @@
+uuid: 5b3d4abe-0a38-4396-81f5-64521549a353
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_counsel_for_defendant
+    - node.type.judgment
+id: node.judgment.field_counsel_for_defendant
+field_name: field_counsel_for_defendant
+entity_type: node
+bundle: judgment
+label: 'Counsel for defendant'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
