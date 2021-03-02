@@ -5,6 +5,10 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      SIMPLETEST_DB: "sqlite://tmp/site.sqlite"
+      SIMPLETEST_BASE_URL: "http://127.0.0.1:8080"
+      SYMFONY_DEPRECATIONS_HELPER: "weak"
 
     steps:
     - uses: actions/checkout@v2
@@ -20,14 +24,14 @@ jobs:
         composer install --no-progress
         COMPOSER_MEMORY_LIMIT=-1 composer require drupal/entity_browser --dev # https://www.drupal.org/project/paragraphs/issues/2981850
 
-    - name: Run tests
-      env:
-        SIMPLETEST_DB: "sqlite://tmp/site.sqlite"
-        SIMPLETEST_BASE_URL: "http://127.0.0.1:8080"
-        SYMFONY_DEPRECATIONS_HELPER: "weak"
+    - name: Setup test site
+      working-directory: ./web
       run: |
-        cd web
         ./../vendor/bin/drush site-install --existing-config --verbose --yes --db-url=sqlite://tmp/site.sqlite
+
+    - name: Run tests
+      working-directory: ./web
+      run: |
         ./../vendor/bin/drush runserver $SIMPLETEST_BASE_URL &
         until curl -s $SIMPLETEST_BASE_URL; do sleep 1; done > /dev/null
         ./../vendor/bin/phpunit -c core --group liiweb
