@@ -3,7 +3,7 @@ name: Test
 on: [push, pull_request]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -11,20 +11,20 @@ jobs:
 
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
-      env:
-        SIMPLETEST_DB: "sqlite://tmp/site.sqlite"
-        SIMPLETEST_BASE_URL: "http://127.0.0.1:8080"
-        SYMFONY_DEPRECATIONS_HELPER: "weak"
       with:
         php-version: '7.3'
         tools: composer:v1
 
     - name: Install dependencies
       run: |
-        composer install
+        composer install --no-progress
         COMPOSER_MEMORY_LIMIT=-1 composer require drupal/entity_browser --dev # https://www.drupal.org/project/paragraphs/issues/2981850
 
     - name: Run tests
+      env:
+        SIMPLETEST_DB: "sqlite://tmp/site.sqlite"
+        SIMPLETEST_BASE_URL: "http://127.0.0.1:8080"
+        SYMFONY_DEPRECATIONS_HELPER: "weak"
       run: |
         cd web
         ./../vendor/bin/drush site-install --existing-config --verbose --yes --db-url=sqlite://tmp/site.sqlite
