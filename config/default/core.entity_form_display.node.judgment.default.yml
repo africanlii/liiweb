@@ -10,6 +10,8 @@ dependencies:
     - field.field.node.judgment.field_case_number_numeric
     - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
+    - field.field.node.judgment.field_counsel_for_defendant
+    - field.field.node.judgment.field_counsel_for_plantiff
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
@@ -25,6 +27,8 @@ dependencies:
     - field.field.node.judgment.field_law_report_citations
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
+    - field.field.node.judgment.field_related_cases
+    - field.field.node.judgment.field_related_legislation
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
@@ -59,6 +63,8 @@ third_party_settings:
         - field_flynote_local
         - field_search_summary
         - field_headnote_and_holding
+        - field_related_cases
+        - field_related_legislation
       parent_name: group_group
       weight: 22
       format_type: tab
@@ -76,6 +82,8 @@ third_party_settings:
         - field_court_name
         - title
         - field_case_name
+        - field_counsel_for_defendant
+        - field_counsel_for_plantiff
         - field_matter_type
         - field_case_number_numeric
         - field_case_number_year
@@ -176,13 +184,13 @@ content:
     type: string_textfield
     region: content
   field_case_number:
-    weight: 16
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: computed_string_widget
     region: content
   field_case_number_numeric:
-    weight: 14
+    weight: 16
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -197,11 +205,27 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_case_number_year:
-    weight: 15
+    weight: 17
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
+  field_counsel_for_defendant:
+    weight: 13
+    settings:
+      size: 255
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_counsel_for_plantiff:
+    weight: 14
+    settings:
+      size: 255
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_court_name:
     weight: 10
@@ -210,7 +234,7 @@ content:
     type: options_select
     region: content
   field_date:
-    weight: 18
+    weight: 20
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -255,7 +279,7 @@ content:
     type: text_textarea
     region: content
   field_judge:
-    weight: 21
+    weight: 23
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -273,13 +297,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_judgment_number:
-    weight: 17
+    weight: 19
     settings: {  }
     third_party_settings: {  }
     type: computed_number_widget
     region: content
   field_judgment_number_override:
-    weight: 19
+    weight: 21
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -293,7 +317,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_law_report_citations:
-    weight: 22
+    weight: 24
     settings:
       size: 255
       placeholder: ''
@@ -301,7 +325,7 @@ content:
     type: string_textfield
     region: content
   field_matter_type:
-    weight: 13
+    weight: 15
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -311,10 +335,30 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_media_neutral_citation:
-    weight: 20
+    weight: 22
     settings: {  }
     third_party_settings: {  }
     type: computed_string_widget
+    region: content
+  field_related_cases:
+    weight: 22
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_related_legislation:
+    weight: 23
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_search_summary:
     weight: 20

@@ -1,0 +1,27 @@
+uuid: 04194059-c2f2-4e08-b3f1-ed253a0e13f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_cases
+    - node.type.judgment
+id: node.judgment.field_related_cases
+field_name: field_related_cases
+entity_type: node
+bundle: judgment
+label: 'Related cases'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      judgment: judgment
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

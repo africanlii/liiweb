@@ -11,6 +11,8 @@ dependencies:
     - field.field.node.judgment.field_case_number_numeric
     - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
+    - field.field.node.judgment.field_counsel_for_defendant
+    - field.field.node.judgment.field_counsel_for_plantiff
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
@@ -26,6 +28,8 @@ dependencies:
     - field.field.node.judgment.field_law_report_citations
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
+    - field.field.node.judgment.field_related_cases
+    - field.field.node.judgment.field_related_legislation
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
@@ -95,6 +99,8 @@ hidden:
   field_case_number_numeric: true
   field_case_number_old: true
   field_case_number_year: true
+  field_counsel_for_defendant: true
+  field_counsel_for_plantiff: true
   field_court_name: true
   field_date: true
   field_external_link: true
@@ -110,6 +116,8 @@ hidden:
   field_law_report_citations: true
   field_matter_type: true
   field_media_neutral_citation: true
+  field_related_cases: true
+  field_related_legislation: true
   langcode: true
   links: true
   search_api_excerpt: true

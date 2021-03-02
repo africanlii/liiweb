@@ -8,15 +8,19 @@ dependencies:
     - field.field.node.judgment.field_case_number_numeric
     - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
+    - field.field.node.judgment.field_counsel_for_defendant
+    - field.field.node.judgment.field_counsel_for_plantiff
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_headnote_and_holding
+    - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number_override
     - field.field.node.judgment.field_judgment_old_nid
     - field.field.node.judgment.field_law_report_citations
+    - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
@@ -42,28 +46,70 @@ third_party_settings:
         weight: -10
         label: 'Set value or default value'
         uuid: 14c0c7f9-ed8b-4a00-958d-4d5b26c9404a
-      68a675d5-5385-43fa-825d-3f4a4d7e048b:
-        separator: ',%s'
-        limit: null
-        plugin: explode
-        source: _flynote_tags_
-        weight: 0
-        label: Explode
-        uuid: 68a675d5-5385-43fa-825d-3f4a4d7e048b
-      41bab3f2-151a-4f60-8d79-050db7f4dc04:
+      25e261ed-7971-4660-9d67-2a5cf1442a9e:
         default_value: ''
         only_if_empty: true
         plugin: default_value
-        source: _judgment_date_
+        source: flynote
         weight: 0
         label: 'Set value or default value'
-        uuid: 41bab3f2-151a-4f60-8d79-050db7f4dc04
-      535f7563-22d6-47b6-9106-08fdd57dcc88:
-        plugin: strtotime
-        source: _judgment_date_
+        uuid: 25e261ed-7971-4660-9d67-2a5cf1442a9e
+      8ccc9769-34c8-459b-99b9-174264267ce8:
+        separator: '|'
+        limit: null
+        plugin: explode
+        source: flynote
         weight: 1
-        label: 'String to Unix Timestamp'
-        uuid: 535f7563-22d6-47b6-9106-08fdd57dcc88
+        label: Explode
+        uuid: 8ccc9769-34c8-459b-99b9-174264267ce8
+      eb166a92-b84f-4520-8f0c-783d46e4a3d6:
+        default_value: ''
+        only_if_empty: true
+        plugin: default_value
+        source: _counsel_for_plaintiff_
+        weight: 0
+        label: 'Set value or default value'
+        uuid: eb166a92-b84f-4520-8f0c-783d46e4a3d6
+      1e2e59f4-4479-452b-9cba-6cd01303886e:
+        separator: '|'
+        limit: null
+        plugin: explode
+        source: _counsel_for_plaintiff_
+        weight: 1
+        label: Explode
+        uuid: 1e2e59f4-4479-452b-9cba-6cd01303886e
+      56f0e987-d1b7-4312-8cb1-298ace96db94:
+        default_value: ''
+        only_if_empty: true
+        plugin: default_value
+        source: _counsel_for_defendant_respondent_
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 56f0e987-d1b7-4312-8cb1-298ace96db94
+      262e1fd6-3f7e-405a-8b1c-6ee96b924760:
+        separator: '|'
+        limit: null
+        plugin: explode
+        source: _counsel_for_defendant_respondent_
+        weight: 1
+        label: Explode
+        uuid: 262e1fd6-3f7e-405a-8b1c-6ee96b924760
+      2fd59a4a-9172-47dd-9b80-8602fff35222:
+        default_value: ''
+        only_if_empty: true
+        plugin: default_value
+        source: judge
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 2fd59a4a-9172-47dd-9b80-8602fff35222
+      cd0da2d2-ae66-479f-a942-9b8871b2c14e:
+        separator: '|'
+        limit: null
+        plugin: explode
+        source: judge
+        weight: 1
+        label: Explode
+        uuid: cd0da2d2-ae66-479f-a942-9b8871b2c14e
 id: judgment_importer
 label: 'Judgment Importer'
 description: 'Import content types of Judgment via json'
@@ -86,9 +132,9 @@ parser_configuration:
     body:
       label: Body
       value: Body
-    _flynote_tags_:
-      label: '[''Flynote tags'']'
-      value: '[''Flynote tags'']'
+    flynote:
+      label: Flynote
+      value: Flynote
     _headnote_and_holding_:
       label: '[''Headnote and Holding'']'
       value: '[''Headnote and Holding'']'
@@ -98,15 +144,15 @@ parser_configuration:
     _law_report_citation_:
       label: '[''Law Report Citation'']'
       value: '[''Law Report Citation'']'
-    field_case_number_numeric:
-      label: field_case_number_numeric
-      value: field_case_number_numeric
-    field_case_number_year:
-      label: field_case_number_year
-      value: field_case_number_year
-    flynote:
-      label: Flynote
-      value: Flynote
+    _case_number_numeric_:
+      label: '[''Case number numeric'']'
+      value: '[''Case number numeric'']'
+    _case_number_year_:
+      label: '[''Case number year'']'
+      value: '[''Case number year'']'
+    _search_summary_:
+      label: '[''Search summary'']'
+      value: '[''Search summary'']'
     download:
       label: Download
       value: Download
@@ -116,15 +162,27 @@ parser_configuration:
     _media_neutral_citation_:
       label: '[''Media Neutral Citation'']'
       value: '[''Media Neutral Citation'']'
-    _case_number_:
-      label: '[''Case number'']'
-      value: '[''Case number'']'
+    _case_number_old_:
+      label: '[''Case number old'']'
+      value: '[''Case number old'']'
     _court_name_:
       label: '[''Court Name'']'
       value: '[''Court Name'']'
     _judgment_date_:
       label: '[''Judgment Date'']'
       value: '[''Judgment Date'']'
+    judge:
+      label: Judge
+      value: Judge
+    _matter_type_:
+      label: '[''Matter type'']'
+      value: '[''Matter type'']'
+    _counsel_for_plaintiff_:
+      label: '[''Counsel for Plaintiff'']'
+      value: '[''Counsel for Plaintiff'']'
+    _counsel_for_defendant_respondent_:
+      label: '[''Counsel for Defendant/Respondent'']'
+      value: '[''Counsel for Defendant/Respondent'']'
   display_errors: false
   source_encoding:
     - auto
@@ -219,6 +277,34 @@ custom_sources:
     label: '[''Case number'']'
     value: '[''Case number'']'
     machine_name: _case_number_
+  _search_summary_:
+    label: '[''Search summary'']'
+    value: '[''Search summary'']'
+    machine_name: _search_summary_
+  _matter_type_:
+    label: '[''Matter type'']'
+    value: '[''Matter type'']'
+    machine_name: _matter_type_
+  _case_number_numeric_:
+    label: '[''Case number numeric'']'
+    value: '[''Case number numeric'']'
+    machine_name: _case_number_numeric_
+  _case_number_year_:
+    label: '[''Case number year'']'
+    value: '[''Case number year'']'
+    machine_name: _case_number_year_
+  _case_number_old_:
+    label: '[''Case number old'']'
+    value: '[''Case number old'']'
+    machine_name: _case_number_old_
+  _counsel_for_plaintiff_:
+    label: '[''Counsel for Plaintiff'']'
+    value: '[''Counsel for Plaintiff'']'
+    machine_name: _counsel_for_plaintiff_
+  _counsel_for_defendant_respondent_:
+    label: '[''Counsel for Defendant/Respondent'']'
+    value: '[''Counsel for Defendant/Respondent'']'
+    machine_name: _counsel_for_defendant_respondent_
 mappings:
   -
     target: field_case_name
@@ -238,7 +324,7 @@ mappings:
   -
     target: field_flynote
     map:
-      target_id: _flynote_tags_
+      target_id: flynote
     settings:
       language: ''
       reference_by: name
@@ -267,21 +353,21 @@ mappings:
   -
     target: field_case_number_numeric
     map:
-      value: field_case_number_numeric
+      value: _case_number_numeric_
     unique: {  }
     settings:
       language: null
   -
     target: field_case_number_year
     map:
-      value: field_case_number_year
+      value: _case_number_year_
     unique: {  }
     settings:
       language: null
   -
     target: field_search_summary
     map:
-      value: flynote
+      value: _search_summary_
       summary: ''
     settings:
       language: ''
@@ -315,7 +401,7 @@ mappings:
   -
     target: field_case_number_old
     map:
-      value: _case_number_
+      value: _case_number_old_
     unique: {  }
     settings:
       language: null
@@ -334,3 +420,33 @@ mappings:
     settings:
       language: null
       timezone: UTC
+  -
+    target: field_judge
+    map:
+      target_id: judge
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: '1'
+  -
+    target: field_matter_type
+    map:
+      target_id: _matter_type_
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
+  -
+    target: field_counsel_for_plantiff
+    map:
+      value: _counsel_for_plaintiff_
+    unique: {  }
+    settings:
+      language: null
+  -
+    target: field_counsel_for_defendant
+    map:
+      value: _counsel_for_defendant_respondent_
+    unique: {  }
+    settings:
+      language: null

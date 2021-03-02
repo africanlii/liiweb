@@ -1,0 +1,28 @@
+uuid: bbf5eae0-d7ea-4efd-9031-883d61c8f8b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_legislation
+    - node.type.judgment
+    - node.type.legislation
+id: node.judgment.field_related_legislation
+field_name: field_related_legislation
+entity_type: node
+bundle: judgment
+label: 'Related legislation'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      legislation: legislation
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
