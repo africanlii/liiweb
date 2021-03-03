@@ -43,13 +43,3 @@ services:
     tags:
       - { name: event_subscriber }
       - { name: backend_overridable }
-
-  # Api response early rendering
-  liiweb_api.early_rendering_controller_wrapper_subscriber:
-    class: Drupal\liiweb_api\EventSubscriber\EarlyRenderingControllerWrapperSubscriber
-    decorates: early_rendering_controller_wrapper_subscriber
-    decoration_priority: 9
-    public: false
-    arguments: [ '@liiweb_api.early_rendering_controller_wrapper_subscriber.inner' ]
-    tags:
-      - { name: event_subscriber }
