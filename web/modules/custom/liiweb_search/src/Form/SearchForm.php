@@ -23,7 +23,7 @@ class SearchForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['search_api_fulltext'] = [
       '#type' => 'textfield',
-      '#maxlength' => 64,
+      '#maxlength' => 265,
       '#size' => 64,
       '#weight' => '0',
       '#placeholder' => 'Start by searching for a keyword',
