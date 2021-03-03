@@ -1,0 +1,29 @@
+uuid: 8f8bfe2d-7045-4adb-8929-788222b83999
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.liiweb_search
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: exposedformliiweb_searchpage_search
+theme: liibarrio2020
+region: pre_header
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:liiweb_search-page_search'
+settings:
+  id: 'views_exposed_filter_block:liiweb_search-page_search'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: "<front>\r\n/search"
+    negate: true
+    context_mapping: {  }
