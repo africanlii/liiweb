@@ -9,6 +9,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Link;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 
 /**
@@ -177,38 +178,63 @@ function liiweb_legislation_theme() {
  * Implements hook_ENTITY_view().
  */
 function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
-  if($entity->getType() == 'legislation' && $view_mode == 'full') {  
-
+  if($entity->getType() == 'legislation' && $view_mode == 'full') {
     $raw_json = json_decode($build['#node']->get('field_raw_json')->getValue()[0]['value']);
     $build['#attached']['drupalSettings']['liiweb_legislation']['raw_json'] = $raw_json;
-
-    $repeal = $build['#node']->get('field_repeal');
-    if($repeal->getValue()) {
-      $paragraph = \Drupal\paragraphs\Entity\Paragraph::load($repeal->getValue()[0]['target_id']);
-      $date = $paragraph->get('field_repeal_date')->getValue()[0]['value'];
-
-      $repeal_id = $paragraph->get('field_repeal_work')->getValue()[0]['target_id'];
-      $repeal_entity = \Drupal::entityTypeManager()->getStorage('node')->load($repeal_id);
-      $repeal_name = $repeal_entity->getTitle();
-      $link_to_repeal = $repeal_entity->url();
-
+    try {
+      /** @var \Drupal\node\Entity\Node $repeal */
+      $repeal = $build['#node']->field_repeal->entity->field_repeal_work->entity;
+    } catch (\Exception $e) {
+      $repeal = NULL;
+    }
+    $unknown = new TranslatableMarkup('Unknown');
+    if($repeal) {
+      $repeal_date = $unknown;
+      if ($date = $build['#node']->field_repeal->entity->field_repeal_date->date) {
+        $repeal_date = \Drupal::service('date.formatter')->format(
+          $date->getTimestamp(), 'custom', 'j F, Y'
+        );
+      }
+      try {
+        $link = Link::createFromRoute($repeal->getTitle(),
+          'entity.node.canonical', ['node' => $repeal->id()]
+        )->toString();
+      } catch (\Exception $e) {
+        $link = $unknown;
+      }
       $build['field_frbr_uri']['#attributes']['class'][] = 'alert-red';
       $build['field_frbr_uri'][0]['#template'] = '{{ value|raw }}';
-      $build['field_frbr_uri'][0]['#context']['value'] = "This legislation was repealed on $date by <h3 class='h6'><a href='$link_to_repeal'>$repeal_name.</a></h3>";
+      $build['field_frbr_uri'][0]['#context']['value'] = new TranslatableMarkup(
+        "This legislation was repealed on <strong>@date</strong> by <h3 class='h6'>@link</h3>",
+        [
+            '@date' => $repeal_date,
+            '@link' => $link
+        ]
+      );
     }
     elseif($build['#node']->isDefaultRevision()) {
       $build['field_frbr_uri']['#attributes']['class'][] = 'alert-primary';
-      $build['field_frbr_uri'][0]['#context']['value'] = 'This is the latest version of this legislation.';
+      $build['field_frbr_uri'][0]['#context']['value'] = new TranslatableMarkup('This is the latest version of this legislation.');
     }
     else {
       //WORK IN FORCE FIELDS TO BE UPDATED
-      $work_in_force_from = $raw_json->commencement_date;
-      $work_in_force_to = $raw_json->commencement_date;
-      $link_to_current_revision = $entity->toUrl()->toString();
-
+      // TODO format date nicely as above j F, Y
+      $from = $raw_json->commencement_date;
+      $to = $raw_json->commencement_date;
+      try {
+        $link = Link::createFromRoute(
+          new TranslatableMarkup('Read the version currently in force.'),
+          'entity.node.canonical', ['node' => $repeal->id()]
+        )->toString();
+      } catch (\Exception $e) {
+        $link = $unknown;
+      }
       $build['field_frbr_uri']['#attributes']['class'][] = 'alert-red';
       $build['field_frbr_uri'][0]['#template'] = '{{ value|raw }}';
-      $build['field_frbr_uri'][0]['#context']['value'] = "This is the version of this legislation as it was from $work_in_force_from to $work_in_force_to. <h3 class='h6'><a href='$link_to_current_revision'>Read the version currently in force.</a></h3>";
+      $build['field_frbr_uri'][0]['#context']['value'] = new TranslatableMarkup(
+        'This is the version of this legislation as it was from @from to @to. <h3 class="h6">@link</h3>',
+          ['@from' => $from, '@to' => $to, '@link' => $link]
+      );
     }
   }
 }
