@@ -2858,22 +2858,13 @@
                 "shasum": "2eaf6f00ea256652c09f785b26dc933cc5b3dd26"
             },
             "require": {
-<<<<<<< HEAD
                 "drupal/core": "^8.8 || ^9"
-=======
-                "drupal/core": "^8"
->>>>>>> master
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-<<<<<<< HEAD
                     "version": "8.x-1.1",
                     "datestamp": "1591160977",
-=======
-                    "version": "8.x-1.0-beta4",
-                    "datestamp": "1582292983",
->>>>>>> master
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
