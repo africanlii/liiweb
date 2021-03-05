@@ -5,6 +5,7 @@ package: 'Liiweb'
 version: VERSION
 core: 8.x
 dependencies:
+  - filefield_paths:filefield_paths
   - drupal:jsonapi
   - drupal:basic_auth
   - liiweb:liiweb
