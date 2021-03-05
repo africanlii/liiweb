@@ -58,7 +58,6 @@ module:
   image: 0
   image_captcha: 0
   inline_entity_form: 0
-  jquery_ui: 0
   jsonapi: 0
   jquery_ui: 0
   language: 0
