@@ -60,6 +60,7 @@ module:
   inline_entity_form: 0
   jquery_ui: 0
   jsonapi: 0
+  jquery_ui: 0
   language: 0
   layout_discovery: 0
   liiweb: 0

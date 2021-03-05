@@ -1,3 +1,4 @@
+uuid: 4bec5f6e-4daa-4397-9aa9-3dff4d5dcd6b
 langcode: en
 status: true
 dependencies:
@@ -9,7 +10,7 @@ field_name: field_parent_work
 entity_type: node
 bundle: legislation
 label: 'Primary work'
-description: ''
+description: 'The parent of this work. For subsidiary legislation, this is the principal legislation.'
 required: false
 translatable: false
 default_value: {  }

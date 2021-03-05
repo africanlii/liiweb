@@ -154,6 +154,7 @@ class LiiWebApiTest extends LiiWebApiTestBase {
           "title" => "Work: /akn/za/act/1993/31/eng@1993-01-31 - Simple work (first expression)",
           "langcode" => "en",
           "field_expression_date" => "1993-01-31",
+          "field_date" => "1993-01-31",
           "field_publication_name" => "Work: Original publication name",
           "field_frbr_uri" => "/akn/za/act/1993/31/eng@1993-01-31"
         ],
