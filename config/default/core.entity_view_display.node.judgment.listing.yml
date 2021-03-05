@@ -75,6 +75,11 @@ targetEntityType: node
 bundle: judgment
 mode: listing
 content:
+  download_conditional_entity_view_1:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   field_search_summary:
     type: text_default
     weight: 1
