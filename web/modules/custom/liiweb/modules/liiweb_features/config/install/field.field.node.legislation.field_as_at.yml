@@ -1,20 +1,20 @@
-uuid: 91595ede-7b9c-4719-a787-2a115adbb0f0
+uuid: 0b534ab2-b6d8-4909-8b91-c5ef785ce01b
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_created
+    - field.storage.node.field_as_at
     - node.type.legislation
   module:
     - datetime
-id: node.legislation.field_created
-field_name: field_created
+id: node.legislation.field_as_at
+field_name: field_as_at
 entity_type: node
 bundle: legislation
-label: Created
-description: 'Timestamp of when the work was first created.'
+label: 'As At'
+description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
