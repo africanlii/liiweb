@@ -1,3 +1,4 @@
+uuid: f7e51bf3-0d85-40fd-a4e8-69d8a1119315
 langcode: en
 status: true
 dependencies:
@@ -9,12 +10,12 @@ field_name: field_created_by_api
 entity_type: node
 bundle: legislation
 label: 'Created by API'
-description: ''
+description: 'If checked, this node was created via REST API endpoint.'
 required: false
 translatable: false
 default_value:
   -
-    value: 0
+    value: 1
 default_value_callback: ''
 settings:
   on_label: 'Yes'
