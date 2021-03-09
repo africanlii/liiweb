@@ -58,7 +58,11 @@ display:
           items_per_page: 5
           offset: 0
       style:
-        type: html_list
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
       row:
         type: fields
       fields:
