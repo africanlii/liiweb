@@ -1,6 +1,6 @@
 # liiweb
 
-[![Build Status](https://travis-ci.com/stefanbutura/liiweb.svg?branch=master)](https://travis-ci.org/drupal-composer/drupal-project)
+[![Test](https://github.com/africanlii/liiweb/actions/workflows/test.yml/badge.svg)](https://github.com/africanlii/liiweb/actions/workflows/test.yml)
 
 
 ## Install development environment from scratch

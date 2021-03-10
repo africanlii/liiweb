@@ -207,8 +207,8 @@ function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityI
       $build['field_frbr_uri'][0]['#context']['value'] = new TranslatableMarkup(
         'This legislation was repealed on <strong>@date</strong> by <h3 class="h6">@link</h3>',
         [
-            '@date' => $repeal_date,
-            '@link' => $link
+          '@date' => $repeal_date,
+          '@link' => $link
         ]
       );
     }
@@ -233,10 +233,8 @@ function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityI
       $build['field_frbr_uri'][0]['#template'] = '{{ value|raw }}';
       $build['field_frbr_uri'][0]['#context']['value'] = new TranslatableMarkup(
         'This is the version of this legislation as it was from @from to @to. <h3 class="h6">@link</h3>',
-          ['@from' => $from, '@to' => $to, '@link' => $link]
+        ['@from' => $from, '@to' => $to, '@link' => $link]
       );
     }
   }
 }
-
-
