@@ -809,3 +809,9 @@ $settings['node_title_length_chars'] = 1023;
 /** Set file settings to make files temporary after being orphaned to get rid of files from both db and buckets when no longer in use.
 */
 $config['file.settings']['make_unused_managed_files_temporary'] = TRUE;
+
+/** Attempted Fix for Deadlock error causing slow site 
+*/
+$databases['default']['default']['init_commands']['isolation'] = "SET SESSION tx_isolation='READ-COMMITTED'";
+$databases['default']['default']['init_commands']['lock_wait_timeout'] = "SET SESSION innodb_lock_wait_timeout = 20";
+$databases['default']['default']['init_commands']['wait_timeout'] = "SET SESSION wait_timeout = 600";
