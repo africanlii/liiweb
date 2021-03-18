@@ -79,16 +79,16 @@ third_party_settings:
         - field_search_summary
         - download_conditional_entity_view_1
     fields:
-      node_author:
-        plugin_id: node_author
-        weight: 0
-        label: inline
-        formatter: author
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
         weight: 6
         label: hidden
         formatter: default
+      node_author:
+        plugin_id: node_author
+        weight: 0
+        label: inline
+        formatter: author
 id: node.judgment.default
 targetEntityType: node
 bundle: judgment
@@ -178,12 +178,11 @@ content:
       ds:
         ds_limit: ''
   field_search_summary:
-    type: text_summary_or_trimmed
+    type: text_default
     weight: 10
     region: node_content
     label: inline
-    settings:
-      trim_length: 600
+    settings: {  }
     third_party_settings: {  }
   liiweb_share_links:
     weight: 6
