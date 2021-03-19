@@ -1,11 +1,11 @@
 uuid: c4a3bac4-f642-42b8-b339-3dd80682442f
-name: liiweb
-mail: no-reply@example.com
-slogan: ''
+name: 'Namibia Legal Information Institute'
+mail: info@namiblii.org
+slogan: 'Free Access to Law from Namibia'
 page:
   403: ''
   404: ''
-  front: /home
+  front: /node/12555
 admin_compact_mode: false
 weight_select_max: 100
 langcode: en

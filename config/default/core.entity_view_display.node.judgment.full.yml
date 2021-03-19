@@ -82,14 +82,14 @@ third_party_settings:
         - 'dynamic_token_field:node-share_links'
         - 'dynamic_block_field:node-similar_judgments'
     fields:
-      'dynamic_token_field:node-share_links':
-        plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 11
-        label: hidden
-        formatter: default
       'dynamic_block_field:node-similar_judgments':
         plugin_id: 'dynamic_block_field:node-similar_judgments'
         weight: 12
+        label: hidden
+        formatter: default
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 11
         label: hidden
         formatter: default
 id: node.judgment.full
@@ -229,12 +229,11 @@ content:
             lb-col: false
             classes: {  }
   field_search_summary:
-    type: text_summary_or_trimmed
+    type: text_default
     weight: 6
     region: header
     label: inline
-    settings:
-      trim_length: 600
+    settings: {  }
     third_party_settings:
       ds:
         ft:

@@ -76,19 +76,21 @@ targetEntityType: node
 bundle: judgment
 mode: teaser
 content:
-  download_conditional_entity_view_1:
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_search_summary:
     type: text_trimmed
     weight: 1
     region: content
     label: hidden
     settings:
-      trim_length: 600
-    third_party_settings: {  }
+      trim_length: 700
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   search_api_excerpt:
     weight: 2
     region: content
@@ -96,6 +98,7 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
+  download_conditional_entity_view_1: true
   feeds_item: true
   field_case_name: true
   field_case_number: true
