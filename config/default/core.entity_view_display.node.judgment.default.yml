@@ -85,7 +85,7 @@ third_party_settings:
         - field_flynote_local
         - field_flynote
         - field_search_summary
-        - body
+        - download_conditional_entity_view_1
     fields:
       node_author:
         plugin_id: node_author
@@ -102,13 +102,11 @@ targetEntityType: node
 bundle: judgment
 mode: default
 content:
-  body:
-    label: above
-    type: text_default
-    weight: 15
+  download_conditional_entity_view_1:
+    weight: 11
+    region: node_content
     settings: {  }
     third_party_settings: {  }
-    region: node_content
   field_case_number:
     type: computed_string
     weight: 5
@@ -233,6 +231,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  body: true
   feeds_item: true
   field_case_name: true
   field_case_number_numeric: true
