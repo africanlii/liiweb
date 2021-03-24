@@ -140,6 +140,7 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
+  download_conditional_entity_view_1: true
   feeds_item: true
   field_case_name: true
   field_case_number: true
