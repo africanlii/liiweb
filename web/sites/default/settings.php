@@ -805,3 +805,7 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 $config_directories['sync'] = '../config/default';
 
 $settings['node_title_length_chars'] = 1023;
+
+/** Set file settings to make files temporary after being orphaned to get rid of files from both db and buckets when no longer in use.
+*/
+$config['file.settings']['make_unused_managed_files_temporary'] = TRUE;

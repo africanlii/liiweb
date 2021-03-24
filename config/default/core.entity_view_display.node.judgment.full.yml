@@ -76,7 +76,7 @@ third_party_settings:
       left:
         - field_headnote_and_holding
         - field_judge
-        - body
+        - download_conditional_entity_view_1
       right:
         - field_files
         - 'dynamic_token_field:node-share_links'
@@ -97,13 +97,11 @@ targetEntityType: node
 bundle: judgment
 mode: full
 content:
-  body:
-    label: hidden
-    type: text_default
+  download_conditional_entity_view_1:
     weight: 9
+    region: left
     settings: {  }
     third_party_settings: {  }
-    region: left
   field_case_name:
     type: string
     weight: 2
@@ -251,6 +249,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  body: true
   feeds_item: true
   field_case_number_numeric: true
   field_case_number_old: true
