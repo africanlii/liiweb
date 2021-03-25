@@ -4888,7 +4888,8 @@
                     }
                 },
                 "patches_applied": {
-                    "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch"
+                    "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch",
+                    "Token replacement generate leaked cache metadata": "https://www.drupal.org/files/issues/2019-08-13/fieldfield_path-leaked_cache_metadata-3074642-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
