@@ -117,6 +117,7 @@ module:
   views_exposed_filter_blocks: 0
   views_infinite_scroll: 0
   views_php: 0
+  views_taxonomy_term_name_into_id: 0
   views_tree: 0
   views_ui: 0
   webform: 0
