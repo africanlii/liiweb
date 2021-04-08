@@ -590,7 +590,7 @@ display:
           empty: false
           tokenize: true
           content:
-            value: '<h2 class="h3">{{ arguments.name }} judgments beginning with... {{ arguments.title }}<h2>'
+            value: '<h2 class="h3">{{ arguments.term_node_tid_depth }} judgments beginning with... {{ raw_arguments.title }}<h2>'
             format: full_html
           plugin_id: text
       title: ''
@@ -667,11 +667,11 @@ display:
         groups:
           1: AND
       arguments:
-        name:
-          id: name
-          table: taxonomy_term_field_data
-          field: name
-          relationship: term_node_tid
+        term_node_tid_depth:
+          id: term_node_tid_depth
+          table: node_field_data
+          field: term_node_tid_depth
+          relationship: none
           group_type: group
           admin_label: ''
           default_action: default
@@ -695,22 +695,21 @@ display:
             sort_order: asc
             number_of_records: 0
             format: default_summary
-          specify_validation: false
+          specify_validation: true
           validate:
-            type: none
+            type: taxonomy_term_name_into_id
             fail: 'not found'
-          validate_options: {  }
-          glossary: false
-          limit: 0
-          case: none
-          path_case: none
-          transform_dash: false
+          validate_options:
+            bundles:
+              court_names: court_names
+            operation: view
+            transform: true
+            access: false
+          depth: 0
           break_phrase: false
-          add_table: false
-          require_value: false
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: string
+          use_taxonomy_term_path: false
+          entity_type: node
+          plugin_id: taxonomy_index_tid_depth
         title:
           id: title
           table: node_field_data
@@ -784,6 +783,7 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+      exposed_block: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -1061,16 +1061,16 @@ display:
           empty: false
           tokenize: true
           content:
-            value: '<h2 class="h3">{{ arguments.name }} judgments  for the year... {{ arguments.field_date_value_year }}<h2>'
+            value: '<h2 class="h3">{{ arguments.term_node_tid_depth }} judgments  for the year... {{ raw_arguments.field_date_value_year}}<h2>'
             format: full_html
           plugin_id: text
       css_class: 'view--liibarrio view--liibarrio--bg'
       arguments:
-        name:
-          id: name
-          table: taxonomy_term_field_data
-          field: name
-          relationship: term_node_tid
+        term_node_tid_depth:
+          id: term_node_tid_depth
+          table: node_field_data
+          field: term_node_tid_depth
+          relationship: none
           group_type: group
           admin_label: ''
           default_action: default
@@ -1094,22 +1094,21 @@ display:
             sort_order: asc
             number_of_records: 0
             format: default_summary
-          specify_validation: false
+          specify_validation: true
           validate:
-            type: none
+            type: taxonomy_term_name_into_id
             fail: 'not found'
-          validate_options: {  }
-          glossary: false
-          limit: 0
-          case: none
-          path_case: none
-          transform_dash: false
+          validate_options:
+            bundles:
+              court_names: court_names
+            operation: view
+            transform: true
+            access: false
+          depth: 0
           break_phrase: false
-          add_table: false
-          require_value: false
-          entity_type: taxonomy_term
-          entity_field: name
-          plugin_id: string
+          use_taxonomy_term_path: false
+          entity_type: node
+          plugin_id: taxonomy_index_tid_depth
         field_date_value_year:
           id: field_date_value_year
           table: node__field_date
