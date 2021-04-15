@@ -188,7 +188,7 @@ display:
           click_sort_column: target_id
           type: pdf_default
           settings:
-            keep_pdfjs: 0
+            keep_pdfjs: 1
             width: 100%
             height: 800px
             page: ''
