@@ -31,7 +31,6 @@ dependencies:
   module:
     - computed_field
     - ds
-    - file_download_link
     - text
     - user
 third_party_settings:
@@ -76,20 +75,18 @@ third_party_settings:
       left:
         - field_headnote_and_holding
         - field_judge
-        - download_conditional_entity_view_1
       right:
-        - field_files
         - 'dynamic_token_field:node-share_links'
         - 'dynamic_block_field:node-similar_judgments'
     fields:
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 11
+        weight: 9
         label: hidden
         formatter: default
       'dynamic_block_field:node-similar_judgments':
         plugin_id: 'dynamic_block_field:node-similar_judgments'
-        weight: 12
+        weight: 10
         label: hidden
         formatter: default
 id: node.judgment.full
@@ -97,11 +94,6 @@ targetEntityType: node
 bundle: judgment
 mode: full
 content:
-  download_conditional_entity_view_1:
-    weight: 9
-    region: left
-    settings: {  }
-    third_party_settings: {  }
   field_case_name:
     type: string
     weight: 2
@@ -111,14 +103,12 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   field_case_number:
-    type: computed_string
+    type: string
     weight: 1
     region: header_left
-    label: inline
+    label: above
     settings:
-      sanitized: true
-      cache_unit: -1
-      cache_duration: 1
+      link_to_entity: false
     third_party_settings: {  }
   field_court_name:
     type: entity_reference_label
@@ -128,46 +118,6 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-  field_files:
-    type: file_download_link
-    weight: 10
-    region: right
-    label: hidden
-    settings:
-      link_text: "Download as [file:ffp-extension-original]\t"
-      new_tab: true
-      force_download: true
-      custom_classes: ''
-    third_party_settings:
-      ds:
-        ds_limit: ''
-        ft:
-          id: expert
-          settings:
-            lb: ''
-            prefix: ''
-            lbw-el: ''
-            lbw-cl: ''
-            lbw-at: ''
-            ow: true
-            ow-el: div
-            ow-cl: 'field field--name-field-files field--type-file field--label-hidden field__items'
-            ow-at: ''
-            ow-def-at: true
-            fis: true
-            fis-el: div
-            fis-cl: 'field__items liiweb-download'
-            fis-at: ''
-            fis-def-at: true
-            fi-el: ''
-            fi-cl: ''
-            fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            ow-def-cl: false
-            fi: false
-            fi-def-at: false
   field_flynote:
     weight: 5
     label: inline
@@ -250,12 +200,14 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
+  download_conditional_entity_view_1: true
   feeds_item: true
   field_case_number_numeric: true
   field_case_number_old: true
   field_case_number_year: true
   field_date: true
   field_external_link: true
+  field_files: true
   field_flynote_local: true
   field_judgment_mnc_old: true
   field_judgment_number: true

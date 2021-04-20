@@ -31,7 +31,6 @@ dependencies:
     - computed_field
     - datetime
     - field_group
-    - file
     - link
     - path
     - text
@@ -114,8 +113,7 @@ third_party_settings:
         required_fields: true
       label: 'Full view'
     group_download:
-      children:
-        - field_files
+      children: {  }
       parent_name: group_group
       weight: 24
       format_type: tab
@@ -176,10 +174,12 @@ content:
     type: string_textfield
     region: content
   field_case_number:
-    weight: 16
-    settings: {  }
+    weight: 26
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: computed_string_widget
+    type: string_textfield
     region: content
   field_case_number_numeric:
     weight: 14
@@ -222,13 +222,6 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
-  field_files:
-    weight: 21
-    settings:
-      progress_indicator: throbber
-    third_party_settings: {  }
-    type: file_generic
     region: content
   field_flynote:
     weight: 18
@@ -380,3 +373,4 @@ content:
     third_party_settings: {  }
 hidden:
   feeds_item: true
+  field_files: true
