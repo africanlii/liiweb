@@ -233,6 +233,15 @@ display:
             group_items: {  }
           reduce_duplicates: false
           plugin_id: search_api_options
+        field_case_number:
+          id: field_case_number
+          table: search_api_index_full_site_search
+          field: field_case_number
+          plugin_id: search_api_string
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
         search_api_fulltext:
           id: search_api_fulltext
           table: search_api_index_full_site_search
@@ -333,26 +342,29 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
-        search_api_fulltext_1:
-          id: search_api_fulltext_1
+        field_case_number_1:
+          id: field_case_number_1
           table: search_api_index_full_site_search
-          field: search_api_fulltext
+          field: field_case_number
           relationship: none
           group_type: group
-          admin_label: 'Case Number'
-          operator: or
-          value: ''
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
           group: 2
           exposed: true
           expose:
-            operator_id: search_api_fulltext_1_op
-            label: 'Case Number'
+            operator_id: field_case_number_1_op
+            label: 'Case number'
             description: ''
             use_operator: false
-            operator: search_api_fulltext_1_op
+            operator: field_case_number_1_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: search_api_fulltext_case_number
+            identifier: field_case_number_1
             required: false
             remember: false
             multiple: false
@@ -362,6 +374,8 @@ display:
               system: '0'
               api_legislation: '0'
             placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -374,11 +388,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: terms
-          min_length: null
-          fields:
-            - field_case_number
-          plugin_id: search_api_fulltext
+          plugin_id: search_api_text
         field_judge:
           id: field_judge
           table: search_api_index_full_site_search

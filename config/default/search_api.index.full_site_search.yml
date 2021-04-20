@@ -98,7 +98,7 @@ field_settings:
     label: 'Case number'
     datasource_id: 'entity:node'
     property_path: field_case_number
-    type: string
+    type: text
     dependencies:
       config:
         - field.storage.node.field_case_number
