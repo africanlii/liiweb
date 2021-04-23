@@ -62,9 +62,9 @@ third_party_settings:
       header_left:
         - node_author
         - field_date
+        - field_case_number
       header_right:
         - field_court_name
-        - field_case_number
       full_width:
         - field_judge
       sidebar:
@@ -74,6 +74,7 @@ third_party_settings:
         - field_flynote_local
         - field_flynote
         - field_search_summary
+        - download_conditional_entity_view_1
     fields:
       node_author:
         plugin_id: node_author
@@ -90,17 +91,22 @@ targetEntityType: node
 bundle: judgment
 mode: default
 content:
-  field_case_number:
+  download_conditional_entity_view_1:
     weight: 10
+    region: node_content
+    settings: {  }
+    third_party_settings: {  }
+  field_case_number:
+    weight: 2
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
+    region: header_left
   field_court_name:
     type: entity_reference_label
-    weight: 2
+    weight: 3
     region: header_right
     label: inline
     settings:
@@ -173,7 +179,6 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
-  download_conditional_entity_view_1: true
   feeds_item: true
   field_case_name: true
   field_case_number_numeric: true

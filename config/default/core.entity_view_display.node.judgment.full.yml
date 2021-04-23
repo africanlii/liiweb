@@ -75,18 +75,19 @@ third_party_settings:
       left:
         - field_headnote_and_holding
         - field_judge
+        - download_conditional_entity_view_1
       right:
         - 'dynamic_token_field:node-share_links'
         - 'dynamic_block_field:node-similar_judgments'
     fields:
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 9
+        weight: 10
         label: hidden
         formatter: default
       'dynamic_block_field:node-similar_judgments':
         plugin_id: 'dynamic_block_field:node-similar_judgments'
-        weight: 10
+        weight: 11
         label: hidden
         formatter: default
 id: node.judgment.full
@@ -94,6 +95,11 @@ targetEntityType: node
 bundle: judgment
 mode: full
 content:
+  download_conditional_entity_view_1:
+    weight: 9
+    region: left
+    settings: {  }
+    third_party_settings: {  }
   field_case_name:
     type: string
     weight: 2
@@ -200,7 +206,6 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
-  download_conditional_entity_view_1: true
   feeds_item: true
   field_case_number_numeric: true
   field_case_number_old: true

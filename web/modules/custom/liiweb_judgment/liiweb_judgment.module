@@ -55,7 +55,7 @@ function liiweb_judgment_node_presave(Drupal\node\NodeInterface $node) {
       $term = Term::load($mitem['target_id']);
       $name = $term->get('name')->getValue()[0]['value'];
       $num = $key + 1;
-      $val_arr[] = "Court number " . $num . ' ' .  $name . " " . $number_numeric[$key]['value'] . ' of ' . $number_year[$key]['value'];
+      $val_arr[] = $name . " " . $number_numeric[$key]['value'] . ' of ' . $number_year[$key]['value'];
     }
     $node->set('field_case_number', $val_arr);
   };
