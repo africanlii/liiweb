@@ -30,6 +30,7 @@ dependencies:
   module:
     - datetime
     - ds
+    - liiweb
     - text
     - user
 third_party_settings:
@@ -68,6 +69,7 @@ third_party_settings:
       full_width:
         - field_judge
       sidebar:
+        - field_files
         - 'dynamic_token_field:node-share_links'
       node_content:
         - field_headnote_and_holding
@@ -83,7 +85,7 @@ third_party_settings:
         formatter: author
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 5
+        weight: 6
         label: hidden
         formatter: default
 id: node.judgment.default
@@ -92,7 +94,7 @@ bundle: judgment
 mode: default
 content:
   download_conditional_entity_view_1:
-    weight: 10
+    weight: 11
     region: node_content
     settings: {  }
     third_party_settings: {  }
@@ -121,8 +123,16 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: header_left
+  field_files:
+    type: lii_file
+    weight: 5
+    region: sidebar
+    label: hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
   field_flynote:
-    weight: 8
+    weight: 9
     label: inline
     settings:
       link: false
@@ -132,7 +142,7 @@ content:
     type: entity_reference_label
     region: node_content
   field_flynote_local:
-    weight: 7
+    weight: 8
     label: inline
     settings:
       link: false
@@ -148,7 +158,7 @@ content:
     type: entity_reference_label
     region: node_content
   field_headnote_and_holding:
-    weight: 6
+    weight: 7
     label: inline
     settings: {  }
     third_party_settings: {  }
@@ -166,7 +176,7 @@ content:
         ds_limit: ''
   field_search_summary:
     type: text_summary_or_trimmed
-    weight: 9
+    weight: 10
     region: node_content
     label: inline
     settings:
@@ -185,7 +195,6 @@ hidden:
   field_case_number_old: true
   field_case_number_year: true
   field_external_link: true
-  field_files: true
   field_judgment_mnc_old: true
   field_judgment_number: true
   field_judgment_number_override: true
