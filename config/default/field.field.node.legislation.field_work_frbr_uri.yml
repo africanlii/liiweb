@@ -11,7 +11,7 @@ entity_type: node
 bundle: legislation
 label: 'Work FRBR URI'
 description: 'Unique identifier for this work, e.g. "/akn/za/act/1992/2"'
-required: true
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
