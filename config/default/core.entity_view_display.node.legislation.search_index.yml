@@ -23,6 +23,7 @@ dependencies:
     - field.field.node.legislation.field_stub
     - field.field.node.legislation.field_tags
     - field.field.node.legislation.field_toc
+    - field.field.node.legislation.field_work_frbr_uri
     - node.type.legislation
   module:
     - datetime
@@ -114,5 +115,6 @@ hidden:
   field_stub: true
   field_tags: true
   field_toc: true
+  field_work_frbr_uri: true
   langcode: true
   links: true
