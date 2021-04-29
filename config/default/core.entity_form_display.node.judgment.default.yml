@@ -79,7 +79,6 @@ third_party_settings:
         - field_matter_type
         - field_case_number_numeric
         - field_case_number_year
-        - field_judgment_number
         - field_date
         - field_judgment_number
         - field_media_neutral_citation
