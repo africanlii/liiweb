@@ -32,7 +32,6 @@ dependencies:
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
-    - computed_field
     - datetime
     - ds
     - liiweb
@@ -108,14 +107,10 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_case_number:
-    type: computed_string
-    weight: 5
-    region: header_right
-    label: inline
+    weight: 2
+    label: above
     settings:
-      sanitized: true
-      cache_unit: -1
-      cache_duration: 1
+      link_to_entity: false
     third_party_settings: {  }
   field_counsel_for_defendant:
     weight: 2
