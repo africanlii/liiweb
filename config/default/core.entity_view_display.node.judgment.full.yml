@@ -119,14 +119,12 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   field_case_number:
-    type: computed_string
+    type: string
     weight: 1
     region: header_left
-    label: inline
+    label: above
     settings:
-      sanitized: true
-      cache_unit: -1
-      cache_duration: 1
+      link_to_entity: false
     third_party_settings: {  }
   field_counsel_for_defendant:
     type: string
@@ -158,7 +156,7 @@ content:
     region: right
     label: hidden
     settings:
-      link_text: "Download as [file:ffp-extension-original]\t"
+      link_text: 'Download as [file:ffp-extension-original]'
       new_tab: true
       force_download: true
       custom_classes: ''

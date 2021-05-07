@@ -217,6 +217,8 @@ function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityI
       $build['field_frbr_uri'][0]['#context']['value'] = new TranslatableMarkup('This is the latest version of this legislation.');
     }
     else {
+      $vid = \Drupal::entityTypeManager()->getStorage('node')->getLatestRevisionId($build['#node']->id());
+      $node = \Drupal::entityTypeManager()->getStorage('node')->loadRevision($vid);
       //WORK IN FORCE FIELDS TO BE UPDATED
       // TODO format date nicely as above j F, Y
       $from = $raw_json->commencement_date;
@@ -224,7 +226,7 @@ function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityI
       try {
         $link = Link::createFromRoute(
           new TranslatableMarkup('Read the version currently in force.'),
-          'entity.node.canonical', ['node' => $repeal->id()]
+          'entity.node.canonical', ['node' => $node->id()]
         )->toString();
       } catch (\Exception $e) {
         $link = $unknown;

@@ -1,0 +1,25 @@
+uuid: 85eb3e1e-a869-4c52-831e-2a98b49e3c8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.full_site_search
+    - views.view.search_judgments
+  module:
+    - views
+    - search_api_autocomplete
+id: search_judgments
+label: 'Search Judgments'
+index_id: full_site_search
+suggester_settings:
+  live_results:
+    fields: {  }
+    view_modes: {  }
+suggester_weights: {  }
+suggester_limits: {  }
+search_settings:
+  'views:search_judgments':
+    displays:
+      default: true
+      selected: {  }
+options: {  }
