@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.legislation.field_stub
     - field.field.node.legislation.field_tags
     - field.field.node.legislation.field_toc
+    - field.field.node.legislation.field_work_frbr_uri
     - node.type.legislation
   module:
     - datetime
@@ -34,13 +35,13 @@ bundle: legislation
 mode: default
 content:
   field_as_at:
-    weight: 27
+    weight: 19
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_commencement_date:
-    weight: 9
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -54,13 +55,13 @@ content:
     type: text_textarea
     region: content
   field_created:
-    weight: 15
+    weight: 14
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_date:
-    weight: 26
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -72,7 +73,7 @@ content:
     type: datetime_default
     region: content
   field_external_link:
-    weight: 14
+    weight: 13
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -88,7 +89,7 @@ content:
     type: string_textfield
     region: content
   field_lifecycle_json:
-    weight: 17
+    weight: 16
     settings:
       rows: 5
       placeholder: ''
@@ -96,7 +97,7 @@ content:
     type: string_textarea
     region: content
   field_parent_work:
-    weight: 10
+    weight: 9
     settings:
       match_operator: CONTAINS
       size: 60
@@ -106,7 +107,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_publication_name:
-    weight: 8
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -114,7 +115,7 @@ content:
     type: string_textfield
     region: content
   field_raw_json:
-    weight: 18
+    weight: 17
     settings:
       rows: 5
       placeholder: ''
@@ -123,7 +124,7 @@ content:
     region: content
   field_repeal:
     type: entity_reference_paragraphs
-    weight: 11
+    weight: 10
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -141,13 +142,13 @@ content:
     type: boolean_checkbox
     region: content
   field_tags:
-    weight: 12
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_toc:
-    weight: 16
+    weight: 15
     settings:
       rows: 5
       placeholder: ''
@@ -165,7 +166,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 13
+    weight: 12
     region: content
     third_party_settings: {  }
   title:
@@ -186,6 +187,7 @@ hidden:
   field_created_by_api: true
   field_files: true
   field_images: true
+  field_work_frbr_uri: true
   path: true
   promote: true
   sticky: true
