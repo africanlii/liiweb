@@ -1,0 +1,19 @@
+uuid: bacd86ef-15d7-4eb6-a958-6245e9b916a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_work_frbr_uri
+    - node.type.legislation
+id: node.legislation.field_work_frbr_uri
+field_name: field_work_frbr_uri
+entity_type: node
+bundle: legislation
+label: 'Work FRBR URI'
+description: 'Unique identifier for this work, e.g. "/akn/za/act/1992/2"'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
