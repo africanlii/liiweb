@@ -412,7 +412,7 @@ mappings:
     settings:
       language: ''
       reference_by: name
-      autocreate: 0
+      autocreate: '1'
   -
     target: field_date
     map:
