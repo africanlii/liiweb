@@ -15,9 +15,12 @@ settings:
         -
           name: Formatting
           items:
+            - Undo
+            - Redo
             - Underline
             - Bold
             - Italic
+            - RemoveFormat
             - Strike
             - Superscript
             - Subscript
@@ -25,11 +28,14 @@ settings:
         -
           name: Align
           items:
+            - JustifyBlock
             - JustifyLeft
             - JustifyCenter
             - JustifyRight
             - Outdent
             - Indent
+            - ShowBlocks
+            - Format
         -
           name: Links
           items:
@@ -58,9 +64,11 @@ settings:
       language_list: un
     stylescombo:
       styles: ''
+    indentblock:
+      enable: 1
 image_upload:
-  status: false
-  scheme: public
+  status: true
+  scheme: s3
   directory: inline-images
   max_size: ''
   max_dimensions:
