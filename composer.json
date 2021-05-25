@@ -32,6 +32,7 @@
         "drupal/bootstrap_sass": "^5.0",
         "drupal/captcha": "^1.1",
         "drupal/chosen": "^2.8",
+        "drupal/ckeditor_indentblock": "^1.0@beta",
         "drupal/coffee": "^1.0",
         "drupal/computed_field": "^2.0",
         "drupal/console": "^1.0.2",

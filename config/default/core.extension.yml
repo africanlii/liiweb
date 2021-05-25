@@ -18,6 +18,7 @@ module:
   chosen: 0
   chosen_lib: 0
   ckeditor: 0
+  ckeditor_indentblock: 0
   color: 0
   computed_field: 0
   computed_field_php_formatter: 0
