@@ -51,11 +51,15 @@ function liiweb_judgment_node_presave(Drupal\node\NodeInterface $node) {
     $number_numeric = $node->get('field_case_number_numeric')->getValue();
     $number_year = $node->get('field_case_number_year')->getValue();
     $val_arr = [];
+    $matter = [];
     foreach ($matter_type as $key => $mitem) {
       $term = Term::load($mitem['target_id']);
       $name = $term->get('name')->getValue()[0]['value'];
-      $num = $key + 1;
-      $val_arr[] = $name . " " . $number_numeric[$key]['value'] . ' of ' . $number_year[$key]['value'];
+      $matter[] = $name;
+    }
+    foreach($number_numeric as $key => $nitem){
+    $num = $key + 1;
+    $val_arr[] = $matter[$key] . " " . $number_numeric[$key]['value'] . ' of ' . $number_year[$key]['value'];
     }
     $node->set('field_case_number', $val_arr);
   };
@@ -71,15 +75,7 @@ function liiweb_judgment_form_alter(&$form, \Drupal\Core\Form\FormStateInterface
 }
 
 function numFieldsValidation(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
-  if (isset($form_state->getUserInput()['field_matter_type']) && isset($form_state->getUserInput()['field_case_number_numeric']) && isset($form_state->getUserInput()['field_case_number_year'])) {
-
-    $matter = [];
-    foreach ($form_state->getUserInput()['field_matter_type'] as $matter_item) {
-     if(!empty($matter_item['target_id'])) {
-       $matter[] = $matter_item['target_id'];
-     }
-    }
-    $count_matter = count($matter);
+  if (isset($form_state->getUserInput()['field_case_number_numeric']) && isset($form_state->getUserInput()['field_case_number_year'])) {
     $num = [];
     foreach ($form_state->getUserInput()['field_case_number_numeric'] as $num_item) {
       if(!empty($num_item['value'])) {
@@ -94,8 +90,8 @@ function numFieldsValidation(&$form, \Drupal\Core\Form\FormStateInterface $form_
       }
     }
     $count_year = count($year);
-    if ($count_matter != $count_numeric || $count_matter != $count_year) {
-      $form_state->setError($form['field_matter_type'], "Please, fill equal counts for Matter type, Case Numeric and Case Year fields");
+    if ($count_year != $count_numeric) {
+      $form_state->setError($form['field_case_number_numeric'], "Please, fill equal counts for Matter type, Case Numeric and Case Year fields");
     }
   }
 

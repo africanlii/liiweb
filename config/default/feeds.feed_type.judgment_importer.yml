@@ -13,10 +13,12 @@ dependencies:
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_headnote_and_holding
+    - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number_override
     - field.field.node.judgment.field_judgment_old_nid
     - field.field.node.judgment.field_law_report_citations
+    - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
@@ -42,14 +44,6 @@ third_party_settings:
         weight: -10
         label: 'Set value or default value'
         uuid: 14c0c7f9-ed8b-4a00-958d-4d5b26c9404a
-      68a675d5-5385-43fa-825d-3f4a4d7e048b:
-        separator: ',%s'
-        limit: null
-        plugin: explode
-        source: _flynote_tags_
-        weight: 0
-        label: Explode
-        uuid: 68a675d5-5385-43fa-825d-3f4a4d7e048b
       41bab3f2-151a-4f60-8d79-050db7f4dc04:
         default_value: ''
         only_if_empty: true
@@ -64,6 +58,102 @@ third_party_settings:
         weight: 1
         label: 'String to Unix Timestamp'
         uuid: 535f7563-22d6-47b6-9106-08fdd57dcc88
+      322a68de-0399-4f93-9950-da9ad2490018:
+        default_value: ' '
+        only_if_empty: true
+        plugin: default_value
+        source: _law_report_citation_
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 322a68de-0399-4f93-9950-da9ad2490018
+      cdf1fbe8-c4e7-4fc0-b3bd-966de3a1415a:
+        separator: '|'
+        limit: null
+        plugin: explode
+        source: _law_report_citation_
+        weight: 1
+        label: Explode
+        uuid: cdf1fbe8-c4e7-4fc0-b3bd-966de3a1415a
+      1e4a75a2-f1ca-480a-95ec-db465cbe9503:
+        default_value: ' '
+        only_if_empty: true
+        plugin: default_value
+        source: flynote
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 1e4a75a2-f1ca-480a-95ec-db465cbe9503
+      3bf2c21d-9f44-470e-9c8e-94ec856b8aae:
+        separator: '| '
+        limit: null
+        plugin: explode
+        source: flynote
+        weight: 1
+        label: Explode
+        uuid: 3bf2c21d-9f44-470e-9c8e-94ec856b8aae
+      ecdda4de-34e5-42d5-a9e7-d464588bd452:
+        default_value: ' '
+        only_if_empty: true
+        plugin: default_value
+        source: _case_number_numeric_
+        weight: 0
+        label: 'Set value or default value'
+        uuid: ecdda4de-34e5-42d5-a9e7-d464588bd452
+      b46122a9-6bab-46f6-befa-2345c1a23216:
+        separator: '|'
+        limit: null
+        plugin: explode
+        source: _case_number_numeric_
+        weight: 1
+        label: Explode
+        uuid: b46122a9-6bab-46f6-befa-2345c1a23216
+      9822ce19-7aa3-431d-a95f-0e51ccca5d99:
+        default_value: ' '
+        only_if_empty: true
+        plugin: default_value
+        source: _case_number_year_
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 9822ce19-7aa3-431d-a95f-0e51ccca5d99
+      79f53da2-367f-4098-ad55-3db6e1e3d138:
+        separator: '|'
+        limit: null
+        plugin: explode
+        source: _case_number_year_
+        weight: 1
+        label: Explode
+        uuid: 79f53da2-367f-4098-ad55-3db6e1e3d138
+      9744b2b5-126b-4506-bd12-0349f4ec67ad:
+        default_value: ' '
+        only_if_empty: true
+        plugin: default_value
+        source: _matter_type_
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 9744b2b5-126b-4506-bd12-0349f4ec67ad
+      5ed25c4f-ac0c-4ade-9923-f5b19c1c784a:
+        separator: '|'
+        limit: null
+        plugin: explode
+        source: _matter_type_
+        weight: 1
+        label: Explode
+        uuid: 5ed25c4f-ac0c-4ade-9923-f5b19c1c784a
+      e3eb5f93-a4e9-4f5c-a3e5-a5f39779ffe3:
+        default_value: ' '
+        only_if_empty: true
+        plugin: default_value
+        source: judge
+        weight: 0
+        label: 'Set value or default value'
+        uuid: e3eb5f93-a4e9-4f5c-a3e5-a5f39779ffe3
+      c1e59b6e-68b8-48a9-be17-854e17a47d7c:
+        separator: '|'
+        limit: null
+        plugin: explode
+        source: judge
+        weight: 1
+        label: Explode
+        uuid: c1e59b6e-68b8-48a9-be17-854e17a47d7c
 id: judgment_importer
 label: 'Judgment Importer'
 description: 'Import content types of Judgment via json'
@@ -86,9 +176,9 @@ parser_configuration:
     body:
       label: Body
       value: Body
-    _flynote_tags_:
-      label: '[''Flynote tags'']'
-      value: '[''Flynote tags'']'
+    flynote:
+      label: Flynote
+      value: Flynote
     _headnote_and_holding_:
       label: '[''Headnote and Holding'']'
       value: '[''Headnote and Holding'']'
@@ -98,15 +188,15 @@ parser_configuration:
     _law_report_citation_:
       label: '[''Law Report Citation'']'
       value: '[''Law Report Citation'']'
-    field_case_number_numeric:
-      label: field_case_number_numeric
-      value: field_case_number_numeric
-    field_case_number_year:
-      label: field_case_number_year
-      value: field_case_number_year
-    flynote:
-      label: Flynote
-      value: Flynote
+    _case_number_numeric_:
+      label: '[''Case number numeric'']'
+      value: '[''Case number numeric'']'
+    _case_number_year_:
+      label: '[''Case number year'']'
+      value: '[''Case number year'']'
+    _search_summary_:
+      label: '[''Search summary'']'
+      value: '[''Search summary'']'
     download:
       label: Download
       value: Download
@@ -125,6 +215,12 @@ parser_configuration:
     _judgment_date_:
       label: '[''Judgment Date'']'
       value: '[''Judgment Date'']'
+    _matter_type_:
+      label: '[''Matter type'']'
+      value: '[''Matter type'']'
+    judge:
+      label: Judge
+      value: Judge
   display_errors: false
   source_encoding:
     - auto
@@ -219,6 +315,22 @@ custom_sources:
     label: '[''Case number'']'
     value: '[''Case number'']'
     machine_name: _case_number_
+  _case_number_numeric_:
+    label: '[''Case number numeric'']'
+    value: '[''Case number numeric'']'
+    machine_name: _case_number_numeric_
+  _case_number_year_:
+    label: '[''Case number year'']'
+    value: '[''Case number year'']'
+    machine_name: _case_number_year_
+  _search_summary_:
+    label: '[''Search summary'']'
+    value: '[''Search summary'']'
+    machine_name: _search_summary_
+  _matter_type_:
+    label: '[''Matter type'']'
+    value: '[''Matter type'']'
+    machine_name: _matter_type_
 mappings:
   -
     target: field_case_name
@@ -238,7 +350,7 @@ mappings:
   -
     target: field_flynote
     map:
-      target_id: _flynote_tags_
+      target_id: flynote
     settings:
       language: ''
       reference_by: name
@@ -267,21 +379,21 @@ mappings:
   -
     target: field_case_number_numeric
     map:
-      value: field_case_number_numeric
+      value: _case_number_numeric_
     unique: {  }
     settings:
       language: null
   -
     target: field_case_number_year
     map:
-      value: field_case_number_year
+      value: _case_number_year_
     unique: {  }
     settings:
       language: null
   -
     target: field_search_summary
     map:
-      value: flynote
+      value: _search_summary_
       summary: ''
     settings:
       language: ''
@@ -326,7 +438,7 @@ mappings:
     settings:
       language: ''
       reference_by: name
-      autocreate: 0
+      autocreate: '1'
   -
     target: field_date
     map:
@@ -334,3 +446,19 @@ mappings:
     settings:
       language: null
       timezone: UTC
+  -
+    target: field_matter_type
+    map:
+      target_id: _matter_type_
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: '1'
+  -
+    target: field_judge
+    map:
+      target_id: judge
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: '1'
