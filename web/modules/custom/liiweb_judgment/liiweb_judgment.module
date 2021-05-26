@@ -59,7 +59,12 @@ function liiweb_judgment_node_presave(Drupal\node\NodeInterface $node) {
     }
     foreach($number_numeric as $key => $nitem){
     $num = $key + 1;
+    if(!empty($matter[$key])){
     $val_arr[] = $matter[$key] . " " . $number_numeric[$key]['value'] . ' of ' . $number_year[$key]['value'];
+    }
+    else{
+    $val_arr[] =$number_numeric[$key]['value'] . ' of ' . $number_year[$key]['value'];
+    }
     }
     $node->set('field_case_number', $val_arr);
   };
