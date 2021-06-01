@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.judgment.body
     - field.field.node.judgment.feeds_item
+    - field.field.node.judgment.field_arbitrary_suffix
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
@@ -167,6 +168,14 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_arbitrary_suffix:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_case_name:
     weight: 12
     settings:
