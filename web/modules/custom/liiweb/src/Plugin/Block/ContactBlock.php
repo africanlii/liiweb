@@ -26,7 +26,7 @@ class ContactBlock extends BlockBase {
     //Address
     $address = [
       'address_1'   => '',
-      'address_2'    => ',
+      'address_2'    =>'',
       'address_3'   => '',
     ];
     foreach ($address as $add => $val) {
