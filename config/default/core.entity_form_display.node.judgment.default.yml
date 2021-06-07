@@ -26,7 +26,9 @@ dependencies:
     - field.field.node.judgment.field_law_report_citations
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
+    - field.field.node.judgment.field_registry
     - field.field.node.judgment.field_search_summary
+    - field.field.node.judgment.field_source_url
     - node.type.judgment
   module:
     - computed_field
@@ -75,6 +77,7 @@ third_party_settings:
     group_metadata:
       children:
         - field_court_name
+        - field_registry
         - title
         - field_case_name
         - field_matter_type
@@ -135,6 +138,7 @@ third_party_settings:
         - field_judgment_mnc_old
         - field_judgment_old_nid
         - field_case_number_old
+        - field_source_url
       parent_name: group_group
       weight: 25
       format_type: tab
@@ -177,7 +181,7 @@ content:
     type: string_textfield
     region: content
   field_case_name:
-    weight: 12
+    weight: 13
     settings:
       size: 500
       placeholder: ''
@@ -185,7 +189,7 @@ content:
     type: string_textfield
     region: content
   field_case_number:
-    weight: 26
+    weight: 23
     settings:
       size: 60
       placeholder: ''
@@ -193,7 +197,7 @@ content:
     type: string_textfield
     region: content
   field_case_number_numeric:
-    weight: 14
+    weight: 15
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -208,7 +212,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_case_number_year:
-    weight: 15
+    weight: 16
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -312,7 +316,7 @@ content:
     type: string_textfield
     region: content
   field_matter_type:
-    weight: 13
+    weight: 14
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -327,6 +331,12 @@ content:
     third_party_settings: {  }
     type: computed_string_widget
     region: content
+  field_registry:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_search_summary:
     weight: 20
     settings:
@@ -336,6 +346,14 @@ content:
       show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
+    region: content
+  field_source_url:
+    weight: 26
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   langcode:
     type: language_select
@@ -373,7 +391,7 @@ content:
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 11
+    weight: 12
     region: content
     settings:
       size: 500

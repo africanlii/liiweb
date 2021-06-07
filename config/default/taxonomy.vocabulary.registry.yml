@@ -1,0 +1,8 @@
+uuid: ba140907-0dbf-4fb2-abf4-64e810fd1d44
+langcode: en
+status: true
+dependencies: {  }
+name: Registry
+vid: registry
+description: ''
+weight: 0

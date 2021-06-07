@@ -27,7 +27,9 @@ dependencies:
     - field.field.node.judgment.field_law_report_citations
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
+    - field.field.node.judgment.field_registry
     - field.field.node.judgment.field_search_summary
+    - field.field.node.judgment.field_source_url
     - node.type.judgment
   module:
     - file
@@ -107,6 +109,8 @@ hidden:
   field_judgment_old_nid: true
   field_matter_type: true
   field_media_neutral_citation: true
+  field_registry: true
+  field_source_url: true
   langcode: true
   links: true
   search_api_excerpt: true

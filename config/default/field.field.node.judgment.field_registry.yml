@@ -1,0 +1,29 @@
+uuid: e8e3443a-8438-4979-aedc-d404a36fc70f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_registry
+    - node.type.judgment
+    - taxonomy.vocabulary.registry
+id: node.judgment.field_registry
+field_name: field_registry
+entity_type: node
+bundle: judgment
+label: Registry
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      registry: registry
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
