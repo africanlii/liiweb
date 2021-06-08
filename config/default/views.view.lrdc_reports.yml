@@ -55,10 +55,13 @@ display:
       pager:
         type: mini
         options:
-          items_per_page: 10
+          items_per_page: 500
           offset: 0
           id: 0
           total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -67,9 +70,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
       style:
         type: table
         options:
@@ -376,6 +376,18 @@ display:
             operator_limit_selection: false
             operator_list: {  }
       sorts:
+        field_citation_value:
+          id: field_citation_value
+          table: node__field_citation
+          field: field_citation_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: 'Citation (field_citation)'
+          plugin_id: standard
         title:
           id: title
           table: node_field_data
@@ -389,18 +401,6 @@ display:
             label: ''
           entity_type: node
           entity_field: title
-          plugin_id: standard
-        field_citation_value:
-          id: field_citation_value
-          table: node__field_citation
-          field: field_citation_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: 'Citation (field_citation)'
           plugin_id: standard
       title: 'LRDC Reports'
       header:
