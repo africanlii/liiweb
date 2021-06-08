@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.judgment.field_judgment_old_nid
     - field.field.node.judgment.field_law_report_citations
     - field.field.node.judgment.field_matter_type
+    - field.field.node.judgment.field_registry
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
@@ -221,6 +222,9 @@ parser_configuration:
     judge:
       label: Judge
       value: Judge
+    registry:
+      label: Registry
+      value: Registry
   display_errors: false
   source_encoding:
     - auto
@@ -331,6 +335,10 @@ custom_sources:
     label: '[''Matter type'']'
     value: '[''Matter type'']'
     machine_name: _matter_type_
+  registry:
+    label: Registry
+    value: Registry
+    machine_name: registry
 mappings:
   -
     target: field_case_name
@@ -458,6 +466,14 @@ mappings:
     target: field_judge
     map:
       target_id: judge
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: '1'
+  -
+    target: field_registry
+    map:
+      target_id: registry
     settings:
       language: ''
       reference_by: name
