@@ -15,11 +15,11 @@ provider: null
 plugin: text_block
 settings:
   id: text_block
-  label: 'About NamibLII'
+  label: 'About SwaziLII'
   provider: liiweb
   label_display: visible
   text:
-    value: "<p>NamibLII publishes the laws of Namibia for free online access. NamibLII is operated by the Law Reform and Development Commission of Namibia.</p>\r\n"
+    value: ''
     format: full_html
 visibility:
   request_path:

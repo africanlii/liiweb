@@ -23,7 +23,7 @@ settings:
   twitter_window_width: null
   twitter_window_height: 600
   twitter_theme_color: light
-  facebook_page_url: 'https://www.facebook.com/namiblii'
+  facebook_page_url: 'https://www.facebook.com/africanlii/'
   facebook_app_id: ''
 visibility:
   request_path:
