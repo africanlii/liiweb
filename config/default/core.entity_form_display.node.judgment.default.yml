@@ -18,6 +18,7 @@ dependencies:
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_flynote_local
     - field.field.node.judgment.field_headnote_and_holding
+    - field.field.node.judgment.field_iso_country_code
     - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number
@@ -78,6 +79,7 @@ third_party_settings:
         - title
         - field_case_name
         - field_matter_type
+        - field_iso_country_code
         - field_case_number_numeric
         - field_case_number_year
         - field_judgment_number
@@ -185,7 +187,7 @@ content:
     type: string_textfield
     region: content
   field_case_number:
-    weight: 26
+    weight: 23
     settings:
       size: 60
       placeholder: ''
@@ -193,7 +195,7 @@ content:
     type: string_textfield
     region: content
   field_case_number_numeric:
-    weight: 14
+    weight: 15
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -208,7 +210,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_case_number_year:
-    weight: 15
+    weight: 16
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -264,6 +266,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_iso_country_code:
+    weight: 14
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_judge:
     weight: 21

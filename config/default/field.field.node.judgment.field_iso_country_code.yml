@@ -1,0 +1,29 @@
+uuid: 54168ec1-d574-490f-9e97-d748e292c652
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_iso_country_code
+    - node.type.judgment
+    - taxonomy.vocabulary.iso_country_code
+id: node.judgment.field_iso_country_code
+field_name: field_iso_country_code
+entity_type: node
+bundle: judgment
+label: 'ISO country code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      iso_country_code: iso_country_code
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
