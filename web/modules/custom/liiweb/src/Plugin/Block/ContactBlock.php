@@ -64,7 +64,7 @@ class ContactBlock extends BlockBase {
 
     //Social media
     $platforms = [
-      'fab fa-facebook-square' => 'https://facebook.com/africanlii/',
+      'fab fa-facebook-square' => 'https://facebook.com/ghanalii/',
       'fab fa-twitter-square'    => 'https://twitter.com/AfricanLII',
     ];
 
