@@ -19,7 +19,7 @@ settings:
   provider: liiweb
   label_display: visible
   text:
-    value: ''
+    value: "<p>GhaLII is a non-profit organisation based in Accra that aims to source and publish digitally accessible to the general public parliamentary, legislative and judicial information&nbsp;from Ghana and ECOWAS. GhaLII's objectives include promotion of access to legal information from Ghana as a fundamental part of the rule of law.</p>\r\n"
     format: full_html
 visibility:
   request_path:
