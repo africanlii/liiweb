@@ -1,0 +1,29 @@
+uuid: b519f351-d291-4f71-adef-c0d5cbd10ec2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_iso_country_code
+    - node.type.legislation
+    - taxonomy.vocabulary.iso_country_code
+id: node.legislation.field_iso_country_code
+field_name: field_iso_country_code
+entity_type: node
+bundle: legislation
+label: 'ISO country code'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      iso_country_code: iso_country_code
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
