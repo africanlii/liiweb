@@ -25,9 +25,9 @@ class ContactBlock extends BlockBase {
 
     //Address
     $address = [
-      'address_1'   => '8th floor, Sanlam Building',
-      'address_2'    => 'Independance Avenue',
-      'address_3'   => 'Windhoek, Namibia',
+      'address_1'   => '16 Oxford Road',
+      'address_2'    => 'Avondale',
+      'address_3'   => 'Harare, Zimbabwe',
     ];
     foreach ($address as $add => $val) {
       $items['address'][] = [
@@ -40,7 +40,7 @@ class ContactBlock extends BlockBase {
 
     //Number
     $numbers = [
-      'fas fa-phone-square' => '+26 (46) 1229 097',
+      'fas fa-phone-square' => '',
     ];
 
     foreach ($numbers as $icon => $val) {
@@ -63,8 +63,8 @@ class ContactBlock extends BlockBase {
 
     //Social media
     $platforms = [
-      'fab fa-facebook-square' => 'https://facebook.com/namiblii/',
-      'fab fa-twitter-square'    => 'https://twitter.com/AfricanLII',
+      'fab fa-facebook-square' => 'https://facebook.com/zimlii/',
+      'fab fa-twitter-square'    => 'https://twitter.com/ZimLII',
     ];
 
     foreach ($platforms as $icon => $url) {
