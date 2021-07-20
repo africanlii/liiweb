@@ -181,6 +181,9 @@ function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityI
   if($entity->getType() == 'legislation' && $view_mode == 'full') {
     $raw_json = json_decode($build['#node']->get('field_raw_json')->getValue()[0]['value']);
     $build['#attached']['drupalSettings']['liiweb_legislation']['raw_json'] = $raw_json;
+    // stash the country code for use when displaying the legislation content
+    $build['field_content']['country'] = $raw_json->country;
+
     try {
       /** @var \Drupal\node\Entity\Node $repeal */
       $repeal = $build['#node']->field_repeal->entity->field_repeal_work->entity;

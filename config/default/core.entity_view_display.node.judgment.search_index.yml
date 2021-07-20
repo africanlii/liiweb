@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.search_index
     - field.field.node.judgment.body
     - field.field.node.judgment.feeds_item
+    - field.field.node.judgment.field_arbitrary_suffix
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
@@ -18,6 +19,7 @@ dependencies:
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_flynote_local
     - field.field.node.judgment.field_headnote_and_holding
+    - field.field.node.judgment.field_iso_country_code
     - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number
@@ -138,6 +140,7 @@ hidden:
   body: true
   download_conditional_entity_view_1: true
   feeds_item: true
+  field_arbitrary_suffix: true
   field_case_name: true
   field_case_number: true
   field_case_number_numeric: true
@@ -148,6 +151,7 @@ hidden:
   field_flynote: true
   field_flynote_local: true
   field_headnote_and_holding: true
+  field_iso_country_code: true
   field_judgment_mnc_old: true
   field_judgment_number: true
   field_judgment_number_override: true
