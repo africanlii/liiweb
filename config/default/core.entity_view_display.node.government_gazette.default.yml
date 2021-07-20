@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.government_gazette.field_gazette_issue_number
     - field.field.node.government_gazette.field_gazette_machine_id
     - field.field.node.government_gazette.field_gazette_supplement
+    - field.field.node.government_gazette.field_locality
     - node.type.government_gazette
   module:
     - datetime
@@ -20,7 +21,7 @@ bundle: government_gazette
 mode: default
 content:
   field_date:
-    weight: 1
+    weight: 0
     label: above
     settings:
       format_type: medium
@@ -35,6 +36,7 @@ hidden:
   field_gazette_issue_number: true
   field_gazette_machine_id: true
   field_gazette_supplement: true
+  field_locality: true
   langcode: true
   links: true
   search_api_excerpt: true
