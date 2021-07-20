@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.legislation.field_images
     - field.field.node.legislation.field_iso_country_code
     - field.field.node.legislation.field_lifecycle_json
+    - field.field.node.legislation.field_locality
     - field.field.node.legislation.field_parent_work
     - field.field.node.legislation.field_publication_name
     - field.field.node.legislation.field_raw_json
@@ -106,6 +107,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+    region: content
+  field_locality:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_parent_work:
     weight: 9
