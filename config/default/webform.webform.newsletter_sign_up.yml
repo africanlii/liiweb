@@ -136,7 +136,9 @@ access:
     users: {  }
     permissions: {  }
   view_any:
-    roles: {  }
+    roles:
+      - system
+      - editor
     users: {  }
     permissions: {  }
   update_any:

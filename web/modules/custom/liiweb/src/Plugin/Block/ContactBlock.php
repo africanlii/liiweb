@@ -54,15 +54,15 @@ class ContactBlock extends BlockBase {
 
     //website email
     $items['website_email'][] = [
-      '#markup' => '<a href="https://sierralii.org/" target="_blank" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i>namiblii.org</a>',
+      '#markup' => '<a href="https://sierralii.org/" target="_blank" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i>sierralii.org</a>',
     ];
     $items['website_email'][] = [
-      '#markup' => '<a href="mailto:info@sierralii.org" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@namiblii.org</a>',
+      '#markup' => '<a href="mailto:info@sierralii.org" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@sierralii.org</a>',
     ];
 
     //Social media
     $platforms = [
-      'fab fa-facebook-square' => 'https://www.facebook.com/www.sierralii.org',
+      'fab fa-facebook-square' => 'https://facebook.com/www.sierralii.org',
       'fab fa-twitter-square'    => 'https://twitter.com/sierralii',
     ];
 
