@@ -15,11 +15,11 @@ provider: null
 plugin: text_block
 settings:
   id: text_block
-  label: 'About SierraLii'
+  label: 'About SierraLII'
   provider: liiweb
   label_display: visible
   text:
-    value: ''
+    value: "<p>SierraLII provides free, unrestricted access to the primary and secondary legal materials of Sierra Leone.&nbsp; Free Access to Law supports the rule of law, access to justice and transparency.&nbsp;</p>\r\n"
     format: full_html
 visibility:
   request_path:

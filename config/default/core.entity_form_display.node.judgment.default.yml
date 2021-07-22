@@ -86,7 +86,6 @@ third_party_settings:
         - field_media_neutral_citation
         - field_judge
         - field_law_report_citations
-        - field_case_number
       parent_name: group_group
       weight: 21
       format_type: tab
@@ -135,6 +134,7 @@ third_party_settings:
         - field_judgment_mnc_old
         - field_judgment_old_nid
         - field_case_number_old
+        - field_case_number
       parent_name: group_group
       weight: 25
       format_type: tab

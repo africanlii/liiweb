@@ -1,0 +1,48 @@
+uuid: ebd860d7-8253-471a-af8e-96454f261650
+langcode: en
+status: true
+dependencies: {  }
+id: editor
+label: Editor
+weight: 4
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access image_browser entity browser pages'
+  - 'access media overview'
+  - 'access site in maintenance mode'
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'administer ajax loader'
+  - 'cancel account'
+  - 'change own username'
+  - 'create judgment content'
+  - 'create law_reform_reports content'
+  - 'create media'
+  - 'create page content'
+  - 'create url aliases'
+  - 'delete media'
+  - 'delete own judgment content'
+  - 'delete own law_reform_reports content'
+  - 'edit own judgment content'
+  - 'edit own law_reform_reports content'
+  - 'edit own page content'
+  - 'skip CAPTCHA'
+  - 'update media'
+  - 'use admin toolbar search'
+  - 'use search_api_autocomplete for search_judgments'
+  - 'view all organisation revisions'
+  - 'view all revisions'
+  - 'view any webform submission'
+  - 'view billboard revisions'
+  - 'view government_gazette revisions'
+  - 'view judgment revisions'
+  - 'view law_reform_reports revisions'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view page revisions'
+  - 'view the administration theme'
+  - 'view unpublished paragraphs'
