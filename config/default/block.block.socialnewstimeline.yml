@@ -18,12 +18,12 @@ settings:
   label: 'Social News timeline'
   provider: liiweb
   label_display: '0'
-  facebook_window_height: 500
-  twitter_account_name: africanlii
-  twitter_window_width: null
   twitter_window_height: 600
+  facebook_window_height: 500
+  twitter_account_name: sierralii
+  twitter_window_width: null
   twitter_theme_color: light
-  facebook_page_url: 'https://www.facebook.com/africanlii/'
+  facebook_page_url: 'https://www.facebook.com/www.sierralii.org'
   facebook_app_id: ''
 visibility:
   request_path:
