@@ -810,6 +810,16 @@ $settings['node_title_length_chars'] = 1023;
 */
 $config['file.settings']['make_unused_managed_files_temporary'] = TRUE;
 
-/** reCAPTCHA settings
+
+/** 
+*reCAPTCHA settings 
 */
+$config['recaptcha.settings']['site_key'] = getenv('RECAPTCHA_SITE_KEY');
 $config['recaptcha.settings']['secret_key'] = getenv('RECAPTCHA_SECRET_KEY');
+
+
+/**
+* SMTP settings
+*/
+$config['smtp.settings']['smtp_password'] = getenv('SMTP_PASS');
+

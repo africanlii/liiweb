@@ -1,0 +1,29 @@
+uuid: 389b2582-5781-4e98-b3c4-c5cc9d290948
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_locality
+    - node.type.legislation
+    - taxonomy.vocabulary.locality
+id: node.legislation.field_locality
+field_name: field_locality
+entity_type: node
+bundle: legislation
+label: Locality
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      locality: locality
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
