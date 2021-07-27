@@ -1,0 +1,11 @@
+uuid: 9030a947-081d-44f7-bf27-63a3fc482f48
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.iso_country_code
+id: taxonomy_term.iso_country_code
+target_entity_type_id: taxonomy_term
+target_bundle: iso_country_code
+default_langcode: site_default
+language_alterable: false
