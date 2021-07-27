@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.government_gazette.field_gazette_issue_number
     - field.field.node.government_gazette.field_gazette_machine_id
     - field.field.node.government_gazette.field_gazette_supplement
+    - field.field.node.government_gazette.field_locality
     - node.type.government_gazette
   module:
     - datetime
@@ -73,6 +74,16 @@ content:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
+  field_locality:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   langcode:
     type: language_select
