@@ -1,0 +1,8 @@
+uuid: fca908e9-9056-44f0-9a06-a85e25197ef8
+langcode: en
+status: true
+dependencies: {  }
+name: Locality
+vid: locality
+description: ''
+weight: 0
