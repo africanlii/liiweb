@@ -29,6 +29,7 @@ dependencies:
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
     - field.field.node.judgment.field_search_summary
+    - field.field.node.judgment.field_subject_library
     - node.type.judgment
   module:
     - computed_field
@@ -58,6 +59,7 @@ third_party_settings:
       label: Group
     group_editorial:
       children:
+        - field_subject_library
         - field_flynote
         - field_flynote_local
         - field_search_summary
@@ -246,13 +248,13 @@ content:
       progress_indicator: throbber
     third_party_settings: {  }
   field_flynote:
-    weight: 18
+    weight: 29
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_flynote_local:
-    weight: 19
+    weight: 30
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -262,7 +264,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_headnote_and_holding:
-    weight: 21
+    weight: 32
     settings:
       rows: 5
       placeholder: ''
@@ -352,7 +354,7 @@ content:
     type: computed_string_widget
     region: content
   field_search_summary:
-    weight: 20
+    weight: 31
     settings:
       rows: 9
       summary_rows: 3
@@ -360,6 +362,16 @@ content:
       show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
+    region: content
+  field_subject_library:
+    weight: 28
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   langcode:
     type: language_select
