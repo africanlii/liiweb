@@ -29,6 +29,7 @@ dependencies:
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
     - field.field.node.judgment.field_search_summary
+    - field.field.node.judgment.field_subject_library
     - node.type.judgment
   module:
     - datetime
@@ -68,6 +69,7 @@ third_party_settings:
         - field_date
         - field_case_number
       header_right:
+        - field_subject_library
         - field_court_name
       full_width:
         - field_judge
@@ -88,7 +90,7 @@ third_party_settings:
         formatter: author
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 6
+        weight: 7
         label: hidden
         formatter: default
 id: node.judgment.default
@@ -97,7 +99,7 @@ bundle: judgment
 mode: default
 content:
   download_conditional_entity_view_1:
-    weight: 11
+    weight: 12
     region: node_content
     settings: {  }
     third_party_settings: {  }
@@ -111,7 +113,7 @@ content:
     region: header_left
   field_court_name:
     type: entity_reference_label
-    weight: 3
+    weight: 4
     region: header_right
     label: inline
     settings:
@@ -128,14 +130,14 @@ content:
     region: header_left
   field_files:
     type: lii_file
-    weight: 5
+    weight: 6
     region: sidebar
     label: hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
   field_flynote:
-    weight: 9
+    weight: 10
     label: inline
     settings:
       link: false
@@ -145,7 +147,7 @@ content:
     type: entity_reference_label
     region: node_content
   field_flynote_local:
-    weight: 8
+    weight: 9
     label: inline
     settings:
       link: false
@@ -161,7 +163,7 @@ content:
     type: entity_reference_label
     region: node_content
   field_headnote_and_holding:
-    weight: 7
+    weight: 8
     label: inline
     settings: {  }
     third_party_settings: {  }
@@ -169,7 +171,7 @@ content:
     region: node_content
   field_judge:
     type: entity_reference_label
-    weight: 4
+    weight: 5
     region: full_width
     label: inline
     settings:
@@ -179,12 +181,20 @@ content:
         ds_limit: ''
   field_search_summary:
     type: text_summary_or_trimmed
-    weight: 10
+    weight: 11
     region: node_content
     label: inline
     settings:
       trim_length: 600
     third_party_settings: {  }
+  field_subject_library:
+    weight: 3
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: header_right
   liiweb_share_links:
     weight: 6
     region: sidebar

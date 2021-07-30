@@ -1,0 +1,11 @@
+uuid: 52a6ee4b-4ba8-44b2-b073-9b3ca5d1cf93
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.subject_library
+id: taxonomy_term.subject_library
+target_entity_type_id: taxonomy_term
+target_bundle: subject_library
+default_langcode: site_default
+language_alterable: false

@@ -30,6 +30,7 @@ dependencies:
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
     - field.field.node.judgment.field_search_summary
+    - field.field.node.judgment.field_subject_library
     - node.type.judgment
   module:
     - computed_field
@@ -266,6 +267,7 @@ hidden:
   field_judgment_old_nid: true
   field_locality: true
   field_matter_type: true
+  field_subject_library: true
   langcode: true
   links: true
   search_api_excerpt: true

@@ -1,0 +1,8 @@
+uuid: 742d6e17-dea0-4850-90bf-b92a47f63e0f
+langcode: en
+status: true
+dependencies: {  }
+name: 'Subject Library'
+vid: subject_library
+description: ''
+weight: 0

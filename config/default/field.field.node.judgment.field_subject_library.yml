@@ -1,0 +1,29 @@
+uuid: 3866e6c9-8470-4f0e-abd5-20063f179257
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_subject_library
+    - node.type.judgment
+    - taxonomy.vocabulary.subject_library
+id: node.judgment.field_subject_library
+field_name: field_subject_library
+entity_type: node
+bundle: judgment
+label: 'Subject Library'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      subject_library: subject_library
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
