@@ -25,9 +25,9 @@ class ContactBlock extends BlockBase {
 
     //Address
     $address = [
-      'address_1'   => '8th floor, Sanlam Building',
-      'address_2'    => 'Independance Avenue',
-      'address_3'   => 'Windhoek, Namibia',
+      'address_1'   => '',
+      'address_2'    => '',
+      'address_3'   => '',
     ];
     foreach ($address as $add => $val) {
       $items['address'][] = [
@@ -55,15 +55,15 @@ class ContactBlock extends BlockBase {
 
     //website email
     $items['website_email'][] = [
-      '#markup' => '<a href="https://namiblii.org/" target="_blank" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i>namiblii.org</a>',
+      '#markup' => '<a href="https://malawilii.org/" target="_blank" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i>malawilii.org</a>',
     ];
     $items['website_email'][] = [
-      '#markup' => '<a href="mailto:info@namiblii.org" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@namiblii.org</a>',
+      '#markup' => '<a href="mailto:info@malawilii.org" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@malawilii.org</a>',
     ];
 
     //Social media
     $platforms = [
-      'fab fa-facebook-square' => 'https://facebook.com/namiblii/',
+      'fab fa-facebook-square' => 'https://facebook.com/africanlii/',
       'fab fa-twitter-square'    => 'https://twitter.com/AfricanLII',
     ];
 
