@@ -1,0 +1,60 @@
+uuid: 1a0b191b-df75-405a-97f9-5486e7677b0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.book.body
+    - field.field.node.book.field_abstract
+    - field.field.node.book.field_author_affilliation
+    - field.field.node.book.field_author_surname
+    - field.field.node.book.field_contributor
+    - field.field.node.book.field_copyright
+    - field.field.node.book.field_date
+    - field.field.node.book.field_doi
+    - field.field.node.book.field_external_link
+    - field.field.node.book.field_files
+    - field.field.node.book.field_image
+    - field.field.node.book.field_isbn
+    - field.field.node.book.field_law_report_citations
+    - field.field.node.book.field_subtitle
+    - field.field.node.book.field_toc
+    - node.type.book
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: krIbNOdqw4vMF3Ty8qAW6AxgxmdBig5XuQRBW8-HYCU
+id: node.book.teaser
+targetEntityType: node
+bundle: book
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 100
+    region: content
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 101
+    region: content
+hidden:
+  field_abstract: true
+  field_author_affilliation: true
+  field_author_surname: true
+  field_contributor: true
+  field_copyright: true
+  field_date: true
+  field_doi: true
+  field_external_link: true
+  field_files: true
+  field_image: true
+  field_isbn: true
+  field_law_report_citations: true
+  field_subtitle: true
+  field_toc: true
+  langcode: true
+  search_api_excerpt: true

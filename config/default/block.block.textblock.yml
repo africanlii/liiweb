@@ -18,6 +18,6 @@ settings:
   provider: liiweb
   label_display: visible
   text:
-    value: "<p>&nbsp;</p>\r\n\r\n<div class=\"embed-responsive embed-responsive-16by9\"><iframe allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"https://www.youtube.com/embed/og2YO8e_Dmc\" width=\"560\"></iframe></div>\r\n\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -25px; top: -13px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>\r\n"
+    value: "<p>The Zimbabwe Legal Information Institute (ZimLII) is an independent not-for-profit Trust hosting an online repository of legal information from Zimbabwe and beyond. ZimLII aims to provide for the knowledge needs of a growing group of people learning, aware and interested in the justice and legal framework of our country. ZimLII is a member of the global Free Access to Law Movement and works closely with the African and international free access to law community to promote justice and rule of law by maximising access at no cost to public legal information.</p>\r\n\r\n<p><iframe allow=\"autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share\" allowfullscreen=\"true\" frameborder=\"0\" height=\"314\" scrolling=\"no\" src=\"https://www.facebook.com/plugins/video.php?height=314&amp;href=https%3A%2F%2Fwww.facebook.com%2FZimLII%2Fvideos%2F1590208717671095%2F&amp;show_text=false&amp;width=560&amp;t=0\" style=\"border:none;overflow:hidden\" width=\"360\"></iframe></p>\r\n"
     format: full_html
 visibility: {  }

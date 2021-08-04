@@ -1,0 +1,21 @@
+uuid: 08e61670-74b2-4343-a36c-fcac4bfed8ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_abstract
+    - node.type.law_journal_article
+  module:
+    - text
+id: node.law_journal_article.field_abstract
+field_name: field_abstract
+entity_type: node
+bundle: law_journal_article
+label: Abstract
+description: 'Enter the abstract of the document'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

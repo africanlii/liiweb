@@ -19,7 +19,7 @@ settings:
   provider: liiweb
   label_display: visible
   text:
-    value: ''
+    value: "<p>The Zimbabwe Legal Information Institute (ZimLII) provides free, full and anonymous access to Zimbabwe caselaw, legislation and legal books and journals.</p>\r\n"
     format: full_html
 visibility:
   request_path:

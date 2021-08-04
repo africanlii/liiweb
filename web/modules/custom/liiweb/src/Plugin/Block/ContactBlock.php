@@ -55,10 +55,10 @@ class ContactBlock extends BlockBase {
 
     //website email
     $items['website_email'][] = [
-      '#markup' => '<a href="https://namiblii.org/" target="_blank" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i>namiblii.org</a>',
+      '#markup' => '<a href="https://zimlii.org/" target="_blank" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i>zimlii.org</a>',
     ];
     $items['website_email'][] = [
-      '#markup' => '<a href="mailto:info@namiblii.org" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@namiblii.org</a>',
+      '#markup' => '<a href="mailto:info@zimlii.org" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@namiblii.org</a>',
     ];
 
     //Social media
