@@ -18,6 +18,8 @@ $gray: #e1e1e1;
 $gray-light: #ebebeb;
 $gray-very-light: #f8f8f8;
 $gray-dark: #4a4a4a;
+$tci-red: #9f1e1f;
+$tci-yellow: #c59b29;
 
 $brand-orange: #db6533;
 $brand-blue: #4c95a8;
@@ -25,8 +27,8 @@ $brand-yellow: #f8c944;
 $brand-green: #afc73f;
 $brand-magenta: #ba3e65;
 
-$primary: $blue;
-$secondary: $green;
+$primary: $tci-red;
+$secondary: $tci-yellow;
 $danger: $red;
 $border-color: #d5d5d5;
 
