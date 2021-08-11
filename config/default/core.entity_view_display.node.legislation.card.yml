@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.legislation.field_images
     - field.field.node.legislation.field_iso_country_code
     - field.field.node.legislation.field_lifecycle_json
+    - field.field.node.legislation.field_locality
     - field.field.node.legislation.field_parent_work
     - field.field.node.legislation.field_publication_name
     - field.field.node.legislation.field_raw_json
@@ -85,6 +86,7 @@ hidden:
   field_images: true
   field_iso_country_code: true
   field_lifecycle_json: true
+  field_locality: true
   field_parent_work: true
   field_publication_name: true
   field_raw_json: true
