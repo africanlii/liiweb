@@ -1,0 +1,21 @@
+uuid: b84ba7ea-bb4b-4e5e-a133-0954edf29292
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date
+    - node.type.law_journal_article
+  module:
+    - datetime
+id: node.law_journal_article.field_date
+field_name: field_date
+entity_type: node
+bundle: law_journal_article
+label: 'Publication date'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

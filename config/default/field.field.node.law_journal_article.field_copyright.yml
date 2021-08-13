@@ -1,0 +1,29 @@
+uuid: c4bd5db9-9adc-4f0b-8d59-ec9a56ccb502
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_copyright
+    - node.type.law_journal_article
+    - taxonomy.vocabulary.copyright_and_licensing
+id: node.law_journal_article.field_copyright
+field_name: field_copyright
+entity_type: node
+bundle: law_journal_article
+label: Copyright
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      copyright_and_licensing: copyright_and_licensing
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

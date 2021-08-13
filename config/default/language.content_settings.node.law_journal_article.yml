@@ -1,0 +1,11 @@
+uuid: 89c55061-f71e-4e46-9cfa-153a87f41f44
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.law_journal_article
+id: node.law_journal_article
+target_entity_type_id: node
+target_bundle: law_journal_article
+default_langcode: site_default
+language_alterable: false
