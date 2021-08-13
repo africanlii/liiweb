@@ -1,0 +1,8 @@
+uuid: b3464d6b-7b44-4f17-911f-b3a51bdf89b3
+langcode: en
+status: true
+dependencies: {  }
+name: 'Law Journals'
+vid: law_journals
+description: 'Add titles of Law Journals published on the paltform'
+weight: 0
