@@ -1,0 +1,8 @@
+uuid: 991bd61d-afe9-429f-8b7a-70b93fd6aa19
+langcode: en
+status: true
+dependencies: {  }
+name: 'ISO Country Code'
+vid: iso_country_code
+description: ''
+weight: 0

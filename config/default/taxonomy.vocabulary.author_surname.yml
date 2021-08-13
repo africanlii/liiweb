@@ -1,0 +1,8 @@
+uuid: 954be944-c531-4c19-9885-a251d3681e6b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Author Name'
+vid: author_surname
+description: 'The name of authors of journal articles and books'
+weight: 0
