@@ -1,0 +1,24 @@
+uuid: a3232215-8401-4101-9c80-3f143a11c818
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_neutral_citation
+    - node.type.law_journal_article
+  module:
+    - computed_field
+id: node.law_journal_article.field_media_neutral_citation
+field_name: field_media_neutral_citation
+entity_type: node
+bundle: law_journal_article
+label: 'Media neutral citation'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings:
+  code: '$value = '''';'
+field_type: computed_string

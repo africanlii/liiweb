@@ -1,0 +1,23 @@
+uuid: 4ff1696d-441b-482b-b083-fd5f8057aec7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jvolume
+    - node.type.law_journal_article
+id: node.law_journal_article.field_jvolume
+field_name: field_jvolume
+entity_type: node
+bundle: law_journal_article
+label: 'Journal Volume number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
