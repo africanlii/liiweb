@@ -1,0 +1,29 @@
+uuid: d2a1933b-db17-4e2c-b74d-ee2f64f53292
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contributor
+    - node.type.law_journal_article
+    - taxonomy.vocabulary.contributing_organisation
+id: node.law_journal_article.field_contributor
+field_name: field_contributor
+entity_type: node
+bundle: law_journal_article
+label: Contributor
+description: 'Organizations that have authored an item'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      contributing_organisation: contributing_organisation
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
