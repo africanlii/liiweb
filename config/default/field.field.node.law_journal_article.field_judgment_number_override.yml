@@ -1,0 +1,23 @@
+uuid: d08410da-ca63-446e-8bfe-0a025b5bc752
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_judgment_number_override
+    - node.type.law_journal_article
+id: node.law_journal_article.field_judgment_number_override
+field_name: field_judgment_number_override
+entity_type: node
+bundle: law_journal_article
+label: 'Journal article number override'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
