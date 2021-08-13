@@ -1,0 +1,8 @@
+uuid: 4257c8e4-493e-4e08-8fc2-c46d6f5e609e
+langcode: en
+status: true
+dependencies: {  }
+name: 'Law Journal Issues'
+vid: law_journal_issues
+description: 'Select the issue number, e.g. 1,2 spring, fall'
+weight: 0
