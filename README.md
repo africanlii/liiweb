@@ -46,7 +46,7 @@ When you open the instance http://liiweb.test again you should be able to log in
 
 ## Update local instance
 
-If you already have a local instance installed and configured with code and database, use `git` to get the latest developments from the `master` branch or switch to another branch you wish to test and pull changes, then execute the following commands:
+If you already have a local instance installed and configured with code and database, use `git` to get the latest developments from the `master` branch or switch to another branch you wish to test and use `git pull` to fetch changes, then execute the following commands:
 ```shell script
 drush updatedb -y
 drush cim sync -y
@@ -55,8 +55,9 @@ drush locale:check -y
 drush locale:update -y
 drush cr
 ```
-
 Which imports the new configuration, applies all the pending updates and imports new translations - if available.
+
+If you experience any errors regarding missing modules during import make sure to run a `composer install` to install any newly added modules.
 
 ## How to commit local changes
 
@@ -76,6 +77,9 @@ git commit -m "refs #123 Added new fields"
 
 For field changes, you MUST also copy any new and changed files to `web/modules/custom/liiweb/modules/liiweb_features/config/install/` so that they are
 installed during testing.
+
+## Pushing  changes to live site
+Whenever changes are pushed to a live site, always make sure to visit https://your-lii-site.org/admin/config/media/file-system/filefield-paths and save congifuration, this prevents issues with S3 file configuration preventing correct file uploads.
 
 TODO: Add multi-site configuration details here.
 
@@ -134,6 +138,9 @@ See [docs/production.md](docs/production.md) for details on how to install this 
 
 ### How can I install contrib modules?
 
+To install contrib modules, simply navigate to your repo via command line and enter the  `composer require 'drupal/example_module:^1.1'` line found on the contrib modules download page. When commiting new module changes make sure to include both the `composer.json` and `composer.lock` files in your push.
+
+For a walkthrough on installing via composer follow:
 https://www.drupal.org/docs/develop/using-composer/using-composer-to-install-drupal-and-manage-dependencies
 
 ### How can I apply patches to downloaded modules?
@@ -153,4 +160,10 @@ section of composer.json:
     }
 }
 ```
+
+# License
+
+Licensed under GNU LGPLv3. See LICENSE.
+
+Copyright AfricanLII 2020-2021.
 

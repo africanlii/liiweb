@@ -1,0 +1,5 @@
+handlers:
+  email_confirmation:
+    label: 'Courriel de confirmation'
+  email_notification:
+    label: 'Notification par courriel'

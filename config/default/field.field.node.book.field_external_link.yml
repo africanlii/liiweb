@@ -1,0 +1,23 @@
+uuid: 795e56a9-277a-4ca9-8ece-bbf9f6043fce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_external_link
+    - node.type.book
+  module:
+    - link
+id: node.book.field_external_link
+field_name: field_external_link
+entity_type: node
+bundle: book
+label: 'External URL'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link
