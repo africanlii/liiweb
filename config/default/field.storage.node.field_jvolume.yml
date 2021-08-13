@@ -1,0 +1,20 @@
+uuid: 12807fb6-4afe-4bed-853e-caad13e05af7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_jvolume
+field_name: field_jvolume
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
