@@ -1,0 +1,21 @@
+uuid: 83ea8f33-b1df-47bc-90a5-827dc7c4c55f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_abstract
+    - node.type.book
+  module:
+    - text
+id: node.book.field_abstract
+field_name: field_abstract
+entity_type: node
+bundle: book
+label: Abstract
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
