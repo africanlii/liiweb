@@ -1,0 +1,314 @@
+uuid: afee45cc-f311-4b18-a80e-7a3aa5892353
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.law_journal_article.body
+    - field.field.node.law_journal_article.field_abstract
+    - field.field.node.law_journal_article.field_author_affilliation
+    - field.field.node.law_journal_article.field_author_surname
+    - field.field.node.law_journal_article.field_contributor
+    - field.field.node.law_journal_article.field_copyright
+    - field.field.node.law_journal_article.field_date
+    - field.field.node.law_journal_article.field_doi
+    - field.field.node.law_journal_article.field_external_link
+    - field.field.node.law_journal_article.field_files
+    - field.field.node.law_journal_article.field_jissue
+    - field.field.node.law_journal_article.field_jtitle
+    - field.field.node.law_journal_article.field_judgment_number
+    - field.field.node.law_journal_article.field_judgment_number_override
+    - field.field.node.law_journal_article.field_jvolume
+    - field.field.node.law_journal_article.field_law_report_citations
+    - field.field.node.law_journal_article.field_media_neutral_citation
+    - node.type.law_journal_article
+  module:
+    - computed_field
+    - datetime
+    - field_group
+    - file
+    - link
+    - path
+    - text
+third_party_settings:
+  field_group:
+    group_journal_form:
+      children:
+        - group_journal_details
+        - group_author_information
+        - group_journal_article_body
+        - group_doi_links_copyright
+        - group_housekeeping
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        direction: horizontal
+      label: 'Journal form'
+    group_journal_details:
+      children:
+        - field_jtitle
+        - field_jvolume
+        - field_jissue
+        - field_judgment_number
+        - field_law_report_citations
+        - field_date
+      parent_name: group_journal_form
+      weight: 20
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: open
+        required_fields: true
+      label: 'Journal details'
+    group_author_information:
+      children:
+        - field_author_surname
+        - field_author_affilliation
+        - field_contributor
+      parent_name: group_journal_form
+      weight: 21
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: 'Author information'
+    group_journal_article_body:
+      children:
+        - title
+        - field_abstract
+        - body
+        - field_files
+      parent_name: group_journal_form
+      weight: 22
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: 'Journal article body'
+    group_doi_links_copyright:
+      children:
+        - field_external_link
+        - field_doi
+        - field_media_neutral_citation
+        - field_copyright
+        - field_judgment_number_override
+      parent_name: group_journal_form
+      weight: 23
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: 'DOI, links, copyright'
+    group_housekeeping:
+      children:
+        - path
+        - status
+        - sticky
+      parent_name: group_journal_form
+      weight: 24
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Housekeeping
+id: node.law_journal_article.default
+targetEntityType: node
+bundle: law_journal_article
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 6
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    region: content
+  field_abstract:
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_author_affilliation:
+    weight: 8
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_author_surname:
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_contributor:
+    weight: 9
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_copyright:
+    weight: 13
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_date:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_doi:
+    weight: 10
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_external_link:
+    weight: 9
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_files:
+    weight: 8
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_jissue:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_jtitle:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_judgment_number:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: computed_number_widget
+    region: content
+  field_judgment_number_override:
+    weight: 14
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_jvolume:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_law_report_citations:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_media_neutral_citation:
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    type: computed_string_widget
+    region: content
+  path:
+    type: path
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 2
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  promote: true
+  uid: true
