@@ -1,0 +1,19 @@
+uuid: 609a4315-2632-4b2f-a4f1-0480f85b11c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_toc
+    - node.type.book
+id: node.book.field_toc
+field_name: field_toc
+entity_type: node
+bundle: book
+label: 'Table of Contents'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
