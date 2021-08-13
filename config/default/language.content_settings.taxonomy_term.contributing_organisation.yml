@@ -1,0 +1,11 @@
+uuid: 95be33dd-9c17-4ee1-85bd-c4f47573a163
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.contributing_organisation
+id: taxonomy_term.contributing_organisation
+target_entity_type_id: taxonomy_term
+target_bundle: contributing_organisation
+default_langcode: site_default
+language_alterable: false
