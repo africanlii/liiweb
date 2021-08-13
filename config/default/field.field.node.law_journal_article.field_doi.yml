@@ -1,0 +1,23 @@
+uuid: 349325d5-8376-40eb-a6b1-faabbc4d60d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_doi
+    - node.type.law_journal_article
+  module:
+    - link
+id: node.law_journal_article.field_doi
+field_name: field_doi
+entity_type: node
+bundle: law_journal_article
+label: doi
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

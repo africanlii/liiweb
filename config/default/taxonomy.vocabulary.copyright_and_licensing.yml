@@ -1,0 +1,8 @@
+uuid: 09760ad5-1acd-4e64-b7fa-dc760ba5baa9
+langcode: en
+status: true
+dependencies: {  }
+name: 'Copyright and Licensing'
+vid: copyright_and_licensing
+description: 'Allows the application of various license types'
+weight: 0
