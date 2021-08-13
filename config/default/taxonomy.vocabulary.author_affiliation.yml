@@ -1,0 +1,8 @@
+uuid: cbbf1aa6-2944-4ecb-9ad2-aa660d5cef17
+langcode: en
+status: true
+dependencies: {  }
+name: 'Author Affiliation'
+vid: author_affiliation
+description: ''
+weight: 0

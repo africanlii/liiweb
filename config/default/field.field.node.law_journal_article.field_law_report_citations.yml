@@ -1,0 +1,19 @@
+uuid: 32b0929e-3e2c-4a1b-b485-b734ffc64a31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_law_report_citations
+    - node.type.law_journal_article
+id: node.law_journal_article.field_law_report_citations
+field_name: field_law_report_citations
+entity_type: node
+bundle: law_journal_article
+label: 'Law journal citations'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,11 @@
+uuid: 4a30f1a1-4304-44aa-be06-d80437f0f620
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.law_journals
+id: taxonomy_term.law_journals
+target_entity_type_id: taxonomy_term
+target_bundle: law_journals
+default_langcode: site_default
+language_alterable: false
