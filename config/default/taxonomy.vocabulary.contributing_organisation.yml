@@ -1,0 +1,8 @@
+uuid: 9e1f782e-8af5-48a7-857e-9f55830a7d76
+langcode: en
+status: true
+dependencies: {  }
+name: 'Contributing organisation'
+vid: contributing_organisation
+description: 'Names of institutions contributing to a document published on liiweb'
+weight: 0
