@@ -1,0 +1,23 @@
+uuid: 21af1ff0-e94d-4814-9b75-3ea2f0ce3003
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.law_journal_article
+  module:
+    - text
+id: node.law_journal_article.body
+field_name: body
+entity_type: node
+bundle: law_journal_article
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary
