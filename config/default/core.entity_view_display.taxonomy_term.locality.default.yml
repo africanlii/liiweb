@@ -1,0 +1,25 @@
+uuid: b58aa32c-4219-41c0-a745-f0a4ce75d228
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.locality.field_code
+    - taxonomy.vocabulary.locality
+  module:
+    - text
+id: taxonomy_term.locality.default
+targetEntityType: taxonomy_term
+bundle: locality
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_code: true
+  langcode: true
+  search_api_excerpt: true

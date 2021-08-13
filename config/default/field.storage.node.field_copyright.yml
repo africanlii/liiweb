@@ -1,0 +1,20 @@
+uuid: 57afa5a2-3bad-4d39-916a-f0a07329ebfb
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_copyright
+field_name: field_copyright
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
