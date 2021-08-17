@@ -1,0 +1,219 @@
+uuid: 97c5b0b8-8d1d-4065-97da-8d3ea0b84f56
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.law_journal_article.body
+    - field.field.node.law_journal_article.field_abstract
+    - field.field.node.law_journal_article.field_author_affilliation
+    - field.field.node.law_journal_article.field_author_surname
+    - field.field.node.law_journal_article.field_contributor
+    - field.field.node.law_journal_article.field_copyright
+    - field.field.node.law_journal_article.field_date
+    - field.field.node.law_journal_article.field_doi
+    - field.field.node.law_journal_article.field_external_link
+    - field.field.node.law_journal_article.field_files
+    - field.field.node.law_journal_article.field_jissue
+    - field.field.node.law_journal_article.field_jtitle
+    - field.field.node.law_journal_article.field_judgment_number
+    - field.field.node.law_journal_article.field_judgment_number_override
+    - field.field.node.law_journal_article.field_jvolume
+    - field.field.node.law_journal_article.field_law_report_citations
+    - field.field.node.law_journal_article.field_media_neutral_citation
+    - node.type.law_journal_article
+  module:
+    - computed_field
+    - datetime
+    - ds
+    - file
+    - link
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_content_general
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          header_left: div
+          header_right: div
+          full_width: div
+          sidebar: div
+          node_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          header_left: {  }
+          header_right: {  }
+          full_width: {  }
+          sidebar: {  }
+          node_content: {  }
+    regions:
+      header_left:
+        - field_jtitle
+        - field_jvolume
+        - field_jissue
+        - field_date
+      header_right:
+        - field_law_report_citations
+        - field_media_neutral_citation
+        - field_doi
+        - field_external_link
+      full_width:
+        - field_author_surname
+        - field_contributor
+        - field_author_affilliation
+        - field_abstract
+      sidebar:
+        - field_files
+        - field_copyright
+      node_content:
+        - body
+id: node.law_journal_article.default
+targetEntityType: node
+bundle: law_journal_article
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 14
+    settings: {  }
+    third_party_settings: {  }
+    region: node_content
+  field_abstract:
+    weight: 11
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: full_width
+  field_author_affilliation:
+    weight: 10
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: full_width
+  field_author_surname:
+    weight: 8
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: full_width
+  field_contributor:
+    weight: 9
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: full_width
+  field_copyright:
+    weight: 13
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: sidebar
+  field_date:
+    weight: 3
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: header_left
+  field_doi:
+    weight: 6
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: header_right
+  field_external_link:
+    weight: 7
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: header_right
+  field_files:
+    weight: 12
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: sidebar
+  field_jissue:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: header_left
+  field_jtitle:
+    weight: 0
+    label: visually_hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: header_left
+  field_jvolume:
+    weight: 1
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: header_left
+  field_law_report_citations:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: header_right
+  field_media_neutral_citation:
+    weight: 5
+    label: above
+    settings:
+      sanitized: true
+      cache_unit: -1
+      cache_duration: 1
+    third_party_settings: {  }
+    type: computed_string
+    region: header_right
+hidden:
+  field_judgment_number: true
+  field_judgment_number_override: true
+  langcode: true
+  links: true
+  search_api_excerpt: true
