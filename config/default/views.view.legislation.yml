@@ -6,11 +6,17 @@ dependencies:
     - core.entity_view_mode.node.card
     - core.entity_view_mode.node.card_secondary
     - core.entity_view_mode.node.teaser
+    - field.storage.node.field_commencement_date
+    - field.storage.node.field_repeal
     - node.type.legislation
     - system.menu.main
+    - taxonomy.vocabulary.legislation_tags
+  content:
+    - 'taxonomy_term:legislation_tags:1fd8f36c-5e4a-4467-b5d8-36dc5b201991'
   module:
     - better_exposed_filters
     - datetime
+    - entity_reference_revisions
     - node
     - similarterms
     - taxonomy
@@ -203,7 +209,20 @@ display:
           plugin_id: boolean
       sorts: {  }
       title: Legislation
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "<h2 class=\"h3\">South African consolidated and updated legislation</h3>\r\n<p> <b>This collection of consolidated and updated legislation is provided in partnership with <a href = \"https://laws.africa/\" target=\"_blank\"> Laws.Africa </a> .</b></p>\r\n<p> <a href = \"https://laws.africa/\" target=\"_blank\"> Laws.Africa </a> is a technology non-profit that digitises and consolidates African legislation.</p>\r\n"
+            format: full_html
+          plugin_id: text
       footer: {  }
       empty:
         area:
@@ -1725,6 +1744,398 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
+  page_2:
+    display_plugin: page
+    id: page_2
+    display_title: 'PG: Legislation - COVID19'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: legislation/covid19
+      menu:
+        type: normal
+        title: 'Covid-19 Legislation'
+        description: 'Covid-19 Legislation'
+        expanded: false
+        parent: ''
+        weight: -28
+        context: '0'
+        menu_name: main
+      display_description: ''
+      pager:
+        type: none
+        options:
+          offset: 0
+      defaults:
+        pager: false
+        header: false
+        style: false
+        row: false
+        css_class: false
+        use_ajax: false
+        fields: false
+        sorts: false
+        filters: false
+        filter_groups: false
+        title: false
+      style:
+        type: table
+        options:
+          grouping:
+            -
+              field: title_1
+              rendered: true
+              rendered_strip: false
+          row_class: ''
+          default_row_class: true
+          uses_fields: true
+          columns: {  }
+          default: ''
+          info: {  }
+          override: true
+          sticky: false
+          order: asc
+          caption: ''
+          summary: ''
+          description: ''
+          empty_table: false
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
+      css_class: 'view--liibarrio view--liibarrio--bg'
+      use_ajax: true
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          entity_type: node
+          entity_field: title
+          label: ''
+          alter:
+            alter_text: false
+            make_link: false
+            absolute: false
+            trim: false
+            word_boundary: false
+            ellipsis: false
+            strip_tags: false
+            html: false
+          hide_empty: false
+          empty_zero: false
+          settings:
+            link_to_entity: true
+          plugin_id: field
+          relationship: none
+          group_type: group
+          admin_label: ''
+          exclude: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_commencement_date:
+          id: field_commencement_date
+          table: node__field_commencement_date
+          field: field_commencement_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Commencement date'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_default
+          settings:
+            timezone_override: ''
+            format_type: html_date
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_repeal:
+          id: field_repeal
+          table: node__field_repeal
+          field: field_repeal
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Repeal information'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_revisions_entity_view
+          settings:
+            view_mode: default
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+      sorts:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: standard
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          value:
+            legislation: legislation
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_stub_value:
+          id: field_stub_value
+          table: node__field_stub
+          field: field_stub_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: '0'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            3966: 3966
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: legislation_tags
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      title: 'Covid-19 Legislation'
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "<h2 class=\"h3\">South African consolidated and updated Covid-19 legislation</h3>\r\n<p> <b>This collection of consolidated and updated legislation is provided in partnership with <a href = \"https://laws.africa/\" target=\"_blank\"> Laws.Africa </a> .</b></p>\r\n<p> The legislation in this collection is kept current by the Laws.Africa team of expert legislation editors. Amendments to and new Covid-19 legislation are digitised and published within 3-5 business days from publication in the Government Gazette. Get in touch with us via the <a href = \"http://lawlibrary.org.za/contact\" > Feedback form</a> if you have any questions or requests.</p>\r\n"
+            format: full_html
+          plugin_id: text
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - user
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_commencement_date'
+        - 'config:field.storage.node.field_repeal'
   page_legislation:
     display_plugin: page
     id: page_legislation
@@ -1749,27 +2160,15 @@ display:
           offset: 0
       defaults:
         pager: false
-        header: false
+        header: true
         style: false
         row: false
         css_class: false
         use_ajax: false
         fields: false
         sorts: false
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: false
-          content:
-            value: "<h2 class=\"h3\">Namibian consolidated legislation</h3>\r\n<p> <b>This collection of consolidated and updated legislation is provided in partnership with the <a href = \"http://www.lac.org.na/\" target=\"_blank\"> LAC </a> .</b></p>\r\n<p> View <a href=\"http://www.lac.org.na/index.php/laws/namlex/\" target=\"_blank\"> NAMLEX  2020 </a> and the NAMLEX appendix on the LAC website </p>\r\n"
-            format: full_html
-          plugin_id: text
+        filters: false
+        filter_groups: false
       style:
         type: html_list
         options:
@@ -1919,11 +2318,126 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: standard
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          value:
+            legislation: legislation
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_stub_value:
+          id: field_stub_value
+          table: node__field_stub
+          field: field_stub_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: '0'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: not
+          value:
+            3966: 3966
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: legislation_tags
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
