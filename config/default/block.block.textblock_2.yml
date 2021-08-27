@@ -19,7 +19,7 @@ settings:
   provider: liiweb
   label_display: visible
   text:
-    value: ''
+    value: "<p>LawLibrary.org.za is a project of the AfricanLII and Judicial Institute for Africa at the University of Cape Town. Legislation digitised by Laws.Africa.</p>\r\n"
     format: full_html
 visibility:
   request_path:

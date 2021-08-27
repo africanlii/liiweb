@@ -1,11 +1,11 @@
 uuid: c4a3bac4-f642-42b8-b339-3dd80682442f
-name: liiweb
-mail: no-reply@example.com
-slogan: ''
+name: 'Law Library South Africa'
+mail: info@africanlii.org
+slogan: 'Free Access to Law from South Africa'
 page:
   403: ''
   404: ''
-  front: /home
+  front: /node/46715
 admin_compact_mode: false
 weight_select_max: 100
 langcode: en

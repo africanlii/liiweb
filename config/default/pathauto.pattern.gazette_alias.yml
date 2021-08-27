@@ -7,16 +7,16 @@ dependencies:
 id: gazette_alias
 label: 'Gazette Alias'
 type: 'canonical_entities:node'
-pattern: '/gazettes/[node:field_gazette_machine_id:value]'
+pattern: 'za/gazettes/[node:field_gazette_machine_id:value]'
 selection_criteria:
-  67bdd8c8-9661-4505-bd51-f01031496da6:
+  895fa9d9-044c-4e2e-abe0-fbd121546094:
     id: node_type
     bundles:
       government_gazette: government_gazette
     negate: false
     context_mapping:
       node: node
-    uuid: 67bdd8c8-9661-4505-bd51-f01031496da6
+    uuid: 895fa9d9-044c-4e2e-abe0-fbd121546094
 selection_logic: and
 weight: -5
 relationships: {  }

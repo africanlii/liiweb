@@ -8,24 +8,24 @@ dependencies:
 id: law_reform
 label: 'Law Reform'
 type: 'canonical_entities:node'
-pattern: 'na/other/law-reform-report/[node:field_citation]'
+pattern: 'za/other/law-reform-report/[node:field_citation]'
 selection_criteria:
-  18d3461b-415f-48b2-b9fb-f45b4b7cbff3:
+  6ed0d0ef-cfc5-40eb-b834-7fcf4ecda300:
     id: node_type
     bundles:
       law_reform_reports: law_reform_reports
     negate: false
     context_mapping:
       node: node
-    uuid: 18d3461b-415f-48b2-b9fb-f45b4b7cbff3
-  1a254b9a-f423-4dbb-b41b-d8d31b071918:
+    uuid: 6ed0d0ef-cfc5-40eb-b834-7fcf4ecda300
+  3cb0ccc1-dd4a-42d9-9cc7-84408c53fc6b:
     id: language
     langcodes:
       en: en
     negate: false
     context_mapping:
       language: 'node:langcode:language'
-    uuid: 1a254b9a-f423-4dbb-b41b-d8d31b071918
+    uuid: 3cb0ccc1-dd4a-42d9-9cc7-84408c53fc6b
 selection_logic: and
 weight: -10
 relationships:

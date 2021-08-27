@@ -1,4 +1,4 @@
-uuid: cf8ccc2e-b04b-4994-aaea-0d7af1a9660f
+uuid: 308c7942-30ee-4bfe-9183-a7cd30e89959
 langcode: en
 status: true
 dependencies:
@@ -9,14 +9,14 @@ dependencies:
     - views
   theme:
     - liibarrio2020
-id: views_block__legislation_block_recent_registration
+id: views_block__legislation_block_1
 theme: liibarrio2020
 region: content
-weight: -14
+weight: -16
 provider: null
-plugin: 'views_block:legislation-block_recent_legislation'
+plugin: 'views_block:legislation-block_1'
 settings:
-  id: 'views_block:legislation-block_recent_legislation'
+  id: 'views_block:legislation-block_1'
   label: ''
   provider: views
   label_display: visible
@@ -25,6 +25,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
+    pages: /legislation/national
     negate: false
     context_mapping: {  }
