@@ -58,7 +58,7 @@ class ContactBlock extends BlockBase {
       '#markup' => '<a href="https://zimlii.org/" target="_blank" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i>zimlii.org</a>',
     ];
     $items['website_email'][] = [
-      '#markup' => '<a href="mailto:info@zimlii.org" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@namiblii.org</a>',
+      '#markup' => '<a href="mailto:info@zimlii.org" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@zimlii.org</a>',
     ];
 
     //Social media
