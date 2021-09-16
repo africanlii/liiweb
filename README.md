@@ -283,6 +283,9 @@ curl --fail -H "Content-Type: application/vnd.api+json; Accept: application/vnd.
  --data @01-create-work.json http://liiweb.test/api/node/legislation \
  -b XDEBUG_SESSION=PHPSTORM
 ```
+
+Hint: Using cURL 7.58 or higher, add `--trace-ascii trace.txt` to see the payload information.
+
    5. Debugger will stop at the breakpoint where you can inspect the Exception object and stack trace. Common issues:
       * Required fields which are missing
       * Entities with FRBR URI that already exists etc.
