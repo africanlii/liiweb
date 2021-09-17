@@ -161,6 +161,32 @@ section of composer.json:
 }
 ```
 
+### How can I debug API issues
+
+For example when you get `422 Client Error: Unprocessable Entity`, using PHPStorm and a local LAMP/LEMP stack:
+
+   1. Have XDebug properly configured in FPM and PHPStorm
+   2. Start PHPStorm to listen for debugging connections
+   3. Add breakpoints in one the following files, depending on the operation:
+      1. `LiiWebEntityResource::createIndividual`
+      2. `LiiWebEntityResource::patchIndividual`
+      3. `LiiWebEntityResource::patch`
+      4. `LiiWebEntityResource::get`
+      5. `LiiWebEntityResource::post`
+   4. Using the existing examples from `docs/` you can call the API from command line like this:
+```bash
+curl --fail -H "Content-Type: application/vnd.api+json; Accept: application/vnd.api+json" \
+ -X POST -u admin:password \
+ --data @01-create-work.json http://liiweb.test/api/node/legislation \
+ -b XDEBUG_SESSION=PHPSTORM
+```
+
+Hint: Using cURL 7.58 or higher, add `--trace-ascii trace.txt` to see the payload information.
+
+   5. Debugger will stop at the breakpoint where you can inspect the Exception object and stack trace. Common issues:
+      * Required fields which are missing
+      * Entities with FRBR URI that already exists etc.
+
 # License
 
 Licensed under GNU LGPLv3. See LICENSE.
