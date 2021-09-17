@@ -19,7 +19,7 @@ settings:
   provider: liiweb
   label_display: visible
   text:
-    value: ''
+    value: "<p>ZambiaLII is&nbsp;a reliable and timely source of judicial decisions, legislation and statutory instruments. The&nbsp;<a href=\"https://saipar.org/\">Southern African Institute for Policy and Research (SAIPAR)</a>, an independent, educational and development oriented research centre, hosts ZambiaLII.</p>\r\n"
     format: full_html
 visibility:
   request_path:
