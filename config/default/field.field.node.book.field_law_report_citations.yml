@@ -1,0 +1,19 @@
+uuid: db43fdbf-5496-4d6e-81ac-ae4d02c9a58a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_law_report_citations
+    - node.type.book
+id: node.book.field_law_report_citations
+field_name: field_law_report_citations
+entity_type: node
+bundle: book
+label: 'Vendor citations'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
