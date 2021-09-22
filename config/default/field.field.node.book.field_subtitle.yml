@@ -1,0 +1,21 @@
+uuid: d60919f8-e385-49aa-9c09-62290c621d74
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_subtitle
+    - node.type.book
+  module:
+    - text
+id: node.book.field_subtitle
+field_name: field_subtitle
+entity_type: node
+bundle: book
+label: Subtitle
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

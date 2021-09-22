@@ -1,0 +1,23 @@
+uuid: 3889734d-6189-485e-941f-489e4f69269a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_external_link
+    - node.type.law_journal_article
+  module:
+    - link
+id: node.law_journal_article.field_external_link
+field_name: field_external_link
+entity_type: node
+bundle: law_journal_article
+label: 'External URL'
+description: 'External publication URL'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link
