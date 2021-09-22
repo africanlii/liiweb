@@ -1,0 +1,26 @@
+uuid: 0cc29bfe-c0a1-4fb2-9cca-42be66d81753
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_judgment_number
+    - node.type.law_journal_article
+  module:
+    - computed_field
+id: node.law_journal_article.field_judgment_number
+field_name: field_judgment_number
+entity_type: node
+bundle: law_journal_article
+label: 'Journal article number'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  code: '$value = 0;'
+  prefix: ''
+  suffix: ''
+field_type: computed_integer
