@@ -1,0 +1,4 @@
+services:
+  liiweb_legislation.ui.utils:
+    class: Drupal\liiweb_legislation\LiiWebLegislationUIHelper
+    arguments: ['@date.formatter', '@entity_type.manager', '@liiweb.utils']

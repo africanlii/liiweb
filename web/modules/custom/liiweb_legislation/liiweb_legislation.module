@@ -179,10 +179,14 @@ function liiweb_legislation_theme() {
  */
 function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
   if($entity->getType() == 'legislation' && $view_mode == 'full') {
-    $raw_json = json_decode($build['#node']->get('field_raw_json')->getValue()[0]['value']);
-    $build['#attached']['drupalSettings']['liiweb_legislation']['raw_json'] = $raw_json;
+    /** @var \Drupal\liiweb\LiiWebUtils $utils */
+    $utils = \Drupal::service('liiweb.utils');
+    /** @var \Drupal\node\Entity\Node $node */
+    $node = $build['#node'];
+    $expressionJson = $utils->getLegislationJsonData($node);
+    $build['#attached']['drupalSettings']['liiweb_legislation']['raw_json'] = $expressionJson;
     // stash the country code for use when displaying the legislation content
-    $build['field_content']['country'] = $raw_json->country;
+    $build['field_content']['country'] = $expressionJson->country;
 
     try {
       /** @var \Drupal\node\Entity\Node $repeal */
@@ -215,31 +219,22 @@ function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityI
         ]
       );
     }
-    elseif($build['#node']->isDefaultRevision()) {
+    elseif($node->isDefaultRevision()) {
       $build['field_frbr_uri']['#attributes']['class'][] = 'alert-primary';
       $build['field_frbr_uri'][0]['#context']['value'] = new TranslatableMarkup('This is the latest version of this legislation.');
     }
     else {
-      $vid = \Drupal::entityTypeManager()->getStorage('node')->getLatestRevisionId($build['#node']->id());
-      $node = \Drupal::entityTypeManager()->getStorage('node')->loadRevision($vid);
-      //WORK IN FORCE FIELDS TO BE UPDATED
-      // TODO format date nicely as above j F, Y
-      $from = $raw_json->commencement_date;
-      $to = $raw_json->commencement_date;
-      try {
-        $link = Link::createFromRoute(
-          new TranslatableMarkup('Read the version currently in force.'),
-          'entity.node.canonical', ['node' => $node->id()]
-        )->toString();
-      } catch (\Exception $e) {
-        $link = $unknown;
-      }
+      /** @var \Drupal\liiweb_legislation\LiiWebLegislationUIHelper $legislationUtils */
+      $legislationUtils = \Drupal::service('liiweb_legislation.ui.utils');
+      // $nextExpression = $utils->getNextExpression($node, $node->getLoadedRevisionId());
+      // $nextExpressionJson = $utils->getLegislationJsonData($nextExpression);
+      // $to = $nextExpressionJson->expression_date;
+      $from = $expressionJson->commencement_date;
+      $to = $expressionJson->in_force_to;
+      $message = $legislationUtils->formatMessageOlderExpression($from, $to, $node->id());
       $build['field_frbr_uri']['#attributes']['class'][] = 'alert-red';
       $build['field_frbr_uri'][0]['#template'] = '{{ value|raw }}';
-      $build['field_frbr_uri'][0]['#context']['value'] = new TranslatableMarkup(
-        'This is the version of this legislation as it was from @from to @to. <h3 class="h6">@link</h3>',
-        ['@from' => $from, '@to' => $to, '@link' => $link]
-      );
+      $build['field_frbr_uri'][0]['#context']['value'] = $message;
     }
   }
 }
