@@ -104,7 +104,7 @@ abstract class LiiWebApiTestBase extends BrowserTestBase {
    */
   protected function getJsonFromUri($uri) {
     $response = $this->apiRequest($uri, 'GET', FALSE, NULL, ['Accept' => 'application/json']);
-    return $response->getBody();
+    return $response->getBody()->__toString();
   }
 
   /**

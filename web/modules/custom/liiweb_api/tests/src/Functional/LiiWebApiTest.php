@@ -191,7 +191,7 @@ class LiiWebApiTest extends LiiWebApiTestBase {
     $this->drupalGet('akn/za/act/1993/31/eng@1993-01-31');
     $this->assertResponse(200);
 
-    $body = json_decode($response->getBody(), TRUE);
+    $body = json_decode($response->getBody()->__toString(), TRUE);
     $nid = $body['data']['attributes']['drupal_internal__nid'];
     $node = Node::load($nid);
     $this->assertEqual($node->getTitle(), "Work: /akn/za/act/1993/31/eng@1993-01-31 - Simple work (first expression)");

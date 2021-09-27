@@ -33,8 +33,9 @@ class LiiWebApi189FileAttachErrorTest extends LiiWebApiTestBase {
     $self_link = Url::fromUri("base:/jsonapi/node/legislation/field_files")->setAbsolute()->toString(TRUE)->getGeneratedUrl();
     $response = $this->getHttpClient()->request('POST', $self_link, $request_options);
     $this->assertEquals(201, $response->getStatusCode(), 'Failed to upload file');
-    $content = $response->getBody()->getContents();
+    $content = $response->getBody()->__toString();
     $decoded = json_decode($content, TRUE);
+    $this->assertNotEmpty($decoded);
     $fuuid = $decoded['data']['id'];
 
     // Create the work

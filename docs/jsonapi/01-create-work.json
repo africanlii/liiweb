@@ -9,8 +9,7 @@
       "field_publication_name": "Publication name",
       "field_frbr_uri": "/akn/za/act/1900/00/eng@1900-01-01",
       "field_content": {
-        "value": "<p>This is a work</p>",
-        "format": "full_html"
+        "value": "<p>This is a work</p>"
       }
     },
     "relationships": {

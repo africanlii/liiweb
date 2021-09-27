@@ -9,23 +9,11 @@
         "data": [
           {
             "type": "file--file",
-            "id": "TODO-add-file1-uuid-7b130afd-0390-40e3-919b-10fc11b894d3"
+            "id": "0e0c1a3d-a13c-4ac9-8dfa-19c4da44999c"
           },
           {
             "type": "file--file",
-            "id": "TODO-add-file1-uuid-e7a89e0c-69ab-4391-b661-cf335f59a09d"
-          }
-        ]
-      },
-      "field_images": {
-        "data": [
-          {
-            "type": "file--file",
-            "id": "TODO-add-file3-uuid-fe42769e-6832-4846-9d49-e48f098653fd"
-          },
-          {
-            "type": "file--file",
-            "id": "TODO-add-file4-uuid-4808d2b8-6ed7-4dae-82c0-a16da18bf4ac"
+            "id": "0e0c1a3d-a13c-4ac9-8dfa-19c4da44999c"
           }
         ]
       }

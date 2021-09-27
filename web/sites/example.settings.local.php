@@ -153,3 +153,39 @@ $settings['skip_permissions_hardening'] = TRUE;
  * the language or field module.
  */
 # $settings['config_exclude_modules'] = ['devel', 'stage_file_proxy'];
+
+/**
+ * !!! DO NOT REMOVE DURING CORE UPDATE !!!
+ *
+ * The following section contains project-specific customizations.
+ */
+
+$settings['trusted_host_patterns'] = [
+  '^liiweb\.test$',
+];
+
+$config['smtp.settings']['smtp_on'] = '1';
+$config['smtp.settings']['smtp_host'] = 'localhost';
+$config['smtp.settings']['smtp_port'] = 25;
+$config['smtp.settings']['smtp_protocol'] = 'standard';
+$config['smtp.settings']['smtp_from'] = 'user@example.com';
+$config['smtp.settings']['smtp_username'] = 'user@example.com';
+$config['smtp.settings']['smtp_password'] = '';
+
+# Override Solr config with local setup
+$config['search_api.server.solr']['backend_config']['connector_config']['scheme'] = 'http';
+$config['search_api.server.solr']['backend_config']['connector_config']['host'] = '127.0.0.1';
+$config['search_api.server.solr']['backend_config']['connector_config']['port'] = '8983';
+$config['search_api.server.solr']['backend_config']['connector_config']['path'] = '/';
+$config['search_api.server.solr']['backend_config']['connector_config']['core'] = 'liiweb';
+$config['search_api.server.solr']['backend_config']['connector_config']['username'] = 'user';
+$config['search_api.server.solr']['backend_config']['connector_config']['password'] = 'pass';
+
+# For local development we upload to local FS
+$config['field.storage.node.field_files']['settings']['uri_scheme'] = 'public';
+$config['field.storage.media.field_media_image']['settings']['uri_scheme'] = 'public';
+$config['field.storage.media.field_media_image_1']['settings']['uri_scheme'] = 'public';
+$config['field.storage.node.field_file']['settings']['uri_scheme'] = 'public';
+$config['field.storage.node.field_files']['settings']['uri_scheme'] = 'public';
+$config['field.storage.node.field_images']['settings']['uri_scheme'] = 'public';
+$config['field.storage.organisation_entity.field_image']['settings']['uri_scheme'] = 'public';
