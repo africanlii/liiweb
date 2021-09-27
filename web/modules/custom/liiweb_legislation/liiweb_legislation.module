@@ -181,6 +181,8 @@ function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityI
   if($entity->getType() == 'legislation' && $view_mode == 'full') {
     /** @var \Drupal\liiweb\LiiWebUtils $utils */
     $utils = \Drupal::service('liiweb.utils');
+    /** @var \Drupal\liiweb_legislation\LiiWebLegislationUIHelper $legislationUtils */
+    $legislationUtils = \Drupal::service('liiweb_legislation.ui.utils');
     /** @var \Drupal\node\Entity\Node $node */
     $node = $build['#node'];
     $expressionJson = $utils->getLegislationJsonData($node);
@@ -190,48 +192,25 @@ function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityI
 
     try {
       /** @var \Drupal\node\Entity\Node $repeal */
-      $repeal = $build['#node']->field_repeal->entity->field_repeal_work->entity;
+      $repeal = $node->field_repeal->entity->field_repeal_work->entity;
     } catch (\Exception $e) {
       $repeal = NULL;
     }
-    $unknown = new TranslatableMarkup('Unknown');
     if($repeal) {
-      $repeal_date = $unknown;
-      if ($date = $build['#node']->field_repeal->entity->field_repeal_date->date) {
-        $repeal_date = \Drupal::service('date.formatter')->format(
-          $date->getTimestamp(), 'custom', 'j F, Y'
-        );
-      }
-      try {
-        $link = Link::createFromRoute($repeal->getTitle(),
-          'entity.node.canonical', ['node' => $repeal->id()]
-        )->toString();
-      } catch (\Exception $e) {
-        $link = $unknown;
-      }
+      $repealDate = $node->field_repeal->entity->field_repeal_date->date;
       $build['field_frbr_uri']['#attributes']['class'][] = 'alert-red';
       $build['field_frbr_uri'][0]['#template'] = '{{ value|raw }}';
-      $build['field_frbr_uri'][0]['#context']['value'] = new TranslatableMarkup(
-        'This legislation was repealed on <strong>@date</strong> by <h3 class="h6">@link</h3>',
-        [
-          '@date' => $repeal_date,
-          '@link' => $link
-        ]
-      );
+      $build['field_frbr_uri'][0]['#context']['value'] = $legislationUtils->formatBannerRepealedExpression($repeal, $repealDate);
     }
     elseif($node->isDefaultRevision()) {
       $build['field_frbr_uri']['#attributes']['class'][] = 'alert-primary';
-      $build['field_frbr_uri'][0]['#context']['value'] = new TranslatableMarkup('This is the latest version of this legislation.');
+      $from = $expressionJson->expression_date;
+      $build['field_frbr_uri'][0]['#context']['value'] = $legislationUtils->formatBannerCurrentExpression($from, $node->id());
     }
     else {
-      /** @var \Drupal\liiweb_legislation\LiiWebLegislationUIHelper $legislationUtils */
-      $legislationUtils = \Drupal::service('liiweb_legislation.ui.utils');
-      // $nextExpression = $utils->getNextExpression($node, $node->getLoadedRevisionId());
-      // $nextExpressionJson = $utils->getLegislationJsonData($nextExpression);
-      // $to = $nextExpressionJson->expression_date;
       $from = $expressionJson->commencement_date;
       $to = $expressionJson->in_force_to;
-      $message = $legislationUtils->formatMessageOlderExpression($from, $to, $node->id());
+      $message = $legislationUtils->formatBannerOlderExpression($from, $to, $node->id());
       $build['field_frbr_uri']['#attributes']['class'][] = 'alert-red';
       $build['field_frbr_uri'][0]['#template'] = '{{ value|raw }}';
       $build['field_frbr_uri'][0]['#context']['value'] = $message;
