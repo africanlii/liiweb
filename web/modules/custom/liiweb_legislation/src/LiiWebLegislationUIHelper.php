@@ -45,7 +45,7 @@ class LiiWebLegislationUIHelper {
    *   Formatted banner message.
    */
   public function formatBannerCurrentExpression($fromStr, $nid) {
-    $default = new TranslatableMarkup('This is the latest version of this legislation');
+    $default = new TranslatableMarkup('This is the latest version of this legislation.');
     if (empty($fromStr)) {
       return $default;
     }
