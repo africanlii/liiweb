@@ -25,18 +25,12 @@ class LiiWebLegislationUIHelper {
   protected $dateFormatter;
 
   /**
-   * @var \Drupal\liiweb\LiiWebUtils
-   */
-  protected $liiWebUtils;
-
-  /**
    * Constructs a new LegislationUIHelper object.
    * {@inheritDoc}
    */
-  public function __construct(DateFormatter $dateFormatter, EntityTypeManagerInterface $entity_type_manager, LiiWebUtils $liiWebUtils) {
+  public function __construct(DateFormatter $dateFormatter, EntityTypeManagerInterface $entity_type_manager) {
     $this->dateFormatter = $dateFormatter;
     $this->entityTypeManager = $entity_type_manager;
-    $this->liiWebUtils = $liiWebUtils;
   }
 
   /**
@@ -78,6 +72,8 @@ class LiiWebLegislationUIHelper {
    *   Formatted banner message.
    */
   public function formatBannerOlderExpression($fromStr, $toStr, $nid) {
+    /** @var LiiWebUtils $liiWebUtils */
+    $liiWebUtils = \Drupal::service('liiweb.utils');
     $default = new TranslatableMarkup('This is not the latest version of this legislation.');
     if (empty($fromStr) || empty($toStr)) {
       return $default;
@@ -94,7 +90,7 @@ class LiiWebLegislationUIHelper {
     try {
       $latestVid = $this->entityTypeManager->getStorage('node')->getLatestRevisionId($nid);
       $node = $this->entityTypeManager->getStorage('node')->loadRevision($latestVid);
-      $json = $this->liiWebUtils->getLegislationJsonData($node);
+      $json = $liiWebUtils->getLegislationJsonData($node);
       // Get the date of the newest revision.
       $latestRevisionFromFormatted = NULL;
       if ($latestRevisionFromStr = $json->expression_date) {

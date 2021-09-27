@@ -154,7 +154,7 @@ class LiiWebUtils {
   /**
    * Extract JSON information from the given Legislation revision.
    *
-   * @param \Drupal\node\Entity\Node $node
+   * @param \Drupal\node\Entity\Node|\Drupal\Core\Entity\EntityInterface $node
    *
    * @return mixed|null
    *   Decoded JSON data.
