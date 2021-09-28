@@ -1,0 +1,19 @@
+uuid: bc767d1a-6f4c-420c-9760-b4795275bb49
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_tidold
+    - taxonomy.vocabulary.tags_local
+id: taxonomy_term.tags_local.field_tidold
+field_name: field_tidold
+entity_type: taxonomy_term
+bundle: tags_local
+label: Tidold
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

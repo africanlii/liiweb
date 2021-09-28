@@ -73,6 +73,7 @@ module:
   liiweb_search: 0
   link: 0
   locale: 0
+  lupus_taxonomy_import: 0
   media: 0
   menu_ui: 0
   node: 0
