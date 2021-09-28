@@ -1,0 +1,29 @@
+uuid: 20551167-3fd8-4089-9b7a-9e765a53b4ab
+langcode: en
+status: true
+dependencies:
+  module:
+    - liiweb
+    - system
+  theme:
+    - liibarrio2020
+id: textblock_3
+theme: liibarrio2020
+region: content_top
+weight: -17
+provider: null
+plugin: text_block
+settings:
+  id: text_block
+  label: 'Migration to new ZambiaLII'
+  provider: liiweb
+  label_display: '0'
+  text:
+    value: "<table bgcolor=\"#8AF182\" border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width: 90%;\">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td>\r\n\t\t\t<p><strong>Welcome to the new ZambiaLII website. Enjoy an improved search engine and new collections. If you are used to accessing ZambiaLII via Google, note Google will take some time to re-index the site.</strong></p>\r\n\r\n\t\t\t<p><strong>We are still busy migrating some of the old content. If you need anything in particular from the old website, it will be available for a while longer at <a href=\"https://old.zambialii.org/\_\">https://old.zambialii.org/&nbsp;</a></strong></p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n"
+    format: full_html
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }
