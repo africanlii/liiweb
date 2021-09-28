@@ -1,0 +1,32 @@
+uuid: bb15a731-cf5a-43d5-886a-5db015daeeae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.tags_local.field_tidold
+    - taxonomy.vocabulary.tags_local
+  module:
+    - text
+id: taxonomy_term.tags_local.default
+targetEntityType: taxonomy_term
+bundle: tags_local
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_tidold:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
