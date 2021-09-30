@@ -30,6 +30,7 @@
         "drupal/block_field": "^1.0@RC",
         "drupal/bootstrap_barrio": "^5.0",
         "drupal/bootstrap_sass": "^5.0",
+        "drupal/bulk_user_registration": "^1.1@beta",
         "drupal/captcha": "^1.1",
         "drupal/chosen": "^2.8",
         "drupal/ckeditor_indentblock": "^1.0@beta",

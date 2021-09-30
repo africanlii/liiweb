@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e88abc85970e6a49d943cb4a561f3da",
+    "content-hash": "8d13f3181443a8c973b2362f6c430e19",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2841,6 +2841,67 @@
             "homepage": "http://drupal.org/project/bootstrap_sass",
             "support": {
                 "source": "https://git.drupalcode.org/project/bootstrap_sass"
+            }
+        },
+        {
+            "name": "drupal/bulk_user_registration",
+            "version": "1.1.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/bulk_user_registration.git",
+                "reference": "8.x-1.1-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/bulk_user_registration-8.x-1.1-beta1.zip",
+                "reference": "8.x-1.1-beta1",
+                "shasum": "1c99782eaccf6d6acdfdd2807bab4264411e46a3"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.1-beta1",
+                    "datestamp": "1609332959",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Shamsher Alam",
+                    "homepage": "https://www.drupal.org/u/Shamsher_Alam",
+                    "role": "Author"
+                },
+                {
+                    "name": "Sutharsan",
+                    "homepage": "https://www.drupal.org/user/73854"
+                },
+                {
+                    "name": "gauravpahuja",
+                    "homepage": "https://www.drupal.org/user/60687"
+                },
+                {
+                    "name": "pen",
+                    "homepage": "https://www.drupal.org/user/2435634"
+                },
+                {
+                    "name": "prempatel2447",
+                    "homepage": "https://www.drupal.org/user/3250112"
+                }
+            ],
+            "description": "The simple Drupal module to import user from CSV",
+            "homepage": "https://drupal.org/project/bulk_user_registration",
+            "support": {
+                "source": "https://git.drupalcode.org/project/bulk_user_registration"
             }
         },
         {
@@ -15131,6 +15192,7 @@
     "stability-flags": {
         "drupal/better_exposed_filters": 10,
         "drupal/block_field": 5,
+        "drupal/bulk_user_registration": 10,
         "drupal/ckeditor_indentblock": 10,
         "drupal/group": 5,
         "drupal/inline_entity_form": 5,

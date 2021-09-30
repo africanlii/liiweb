@@ -1,0 +1,4 @@
+allowed_roles:
+  authenticated: authenticated
+_core:
+  default_config_hash: QqhYOhPHWGDL9oSnXSdIaYuEA3hHLDNjYouaWatEXc8
