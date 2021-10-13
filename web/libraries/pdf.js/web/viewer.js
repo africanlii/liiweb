@@ -1779,7 +1779,7 @@ const PDFViewerApplication = {
 exports.PDFViewerApplication = PDFViewerApplication;
 let validateFileURL;
 {
-  const HOSTED_VIEWER_ORIGINS = ["null", "http://mozilla.github.io", "https://mozilla.github.io", "https://sierralii.org", "http://sierralii.org", "https://www.sierralii.org", "http://www.sierralii.org", "http://sierralii.gov.sl", "http://www.sierralii.gov.sl" ];
+  const HOSTED_VIEWER_ORIGINS = ["null", "http://mozilla.github.io", "https://mozilla.github.io", "https://sierralii.org", "http://sierralii.org", "https://www.sierralii.org", "http://www.sierralii.org", "http://sierralii.gov.sl", "http://www.sierralii.gov.sl", "https://sierralii.gov.sl", "https://www.sierralii.gov.sl" ];
 
   validateFileURL = function (file) {
     if (file === undefined) {
