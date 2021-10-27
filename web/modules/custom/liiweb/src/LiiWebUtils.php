@@ -173,4 +173,57 @@ class LiiWebUtils {
     }
     return implode(" ", $messages);
   }
+  
+ /**
+   * Extract JSON information from the given Legislation revision.
+   *
+   * @param \Drupal\node\Entity\Node|\Drupal\Core\Entity\EntityInterface $node
+   *
+   * @return mixed|null
+   *   Decoded JSON data.
+   */
+  public function getLegislationJsonData($node) {
+    if ($node instanceof \Drupal\node\NodeInterface && $node->getType() == 'legislation') {
+      if (!empty($node->field_raw_json->value)) {
+        return json_decode($node->field_raw_json->value);
+      }
+    }
+    return NULL;
+  }
+
+
+  /**
+   * Load next chronological expression for a given legislation and current revision.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   Legislation node
+   * @param integer $referenceRevisionId
+   *   Referenced revision
+   *
+   * @return \Drupal\node\NodeInterface
+   */
+  function getNextExpression($node, $referenceRevisionId) {
+    try {
+      $revisions = $this->entityTypeManager
+        ->getStorage('node')
+        ->revisionIds($node);
+    } catch (\Exception $e) {}
+    sort($revisions);
+    $nextRevisionId = NULL;
+    foreach($revisions as $revisionId) {
+      // Next incremental node revision ID is always the following expression chronologically
+      if ($revisionId > $referenceRevisionId) {
+        $nextRevisionId = $revisionId;
+        break;
+      }
+    }
+    if ($nextRevisionId) {
+      try {
+        return $this->entityTypeManager
+          ->getStorage('node')
+          ->loadRevision($nextRevisionId);
+      } catch (\Exception $e) {}
+    }
+    return NULL;
+  }
 }
