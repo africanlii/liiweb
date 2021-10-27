@@ -1,0 +1,75 @@
+uuid: 99ec5c71-80c9-4133-8187-0cf8b955a4c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.judgment.field_judgment_old_nid
+    - node.type.judgment
+  module:
+    - feeds_ex
+    - node
+id: author_importer
+label: 'Author Importer'
+description: ''
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 6000
+parser: jsonpath
+parser_configuration:
+  context:
+    value: '$.nodes.*.*'
+  sources:
+    nid:
+      label: Nid
+      value: Nid
+    name:
+      label: Name
+      value: Name
+  display_errors: false
+  source_encoding:
+    - auto
+  debug_mode: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  langcode: en
+  update_existing: 2
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+  authorize: false
+  skip_hash_check: false
+  values:
+    type: judgment
+custom_sources:
+  nid:
+    label: Nid
+    value: Nid
+    machine_name: nid
+  name:
+    label: Name
+    value: Name
+    machine_name: name
+mappings:
+  -
+    target: field_judgment_old_nid
+    map:
+      value: nid
+    unique:
+      value: '1'
+    settings:
+      language: null
+  -
+    target: uid
+    map:
+      target_id: name
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: 0
