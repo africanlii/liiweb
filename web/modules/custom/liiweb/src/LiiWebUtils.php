@@ -172,6 +172,7 @@ class LiiWebUtils {
       }
     }
     return implode(" ", $messages);
+  /**
    * Extract JSON information from the given Legislation revision.
    *
    * @param \Drupal\node\Entity\Node|\Drupal\Core\Entity\EntityInterface $node
