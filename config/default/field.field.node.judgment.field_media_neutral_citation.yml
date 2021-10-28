@@ -20,5 +20,5 @@ default_value:
     value: ''
 default_value_callback: ''
 settings:
-  code: "// Sets the court code to the abbreviation of the taxonomy term\r\n\r\n$court_code =$entity->field_court_name->entity->field_court_code->value;\r\n\r\n//Pulls court date from the current node and stores it\r\n\r\n$courtdate = $entity->field_date->value;\r\n\r\n//Converts the court date to year only\r\n\r\n$courtdate_year = date('Y',strtotime($courtdate));\r\n\r\n// Sets the judgment number to the value of this node\r\n$judgment = $entity->field_judgment_number->value;\r\n\r\n\r\n// Sets the MNC to \"'[Court Date]' 'Court Code Abbreviation' 'Judgment Number'\"\r\n$value = \"[$courtdate_year]  $court_code  $judgment\" ;"
+  code: "// Sets the court code to the abbreviation of the taxonomy term\r\n\r\n$court_code =$entity->field_court_name->entity->field_court_code->value;\r\n\r\n//Pulls court date from the current node and stores it\r\n\r\n$courtdate = $entity->field_date->value;\r\n\r\n//Converts the court date to year only\r\n\r\n$courtdate_year = date('Y',strtotime($courtdate));\r\n\r\n// Sets the judgment number to the value of this node\r\n$judgment = $entity->field_judgment_number->value;\r\n\r\n\r\n// Sets the MNC to \"'[Court Date]' 'Court Code Abbreviation' 'Judgment Number'\"\r\n$value = \"[$courtdate_year] $court_code $judgment\" ;"
 field_type: computed_string
