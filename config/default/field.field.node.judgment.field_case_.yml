@@ -1,0 +1,37 @@
+uuid: 14f7cca6-2e05-4a66-aa22-04418b86445c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_case_
+    - node.type.judgment
+    - paragraphs.paragraphs_type.case_citation
+  module:
+    - entity_reference_revisions
+id: node.judgment.field_case_
+field_name: field_case_
+entity_type: node
+bundle: judgment
+label: 'Case Citation'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      case_citation: case_citation
+    target_bundles_drag_drop:
+      billboard_block:
+        weight: 4
+        enabled: false
+      case_citation:
+        enabled: true
+        weight: 5
+      work_repeal:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,19 @@
+uuid: 62061bc2-2aeb-414c-85a5-191a2e82a512
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_context
+    - paragraphs.paragraphs_type.case_citation
+id: paragraph.case_citation.field_context
+field_name: field_context
+entity_type: paragraph
+bundle: case_citation
+label: Context
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

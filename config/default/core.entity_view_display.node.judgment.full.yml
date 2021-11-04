@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.judgment.body
     - field.field.node.judgment.feeds_item
     - field.field.node.judgment.field_arbitrary_suffix
+    - field.field.node.judgment.field_case_
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
@@ -253,6 +254,7 @@ hidden:
   body: true
   feeds_item: true
   field_arbitrary_suffix: true
+  field_case_: true
   field_case_number_numeric: true
   field_case_number_old: true
   field_case_number_year: true

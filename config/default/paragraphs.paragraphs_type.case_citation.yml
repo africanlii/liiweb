@@ -1,0 +1,10 @@
+uuid: e7878314-f858-44af-a80d-c962f03f0e1a
+langcode: en
+status: true
+dependencies: {  }
+id: case_citation
+label: 'Case Citation'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

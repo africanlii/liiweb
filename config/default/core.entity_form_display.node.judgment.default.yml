@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.judgment.body
     - field.field.node.judgment.feeds_item
     - field.field.node.judgment.field_arbitrary_suffix
+    - field.field.node.judgment.field_case_
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
@@ -36,6 +37,7 @@ dependencies:
     - field_group
     - file
     - link
+    - paragraphs
     - path
     - text
 third_party_settings:
@@ -179,6 +181,18 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_case_:
+    type: entity_reference_paragraphs
+    weight: 28
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
     region: content
   field_case_name:
     weight: 12

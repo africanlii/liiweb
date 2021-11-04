@@ -1,0 +1,32 @@
+uuid: 3ab2d333-33a1-414e-b46f-9ef4b2f7dc0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.case_citation.field_case_title
+    - field.field.paragraph.case_citation.field_context
+    - paragraphs.paragraphs_type.case_citation
+id: paragraph.case_citation.default
+targetEntityType: paragraph
+bundle: case_citation
+mode: default
+content:
+  field_case_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_context:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+hidden:
+  created: true
+  status: true

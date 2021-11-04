@@ -1,0 +1,19 @@
+uuid: 7751c001-1a02-44cd-a230-9b024f455607
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_context
+field_name: field_context
+entity_type: paragraph
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
