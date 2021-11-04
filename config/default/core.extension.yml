@@ -85,6 +85,7 @@ module:
   recaptcha: 0
   responsive_image: 0
   rest: 0
+  rules: 0
   rw_organisation: 0
   rw_quicklinks: 0
   s3fs: 0
@@ -113,6 +114,7 @@ module:
   token: 0
   toolbar: 0
   toolbar_extras: 0
+  typed_data: 0
   update: 0
   user: 0
   views_bulk_operations: 0
