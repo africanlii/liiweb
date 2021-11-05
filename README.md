@@ -206,7 +206,6 @@ The easiest way is to use Docker
 2. Inside, create a configuration file `docker-compose.yml` with the content below
 
 ```
-solr.edw.ro solr # cat docker-compose.yml 
 version: '3.3'
 
 services:
