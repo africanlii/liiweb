@@ -1,0 +1,11 @@
+uuid: af9cfbba-a788-4bd6-ba0a-a2f12c685941
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.advocates
+id: taxonomy_term.advocates
+target_entity_type_id: taxonomy_term
+target_bundle: advocates
+default_langcode: site_default
+language_alterable: false

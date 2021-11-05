@@ -5,7 +5,11 @@ dependencies:
   config:
     - field.field.node.judgment.body
     - field.field.node.judgment.feeds_item
+    - field.field.node.judgment.field_advocate_s_for_the_applica
+    - field.field.node.judgment.field_advocate_s_for_the_respond
     - field.field.node.judgment.field_arbitrary_suffix
+    - field.field.node.judgment.field_attorney_s_of_the_applican
+    - field.field.node.judgment.field_attorney_s_of_the_responde
     - field.field.node.judgment.field_case_
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
@@ -174,6 +178,26 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_advocate_s_for_the_applica:
+    weight: 29
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_advocate_s_for_the_respond:
+    weight: 30
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_arbitrary_suffix:
     weight: 27
     settings:
@@ -181,6 +205,26 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_attorney_s_of_the_applican:
+    weight: 31
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_attorney_s_of_the_responde:
+    weight: 32
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_case_:
     type: entity_reference_paragraphs

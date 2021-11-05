@@ -1,0 +1,29 @@
+uuid: 4d314425-d2b8-41eb-967d-36cb5edcaa17
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attorney_s_of_the_responde
+    - node.type.judgment
+    - taxonomy.vocabulary.attorneys
+id: node.judgment.field_attorney_s_of_the_responde
+field_name: field_attorney_s_of_the_responde
+entity_type: node
+bundle: judgment
+label: 'Attorney(s) of the respondent'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      attorneys: attorneys
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

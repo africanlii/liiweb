@@ -1,0 +1,29 @@
+uuid: f74f386e-c85e-402f-b605-4d05ea2e9139
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_advocate_s_for_the_respond
+    - node.type.judgment
+    - taxonomy.vocabulary.advocates
+id: node.judgment.field_advocate_s_for_the_respond
+field_name: field_advocate_s_for_the_respond
+entity_type: node
+bundle: judgment
+label: 'Advocate(s) for the respondent'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      advocates: advocates
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

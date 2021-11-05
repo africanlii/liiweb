@@ -1,0 +1,11 @@
+uuid: e68f0387-05db-46e4-936f-55db26f2fe5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.attorneys
+id: taxonomy_term.attorneys
+target_entity_type_id: taxonomy_term
+target_bundle: attorneys
+default_langcode: site_default
+language_alterable: false
