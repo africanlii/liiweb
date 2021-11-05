@@ -30,9 +30,50 @@ Make sure you have Drush 9 installed. This guide helps installing the 'default' 
 ```bash
 cp web/sites/example.settings.local.php web/sites/default/settings.local.php
 ```
-Then open the configuration file and set the missing variables: `$settings['hash_salt']`, `$databases['default']['default'` at minimum. If available, configure additional settings: Solr integration etc.
 
-At this stage if you visit http://liiweb.test it should open the Drupal installation procedure. DO NOT FOLLOW THE INSTALLATION. Instead, follow the steps below.
+Open `web/sites/default/settings.local.php` and configure the following variables:
+
+- `$settings['hash_salt']` - Drupal hash_salt - For development can be any string
+- `$databases['default']['default'` - Database connection with valid database, username and password, see example below
+- Solr configuration - You need a working solr configuration (see FAQ below)
+
+Example:
+
+```
+$settings['hash_salt'] = 'ggxaq3QNDyWVhlqeV0gz7YHJJm39P5JOU4HekxOYGMnpMU78LKdHJGm1cPprsGW2YdycSZ';
+
+$databases['default']['default'] = [
+  'database' => 'liiweb',
+  'username' => 'root',
+  'password' => 'secret',
+  'host' => 'localhost',
+  'port' => '3306',
+  'driver' => 'mysql',
+  'prefix' => '',
+  'collation' => 'utf8mb4_general_ci',
+];
+
+
+/* SMTP module configuration - WARNING! Use MailHog or similar fake SMTP server to avoid sending REAL emails */
+$config['smtp.settings']['smtp_on'] = '1';
+$config['smtp.settings']['smtp_host'] = 'localhost';
+$config['smtp.settings']['smtp_port'] = 25;
+$config['smtp.settings']['smtp_protocol'] = 'standard';
+$config['smtp.settings']['smtp_from'] = 'user@example.com';
+$config['smtp.settings']['smtp_username'] = 'user@example.com';
+$config['smtp.settings']['smtp_password'] = '';
+
+/* Apache Solr configuration */
+$config['search_api.server.solr']['backend_config']['connector_config']['scheme'] = 'http';
+$config['search_api.server.solr']['backend_config']['connector_config']['host'] = '127.0.0.1';
+$config['search_api.server.solr']['backend_config']['connector_config']['port'] = '8983';
+$config['search_api.server.solr']['backend_config']['connector_config']['path'] = '/';
+$config['search_api.server.solr']['backend_config']['connector_config']['core'] = 'liiweb';
+$config['search_api.server.solr']['backend_config']['connector_config']['username'] = 'user';
+$config['search_api.server.solr']['backend_config']['connector_config']['password'] = 'pass';
+```
+
+At this stage browsing http://liiweb.test opens the Drupal installation procedure. DO NOT FOLLOW THE INSTALLATION. Instead, follow the steps below.
 
 5. Install the instance using Drush
 
@@ -157,6 +198,47 @@ See [docs/production.md](docs/production.md) for details on how to install this 
 
 ## FAQ
 
+### How do I configure Apache Solr
+
+The easiest way is to use Docker
+
+1. Create a separate folder on your server, i.e. `/opt/solr`
+2. Inside, create a configuration file `docker-compose.yml` with the content below
+
+```
+solr.edw.ro solr # cat docker-compose.yml 
+version: '3.3'
+
+services:
+  solr7:
+    image: library/solr:7
+    container_name: solr7
+    restart: unless-stopped
+    environment:
+      SOLR_JAVA_MEM: "-Xms512m -Xmx2g"
+    volumes:
+      - solr7-cores:/opt/solr/server/solr/cores
+    ports:
+      - 8983:8983
+    logging:
+        options:
+            max-size: "10m"
+            max-file: "3"
+
+volumes:
+  solr8-cores:
+```
+
+3. Start the Docker stack:
+
+```shell script
+# First time
+docker-compose pull
+docker-compose up -d
+```
+
+Note: The stack is set to start everytime docker daemon starts (i.e. when the computer boots).
+
 
 ### How can I install contrib modules?
 
@@ -188,4 +270,3 @@ section of composer.json:
 Licensed under GNU LGPLv3. See LICENSE.
 
 Copyright AfricanLII 2020-2021.
-
