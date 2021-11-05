@@ -35,26 +35,48 @@ Then open the configuration file and set the missing variables: `$settings['hash
 At this stage if you visit http://liiweb.test it should open the Drupal installation procedure. DO NOT FOLLOW THE INSTALLATION. Instead, follow the steps below.
 
 5. Install the instance using Drush
+
 ```shell script
-drush site:install --existing-config -y
-drush cim sync -y
-drush cr
+# Create a database in MySQL for the project (i.e. liiweb)
+mysql -u root -p -e "DROP DATABASE IF EXISTS liiweb; CREATE DATABASE liiweb"
+./vendor/bin/drush site:install --existing-config -y
 ```
+
+At this step you should see the output of a success install:
+
+```
+$> ./vendor/bin/drush site:install --existing-config -y
+
+ // You are about to DROP all tables in your 'liiweb' database. Do you want to continue?: yes.                          
+
+ [notice] Starting Drupal installation. This takes a while.
+ [success] Installation complete.  User name: admin  User password: etM5pZKU6P
+```
+
+Now install the project configuration:
+
+```
+./vendor/bin/drush cim sync -y
+./vendor/bin/drush cr
+```
+
 6. Open the local instance
 
-When you open the instance http://liiweb.test again you should be able to log in with the username and passwords set by Drush.
+When you open the instance http://liiweb.test/user again you should be able to log in with the username and passwords set by Drush during `site:install` task.
 
 ## Update local instance
 
 If you already have a local instance installed and configured with code and database, use `git` to get the latest developments from the `master` branch or switch to another branch you wish to test and use `git pull` to fetch changes, then execute the following commands:
+
 ```shell script
-drush updatedb -y
-drush cim sync -y
-drush updatedb -y
-drush locale:check -y
-drush locale:update -y
-drush cr
+./vendor/bin/drush updatedb -y
+./vendor/bin/drush cim sync -y
+./vendor/bin/drush updatedb -y
+./vendor/bin/drush locale:check -y
+./vendor/bin/drush locale:update -y
+./vendor/bin/drush cr
 ```
+
 Which imports the new configuration, applies all the pending updates and imports new translations - if available.
 
 If you experience any errors regarding missing modules during import make sure to run a `composer install` to install any newly added modules.
@@ -64,7 +86,7 @@ If you experience any errors regarding missing modules during import make sure t
 Step 1. Export any configuration chances done to your Drupal instance (i.e. add new fields, change settings).
 
 ```shell script
-drush cex -y
+./vendor/bin/drush cex -y
 ```
 
 Step 2. Stage for commit code and configuration changes (YML files). We recommend using `git add -p` to commit only relevant changes. Sometimes a configuration export might export other changes not necessarily related to current functionality.
