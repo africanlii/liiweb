@@ -19,19 +19,6 @@ function liiweb_legislation_help($route_name, RouteMatchInterface $route_match) 
   }
 }
 
-/**
- * Implements hook_field().
- *
- * Creating menu list using JSON data
- *
- */
-function liiweb_legislation_preprocess_field__node__field_toc__legislation(&$variables, $hook) {
-  if (empty($variables['items']['0']['content']['#context']['value'])) {
-    return;
-  }
-  $value = $variables['items']['0']['content']['#context']['value'];
-  $variables['toc_data_raw'] = $value;
-}
 
 /**
  * Implements hook_theme().
