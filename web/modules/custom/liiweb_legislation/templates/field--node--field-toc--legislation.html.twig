@@ -29,6 +29,7 @@
  * - items: List of all the field items. Each item contains:
  *   - attributes: List of HTML attributes for each item.
  *   - content: The field item's content.
+ * - toc_raw: Raw JSON string with TOC
  * - entity_type: The entity type to which the field belongs.
  * - field_name: The name of the field.
  * - field_type: The type of the field.
@@ -38,14 +39,7 @@
  * @see template_preprocess_field()
  */
 #}
-{% if table_content %}
-<nav class="table-of-contents__wrapper">
-  {{ table_content }}
-</nav>
-{% endif %}
 
+{{ attach_library('liibarrio2020/legislation-content') }}
 
-
-
-
-
+<textarea>{{ toc_data_raw }}</textarea>
