@@ -32,6 +32,8 @@ legislation-content:
       css/indigo-web.css: {}
   js:
     js/legislation.js: {}
+    https://cdn.jsdelivr.net/gh/laws-africa/la-web-components@v0.0.6-beta/dist/la-web-components/la-web-components.esm.js: { type: external }
+    https://cdn.jsdelivr.net/gh/laws-africa/la-web-components@v0.0.6-beta/dist/la-web-components/la-web-components.js: { type: external }
 
 font-awesome-replace:
   version: VERSION
