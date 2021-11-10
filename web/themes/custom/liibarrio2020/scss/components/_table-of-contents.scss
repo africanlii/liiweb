@@ -3,10 +3,16 @@
   overflow: scroll;
 }
 
-la-table-of-contents-controller .toggle__collapse-all-btn,
-la-table-of-contents-controller .toggle__expand-all-btn {
-  background-color: #326fd1;
-  border: none;
-  color: white;
-  outline: none;
+la-table-of-contents-controller {
+  .toggle__collapse-all-btn,
+  .toggle__expand-all-btn {
+    background-color: #326fd1;
+    border: none;
+    color: white;
+    outline: none;
+  }
+
+  .search__input {
+    width: 100%;
+  }
 }
