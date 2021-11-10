@@ -41,11 +41,13 @@
 
 {{ attach_library('liibarrio2020/legislation-content') }}
 
-<la-table-of-contents-controller items="{{ items.0.content }}">
+<div class="toc-container">
+  <la-table-of-contents-controller items="{{ items.0.content }}">
   <span slot="expand-icon">
     <i class="fas fa-caret-right"></i>
   ️</span>
-  <span slot="collapse-icon">
+    <span slot="collapse-icon">
     <i class="fas fa-caret-down"></i>
   </span>
-</la-table-of-contents-controller>
+  </la-table-of-contents-controller>
+</div>
