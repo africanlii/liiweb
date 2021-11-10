@@ -1,35 +1,12 @@
-.toc-list {
-  padding: 1rem;
-  margin-bottom: 2rem;
-  background-color: $white;
-  border: solid 1px #d5d5d5;
-  list-style-type: none;
+.toc-container {
+  height: 100vh;
+  overflow: scroll;
+}
 
-  ul,
-  ol {
-    list-style-type: none;
-    padding: 0 0 $spacer-md $spacer-md;
-  }
-
-  li {
-    line-height: 1.25;
-    margin-bottom: 4px;
-
-    &.toc-has-children {
-      margin-bottom: $spacer-md;
-    }
-  }
-
-  & > li > a {
-    font-weight: bold;
-  }
-
-  li.toc-has-children > a,
-  .toc-item-doc > a {
-    font-weight: bold;
-  }
-
-  .table-of-contents--child {
-    padding-top: $spacer-sm;
-  }
+la-table-of-contents-controller .toggle__collapse-all-btn,
+la-table-of-contents-controller .toggle__expand-all-btn {
+  background-color: #326fd1;
+  border: none;
+  color: white;
+  outline: none;
 }
