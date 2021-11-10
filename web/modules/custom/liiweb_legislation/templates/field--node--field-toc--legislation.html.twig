@@ -42,7 +42,14 @@
 {{ attach_library('liibarrio2020/legislation-content') }}
 
 <div class="toc-container">
-  <la-table-of-contents-controller items="{{ items.0.content }}" title-filter-placeholder="Search the table of contents">
+  <la-table-of-contents-controller
+    items="{{ items.0.content }}"
+    title-filter-placeholder="Search the table of contents"
+    expand-all-btn-classes="btn btn-primary btn-sm"
+    collapse-all-btn-classes="btn btn-primary btn-sm"
+    search-filter-input-classes="form-control"
+
+  >
   <span slot="expand-icon">
     <i class="fas fa-caret-right"></i>
   ️</span>
