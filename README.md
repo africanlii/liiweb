@@ -30,31 +30,94 @@ Make sure you have Drush 9 installed. This guide helps installing the 'default' 
 ```bash
 cp web/sites/example.settings.local.php web/sites/default/settings.local.php
 ```
-Then open the configuration file and set the missing variables: `$settings['hash_salt']`, `$databases['default']['default'` at minimum. If available, configure additional settings: Solr integration etc.
 
-At this stage if you visit http://liiweb.test it should open the Drupal installation procedure. DO NOT FOLLOW THE INSTALLATION. Instead, follow the steps below.
+Open `web/sites/default/settings.local.php` and configure the following variables:
+
+- `$settings['hash_salt']` - Drupal hash_salt - For development can be any string
+- `$databases['default']['default'` - Database connection with valid database, username and password, see example below
+- Solr configuration - You need a working solr configuration (see FAQ below)
+
+Example:
+
+```
+$settings['hash_salt'] = 'ggxaq3QNDyWVhlqeV0gz7YHJJm39P5JOU4HekxOYGMnpMU78LKdHJGm1cPprsGW2YdycSZ';
+
+$databases['default']['default'] = [
+  'database' => 'liiweb',
+  'username' => 'root',
+  'password' => 'secret',
+  'host' => 'localhost',
+  'port' => '3306',
+  'driver' => 'mysql',
+  'prefix' => '',
+  'collation' => 'utf8mb4_general_ci',
+];
+
+
+/* SMTP module configuration - WARNING! Use MailHog or similar fake SMTP server to avoid sending REAL emails */
+$config['smtp.settings']['smtp_on'] = '1';
+$config['smtp.settings']['smtp_host'] = 'localhost';
+$config['smtp.settings']['smtp_port'] = 25;
+$config['smtp.settings']['smtp_protocol'] = 'standard';
+$config['smtp.settings']['smtp_from'] = 'user@example.com';
+$config['smtp.settings']['smtp_username'] = 'user@example.com';
+$config['smtp.settings']['smtp_password'] = '';
+
+/* Apache Solr configuration */
+$config['search_api.server.solr']['backend_config']['connector_config']['scheme'] = 'http';
+$config['search_api.server.solr']['backend_config']['connector_config']['host'] = '127.0.0.1';
+$config['search_api.server.solr']['backend_config']['connector_config']['port'] = '8983';
+$config['search_api.server.solr']['backend_config']['connector_config']['path'] = '/';
+$config['search_api.server.solr']['backend_config']['connector_config']['core'] = 'liiweb';
+$config['search_api.server.solr']['backend_config']['connector_config']['username'] = 'user';
+$config['search_api.server.solr']['backend_config']['connector_config']['password'] = 'pass';
+```
+
+At this stage browsing http://liiweb.test opens the Drupal installation procedure. DO NOT FOLLOW THE INSTALLATION. Instead, follow the steps below.
 
 5. Install the instance using Drush
+
 ```shell script
-drush site:install --existing-config -y
-drush cim sync -y
-drush cr
+# Create a database in MySQL for the project (i.e. liiweb)
+mysql -u root -p -e "DROP DATABASE IF EXISTS liiweb; CREATE DATABASE liiweb"
+./vendor/bin/drush site:install --existing-config -y
 ```
+
+At this step you should see the output of a success install:
+
+```
+$> ./vendor/bin/drush site:install --existing-config -y
+
+ // You are about to DROP all tables in your 'liiweb' database. Do you want to continue?: yes.                          
+
+ [notice] Starting Drupal installation. This takes a while.
+ [success] Installation complete.  User name: admin  User password: etM5pZKU6P
+```
+
+Now install the project configuration:
+
+```
+./vendor/bin/drush cim sync -y
+./vendor/bin/drush cr
+```
+
 6. Open the local instance
 
-When you open the instance http://liiweb.test again you should be able to log in with the username and passwords set by Drush.
+When you open the instance http://liiweb.test/user again you should be able to log in with the username and passwords set by Drush during `site:install` task.
 
 ## Update local instance
 
 If you already have a local instance installed and configured with code and database, use `git` to get the latest developments from the `master` branch or switch to another branch you wish to test and use `git pull` to fetch changes, then execute the following commands:
+
 ```shell script
-drush updatedb -y
-drush cim sync -y
-drush updatedb -y
-drush locale:check -y
-drush locale:update -y
-drush cr
+./vendor/bin/drush updatedb -y
+./vendor/bin/drush cim sync -y
+./vendor/bin/drush updatedb -y
+./vendor/bin/drush locale:check -y
+./vendor/bin/drush locale:update -y
+./vendor/bin/drush cr
 ```
+
 Which imports the new configuration, applies all the pending updates and imports new translations - if available.
 
 If you experience any errors regarding missing modules during import make sure to run a `composer install` to install any newly added modules.
@@ -64,7 +127,7 @@ If you experience any errors regarding missing modules during import make sure t
 Step 1. Export any configuration chances done to your Drupal instance (i.e. add new fields, change settings).
 
 ```shell script
-drush cex -y
+./vendor/bin/drush cex -y
 ```
 
 Step 2. Stage for commit code and configuration changes (YML files). We recommend using `git add -p` to commit only relevant changes. Sometimes a configuration export might export other changes not necessarily related to current functionality.
@@ -135,6 +198,46 @@ See [docs/production.md](docs/production.md) for details on how to install this 
 
 ## FAQ
 
+### How do I configure Apache Solr
+
+The easiest way is to use Docker
+
+1. Create a separate folder on your server, i.e. `/opt/solr`
+2. Inside, create a configuration file `docker-compose.yml` with the content below
+
+```
+version: '3.3'
+
+services:
+  solr7:
+    image: library/solr:7
+    container_name: solr7
+    restart: unless-stopped
+    environment:
+      SOLR_JAVA_MEM: "-Xms512m -Xmx2g"
+    volumes:
+      - solr7-cores:/opt/solr/server/solr/cores
+    ports:
+      - 8983:8983
+    logging:
+        options:
+            max-size: "10m"
+            max-file: "3"
+
+volumes:
+  solr8-cores:
+```
+
+3. Start the Docker stack:
+
+```shell script
+# First time
+docker-compose pull
+docker-compose up -d
+```
+
+Note: The stack is set to start everytime docker daemon starts (i.e. when the computer boots).
+
 
 ### How can I install contrib modules?
 
@@ -166,4 +269,3 @@ section of composer.json:
 Licensed under GNU LGPLv3. See LICENSE.
 
 Copyright AfricanLII 2020-2021.
-
