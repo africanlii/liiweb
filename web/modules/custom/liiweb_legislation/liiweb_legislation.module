@@ -6,139 +6,19 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Component\Serialization\Json;
-use Drupal\Core\Link;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\Url;
 
 /**
  * Implements hook_help().
  */
 function liiweb_legislation_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
-    // Main module help for the liiweb_legislation module.
     case 'help.page.liiweb_legislation':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
+      $output = '<h3>' . t('About') . '</h3>';
       $output .= '<p>' . t('Provide extra') . '</p>';
       return $output;
-
-    default:
   }
 }
 
-/**
- * Implements hook_views_pre_render().
- *
- * Creating menu list using JSON data
- *
- */
-
-function liiweb_legislation_views_pre_render( $view)
-{
-  if ($view->id() == 'legislation') {
-
-  }
-}
-
-/**
- * Implements hook_field().
- *
- * Creating menu list using JSON data
- *
- */
-function liiweb_legislation_preprocess_field__node__field_toc__legislation(&$variables, $hook)
-{
-
-  $data = $variables['items']['0']['content']['#context']['value'];
-  // dump($variables);
-  $data = Json::decode($data);
-
-  $items = [];
-  $values = [];
-
-  $variables['table_content'] = [
-    '#theme'      => 'item_list__table_of_contents',
-    '#type'       => 'ol',
-    '#attributes' => [
-      'class'     => ['toc-list menu-items'],
-    ],
-  ];
-
-  foreach ($data as $key => $menu_item) {
-    $items[] = liiweb_legislation_write_menu_item($menu_item);
-  }
-
-$variables['table_content']['#items'] = $items;
-  // dump($variables['table_content']);
-
-}
-
-
-/**
- * Implements liiweb_legislation_write_menu_item().
- *
- * Creating list item with nested list item
- *
- * @param string $menu_item
- *
- */
-function liiweb_legislation_write_menu_item($menu_item , $parent_id = Null)
-{
-
-  // $parent_id = $menu_item['id'];
-  // exit;
-//  dump($menu_item);
-  try {
-    $link = Link::fromTextAndUrl($menu_item['title'], Url::fromUri($menu_item['url'], [
-      'attributes' => [
-        'target' => '_blank',
-        'class'  => ['link-item'],
-      ]
-    ]));
-
-    $item = [
-      '#markup' => '<a href="#'  . $menu_item['id'] . '" class="link-item" >' . $menu_item['title'] . '</a>',
-      '#wrapper_attributes' => [
-        'class'             => ['toc-item-' . $menu_item['type']],
-      ],
-    ];
-
-  } catch (Exception $e) {
-    // Generic exception handling if something else gets thrown.
-    \Drupal::logger($item)->error($e->getMessage());
-  }
-
-  // check if list has children
-  if (isset($menu_item['children'])) {
-    $items = [];
-    $menu  = [
-      '#theme'      => 'item_list__table_of_contents__child',
-      '#type'       => 'ul',
-      '#attributes' => [
-        'class'     => ['menu-items has-children'],
-      ],
-    ];
-
-
-    $parent_id = $menu_item['component'];
-    //loop through children and return item_list
-    foreach ($menu_item['children'] as $key => $menu_item) {
-      // dump($menu_item);
-
-      $items[] = liiweb_legislation_write_menu_item($menu_item, $parent_id . '/');
-
-      // if ($menu_item['children']) {
-      // }
-    }
-    $menu['#items'] = $items;
-    $item['menu_items'] = $menu;
-  }
-  // dump($value);
-
-  return $item;
-}
 
 /**
  * Implements hook_theme().
@@ -154,7 +34,6 @@ function liiweb_legislation_theme() {
   ];
 
   // view custom block tab
-
   $theme['view_tabs_block'] = [
     'template'  => 'view-tabs-block',
     'path'      => $path,
