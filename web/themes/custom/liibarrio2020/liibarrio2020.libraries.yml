@@ -28,7 +28,7 @@ nicescroll:
 legislation-content:
   version: VERSION
   js:
-    https://cdn.jsdelivr.net/gh/laws-africa/la-web-components@v0.3.0-beta/dist/la-web-components/la-web-components.esm.js: {
+    https://cdn.jsdelivr.net/gh/laws-africa/la-web-components@0.3.0-beta/dist/la-web-components/la-web-components.bundle.js: {
         type: external,
         minified: true,
         attributes: { type: module }
