@@ -76,6 +76,7 @@ third_party_settings:
         - field_toc
       right:
         - field_content
+        - legislation_pdf_conditional_entity_view_1
       footer:
         - links
     fields:
@@ -105,12 +106,12 @@ bundle: legislation
 mode: full
 content:
   field_content:
+    type: text_default
     weight: 8
+    region: right
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
-    region: right
   field_files:
     type: lii_file
     weight: 5
@@ -180,8 +181,13 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-  links:
+  legislation_pdf_conditional_entity_view_1:
     weight: 9
+    region: right
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 10
     region: footer
     settings: {  }
     third_party_settings: {  }
