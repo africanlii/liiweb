@@ -11,8 +11,7 @@ const paths = {
   scss: {
     src: "./scss/main.scss",
     dest: "./css",
-    watch: "./scss/**/*.scss",
-    indigo_web: "./node_modules/indigo-web/css/indigo-web.css",
+    watch: "./scss/**/*.scss"
   },
   js: {
     bootstrap: "./node_modules/bootstrap/dist/js/bootstrap.min.js",
@@ -26,7 +25,7 @@ const paths = {
 // Compile sass into CSS & auto-inject into browsers
 function styles() {
   return gulp
-    .src([paths.scss.indigo_web, paths.scss.src])
+    .src([paths.scss.src])
     .pipe(sourcemaps.init())
     .pipe(sass().on("error", sass.logError))
     .pipe(
