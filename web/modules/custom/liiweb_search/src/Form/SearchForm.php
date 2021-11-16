@@ -4,6 +4,7 @@ namespace Drupal\liiweb_search\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 /**
  * Class SearchForm.
@@ -33,7 +34,8 @@ class SearchForm extends FormBase {
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
     ];
-
+    $form['#method'] = 'get';
+    $form['#action'] = Url::fromRoute('view.liiweb_search.page_search')->toString();
     return $form;
   }
 
