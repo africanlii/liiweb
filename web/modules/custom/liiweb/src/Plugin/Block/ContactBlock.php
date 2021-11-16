@@ -26,7 +26,7 @@ class ContactBlock extends BlockBase {
     //Address
     $address = [
       'address_1'   => '',
-      'address_2'    =>'',
+      'address_2'    => '',
       'address_3'   => '',
     ];
     foreach ($address as $add => $val) {
@@ -55,15 +55,17 @@ class ContactBlock extends BlockBase {
 
     //website email
     $items['website_email'][] = [
-      '#markup' => '<a href="https://tanzlii.org/" target="_blank" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i>tanzlii.org</a>',
+
+      '#markup' => '<a href="https://africanlii.org/" target="_blank" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i>africanlii.org</a>',
     ];
     $items['website_email'][] = [
-      '#markup' => '<a href="mailto:info@tanzlii.org" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@tanzlii.org</a>',
+      '#markup' => '<a href="mailto:info@africanlii.org" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@africanlii.org</a>',
+
     ];
 
     //Social media
     $platforms = [
-      'fab fa-facebook-square' => 'https://facebook.com/AfricanLII/',
+      'fab fa-facebook-square' => 'https://facebook.com/africanlii/',
       'fab fa-twitter-square'    => 'https://twitter.com/AfricanLII',
     ];
 

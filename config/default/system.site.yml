@@ -1,11 +1,15 @@
 uuid: c4a3bac4-f642-42b8-b339-3dd80682442f
+<<<<<<< HEAD
 name: Tanzlii
+=======
+name: SwaziLII
+>>>>>>> 24aef91d756e455009aef69fc201b4c4c2ff9314
 mail: no-reply@example.com
 slogan: ''
 page:
   403: ''
   404: ''
-  front: /node/110
+  front: /node/7629
 admin_compact_mode: false
 weight_select_max: 100
 langcode: en

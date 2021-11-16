@@ -14,7 +14,7 @@ provider: null
 plugin: text_block
 settings:
   id: text_block
-  label: 'About Tanzlii'
+  label: 'About SwaziLII'
   provider: liiweb
   label_display: visible
   text:
