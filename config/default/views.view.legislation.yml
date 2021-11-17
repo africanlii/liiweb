@@ -1767,9 +1767,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: "h2 class="h3">Tanzanian consolidated legislation</h3>
-<p> <b>This collection of consolidated and updated legislation is provided in partnership with the <a href = "https://laws.africa/" target="_blank"> Laws.Africa</a> .</b> The legislation was revised, up to and including 30th November 2019, by the office of the Attorney General and is printed under the authority of section 4 of the Laws Revision Act, Chapter 4.</p>
-<p> Laws.Africa digitises and consolidates African legislation for public use. </p>"
+            value: "h2 class="h3">Tanzanian consolidated legislation</h3> <p> <b>This collection of consolidated and updated legislation is provided in partnership with the <a href = "https://laws.africa/" target="_blank"> Laws.Africa</a> .</b> The legislation was revised, up to and including 30th November 2019, by the office of the Attorney General and is printed under the authority of section 4 of the Laws Revision Act, Chapter 4.</p> <p> Laws.Africa digitises and consolidates African legislation for public use. </p>"
             format: full_html
           plugin_id: text
       style:
