@@ -57,8 +57,7 @@
     background: #fff;
 
     a {
-      padding: calc(#{$grid-gutter-width} / 2);
-      padding-bottom: 0;
+      padding: calc(#{$grid-gutter-width} / 3);
       display: block;
     }
   }
