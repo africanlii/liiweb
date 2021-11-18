@@ -33,7 +33,7 @@ dependencies:
     - field.field.node.judgment.field_locality
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citatio
-    - field.field.node.judgment.field_registr
+    - field.field.node.judgment.field_registry
     - field.field.node.judgment.field_orde
     - field.field.node.judgment.field_search_summary
     - field.field.node.judgment.field_source_url
