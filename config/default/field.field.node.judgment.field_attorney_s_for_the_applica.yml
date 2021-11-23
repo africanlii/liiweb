@@ -1,0 +1,29 @@
+uuid: 03bec6aa-cc13-455f-b1bd-a5dffa20909a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attorney_s_for_the_applica
+    - node.type.judgment
+    - taxonomy.vocabulary.attorney_s_
+id: node.judgment.field_attorney_s_for_the_applica
+field_name: field_attorney_s_for_the_applica
+entity_type: node
+bundle: judgment
+label: 'Attorney(s) for the applicant'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      attorney_s_: attorney_s_
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
