@@ -1,7 +1,13 @@
-{% extends "field.html.twig" %}
 {% set attributes = attributes.addClass('country-' ~ element.country) %}
 
 {% block libraries %}
   {{ attach_library('liibarrio2020/legislation-content') }}
 {% endblock %}
 
+<la-akoma-ntoso
+  frbr-expression-uri="{{ element.expression_frbr_uri }}"
+  class="flash-target">
+  <la-decorate-terms link-terms popup-definitions></la-decorate-terms>
+  <la-decorate-internal-refs popups flag></la-decorate-internal-refs>
+  {{ items.0.content }}
+</la-akoma-ntoso>
