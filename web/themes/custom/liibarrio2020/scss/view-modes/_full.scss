@@ -44,7 +44,7 @@
   &.node--type-legislation {
     .content-aside--inner-wrapper {
       position: sticky;
-      top: -6rem;
+      top: -4rem;
 
       .toc-list {
         max-height: 80vh;
@@ -57,8 +57,7 @@
     background: #fff;
 
     a {
-      padding: calc(#{$grid-gutter-width} / 2);
-      padding-bottom: 0;
+      padding: calc(#{$grid-gutter-width} / 3);
       display: block;
     }
   }
