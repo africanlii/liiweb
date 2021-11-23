@@ -68,6 +68,7 @@ function liiweb_legislation_node_view(array &$build, \Drupal\Core\Entity\EntityI
     $build['#attached']['drupalSettings']['liiweb_legislation']['raw_json'] = $expressionJson;
     // stash the country code for use when displaying the legislation content
     $build['field_content']['country'] = $expressionJson->country;
+    $build['field_content']['expression_frbr_uri'] = $expressionJson->expression_frbr_uri;
 
     try {
       /** @var \Drupal\node\Entity\Node $repeal */
