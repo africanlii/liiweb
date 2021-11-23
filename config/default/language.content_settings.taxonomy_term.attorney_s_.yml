@@ -1,0 +1,11 @@
+uuid: 59717109-cc5c-442c-a533-f5eb790be39c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.attorney_s_
+id: taxonomy_term.attorney_s_
+target_entity_type_id: taxonomy_term
+target_bundle: attorney_s_
+default_langcode: site_default
+language_alterable: false
