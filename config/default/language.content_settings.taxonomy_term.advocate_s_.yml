@@ -1,0 +1,11 @@
+uuid: 4f1baf7e-adf2-487e-9717-9acbffbb7082
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.advocate_s_
+id: taxonomy_term.advocate_s_
+target_entity_type_id: taxonomy_term
+target_bundle: advocate_s_
+default_langcode: site_default
+language_alterable: false
