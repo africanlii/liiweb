@@ -5,7 +5,11 @@ dependencies:
   config:
     - field.field.node.judgment.body
     - field.field.node.judgment.feeds_item
+    - field.field.node.judgment.field_advocate_s_for_the_applica
+    - field.field.node.judgment.field_advocate_s_for_the_respond
     - field.field.node.judgment.field_arbitrary_suffix
+    - field.field.node.judgment.field_attorney_s_for_the_applica
+    - field.field.node.judgment.field_attorney_s_for_the_respond
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
@@ -28,6 +32,7 @@ dependencies:
     - field.field.node.judgment.field_locality
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
+    - field.field.node.judgment.field_order
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
@@ -62,6 +67,7 @@ third_party_settings:
         - field_flynote_local
         - field_search_summary
         - field_headnote_and_holding
+        - field_order
       parent_name: group_group
       weight: 22
       format_type: tab
@@ -90,6 +96,11 @@ third_party_settings:
         - field_media_neutral_citation
         - field_judge
         - field_law_report_citations
+        - field_case_number
+        - field_advocate_s_for_the_applica
+        - field_advocate_s_for_the_respond
+        - field_attorney_s_for_the_applica
+        - field_attorney_s_for_the_respond
       parent_name: group_group
       weight: 21
       format_type: tab
@@ -172,6 +183,26 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_advocate_s_for_the_applica:
+    weight: 29
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_advocate_s_for_the_respond:
+    weight: 30
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_arbitrary_suffix:
     weight: 27
     settings:
@@ -179,6 +210,26 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_attorney_s_for_the_applica:
+    weight: 31
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_attorney_s_for_the_respond:
+    weight: 32
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_case_name:
     weight: 12
@@ -350,6 +401,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: computed_string_widget
+    region: content
+  field_order:
+    weight: 28
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
     region: content
   field_search_summary:
     weight: 20
