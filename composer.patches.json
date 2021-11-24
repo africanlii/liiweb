@@ -9,6 +9,9 @@
     },
     "drupal/facets": {
       "Test scanning fails with The 'core' or the 'core_version_requirement' key must be present ...": "patches/facets/3182762-1.diff"
+    },
+    "drupal/redirect": {
+      "Allow for wildcards within redirects": "patches/redirect/support-for-wildcard-2831605-83.patch"
     }
   }
 }
