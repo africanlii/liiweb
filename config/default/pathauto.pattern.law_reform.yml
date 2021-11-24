@@ -8,7 +8,7 @@ dependencies:
 id: law_reform
 label: 'Law Reform'
 type: 'canonical_entities:node'
-pattern: 'na/other/law-reform-report/[node:field_citation]'
+pattern: 'gh/other/law-reform-report/[node:field_citation]'
 selection_criteria:
   18d3461b-415f-48b2-b9fb-f45b4b7cbff3:
     id: node_type
