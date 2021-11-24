@@ -4,11 +4,13 @@
       "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch"
     },
     "drupal/filefield_paths": {
-      "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch",
-      "Token replacement generate leaked cache metadata": "https://www.drupal.org/files/issues/2019-08-13/fieldfield_path-leaked_cache_metadata-3074642-2.patch"
+      "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch"
     },
     "drupal/facets": {
       "Test scanning fails with The 'core' or the 'core_version_requirement' key must be present ...": "patches/facets/3182762-1.diff"
+    },
+    "drupal/redirect": {
+      "Allow for wildcards within redirects": "patches/redirect/support-for-wildcard-2831605-83.patch"
     }
   }
 }
