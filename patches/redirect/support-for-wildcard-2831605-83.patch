@@ -1,0 +1,129 @@
+diff --git a/src/Plugin/Field/FieldWidget/RedirectSourceWidget.php b/src/Plugin/Field/FieldWidget/RedirectSourceWidget.php
+index a07f218..9e0a17a 100644
+--- a/src/Plugin/Field/FieldWidget/RedirectSourceWidget.php
++++ b/src/Plugin/Field/FieldWidget/RedirectSourceWidget.php
+@@ -48,6 +48,9 @@ class RedirectSourceWidget extends WidgetBase {
+       '#required' => $element['#required'],
+       '#field_prefix' => Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString(),
+       '#attributes' => ['data-disable-refocus' => 'true'],
++      '#description' => $this->t("Specify pages by using their paths. The '*' character is a wildcard. An example path is %user-wildcard for every user page.", [
++        '%user-wildcard' => '/user/*',
++      ]),
+     ];
+ 
+     // If creating new URL add checks.
+diff --git a/src/RedirectRepository.php b/src/RedirectRepository.php
+index ff1ccf8..cc33f91 100644
+--- a/src/RedirectRepository.php
++++ b/src/RedirectRepository.php
+@@ -79,6 +79,53 @@ class RedirectRepository {
+ 
+     // Load redirects by hash. A direct query is used to improve performance.
+     $rid = $this->connection->query('SELECT rid FROM {redirect} WHERE hash IN (:hashes[]) ORDER BY LENGTH(redirect_source__query) DESC', [':hashes[]' => $hashes])->fetchField();
++    $wildcard_path = FALSE;
++    if (empty($rid)) {
++      // Check for a wildcard pattern.
++      $patterns = $this->connection
++        ->query("SELECT rid, language, redirect_source__path AS pattern FROM {redirect} WHERE redirect_source__path LIKE '%*%' ORDER BY LENGTH(redirect_source__query) DESC")
++        ->fetchAll();
++      $wildcard_matches = [];
++      foreach ($patterns as $rule) {
++        $pattern = str_replace('/*', '*', $rule->pattern);
++        if (fnmatch($pattern, $source_path)) {
++          // If the original rule ends in /*, it's a folder redirect and should
++          // also match the plain Ã¢â‚¬Â<U+009D>folderÃ¢â‚¬Â<U+009D> without slash.
++          if (substr($rule->pattern, -2) == '/*') {
++            $expr = '!' . str_replace('/*', '(\/.*)', $rule->pattern) . '!';
++            if (!preg_match($expr, $source_path, $matches)) {
++              continue;
++            }
++            $rule->wildcard_value = $matches[1];
++          }
++          $wildcard_matches[$rule->language] = $rule;
++        }
++      }
++      if (!empty($wildcard_matches)) {
++        $wildcard_language = '';
++        if (array_key_exists($language, $wildcard_matches)) {
++          $wildcard_language = $language;
++        }
++        elseif (array_key_exists(Language::LANGCODE_NOT_SPECIFIED, $wildcard_matches)) {
++          $wildcard_language = Language::LANGCODE_NOT_SPECIFIED;
++        }
++        if (!empty($wildcard_language)) {
++          $rid = $wildcard_matches[$wildcard_language]->rid;
++          $pattern = $wildcard_matches[$wildcard_language]->pattern;
++          $tr = [
++            '*' => '',
++          ];
++          if (empty($rule->wildcard_value)) {
++            $tr = ['/*' => ''] + $tr;
++          }
++          $raw_pattern = strtr($pattern, $tr);
++          $wildcard_path = str_replace($raw_pattern, '', $source_path);
++          if(strpos($wildcard_path, '/') === 0){
++            $wildcard_path = substr($wildcard_path, 1);
++          }
++        }
++      }
++    }
+ 
+     if (!empty($rid)) {
+       // Check if this is a loop.
+@@ -96,6 +143,11 @@ class RedirectRepository {
+         return $recursive;
+       }
+ 
++      // Reset set redirect URL with wildcard path.
++      if (isset($wildcard_path) && strpos($redirect->getRedirect()['uri'], "entity:") === false) {
++        $redirect_url = str_replace(' ', '%20', str_replace("internal:", "", str_replace("*", $wildcard_path, $redirect->getRedirect()['uri'])));
++        $redirect->setRedirect($redirect_url);
++      }
+       return $redirect;
+     }
+ 
+diff --git a/tests/src/Functional/RedirectUITest.php b/tests/src/Functional/RedirectUITest.php
+index 51fb2ab..7abc424 100644
+--- a/tests/src/Functional/RedirectUITest.php
++++ b/tests/src/Functional/RedirectUITest.php
+@@ -271,4 +271,40 @@ class RedirectUITest extends BrowserTestBase {
+     $this->drupalLogin($this->adminUser);
+   }
+ 
++  /**
++   * Test wildcards source and destinations.
++   */
++  public function testWildcards() {
++
++    $redirect1 = $this->storage->create();
++    $redirect1->setSource('a-path/*');
++    $redirect1->redirect_redirect->set(0, ['uri' => 'https://www.example.org']);
++    $redirect1->setStatusCode(301);
++    $redirect1->save();
++
++    $redirect2 = $this->storage->create();
++    $redirect2->setSource('b-path/*');
++    $redirect2->redirect_redirect->set(0, ['uri' => 'https://www.example.org/*']);
++    $redirect2->setStatusCode(301);
++    $redirect2->save();
++
++    $redirect3 = $this->storage->create();
++    $redirect3->setSource('c-path/*');
++    $redirect3->setRedirect('<front>');
++    $redirect3->setStatusCode(301);
++    $redirect3->save();
++
++    $redirect4 = $this->storage->create();
++    $redirect4->setSource('d-path/*');
++    $redirect4->setRedirect('node');
++    $redirect4->setStatusCode(301);
++    $redirect4->save();
++
++    $this->assertRedirect('a-path/b-path', 'https://www.example.org');
++    $this->assertRedirect('b-path/a-path', 'https://www.example.org/a-path');
++    $this->assertRedirect('c-path/a-path', '<front>');
++    $this->assertRedirect('d-path/a-path', 'node');
++    $this->drupalLogin($this->adminUser);
++  }
++
+ }
