@@ -6,7 +6,11 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.judgment.body
     - field.field.node.judgment.feeds_item
+    - field.field.node.judgment.field_advocate_s_for_the_applica
+    - field.field.node.judgment.field_advocate_s_for_the_respond
     - field.field.node.judgment.field_arbitrary_suffix
+    - field.field.node.judgment.field_attorney_s_for_the_applica
+    - field.field.node.judgment.field_attorney_s_for_the_respond
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
@@ -29,6 +33,7 @@ dependencies:
     - field.field.node.judgment.field_locality
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
+    - field.field.node.judgment.field_order
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
@@ -100,7 +105,11 @@ content:
 hidden:
   body: true
   feeds_item: true
+  field_advocate_s_for_the_applica: true
+  field_advocate_s_for_the_respond: true
   field_arbitrary_suffix: true
+  field_attorney_s_for_the_applica: true
+  field_attorney_s_for_the_respond: true
   field_case_name: true
   field_case_number: true
   field_case_number_numeric: true
@@ -123,5 +132,6 @@ hidden:
   field_locality: true
   field_matter_type: true
   field_media_neutral_citation: true
+  field_order: true
   langcode: true
   links: true
