@@ -1,6 +1,6 @@
 uuid: c1240b30-6d1d-4611-b9ad-9b66d0c18f01
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.rw_organisations

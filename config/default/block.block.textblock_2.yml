@@ -1,6 +1,6 @@
 uuid: cd513cb8-0036-4065-b10d-281ea484162a
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - liiweb
@@ -15,11 +15,11 @@ provider: null
 plugin: text_block
 settings:
   id: text_block
-  label: 'About NamibLII'
+  label: 'About ULII'
   provider: liiweb
   label_display: visible
   text:
-    value: "<p>NamibLII publishes the laws of Namibia for free online access. NamibLII is operated by the Law Reform and Development Commission of Namibia.</p>\r\n"
+    value: "<p>ULII publishes the laws of Uganda for free online access. ULII is part of the Law Reporting Committee of the Judiciary of Uganda.</p>\r\n"
     format: full_html
 visibility:
   request_path:

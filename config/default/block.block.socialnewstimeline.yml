@@ -1,6 +1,6 @@
 uuid: aa3c2b3e-36fc-4bdc-8adb-4bb0e8cab0f3
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - liiweb
@@ -18,12 +18,12 @@ settings:
   label: 'Social News timeline'
   provider: liiweb
   label_display: '0'
-  facebook_window_height: 500
-  twitter_account_name: africanlii
+  facebook_window_height: 600
+  twitter_account_name: Uganda_LII
   twitter_window_width: null
-  twitter_window_height: 600
+  twitter_window_height: 500
   twitter_theme_color: light
-  facebook_page_url: 'https://www.facebook.com/namiblii'
+  facebook_page_url: 'https://www.facebook.com/UgandaLII/'
   facebook_app_id: ''
 visibility:
   request_path:

@@ -6,6 +6,7 @@ dependencies:
     - views.view.liiweb_search
   module:
     - system
+    - user
     - views
   theme:
     - liibarrio2020
@@ -27,3 +28,10 @@ visibility:
     pages: "<front>\r\n/search"
     negate: true
     context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      system: system
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
