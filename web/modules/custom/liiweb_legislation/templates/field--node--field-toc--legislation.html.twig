@@ -29,7 +29,7 @@
  * - items: List of all the field items. Each item contains:
  *   - attributes: List of HTML attributes for each item.
  *   - content: The field item's content.
- * - entity_type: The entity type to which the field belongs.
+  * - entity_type: The entity type to which the field belongs.
  * - field_name: The name of the field.
  * - field_type: The type of the field.
  * - label_display: The display settings for the label.
@@ -38,14 +38,23 @@
  * @see template_preprocess_field()
  */
 #}
-{% if table_content %}
-<nav class="table-of-contents__wrapper">
-  {{ table_content }}
-</nav>
-{% endif %}
 
+{{ attach_library('liibarrio2020/legislation-content') }}
 
+<div class="toc-container">
+  <la-table-of-contents-controller
+    items="{{ items.0.content }}"
+    title-filter-placeholder="Search the table of contents"
+    expand-all-btn-classes="btn btn-primary btn-sm"
+    collapse-all-btn-classes="btn btn-primary btn-sm"
+    search-filter-input-classes="form-control"
 
-
-
-
+  >
+  <span slot="expand-icon">
+    <i class="fas fa-caret-right"></i>
+  ️</span>
+    <span slot="collapse-icon">
+    <i class="fas fa-caret-down"></i>
+  </span>
+  </la-table-of-contents-controller>
+</div>
