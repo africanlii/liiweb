@@ -1,0 +1,126 @@
+uuid: 1ef9f6a0-acc9-4570-be77-219ee466b950
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.judgment.body
+    - field.field.node.judgment.field_case_name
+    - field.field.node.judgment.field_case_number_old
+    - field.field.node.judgment.field_court_name
+    - field.field.node.judgment.field_date
+    - field.field.node.judgment.field_judge
+    - field.field.node.judgment.field_source
+    - node.type.judgment
+  module:
+    - node
+id: judgment_importer_kenya
+label: 'Judgment Importer Kenya'
+description: ''
+help: ''
+import_period: 86400
+fetcher: directory
+fetcher_configuration:
+  allowed_extensions: 'txt csv tsv xml opml'
+  allowed_schemes:
+    public: public
+  recursive_scan: false
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  langcode: en
+  update_existing: 0
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+  authorize: false
+  skip_hash_check: false
+  values:
+    type: judgment
+custom_sources:
+  id:
+    label: id
+    value: id
+    machine_name: id
+  citation:
+    label: citation
+    value: citation
+    machine_name: citation
+  case_number:
+    label: case_number
+    value: case_number
+    machine_name: case_number
+  courtname:
+    label: courtname
+    value: courtname
+    machine_name: courtname
+  judge_name:
+    label: judge_name
+    value: judge_name
+    machine_name: judge_name
+  content:
+    label: content
+    value: content
+    machine_name: content
+  date_delivered:
+    label: date_delivered
+    value: date_delivered
+    machine_name: date_delivered
+mappings:
+  -
+    target: field_source
+    map:
+      value: id
+    unique:
+      value: '1'
+    settings:
+      language: null
+  -
+    target: field_case_name
+    map:
+      value: citation
+    unique: {  }
+    settings:
+      language: null
+  -
+    target: field_case_number_old
+    map:
+      value: case_number
+    unique: {  }
+    settings:
+      language: null
+  -
+    target: field_court_name
+    map:
+      target_id: courtname
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
+  -
+    target: field_judge
+    map:
+      target_id: judge_name
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: '1'
+  -
+    target: body
+    map:
+      value: content
+      summary: ''
+    settings:
+      language: ''
+      format: full_html
+  -
+    target: field_date
+    map:
+      value: date_delivered
+    settings:
+      language: null
+      timezone: UTC

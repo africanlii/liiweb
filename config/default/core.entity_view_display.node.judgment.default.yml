@@ -34,6 +34,7 @@ dependencies:
     - field.field.node.judgment.field_media_neutral_citation
     - field.field.node.judgment.field_order
     - field.field.node.judgment.field_search_summary
+    - field.field.node.judgment.field_source
     - node.type.judgment
   module:
     - datetime
@@ -190,6 +191,14 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
+  field_source:
+    weight: 12
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   liiweb_share_links:
     weight: 6
     region: sidebar
