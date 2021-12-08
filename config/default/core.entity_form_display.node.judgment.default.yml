@@ -34,6 +34,7 @@ dependencies:
     - field.field.node.judgment.field_media_neutral_citation
     - field.field.node.judgment.field_order
     - field.field.node.judgment.field_search_summary
+    - field.field.node.judgment.field_source
     - node.type.judgment
   module:
     - computed_field
@@ -149,6 +150,7 @@ third_party_settings:
         - field_judgment_mnc_old
         - field_judgment_old_nid
         - field_case_number_old
+        - field_source
       parent_name: group_group
       weight: 25
       format_type: tab
@@ -418,6 +420,14 @@ content:
       show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
+    region: content
+  field_source:
+    weight: 33
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   langcode:
     type: language_select
