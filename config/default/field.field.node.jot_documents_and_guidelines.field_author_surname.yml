@@ -1,0 +1,33 @@
+uuid: cf05f09c-d59c-448f-8e95-7db470b083d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_author_surname
+    - node.type.jot_documents_and_guidelines
+    - taxonomy.vocabulary.author_surname
+  content:
+    - 'taxonomy_term:author_surname:263b87b4-5af3-4ade-a841-25ad2befbe96'
+id: node.jot_documents_and_guidelines.field_author_surname
+field_name: field_author_surname
+entity_type: node
+bundle: jot_documents_and_guidelines
+label: 'Issuing authority'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    target_uuid: 263b87b4-5af3-4ade-a841-25ad2befbe96
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      author_surname: author_surname
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

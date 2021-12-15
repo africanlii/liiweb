@@ -1,0 +1,21 @@
+uuid: a1e22c0e-fbf1-491e-9742-73a5630c6cc8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date
+    - node.type.speech
+  module:
+    - datetime
+id: node.speech.field_date
+field_name: field_date
+entity_type: node
+bundle: speech
+label: 'Date of speech'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

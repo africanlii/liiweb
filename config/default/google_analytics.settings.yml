@@ -1,4 +1,4 @@
-account: UA-86132585-1
+account: UA-119252611-1
 premium: false
 domain_mode: 0
 cross_domains: ''
@@ -9,6 +9,7 @@ visibility:
   user_role_roles:
     system: system
     api_legislation: api_legislation
+    editor: editor
   user_account_mode: 0
 track:
   outbound: true
@@ -19,7 +20,10 @@ track:
   linkid: false
   urlfragments: false
   userid: false
-  messages: {  }
+  messages:
+    status: status
+    warning: warning
+    error: error
   site_search: false
   adsense: false
   displayfeatures: true
