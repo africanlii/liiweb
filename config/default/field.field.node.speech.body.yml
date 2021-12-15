@@ -1,0 +1,23 @@
+uuid: b4593a7a-f7f3-4922-bf14-879d94332c3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.speech
+  module:
+    - text
+id: node.speech.body
+field_name: body
+entity_type: node
+bundle: speech
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

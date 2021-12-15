@@ -1,22 +1,22 @@
-uuid: 68c76c50-e262-4f04-8044-eae08b60721b
+uuid: aaea79a0-1b37-4ed0-a4cc-2847068f2eac
 langcode: en
 status: true
 dependencies:
   config:
-    - views.view.judgment
+    - views.view.news
   module:
     - system
     - views
   theme:
     - liibarrio2020
-id: views_block__judgment_block_latest_judgement
+id: views_block__news_block_news
 theme: liibarrio2020
-region: sidebar_second
-weight: -13
+region: content
+weight: -16
 provider: null
-plugin: 'views_block:judgment-block_latest_judgement'
+plugin: 'views_block:news-block_news'
 settings:
-  id: 'views_block:judgment-block_latest_judgement'
+  id: 'views_block:news-block_news'
   label: ''
   provider: views
   label_display: visible
@@ -25,6 +25,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: /judgments
+    pages: "<front>\r\n/home"
     negate: false
     context_mapping: {  }

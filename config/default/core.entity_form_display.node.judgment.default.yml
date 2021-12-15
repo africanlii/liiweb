@@ -32,8 +32,8 @@ dependencies:
     - field.field.node.judgment.field_locality
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
-    - field.field.node.judgment.field_registry
     - field.field.node.judgment.field_order
+    - field.field.node.judgment.field_registry
     - field.field.node.judgment.field_search_summary
     - field.field.node.judgment.field_source_url
     - node.type.judgment
@@ -89,17 +89,13 @@ third_party_settings:
         - title
         - field_case_name
         - field_matter_type
-        - field_iso_country_code
-        - field_locality
         - field_case_number_numeric
         - field_case_number_year
-        - field_judgment_number
+        - field_arbitrary_suffix
         - field_date
         - field_judgment_number_override
-        - field_media_neutral_citation
         - field_judge
         - field_law_report_citations
-        - field_case_number
         - field_advocate_s_for_the_applica
         - field_advocate_s_for_the_respond
         - field_attorney_s_for_the_applica
@@ -153,6 +149,12 @@ third_party_settings:
         - field_judgment_old_nid
         - field_case_number_old
         - field_source_url
+        - field_media_neutral_citation
+        - field_iso_country_code
+        - field_judgment_number
+        - field_case_number
+        - langcode
+        - field_locality
       parent_name: group_group
       weight: 25
       format_type: tab
@@ -187,7 +189,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_advocate_s_for_the_applica:
-    weight: 29
+    weight: 22
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -197,7 +199,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_advocate_s_for_the_respond:
-    weight: 30
+    weight: 23
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -207,7 +209,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_arbitrary_suffix:
-    weight: 27
+    weight: 17
     settings:
       size: 60
       placeholder: ''
@@ -215,7 +217,7 @@ content:
     type: string_textfield
     region: content
   field_attorney_s_for_the_applica:
-    weight: 31
+    weight: 24
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -225,7 +227,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_attorney_s_for_the_respond:
-    weight: 32
+    weight: 25
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -243,7 +245,7 @@ content:
     type: string_textfield
     region: content
   field_case_number:
-    weight: 24
+    weight: 30
     settings:
       size: 60
       placeholder: ''
@@ -251,7 +253,7 @@ content:
     type: string_textfield
     region: content
   field_case_number_numeric:
-    weight: 16
+    weight: 15
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -266,7 +268,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_case_number_year:
-    weight: 17
+    weight: 16
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -279,7 +281,7 @@ content:
     type: options_select
     region: content
   field_date:
-    weight: 19
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -307,13 +309,9 @@ content:
     region: content
   field_flynote_local:
     weight: 19
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_headnote_and_holding:
     weight: 21
@@ -324,7 +322,7 @@ content:
     type: text_textarea
     region: content
   field_iso_country_code:
-    weight: 14
+    weight: 28
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -334,10 +332,10 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_judge:
-    weight: 22
+    weight: 20
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
+      match_operator: STARTS_WITH
+      match_limit: 20
       size: 60
       placeholder: ''
     third_party_settings: {  }
@@ -352,13 +350,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_judgment_number:
-    weight: 18
+    weight: 29
     settings: {  }
     third_party_settings: {  }
     type: computed_number_widget
     region: content
   field_judgment_number_override:
-    weight: 20
+    weight: 19
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -372,7 +370,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_law_report_citations:
-    weight: 23
+    weight: 21
     settings:
       size: 255
       placeholder: ''
@@ -380,7 +378,7 @@ content:
     type: string_textfield
     region: content
   field_locality:
-    weight: 15
+    weight: 32
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -400,16 +398,11 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_media_neutral_citation:
-    weight: 21
+    weight: 27
     settings: {  }
     third_party_settings: {  }
     type: computed_string_widget
     region: content
-  field_registry:
-    weight: 11
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
   field_order:
     weight: 28
     settings:
@@ -417,6 +410,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_registry:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
     region: content
   field_search_summary:
     weight: 20
@@ -438,7 +437,7 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 1
+    weight: 31
     region: content
     settings:
       include_locked: true

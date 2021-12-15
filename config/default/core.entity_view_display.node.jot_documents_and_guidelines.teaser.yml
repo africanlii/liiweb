@@ -1,0 +1,26 @@
+uuid: 58caa986-6cdc-4f78-8275-36992ee16bfb
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.jot_documents_and_guidelines.body
+    - field.field.node.jot_documents_and_guidelines.field_author_surname
+    - field.field.node.jot_documents_and_guidelines.field_date
+    - field.field.node.jot_documents_and_guidelines.field_file
+    - node.type.jot_documents_and_guidelines
+  module:
+    - user
+id: node.jot_documents_and_guidelines.teaser
+targetEntityType: node
+bundle: jot_documents_and_guidelines
+mode: teaser
+content: {  }
+hidden:
+  body: true
+  field_author_surname: true
+  field_date: true
+  field_file: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

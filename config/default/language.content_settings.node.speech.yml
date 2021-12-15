@@ -1,0 +1,11 @@
+uuid: 83e4736c-cbc1-430e-b4f2-42b3d45777aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.speech
+id: node.speech
+target_entity_type_id: node
+target_bundle: speech
+default_langcode: site_default
+language_alterable: false

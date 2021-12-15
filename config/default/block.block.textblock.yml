@@ -18,6 +18,6 @@ settings:
   provider: liiweb
   label_display: visible
   text:
-    value: "<p>&nbsp;</p>\r\n\r\n<div class=\"embed-responsive embed-responsive-16by9\"><iframe allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"https://www.youtube.com/embed/og2YO8e_Dmc\" width=\"560\"></iframe></div>\r\n\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -25px; top: -13px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>\r\n"
+    value: "<p>TanzLII is based at the Judiciary of Tanzania and publishes the law of Tanzania for free online access for all.&nbsp; AfricanLII and Laws.Africa provide technical support.</p>\r\n\r\n<div class=\"embed-responsive embed-responsive-16by9\"><iframe allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"https://www.youtube.com/embed/og2YO8e_Dmc\" width=\"560\"></iframe></div>\r\n\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -25px; top: -13px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>\r\n"
     format: full_html
 visibility: {  }

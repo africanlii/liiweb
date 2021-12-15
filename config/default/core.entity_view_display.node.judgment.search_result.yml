@@ -123,8 +123,8 @@ hidden:
   field_locality: true
   field_matter_type: true
   field_media_neutral_citation: true
-  field_registry: true
   field_order: true
+  field_registry: true
   field_search_summary: true
   field_source_url: true
   langcode: true

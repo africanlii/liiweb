@@ -1,0 +1,30 @@
+uuid: 8e48f85d-8c01-422b-bdea-2f9fb67fcf35
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.speech.body
+    - field.field.node.speech.field_author_surname
+    - field.field.node.speech.field_date
+    - field.field.node.speech.field_file
+    - node.type.speech
+  module:
+    - user
+id: node.speech.teaser
+targetEntityType: node
+bundle: speech
+mode: teaser
+content:
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_author_surname: true
+  field_date: true
+  field_file: true
+  langcode: true
+  search_api_excerpt: true
