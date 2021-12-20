@@ -1,0 +1,33 @@
+uuid: dfbf381d-376d-4929-a084-8c913d414705
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: speech
+label: Speech
+type: 'canonical_entities:node'
+pattern: 'speech/[node:title]'
+selection_criteria:
+  5d12730c-1e74-4659-a4c3-cfab5dc7a38c:
+    id: node_type
+    bundles:
+      speech: speech
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 5d12730c-1e74-4659-a4c3-cfab5dc7a38c
+  d90f0977-8e77-45fa-ab6f-60cbe0e6c832:
+    id: language
+    langcodes:
+      en: en
+    negate: false
+    context_mapping:
+      language: 'node:langcode:language'
+    uuid: d90f0977-8e77-45fa-ab6f-60cbe0e6c832
+selection_logic: and
+weight: -10
+relationships:
+  'node:langcode:language':
+    label: Language

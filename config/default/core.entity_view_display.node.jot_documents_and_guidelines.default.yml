@@ -11,7 +11,7 @@ dependencies:
   module:
     - datetime
     - ds
-    - pdf
+    - file
     - text
     - user
 id: node.jot_documents_and_guidelines.default
@@ -54,15 +54,16 @@ content:
     weight: 3
     label: above
     settings:
-      keep_pdfjs: true
-      width: 100%
-      height: ''
-      page: null
-      zoom: null
-      custom_zoom: null
-      pagemode: null
-    third_party_settings: {  }
-    type: pdf_default
+      use_description_as_link_text: true
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: file_table
     region: content
   links:
     weight: 0

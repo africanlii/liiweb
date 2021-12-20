@@ -1,8 +1,9 @@
-uuid: 63255b5d-2fdb-4e95-b231-92b4ce0ddc78
+uuid: 6efbc5b4-700d-4c8c-89b2-272d3854640b
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.full
     - field.field.node.speech.body
     - field.field.node.speech.field_author_surname
     - field.field.node.speech.field_date
@@ -11,7 +12,7 @@ dependencies:
   module:
     - datetime
     - ds
-    - pdf
+    - file_download_link
     - text
     - user
 third_party_settings:
@@ -42,16 +43,24 @@ third_party_settings:
           node_content: {  }
     regions:
       header_left:
-        - langcode
-        - links
-        - field_date
         - field_author_surname
+        - 'dynamic_token_field:node-share_links'
+      header_right:
+        - field_date
+      sidebar:
         - field_file
+      node_content:
         - body
-id: node.speech.default
+    fields:
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 3
+        label: hidden
+        formatter: default
+id: node.speech.full
 targetEntityType: node
 bundle: speech
-mode: default
+mode: full
 content:
   body:
     label: hidden
@@ -59,9 +68,9 @@ content:
     weight: 4
     settings: {  }
     third_party_settings: {  }
-    region: header_left
+    region: node_content
   field_author_surname:
-    weight: 2
+    weight: 0
     label: inline
     settings:
       link: true
@@ -83,34 +92,47 @@ content:
             lb-col: false
             classes: {  }
     type: datetime_default
-    region: header_left
+    region: header_right
   field_file:
-    weight: 3
-    label: above
+    weight: 2
+    label: hidden
     settings:
-      keep_pdfjs: true
-      width: 100%
-      height: ''
-      page: null
-      zoom: null
-      custom_zoom: null
-      pagemode: null
-    third_party_settings: {  }
-    type: pdf_default
-    region: header_left
-  langcode:
-    type: language
-    weight: 0
-    region: header_left
-    label: above
-    settings:
-      link_to_entity: false
-      native_language: false
-    third_party_settings: {  }
-  links:
-    weight: 0
-    region: header_left
-    settings: {  }
-    third_party_settings: {  }
+      link_text: Download
+      new_tab: true
+      force_download: true
+      custom_classes: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: 'field field--name-field-files field--type-file field--label-hidden field__items'
+            ow-at: ''
+            ow-def-at: true
+            fis: true
+            fis-el: div
+            fis-cl: 'field__items liiweb-download'
+            fis-at: ''
+            fis-def-at: true
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-cl: false
+            fi: false
+            fi-def-at: false
+    type: file_download_link
+    region: sidebar
 hidden:
+  langcode: true
+  links: true
   search_api_excerpt: true
