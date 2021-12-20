@@ -14,15 +14,15 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: liibarrio_flex_vertical
+      id: liibarrio_flex_horizontal
       library: null
       disable_css: false
       entity_classes: all_classes
       settings:
         label: ''
         wrappers:
-          content: div
-        outer_wrapper: div
+          content: section
+        outer_wrapper: article
         attributes: ''
         link_attribute: ''
         link_custom: ''
@@ -32,7 +32,6 @@ third_party_settings:
     regions:
       content:
         - node_title
-        - search_api_excerpt
     fields:
       node_title:
         plugin_id: node_title
@@ -53,15 +52,11 @@ id: node.news.teaser
 targetEntityType: node
 bundle: news
 mode: teaser
-content:
-  search_api_excerpt:
-    weight: 1
-    region: content
-    settings: {  }
-    third_party_settings: {  }
+content: {  }
 hidden:
   body: true
   field_file: true
   field_image: true
   langcode: true
   links: true
+  search_api_excerpt: true
