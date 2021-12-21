@@ -270,6 +270,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
+              editor: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -285,14 +286,7 @@ display:
             group_items: {  }
           parse_mode: terms
           min_length: null
-          fields:
-            - body
-            - field_case_number
-            - field_content
-            - field_headnote_and_holding
-            - field_judgment_number
-            - field_search_summary
-            - title
+          fields: {  }
           plugin_id: search_api_fulltext
         field_date:
           id: field_date
