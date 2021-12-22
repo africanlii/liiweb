@@ -18,6 +18,7 @@ dependencies:
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
+    - field.field.node.judgment.field_file
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_flynote_local
@@ -40,6 +41,7 @@ dependencies:
   module:
     - datetime
     - ds
+    - file
     - liiweb
     - link
     - text
@@ -134,6 +136,14 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: header_left
+  field_file:
+    weight: 12
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
   field_files:
     type: lii_file
     weight: 5
