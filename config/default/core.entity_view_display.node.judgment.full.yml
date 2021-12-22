@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
+    - field.field.node.judgment.field_file
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_flynote_local
@@ -87,12 +88,13 @@ third_party_settings:
         - download_conditional_entity_view_1
       right:
         - field_files
+        - field_file
         - 'dynamic_token_field:node-share_links'
         - 'dynamic_block_field:node-similar_judgments'
     fields:
       'dynamic_block_field:node-similar_judgments':
         plugin_id: 'dynamic_block_field:node-similar_judgments'
-        weight: 12
+        weight: 13
         label: hidden
         formatter: default
       'dynamic_token_field:node-share_links':
@@ -134,6 +136,45 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+  field_file:
+    type: file_download_link
+    weight: 11
+    region: right
+    label: hidden
+    settings:
+      link_text: 'Download media summary as [file:ffp-extension-original]'
+      new_tab: true
+      force_download: true
+      custom_classes: media_summary
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: 'field field--name-field-files field--type-file field--label-hidden field__items'
+            ow-at: ''
+            ow-def-at: true
+            fis: true
+            fis-el: div
+            fis-cl: 'field__items liiweb-download'
+            fis-at: ''
+            fis-def-at: true
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-cl: false
+            fi: false
+            fi-def-at: false
   field_files:
     type: file_download_link
     weight: 10
