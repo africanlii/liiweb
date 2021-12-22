@@ -9785,7 +9785,7 @@ header #edit-submit-liiweb-search {
 
 .toc-container {
   height: 100vh;
-  overflow: scroll; }
+  overflow: auto; }
 
 .quick-link-set a {
   font-weight: 700; }
@@ -10299,6 +10299,7 @@ button[type="submit"] svg {
   display: block;
   width: 100%;
   padding: 0.625;
+  border: solid #f8f8f8 1px;
   background: #326fd1;
   text-align: center;
   color: #fff; }
