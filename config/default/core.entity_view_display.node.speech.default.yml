@@ -1,0 +1,137 @@
+uuid: c56dfa1c-a1a2-44d6-a636-952ce1cc90e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.speech.body
+    - field.field.node.speech.field_author_surname
+    - field.field.node.speech.field_date
+    - field.field.node.speech.field_file
+    - node.type.speech
+  module:
+    - datetime
+    - ds
+    - file_download_link
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_content_general
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          header_left: div
+          header_right: div
+          full_width: div
+          sidebar: div
+          node_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          header_left: {  }
+          header_right: {  }
+          full_width: {  }
+          sidebar: {  }
+          node_content: {  }
+    regions:
+      header_left:
+        - field_author_surname
+        - 'dynamic_token_field:node-share_links'
+      header_right:
+        - field_date
+      sidebar:
+        - field_file
+      node_content:
+        - body
+    fields:
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 1
+        label: hidden
+        formatter: default
+id: node.speech.default
+targetEntityType: node
+bundle: speech
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    region: node_content
+  field_author_surname:
+    weight: 0
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: header_left
+  field_date:
+    weight: 2
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: short_date
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: datetime_default
+    region: header_right
+  field_file:
+    weight: 3
+    label: hidden
+    settings:
+      link_text: Download
+      new_tab: true
+      force_download: true
+      custom_classes: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: 'field field--name-field-files field--type-file field--label-hidden field__items'
+            ow-at: ''
+            ow-def-at: true
+            fis: true
+            fis-el: div
+            fis-cl: 'field__items liiweb-download'
+            fis-at: ''
+            fis-def-at: true
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-cl: false
+            fi: false
+            fi-def-at: false
+    type: file_download_link
+    region: sidebar
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

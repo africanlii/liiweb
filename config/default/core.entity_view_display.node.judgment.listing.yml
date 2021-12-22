@@ -131,8 +131,8 @@ hidden:
   field_locality: true
   field_matter_type: true
   field_media_neutral_citation: true
-  field_subject_library: true
   field_order: true
+  field_subject_library: true
   langcode: true
   links: true
   search_api_excerpt: true

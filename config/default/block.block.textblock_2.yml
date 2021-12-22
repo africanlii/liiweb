@@ -19,7 +19,7 @@ settings:
   provider: liiweb
   label_display: visible
   text:
-    value: ''
+    value: "<p>LesLII's mission is to publish the laws of Lesotho for free access to everyone.&nbsp; LesLII is supported by the Judiciary of Lesotho, the Law Office, the Law Society and other justice sector stakeholders.</p>\r\n"
     format: full_html
 visibility:
   request_path:

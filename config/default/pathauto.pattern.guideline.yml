@@ -1,0 +1,33 @@
+uuid: cebba86d-0855-4a71-9d54-2449c622a426
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: guideline
+label: Guideline
+type: 'canonical_entities:node'
+pattern: 'guideline/[node:title]'
+selection_criteria:
+  e2b61e51-d976-4a3a-a641-d5a1684f2cf4:
+    id: node_type
+    bundles:
+      jot_documents_and_guidelines: jot_documents_and_guidelines
+    negate: false
+    context_mapping:
+      node: node
+    uuid: e2b61e51-d976-4a3a-a641-d5a1684f2cf4
+  d2e59bae-8a3d-4802-93c8-c818e04ec31a:
+    id: language
+    langcodes:
+      en: en
+    negate: false
+    context_mapping:
+      language: 'node:langcode:language'
+    uuid: d2e59bae-8a3d-4802-93c8-c818e04ec31a
+selection_logic: and
+weight: -10
+relationships:
+  'node:langcode:language':
+    label: Language

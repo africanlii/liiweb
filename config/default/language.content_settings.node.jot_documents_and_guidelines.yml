@@ -1,0 +1,11 @@
+uuid: c3a1531f-1909-41ee-96f6-a462b4d5de13
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.jot_documents_and_guidelines
+id: node.jot_documents_and_guidelines
+target_entity_type_id: node
+target_bundle: jot_documents_and_guidelines
+default_langcode: site_default
+language_alterable: false
