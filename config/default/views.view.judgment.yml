@@ -900,7 +900,7 @@ display:
       pager:
         type: some
         options:
-          items_per_page: 6
+          items_per_page: 12
           offset: 0
       defaults:
         pager: false
