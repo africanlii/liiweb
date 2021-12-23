@@ -1,21 +1,21 @@
-uuid: efbf574c-f6c0-4b40-b9b7-f7c878e94e99
+uuid: defed3ee-7ccc-4322-84c9-41968fd4d75f
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.jot_documents_and_guidelines.body
-    - field.field.node.jot_documents_and_guidelines.field_author_surname
-    - field.field.node.jot_documents_and_guidelines.field_date
-    - field.field.node.jot_documents_and_guidelines.field_file
-    - node.type.jot_documents_and_guidelines
+    - field.field.node.news.body
+    - field.field.node.news.field_file
+    - field.field.node.news.field_image
+    - image.style.thumbnail
+    - node.type.news
   module:
-    - datetime
     - file
     - path
+    - svg_image
     - text
-id: node.jot_documents_and_guidelines.default
+id: node.news.default
 targetEntityType: node
-bundle: jot_documents_and_guidelines
+bundle: news
 mode: default
 content:
   body:
@@ -34,28 +34,20 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_author_surname:
-    weight: 123
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_date:
-    weight: 124
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_file:
-    weight: 123
+    weight: 122
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
+    region: content
+  field_image:
+    weight: 123
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
     region: content
   langcode:
     type: language_select
