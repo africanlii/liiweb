@@ -15,11 +15,11 @@ provider: null
 plugin: text_block
 settings:
   id: text_block
-  label: 'About ULII'
+  label: 'About [site:name]'
   provider: liiweb
   label_display: visible
   text:
-    value: "<p>ULII publishes the laws of Uganda for free online access. ULII is part of the Law Reporting Committee of the Judiciary of Uganda.</p>\r\n"
+    value: ''
     format: full_html
 visibility:
   request_path:

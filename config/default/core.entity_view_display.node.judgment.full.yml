@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
+    - field.field.node.judgment.field_file
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_flynote_local
@@ -76,31 +77,47 @@ third_party_settings:
         - field_court_name
         - field_case_number
       header_right:
-        - field_case_name
+        - node_title
         - field_law_report_citations
         - field_media_neutral_citation
       header:
         - field_flynote
         - field_search_summary
-      left:
         - field_headnote_and_holding
+      left:
         - field_judge
         - download_conditional_entity_view_1
       right:
         - field_files
+        - field_file
         - 'dynamic_token_field:node-share_links'
         - 'dynamic_block_field:node-similar_judgments'
     fields:
-      'dynamic_token_field:node-share_links':
-        plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 11
-        label: hidden
-        formatter: default
       'dynamic_block_field:node-similar_judgments':
         plugin_id: 'dynamic_block_field:node-similar_judgments'
+        weight: 13
+        label: hidden
+        formatter: default
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
         weight: 12
         label: hidden
         formatter: default
+      node_title:
+        plugin_id: node_title
+        weight: 2
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h3
+          class: ''
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.judgment.full
 targetEntityType: node
 bundle: judgment
@@ -111,19 +128,11 @@ content:
     region: left
     settings: {  }
     third_party_settings: {  }
-  field_case_name:
-    type: string
-    weight: 2
-    region: header_right
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   field_case_number:
     type: string
     weight: 1
     region: header_left
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -135,6 +144,45 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+  field_file:
+    type: file_download_link
+    weight: 11
+    region: right
+    label: hidden
+    settings:
+      link_text: 'Download media summary as [file:ffp-extension-original]'
+      new_tab: true
+      force_download: true
+      custom_classes: media_summary
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: div
+            ow-cl: 'field field--name-field-files field--type-file field--label-hidden field__items'
+            ow-at: ''
+            ow-def-at: true
+            fis: true
+            fis-el: div
+            fis-cl: 'field__items liiweb-download'
+            fis-at: ''
+            fis-def-at: true
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
+            lb-col: false
+            ow-def-cl: false
+            fi: false
+            fi-def-at: false
   field_files:
     type: file_download_link
     weight: 10
@@ -199,7 +247,7 @@ content:
             lb-col: false
             classes: {  }
     type: text_default
-    region: left
+    region: header
   field_judge:
     type: entity_reference_label
     weight: 8
@@ -263,6 +311,7 @@ hidden:
   field_arbitrary_suffix: true
   field_attorney_s_for_the_applica: true
   field_attorney_s_for_the_respond: true
+  field_case_name: true
   field_case_number_numeric: true
   field_case_number_old: true
   field_case_number_year: true
