@@ -128,10 +128,6 @@ content:
             suffix: ''
             lbw: false
             lb-col: false
-<<<<<<< HEAD
-            ow-def-cl: false
-=======
->>>>>>> master
             fi: false
             fi-def-at: false
     type: file_download_link
