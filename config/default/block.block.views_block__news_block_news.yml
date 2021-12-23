@@ -12,7 +12,7 @@ dependencies:
 id: views_block__news_block_news
 theme: liibarrio2020
 region: content
-weight: -16
+weight: -14
 provider: null
 plugin: 'views_block:news-block_news'
 settings:

@@ -6,8 +6,10 @@ dependencies:
     - field.field.node.news.body
     - field.field.node.news.field_file
     - field.field.node.news.field_image
+    - image.style.letterbox_md
     - node.type.news
   module:
+    - ds
     - file
     - svg_image
     - text
@@ -29,27 +31,37 @@ content:
     label: inline
     settings:
       use_description_as_link_text: true
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: file_default
     region: content
   field_image:
     weight: 0
-    label: hidden
+    label: above
     settings:
+      image_style: letterbox_md
+      image_link: ''
+      svg_render_as_image: true
       svg_attributes:
         width: null
         height: null
-      svg_render_as_image: true
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: image
     region: content
-  links:
-    weight: 3
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
   langcode: true
+  links: true
   search_api_excerpt: true
