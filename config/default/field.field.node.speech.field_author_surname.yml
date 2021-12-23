@@ -1,26 +1,26 @@
-uuid: 7cba6b05-9f54-4baa-a644-10de1add68eb
+uuid: 4b30d0c7-4885-4fa7-ba3e-5ecd592d2096
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_judge
-    - node.type.judgment
-    - taxonomy.vocabulary.judges
-id: node.judgment.field_judge
-field_name: field_judge
+    - field.storage.node.field_author_surname
+    - node.type.speech
+    - taxonomy.vocabulary.author_surname
+id: node.speech.field_author_surname
+field_name: field_author_surname
 entity_type: node
-bundle: judgment
-label: Coram
+bundle: speech
+label: Author
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      judges: judges
+      author_surname: author_surname
     sort:
       field: name
       direction: asc
