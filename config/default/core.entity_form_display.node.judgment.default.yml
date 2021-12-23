@@ -89,27 +89,23 @@ third_party_settings:
       label: Editorial
     group_metadata:
       children:
-        - field_court_name
         - title
+        - field_court_name
         - field_case_name
         - field_counsel_for_defendant
         - field_counsel_for_plantiff
         - field_matter_type
-        - field_iso_country_code
-        - field_locality
         - field_case_number_numeric
         - field_case_number_year
-        - field_judgment_number
         - field_date
         - field_judgment_number_override
-        - field_media_neutral_citation
-        - field_judge
         - field_law_report_citations
-        - field_case_number
         - field_advocate_s_for_the_applica
         - field_advocate_s_for_the_respond
         - field_attorney_s_for_the_applica
         - field_attorney_s_for_the_respond
+        - field_judge
+        - field_media_neutral_citation
       parent_name: group_group
       weight: 21
       format_type: tab
@@ -155,10 +151,16 @@ third_party_settings:
       label: Download
     group_housekeeping:
       children:
+        - field_judgment_number
+        - field_case_number
+        - field_iso_country_code
         - field_external_link
+        - field_locality
         - field_judgment_mnc_old
         - field_judgment_old_nid
         - field_case_number_old
+        - field_arbitrary_suffix
+        - langcode
       parent_name: group_group
       weight: 25
       format_type: tab
@@ -188,12 +190,12 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 3
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
   field_advocate_s_for_the_applica:
-    weight: 29
+    weight: 20
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -203,7 +205,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_advocate_s_for_the_respond:
-    weight: 30
+    weight: 21
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -213,7 +215,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_arbitrary_suffix:
-    weight: 27
+    weight: 25
     settings:
       size: 60
       placeholder: ''
@@ -221,7 +223,7 @@ content:
     type: string_textfield
     region: content
   field_attorney_s_for_the_applica:
-    weight: 31
+    weight: 22
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -231,7 +233,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_attorney_s_for_the_respond:
-    weight: 32
+    weight: 23
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -241,7 +243,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_case_name:
-    weight: 12
+    weight: 13
     settings:
       size: 500
       placeholder: ''
@@ -249,7 +251,7 @@ content:
     type: string_textfield
     region: content
   field_case_number:
-    weight: 24
+    weight: 18
     settings:
       size: 60
       placeholder: ''
@@ -257,7 +259,7 @@ content:
     type: string_textfield
     region: content
   field_case_number_numeric:
-    weight: 16
+    weight: 15
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -265,14 +267,14 @@ content:
     region: content
   field_case_number_old:
     type: string_textfield
-    weight: 25
+    weight: 24
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   field_case_number_year:
-    weight: 17
+    weight: 16
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -295,19 +297,19 @@ content:
     type: string_textfield
     region: content
   field_court_name:
-    weight: 10
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_date:
-    weight: 19
+    weight: 17
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_external_link:
-    weight: 22
+    weight: 20
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -353,7 +355,7 @@ content:
     type: text_textarea
     region: content
   field_iso_country_code:
-    weight: 14
+    weight: 19
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -363,10 +365,10 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_judge:
-    weight: 22
+    weight: 24
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
+      match_operator: STARTS_WITH
+      match_limit: 15
       size: 60
       placeholder: ''
     third_party_settings: {  }
@@ -374,20 +376,20 @@ content:
     region: content
   field_judgment_mnc_old:
     type: string_textfield
-    weight: 23
+    weight: 22
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   field_judgment_number:
-    weight: 18
+    weight: 17
     settings: {  }
     third_party_settings: {  }
     type: computed_number_widget
     region: content
   field_judgment_number_override:
-    weight: 20
+    weight: 18
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -395,13 +397,13 @@ content:
     region: content
   field_judgment_old_nid:
     type: number
-    weight: 24
+    weight: 23
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_law_report_citations:
-    weight: 23
+    weight: 19
     settings:
       size: 255
       placeholder: ''
@@ -409,7 +411,7 @@ content:
     type: string_textfield
     region: content
   field_locality:
-    weight: 15
+    weight: 21
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -419,17 +421,17 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_matter_type:
-    weight: 15
+    weight: 14
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
+      match_operator: STARTS_WITH
+      match_limit: 15
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
   field_media_neutral_citation:
-    weight: 21
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: computed_string_widget
@@ -473,14 +475,14 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 1
+    weight: 26
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   path:
     type: path
-    weight: 6
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -488,21 +490,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 4
+    weight: 3
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 7
+    weight: 6
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 5
+    weight: 4
     region: content
     third_party_settings: {  }
   title:
@@ -515,7 +517,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 1
     settings:
       match_operator: CONTAINS
       size: 60

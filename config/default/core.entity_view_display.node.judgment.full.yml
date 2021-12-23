@@ -82,7 +82,7 @@ third_party_settings:
         - field_related_cases
         - field_counsel_for_plantiff
       header_right:
-        - field_case_name
+        - node_title
         - field_law_report_citations
         - field_media_neutral_citation
         - field_related_legislation
@@ -90,8 +90,8 @@ third_party_settings:
       header:
         - field_flynote
         - field_search_summary
-      left:
         - field_headnote_and_holding
+      left:
         - field_judge
         - download_conditional_entity_view_1
       right:
@@ -100,16 +100,31 @@ third_party_settings:
         - 'dynamic_token_field:node-share_links'
         - 'dynamic_block_field:node-similar_judgments'
     fields:
-      'dynamic_token_field:node-share_links':
-        plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 15
-        label: hidden
-        formatter: default
       'dynamic_block_field:node-similar_judgments':
         plugin_id: 'dynamic_block_field:node-similar_judgments'
         weight: 13
         label: hidden
         formatter: default
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 15
+        label: hidden
+        formatter: default
+      node_title:
+        plugin_id: node_title
+        weight: 2
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h3
+          class: ''
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.judgment.full
 targetEntityType: node
 bundle: judgment
@@ -120,19 +135,11 @@ content:
     region: left
     settings: {  }
     third_party_settings: {  }
-  field_case_name:
-    type: string
-    weight: 4
-    region: header_right
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   field_case_number:
     type: string
     weight: 1
     region: header_left
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -263,7 +270,7 @@ content:
             lb-col: false
             classes: {  }
     type: text_default
-    region: left
+    region: header
   field_judge:
     type: entity_reference_label
     weight: 12
@@ -343,6 +350,7 @@ hidden:
   field_arbitrary_suffix: true
   field_attorney_s_for_the_applica: true
   field_attorney_s_for_the_respond: true
+  field_case_name: true
   field_case_number_numeric: true
   field_case_number_old: true
   field_case_number_year: true
