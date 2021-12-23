@@ -10,7 +10,7 @@ id: node.judgment.field_judge
 field_name: field_judge
 entity_type: node
 bundle: judgment
-label: Judge
+label: Coram
 description: ''
 required: false
 translatable: false
