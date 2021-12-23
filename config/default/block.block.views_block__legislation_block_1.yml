@@ -12,7 +12,7 @@ dependencies:
 id: views_block__legislation_block_1
 theme: liibarrio2020
 region: content
-weight: -16
+weight: -13
 provider: null
 plugin: 'views_block:legislation-block_1'
 settings:
