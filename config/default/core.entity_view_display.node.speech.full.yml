@@ -54,7 +54,7 @@ third_party_settings:
     fields:
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 3
+        weight: 1
         label: hidden
         formatter: default
 id: node.speech.full
@@ -78,7 +78,7 @@ content:
     type: entity_reference_label
     region: header_left
   field_date:
-    weight: 1
+    weight: 2
     label: inline
     settings:
       timezone_override: ''
@@ -94,7 +94,7 @@ content:
     type: datetime_default
     region: header_right
   field_file:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       link_text: Download
@@ -116,6 +116,7 @@ content:
             ow-cl: 'field field--name-field-files field--type-file field--label-hidden field__items'
             ow-at: ''
             ow-def-at: true
+            ow-def-cl: true
             fis: true
             fis-el: div
             fis-cl: 'field__items liiweb-download'
@@ -127,7 +128,6 @@ content:
             suffix: ''
             lbw: false
             lb-col: false
-            ow-def-cl: false
             fi: false
             fi-def-at: false
     type: file_download_link

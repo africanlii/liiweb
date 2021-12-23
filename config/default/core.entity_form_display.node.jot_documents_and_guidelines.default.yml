@@ -35,7 +35,8 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_author_surname:
-    weight: 123
+    weight: 122
+
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -45,13 +46,14 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_date:
-    weight: 122
+    weight: 124
+
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_file:
-    weight: 124
+    weight: 123
     settings:
       progress_indicator: throbber
     third_party_settings: {  }

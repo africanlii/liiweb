@@ -107,9 +107,19 @@ third_party_settings:
         formatter: default
       node_title:
         plugin_id: node_title
-        weight: 3
+        weight: 2
         label: hidden
         formatter: default
+        settings:
+          wrapper: h3
+          class: ''
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.judgment.full
 targetEntityType: node
 bundle: judgment
@@ -124,7 +134,7 @@ content:
     type: string
     weight: 2
     region: header_left
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }

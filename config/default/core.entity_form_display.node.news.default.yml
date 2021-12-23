@@ -35,14 +35,14 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_file:
-    weight: 123
+    weight: 122
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
     region: content
   field_image:
-    weight: 122
+    weight: 123
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
