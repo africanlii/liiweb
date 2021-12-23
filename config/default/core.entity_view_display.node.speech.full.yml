@@ -116,6 +116,7 @@ content:
             ow-cl: 'field field--name-field-files field--type-file field--label-hidden field__items'
             ow-at: ''
             ow-def-at: true
+            ow-def-cl: true
             fis: true
             fis-el: div
             fis-cl: 'field__items liiweb-download'
@@ -127,7 +128,6 @@ content:
             suffix: ''
             lbw: false
             lb-col: false
-            ow-def-cl: false
             fi: false
             fi-def-at: false
     type: file_download_link
