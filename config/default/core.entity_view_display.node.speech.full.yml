@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 uuid: 38186aa0-f110-4f69-8c1f-be7ed75ec8c6
-=======
-uuid: c7474841-51b2-4367-933e-d20d8d5278ae
->>>>>>> master
 langcode: en
 status: true
 dependencies:
@@ -120,10 +116,7 @@ content:
             ow-cl: 'field field--name-field-files field--type-file field--label-hidden field__items'
             ow-at: ''
             ow-def-at: true
-<<<<<<< HEAD
-=======
             ow-def-cl: true
->>>>>>> master
             fis: true
             fis-el: div
             fis-cl: 'field__items liiweb-download'
@@ -135,10 +128,6 @@ content:
             suffix: ''
             lbw: false
             lb-col: false
-<<<<<<< HEAD
-            ow-def-cl: false
-=======
->>>>>>> master
             fi: false
             fi-def-at: false
     type: file_download_link
