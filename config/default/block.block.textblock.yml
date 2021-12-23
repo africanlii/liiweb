@@ -1,0 +1,23 @@
+uuid: df810f0e-b417-4818-9d9f-24c6172faf55
+langcode: en
+status: true
+dependencies:
+  module:
+    - liiweb
+  theme:
+    - liibarrio2020
+id: textblock
+theme: liibarrio2020
+region: footer_first
+weight: -9
+provider: null
+plugin: text_block
+settings:
+  id: text_block
+  label: 'About [site:name]'
+  provider: liiweb
+  label_display: visible
+  text:
+    value: "<p>&nbsp;</p>\r\n\r\n<div class=\"embed-responsive embed-responsive-16by9\"><iframe allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"https://www.youtube.com/embed/og2YO8e_Dmc\" width=\"560\"></iframe></div>\r\n\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -25px; top: -13px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>\r\n"
+    format: full_html
+visibility: {  }
