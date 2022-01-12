@@ -508,6 +508,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
+              editor: '0'
             placeholder: 'Results For'
           is_grouped: false
           group_info:
@@ -523,7 +524,19 @@ display:
             group_items: {  }
           parse_mode: direct
           min_length: null
-          fields: {  }
+          fields:
+            - body
+            - field_case_name
+            - field_case_number
+            - field_content
+            - field_headnote_and_holding
+            - field_judgment_number
+            - field_lifecycle_json
+            - field_publication_name
+            - field_search_summary
+            - saa_field_file_1
+            - saa_field_files
+            - title
           plugin_id: search_api_fulltext
         field_date:
           id: field_date

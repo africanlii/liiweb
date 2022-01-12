@@ -6,6 +6,7 @@ dependencies:
     - search_api_solr
     - node
     - search_api
+    - search_api_attachments
   config:
     - field.storage.node.body
     - field.storage.node.field_case_name
@@ -226,6 +227,15 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_tags
+  saa_field_file_1:
+    label: 'Search api attachments: Gazette download'
+    property_path: saa_field_file
+    type: text
+  saa_field_files:
+    label: 'Search api attachments: Download'
+    property_path: saa_field_files
+    type: text
+    boost: !!float 5
   title:
     label: Title
     datasource_id: 'entity:node'
@@ -258,6 +268,13 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  file_attachments:
+    excluded_extensions: 'aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv'
+    number_indexed: 0
+    number_first_bytes: '10 MB'
+    max_filesize: '0'
+    excluded_private: 1
+    excluded_mimes: 'audio/x-aiff image/x-jg video/x-msvideo image/x-ms-bmp image/gif image/vnd.microsoft.icon video/quicktime audio/ogg video/ogg image/png image/x-photoshop audio/x-realaudio audio/x-pn-realaudio image/x-rgb video/x-flv'
   highlight:
     highlight: always
     highlight_partial: false
