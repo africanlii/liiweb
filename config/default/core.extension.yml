@@ -6,6 +6,7 @@ module:
   admin_toolbar_tools: 0
   ajax_loader: 0
   auto_entitylabel: 0
+  ban: 0
   basic_auth: 0
   better_exposed_filters: 0
   bg_image_formatter: 0
@@ -15,6 +16,7 @@ module:
   block_field: 0
   book: 0
   breakpoint: 0
+  bulk_user_registration: 0
   captcha: 0
   chosen: 0
   chosen_lib: 0
@@ -83,8 +85,12 @@ module:
   pdf: 0
   quick_node_clone: 0
   recaptcha: 0
+  redirect: 0
+  redirect_404: 0
   responsive_image: 0
   rest: 0
+  rules: 0
+  rules_ban: 0
   rw_organisation: 0
   rw_quicklinks: 0
   s3fs: 0
@@ -113,6 +119,7 @@ module:
   token: 0
   toolbar: 0
   toolbar_extras: 0
+  typed_data: 0
   ultimate_cron: 0
   update: 0
   user: 0
