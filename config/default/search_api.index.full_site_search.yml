@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - search_api_solr
+    - file
     - node
     - search_api
     - search_api_attachments
@@ -87,6 +88,14 @@ field_settings:
     dependencies:
       module:
         - node
+  fid:
+    label: 'File ID'
+    datasource_id: 'entity:file'
+    property_path: fid
+    type: integer
+    dependencies:
+      module:
+        - file
   field_case_name:
     label: 'Case name'
     datasource_id: 'entity:node'
@@ -254,6 +263,7 @@ field_settings:
       module:
         - node
 datasource_settings:
+  'entity:file': {  }
   'entity:node':
     bundles:
       default: false
