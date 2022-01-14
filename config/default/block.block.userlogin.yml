@@ -1,0 +1,20 @@
+uuid: a652904c-c8ac-4502-bbbf-21a9b81851d8
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+  theme:
+    - liibarrio2020
+id: userlogin
+theme: liibarrio2020
+region: footer_second
+weight: 0
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  provider: user
+  label_display: visible
+visibility: {  }
