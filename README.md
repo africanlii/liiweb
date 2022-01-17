@@ -269,3 +269,4 @@ section of composer.json:
 Licensed under GNU LGPLv3. See LICENSE.
 
 Copyright AfricanLII 2020-2021.
+
