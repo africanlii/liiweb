@@ -337,6 +337,8 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
+              editor: '0'
+              judgment_editor: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -508,6 +510,8 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
+              editor: '0'
+              judgment_editor: '0'
             placeholder: 'Results For'
           is_grouped: false
           group_info:
