@@ -4,6 +4,9 @@ status: true
 dependencies: {  }
 id: search_api__views_page__liiweb_search__page_search
 name: 'search_api:views_page__liiweb_search__page_search'
-filter_key: null
+filter_key: ''
 url_processor: query_string
-breadcrumb: {  }
+breadcrumb:
+  active: false
+  before: true
+  group: false
