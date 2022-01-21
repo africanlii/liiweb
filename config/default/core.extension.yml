@@ -56,6 +56,7 @@ module:
   file_download_link: 0
   filefield_paths: 0
   filter: 0
+  flood_control: 0
   focal_point: 0
   google_analytics: 0
   history: 0
