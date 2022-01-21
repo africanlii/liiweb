@@ -10,21 +10,18 @@ dependencies:
     - search_api_attachments
   config:
     - field.storage.node.body
-    - field.storage.node.field_case_name
     - field.storage.node.field_case_number
     - field.storage.node.field_case_number_numeric
     - field.storage.node.field_commencement_date
     - field.storage.node.field_content
     - field.storage.node.field_court_name
+    - field.storage.node.field_date
     - field.storage.node.field_expression_date
     - field.storage.node.field_flynote
     - field.storage.node.field_gazette_issue_number
     - field.storage.node.field_headnote_and_holding
-    - field.storage.node.field_date
     - field.storage.node.field_judge
-    - field.storage.node.field_judgment_number
     - field.storage.node.field_lifecycle_json
-    - field.storage.node.field_publication_name
     - field.storage.node.field_search_summary
     - field.storage.node.field_tags
     - search_api.server.solr
@@ -76,39 +73,17 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: body
     type: text
-    boost: !!float 5
+    boost: !!float 13
     dependencies:
       config:
         - field.storage.node.body
-  created:
-    label: 'Authored on'
-    datasource_id: 'entity:node'
-    property_path: created
-    type: date
-    dependencies:
-      module:
-        - node
-  fid:
-    label: 'File ID'
-    datasource_id: 'entity:file'
-    property_path: fid
-    type: integer
-    dependencies:
-      module:
-        - file
-  field_case_name:
-    label: 'Case name'
-    datasource_id: 'entity:node'
-    property_path: field_case_name
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_case_name
+
   field_case_number:
     label: 'Case number'
     datasource_id: 'entity:node'
     property_path: field_case_number
-    type: text
+    type: integer
+    boost: !!float 5
     dependencies:
       config:
         - field.storage.node.field_case_number
@@ -133,7 +108,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: field_content
     type: text
-    boost: !!float 5
+    boost: !!float 13
     dependencies:
       config:
         - field.storage.node.field_content
@@ -141,7 +116,7 @@ field_settings:
     label: 'Court name'
     datasource_id: 'entity:node'
     property_path: field_court_name
-    type: integer
+    type: string
     dependencies:
       config:
         - field.storage.node.field_court_name
@@ -182,7 +157,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: field_headnote_and_holding
     type: text
-    boost: !!float 3
+    boost: !!float 13
     dependencies:
       config:
         - field.storage.node.field_headnote_and_holding
@@ -194,14 +169,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_judge
-  field_judgment_number:
-    label: 'Judgment number'
-    datasource_id: 'entity:node'
-    property_path: field_judgment_number
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_judgment_number
   field_lifecycle_json:
     label: Lifecycle
     datasource_id: 'entity:node'
@@ -210,21 +177,12 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_lifecycle_json
-  field_publication_name:
-    label: 'Publication name'
-    datasource_id: 'entity:node'
-    property_path: field_publication_name
-    type: text
-    boost: !!float 13
-    dependencies:
-      config:
-        - field.storage.node.field_publication_name
   field_search_summary:
     label: 'Search summary'
     datasource_id: 'entity:node'
     property_path: field_search_summary
     type: text
-    boost: !!float 3
+    boost: !!float 21
     dependencies:
       config:
         - field.storage.node.field_search_summary
@@ -244,13 +202,13 @@ field_settings:
     label: 'Search api attachments: Download'
     property_path: saa_field_files
     type: text
-    boost: !!float 5
+    boost: !!float 13
   title:
     label: Title
     datasource_id: 'entity:node'
     property_path: title
     type: text
-    boost: !!float 13
+    boost: !!float 21
     dependencies:
       module:
         - node
@@ -278,10 +236,29 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  double_quote_workaround:
+    all_fields: false
+    fields:
+      - body
+      - field_content
+      - field_flynote
+      - field_gazette_issue_number
+      - field_headnote_and_holding
+      - field_judge
+      - field_lifecycle_json
+      - field_search_summary
+      - field_tags
+      - title
+      - type
+    replacement: '|9999999998|'
+    weights:
+      postprocess_query: 0
+      preprocess_index: -15
+      preprocess_query: -15
   file_attachments:
     excluded_extensions: 'aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv'
     number_indexed: 0
-    number_first_bytes: '10 MB'
+    number_first_bytes: '3 MB'
     max_filesize: '0'
     excluded_private: 1
     excluded_mimes: 'audio/x-aiff image/x-jg video/x-msvideo image/x-ms-bmp image/gif image/vnd.microsoft.icon video/quicktime audio/ogg video/ogg image/png image/x-photoshop audio/x-realaudio audio/x-pn-realaudio image/x-rgb video/x-flv'
@@ -295,6 +272,23 @@ processor_settings:
     suffix: '</span>'
     weights:
       postprocess_query: 0
+  ignore_character:
+    all_fields: false
+    fields:
+      - saa_field_file
+      - saa_field_files
+    ignorable: '[''¿¡!?,.:;]'
+    ignorable_classes:
+      - Pc
+      - Pd
+      - Pe
+      - Pf
+      - Pi
+      - Po
+      - Ps
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
   language_with_fallback: {  }
   rendered_item: {  }
   solr_date_range:
