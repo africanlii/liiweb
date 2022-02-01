@@ -1,4 +1,4 @@
-uuid: 6571ebb9-787d-4beb-a50f-270d725097df
+uuid: b010e76f-bd42-46c8-8e9f-6fb98e1364a6
 langcode: en
 status: true
 dependencies:
@@ -7,13 +7,13 @@ dependencies:
     - views.view.liiweb_search
   module:
     - search_api
-id: date_range
-name: 'Date Range'
-url_alias: date_range
-weight: -2
+id: judge
+name: Judge
+url_alias: judge
+weight: 0
 min_count: 1
 show_only_one_result: true
-field_identifier: field_date
+field_identifier: field_judge
 facet_source_id: 'search_api:views_page__liiweb_search__page_search'
 widget:
   type: links
@@ -24,7 +24,7 @@ widget:
       show_less_label: 'Show less'
       show_more_label: 'Show more'
     show_reset_link: true
-    reset_text: 'All Dates'
+    reset_text: 'All Judges'
     hide_reset_when_no_selection: false
 query_operator: or
 use_hierarchy: false
@@ -34,31 +34,16 @@ hard_limit: 0
 exclude: false
 only_visible_when_facet_source_is_visible: true
 processor_configs:
-  date_item:
-    processor_id: date_item
+  display_value_widget_order:
+    processor_id: display_value_widget_order
     weights:
-      build: 35
+      sort: 40
     settings:
-      date_display: actual_date
-      granularity: 6
-      date_format: ''
-  range_slider:
-    processor_id: range_slider
+      sort: ASC
+  translate_entity:
+    processor_id: translate_entity
     weights:
-      pre_query: 60
-      post_query: 60
-      build: 20
-    settings: {  }
-  raw_value_widget_order:
-    processor_id: raw_value_widget_order
-    weights:
-      sort: 50
-    settings:
-      sort: DESC
-  slider:
-    processor_id: slider
-    weights:
-      post_query: 60
+      build: 5
     settings: {  }
   url_processor_handler:
     processor_id: url_processor_handler
@@ -68,4 +53,4 @@ processor_configs:
     settings: {  }
 empty_behavior:
   behavior: none
-show_title: true
+show_title: false
