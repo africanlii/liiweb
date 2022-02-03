@@ -8,6 +8,7 @@ dependencies:
     - node.type.judgment
     - system.menu.main
     - taxonomy.vocabulary.court_names
+    - taxonomy.vocabulary.registry
   module:
     - datetime
     - node
@@ -702,6 +703,7 @@ display:
           validate_options:
             bundles:
               court_names: court_names
+              registry: registry
             operation: view
             transform: true
             access: false
@@ -771,6 +773,7 @@ display:
           required: false
           vids:
             - court_names
+            - registry
           entity_type: node
           plugin_id: node_term_data
       exposed_form:
@@ -1043,6 +1046,7 @@ display:
           required: false
           vids:
             - court_names
+            - registry
           entity_type: node
           plugin_id: node_term_data
       display_description: ''
@@ -1101,6 +1105,7 @@ display:
           validate_options:
             bundles:
               court_names: court_names
+              registry: registry
             operation: view
             transform: true
             access: false
