@@ -822,7 +822,3 @@ $config['recaptcha.settings']['secret_key'] = getenv('RECAPTCHA_SECRET_KEY');
 */
 $config['smtp.settings']['smtp_password'] = getenv('SMTP_PASS');
 
-/**
-* Google Analytics account
-*/
-$config['google_analytics.settings']['account'] = getenv('GA_ACCOUNT');
