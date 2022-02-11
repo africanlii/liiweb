@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - search_api_solr
-    - file
     - node
     - search_api
     - search_api_attachments
@@ -77,7 +76,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
-
   field_case_number:
     label: 'Case number'
     datasource_id: 'entity:node'
@@ -221,7 +219,6 @@ field_settings:
       module:
         - node
 datasource_settings:
-  'entity:file': {  }
   'entity:node':
     bundles:
       default: false
@@ -275,7 +272,6 @@ processor_settings:
   ignore_character:
     all_fields: false
     fields:
-      - saa_field_file
       - saa_field_files
     ignorable: '[''¿¡!?,.:;]'
     ignorable_classes:
