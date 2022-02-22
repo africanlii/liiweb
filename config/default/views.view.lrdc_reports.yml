@@ -7,6 +7,7 @@ dependencies:
     - field.storage.node.field_date
     - field.storage.node.field_file
     - node.type.law_reform_reports
+    - system.menu.main
   module:
     - datetime
     - file_download_link
@@ -402,7 +403,7 @@ display:
           expose:
             label: 'Citation (field_citation)'
           plugin_id: standard
-      title: 'LRDC Reports'
+      title: 'ZLDC Reports'
       header:
         area:
           id: area
@@ -414,7 +415,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: 'Law Reform and Development Commission Papers'
+            value: 'Zambia Law Development Commission Reports database'
             format: full_html
           plugin_id: text
         result:
@@ -451,7 +452,16 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: lrdc-reports
+      path: law-reform-reports
+      menu:
+        type: normal
+        title: 'Law Reform Reports'
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 50
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:
