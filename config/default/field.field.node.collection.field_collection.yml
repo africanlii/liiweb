@@ -1,0 +1,37 @@
+uuid: d5340d6e-df15-4f33-93c7-81854a97a6d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_collection
+    - node.type.collection
+    - paragraphs.paragraphs_type.collections_link
+  module:
+    - entity_reference_revisions
+id: node.collection.field_collection
+field_name: field_collection
+entity_type: node
+bundle: collection
+label: Collection
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      collections_link: collections_link
+    target_bundles_drag_drop:
+      billboard_block:
+        weight: 4
+        enabled: false
+      collections_link:
+        enabled: true
+        weight: 5
+      work_repeal:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

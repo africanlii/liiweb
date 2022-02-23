@@ -14,7 +14,7 @@ provider: null
 plugin: text_block
 settings:
   id: text_block
-  label: 'About [site:name]'
+  label: 'About Africanlii'
   provider: liiweb
   label_display: visible
   text:

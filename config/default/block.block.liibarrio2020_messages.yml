@@ -1,6 +1,6 @@
 uuid: b6000926-39aa-4e3e-899f-53eea79f1566
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -10,7 +10,7 @@ _core:
   default_config_hash: 5MNdk3fpMKx_xxBTcz2T11DL4XEU1H5SgHl8BsYdFsA
 id: liibarrio2020_messages
 theme: liibarrio2020
-region: help
+region: pre_header
 weight: -4
 provider: null
 plugin: system_messages_block

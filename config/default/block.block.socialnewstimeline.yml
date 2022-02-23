@@ -1,6 +1,6 @@
 uuid: aa3c2b3e-36fc-4bdc-8adb-4bb0e8cab0f3
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - liiweb
@@ -9,7 +9,7 @@ dependencies:
     - liibarrio2020
 id: socialnewstimeline
 theme: liibarrio2020
-region: sidebar_second
+region: pre_header
 weight: -15
 provider: null
 plugin: social_news_timeline

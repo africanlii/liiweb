@@ -1,0 +1,11 @@
+id: more_by_author
+label: 'More By Author'
+ui_limit: ''
+properties:
+  block: 'views_block:more_by_author-block_1'
+  use_block_title: false
+  add_block_wrappers: false
+type: block
+type_label: 'Block field'
+entities:
+  taxonomy_term: taxonomy_term

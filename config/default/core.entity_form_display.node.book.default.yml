@@ -7,6 +7,8 @@ dependencies:
     - field.field.node.book.field_abstract
     - field.field.node.book.field_author_affilliation
     - field.field.node.book.field_author_surname
+    - field.field.node.book.field_b
+    - field.field.node.book.field_booktopic
     - field.field.node.book.field_contributor
     - field.field.node.book.field_copyright
     - field.field.node.book.field_date
@@ -53,6 +55,8 @@ third_party_settings:
         - field_image
         - field_date
         - field_law_report_citations
+        - field_b
+        - field_booktopic
       parent_name: group_book_workflow_form
       weight: 20
       format_type: tab
@@ -177,6 +181,22 @@ content:
     region: content
   field_author_surname:
     weight: 12
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_b:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_booktopic:
+    weight: 7
     settings:
       match_operator: CONTAINS
       match_limit: 10

@@ -18,7 +18,7 @@ third_party_settings:
         pathauto: true
         transliterate: false
     redirect: false
-    retroactive_update: false
+    retroactive_update: true
     active_updating: true
     file_name:
       value: '[node:field_media_neutral_citation:value].[file:ffp-extension-original]'

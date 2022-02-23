@@ -183,7 +183,7 @@ display:
           reduce_duplicates: false
           plugin_id: search_api_options
       sorts: {  }
-      title: 'Similar Judgments'
+      title: ''
       header: {  }
       footer: {  }
       empty:

@@ -1,0 +1,21 @@
+uuid: 4dcbd9f5-ab0a-417b-a17b-bceb28c293eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_collection_description
+    - paragraphs.paragraphs_type.collections_link
+  module:
+    - text
+id: paragraph.collections_link.field_collection_description
+field_name: field_collection_description
+entity_type: paragraph
+bundle: collections_link
+label: 'Collection Description'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

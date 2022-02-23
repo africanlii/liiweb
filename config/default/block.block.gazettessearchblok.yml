@@ -10,7 +10,7 @@ dependencies:
 id: gazettessearchblok
 theme: liibarrio2020
 region: content
-weight: -19
+weight: -24
 provider: null
 plugin: gazettes_search_block
 settings:

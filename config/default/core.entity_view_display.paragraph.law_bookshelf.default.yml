@@ -1,0 +1,37 @@
+uuid: 220d2ae1-4698-48d8-bd74-89e9fc44e252
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.law_bookshelf.field_books
+    - field.field.paragraph.law_bookshelf.field_law_bookshelf_description
+    - paragraphs.paragraphs_type.law_bookshelf
+  module:
+    - link
+    - text
+id: paragraph.law_bookshelf.default
+targetEntityType: paragraph
+bundle: law_bookshelf
+mode: default
+content:
+  field_books:
+    type: link
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_law_bookshelf_description:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  search_api_excerpt: true

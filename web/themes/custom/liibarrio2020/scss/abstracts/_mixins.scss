@@ -14,3 +14,39 @@
   border: 1px solid $border-color;
   padding: $padding;
 }
+
+@mixin proportional-container($ratio){
+position: relative;
+width:100%;
+height:0;
+overflow: hidden;
+padding-top:$ratio;
+}
+
+@mixin proportional-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@function vh($quantity) {
+	@return calc(var(--vh, 1vh) * #{$quantity});
+}
+
+@mixin full-width-bg($color){
+  position:relative;
+  z-index:1;
+  &::before{
+    content:'';
+    width:100vw;
+    height:100%;
+    position:absolute;
+    top:0;
+    left: calc(-50vw + 50%);
+    background-color: $color;
+    z-index:-1;
+  }
+}

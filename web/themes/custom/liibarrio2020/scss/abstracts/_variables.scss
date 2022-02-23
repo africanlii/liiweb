@@ -1,7 +1,7 @@
 /* Override the Bootstrap 4 variables
 -----------------------------------------*/
 // Google Fonts
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Work+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
 // Fontawesome
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/fontawesome.min.css");
@@ -11,13 +11,16 @@
 
 // Colors
 $blue: #326fd1;
-$green: #5a9d1c;
-$green-light: #afc73f;
-$red: #c71d1b;
-$gray: #e1e1e1;
-$gray-light: #ebebeb;
+$green: #152F09;
+$green-light: #62925A;
+$red: #A50707;
+$gray: #C6BCAD;
+$gray-light: #EAE6E1;
 $gray-very-light: #f8f8f8;
 $gray-dark: #4a4a4a;
+$white:#FDFCFB;
+$black:#1D1D1B;
+$orange:#EE7845;
 
 $brand-orange: #db6533;
 $brand-blue: #4c95a8;
@@ -25,10 +28,13 @@ $brand-yellow: #f8c944;
 $brand-green: #afc73f;
 $brand-magenta: #ba3e65;
 
-$primary: $blue;
-$secondary: $green;
+$primary: $black;
+$secondary: $orange;
 $danger: $red;
-$border-color: #d5d5d5;
+
+$dropshadow-sm:2px 2px 4px rgba(29, 29, 27, 0.3);
+$dropshadow-lg:4px 4px 8px rgba(29, 29, 27, 0.3);
+
 
 $twitter-brand: #00a0cb;
 $facebook-brand: #0032cc;
@@ -42,28 +48,29 @@ $theme-colors: (
 $grid-gutter-width: 20px;
 
 // Typography
-$font-size-base: 0.875rem; // 14px
-$font-family-sans-serif: "Lato", sans-serif;
-$line-height-base: 1.428571; // 20 / 14
+$font-size-base: 1rem; // 16px
+$font-family-sans-serif: "Work Sans", sans-serif;
+$font-family-header:"Montserrat", sans-serif;
+$line-height-base: 1.5; // 20 / 14
 
-$h1-font-size: $font-size-base * 3.571428; // 50px or 3.125rem
-$h2-font-size: $font-size-base * 1.428571; //20px or 1.25rem
-$h3-font-size: $font-size-base * 1.142857; //16px or 1rem
-//$h4-font-size:                $font-size-base * 1.5 !default;
-//$h5-font-size:                $font-size-base * 1.25 !default;
+$h1-font-size: $font-size-base * 2.5; // 50px or 3.125rem
+$h2-font-size: $font-size-base * 1.625; //20px or 1.25rem
+$h3-font-size: $font-size-base * 1.2; //16px or 1rem
+$h4-font-size: $font-size-base * 1.1 !default;
+$h5-font-size: $font-size-base;
 $h6-font-size: $font-size-base;
 
-$headings-font-weight: 700;
+$headings-font-weight: 600;
 
 // Body
-$body-bg: $gray-very-light;
-$body-color: $gray-dark;
+$body-bg: $white;
+$body-color: $black;
 
 // Links
-$link-color: $blue;
-//$link-decoration:                         none !default;
-$link-hover-color:                        darken($link-color, 15%) !default;
-//$link-hover-decoration:                   underline !default;
+$link-color: $black;
+$link-decoration: none;
+$link-hover-color: $red;
+$link-hover-decoration: none;
 // Darken percentage for links with `.text-*` class (e.g. `.text-success`)
 $emphasized-link-hover-darken-percentage: 15% !default;
 

@@ -1,0 +1,11 @@
+uuid: fec9bef8-491d-4286-9fae-d0a06e4ab699
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.book_type
+id: taxonomy_term.book_type
+target_entity_type_id: taxonomy_term
+target_bundle: book_type
+default_langcode: site_default
+language_alterable: false

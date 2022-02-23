@@ -11,3 +11,35 @@
 .ajax-throbber.sk-three-bounce .sk-child {
   background: $primary;
 }
+
+div#page_loader {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.hide{
+    animation: fade 400ms ease-out 0ms 1 normal both;
+  }
+}
+
+@keyframes fade {
+  0%{
+    opacity:1;
+    z-index:100;
+    transform: translate(0,0);
+  }
+  95%{
+    opacity:0;
+    transform: translate(0,0);
+  }
+  100%{
+    z-index:-1;
+    transform: translate(-100%,0);
+  }
+}

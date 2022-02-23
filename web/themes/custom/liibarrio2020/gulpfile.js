@@ -72,8 +72,15 @@ function serve() {
     .on("change", browserSync.reload);
 }
 
-const build = gulp.series(styles, gulp.parallel(js, serve));
+function watch(){
+  gulp
+  .watch([paths.scss.watch], styles)
+  .on("change", browserSync.reload);
+}
 
+const build = gulp.series(styles, watch, gulp.parallel(js, serve));
+
+exports.watch = watch;
 exports.styles = styles;
 exports.js = js;
 exports.serve = serve;

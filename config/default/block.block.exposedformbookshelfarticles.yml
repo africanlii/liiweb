@@ -1,0 +1,29 @@
+uuid: c2e24aa1-0c1c-4beb-baca-e8f68b7a18d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.bookshelf
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: exposedformbookshelfarticles
+theme: liibarrio2020
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:bookshelf-articles'
+settings:
+  id: 'views_exposed_filter_block:bookshelf-articles'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: /bookshelf/articles-dissertations
+    negate: false
+    context_mapping: {  }

@@ -1,6 +1,6 @@
 uuid: 5aa7a84d-855c-4c3c-b47b-d3c8e1d0e3c9
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - liiweb
@@ -9,7 +9,7 @@ dependencies:
     - liibarrio2020
 id: contactblock
 theme: liibarrio2020
-region: sidebar_second
+region: pre_header
 weight: -16
 provider: null
 plugin: contact_block

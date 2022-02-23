@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.law_journal_article.field_abstract
     - field.field.node.law_journal_article.field_author_affilliation
     - field.field.node.law_journal_article.field_author_surname
+    - field.field.node.law_journal_article.field_booktopic
     - field.field.node.law_journal_article.field_contributor
     - field.field.node.law_journal_article.field_copyright
     - field.field.node.law_journal_article.field_date
@@ -61,6 +62,7 @@ third_party_settings:
         - field_jvolume
         - field_jissue
         - field_date
+        - field_booktopic
       header_right:
         - field_law_report_citations
         - field_media_neutral_citation
@@ -111,6 +113,14 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: full_width
+  field_booktopic:
+    weight: 15
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: header_left
   field_contributor:
     weight: 9
     label: inline

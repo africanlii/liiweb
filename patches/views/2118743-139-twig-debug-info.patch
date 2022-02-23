@@ -1,0 +1,166 @@
+diff --git a/core/lib/Drupal/Core/Theme/ThemeManager.php b/core/lib/Drupal/Core/Theme/ThemeManager.php
+index 61f0483..f9545af 100644
+--- a/core/lib/Drupal/Core/Theme/ThemeManager.php
++++ b/core/lib/Drupal/Core/Theme/ThemeManager.php
+@@ -140,48 +140,46 @@ public function render($hook, array $variables) {
+     }
+ 
+     $theme_registry = $this->themeRegistry->getRuntime();
+-
+-    // If an array of hook candidates were passed, use the first one that has an
+-    // implementation.
+-    if (is_array($hook)) {
+-      foreach ($hook as $candidate) {
+-        if ($theme_registry->has($candidate)) {
+-          break;
+-        }
++    $theme_hooks = (array) $hook;
++    $hook_found = NULL;
++    // Check for hook implementation. If an array of hook candidates is passed,
++    // use the first one that has an implementation.
++    foreach ($theme_hooks as $candidate) {
++      if ($theme_registry->has($candidate)) {
++        $hook_found = $candidate;
++        break;
+       }
+-      $hook = $candidate;
+     }
+-    // Save the original theme hook, so it can be supplied to theme variable
+-    // preprocess callbacks.
+-    $original_hook = $hook;
+-
+-    // If there's no implementation, check for more generic fallbacks.
+-    // If there's still no implementation, log an error and return an empty
+-    // string.
+-    if (!$theme_registry->has($hook)) {
+-      // Iteratively strip everything after the last '__' delimiter, until an
+-      // implementation is found.
+-      while ($pos = strrpos($hook, '__')) {
+-        $hook = substr($hook, 0, $pos);
+-        if ($theme_registry->has($hook)) {
+-          break;
+-        }
++
++    $derived_hooks = [];
++    // Remove the last item of the array which is the original hook and use it
++    // as a pattern.
++    $hook_pattern = array_pop($theme_hooks);
++    // Get the generic fallbacks. If a valid hook implementation has not been
++    // found, check each fallback until one is.
++    while ($pos = strrpos($hook_pattern, '__')) {
++      // Save all derived hooks to be used later as a theme suggestion.
++      $derived_hooks[] = $hook_pattern;
++      $hook_pattern = substr($hook_pattern, 0, $pos);
++      if (!$hook_found && $theme_registry->has($hook_pattern)) {
++        $hook_found = $hook_pattern;
+       }
+-      if (!$theme_registry->has($hook)) {
+-        // Only log a message when not trying theme suggestions ($hook being an
+-        // array).
+-        if (!isset($candidate)) {
+-          \Drupal::logger('theme')->warning('Theme hook %hook not found.', ['%hook' => $hook]);
+-        }
+-        // There is no theme implementation for the hook passed. Return FALSE so
+-        // the function calling
+-        // \Drupal\Core\Theme\ThemeManagerInterface::render() can differentiate
+-        // between a hook that exists and renders an empty string, and a hook
+-        // that is not implemented.
+-        return FALSE;
++    }
++    if (!$hook_found) {
++      // Do not log a warning for arrays of theme hooks with no implemented
++      // hooks. It's valid to pass an array of theme hooks where none of the
++      // hooks are implemented. We only log missing theme hook implementations
++      // for single (string) hooks.
++      if (is_string($hook)) {
++        \Drupal::logger('theme')->warning('Theme hook %hook not found.', ['%hook' => $hook]);
+       }
++      // There is no theme implementation for the hook(s) passed. Return FALSE
++      // so the calling function can differentiate between a hook that exists
++      // and renders an empty string, and hooks that are not implemented.
++      return FALSE;
+     }
+-
++    $hook = $hook_found;
++    $theme_hooks = array_merge($theme_hooks, $derived_hooks);
+     $info = $theme_registry->get($hook);
+ 
+     // If a renderable array is passed as $variables, then set $variables to
+@@ -210,9 +208,11 @@ public function render($hook, array $variables) {
+     elseif (!empty($info['render element'])) {
+       $variables += [$info['render element'] => []];
+     }
+-    // Supply original caller info.
++
++    // Save the original theme hook, so it can be supplied to theme variable
++    // preprocess callbacks.
+     $variables += [
+-      'theme_hook_original' => $original_hook,
++      'theme_hook_original' => $candidate,
+     ];
+ 
+     // Set base hook for later use. For example if '#theme' => 'node__article'
+@@ -228,12 +228,9 @@ public function render($hook, array $variables) {
+ 
+     // Invoke hook_theme_suggestions_HOOK().
+     $suggestions = $this->moduleHandler->invokeAll('theme_suggestions_' . $base_theme_hook, [$variables]);
+-    // If the theme implementation was invoked with a direct theme suggestion
+-    // like '#theme' => 'node__article', add it to the suggestions array before
+-    // invoking suggestion alter hooks.
+-    if (isset($info['base hook'])) {
+-      $suggestions[] = $hook;
+-    }
++    // Prioritize suggestions from hook_theme_suggestions_HOOK() implementations
++    // above other suggestions.
++    $suggestions = array_merge($suggestions, array_reverse($theme_hooks));
+ 
+     // Invoke hook_theme_suggestions_alter() and
+     // hook_theme_suggestions_HOOK_alter().
+
+diff --git a/core/themes/engines/twig/twig.engine b/core/themes/engines/twig/twig.engine
+index 791f908..64f6098 100644
+--- a/core/themes/engines/twig/twig.engine
++++ b/core/themes/engines/twig/twig.engine
+@@ -79,31 +79,21 @@ function twig_render_template($template_file, array $variables) {
+     // If there are theme suggestions, reverse the array so more specific
+     // suggestions are shown first.
+     if (!empty($variables['theme_hook_suggestions'])) {
+-      $variables['theme_hook_suggestions'] = array_reverse($variables['theme_hook_suggestions']);
+-    }
+-    // Add debug output for directly called suggestions like
+-    // '#theme' => 'comment__node__article'.
+-    if (strpos($variables['theme_hook_original'], '__') !== FALSE) {
+-      $derived_suggestions[] = $hook = $variables['theme_hook_original'];
+-      while ($pos = strrpos($hook, '__')) {
+-        $hook = substr($hook, 0, $pos);
+-        $derived_suggestions[] = $hook;
+-      }
+-      // Get the value of the base hook (last derived suggestion) and append it
+-      // to the end of all theme suggestions.
+-      $base_hook = array_pop($derived_suggestions);
+-      $variables['theme_hook_suggestions'] = array_merge($derived_suggestions, $variables['theme_hook_suggestions']);
+-      $variables['theme_hook_suggestions'][] = $base_hook;
+-    }
+-    if (!empty($variables['theme_hook_suggestions'])) {
++      $suggestions = array_reverse($variables['theme_hook_suggestions']);
+       $extension = twig_extension();
+       $current_template = basename($template_file);
+-      $suggestions = $variables['theme_hook_suggestions'];
+-      // Only add the original theme hook if it wasn't a directly called
+-      // suggestion.
+-      if (strpos($variables['theme_hook_original'], '__') === FALSE) {
++
++      $pos = strpos($variables['theme_hook_original'], '__');
++      if ($pos !== FALSE) {
++        // If this template was invoked directly (e.g.: '#theme' =>
++        // 'links__node') include the base theme suggestion ('links' in this
++        // example).
++        $suggestions[] = substr($variables['theme_hook_original'], 0, $pos);
++      }
++      else {
+         $suggestions[] = $variables['theme_hook_original'];
+       }
++
+       foreach ($suggestions as &$suggestion) {
+         $template = strtr($suggestion, '_', '-') . $extension;
+         $prefix = ($template == $current_template) ? 'x' : '*';

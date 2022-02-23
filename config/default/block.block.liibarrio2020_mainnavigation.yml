@@ -11,7 +11,7 @@ dependencies:
 id: liibarrio2020_mainnavigation
 theme: liibarrio2020
 region: primary_menu
-weight: -4
+weight: -13
 provider: null
 plugin: 'system_menu_block:main'
 settings:

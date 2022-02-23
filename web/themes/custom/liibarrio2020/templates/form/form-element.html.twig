@@ -94,40 +94,24 @@
   ]
 %}
 {% if type in ['checkbox', 'radio'] %}
-  <div{{ attributes.addClass(classes) }}>
-    {% if prefix is not empty %}
-      <span class="field-prefix">{{ prefix }}</span>
-    {% endif %}
-    {% if description_display == 'before' and description.content %}
-      <div{{ description.attributes }}>
-        {{ description.content }}
-      </div>
-    {% endif %}
-    {% if label_display == 'before' %}
-      <label {{ label_attributes.addClass(labelclass).setAttribute('for', input_attributes.id) }}>
+  {% if name in ['field_flynote_target_id']  %}
+    <div{{ attributes.addClass(classes) }}>
+      <input{{ input_attributes.addClass(inputclass) }}>
+      <label {{ label_attributes.addClass(labelclass) }} for="{{input_attributes.id}}">
         {{ input_title | raw }}
+        
       </label>
-    {% endif %}
-    <input{{ input_attributes.addClass(inputclass) }}>
-    {% if label_display == 'after' %}
-      <label {{ label_attributes.addClass(labelclass).setAttribute('for', input_attributes.id) }}>
-        {{ input_title | raw }}
-      </label>
-    {% endif %}
-    {% if suffix is not empty %}
-      <span class="field-suffix">{{ suffix }}</span>
-    {% endif %}
-    {% if errors %}
-      <div class="invalid-feedback">
-        {{ errors }}
+    </div>
+  {% else %}
+    <li>
+      <div{{ attributes.addClass(classes) }}>
+        <input{{ input_attributes.addClass(inputclass) }}>
+        <label {{ label_attributes.addClass(labelclass)}} for="{{input_attributes.id}}">
+          {{ input_title | raw }}
+        </label>
       </div>
-    {% endif %}
-    {% if description_display in ['after', 'invisible'] and description.content %}
-      <small{{ description.attributes.addClass(description_classes) }}>
-        {{ description.content }}
-      </small>
-    {% endif %}
-  </div>
+    </li>
+  {% endif %}
 {% else %}
   <fieldset{{ attributes.addClass(classes, 'form-group') }}>
     <div class="fieldset-inner-wrapper"> {# allows elements to be flexed in all browsers#}

@@ -1,6 +1,6 @@
 uuid: 76d92e21-ccd7-4dfb-9cc2-2009ad677413
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - liiweb
@@ -9,7 +9,7 @@ dependencies:
 id: liiwebsupportnavblock
 theme: liibarrio2020
 region: pre_header
-weight: -13
+weight: -20
 provider: null
 plugin: support_nav_block
 settings:

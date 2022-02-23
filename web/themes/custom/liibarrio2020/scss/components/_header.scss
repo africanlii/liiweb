@@ -1,0 +1,87 @@
+/**
+ * @file
+ * Styles for Bootstrap Barrio's breadcrumbs.
+ */
+/*Header*/
+.layout-header{
+    &__pre-header{
+        a{
+            color: currentColor;
+        }
+    }
+} 
+
+.navbar-light .navbar-toggler {
+    border:none;
+    box-shadow:$dropshadow-sm;
+    background-color:$gray-light;
+    border-radius: 10px;  
+    width: 50px;
+    height: 50px;
+    padding:10px;
+    svg{
+        fill:$secondary;
+        transition:fill 300ms ease-out;
+    }
+    .bar-top{
+        transform: translate(0,8px) rotate(45deg);
+        transform-origin: 50% 25%;
+        transition:transform 300ms ease-in;
+    }
+    .bar-bottom{
+        transform: translate(0,-8px) rotate(-45deg);
+        transform-origin: 50% 75%;
+        transition:transform 300ms ease-in;
+    }
+    .bar-mid{
+        opacity:0;
+        transition:opacity 300ms ease-in;
+    }
+
+    &.collapsed{
+        svg{
+            fill:$primary;
+        }
+        .bar-top{
+            transform: translate(0,0) rotate(0);
+        }
+        .bar-bottom{
+            transform: translate(0,0) rotate(0);
+        }
+        .bar-mid{
+            opacity:1;
+        } 
+    }
+}
+
+.navbar-collapse{
+    padding:1rem;
+    opacity:0;
+    transition:opacity 300ms ease-in;
+    &::before{
+        content:'';
+        
+    }
+    &.show{
+        @include full-width-bg($white);
+        opacity:1;
+        &::before{
+            box-shadow: $dropshadow-lg;
+            
+        }
+    }
+}
+div#block-views-block-liiweb-search-general-search-form {
+    width: 100%;
+}
+
+#views-exposed-form-liiweb-search-general-search-form {
+    width:100%;
+  .form-actions {
+    flex-basis: 10%;
+  }
+  fieldset {
+    flex-basis: 90%;
+    width: 100%;
+  }
+}

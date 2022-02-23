@@ -6,11 +6,7 @@ dependencies:
     - core.entity_view_mode.node.full
     - field.field.node.judgment.body
     - field.field.node.judgment.feeds_item
-    - field.field.node.judgment.field_advocate_s_for_the_applica
-    - field.field.node.judgment.field_advocate_s_for_the_respond
     - field.field.node.judgment.field_arbitrary_suffix
-    - field.field.node.judgment.field_attorney_s_for_the_applica
-    - field.field.node.judgment.field_attorney_s_for_the_respond
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
@@ -19,7 +15,6 @@ dependencies:
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
-    - field.field.node.judgment.field_file
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_flynote_local
@@ -34,7 +29,6 @@ dependencies:
     - field.field.node.judgment.field_locality
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
-    - field.field.node.judgment.field_order
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
@@ -46,7 +40,7 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: liibarrio_stacked_2col_9_3
+      id: liibarrio_stacked_2col_3_9
       library: null
       disable_css: false
       entity_classes: all_classes
@@ -73,119 +67,71 @@ third_party_settings:
           footer: {  }
     regions:
       header_left:
-        - field_court_name
+        - field_case_name
+      left:
         - field_case_number
-      header_right:
-        - node_title
+        - field_court_name
+        - field_judge
         - field_law_report_citations
         - field_media_neutral_citation
-      header:
-        - field_flynote
-        - field_search_summary
-        - field_headnote_and_holding
-      left:
-        - field_judge
-        - download_conditional_entity_view_1
-      right:
-        - field_files
-        - field_file
-        - 'dynamic_token_field:node-share_links'
         - 'dynamic_block_field:node-similar_judgments'
+        - field_flynote
+        - field_flynote_local
+        - field_files
+        - 'dynamic_token_field:node-share_links'
+      right:
+        - field_headnote_and_holding
+        - field_search_summary
+        - download_conditional_entity_view_1
     fields:
       'dynamic_block_field:node-similar_judgments':
         plugin_id: 'dynamic_block_field:node-similar_judgments'
-        weight: 13
+        weight: 6
         label: hidden
         formatter: default
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 12
+        weight: 10
         label: hidden
         formatter: default
-      node_title:
-        plugin_id: node_title
-        weight: 2
-        label: hidden
-        formatter: default
-        settings:
-          wrapper: h3
-          class: ''
-          link: false
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
 id: node.judgment.full
 targetEntityType: node
 bundle: judgment
 mode: full
 content:
   download_conditional_entity_view_1:
-    weight: 9
-    region: left
+    weight: 13
+    region: right
     settings: {  }
+    third_party_settings: {  }
+  field_case_name:
+    type: string
+    weight: 0
+    region: header_left
+    label: hidden
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
   field_case_number:
     type: string
     weight: 1
-    region: header_left
-    label: inline
+    region: left
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
   field_court_name:
     type: entity_reference_label
-    weight: 0
-    region: header_left
+    weight: 2
+    region: left
     label: inline
     settings:
       link: false
     third_party_settings: {  }
-  field_file:
-    type: file_download_link
-    weight: 11
-    region: right
-    label: hidden
-    settings:
-      link_text: 'Download media summary as [file:ffp-extension-original]'
-      new_tab: true
-      force_download: true
-      custom_classes: media_summary
-    third_party_settings:
-      ds:
-        ft:
-          id: expert
-          settings:
-            lb: ''
-            prefix: ''
-            lbw-el: ''
-            lbw-cl: ''
-            lbw-at: ''
-            ow: true
-            ow-el: div
-            ow-cl: 'field field--name-field-files field--type-file field--label-hidden field__items'
-            ow-at: ''
-            ow-def-at: true
-            fis: true
-            fis-el: div
-            fis-cl: 'field__items liiweb-download'
-            fis-at: ''
-            fis-def-at: true
-            fi-el: ''
-            fi-cl: ''
-            fi-at: ''
-            suffix: ''
-            lbw: false
-            lb-col: false
-            ow-def-cl: false
-            fi: false
-            fi-def-at: false
   field_files:
     type: file_download_link
-    weight: 10
-    region: right
+    weight: 9
+    region: left
     label: hidden
     settings:
       link_text: 'Download as [file:ffp-extension-original]'
@@ -223,18 +169,31 @@ content:
             fi: false
             fi-def-at: false
   field_flynote:
-    weight: 5
-    label: inline
+    weight: 7
+    label: hidden
     settings:
-      link: false
-      view_mode: default
+      link: true
     third_party_settings:
       ds:
         ds_limit: ''
-    type: entity_reference_entity_view
-    region: header
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: entity_reference_label
+    region: left
+  field_flynote_local:
+    type: entity_reference_label
+    weight: 8
+    region: left
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
   field_headnote_and_holding:
-    weight: 7
+    weight: 11
     label: inline
     settings: {  }
     third_party_settings:
@@ -246,10 +205,10 @@ content:
             lb-col: false
             classes: {  }
     type: text_default
-    region: header
+    region: right
   field_judge:
     type: entity_reference_label
-    weight: 8
+    weight: 3
     region: left
     label: inline
     settings:
@@ -259,16 +218,16 @@ content:
         ds_limit: ''
   field_law_report_citations:
     type: string
-    weight: 3
-    region: header_right
+    weight: 4
+    region: left
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
   field_media_neutral_citation:
     type: computed_string
-    weight: 4
-    region: header_right
+    weight: 5
+    region: left
     label: inline
     settings:
       sanitized: '1'
@@ -284,8 +243,8 @@ content:
             classes: {  }
   field_search_summary:
     type: text_summary_or_trimmed
-    weight: 6
-    region: header
+    weight: 12
+    region: right
     label: inline
     settings:
       trim_length: 600
@@ -305,18 +264,12 @@ content:
 hidden:
   body: true
   feeds_item: true
-  field_advocate_s_for_the_applica: true
-  field_advocate_s_for_the_respond: true
   field_arbitrary_suffix: true
-  field_attorney_s_for_the_applica: true
-  field_attorney_s_for_the_respond: true
-  field_case_name: true
   field_case_number_numeric: true
   field_case_number_old: true
   field_case_number_year: true
   field_date: true
   field_external_link: true
-  field_flynote_local: true
   field_iso_country_code: true
   field_judgment_mnc_old: true
   field_judgment_number: true
@@ -324,7 +277,6 @@ hidden:
   field_judgment_old_nid: true
   field_locality: true
   field_matter_type: true
-  field_order: true
   langcode: true
   links: true
   search_api_excerpt: true

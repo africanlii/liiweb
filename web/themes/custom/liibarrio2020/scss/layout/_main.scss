@@ -1,12 +1,19 @@
-.layout-main-wrapper {
-  margin-top: 1.5rem;
+.layout-container {
+  padding-top: var(--header-height);
+  display: grid;
+  grid-template-rows: auto min-content;
+  min-height: vh(100);
 }
+
 
 .layout-main {
   flex: 0 0 100%;
 
   @include media-breakpoint-up(md) {
     flex: 1;
+  }
+  .content-header{
+    min-height:vh(50);
   }
 }
 
@@ -26,4 +33,53 @@ body.layout-sidebar-first.path-search {
   .layout-sidebar--first > aside.section {
     @include liibarrio-box();
   }
+}
+
+@supports (backdrop-filter: blur(3px)) {
+  .content-top,.navbar .menu--main,.layout-main .content-header .right{
+    backdrop-filter: blur(5px);
+    padding:1rem; 
+  } 
+}
+
+@supports not (backdrop-filter: blur(3px)) {
+  .content-top,.navbar .menu--main,.layout-main .content-header .right {
+    background-color: rgba(255, 255, 255, .8); 
+    padding:1rem; 
+  } 
+}
+
+.content-top,.layout-main .content-header .right{
+  max-width: 800px;
+}
+
+@include media-breakpoint-up(md){
+  .layout-main .content-header {
+    min-height: vh(20);
+  } 
+  .navbar-brand{
+    flex-basis:25vw;
+    img{
+      width:100%;
+      height:auto;
+    }
+  }
+  .content-top{
+    padding-bottom:1px;
+  }
+}
+
+@include media-breakpoint-up(lg){
+  .layout-one-sidebar{
+    .content-top{
+      margin-left:0;
+    }
+    .layout-main .content-header .right {
+      margin-left: 0;
+    }
+  }
+}
+
+#sidebar_first {
+  margin-bottom: 4rem;
 }

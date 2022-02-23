@@ -1,0 +1,21 @@
+uuid: cc892d12-e77a-4449-a7c9-c2d3423493f9
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_reference_revisions
+    - node
+    - paragraphs
+id: node.field_law_bookshelf
+field_name: field_law_bookshelf
+entity_type: node
+type: entity_reference_revisions
+settings:
+  target_type: paragraph
+module: entity_reference_revisions
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,19 @@
+uuid: f7e10f08-c409-49e6-872a-d9ccc34b603d
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - paragraphs
+id: paragraph.field_books
+field_name: field_books
+entity_type: paragraph
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

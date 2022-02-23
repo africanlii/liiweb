@@ -11,7 +11,7 @@ _core:
 id: liibarrio2020_branding
 theme: liibarrio2020
 region: header
-weight: -9
+weight: -20
 provider: null
 plugin: system_branding_block
 settings:

@@ -1,0 +1,29 @@
+uuid: 81c3d59b-7700-4c1f-99b1-ecbb54e4dfc5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_law_in_focus_collection
+    - node.type.law_in_focus
+    - taxonomy.vocabulary.law_in_focus_collection
+id: node.law_in_focus.field_law_in_focus_collection
+field_name: field_law_in_focus_collection
+entity_type: node
+bundle: law_in_focus
+label: 'Law in Focus Collection'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      law_in_focus_collection: law_in_focus_collection
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

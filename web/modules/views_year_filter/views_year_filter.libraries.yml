@@ -1,0 +1,5 @@
+year_filter:
+  js:
+    js/views-year-filter.js: {}
+  dependencies:
+    - core/jquery

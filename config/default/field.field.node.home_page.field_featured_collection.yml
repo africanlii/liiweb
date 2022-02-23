@@ -1,0 +1,28 @@
+uuid: 669556b5-d395-4182-a9a7-426cf99c4a7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_featured_collection
+    - node.type.collection
+    - node.type.home_page
+id: node.home_page.field_featured_collection
+field_name: field_featured_collection
+entity_type: node
+bundle: home_page
+label: 'Featured Collections'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      collection: collection
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

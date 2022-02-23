@@ -50,8 +50,9 @@
     {% if page.pre_header is not empty %}
     <div class="layout-header__pre-header">
       <div class="container">
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-between">
           {{ page.pre_header }}
+          <a href="https://uct.ac.za" class="uct_logo"><span class="visually-hidden">University of Cape Town</span>{% include('themes/custom/liibarrio2020/images/uct.svg') %}{% include('themes/custom/liibarrio2020/images/uctround.svg') %}</a>
         </div>
       </div>
     </div>          
@@ -66,7 +67,9 @@
           {% endif %}
             {{ page.header }}
             {% if page.primary_menu %}
-              <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+              <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                {% include('themes/custom/liibarrio2020/images/icons/hamburger.svg') %}
+              </button>
               <div class="collapse navbar-collapse" id="CollapsingNavbar">
                 {{ page.primary_menu }}                  
               </div>
@@ -79,15 +82,6 @@
     </div> 
   </header> 
   
-  {# Breadcrumb #}
-  {% if page.breadcrumbs|render|striptags|trim is not empty %}
-  <section class="layout-breadcrumbs">
-    <div class="container">
-      {{ page.breadcrumbs }}
-    </div>
-  </section>
-  {% endif %}
-
   {# Hero #}
   {% if page.hero|render|striptags|trim is not empty %}
   <section class="layout-hero">   
@@ -108,26 +102,13 @@
   </section>
   {% endif %}
 
-  {# Help #}
-  {% if page.help|render|striptags|trim is not empty %}
-  <section class="layout-help">
-    <div class="container">
-       {{ page.help }}
-    </div>
-  </section>
-  {% endif %} 
+ 
 
   {# Main #}
   <div id="main-wrapper" class="layout-main-wrapper">
     <div id="main" class="container">
-      {{ page.breadcrumb }}
       <div class="row row-offcanvas row-offcanvas-left clearfix">
 
-        {% if page.featured_top|render|striptags|trim is not empty %}
-        <section class="layout-featured layout-featured--top col-12">          
-          {{ page.featured_top }}          
-        </section>
-        {% endif %}
 
         {% if page.sidebar_first %}
         <div class="layout-sidebar layout-sidebar--first col" id="sidebar_first">
@@ -141,30 +122,28 @@
           <section class="section">
             <a id="main-content" tabindex="-1"></a>
             {% if page.content_top|render|striptags is not empty %}
-              {{ page.content_top }}
+              <div class="content-top">{{ page.content_top }}</div>
             {% endif %}
 
             {# Content #}
             {{ page.content }}
-
             {% if page.content_bottom|render|striptags is not empty %}
               {{ page.content_bottom }}
             {% endif %}
           </section>
         </main>
 
-        {% if page.sidebar_second %}
-        <div class="layout-sidebar layout-sidebar--second col" id="sidebar_second">
-          <aside class="section" role="complementary">
-            {{ page.sidebar_second }}
-          </aside>
-        </div>
-        {% endif %}
 
       </div>
     </div>
   </div>
-  
+  <div id="page_loader">
+    <div class="ajax-throbber sk-three-bounce">
+      <div class="sk-child sk-bounce1"></div>
+      <div class="sk-child sk-bounce2"></div>
+      <div class="sk-child sk-bounce3"></div>
+    </div>
+  </div>
   {# Footer #}
   <footer role="contentinfo" class="layout-footer">
     <div class="container">      
@@ -175,13 +154,9 @@
           {{ page.footer_third }}            
         </div>
       {% endif %}
-      {% if page.footer_last %}
-        <div class="layout-footer__bottom">
-          {{ page.footer_last }}
-        </div>
-      {% endif %}
       <div class="copyright">Copyright &copy;<script>new Date().getFullYear()>2010&&document.write(+new Date().getFullYear());</script> AfricanLii.</div>
     </div>    
   </footer> 
 
 </div>{# /.layout-container #}
+

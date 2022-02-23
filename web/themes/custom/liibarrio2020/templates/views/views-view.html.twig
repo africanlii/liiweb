@@ -47,7 +47,48 @@
   {{ title_suffix }}
   {% if header %}
     <div class="view-header">
-      {{ header }}
+      {# This is going here with a conditional, because I can't get Drupal to read the more specific template views-view--judgments-views.html.twig :( #}
+     
+      {% if view.exposed_data %}
+        {{ header }}
+        {% set topic = false %}
+        {% if view.exposed_data.field_flynote_target_id or  view.exposed_data.field_booktopic_target_id %}
+          {% for item in view.exposed_data.field_flynote_target_id %}
+              {% if item %}
+                {% set topic = true %}
+              {% endif %}
+          {% endfor %}
+          {% for item in view.exposed_data.field_booktopic_target_id %}
+            {% if item %}
+              {% set topic = true %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if view.exposed_data.field_date_value or view.exposed_data.alphabetical or topic %}
+          <h3>You are viewing:</h3>
+          <div class="topic-list d-flex">
+            {% if view.exposed_data.field_date_value %}
+              <button class="btn btn-tab" data-id="edit-field-date-value-{{ view.exposed_data.field_date_value }}">{{ view.exposed_data.field_date_value }}<span class="close">x</span></button>
+            {% endif %}
+            {% if view.exposed_data.alphabetical %}
+              <button class="btn btn-tab" data-id="edit-alphabetical-{{ view.exposed_data.alphabetical }}">Title starts with {{ view.exposed_data.alphabetical }}<span class="close">x</span></button>
+            {% endif %}
+              {% for item in view.exposed_data.field_flynote_target_id %}
+                {% if item %}
+                  <button class="btn btn-tab" data-id="edit-field-flynote-target-id-{{ item }}">{{ view.exposed_data.flynote[item] }}<span class="close">x</span></span></button>
+                {% endif %}
+              {% endfor %}
+              {% for item in view.exposed_data.field_booktopic_target_id %}
+                {% if item %}
+                  <button class="btn btn-tab" data-id="edit-field-booktopic-target-id-{{ item }}">{{ view.exposed_data.booktopic[item] }}<span class="close">x</span></span></button>
+                {% endif %}
+              {% endfor %}
+          </div>
+        {% endif %}
+        
+      {% else %}
+        {{ header }}
+      {% endif %}
     </div>
   {% endif %}
   {% if exposed %}
@@ -85,11 +126,6 @@
   {% if footer %}
     <div class="view-footer">
       {{ footer }}
-    </div>
-  {% endif %}
-  {% if feed_icons %}
-    <div class="feed-icons">
-      {{ feed_icons }}
     </div>
   {% endif %}
 </div>

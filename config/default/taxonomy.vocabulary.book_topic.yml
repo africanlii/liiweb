@@ -1,0 +1,8 @@
+uuid: 0e8a87ec-b975-44ed-936e-858af0527a44
+langcode: en
+status: true
+dependencies: {  }
+name: 'Book Topic'
+vid: book_topic
+description: ''
+weight: 0

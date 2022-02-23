@@ -1,0 +1,29 @@
+uuid: 79e44f4b-4d8a-4119-bae6-fe02e5c5de3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.collection.body
+    - field.field.node.collection.field_collection
+    - node.type.collection
+  module:
+    - text
+    - user
+id: node.collection.card
+targetEntityType: node
+bundle: collection
+mode: card
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_collection: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

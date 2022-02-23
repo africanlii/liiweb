@@ -1,0 +1,23 @@
+uuid: a71967f8-5841-453f-87a2-d5fdb4cc2f13
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_books
+    - paragraphs.paragraphs_type.law_bookshelf
+  module:
+    - link
+id: paragraph.law_bookshelf.field_books
+field_name: field_books
+entity_type: paragraph
+bundle: law_bookshelf
+label: 'Bookshelf links'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
