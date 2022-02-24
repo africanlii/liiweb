@@ -822,15 +822,3 @@ $config['recaptcha.settings']['secret_key'] = getenv('RECAPTCHA_SECRET_KEY');
 */
 $config['smtp.settings']['smtp_password'] = getenv('SMTP_PASS');
 
-$settings['hash_salt'] = 'ggxaq3QNDyWVhlqeV0gz7YHJJm39P5JOU4HekxOYGMnpMU78LKdHJGm1cPprsGW2YdycSZ';
-
-$databases['default']['default'] = [
-  'database' => 'liiweb',
-  'username' => 'root',
-  'password' => '',
-  'host' => 'localhost',
-  'port' => '3306',
-  'driver' => 'mysql',
-  'prefix' => '',
-  'collation' => 'utf8mb4_general_ci',
-];
