@@ -253,7 +253,7 @@ function liibarrio2020_node_presave(EntityInterface $entity) {
 
 
 function liibarrio2020_preprocess_views_view(&$variables){
-    $flynote=$variables['view']->exposed_data['field_flynote_target_id'];
+    $flynote=$variables['view']->exposed_data['field_flynote_target_id']??false;
     if($flynote){
       foreach($flynote as $key=>$item){
       $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($key);
@@ -263,7 +263,7 @@ function liibarrio2020_preprocess_views_view(&$variables){
         }
       } 
     }
-    $booktopic=$variables['view']->exposed_data['field_booktopic_target_id'];
+    $booktopic=$variables['view']->exposed_data['field_booktopic_target_id']??false;
     if($booktopic){
       foreach($booktopic as $key=>$item){
       $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($key);
