@@ -3735,7 +3735,10 @@
                     }
                 },
                 "patches_applied": {
-                    "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch"
+                    "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch",
+                    "Add tokens for exposed filters in views": "patches/views/2761273-39.patch",
+                    "remove duplicate theme suggestions": "patches/views/2118743-139-twig-debug-info.patch",
+                    "fix ocntextual filters with exposed form bug": "patches/views/views-exposed-form-block-arg-2821962-50.patch"
                 }
             },
             "autoload": {
@@ -4938,8 +4941,7 @@
                     }
                 },
                 "patches_applied": {
-                    "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch",
-                    "Token replacement generate leaked cache metadata": "https://www.drupal.org/files/issues/2019-08-13/fieldfield_path-leaked_cache_metadata-3074642-2.patch"
+                    "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -5529,17 +5531,17 @@
         },
         {
             "name": "drupal/pdf",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/pdf.git",
-                "reference": "8.x-1.0"
+                "reference": "8.x-1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/pdf-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "95c041643386957c319ce8141bb1aeb892c902a5"
+                "url": "https://ftp.drupal.org/files/projects/pdf-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "4ee049fc712f433e2a4f48aeaeb54351512ed2cc"
             },
             "require": {
                 "drupal/core": "^8 || ^9"
@@ -5547,8 +5549,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1592819437",
+                    "version": "8.x-1.1",
+                    "datestamp": "1607548097",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6110,6 +6112,55 @@
                 "source": "http://git.drupal.org/project/search_api_solr.git",
                 "issues": "https://www.drupal.org/project/issues/search_api_solr",
                 "chat": "https://drupalchat.me/channel/search"
+            }
+        },
+        {
+            "name": "drupal/selective_better_exposed_filters",
+            "version": "2.0.0-beta6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/selective_better_exposed_filters.git",
+                "reference": "8.x-2.0-beta6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/selective_better_exposed_filters-8.x-2.0-beta6.zip",
+                "reference": "8.x-2.0-beta6",
+                "shasum": "66e5606a40a88d57fa017e786a74de6fed190989"
+            },
+            "require": {
+                "drupal/better_exposed_filters": "^4.0 || ^5.0",
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.0-beta6",
+                    "datestamp": "1595929214",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "stomusic",
+                    "homepage": "https://www.drupal.org/user/3405436"
+                }
+            ],
+            "description": "Provide extra option for better exposed filters to show only used terms in filter.",
+            "homepage": "https://www.drupal.org/project/selective_better_exposed_filters",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/selective_better_exposed_filters",
+                "issues": "https://www.drupal.org/project/issues/selective_better_exposed_filters"
             }
         },
         {
@@ -7339,6 +7390,62 @@
                 "source": "https://git.drupalcode.org/project/views_php"
             },
             "time": "2015-11-12T01:16:46+00:00"
+        },
+        {
+            "name": "drupal/views_taxonomy_term_name_depth",
+            "version": "7.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/views_taxonomy_term_name_depth.git",
+                "reference": "7.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/views_taxonomy_term_name_depth-7.0.0.zip",
+                "reference": "7.0.0",
+                "shasum": "38afb5216ca31f547f20be9dede33147abb8d614"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "7.0.0",
+                    "datestamp": "1589022428",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "JayKandari",
+                    "homepage": "https://www.drupal.org/user/2876519"
+                },
+                {
+                    "name": "baikho",
+                    "homepage": "https://www.drupal.org/user/2727459"
+                },
+                {
+                    "name": "manojapare",
+                    "homepage": "https://www.drupal.org/user/2825053"
+                },
+                {
+                    "name": "rakesh.gectcr",
+                    "homepage": "https://www.drupal.org/user/1177822"
+                }
+            ],
+            "description": "The module provides the Views plugin for Contextual filter with Taxonomy Term Name Depth.",
+            "homepage": "https://www.drupal.org/project/views_taxonomy_term_name_depth",
+            "support": {
+                "source": "https://git.drupalcode.org/project/views_taxonomy_term_name_depth"
+            }
         },
         {
             "name": "drupal/views_taxonomy_term_name_into_id",
@@ -15258,6 +15365,7 @@
         "drupal/inline_entity_form": 5,
         "drupal/jasm": 20,
         "drupal/search_api_attachments": 10,
+        "drupal/selective_better_exposed_filters": 10,
         "drupal/smtp": 10,
         "drupal/term_merge": 15,
         "drupal/toolbar_extras": 10,
@@ -15269,8 +15377,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "~7.3.0",
+        "php": ">=7.3",
         "ext-json": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

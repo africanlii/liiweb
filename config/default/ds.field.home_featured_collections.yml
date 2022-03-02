@@ -1,0 +1,25 @@
+id: home_featured_collections
+label: 'Home: Featured Collections'
+ui_limit: ''
+properties:
+  block: 'entity_field:node:field_featured_collection'
+  use_block_title: false
+  add_block_wrappers: false
+  config:
+    id: 'entity_field:node:field_featured_collection'
+    label: ''
+    provider: ctools_block
+    label_display: visible
+    formatter:
+      label: hidden
+      type: entity_reference_entity_view
+      settings:
+        view_mode: card
+      third_party_settings: {  }
+      weight: 0
+    context_mapping:
+      entity: '@node.node_route_context:node'
+type: block
+type_label: 'Block field'
+entities:
+  node: node

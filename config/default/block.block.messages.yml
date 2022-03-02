@@ -1,6 +1,6 @@
 uuid: 7345013d-c75c-4520-9d88-49291ee3481c
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -8,7 +8,7 @@ dependencies:
     - liibarrio2020
 id: messages
 theme: liibarrio2020
-region: help
+region: pre_header
 weight: 0
 provider: null
 plugin: system_messages_block

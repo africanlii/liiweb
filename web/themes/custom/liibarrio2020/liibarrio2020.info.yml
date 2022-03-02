@@ -24,18 +24,13 @@ regions:
   pre_header: Pre-header
   header: Header
   primary_menu: "Primary menu"
-  secondary_menu: "Secondary menu"
-  breadcrumbs: Breadcrumbs
   hero: Hero
   highlighted: Highlighted
-  help: Help
-  featured_top: "Featured top"
   content_top: "Content top"
   content: Content
   content_bottom: "Content bottom"
   sidebar_first: "Sidebar first"
-  sidebar_second: "Sidebar second"
   footer_first: "Footer first"
   footer_second: "Footer second"
   footer_third: "Footer third"
-  footer_last: "Footer last"
+ 

@@ -8,23 +8,66 @@
 
   Drupal.behaviors.liibarrio2020_general = {
     attach: function (context, settings) {
+      $('#page_loader').addClass("hide");
       var position = $(window).scrollTop();
+      $("body").removeClass("add_fixed scrolled scrollup scrolldown");
+      if($(window).width()<992){
+        var widthFlag = true;
+      }
+      else{
+        var widthFlag = false;
+      }
       $(window).scroll(function () {
-        if ($(this).scrollTop() > 50) {
+
+        if($(this).scrollTop() > 600){
           $("body").addClass("scrolled");
-        } else {
-          $("body").removeClass("scrolled");
+        }
+        else if ($(this).scrollTop() > 300) {
+          $("body").addClass("add_fixed");
+        } 
+        else {
+          $("body").removeClass("add_fixed scrolled");
         }
         var scroll = $(window).scrollTop();
         if (scroll > position) {
           $("body").addClass("scrolldown");
           $("body").removeClass("scrollup");
+          if(widthFlag){
+            $(".navbar-collapse").collapse('hide');
+          }
+          
         } else {
           $("body").addClass("scrollup");
           $("body").removeClass("scrolldown");
+          if(widthFlag){
+            $(".navbar-collapse").collapse('hide');
+          }
         }
         position = scroll;
       });
+
+      /*Interactions using bootstrap jquery stuff*/
+      $(function () {
+        $('[data-toggle="popover"]').popover();
+        $('.popover-dismiss').popover({
+          trigger: 'focus'
+        })
+        
+        $('.collapse').collapse({
+          toggle: false
+        });
+        
+        $('.collapse').on({
+          "show.bs.collapse": function (e) {
+            $(this).parents("tr").addClass("expanded");
+          },
+          "hide.bs.collapse": function (e) {
+            $(this).parents("tr").removeClass("expanded");
+          }
+        }
+        )
+      })
+
     },
   };
 

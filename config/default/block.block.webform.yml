@@ -1,6 +1,6 @@
 uuid: f2516e4e-142f-49e4-9dea-fed5c3973d13
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - webform.webform.newsletter_sign_up
@@ -11,7 +11,7 @@ dependencies:
     - liibarrio2020
 id: webform
 theme: liibarrio2020
-region: sidebar_second
+region: pre_header
 weight: -19
 provider: null
 plugin: webform_block

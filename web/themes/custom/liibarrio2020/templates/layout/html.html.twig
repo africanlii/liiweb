@@ -35,7 +35,11 @@
 <html{{ html_attributes }}>
   <head>
     <head-placeholder token="{{ placeholder_token }}">
+    {% if head_title.title == 'Home Page' %}
+    <title>{{ head_title.name }}</title>
+    {% else %}  
     <title>{{ head_title|safe_join(' | ') }}</title>
+    {% endif %}
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
   </head>

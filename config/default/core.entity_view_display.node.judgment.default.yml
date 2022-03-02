@@ -5,11 +5,7 @@ dependencies:
   config:
     - field.field.node.judgment.body
     - field.field.node.judgment.feeds_item
-    - field.field.node.judgment.field_advocate_s_for_the_applica
-    - field.field.node.judgment.field_advocate_s_for_the_respond
     - field.field.node.judgment.field_arbitrary_suffix
-    - field.field.node.judgment.field_attorney_s_for_the_applica
-    - field.field.node.judgment.field_attorney_s_for_the_respond
     - field.field.node.judgment.field_case_name
     - field.field.node.judgment.field_case_number
     - field.field.node.judgment.field_case_number_numeric
@@ -18,7 +14,6 @@ dependencies:
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
-    - field.field.node.judgment.field_file
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_flynote_local
@@ -33,14 +28,11 @@ dependencies:
     - field.field.node.judgment.field_locality
     - field.field.node.judgment.field_matter_type
     - field.field.node.judgment.field_media_neutral_citation
-    - field.field.node.judgment.field_order
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
     - datetime
     - ds
-    - file
-    - liiweb
     - text
     - user
 third_party_settings:
@@ -79,7 +71,6 @@ third_party_settings:
       full_width:
         - field_judge
       sidebar:
-        - field_files
         - 'dynamic_token_field:node-share_links'
       node_content:
         - field_headnote_and_holding
@@ -88,23 +79,23 @@ third_party_settings:
         - field_search_summary
         - download_conditional_entity_view_1
     fields:
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 5
+        label: hidden
+        formatter: default
       node_author:
         plugin_id: node_author
         weight: 0
         label: inline
         formatter: author
-      'dynamic_token_field:node-share_links':
-        plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 6
-        label: hidden
-        formatter: default
 id: node.judgment.default
 targetEntityType: node
 bundle: judgment
 mode: default
 content:
   download_conditional_entity_view_1:
-    weight: 11
+    weight: 10
     region: node_content
     settings: {  }
     third_party_settings: {  }
@@ -133,24 +124,8 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: header_left
-  field_file:
-    weight: 12
-    label: above
-    settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
-    type: file_default
-    region: content
-  field_files:
-    type: lii_file
-    weight: 5
-    region: sidebar
-    label: hidden
-    settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
   field_flynote:
-    weight: 9
+    weight: 8
     label: inline
     settings:
       link: false
@@ -160,7 +135,7 @@ content:
     type: entity_reference_label
     region: node_content
   field_flynote_local:
-    weight: 8
+    weight: 7
     label: inline
     settings:
       link: false
@@ -176,7 +151,7 @@ content:
     type: entity_reference_label
     region: node_content
   field_headnote_and_holding:
-    weight: 7
+    weight: 6
     label: inline
     settings: {  }
     third_party_settings: {  }
@@ -194,7 +169,7 @@ content:
         ds_limit: ''
   field_search_summary:
     type: text_summary_or_trimmed
-    weight: 10
+    weight: 9
     region: node_content
     label: inline
     settings:
@@ -208,16 +183,13 @@ content:
 hidden:
   body: true
   feeds_item: true
-  field_advocate_s_for_the_applica: true
-  field_advocate_s_for_the_respond: true
   field_arbitrary_suffix: true
-  field_attorney_s_for_the_applica: true
-  field_attorney_s_for_the_respond: true
   field_case_name: true
   field_case_number_numeric: true
   field_case_number_old: true
   field_case_number_year: true
   field_external_link: true
+  field_files: true
   field_iso_country_code: true
   field_judgment_mnc_old: true
   field_judgment_number: true
@@ -227,7 +199,6 @@ hidden:
   field_locality: true
   field_matter_type: true
   field_media_neutral_citation: true
-  field_order: true
   langcode: true
   links: true
   search_api_excerpt: true

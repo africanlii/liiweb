@@ -1,0 +1,43 @@
+uuid: 39225b2a-6bfb-4bd5-b648-1d2fd842606c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_law_in_focus
+    - node.type.home_page
+    - paragraphs.paragraphs_type.law_in_focus
+  module:
+    - entity_reference_revisions
+id: node.home_page.field_law_in_focus
+field_name: field_law_in_focus
+entity_type: node
+bundle: home_page
+label: 'Law in Focus'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      law_in_focus: law_in_focus
+    target_bundles_drag_drop:
+      billboard_block:
+        weight: 6
+        enabled: false
+      collections_link:
+        weight: 7
+        enabled: false
+      law_bookshelf:
+        weight: 8
+        enabled: false
+      law_in_focus:
+        enabled: true
+        weight: 9
+      work_repeal:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

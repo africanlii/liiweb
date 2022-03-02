@@ -1,0 +1,10 @@
+uuid: e6443ab4-12aa-44b5-b6d5-cf236eba8124
+langcode: en
+status: true
+dependencies: {  }
+id: law_in_focus
+label: 'Law in Focus'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

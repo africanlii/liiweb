@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * liiBarrio DS Layouts: "Card - Basic" template.
+ *
+ * Available layout variables:
+ * - wrapper: Wrapper element for the layout container.
+ * - attributes: Wrapper attributes for the layout container.
+ *
+ * Available region variables:
+ * - Content
+ *
+ * Each region variable contains the following properties:
+ * - wrapper: The HTML element to use to wrap this region.
+ * - attributes: The HTML attributes to use on the wrapper for this region.
+ * - content: The content to go inside the wrapper for this region.
+ */
+#}
+
+<div class="sidebar-block drop-shadow top-right-radius">
+  <div class="black top-right-radius">
+    {{ content.taxonomy_term_title }}
+  </div>
+  <div class="white thin-border">
+    {{ content.field_author_portrait }}
+    {{ content.field_author_bio|render }}
+    <a href="{{ content.field_author_link[0]["#url"] }}" target="_blank">More about the author</a>
+    <h4>More by this Author</h4>
+    {{ content['dynamic_block_field:taxonomy_term-more_by_author']}}
+    {{ devel_breakpoint() }}
+  </div>
+</div>

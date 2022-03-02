@@ -85,6 +85,11 @@ class ViewsExposedForm extends FormBase {
     /** @var \Drupal\views\ViewExecutable $view */
     $view = $form_state->get('view');
     $display = &$form_state->get('display');
+    // Existing arguments need to be passed as this exposed form might
+    // be used in a block. Without this contextual views arguments
+    // will be lost.
+    $args = $this->buildArgs();
+    $view->setArguments($args);
 
     $form_state->setUserInput($view->getExposedInput());
 
@@ -132,6 +137,17 @@ class ViewsExposedForm extends FormBase {
       '#id' => Html::getUniqueId('edit-submit-' . $view->storage->id()),
     ];
 
+    if ($view->hasUrl()) {
+      foreach($view->getUrl()->getRouteParameters() as $k => $parameter){
+        if($parameter != 'all'){
+          $newParameters[$k] = $parameter;
+        }
+      }
+      if(isset($newParameters)){
+        $view_url = $view->getUrl()->setRouteParameters($newParameters);
+      }
+    }
+
     if (!$view->hasUrl()) {
       // On any non views.ajax route, use the current route for the form action.
       if ($this->getRouteMatch()->getRouteName() !== 'views.ajax') {
@@ -141,6 +157,9 @@ class ViewsExposedForm extends FormBase {
         // On the views.ajax route, set the action to the page we were on.
         $form_action = Url::fromUserInput($this->currentPathStack->getPath())->toString();
       }
+    }
+    elseif(isset($view_url)){
+      $form_action = $view_url->toString();
     }
     else {
       $form_action = $view->getUrl()->toString();
@@ -158,6 +177,44 @@ class ViewsExposedForm extends FormBase {
     $this->exposedFormCache->setForm($view->storage->id(), $view->current_display, $form);
 
     return $form;
+  }
+
+  /**
+   * @return array
+   *
+   * This code copied from \Drupal\views\Routing\ViewPageController::handle
+   *
+   * TODO: Don't repeat it.
+   *
+   * @see \Drupal\views\Routing\ViewPageController::handle
+   * @see https://www.drupal.org/project/drupal/issues/2821962
+   */
+  protected function buildArgs() {
+    /** @var \Drupal\Core\Routing\CurrentRouteMatch $route_match */
+    $route_match = \Drupal::service('current_route_match');
+    $args = [];
+    $route = $route_match->getRouteObject();
+    $map = $route->hasOption('_view_argument_map') ? $route->getOption('_view_argument_map') : [];
+
+    foreach ($map as $attribute => $parameter_name) {
+      // Allow parameters be pulled from the request.
+      // The map stores the actual name of the parameter in the request. Views
+      // which override existing controller, use for example 'node' instead of
+      // arg_nid as name.
+      if (isset($map[$attribute])) {
+        $attribute = $map[$attribute];
+      }
+      
+      if(!isset($arg) || $arg != $route_match->getRawParameter($attribute)) {
+        $arg = $route_match->getParameter($attribute);
+      }
+      
+      if (isset($arg) && $arg != 'all') {
+        $args[] = $arg;
+      }
+    }
+
+    return $args;
   }
 
   /**

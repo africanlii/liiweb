@@ -1,0 +1,23 @@
+uuid: 5b4cdd85-9b37-48a7-9ad2-036737e3a19a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.law_in_focus
+  module:
+    - text
+id: node.law_in_focus.body
+field_name: body
+entity_type: node
+bundle: law_in_focus
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

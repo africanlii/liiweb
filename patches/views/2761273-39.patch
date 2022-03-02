@@ -1,0 +1,80 @@
+diff --git a/core/modules/views/src/Plugin/views/area/TokenizeAreaPluginBase.php b/core/modules/views/src/Plugin/views/area/TokenizeAreaPluginBase.php
+index 0b05e173af..fef89c82d2 100644
+--- a/core/modules/views/src/Plugin/views/area/TokenizeAreaPluginBase.php
++++ b/core/modules/views/src/Plugin/views/area/TokenizeAreaPluginBase.php
+@@ -46,13 +46,20 @@ public function tokenForm(&$form, FormStateInterface $form_state) {
+       '#default_value' => $this->options['tokenize'],
+     ];
+ 
+-    // Get a list of the available fields and arguments for token replacement.
++    // Get a list of the available fields, exposed filters, and arguments for
++    // token replacement.
+     $options = [];
+     $optgroup_arguments = (string) t('Arguments');
+     $optgroup_fields = (string) t('Fields');
++    $optgroup_filters = (string) t('Exposed filters');
+     foreach ($this->view->display_handler->getHandlers('field') as $field => $handler) {
+       $options[$optgroup_fields]["{{ $field }}"] = $handler->adminLabel();
+     }
++    foreach ($this->view->display_handler->getHandlers('filter') as $filter => $handler) {
++      if ($handler->options['exposed']) {
++        $options[$optgroup_filters]["{{ filters.$filter }}"] = $handler->adminLabel();
++      }
++    }
+ 
+     foreach ($this->view->display_handler->getHandlers('argument') as $arg => $handler) {
+       $options[$optgroup_arguments]["{{ arguments.$arg }}"] = $this->t('@argument title', ['@argument' => $handler->adminLabel()]);
+diff --git a/core/modules/views/src/ViewExecutable.php b/core/modules/views/src/ViewExecutable.php
+index 7637ec8f74..e3fc40fc0e 100644
+--- a/core/modules/views/src/ViewExecutable.php
++++ b/core/modules/views/src/ViewExecutable.php
+@@ -1138,7 +1138,8 @@ protected function _buildArguments() {
+     }
+ 
+     // Store the arguments for later use.
+-    $this->build_info['substitutions'] = $substitutions;
++    $this->build_info += ['substitutions' => []];
++    $this->build_info['substitutions'] += $substitutions;
+ 
+     return $status;
+   }
+@@ -1217,6 +1218,7 @@ public function build($display_id = NULL) {
+       'query' => '',
+       'count_query' => '',
+       'query_args' => [],
++      'substitutions' => [],
+     ];
+ 
+     $this->initQuery();
+@@ -1373,6 +1375,31 @@ public function _build($key) {
+           $handlers[$id]->query($this->display_handler->useGroupBy());
+         }
+       }
++
++      // Place an exposed filter's exposed input value into the
++      // substitutions array for tokens.
++      if ($key == 'filter' && !empty($handlers[$id]->options['expose']['identifier'])) {
++        $output_value = '';
++        $exposed_identifier = $handlers[$id]->options['expose']['identifier'];
++        if (isset($this->exposed_input[$exposed_identifier])) {
++          $input_value = $output_value = $this->exposed_input[$exposed_identifier];
++          if (method_exists($handlers[$id], 'getValueOptions')) {
++            if (is_array($input_value)) {
++              if (is_array($handlers[$id]) && !empty($handlers[$id])) {
++                $output_value = (string) $handlers[$id]->getValueOptions()[$input_value];
++              }
++            }
++          }
++          elseif (is_array($input_value)) {
++            $output_values = [];
++            array_walk_recursive($input_value, function ($value) use (&$output_values) {
++              $output_values[] = $value;
++            });
++            $output_value = implode(' - ', $output_values);
++          }
++        }
++        $this->build_info['substitutions']["{{ filters.$id }}"] = $output_value;
++      }
+     }
+   }
+ 

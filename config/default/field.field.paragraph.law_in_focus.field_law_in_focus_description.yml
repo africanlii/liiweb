@@ -1,0 +1,21 @@
+uuid: afaa3c2a-3c13-40cf-b321-d77202b86e4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_law_in_focus_description
+    - paragraphs.paragraphs_type.law_in_focus
+  module:
+    - text
+id: paragraph.law_in_focus.field_law_in_focus_description
+field_name: field_law_in_focus_description
+entity_type: paragraph
+bundle: law_in_focus
+label: 'Law in Focus Description'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

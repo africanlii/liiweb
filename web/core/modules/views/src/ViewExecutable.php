@@ -1138,7 +1138,8 @@ class ViewExecutable {
     }
 
     // Store the arguments for later use.
-    $this->build_info['substitutions'] = $substitutions;
+    $this->build_info += ['substitutions' => []];
+    $this->build_info['substitutions'] += $substitutions;
 
     return $status;
   }
@@ -1217,6 +1218,7 @@ class ViewExecutable {
       'query' => '',
       'count_query' => '',
       'query_args' => [],
+      'substitutions' => [],
     ];
 
     $this->initQuery();
@@ -1372,6 +1374,31 @@ class ViewExecutable {
           $handlers[$id]->setRelationship();
           $handlers[$id]->query($this->display_handler->useGroupBy());
         }
+      }
+
+      // Place an exposed filter's exposed input value into the
+      // substitutions array for tokens.
+      if ($key == 'filter' && !empty($handlers[$id]->options['expose']['identifier'])) {
+        $output_value = '';
+        $exposed_identifier = $handlers[$id]->options['expose']['identifier'];
+        if (isset($this->exposed_input[$exposed_identifier])) {
+          $input_value = $output_value = $this->exposed_input[$exposed_identifier];
+          if (method_exists($handlers[$id], 'getValueOptions')) {
+            if (is_array($input_value)) {
+              if (is_array($handlers[$id]) && !empty($handlers[$id])) {
+                $output_value = (string) $handlers[$id]->getValueOptions()[$input_value];
+              }
+            }
+          }
+          elseif (is_array($input_value)) {
+            $output_values = [];
+            array_walk_recursive($input_value, function ($value) use (&$output_values) {
+              $output_values[] = $value;
+            });
+            $output_value = implode(' - ', $output_values);
+          }
+        }
+        $this->build_info['substitutions']["{{ filters.$id }}"] = $output_value;
       }
     }
   }

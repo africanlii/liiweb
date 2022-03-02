@@ -29,6 +29,44 @@
     errors ? 'has-error',
   ]
 %}
+{% if element['#context']['#view_id']=='judgments_views' %}
+{# for judgement view exposed filter make fieldset into details #}
+<details{{ attributes.addClass(classes) }}>
+  {%
+    set legend_span_classes = [
+      'fieldset-legend',
+      required ? 'js-form-required',
+      required ? 'form-required',
+    ]
+  %}
+  {#  Always wrap fieldset legends in a SPAN for CSS positioning. #}
+  
+  
+    <summary{{ legend.attributes }}>
+      <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
+      <div class="plus">+</div>
+    </summary>  
+    <div class="fieldset-wrapper">
+      <div class="minus">-</div>
+      {% if errors %}
+        <div class="alert alert-danger" role="alert">
+          <strong>{{ errors }}</strong>
+        </div>
+      {% endif %}
+      {% if prefix %}
+        <span class="field-prefix">{{ prefix }}</span>
+      {% endif %}
+      {{ children }}
+      
+      {% if suffix %}
+        <span class="field-suffix">{{ suffix }}</span>
+      {% endif %}
+      {% if description.content %}
+        <small{{ description.attributes.addClass('description', 'text-muted') }}>{{ description.content }}</small>
+      {% endif %}
+    </div>
+</details>
+{% else %}
 <fieldset{{ attributes.addClass(classes) }}>
   {%
     set legend_span_classes = [
@@ -38,6 +76,7 @@
     ]
   %}
   {#  Always wrap fieldset legends in a SPAN for CSS positioning. #}
+  
   <div class="fieldset-inner-wrapper">
     <legend{{ legend.attributes }}>
       <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
@@ -61,3 +100,4 @@
     </div>
   </div>
 </fieldset>
+{% endif %}

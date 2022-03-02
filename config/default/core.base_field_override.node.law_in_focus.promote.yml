@@ -1,0 +1,22 @@
+uuid: b67471bd-63c5-4b1c-b8ab-7edf3a29d54e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.law_in_focus
+id: node.law_in_focus.promote
+field_name: promote
+entity_type: node
+bundle: law_in_focus
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

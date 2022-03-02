@@ -1,6 +1,6 @@
 uuid: 9f0f71a2-80ba-4c07-bc8a-8be929bbe774
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.legislation
@@ -12,7 +12,7 @@ dependencies:
 id: views_block__legislation_block_latest_legistration
 theme: liibarrio2020
 region: content_bottom
-weight: -17
+weight: -21
 provider: null
 plugin: 'views_block:legislation-block_latest_legistration'
 settings:

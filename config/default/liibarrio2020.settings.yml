@@ -34,11 +34,11 @@ features:
   favicon: 1
 logo:
   use_default: 0
-  path: 's3://sitelogo.png'
+  path: themes/custom/liibarrio2020/images/logo.png
 favicon:
   use_default: 0
-  path: 's3://sitefavicon.png'
-  mimetype: image/png
+  path: themes/custom/liibarrio2020/favicon.ico
+  mimetype: image/vnd.microsoft.icon
 bootstrap_barrio_region_clean_pre_header: 1
 bootstrap_barrio_region_class_pre_header: ''
 bootstrap_barrio_region_clean_header: 1

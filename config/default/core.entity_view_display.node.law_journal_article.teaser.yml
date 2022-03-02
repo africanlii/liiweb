@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.law_journal_article.field_abstract
     - field.field.node.law_journal_article.field_author_affilliation
     - field.field.node.law_journal_article.field_author_surname
+    - field.field.node.law_journal_article.field_booktopic
     - field.field.node.law_journal_article.field_contributor
     - field.field.node.law_journal_article.field_copyright
     - field.field.node.law_journal_article.field_date
@@ -47,6 +48,7 @@ hidden:
   field_abstract: true
   field_author_affilliation: true
   field_author_surname: true
+  field_booktopic: true
   field_contributor: true
   field_copyright: true
   field_date: true
