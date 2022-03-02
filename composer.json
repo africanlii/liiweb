@@ -16,9 +16,9 @@
         }
     ],
     "require": {
-        "php": ">=7.3",
+        "php": "~7.3.0"
         "ext-json": "*",
-        "composer/installers": ">=1.2",
+        "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
         "drupal-composer/drupal-scaffold": ">=2.5",
         "drupal/address": "^1.8",
@@ -91,7 +91,7 @@
         "drupal/views_tree": "^2.0",
         "drupal/webform": "5.x-dev",
         "drupal/xmlsitemap": "1.0.0-alpha3",
-        "drush/drush": "^9.7",
+        "drush/drush": "^9.0.0",
         "solarium/solarium": "^6.0",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
