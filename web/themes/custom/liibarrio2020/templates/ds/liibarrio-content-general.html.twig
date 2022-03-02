@@ -6,11 +6,11 @@
 
 <div {{ attributes.addClass('liiweb-content-general', 'clearfix') }}>
   {% if header_left|render or header_right|render %}
-    <div class="row content-header">
-      <div class="col-sm-6 left">
+    <div class="content-header header-two-column">
+      <div class="left">
         {{ header_left }}
       </div>
-      <div class="col-sm-6 right">
+      <div class="right">
         {{ header_right }}
       </div>
     </div>

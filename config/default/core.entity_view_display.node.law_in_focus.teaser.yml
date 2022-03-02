@@ -1,0 +1,55 @@
+uuid: 706773c3-75ef-411c-a16d-87add9fc7050
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.law_in_focus.body
+    - field.field.node.law_in_focus.field_author
+    - field.field.node.law_in_focus.field_featured_image
+    - field.field.node.law_in_focus.field_law_in_focus_collection
+    - field.field.node.law_in_focus.field_topic
+    - node.type.law_in_focus
+  module:
+    - svg_image
+    - user
+id: node.law_in_focus.teaser
+targetEntityType: node
+bundle: law_in_focus
+mode: teaser
+content:
+  field_author:
+    type: entity_reference_label
+    weight: 2
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_featured_image:
+    type: image
+    weight: 0
+    region: content
+    label: above
+    settings:
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+  field_law_in_focus_collection:
+    type: entity_reference_label
+    weight: 1
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_topic: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

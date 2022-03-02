@@ -1,0 +1,20 @@
+uuid: 0e43c423-8e55-4e52-a3ef-6ee3ecc62c4e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_booktopic
+field_name: field_booktopic
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

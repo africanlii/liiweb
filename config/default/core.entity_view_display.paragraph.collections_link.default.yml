@@ -1,0 +1,37 @@
+uuid: a0b470b2-d9b0-43db-a89c-f399e4e6b489
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.collections_link.field_collection_description
+    - field.field.paragraph.collections_link.field_collection_link
+    - paragraphs.paragraphs_type.collections_link
+  module:
+    - link
+    - text
+id: paragraph.collections_link.default
+targetEntityType: paragraph
+bundle: collections_link
+mode: default
+content:
+  field_collection_description:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_collection_link:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  search_api_excerpt: true

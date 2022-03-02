@@ -10,7 +10,7 @@ dependencies:
 id: advancedsearchblock
 theme: liibarrio2020
 region: pre_header
-weight: 0
+weight: -18
 provider: null
 plugin: advanced_search_block
 settings:

@@ -1,17 +1,14 @@
 uuid: 68c76c50-e262-4f04-8044-eae08b60721b
 langcode: en
-status: true
+status: false
 dependencies:
-  config:
-    - views.view.judgment
   module:
     - system
-    - views
   theme:
     - liibarrio2020
 id: views_block__judgment_block_latest_judgement
 theme: liibarrio2020
-region: sidebar_second
+region: pre_header
 weight: -14
 provider: null
 plugin: 'views_block:judgment-block_latest_judgement'

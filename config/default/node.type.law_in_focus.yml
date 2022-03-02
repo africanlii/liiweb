@@ -1,0 +1,17 @@
+uuid: 1b4a4e21-7563-4341-b578-c43f643fba5c
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Law in Focus'
+type: law_in_focus
+description: ''
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

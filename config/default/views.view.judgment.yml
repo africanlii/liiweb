@@ -1,6 +1,6 @@
 uuid: e89b7557-b592-41da-83b3-b926357a7f21
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - block.block.viewsexposedfilterblock_2
@@ -900,7 +900,7 @@ display:
       pager:
         type: some
         options:
-          items_per_page: 12
+          items_per_page: 6
           offset: 0
       defaults:
         pager: false
@@ -1308,6 +1308,7 @@ display:
           relationship: none
           view_mode: teaser
       css_class: 'view--liibarrio view--liibarrio--bg'
+      enabled: true
     cache_metadata:
       max-age: -1
       contexts:

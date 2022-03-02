@@ -1,0 +1,132 @@
+uuid: f7016e2d-1510-4c5c-b5e6-34d497c175bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.slide
+    - field.field.taxonomy_term.author_surname.field_author_bio
+    - field.field.taxonomy_term.author_surname.field_author_link
+    - field.field.taxonomy_term.author_surname.field_author_portrait
+    - image.style.medium
+    - taxonomy.vocabulary.author_surname
+  module:
+    - blazy
+    - ds
+    - link
+    - text
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_card_basic
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          content: {  }
+    regions:
+      content:
+        - taxonomy_term_title
+        - field_author_portrait
+        - field_author_bio
+        - field_author_link
+        - 'dynamic_block_field:taxonomy_term-more_by_author'
+    fields:
+      'dynamic_block_field:taxonomy_term-more_by_author':
+        plugin_id: 'dynamic_block_field:taxonomy_term-more_by_author'
+        weight: 4
+        label: hidden
+        formatter: default
+      taxonomy_term_title:
+        plugin_id: taxonomy_term_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: taxonomy_term.author_surname.slide
+targetEntityType: taxonomy_term
+bundle: author_surname
+mode: slide
+content:
+  field_author_bio:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_author_link:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link_separate
+    region: content
+  field_author_portrait:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: medium
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      current_view_mode: slide
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: blazy
+    region: content
+hidden:
+  description: true
+  langcode: true
+  search_api_excerpt: true

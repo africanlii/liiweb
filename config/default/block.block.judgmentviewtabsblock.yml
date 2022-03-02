@@ -10,7 +10,7 @@ dependencies:
 id: judgmentviewtabsblock
 theme: liibarrio2020
 region: content_bottom
-weight: -19
+weight: -23
 provider: null
 plugin: view_judgment_tabs_block
 settings:

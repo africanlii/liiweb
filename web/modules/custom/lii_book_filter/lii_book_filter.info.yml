@@ -1,0 +1,11 @@
+name: LII Book Filter
+type: module
+description: 'Filter out children book pages in the law books bookshelf view.'
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: Views
+
+# Information added by Drupal.org packaging script on 2021-07-01
+version: '8.x-1.7'
+project: 'lii_book_filter'
+datestamp: 1625182306

@@ -1,0 +1,29 @@
+uuid: bf12ed57-a07b-4eac-b4cd-f5f160ff2759
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.judgments_views
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: exposedformjudgments_viewspage_2
+theme: liibarrio2020
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:judgments_views-page_2'
+settings:
+  id: 'views_exposed_filter_block:judgments_views-page_2'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: '/judgments_by_court/*'
+    negate: false
+    context_mapping: {  }

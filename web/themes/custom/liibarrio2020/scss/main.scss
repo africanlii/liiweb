@@ -21,10 +21,11 @@
 @import "layout/footer";
 
 // Components
+@import "components/header";
 @import "components/block";
 @import "components/card";
 @import "components/breadcrumbs";
-@import "components/table-of-contents";
+@import "components/table-of-contents"; 
 @import "components/quick-link";
 @import "components/view";
 @import "components/button";
@@ -42,6 +43,7 @@
 
 // Pages
 @import "pages/about";
+@import "pages/home";
 @import "pages/links";
 @import "pages/contact";
 @import "pages/gazettes";

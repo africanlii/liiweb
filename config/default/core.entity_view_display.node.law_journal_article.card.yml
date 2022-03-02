@@ -1,0 +1,75 @@
+uuid: 23f10458-da64-4475-8bd9-b72ebb37f9e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.law_journal_article.body
+    - field.field.node.law_journal_article.field_abstract
+    - field.field.node.law_journal_article.field_author_affilliation
+    - field.field.node.law_journal_article.field_author_surname
+    - field.field.node.law_journal_article.field_booktopic
+    - field.field.node.law_journal_article.field_contributor
+    - field.field.node.law_journal_article.field_copyright
+    - field.field.node.law_journal_article.field_date
+    - field.field.node.law_journal_article.field_doi
+    - field.field.node.law_journal_article.field_external_link
+    - field.field.node.law_journal_article.field_files
+    - field.field.node.law_journal_article.field_jissue
+    - field.field.node.law_journal_article.field_jtitle
+    - field.field.node.law_journal_article.field_judgment_number
+    - field.field.node.law_journal_article.field_judgment_number_override
+    - field.field.node.law_journal_article.field_jvolume
+    - field.field.node.law_journal_article.field_law_report_citations
+    - field.field.node.law_journal_article.field_media_neutral_citation
+    - node.type.law_journal_article
+  module:
+    - user
+id: node.law_journal_article.card
+targetEntityType: node
+bundle: law_journal_article
+mode: card
+content:
+  field_author_surname:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_contributor:
+    weight: 2
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_jtitle:
+    weight: 0
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden:
+  body: true
+  field_abstract: true
+  field_author_affilliation: true
+  field_booktopic: true
+  field_copyright: true
+  field_date: true
+  field_doi: true
+  field_external_link: true
+  field_files: true
+  field_jissue: true
+  field_judgment_number: true
+  field_judgment_number_override: true
+  field_jvolume: true
+  field_law_report_citations: true
+  field_media_neutral_citation: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

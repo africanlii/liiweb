@@ -1,13 +1,166 @@
-body {
-  // background: $gray-very-light;
+/*CSS custom properties to control overall margins and header height. */
+:root{
+	--margin: 2vw;
+	--header-height:150px;
+}
+
+html, body{
+	max-width:100vw;
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+}
+
+.scroll_lock, .scroll_lock_y{
+	overflow-y: hidden;
+	body{
+		overflow-y: hidden;
+	}
+}
+
+@include media-breakpoint-up(lg){
+	:root{
+		--header-height:195px;
+	}
+}
+/*Typography*/
+
+h1, h2, .h1, .h2{
+	font-weight:600;
+	margin:0 0 1em;
+	text-transform: uppercase;
+	font-family: $font-family-header;
+}
+
+h3,h4, .h3,.h4 {
+    font-weight: 600;
+    margin: 0 0 1em;
+	font-family: $font-family-header;
+}
+
+h5,.h5{
+	font-weight:500;
+	text-transform: uppercase;
+}
+
+p a{
+	border-bottom:2px solid $red;
 }
 .content-main.col-md-9 {
     background: white;
     border: 1px solid #d5d5d5;
     padding: 0.975rem;
 }
-.content-header--top.row {
-    background: white;
-    border: 1px solid #d5d5d5;
-    padding: 0.975rem;
+
+
+
+/*Background Image*/
+.layout-container{
+	background-repeat: no-repeat;
+	background-size: auto vh(100), auto vh(100);
+}
+
+/*Fallback Image*/
+.pattern_1{
+	.layout-container{
+		background-image: linear-gradient(180deg,rgba(253, 252, 251,0) 70%, rgba(253, 252, 251,1)),url(/themes/custom/liibarrio2020/images/bg/med/pattern_1.png);
+	}
+}
+.pattern_2{
+	.layout-container{
+		background-image: linear-gradient(180deg,rgba(253, 252, 251,0) 70%, rgba(253, 252, 251,1)),url(/themes/custom/liibarrio2020/images/bg/med/pattern_2.png);
+	}
+}
+.pattern_3{
+	.layout-container{
+		background-image:linear-gradient(180deg,rgba(253, 252, 251,0) 70%, rgba(253, 252, 251,1)), url(/themes/custom/liibarrio2020/images/bg/med/pattern_3.png);
+	}
+}
+
+/*image if webp is available*/
+.webp{
+	&.pattern_1{
+		.layout-container{
+			background-image: linear-gradient(180deg,rgba(253, 252, 251,0) 70%, rgba(253, 252, 251,1)),url(/themes/custom/liibarrio2020/images/bg/med/pattern_1.webp);
+		}
+	}
+	&.pattern_2{
+		.layout-container{
+			background-image: linear-gradient(180deg,rgba(253, 252, 251,0) 70%, rgba(253, 252, 251,1)),url(/themes/custom/liibarrio2020/images/bg/med/pattern_2.webp);
+		}
+	}
+	&.pattern_3{
+		.layout-container{
+			background-image:linear-gradient(180deg,rgba(253, 252, 251,0) 70%, rgba(253, 252, 251,1)), url(/themes/custom/liibarrio2020/images/bg/med/pattern_3.webp);
+		}
+	}
+}
+
+@include media-breakpoint-up(md){
+	/*Fallback Image*/
+	.layout-container{
+		background-repeat: no-repeat;
+		background-size: 100vw 56.5vw, 100vw 56.25vw;
+	}
+	.pattern_1{
+		.layout-container{
+			background-image: linear-gradient(180deg,rgba(253, 252, 251,0) 70%, rgba(253, 252, 251,1)),url(/themes/custom/liibarrio2020/images/bg/lg/pattern_1.png);
+		}
+	}
+	.pattern_2{
+		.layout-container{
+			background-image: linear-gradient(180deg,rgba(253, 252, 251,0) 70%, rgba(253, 252, 251,1)),url(/themes/custom/liibarrio2020/images/bg/lg/pattern_2.png);
+		}
+	}
+	.pattern_3{
+		.layout-container{
+			background-image:linear-gradient(180deg,rgba(253, 252, 251,0) 70%, rgba(253, 252, 251,1)), url(/themes/custom/liibarrio2020/images/bg/lg/pattern_3.png);
+		}
+}
+
+/*image if webp is available*/
+.webp{
+	&.pattern_1{
+		.layout-container{
+			background-image:linear-gradient(180deg,rgba(253, 252, 251,0) 70%, rgba(253, 252, 251,1)), url(/themes/custom/liibarrio2020/images/bg/lg/pattern_1.webp);
+		}
+	}
+	&.pattern_2{
+		.layout-container{
+			background-image:linear-gradient(180deg,rgba(253, 252, 251,0) 70%, rgba(253, 252, 251,1)), url(/themes/custom/liibarrio2020/images/bg/lg/pattern_2.webp);
+		}
+	}
+	&.pattern_3{
+		.layout-container{
+			background-image:linear-gradient(180deg,rgba(253, 252, 251,0) 70%, rgba(253, 252, 251,1)), url(/themes/custom/liibarrio2020/images/bg/lg/pattern_3.webp);
+		}
+	}
+}
+}
+
+.hidden{
+	display: none;
+}
+
+.btn-black {
+    color: $white;
+    background-color: $black;
+    border-radius: 10px;
+	box-shadow: $dropshadow-sm;
+	&:focus,&:hover{
+		color:$white;
+	}
+}
+
+.top-right-radius{
+	border-radius:0 10px 0 0;
+}
+
+.thin-border{
+	border:1px solid $black;
+}
+
+@include media-breakpoint-up(lg){
+	.mobile-only{
+		display:none;
+	}
 }

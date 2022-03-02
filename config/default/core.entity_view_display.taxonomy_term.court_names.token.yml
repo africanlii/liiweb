@@ -1,0 +1,33 @@
+uuid: 7941b397-79f6-4b91-9a87-3dded83022cc
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.token
+    - field.field.taxonomy_term.court_names.field_court_code
+    - taxonomy.vocabulary.court_names
+  module:
+    - text
+id: taxonomy_term.court_names.token
+targetEntityType: taxonomy_term
+bundle: court_names
+mode: token
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_court_code:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

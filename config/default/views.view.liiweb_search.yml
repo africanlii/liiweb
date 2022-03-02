@@ -1,13 +1,12 @@
 uuid: f9a16583-7b26-43b6-aee6-efa4539cf43f
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - search_api.index.full_site_search
   module:
     - better_exposed_filters
     - search_api
-    - views_infinite_scroll
 id: liiweb_search
 label: Search
 module: views
@@ -41,7 +40,7 @@ display:
       exposed_form:
         type: bef
         options:
-          submit_button: Apply
+          submit_button: Go
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
@@ -64,37 +63,16 @@ display:
               search_api_fulltext:
                 plugin_id: default
                 advanced:
-                  placeholder_text: ''
+                  placeholder_text: 'Search All Indexes'
                   rewrite:
                     filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
-              field_date:
-                plugin_id: bef_datepicker
-                advanced:
-                  collapsible: false
-                  is_secondary: true
       pager:
-        type: infinite_scroll
+        type: some
         options:
-          items_per_page: 20
+          items_per_page: 0
           offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: ‹‹
-            next: ››
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          views_infinite_scroll:
-            button_text: 'View More Results (@total)'
-            automatically_load_content: false
       style:
         type: default
         options:
@@ -193,7 +171,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: and
+          operator: or
           value: ''
           group: 1
           exposed: true
@@ -214,6 +192,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
+              editor: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -242,14 +221,70 @@ display:
         operator: AND
         groups:
           1: AND
-      use_ajax: true
+      use_ajax: false
+      link_url: ''
+      link_display: page_search
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - url.query_args
+        - 'user.node_grants:view'
+      tags:
+        - 'config:search_api.index.full_site_search'
+  block_1:
+    display_plugin: block
+    id: block_1
+    display_title: 'BK: General Search with Advanced Search Switcher'
+    position: 4
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      footer:
+        view:
+          id: view
+          table: views
+          field: view
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          view_to_insert: 'liiweb_search:block_advanced_search_form'
+          inherit_arguments: false
+          plugin_id: view
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: "<div class=\"button_container\">\r\n<button id=\"search-switch\" class=\"btn btn-tertiary\" aria-expanded=\"false\" aria-controls=\"views-exposed-form-liiweb-search-block-advanced-search-form\"><h5>Advanced Search</h5></button>\r\n<a role=\"button\" data-trigger=\"focus\" tabindex=\"0\" id=\"how-to-switch\" class=\"btn btn-tertiary\"  data-toggle=\"popover\" title=\"How to Search\" data-content=\"Search works by using keywords. You can prefilter your search by clicking the 'Advanced Search' button on the left.\" data-placement=\"top\"><h5>How to Search</h5></button>\r\n</div>"
+            format: unfiltered
+          plugin_id: text
+      defaults:
+        footer: false
+        use_ajax: false
+      use_ajax: false
+      allow:
+        items_per_page: false
+        offset: '0'
+        pager: '0'
+        hide_fields: '0'
+        sort_fields: '0'
+        disable_filters: '0'
+        configure_sorts: '0'
+      enabled: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.full_site_search'
@@ -365,7 +400,7 @@ display:
       exposed_form:
         type: bef
         options:
-          submit_button: Apply
+          submit_button: Go
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
@@ -401,14 +436,32 @@ display:
                     filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
-      enabled: true
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - url.query_args
+        - 'user.node_grants:view'
+      tags:
+        - 'config:search_api.index.full_site_search'
+  general_search_form:
+    display_plugin: block
+    id: general_search_form
+    display_title: 'BK: General Search'
+    position: 3
+    display_options:
+      display_extenders: {  }
+      block_description: 'BK: General Search '
+      display_description: ''
+      enabled: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.full_site_search'
@@ -445,7 +498,9 @@ display:
           admin_label: ''
           operator: or
           value:
-            all: all
+            judgment: judgment
+            law_in_focus: law_in_focus
+            law_journal_article: law_journal_article
           group: 1
           exposed: true
           expose:
@@ -465,6 +520,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
+              editor: '0'
             reduce: false
           is_grouped: false
           group_info:

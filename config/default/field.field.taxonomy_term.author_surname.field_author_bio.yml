@@ -1,0 +1,21 @@
+uuid: f84180c3-d180-4bae-acd5-2836ceb8705a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_author_bio
+    - taxonomy.vocabulary.author_surname
+  module:
+    - text
+id: taxonomy_term.author_surname.field_author_bio
+field_name: field_author_bio
+entity_type: taxonomy_term
+bundle: author_surname
+label: 'Author Bio'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,11 @@
+uuid: 6f0b5987-e9fa-44c3-be8b-0ca87e638bb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.law_in_focus
+id: node.law_in_focus
+target_entity_type_id: node
+target_bundle: law_in_focus
+default_langcode: site_default
+language_alterable: false

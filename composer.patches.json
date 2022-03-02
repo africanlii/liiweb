@@ -1,11 +1,13 @@
 {
   "patches": {
     "drupal/core": {
-      "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch"
+      "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch",
+      "Add tokens for exposed filters in views": "patches/views/2761273-39.patch",
+      "remove duplicate theme suggestions": "patches/views/2118743-139-twig-debug-info.patch",
+      "fix ocntextual filters with exposed form bug": "patches/views/views-exposed-form-block-arg-2821962-50.patch"
     },
     "drupal/filefield_paths": {
-      "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch",
-      "Token replacement generate leaked cache metadata": "https://www.drupal.org/files/issues/2019-08-13/fieldfield_path-leaked_cache_metadata-3074642-2.patch"
+      "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch"
     },
     "drupal/facets": {
       "Test scanning fails with The 'core' or the 'core_version_requirement' key must be present ...": "patches/facets/3182762-1.diff"

@@ -5,6 +5,8 @@ global-styling:
     js/bootstrap.min.js: {}
     js/ie11.js: {}
     js/global.js: {}
+    js/once.js: {}
+    js/interactions.js: {}
   css:
     component:
       css/main.css: {}

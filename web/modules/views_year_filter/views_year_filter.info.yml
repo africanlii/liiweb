@@ -1,0 +1,11 @@
+name: Views Year Filter
+type: module
+description: 'Add Year filter to views.'
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: Date
+
+# Information added by Drupal.org packaging script on 2021-07-01
+version: '8.x-1.7'
+project: 'views_year_filter'
+datestamp: 1625182306

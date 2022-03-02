@@ -1,0 +1,413 @@
+diff --git a/core/modules/aggregator/src/Plugin/views/row/Rss.php b/core/modules/aggregator/src/Plugin/views/row/Rss.php
+index 464a28592e..eaf669c8d9 100644
+--- a/core/modules/aggregator/src/Plugin/views/row/Rss.php
++++ b/core/modules/aggregator/src/Plugin/views/row/Rss.php
+@@ -68,7 +68,8 @@ public function render($row) {
+     ];
+ 
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
++      '#views_plugin' => $this,
+       '#view' => $this->view,
+       '#options' => $this->options,
+       '#row' => $item,
+diff --git a/core/modules/comment/src/Plugin/views/row/Rss.php b/core/modules/comment/src/Plugin/views/row/Rss.php
+index cb9c1046d1..4b65474b37 100644
+--- a/core/modules/comment/src/Plugin/views/row/Rss.php
++++ b/core/modules/comment/src/Plugin/views/row/Rss.php
+@@ -119,8 +119,9 @@ public function render($row) {
+     $item->cid = $comment->id();
+ 
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#options' => $this->options,
+       '#row' => $item,
+     ];
+diff --git a/core/modules/node/src/Plugin/views/row/Rss.php b/core/modules/node/src/Plugin/views/row/Rss.php
+index 96838796a1..26acd52771 100644
+--- a/core/modules/node/src/Plugin/views/row/Rss.php
++++ b/core/modules/node/src/Plugin/views/row/Rss.php
+@@ -154,8 +154,9 @@ public function render($row) {
+     $item->elements = &$node->rss_elements;
+     $item->nid = $node->id();
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#options' => $this->options,
+       '#row' => $item,
+     ];
+diff --git a/core/modules/search/src/Plugin/views/row/SearchRow.php b/core/modules/search/src/Plugin/views/row/SearchRow.php
+index 29e150d557..e5f27dd0b3 100644
+--- a/core/modules/search/src/Plugin/views/row/SearchRow.php
++++ b/core/modules/search/src/Plugin/views/row/SearchRow.php
+@@ -43,8 +43,9 @@ public function buildOptionsForm(&$form, FormStateInterface $form_state) {
+    */
+   public function render($row) {
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#options' => $this->options,
+       '#row' => $row,
+     ];
+diff --git a/core/modules/views/src/Plugin/views/display/DisplayPluginBase.php b/core/modules/views/src/Plugin/views/display/DisplayPluginBase.php
+index 012dec4f21..be585e7959 100644
+--- a/core/modules/views/src/Plugin/views/display/DisplayPluginBase.php
++++ b/core/modules/views/src/Plugin/views/display/DisplayPluginBase.php
+@@ -2112,8 +2112,9 @@ public function render() {
+     $rows = (!empty($this->view->result) || $this->view->style_plugin->evenEmpty()) ? $this->view->style_plugin->render($this->view->result) : [];
+ 
+     $element = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#pre_render' => [[$this, 'elementPreRender']],
+       '#rows' => $rows,
+       // Assigned by reference so anything added in $element['#attached'] will
+diff --git a/core/modules/views/src/Plugin/views/field/FieldPluginBase.php b/core/modules/views/src/Plugin/views/field/FieldPluginBase.php
+index ef23c8d76d..1d4f18e6da 100644
+--- a/core/modules/views/src/Plugin/views/field/FieldPluginBase.php
++++ b/core/modules/views/src/Plugin/views/field/FieldPluginBase.php
+@@ -1730,8 +1730,9 @@ protected function documentSelfTokens(&$tokens) {}
+   public function theme(ResultRow $values) {
+     $renderer = $this->getRenderer();
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => 'views_view_field',
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#field' => $this,
+       '#row' => $values,
+     ];
+diff --git a/core/modules/views/src/Plugin/views/pager/Full.php b/core/modules/views/src/Plugin/views/pager/Full.php
+index 7d3adae63c..eaf4bc0fdd 100644
+--- a/core/modules/views/src/Plugin/views/pager/Full.php
++++ b/core/modules/views/src/Plugin/views/pager/Full.php
+@@ -86,7 +86,8 @@ public function render($input) {
+       4 => $this->options['tags']['last'],
+     ];
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
++      '#views_plugin' => $this,
+       '#tags' => $tags,
+       '#element' => $this->options['id'],
+       '#parameters' => $input,
+diff --git a/core/modules/views/src/Plugin/views/pager/Mini.php b/core/modules/views/src/Plugin/views/pager/Mini.php
+index f92f193b15..ebb8e1b71d 100644
+--- a/core/modules/views/src/Plugin/views/pager/Mini.php
++++ b/core/modules/views/src/Plugin/views/pager/Mini.php
+@@ -94,7 +94,8 @@ public function render($input) {
+       3 => $this->options['tags']['next'],
+     ];
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
++      '#views_plugin' => $this,
+       '#tags' => $tags,
+       '#element' => $this->options['id'],
+       '#parameters' => $input,
+diff --git a/core/modules/views/src/Plugin/views/row/OpmlFields.php b/core/modules/views/src/Plugin/views/row/OpmlFields.php
+index aaeecbf69a..542373feaa 100644
+--- a/core/modules/views/src/Plugin/views/row/OpmlFields.php
++++ b/core/modules/views/src/Plugin/views/row/OpmlFields.php
+@@ -191,8 +191,9 @@ public function render($row) {
+     $item = array_filter($item);
+ 
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#options' => $this->options,
+       '#row' => $item,
+       '#field_alias' => isset($this->field_alias) ? $this->field_alias : '',
+diff --git a/core/modules/views/src/Plugin/views/row/RowPluginBase.php b/core/modules/views/src/Plugin/views/row/RowPluginBase.php
+index 3c09eaf06a..851d717cb9 100644
+--- a/core/modules/views/src/Plugin/views/row/RowPluginBase.php
++++ b/core/modules/views/src/Plugin/views/row/RowPluginBase.php
+@@ -165,8 +165,9 @@ public function preRender($result) {}
+    */
+   public function render($row) {
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#options' => $this->options,
+       '#row' => $row,
+       '#field_alias' => isset($this->field_alias) ? $this->field_alias : '',
+diff --git a/core/modules/views/src/Plugin/views/row/RssFields.php b/core/modules/views/src/Plugin/views/row/RssFields.php
+index 1b56aae5f1..c77d05a01b 100644
+--- a/core/modules/views/src/Plugin/views/row/RssFields.php
++++ b/core/modules/views/src/Plugin/views/row/RssFields.php
+@@ -177,8 +177,9 @@ public function render($row) {
+     }
+ 
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#options' => $this->options,
+       '#row' => $item,
+       '#field_alias' => isset($this->field_alias) ? $this->field_alias : '',
+diff --git a/core/modules/views/src/Plugin/views/style/DefaultSummary.php b/core/modules/views/src/Plugin/views/style/DefaultSummary.php
+index 0b4325bcc9..9cfd663067 100644
+--- a/core/modules/views/src/Plugin/views/style/DefaultSummary.php
++++ b/core/modules/views/src/Plugin/views/style/DefaultSummary.php
+@@ -78,8 +78,9 @@ public function render() {
+     }
+ 
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#options' => $this->options,
+       '#rows' => $rows,
+     ];
+diff --git a/core/modules/views/src/Plugin/views/style/Mapping.php b/core/modules/views/src/Plugin/views/style/Mapping.php
+index 7db5247886..906cf8fc7c 100644
+--- a/core/modules/views/src/Plugin/views/style/Mapping.php
++++ b/core/modules/views/src/Plugin/views/style/Mapping.php
+@@ -130,8 +130,9 @@ public function buildOptionsForm(&$form, FormStateInterface $form_state) {
+    */
+   public function render() {
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#options' => $this->options,
+       '#rows' => $this->view->result,
+       '#mapping' => $this->defineMapping(),
+diff --git a/core/modules/views/src/Plugin/views/style/Opml.php b/core/modules/views/src/Plugin/views/style/Opml.php
+index 016405e4c1..44e984d00b 100644
+--- a/core/modules/views/src/Plugin/views/style/Opml.php
++++ b/core/modules/views/src/Plugin/views/style/Opml.php
+@@ -67,8 +67,9 @@ public function render() {
+     }
+ 
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#options' => $this->options,
+       '#rows' => $rows,
+     ];
+diff --git a/core/modules/views/src/Plugin/views/style/Rss.php b/core/modules/views/src/Plugin/views/style/Rss.php
+index 96d1deaeaf..510ad05a57 100644
+--- a/core/modules/views/src/Plugin/views/style/Rss.php
++++ b/core/modules/views/src/Plugin/views/style/Rss.php
+@@ -122,8 +122,9 @@ public function render() {
+     }
+ 
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#options' => $this->options,
+       '#rows' => $rows,
+     ];
+diff --git a/core/modules/views/src/Plugin/views/style/StylePluginBase.php b/core/modules/views/src/Plugin/views/style/StylePluginBase.php
+index 1d6b49179b..aad6b82952 100644
+--- a/core/modules/views/src/Plugin/views/style/StylePluginBase.php
++++ b/core/modules/views/src/Plugin/views/style/StylePluginBase.php
+@@ -446,8 +446,9 @@ public function preRender($result) {
+    */
+   protected function renderRowGroup(array $rows = []) {
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#views_plugin' => $this,
+       '#rows' => $rows,
+     ];
+   }
+diff --git a/core/modules/views/tests/src/Functional/ViewsTemplateSuggestionsTest.php b/core/modules/views/tests/src/Functional/ViewsTemplateSuggestionsTest.php
+new file mode 100644
+index 0000000000..86a1dcf350
+--- /dev/null
++++ b/core/modules/views/tests/src/Functional/ViewsTemplateSuggestionsTest.php
+@@ -0,0 +1,70 @@
++<?php
++
++namespace Drupal\Tests\views\Functional;
++
++/**
++ * Tests Views template suggestions.
++ *
++ * @group views
++ */
++class ViewsTemplateSuggestionsTest extends ViewTestBase {
++
++  /**
++   * Views used by this test.
++   *
++   * @var array
++   */
++  public static $testViews = ['test_page_display'];
++
++  /**
++   * Used by WebTestBase::setup()
++   *
++   * @var array
++   *
++   * @see \Drupal\simpletest\WebTestBase::setup()
++   */
++  public static $modules = ['views'];
++
++  /**
++   * {@inheritdoc}
++   */
++  protected function setUp($import_test_views = TRUE) {
++    parent::setUp(TRUE);
++
++    $this->enableViewsTestModule();
++  }
++
++  /**
++   * Tests for views-view hook suggestions to be loaded.
++   */
++  public function testViewsViewSuggestions() {
++    // Test with system theme using theme function.
++    $this->drupalGet('test_page_display_200');
++
++    // Assert that the default template is loaded.
++    $this->assertSession()->elementExists('css', '.view.view-id-test_page_display');
++
++    // Install theme to test with template system.
++    \Drupal::service('theme_handler')->install(['views_test_suggestions_theme']);
++
++    // Make the theme default then test for hook invocations.
++    $this->config('system.theme')
++      ->set('default', 'views_test_suggestions_theme')
++      ->save();
++    $this->assertEquals('views_test_suggestions_theme', $this->config('system.theme')->get('default'));
++
++    $this->drupalGet('test_page_display_200');
++
++    // Assert template views-view--test-page-display.html.twig is not loaded
++    // due having less specificity.
++    $this->assertSession()->pageTextNotContains('**THIS SHOULD NOT BE LOADED**');
++
++    // Assert that we are using the correct template
++    // views-view--test-page-display--page-3.html.twig.
++    $this->assertSession()->pageTextContains('This has been done during SprintWeekend2018 London');
++
++    // Assert the base template views-view.html.twig is not loaded either.
++    $this->assertSession()->elementNotExists('css', '.view.view-id-test_page_display');
++  }
++
++}
+diff --git a/core/modules/views/tests/themes/views_test_suggestions_theme/templates/views-view--test-page-display--page-3.html.twig b/core/modules/views/tests/themes/views_test_suggestions_theme/templates/views-view--test-page-display--page-3.html.twig
+new file mode 100644
+index 0000000000..7cc8e3acbe
+--- /dev/null
++++ b/core/modules/views/tests/themes/views_test_suggestions_theme/templates/views-view--test-page-display--page-3.html.twig
+@@ -0,0 +1,10 @@
++{#
++/**
++ * @file
++ * Theme override to display a specific view.
++ *
++ * The reason for this template is to override the theme function provided by
++ * views and validate suggested template are loaded correctly.
++ */
++#}
++This has been done during SprintWeekend2018 London
+diff --git a/core/modules/views/tests/themes/views_test_suggestions_theme/templates/views-view--test-page-display.html.twig b/core/modules/views/tests/themes/views_test_suggestions_theme/templates/views-view--test-page-display.html.twig
+new file mode 100644
+index 0000000000..a2b0e6ce86
+--- /dev/null
++++ b/core/modules/views/tests/themes/views_test_suggestions_theme/templates/views-view--test-page-display.html.twig
+@@ -0,0 +1,10 @@
++{#
++/**
++ * @file
++ * Theme override to display a specific view.
++ *
++ * The reason for this template is to override the theme function provided by
++ * views and validate suggested template are loaded correctly.
++ */
++#}
++**THIS SHOULD NOT BE LOADED**
+diff --git a/core/modules/views/tests/themes/views_test_suggestions_theme/views_test_suggestions_theme.info.yml b/core/modules/views/tests/themes/views_test_suggestions_theme/views_test_suggestions_theme.info.yml
+new file mode 100644
+index 0000000000..2594f3f1de
+--- /dev/null
++++ b/core/modules/views/tests/themes/views_test_suggestions_theme/views_test_suggestions_theme.info.yml
+@@ -0,0 +1,5 @@
++name: Views test suggestions theme
++type: theme
++description: Theme for testing Views templates suggestions.
++version: VERSION
++core: 8.x
+diff --git a/core/modules/views/views.module b/core/modules/views/views.module
+index f484f1833a..2976d6e81e 100644
+--- a/core/modules/views/views.module
++++ b/core/modules/views/views.module
+@@ -101,6 +101,7 @@ function views_theme($existing, $type, $theme, $path) {
+     'display' => [
+       'view_array' => [],
+       'view' => NULL,
++      'views_plugin' => NULL,
+       'rows' => [],
+       'header' => [],
+       'footer' => [],
+@@ -113,11 +114,12 @@ function views_theme($existing, $type, $theme, $path) {
+       'attachment_before' => [],
+       'attachment_after' => [],
+     ],
+-    'style' => ['view' => NULL, 'options' => NULL, 'rows' => NULL, 'title' => NULL],
+-    'row' => ['view' => NULL, 'options' => NULL, 'row' => NULL, 'field_alias' => NULL],
+-    'exposed_form' => ['view' => NULL, 'options' => NULL],
++    'style' => ['view' => NULL, 'views_plugin' => NULL,'options' => NULL, 'rows' => NULL, 'title' => NULL],
++    'row' => ['view' => NULL, 'views_plugin' => NULL, 'options' => NULL, 'row' => NULL, 'field_alias' => NULL],
++    'exposed_form' => ['view' => NULL, 'views_plugin' => NULL, 'options' => NULL],
+     'pager' => [
+       'view' => NULL,
++      'views_plugin' => NULL,
+       'options' => NULL,
+       'tags' => [],
+       'quantity' => 9,
+@@ -128,10 +130,10 @@ function views_theme($existing, $type, $theme, $path) {
+ 
+   // Default view themes
+   $hooks['views_view_field'] = $base + [
+-    'variables' => ['view' => NULL, 'field' => NULL, 'row' => NULL],
++    'variables' => ['view' => NULL, 'views_plugin' => NULL, 'field' => NULL, 'row' => NULL],
+   ];
+   $hooks['views_view_grouping'] = $base + [
+-    'variables' => ['view' => NULL, 'grouping' => NULL, 'grouping_level' => NULL, 'rows' => NULL, 'title' => NULL],
++    'variables' => ['view' => NULL, 'views_plugin' => NULL, 'grouping' => NULL, 'grouping_level' => NULL, 'rows' => NULL, 'title' => NULL],
+   ];
+ 
+   // Only display, pager, row, and style plugins can provide theme hooks.
+@@ -225,6 +227,15 @@ function views_theme($existing, $type, $theme, $path) {
+   return $hooks;
+ }
+ 
++/**
++ * Implements hook_theme_suggestions_alter().
++ */
++function views_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
++  if (isset($variables['views_plugin'])) {
++    $suggestions = array_reverse(array_unique(array_merge($suggestions, $variables['views_plugin']->themeFunctions())));
++  }
++}
++
+ /**
+  * A theme preprocess function to automatically allow view-based node
+  * templates if called from a view.

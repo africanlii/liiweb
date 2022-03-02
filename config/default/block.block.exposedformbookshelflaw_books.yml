@@ -1,0 +1,29 @@
+uuid: 15f9e73a-fd0c-4f2d-a118-c24047e9090c
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.bookshelf
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: exposedformbookshelflaw_books
+theme: liibarrio2020
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:bookshelf-law_books'
+settings:
+  id: 'views_exposed_filter_block:bookshelf-law_books'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: /bookshelf/law-books
+    negate: false
+    context_mapping: {  }

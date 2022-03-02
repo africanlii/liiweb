@@ -1,0 +1,613 @@
+diff --git a/core/modules/aggregator/src/Plugin/views/row/Rss.php b/core/modules/aggregator/src/Plugin/views/row/Rss.php
+index 464a28592e..34daf34337 100644
+--- a/core/modules/aggregator/src/Plugin/views/row/Rss.php
++++ b/core/modules/aggregator/src/Plugin/views/row/Rss.php
+@@ -68,7 +68,8 @@ public function render($row) {
+     ];
+ 
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
++      '#context' => ['plugin' => $this],
+       '#view' => $this->view,
+       '#options' => $this->options,
+       '#row' => $item,
+diff --git a/core/modules/comment/src/Plugin/views/row/Rss.php b/core/modules/comment/src/Plugin/views/row/Rss.php
+index 1447c3ff52..f7bb6a0d06 100644
+--- a/core/modules/comment/src/Plugin/views/row/Rss.php
++++ b/core/modules/comment/src/Plugin/views/row/Rss.php
+@@ -119,8 +119,9 @@ public function render($row) {
+     $item->cid = $comment->id();
+ 
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#options' => $this->options,
+       '#row' => $item,
+     ];
+diff --git a/core/modules/node/src/Plugin/views/row/Rss.php b/core/modules/node/src/Plugin/views/row/Rss.php
+index 80fac8b605..83d928301b 100644
+--- a/core/modules/node/src/Plugin/views/row/Rss.php
++++ b/core/modules/node/src/Plugin/views/row/Rss.php
+@@ -159,8 +159,9 @@ public function render($row) {
+     $item->elements = &$node->rss_elements;
+     $item->nid = $node->id();
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#options' => $this->options,
+       '#row' => $item,
+     ];
+diff --git a/core/modules/search/src/Plugin/views/row/SearchRow.php b/core/modules/search/src/Plugin/views/row/SearchRow.php
+index 29e150d557..c754657734 100644
+--- a/core/modules/search/src/Plugin/views/row/SearchRow.php
++++ b/core/modules/search/src/Plugin/views/row/SearchRow.php
+@@ -43,8 +43,9 @@ public function buildOptionsForm(&$form, FormStateInterface $form_state) {
+    */
+   public function render($row) {
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#options' => $this->options,
+       '#row' => $row,
+     ];
+diff --git a/core/modules/views/src/Form/ViewsExposedForm.php b/core/modules/views/src/Form/ViewsExposedForm.php
+index 7e92378ae3..2c26d52224 100644
+--- a/core/modules/views/src/Form/ViewsExposedForm.php
++++ b/core/modules/views/src/Form/ViewsExposedForm.php
+@@ -148,6 +148,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
+ 
+     $form['#action'] = $form_action;
+     $form['#theme'] = $view->buildThemeFunctions('views_exposed_form');
++    $form['#context'] = ['view' => $view];
+     $form['#id'] = Html::cleanCssIdentifier('views_exposed_form-' . $view->storage->id() . '-' . $display['id']);
+ 
+     /** @var \Drupal\views\Plugin\views\exposed_form\ExposedFormPluginInterface $exposed_form_plugin */
+diff --git a/core/modules/views/src/Plugin/views/PluginBase.php b/core/modules/views/src/Plugin/views/PluginBase.php
+index c423228d17..854815cad8 100644
+--- a/core/modules/views/src/Plugin/views/PluginBase.php
++++ b/core/modules/views/src/Plugin/views/PluginBase.php
+@@ -297,7 +297,21 @@ public function query() {}
+    * {@inheritdoc}
+    */
+   public function themeFunctions() {
+-    return $this->view->buildThemeFunctions($this->definition['theme']);
++    return array_reverse($this->themeSuggestions());
++  }
++
++  /**
++   * Provides possible theme suggestions used by this plugin.
++   *
++   * The order of the theme suggestions starts with the least specific one.
++   *
++   * @return array
++   *   An array of theme suggestions.
++   *
++   * @see \hook_theme_suggestions_HOOK
++   */
++  public function themeSuggestions() {
++    return !empty($this->definition['theme']) ? $this->view->themeSuggestions($this->definition['theme']) : [];
+   }
+ 
+   /**
+diff --git a/core/modules/views/src/Plugin/views/ViewsPluginInterface.php b/core/modules/views/src/Plugin/views/ViewsPluginInterface.php
+index ddc5341f09..906545a6c6 100644
+--- a/core/modules/views/src/Plugin/views/ViewsPluginInterface.php
++++ b/core/modules/views/src/Plugin/views/ViewsPluginInterface.php
+@@ -175,6 +175,9 @@ public function buildOptionsForm(&$form, FormStateInterface $form_state);
+ 
+   /**
+    * Provide a full list of possible theme templates used by this style.
++   *
++   * @deprecated in Drupal 8.7.x and will be removed before Drupal 9.0.0.
++   *   Use ::themeSuggestions instead.
+    */
+   public function themeFunctions();
+ 
+diff --git a/core/modules/views/src/Plugin/views/display/DisplayPluginBase.php b/core/modules/views/src/Plugin/views/display/DisplayPluginBase.php
+index 205d4a77ae..d9523e9661 100644
+--- a/core/modules/views/src/Plugin/views/display/DisplayPluginBase.php
++++ b/core/modules/views/src/Plugin/views/display/DisplayPluginBase.php
+@@ -2140,8 +2140,9 @@ public function render() {
+     $rows = (!empty($this->view->result) || $this->view->style_plugin->evenEmpty()) ? $this->view->style_plugin->render($this->view->result) : [];
+ 
+     $element = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#pre_render' => [[$this, 'elementPreRender']],
+       '#rows' => $rows,
+       // Assigned by reference so anything added in $element['#attached'] will
+diff --git a/core/modules/views/src/Plugin/views/field/FieldPluginBase.php b/core/modules/views/src/Plugin/views/field/FieldPluginBase.php
+index 8030f8860a..188b34d5f6 100644
+--- a/core/modules/views/src/Plugin/views/field/FieldPluginBase.php
++++ b/core/modules/views/src/Plugin/views/field/FieldPluginBase.php
+@@ -124,6 +124,11 @@ public function init(ViewExecutable $view, DisplayPluginBase $display, array &$o
+     if (!isset($this->options['exclude'])) {
+       $this->options['exclude'] = '';
+     }
++
++    // Provide a default theme hook if none was explicitly specified.
++    if (!isset($this->definition['theme'])) {
++      $this->definition['theme'] = 'views_view_field';
++    }
+   }
+ 
+   /**
+@@ -1739,8 +1744,9 @@ protected function documentSelfTokens(&$tokens) {}
+   public function theme(ResultRow $values) {
+     $renderer = $this->getRenderer();
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#field' => $this,
+       '#row' => $values,
+     ];
+@@ -1756,7 +1762,7 @@ public function theme(ResultRow $values) {
+ 
+   public function themeFunctions() {
+     $themes = [];
+-    $hook = 'views_view_field';
++    $hook = $this->definition['theme'];
+ 
+     $display = $this->view->display_handler->display;
+ 
+diff --git a/core/modules/views/src/Plugin/views/pager/Full.php b/core/modules/views/src/Plugin/views/pager/Full.php
+index e8557e5ae8..feaabed973 100644
+--- a/core/modules/views/src/Plugin/views/pager/Full.php
++++ b/core/modules/views/src/Plugin/views/pager/Full.php
+@@ -87,7 +87,8 @@ public function render($input) {
+       4 => $this->options['tags']['last'],
+     ];
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
++      '#context' => ['plugin' => $this],
+       '#tags' => $tags,
+       '#element' => $this->options['id'],
+       '#parameters' => $input,
+diff --git a/core/modules/views/src/Plugin/views/pager/Mini.php b/core/modules/views/src/Plugin/views/pager/Mini.php
+index f92f193b15..d77473d56e 100644
+--- a/core/modules/views/src/Plugin/views/pager/Mini.php
++++ b/core/modules/views/src/Plugin/views/pager/Mini.php
+@@ -94,7 +94,8 @@ public function render($input) {
+       3 => $this->options['tags']['next'],
+     ];
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
++      '#context' => ['plugin' => $this],
+       '#tags' => $tags,
+       '#element' => $this->options['id'],
+       '#parameters' => $input,
+diff --git a/core/modules/views/src/Plugin/views/row/OpmlFields.php b/core/modules/views/src/Plugin/views/row/OpmlFields.php
+index 61359978e5..26dd839cd2 100644
+--- a/core/modules/views/src/Plugin/views/row/OpmlFields.php
++++ b/core/modules/views/src/Plugin/views/row/OpmlFields.php
+@@ -191,8 +191,9 @@ public function render($row) {
+     $item = array_filter($item);
+ 
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#options' => $this->options,
+       '#row' => $item,
+       '#field_alias' => isset($this->field_alias) ? $this->field_alias : '',
+diff --git a/core/modules/views/src/Plugin/views/row/RowPluginBase.php b/core/modules/views/src/Plugin/views/row/RowPluginBase.php
+index 3335118504..2be26a97bf 100644
+--- a/core/modules/views/src/Plugin/views/row/RowPluginBase.php
++++ b/core/modules/views/src/Plugin/views/row/RowPluginBase.php
+@@ -165,8 +165,9 @@ public function preRender($result) {}
+    */
+   public function render($row) {
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#options' => $this->options,
+       '#row' => $row,
+       '#field_alias' => isset($this->field_alias) ? $this->field_alias : '',
+diff --git a/core/modules/views/src/Plugin/views/row/RssFields.php b/core/modules/views/src/Plugin/views/row/RssFields.php
+index 32e5f9e916..69ac0ee3d5 100644
+--- a/core/modules/views/src/Plugin/views/row/RssFields.php
++++ b/core/modules/views/src/Plugin/views/row/RssFields.php
+@@ -172,8 +172,9 @@ public function render($row) {
+     }
+ 
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#options' => $this->options,
+       '#row' => $item,
+       '#field_alias' => isset($this->field_alias) ? $this->field_alias : '',
+diff --git a/core/modules/views/src/Plugin/views/style/DefaultSummary.php b/core/modules/views/src/Plugin/views/style/DefaultSummary.php
+index 0b4325bcc9..a89c941b19 100644
+--- a/core/modules/views/src/Plugin/views/style/DefaultSummary.php
++++ b/core/modules/views/src/Plugin/views/style/DefaultSummary.php
+@@ -78,8 +78,9 @@ public function render() {
+     }
+ 
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#options' => $this->options,
+       '#rows' => $rows,
+     ];
+diff --git a/core/modules/views/src/Plugin/views/style/Mapping.php b/core/modules/views/src/Plugin/views/style/Mapping.php
+index 7db5247886..9c5a82e333 100644
+--- a/core/modules/views/src/Plugin/views/style/Mapping.php
++++ b/core/modules/views/src/Plugin/views/style/Mapping.php
+@@ -130,8 +130,9 @@ public function buildOptionsForm(&$form, FormStateInterface $form_state) {
+    */
+   public function render() {
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#options' => $this->options,
+       '#rows' => $this->view->result,
+       '#mapping' => $this->defineMapping(),
+diff --git a/core/modules/views/src/Plugin/views/style/Opml.php b/core/modules/views/src/Plugin/views/style/Opml.php
+index 02b1e3d90e..2e5d435f41 100644
+--- a/core/modules/views/src/Plugin/views/style/Opml.php
++++ b/core/modules/views/src/Plugin/views/style/Opml.php
+@@ -67,8 +67,9 @@ public function render() {
+     }
+ 
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#options' => $this->options,
+       '#rows' => $rows,
+     ];
+diff --git a/core/modules/views/src/Plugin/views/style/Rss.php b/core/modules/views/src/Plugin/views/style/Rss.php
+index 6693c4863e..596ffb170d 100644
+--- a/core/modules/views/src/Plugin/views/style/Rss.php
++++ b/core/modules/views/src/Plugin/views/style/Rss.php
+@@ -122,8 +122,9 @@ public function render() {
+     }
+ 
+     $build = [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#options' => $this->options,
+       '#rows' => $rows,
+     ];
+diff --git a/core/modules/views/src/Plugin/views/style/StylePluginBase.php b/core/modules/views/src/Plugin/views/style/StylePluginBase.php
+index c23dccd789..df70880930 100644
+--- a/core/modules/views/src/Plugin/views/style/StylePluginBase.php
++++ b/core/modules/views/src/Plugin/views/style/StylePluginBase.php
+@@ -446,8 +446,9 @@ public function preRender($result) {
+    */
+   protected function renderRowGroup(array $rows = []) {
+     return [
+-      '#theme' => $this->themeFunctions(),
++      '#theme' => $this->definition['theme'],
+       '#view' => $this->view,
++      '#context' => ['plugin' => $this],
+       '#rows' => $rows,
+     ];
+   }
+@@ -489,7 +490,6 @@ public function render() {
+    */
+   public function renderGroupingSets($sets) {
+     $output = [];
+-    $theme_functions = $this->view->buildThemeFunctions($this->groupingTheme);
+     foreach ($sets as $set) {
+       $level = isset($set['level']) ? $set['level'] : 0;
+ 
+@@ -497,8 +497,9 @@ public function renderGroupingSets($sets) {
+       // Render as a grouping set.
+       if (is_array($row) && isset($row['group'])) {
+         $single_output = [
+-          '#theme' => $theme_functions,
++          '#theme' => $this->groupingTheme,
+           '#view' => $this->view,
++          '#context' => ['view' => $this->view],
+           '#grouping' => $this->options['grouping'][$level],
+           '#rows' => $set['rows'],
+         ];
+diff --git a/core/modules/views/src/ViewExecutable.php b/core/modules/views/src/ViewExecutable.php
+index 9ee37041c0..d0bfa18de3 100644
+--- a/core/modules/views/src/ViewExecutable.php
++++ b/core/modules/views/src/ViewExecutable.php
+@@ -2417,29 +2417,47 @@ public function mergeDefaults() {
+    *
+    * @return array
+    *   An array of theme hook suggestions.
++   *
++   * @deprecated in Drupal 8.7.x and will be removed before Drupal 9.0.0.
++   *   Use \Drupal\views\ViewExecutable::themeSuggestions instead.
+    */
+   public function buildThemeFunctions($hook) {
+-    $themes = [];
++    return array_reverse($this->themeSuggestions($hook));
++  }
++
++  /**
++   * Provides possible theme suggestions to try for a given hook.
++   *
++   * @param string $hook
++   *   The hook to use. This is the base theme/template name.
++   *
++   * @return array
++   *   An array of theme hook suggestions.
++   *
++   * @see \hook_theme_suggestions_HOOK()
++   */
++  public function themeSuggestions($hook) {
++    $suggestions = [];
+     $display = isset($this->display_handler) ? $this->display_handler->display : NULL;
+     $id = $this->storage->id();
+ 
+-    if ($display) {
+-      $themes[] = $hook . '__' . $id . '__' . $display['id'];
+-      $themes[] = $hook . '__' . $display['id'];
+-      // Add theme suggestions for each single tag.
+-      foreach (Tags::explode($this->storage->get('tag')) as $tag) {
+-        $themes[] = $hook . '__' . preg_replace('/[^a-z0-9]/', '_', strtolower($tag));
+-      }
++    $suggestions[] = $hook;
++    $suggestions[] = $hook . '__' . $id;
+ 
++    // Display specific suggestions.
++    if ($display) {
+       if ($display['id'] != $display['display_plugin']) {
+-        $themes[] = $hook . '__' . $id . '__' . $display['display_plugin'];
+-        $themes[] = $hook . '__' . $display['display_plugin'];
++        $suggestions[] = $hook . '__' . $display['display_plugin'];
++        $suggestions[] = $hook . '__' . $id . '__' . $display['display_plugin'];
++      }
++      foreach (Tags::explode($this->storage->get('tag')) as $tag) {
++        $suggestions[] = $hook . '__' . preg_replace('/[^a-z0-9]/', '_', strtolower($tag));
+       }
++      $suggestions[] = $hook . '__' . $display['id'];
++      $suggestions[] = $hook . '__' . $id . '__' . $display['id'];
+     }
+-    $themes[] = $hook . '__' . $id;
+-    $themes[] = $hook;
+ 
+-    return $themes;
++    return $suggestions;
+   }
+ 
+   /**
+diff --git a/core/modules/views/tests/src/Functional/ViewsTemplateSuggestionsTest.php b/core/modules/views/tests/src/Functional/ViewsTemplateSuggestionsTest.php
+new file mode 100644
+index 0000000000..86a1dcf350
+--- /dev/null
++++ b/core/modules/views/tests/src/Functional/ViewsTemplateSuggestionsTest.php
+@@ -0,0 +1,70 @@
++<?php
++
++namespace Drupal\Tests\views\Functional;
++
++/**
++ * Tests Views template suggestions.
++ *
++ * @group views
++ */
++class ViewsTemplateSuggestionsTest extends ViewTestBase {
++
++  /**
++   * Views used by this test.
++   *
++   * @var array
++   */
++  public static $testViews = ['test_page_display'];
++
++  /**
++   * Used by WebTestBase::setup()
++   *
++   * @var array
++   *
++   * @see \Drupal\simpletest\WebTestBase::setup()
++   */
++  public static $modules = ['views'];
++
++  /**
++   * {@inheritdoc}
++   */
++  protected function setUp($import_test_views = TRUE) {
++    parent::setUp(TRUE);
++
++    $this->enableViewsTestModule();
++  }
++
++  /**
++   * Tests for views-view hook suggestions to be loaded.
++   */
++  public function testViewsViewSuggestions() {
++    // Test with system theme using theme function.
++    $this->drupalGet('test_page_display_200');
++
++    // Assert that the default template is loaded.
++    $this->assertSession()->elementExists('css', '.view.view-id-test_page_display');
++
++    // Install theme to test with template system.
++    \Drupal::service('theme_handler')->install(['views_test_suggestions_theme']);
++
++    // Make the theme default then test for hook invocations.
++    $this->config('system.theme')
++      ->set('default', 'views_test_suggestions_theme')
++      ->save();
++    $this->assertEquals('views_test_suggestions_theme', $this->config('system.theme')->get('default'));
++
++    $this->drupalGet('test_page_display_200');
++
++    // Assert template views-view--test-page-display.html.twig is not loaded
++    // due having less specificity.
++    $this->assertSession()->pageTextNotContains('**THIS SHOULD NOT BE LOADED**');
++
++    // Assert that we are using the correct template
++    // views-view--test-page-display--page-3.html.twig.
++    $this->assertSession()->pageTextContains('This has been done during SprintWeekend2018 London');
++
++    // Assert the base template views-view.html.twig is not loaded either.
++    $this->assertSession()->elementNotExists('css', '.view.view-id-test_page_display');
++  }
++
++}
+diff --git a/core/modules/views/tests/src/Unit/ViewExecutableTest.php b/core/modules/views/tests/src/Unit/ViewExecutableTest.php
+index 59c5f860c5..e5194b109f 100644
+--- a/core/modules/views/tests/src/Unit/ViewExecutableTest.php
++++ b/core/modules/views/tests/src/Unit/ViewExecutableTest.php
+@@ -328,6 +328,50 @@ public function testBuildThemeFunctions() {
+     $this->assertEquals($expected, $view->buildThemeFunctions('test_hook'));
+   }
+ 
++  /**
++   * @covers ::themeSuggestions
++   */
++  public function testThemeSuggestions() {
++    /** @var \Drupal\views\ViewExecutable|\PHPUnit_Framework_MockObject_MockObject $view */
++    /** @var \Drupal\views\Plugin\views\display\DisplayPluginBase|\PHPUnit_Framework_MockObject_MockObject $display */
++    list($view, $display) = $this->setupBaseViewAndDisplay();
++
++    unset($view->display_handler);
++    $expected = [
++      'test_hook',
++      'test_hook__test_view',
++    ];
++    $this->assertEquals($expected, $view->themeSuggestions('test_hook'));
++
++    $view->display_handler = $display;
++    $expected = [
++      'test_hook',
++      'test_hook__test_view',
++      'test_hook__one',
++      'test_hook__two',
++      'test_hook__and_three',
++      'test_hook__default',
++      'test_hook__test_view__default',
++    ];
++    $this->assertEquals($expected, $view->themeSuggestions('test_hook'));
++
++    // Change the name of the display plugin and make sure that is in the array.
++    $view->display_handler->display['display_plugin'] = 'default2';
++
++    $expected = [
++      'test_hook',
++      'test_hook__test_view',
++      'test_hook__default2',
++      'test_hook__test_view__default2',
++      'test_hook__one',
++      'test_hook__two',
++      'test_hook__and_three',
++      'test_hook__default',
++      'test_hook__test_view__default',
++    ];
++    $this->assertEquals($expected, $view->themeSuggestions('test_hook'));
++  }
++
+   /**
+    * @covers ::generateHandlerId
+    */
+diff --git a/core/modules/views/tests/themes/views_test_suggestions_theme/templates/views-view--test-page-display--page-3.html.twig b/core/modules/views/tests/themes/views_test_suggestions_theme/templates/views-view--test-page-display--page-3.html.twig
+new file mode 100644
+index 0000000000..7cc8e3acbe
+--- /dev/null
++++ b/core/modules/views/tests/themes/views_test_suggestions_theme/templates/views-view--test-page-display--page-3.html.twig
+@@ -0,0 +1,10 @@
++{#
++/**
++ * @file
++ * Theme override to display a specific view.
++ *
++ * The reason for this template is to override the theme function provided by
++ * views and validate suggested template are loaded correctly.
++ */
++#}
++This has been done during SprintWeekend2018 London
+diff --git a/core/modules/views/tests/themes/views_test_suggestions_theme/templates/views-view--test-page-display.html.twig b/core/modules/views/tests/themes/views_test_suggestions_theme/templates/views-view--test-page-display.html.twig
+new file mode 100644
+index 0000000000..a2b0e6ce86
+--- /dev/null
++++ b/core/modules/views/tests/themes/views_test_suggestions_theme/templates/views-view--test-page-display.html.twig
+@@ -0,0 +1,10 @@
++{#
++/**
++ * @file
++ * Theme override to display a specific view.
++ *
++ * The reason for this template is to override the theme function provided by
++ * views and validate suggested template are loaded correctly.
++ */
++#}
++**THIS SHOULD NOT BE LOADED**
+diff --git a/core/modules/views/tests/themes/views_test_suggestions_theme/views_test_suggestions_theme.info.yml b/core/modules/views/tests/themes/views_test_suggestions_theme/views_test_suggestions_theme.info.yml
+new file mode 100644
+index 0000000000..2594f3f1de
+--- /dev/null
++++ b/core/modules/views/tests/themes/views_test_suggestions_theme/views_test_suggestions_theme.info.yml
+@@ -0,0 +1,5 @@
++name: Views test suggestions theme
++type: theme
++description: Theme for testing Views templates suggestions.
++version: VERSION
++core: 8.x
+diff --git a/core/modules/views/views.module b/core/modules/views/views.module
+index 744c966525..7ab02f46c8 100644
+--- a/core/modules/views/views.module
++++ b/core/modules/views/views.module
+@@ -12,6 +12,7 @@
+ use Drupal\Core\Routing\RouteMatchInterface;
+ use Drupal\Core\Url;
+ use Drupal\views\Plugin\Derivative\ViewsLocalTask;
++use Drupal\views\Plugin\views\PluginBase;
+ use Drupal\views\ViewEntityInterface;
+ use Drupal\views\ViewExecutable;
+ use Drupal\views\Entity\View;
+@@ -224,6 +225,19 @@ function views_theme($existing, $type, $theme, $path) {
+   return $hooks;
+ }
+ 
++/**
++ * Implements hook_theme_suggestions_alter().
++ */
++function views_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
++  $context = $variables['context'];
++  if (($view = isset($context['view']) ? $context['view'] : FALSE) && $view instanceof ViewExecutable) {
++    $suggestions = array_unique(array_merge($suggestions, $view->themeSuggestions($hook)));
++  }
++  elseif (($plugin = isset($context['plugin']) ? $context['plugin'] : FALSE) && $plugin instanceof PluginBase) {
++    $suggestions = array_unique(array_merge($suggestions, $plugin->themeSuggestions()));
++  }
++}
++
+ /**
+  * A theme preprocess function to automatically allow view-based node
+  * templates if called from a view.
+diff --git a/core/modules/views/views.theme.inc b/core/modules/views/views.theme.inc
+index f2ea746829..1d3a4bec56 100644
+--- a/core/modules/views/views.theme.inc
++++ b/core/modules/views/views.theme.inc
+@@ -1084,6 +1084,6 @@ function template_preprocess_views_mini_pager(&$variables) {
+  * theme registry cache!
+  *
+  * @ingroup views_overview
+- * @see \Drupal\views\ViewExecutable::buildThemeFunctions()
++ * @see \Drupal\views\ViewExecutable::themeSuggestions()
+  * @}
+  */

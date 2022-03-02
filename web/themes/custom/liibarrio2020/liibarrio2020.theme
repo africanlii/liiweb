@@ -85,5 +85,192 @@ function liibarrio2020_preprocess_html(&$variables) {
 
 // function liibarrio2020_preprocess_ds_entity_view(&$variables)  {
 //   // dump page variables
-//   kint($variables);
+ //  kint($variables);
 // }
+
+/*Allows the exposed form to list dates by year and first letter as radios*/
+
+use Drupal\Core\Datetime\DrupalDateTime;
+
+function liibarrio2020_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  
+  if (isset($form['#id']) && $form['#id'] == 'views-exposed-form-judgments-views-page-1' || $form['#id'] == 'views-exposed-form-judgments-views-page-2') {
+   $view = $form_state->get('view');
+   $arg = $view->args[0];
+   if($arg){
+    $options = &drupal_static(__FUNCTION__);
+    if (is_null($options)) {
+      $cid = 'liibarrio2020:date:year_alpha_filtered';
+      $data = \Drupal::cache()->get($cid);
+      if (!$data) {
+        $options = [];
+        $options['date'][''] = '- Any -';
+        $options['alpha'][''] = '- Any -';
+        $query = \Drupal::entityQuery('node');
+        $query->condition('type', 'judgment')
+          ->condition('status', 1)
+          ->condition('field_court_name.entity.tid', $arg)
+          ->sort('field_date', 'ASC');
+        $result = $query->execute();
+        if ($result) {
+          $nodes = \Drupal\node\Entity\Node::loadMultiple($result);
+          
+          foreach ($nodes as $node) {
+            $date = $node->field_date->value;
+            if ($date) {
+              $date = new DrupalDateTime($date, new DateTimeZone('UTC'));
+              $year = $date->format('Y');
+              if (!isset($options['date'][$year])) {
+                $options['date'][$year] = $year;
+              }
+            }
+            $title = strtoupper(substr($node->title->value,0,1));
+            if (!isset($options['alpha'][$title])) {
+                $options['alpha'][$title] = $title;
+              }
+            ksort($options['alpha']);
+
+          }
+        }
+        else{
+          $options['test'] = $arg;
+        }
+        $cache_tags = ['liibarrio2020:date:year_alpha_filtered'];
+        \Drupal::cache()->set($cid, $options, \Drupal\Core\Cache\CacheBackendInterface::CACHE_PERMANENT, $cache_tags);
+      }
+      else {
+        $options = $data->data;
+      }
+    }
+   }
+   else{
+    $options = &drupal_static(__FUNCTION__);
+      if (is_null($options)) {
+        $cid = 'liibarrio2020:date:year_alpha';
+        $data = \Drupal::cache()->get($cid);
+        if (!$data) {
+          $options = [];
+          $options['date'][''] = '- Any -';
+          $options['alpha'][''] = '- Any -';
+          $query = \Drupal::entityQuery('node');
+          $query->condition('type', 'judgment')
+            ->condition('status', 1)
+            ->sort('field_date', 'ASC');
+          $result = $query->execute();
+          if ($result) {
+            $nodes = \Drupal\node\Entity\Node::loadMultiple($result);
+            foreach ($nodes as $node) {
+              $date = $node->field_date->value;
+              if ($date) {
+                $date = new DrupalDateTime($date, new DateTimeZone('UTC'));
+                $year = $date->format('Y');
+                if (!isset($options[$year])) {
+                  $options['date'][$year] = $year;
+                }
+              }
+              $title = strtoupper(substr($node->title->value,0,1));
+              if (!isset($options['alpha'][$title])) {
+                $options['alpha'][$title] = $title;
+              }
+              ksort($options['alpha']);
+            }
+          }
+
+          $cache_tags = ['liibarrio2020:date:year_alpha'];
+          \Drupal::cache()->set($cid, $options, \Drupal\Core\Cache\CacheBackendInterface::CACHE_PERMANENT, $cache_tags);
+        }
+        else {
+          $options = $data->data;
+        }
+      }
+   }
+    
+    $field_date_value_get = \Drupal::request()->query->get('field_date_value');
+    $form['field_date_value'] = [
+      '#title' => 'Year',
+      '#type' => 'radios',
+      '#options' => $options['date'],
+      '#size' => NULL,
+      '#default_value' => '',
+      '#value' =>  $field_date_value_get,
+      '#context'=> array('#view_id'=>'judgments_views'),
+      '#weight'=>-1
+    ];
+    $alphabetical_get = \Drupal::request()->query->get('alphabetical');
+    $form['alphabetical'] = [
+      '#title' => 'Alphabetical',
+      '#type' => 'radios',
+      '#options' => $options['alpha'],
+      '#size' => NULL,
+      '#default_value' => '',
+      '#value' =>  $alphabetical_get,
+      '#context'=> array('#view_id'=>'judgments_views'),
+      '#weight'=>-1
+    ];
+  }
+}
+
+function liibarrio2020_node_presave(EntityInterface $entity) {
+  $bundle = $entity->bundle();
+  if ($bundle == 'judgment') {
+    $cid = 'liibarrio2020:date:year_alpha';
+    $data = \Drupal::cache()->get($cid);
+    if ($data) {
+      $options = $data->data;
+      $date = $entity->field_date->value;
+      if ($date) {
+        $date = new DrupalDateTime($date, new DateTimeZone('UTC'));
+        $year = $date->format('Y');
+        if (!isset($options['date'][$year])) {
+          Cache::invalidateTags(['liibarrio2020:date:year_alpha']);
+        }
+      }
+      $title = substr($entity->title->value,0,1);
+      if (!isset($options['alpha'][$title])) {
+        Cache::invalidateTags(['liibarrio2020:date:year_alpha']);
+      }
+    }
+    $cid = 'liibarrio2020:date:year_alpha_filtered';
+    $data = \Drupal::cache()->get($cid);
+    if ($data) {
+      $options = $data->data;
+      $date = $entity->field_date->value;
+      if ($date) {
+        $date = new DrupalDateTime($date, new DateTimeZone('UTC'));
+        $year = $date->format('Y');
+        if (!isset($options['date'][$year])) {
+          Cache::invalidateTags(['liibarrio2020:date:year_alpha_filtered']);
+        }
+      }
+      $title = substr($entity->title->value,0,1);
+      if (!isset($options['alpha'][$title])) {
+        Cache::invalidateTags(['liibarrio2020:date:year_alpha_filtered']);
+      }
+    }
+  }
+}
+
+
+
+function liibarrio2020_preprocess_views_view(&$variables){
+    $flynote=$variables['view']->exposed_data['field_flynote_target_id']??false;
+    if($flynote){
+      foreach($flynote as $key=>$item){
+      $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($key);
+        if($term){
+          $name = $term->getName();
+          $variables['view']->exposed_data['flynote'][$key]=$name;
+        }
+      } 
+    }
+    $booktopic=$variables['view']->exposed_data['field_booktopic_target_id']??false;
+    if($booktopic){
+      foreach($booktopic as $key=>$item){
+      $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($key);
+        if($term){
+          $name = $term->getName();
+          $variables['view']->exposed_data['booktopic'][$key]=$name;
+        }
+      } 
+    }
+}

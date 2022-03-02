@@ -11,7 +11,7 @@ dependencies:
     - image
 third_party_settings:
   filefield_paths:
-    enabled: true
+    enabled: false
     file_path:
       value: '[date:custom:Y]-[date:custom:m]'
       options:

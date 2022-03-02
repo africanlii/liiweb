@@ -1,6 +1,6 @@
 uuid: cd513cb8-0036-4065-b10d-281ea484162a
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - liiweb
@@ -9,13 +9,13 @@ dependencies:
     - liibarrio2020
 id: textblock_2
 theme: liibarrio2020
-region: sidebar_second
+region: pre_header
 weight: -18
 provider: null
 plugin: text_block
 settings:
   id: text_block
-  label: 'About [site:name]'
+  label: 'About Africanlii'
   provider: liiweb
   label_display: visible
   text:

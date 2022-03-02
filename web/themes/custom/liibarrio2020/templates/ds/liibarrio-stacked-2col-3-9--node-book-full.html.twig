@@ -1,0 +1,132 @@
+<{{ outer_wrapper }}{{ attributes.addClass('row') }}>
+
+  {{ title_suffix.contextual_links }}
+  <div class="mobile-only open-filter">
+    <a href="#" role="button" class="btn btn-black" id="toggle_filters" aria-controls="sidebar_first" aria-expanded="false">Open Details</a>
+  </div>
+
+
+  {# Main #}
+  <{{ left_wrapper }}{{ left_attributes.addClass('layout-sidebar layout-sidebar--first col') }} id="sidebar_first">
+    <aside class="content-aside--inner-wrapper section">
+      {% if left.field_image|render %}
+      <div class="sidebar-block drop-shadow top-right-radius">
+        {{ left.field_image }}
+      </div>
+      {% endif %}
+      <div class="sidebar-block drop-shadow top-right-radius">
+        <div class="black top-right-radius bookshelf_return">
+          <a href="/bookshelf"><h3>Bookshelf</h3>{% include('themes/custom/liibarrio2020/images/icons/bookshelf.svg') %}</a>
+        </div>
+      </div>
+      {% if left.field_booktopic|render %}
+      <div class="sidebar-block drop-shadow top-right-radius">
+        <div class="black top-right-radius">
+          <h3>Topics</h3>
+        </div>
+        <div class="white thin-border">
+          {{ left.field_booktopic|render }}
+        </div>
+      </div>
+      {% endif %}
+      {% if left.field_toc|render %}
+      <div class="sidebar-block drop-shadow top-right-radius">
+        <div class="black top-right-radius">
+          <h3>Contents</h3>
+        </div>
+        <div class="white thin-border">
+          {{ left.field_toc|render }}
+        </div>
+      </div>
+      {% endif %}
+      {% if left.field_date|render or left.field_copyright|render or left.field_isbn|render or left.field_law_report_citations|render or left.field_external_link|render %}
+      <div class="sidebar-block drop-shadow top-right-radius">
+        <div class="black top-right-radius">
+          <h3>Details</h3>
+        </div>
+        <div class="white thin-border">
+          {{ left.field_date }}
+          {{ left.field_isbn }}
+          {{ left.field_copyright }}
+          {{ left.field_law_report_citations }}
+          {{ left.field_external_link }}
+        </div>
+      </div>
+      {% endif %}
+      <div class="sidebar-block drop-shadow top-right-radius">
+        <div class="black top-right-radius">
+          <h3>Sharing</h3>
+        </div>
+        <div class="thin-border white">
+          {{ left['dynamic_token_field:node-share_links'] }}
+        </div>
+      </div>
+      
+    </aside>
+  </{{ left_wrapper }}>
+
+  <{{ right_wrapper }}{{ right_attributes.addClass('layout-main col') }} id="content">
+    {# Header #}
+    <section class="section">
+    {% if header_left|render or header_right|render %}
+      
+        <header class="content-top content-header--wrapper">
+          
+          <div class="content-header--top row">
+            {% if header_left %}
+              <{{ header_left_wrapper }}{{ header_left_attributes.addClass('content-header--left left col') }}>
+                {{- header_left -}}
+              </{{ header_left_wrapper }}>
+            {% endif %}
+            {% if header_right %}
+              <{{ header_right_wrapper }}{{ header_right_attributes.addClass('content-header--right right col text-right') }}>
+                {{- header_right -}}
+              </{{ header_right_wrapper }}>
+            {% endif %}
+          </div>
+          {% if header %}
+            <div class="content-header--bottom">
+              <{{ header_wrapper }}{{ header_attributes.addClass('content-header w-100 pt-2') }}>
+                {{ header}}
+              </{{ header_wrapper }}>
+            </div>
+          {% endif %}
+        </header> 
+      
+    {% endif %}
+    {% if right.field_abstract|render %}
+    <div class="abstract content drop-shadow top-right-radius white">
+      <div class="black top-right-radius">
+        <h3>Abstract</h3>
+      </div>
+      <div class="white thin-border">
+        {{ right.field_abstract  }}
+      </div>
+    </div>
+    {% endif %}
+    {% if right.body|render  %}
+    <div class="body content drop-shadow top-right-radius white">
+      <div class="thin-border top-right-radius">
+        {{ right.body }}
+      </div>
+    </div>
+    {% endif %}
+    {% if right.field_files|render  %}
+    <div class="pdf content drop-shadow top-right-radius white">
+      <div class="black top-right-radius">
+        <h3>PDF</h3>
+      </div>
+      <div class="white thin-border">
+        {{ right.field_files }}
+      </div>
+    </div>
+    {% endif %}
+  </section>
+  </{{ right_wrapper }}>
+
+  {# Footer #}
+  <{{ footer_wrapper }}{{ footer_attributes.addClass('content-footer book-nav-footer') }}>
+    {{ footer }}
+  </{{ footer_wrapper }}>
+
+</{{ outer_wrapper }}>

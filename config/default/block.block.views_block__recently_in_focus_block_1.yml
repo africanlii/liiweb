@@ -1,0 +1,30 @@
+uuid: ae151964-9dd6-4510-9705-b0e44ed3cabd
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.recently_in_focus
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: views_block__recently_in_focus_block_1
+theme: liibarrio2020
+region: content
+weight: -17
+provider: null
+plugin: 'views_block:recently_in_focus-block_1'
+settings:
+  id: 'views_block:recently_in_focus-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

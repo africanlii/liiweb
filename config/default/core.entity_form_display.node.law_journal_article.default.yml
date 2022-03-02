@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.law_journal_article.field_abstract
     - field.field.node.law_journal_article.field_author_affilliation
     - field.field.node.law_journal_article.field_author_surname
+    - field.field.node.law_journal_article.field_booktopic
     - field.field.node.law_journal_article.field_contributor
     - field.field.node.law_journal_article.field_copyright
     - field.field.node.law_journal_article.field_date
@@ -55,6 +56,7 @@ third_party_settings:
         - field_judgment_number
         - field_law_report_citations
         - field_date
+        - field_booktopic
       parent_name: group_journal_form
       weight: 20
       format_type: tab
@@ -168,6 +170,16 @@ content:
     region: content
   field_author_surname:
     weight: 6
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_booktopic:
+    weight: 7
     settings:
       match_operator: CONTAINS
       match_limit: 10

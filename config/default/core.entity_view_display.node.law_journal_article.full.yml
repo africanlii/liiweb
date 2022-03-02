@@ -1,0 +1,251 @@
+uuid: f1adf822-618e-4aab-ae4e-cf32f70c2c9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.law_journal_article.body
+    - field.field.node.law_journal_article.field_abstract
+    - field.field.node.law_journal_article.field_author_affilliation
+    - field.field.node.law_journal_article.field_author_surname
+    - field.field.node.law_journal_article.field_booktopic
+    - field.field.node.law_journal_article.field_contributor
+    - field.field.node.law_journal_article.field_copyright
+    - field.field.node.law_journal_article.field_date
+    - field.field.node.law_journal_article.field_doi
+    - field.field.node.law_journal_article.field_external_link
+    - field.field.node.law_journal_article.field_files
+    - field.field.node.law_journal_article.field_jissue
+    - field.field.node.law_journal_article.field_jtitle
+    - field.field.node.law_journal_article.field_judgment_number
+    - field.field.node.law_journal_article.field_judgment_number_override
+    - field.field.node.law_journal_article.field_jvolume
+    - field.field.node.law_journal_article.field_law_report_citations
+    - field.field.node.law_journal_article.field_media_neutral_citation
+    - node.type.law_journal_article
+  module:
+    - computed_field
+    - datetime
+    - ds
+    - link
+    - pdf
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_stacked_2col_3_9
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          header_left: div
+          header_right: div
+          header: div
+          left: div
+          right: div
+          footer: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          header_left: {  }
+          header_right: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
+    regions:
+      header_right:
+        - node_title
+        - field_author_surname
+        - field_contributor
+      left:
+        - field_booktopic
+        - field_jtitle
+        - field_jvolume
+        - field_date
+        - field_jissue
+        - field_author_affilliation
+        - field_copyright
+        - field_external_link
+        - field_law_report_citations
+        - field_media_neutral_citation
+        - 'dynamic_token_field:node-share_links'
+      right:
+        - field_abstract
+        - body
+        - field_files
+      footer:
+        - book_navigation
+    fields:
+      book_navigation:
+        plugin_id: book_navigation
+        weight: 17
+        label: hidden
+        formatter: default
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 13
+        label: hidden
+        formatter: default
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+id: node.law_journal_article.full
+targetEntityType: node
+bundle: law_journal_article
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    region: right
+  field_abstract:
+    weight: 14
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: right
+  field_author_affilliation:
+    weight: 8
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: left
+  field_author_surname:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: header_right
+  field_booktopic:
+    weight: 3
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: left
+  field_contributor:
+    weight: 2
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: header_right
+  field_copyright:
+    weight: 9
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: left
+  field_date:
+    weight: 6
+    label: inline
+    settings:
+      timezone_override: ''
+      date_format: 'j F Y'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: datetime_custom
+    region: left
+  field_external_link:
+    weight: 10
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: left
+  field_files:
+    weight: 16
+    label: hidden
+    settings:
+      keep_pdfjs: true
+      width: 100%
+      height: ''
+      page: null
+      zoom: null
+      custom_zoom: null
+      pagemode: null
+    third_party_settings: {  }
+    type: pdf_default
+    region: right
+  field_jissue:
+    weight: 7
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: left
+  field_jtitle:
+    weight: 4
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: left
+  field_jvolume:
+    weight: 5
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: left
+  field_law_report_citations:
+    weight: 11
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: left
+  field_media_neutral_citation:
+    weight: 12
+    label: inline
+    settings:
+      sanitized: true
+      cache_unit: -1
+      cache_duration: 1
+    third_party_settings: {  }
+    type: computed_string
+    region: left
+hidden:
+  field_doi: true
+  field_judgment_number: true
+  field_judgment_number_override: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

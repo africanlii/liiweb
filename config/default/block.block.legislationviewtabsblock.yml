@@ -10,7 +10,7 @@ dependencies:
 id: legislationviewtabsblock
 theme: liibarrio2020
 region: content_bottom
-weight: -18
+weight: -22
 provider: null
 plugin: view_tabs_block
 settings:
