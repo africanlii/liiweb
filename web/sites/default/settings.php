@@ -57,7 +57,11 @@
  * register custom, site-specific service definitions and/or swap out default
  * implementations with custom ones.
  */
-
+/** Trusted Host Patterns **/
+$settings['trusted_host_patterns'] = [
+  '^africanlii\.org$',
+  '^.+\.africanlii\.org$',
+];
 /**
  * Database settings:
  *
