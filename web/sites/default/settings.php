@@ -57,7 +57,11 @@
  * register custom, site-specific service definitions and/or swap out default
  * implementations with custom ones.
  */
-
+ /** Trusted Host PAtterns **/
+ $settings['trusted_host_patterns'] = [
+  '^ulii\.org$',
+  '^.+\.ulii\.org$',
+ ];
 /**
  * Database settings:
  *
