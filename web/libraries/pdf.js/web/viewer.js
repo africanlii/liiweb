@@ -1709,7 +1709,7 @@ const PDFViewerApplication = {
 exports.PDFViewerApplication = PDFViewerApplication;
 let validateFileURL;
 {
-   const HOSTED_VIEWER_ORIGINS = ["null", "http://mozilla.github.io", "https://mozilla.github.io", window.location.protocol + "//" + window.location.host];
+   const HOSTED_VIEWER_ORIGINS = ["null", "http://mozilla.github.io", "https://mozilla.github.io", window.location.protocol + "//" + window.location.host,"https://new.africanlii.org","https://www.new.africanlii.org"];
 
   validateFileURL = function (file) {
     if (file === undefined) {
