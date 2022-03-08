@@ -7,6 +7,4 @@ index f75563a..7990f83 100644
        if ($file->getFileUri() !== $destination) {
          $dirname = $file_system->dirname($destination);
 +        $file->setPermanent();
-         if (
-           \Drupal::service('file_system')->prepareDirectory($dirname, FileSystem::CREATE_DIRECTORY)
-           && $new_file = file_move($file, $destination)
+         if (file_prepare_directory($dirname, FILE_CREATE_DIRECTORY) && $new_file = file_move($file, $destination)) {
