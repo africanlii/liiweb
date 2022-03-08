@@ -1,0 +1,12 @@
+diff --git a/filefield_paths.inc b/filefield_paths.inc
+index f75563a..7990f83 100644
+--- a/filefield_paths.inc
++++ b/filefield_paths.inc
+@@ -111,6 +111,7 @@ function filefield_paths_filefield_paths_process_file(ContentEntityInterface $en
+       // Finalize file if necessary.
+       if ($file->getFileUri() !== $destination) {
+         $dirname = $file_system->dirname($destination);
++        $file->setPermanent();
+         if (
+           \Drupal::service('file_system')->prepareDirectory($dirname, FileSystem::CREATE_DIRECTORY)
+           && $new_file = file_move($file, $destination)
