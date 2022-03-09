@@ -1,9 +1,9 @@
-uuid: 24f7cfa9-58fb-49d6-8751-84b25ff7fc96
+uuid: fb4dafdd-f5d0-4730-965b-9f649ce9d4a9
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.search_index
+    - core.entity_view_mode.node.search_result
     - field.field.node.government_gazette.body
     - field.field.node.government_gazette.field_date
     - field.field.node.government_gazette.field_external_link
@@ -16,89 +16,86 @@ dependencies:
   module:
     - datetime
     - ds
-    - liiweb_legislation
-    - search_api_attachments
+    - file_download_link
     - user
 third_party_settings:
   ds:
     layout:
-      id: ds_1col
-      library: null
+      id: ds_2col_stacked
+      library: ds/ds_2col_stacked
       disable_css: false
       entity_classes: all_classes
       settings:
         label: ''
         wrappers:
-          ds_content: div
+          header: div
+          left: div
+          right: div
+          footer: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
         classes:
           layout_class: {  }
-          ds_content: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
     regions:
-      ds_content:
+      header:
         - node_title
         - search_api_excerpt
+      footer:
         - field_file
         - field_date
-        - field_gazette_issue_number
     fields:
       node_title:
         plugin_id: node_title
         weight: 0
         label: hidden
         formatter: default
-        settings:
-          link: true
-          wrapper: h3
-          class: ''
+id: node.government_gazette.search_result
+targetEntityType: node
+bundle: government_gazette
+mode: search_result
+content:
+  field_date:
+    weight: 3
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: short_date
+    third_party_settings:
+      ds:
         ft:
           id: default
           settings:
             lb: ''
             lb-col: false
             classes: {  }
-id: node.government_gazette.search_index
-targetEntityType: node
-bundle: government_gazette
-mode: search_index
-content:
-  field_date:
-    type: datetime_custom
-    weight: 3
-    region: ds_content
-    label: above
-    settings:
-      date_format: 'Y-m-d\TH:i:s'
-      timezone_override: ''
-    third_party_settings: {  }
+    type: datetime_default
+    region: footer
   field_file:
-    type: file_extracted_text
+    type: file_download_link
     weight: 2
-    region: ds_content
+    region: footer
     label: above
     settings:
-      excluded_extensions: 'aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv'
-      max_filesize: '0'
-      excluded_private: 1
-    third_party_settings: {  }
-  field_gazette_issue_number:
-    type: timeline_field_formatter
-    weight: 4
-    region: ds_content
-    label: above
-    settings: {  }
+      link_text: Download
+      new_tab: true
+      force_download: true
+      custom_classes: ''
     third_party_settings: {  }
   search_api_excerpt:
     weight: 1
-    region: ds_content
+    region: header
     settings: {  }
     third_party_settings: {  }
 hidden:
   body: true
   field_external_link: true
+  field_gazette_issue_number: true
   field_gazette_machine_id: true
   field_gazette_supplement: true
   field_locality: true

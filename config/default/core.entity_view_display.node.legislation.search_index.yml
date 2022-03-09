@@ -30,6 +30,8 @@ dependencies:
   module:
     - datetime
     - ds
+    - liiweb_legislation
+    - pdf
     - user
 third_party_settings:
   ds:
@@ -55,6 +57,10 @@ third_party_settings:
         - search_api_excerpt
         - field_commencement_date
         - field_as_at
+        - field_content
+        - legislation_pdf_conditional_entity_view_1
+        - field_date
+        - field_files
     fields:
       node_title:
         plugin_id: node_title
@@ -94,19 +100,47 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
+  field_content:
+    type: timeline_field_formatter
+    weight: 4
+    region: ds_content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_date:
+    type: datetime_custom
+    weight: 6
+    region: ds_content
+    label: above
+    settings:
+      date_format: 'Y-m-d\TH:i:s'
+      timezone_override: ''
+    third_party_settings: {  }
+  field_files:
+    type: pdf_thumbnail
+    weight: 7
+    region: ds_content
+    label: above
+    settings:
+      scale: 1
+      width: ''
+      height: ''
+    third_party_settings: {  }
+  legislation_pdf_conditional_entity_view_1:
+    weight: 5
+    region: ds_content
+    settings: {  }
+    third_party_settings: {  }
   search_api_excerpt:
     weight: 1
     region: ds_content
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_content: true
   field_created: true
   field_created_by_api: true
-  field_date: true
   field_expression_date: true
   field_external_link: true
-  field_files: true
   field_frbr_uri: true
   field_images: true
   field_iso_country_code: true
