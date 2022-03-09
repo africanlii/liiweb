@@ -508,6 +508,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
+              editor: '0'
             placeholder: 'Results For'
           is_grouped: false
           group_info:
@@ -521,9 +522,12 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: direct
+          parse_mode: sloppy_phrase
           min_length: null
-          fields: {  }
+          fields:
+            - rendered_item
+            - saa_field_file
+            - saa_field_files
           plugin_id: search_api_fulltext
         field_date:
           id: field_date
@@ -608,18 +612,6 @@ display:
           expose:
             label: ''
           plugin_id: search_api
-        created:
-          id: created
-          table: search_api_index_full_site_search
-          field: created
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: search_api
       query:
         type: views_query
         options:
@@ -638,9 +630,10 @@ display:
         options:
           view_modes:
             'entity:node':
-              government_gazette: search_index
-              judgment: search_index
-              legislation: search_index
+              government_gazette: search_result
+              judgment: search_result
+              law_reform_reports: default
+              legislation: search_result
       pager:
         type: full
         options:

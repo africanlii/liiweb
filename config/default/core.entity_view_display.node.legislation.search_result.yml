@@ -1,6 +1,6 @@
 uuid: 3f32f7a6-b40e-4cbf-9d68-b383e31a6829
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - core.entity_view_mode.node.search_result
@@ -28,33 +28,41 @@ dependencies:
     - field.field.node.legislation.field_work_frbr_uri
     - node.type.legislation
   module:
+    - datetime
     - ds
     - user
 third_party_settings:
   ds:
     layout:
-      id: liibarrio_2col_9_3
-      library: null
+      id: ds_2col_stacked
+      library: ds/ds_2col_stacked
       disable_css: false
       entity_classes: all_classes
       settings:
         label: ''
         wrappers:
+          header: div
           left: div
           right: div
+          footer: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
         classes:
           layout_class: {  }
+          header: {  }
           left: {  }
           right: {  }
+          footer: {  }
     regions:
-      left:
+      header:
         - node_title
+      left:
         - search_api_excerpt
       right:
+        - field_expression_date
+      footer:
         - field_publication_name
     fields:
       node_title:
@@ -77,16 +85,32 @@ targetEntityType: node
 bundle: legislation
 mode: search_result
 content:
+  field_expression_date:
+    type: datetime_custom
+    weight: 2
+    region: right
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: 'j M Y'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_publication_name:
     type: string
-    weight: 1
-    region: right
+    weight: 3
+    region: footer
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
   search_api_excerpt:
-    weight: 2
+    weight: 1
     region: left
     settings: {  }
     third_party_settings: {  }
@@ -97,7 +121,6 @@ hidden:
   field_created: true
   field_created_by_api: true
   field_date: true
-  field_expression_date: true
   field_external_link: true
   field_files: true
   field_frbr_uri: true
@@ -113,4 +136,5 @@ hidden:
   field_toc: true
   field_work_frbr_uri: true
   langcode: true
+  legislation_pdf_conditional_entity_view_1: true
   links: true
