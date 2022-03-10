@@ -1,42 +1,43 @@
-uuid: 7d312035-9fde-4821-8434-1eef77bfdd23
+uuid: b6a39a17-1802-4882-93c9-70b3407a9ba7
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - facets_block
     - system
   theme:
     - liibarrio2020
-id: facetsblock_2
+id: facetsblock_5
 theme: liibarrio2020
 region: sidebar_first
-weight: -18
+weight: 0
 provider: null
 plugin: facets_block
 settings:
   id: facets_block
-  label: 'Search facets'
+  label: 'Facets Block'
   provider: facets_block
   label_display: '0'
-  show_title: false
-  exclude_empty_facets: false
+  show_title: true
+  exclude_empty_facets: true
   facets_to_include:
-    'facet_block:content_type': 'facet_block:content_type'
-    'facet_block:date_range': 'facet_block:date_range'
-    'facet_block:commencement_date': 'facet_block:commencement_date'
-    'facet_block:expression_date': 'facet_block:expression_date'
-    'facet_block:court_name': 'facet_block:court_name'
-    'facet_block:tags': 'facet_block:tags'
-    'facet_block:court_name_2': '0'
+    'facet_block:court_name_2': 'facet_block:court_name_2'
+    'facet_block:content_type_3': 'facet_block:content_type_3'
+    'facet_block:content_type': '0'
     'facet_block:duplicate_of_content_type': '0'
     'facet_block:duplicate_of_court_name': '0'
+    'facet_block:date_range': '0'
     'facet_block:duplicate_of_court': '0'
+    'facet_block:commencement_date': '0'
     'facet_block:judgments_date': '0'
+    'facet_block:expression_date': '0'
     'facet_block:gazette_date': '0'
     'facet_block:judgments_court': '0'
+    'facet_block:court_name': '0'
+    'facet_block:tags': '0'
 visibility:
   request_path:
     id: request_path
-    pages: "/search\r\n"
+    pages: /db-search
     negate: false
     context_mapping: {  }

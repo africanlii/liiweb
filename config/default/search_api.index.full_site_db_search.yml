@@ -1,6 +1,6 @@
-uuid: ef0e0ce6-5df1-47c6-a19e-83771c941497
+uuid: a744612c-9b73-4e34-b15b-5e37fc3fb190
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - search_api_solr
@@ -9,23 +9,17 @@ dependencies:
   config:
     - field.storage.node.body
     - field.storage.node.field_case_name
-    - field.storage.node.field_case_number
     - field.storage.node.field_case_number_numeric
-    - field.storage.node.field_commencement_date
-    - field.storage.node.field_content
     - field.storage.node.field_court_name
-    - field.storage.node.field_date
     - field.storage.node.field_expression_date
     - field.storage.node.field_flynote
     - field.storage.node.field_gazette_issue_number
-    - field.storage.node.field_headnote_and_holding
     - field.storage.node.field_judge
     - field.storage.node.field_judgment_number
-    - field.storage.node.field_lifecycle_json
     - field.storage.node.field_publication_name
-    - field.storage.node.field_search_summary
-    - field.storage.node.field_tags
-    - search_api.server.solr
+    - field.storage.node.field_title
+    - search_api.server.db
+    - core.entity_view_mode.node.full
 third_party_settings:
   search_api_solr:
     finalize: false
@@ -64,8 +58,8 @@ third_party_settings:
       index_prefix: ''
       collection: ''
       timezone: ''
-id: full_site_search
-name: 'Full Site Search'
+id: full_site_db_search
+name: 'Full Site DB Search'
 description: ''
 read_only: false
 field_settings:
@@ -90,18 +84,18 @@ field_settings:
     label: 'Case name'
     datasource_id: 'entity:node'
     property_path: field_case_name
-    type: text
+    type: string
     dependencies:
       config:
         - field.storage.node.field_case_name
-  field_case_number:
-    label: 'Case number'
+  field_case_name_1:
+    label: 'Case name'
     datasource_id: 'entity:node'
-    property_path: field_case_number
-    type: text
+    property_path: field_case_name
+    type: string
     dependencies:
       config:
-        - field.storage.node.field_case_number
+        - field.storage.node.field_case_name
   field_case_number_numeric:
     label: 'Case number numeric'
     datasource_id: 'entity:node'
@@ -110,23 +104,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_case_number_numeric
-  field_commencement_date:
-    label: 'Commencement date'
-    datasource_id: 'entity:node'
-    property_path: field_commencement_date
-    type: date
-    dependencies:
-      config:
-        - field.storage.node.field_commencement_date
-  field_content:
-    label: Content
-    datasource_id: 'entity:node'
-    property_path: field_content
-    type: text
-    boost: !!float 5
-    dependencies:
-      config:
-        - field.storage.node.field_content
   field_court_name:
     label: 'Court name'
     datasource_id: 'entity:node'
@@ -135,14 +112,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_court_name
-  field_date:
-    label: 'Index Search Date'
-    datasource_id: 'entity:node'
-    property_path: field_date
-    type: date
-    dependencies:
-      config:
-        - field.storage.node.field_date
   field_expression_date:
     label: 'Expression date'
     datasource_id: 'entity:node'
@@ -155,7 +124,7 @@ field_settings:
     label: Flynote
     datasource_id: 'entity:node'
     property_path: field_flynote
-    type: string
+    type: integer
     dependencies:
       config:
         - field.storage.node.field_flynote
@@ -167,20 +136,11 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_gazette_issue_number
-  field_headnote_and_holding:
-    label: 'Headnote and holding'
-    datasource_id: 'entity:node'
-    property_path: field_headnote_and_holding
-    type: text
-    boost: !!float 3
-    dependencies:
-      config:
-        - field.storage.node.field_headnote_and_holding
   field_judge:
     label: Judge
     datasource_id: 'entity:node'
     property_path: field_judge
-    type: string
+    type: integer
     dependencies:
       config:
         - field.storage.node.field_judge
@@ -188,50 +148,55 @@ field_settings:
     label: 'Judgment number'
     datasource_id: 'entity:node'
     property_path: field_judgment_number
-    type: text
+    type: integer
     dependencies:
       config:
         - field.storage.node.field_judgment_number
-  field_lifecycle_json:
-    label: Lifecycle
-    datasource_id: 'entity:node'
-    property_path: field_lifecycle_json
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_lifecycle_json
   field_publication_name:
     label: 'Publication name'
     datasource_id: 'entity:node'
     property_path: field_publication_name
-    type: text
-    boost: !!float 13
-    dependencies:
-      config:
-        - field.storage.node.field_publication_name
-  field_search_summary:
-    label: 'Search summary'
-    datasource_id: 'entity:node'
-    property_path: field_search_summary
-    type: text
-    boost: !!float 3
-    dependencies:
-      config:
-        - field.storage.node.field_search_summary
-  field_tags:
-    label: Tags
-    datasource_id: 'entity:node'
-    property_path: field_tags
     type: string
     dependencies:
       config:
-        - field.storage.node.field_tags
+        - field.storage.node.field_publication_name
+  field_publication_name_1:
+    label: 'Publication name'
+    datasource_id: 'entity:node'
+    property_path: field_publication_name
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_publication_name
+  field_title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: field_title
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_title
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    configuration:
+      roles:
+        anonymous: anonymous
+      view_mode:
+        'entity:node':
+          book: full
+          government_gazette: ''
+          judgment: full
+          law_in_focus: full
+          law_journal_article: full
+          law_reform_reports: full
+          legislation: full
   title:
     label: Title
     datasource_id: 'entity:node'
     property_path: title
     type: text
-    boost: !!float 13
     dependencies:
       module:
         - node
@@ -248,8 +213,11 @@ datasource_settings:
     bundles:
       default: false
       selected:
+        - book
         - government_gazette
         - judgment
+        - law_in_focus
+        - law_journal_article
         - law_reform_reports
         - legislation
     languages:
@@ -279,4 +247,4 @@ tracker_settings:
 options:
   index_directly: true
   cron_limit: 10
-server: solr
+server: db

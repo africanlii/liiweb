@@ -1,4 +1,4 @@
-uuid: 1f2aa91a-e4a3-4efc-9164-d805ef78ae43
+uuid: 5d1f0b99-50da-4905-99ef-1fac8a1e2025
 langcode: en
 status: true
 dependencies:
@@ -7,58 +7,37 @@ dependencies:
     - views.view.search_judgments
   module:
     - search_api
-id: judgments_date
-name: 'Judgments Date'
-url_alias: date_range
-weight: -1
+id: duplicate_of_court
+name: 'Duplicate of Court'
+url_alias: court_name
+weight: -2
 min_count: 1
 show_only_one_result: true
-field_identifier: field_date
+field_identifier: field_court_name
 facet_source_id: 'search_api:views_page__search_judgments__search_judgments'
 widget:
   type: links
   config:
     show_numbers: false
-    soft_limit: 5
+    soft_limit: 0
     soft_limit_settings:
       show_less_label: 'Show less'
       show_more_label: 'Show more'
     show_reset_link: true
-    reset_text: 'All Dates'
+    reset_text: 'All Courts'
     hide_reset_when_no_selection: false
-query_operator: or
+query_operator: and
 use_hierarchy: false
 expand_hierarchy: false
 enable_parent_when_child_gets_disabled: true
-hard_limit: 10
+hard_limit: 0
 exclude: false
 only_visible_when_facet_source_is_visible: true
 processor_configs:
-  date_item:
-    processor_id: date_item
+  translate_entity:
+    processor_id: translate_entity
     weights:
-      build: 35
-    settings:
-      date_display: relative_date
-      granularity: 6
-      date_format: ''
-  range_slider:
-    processor_id: range_slider
-    weights:
-      pre_query: 60
-      post_query: 60
-      build: 20
-    settings: {  }
-  raw_value_widget_order:
-    processor_id: raw_value_widget_order
-    weights:
-      sort: 50
-    settings:
-      sort: DESC
-  slider:
-    processor_id: slider
-    weights:
-      post_query: 60
+      build: 5
     settings: {  }
   url_processor_handler:
     processor_id: url_processor_handler

@@ -9,7 +9,7 @@ dependencies:
 id: views_block__liiweb_search_block_1
 theme: liibarrio2020
 region: content_top
-weight: -16
+weight: -22
 provider: null
 plugin: 'views_block:liiweb_search-block_1'
 settings:

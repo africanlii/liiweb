@@ -1,6 +1,6 @@
 uuid: 50a90406-3b1b-4300-b9c5-f00f21199221
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.search
@@ -12,7 +12,7 @@ dependencies:
 id: exposedformsearchadvanced_search
 theme: liibarrio2020
 region: content_top
-weight: 0
+weight: -20
 provider: null
 plugin: 'views_exposed_filter_block:search-advanced_search'
 settings:
