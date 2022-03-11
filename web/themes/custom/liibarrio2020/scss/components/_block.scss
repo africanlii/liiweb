@@ -861,19 +861,8 @@ section{
     padding:0;
   }
 }
-.white{
-  background-color: $white;
-}
-.black{
-  background-color: $black;
-  color:$white;
-  a{
-    color:$white;
-  }
-}
-.drop-shadow{
-	box-shadow: $dropshadow-lg;
-}
+
+
 
 .collection_icon{
   width:25px;

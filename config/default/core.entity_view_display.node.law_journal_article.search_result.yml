@@ -1,0 +1,151 @@
+uuid: 0c6b3ced-2b8d-4d92-83bd-bac9dae04c8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.law_journal_article.body
+    - field.field.node.law_journal_article.field_abstract
+    - field.field.node.law_journal_article.field_author_affilliation
+    - field.field.node.law_journal_article.field_author_surname
+    - field.field.node.law_journal_article.field_booktopic
+    - field.field.node.law_journal_article.field_contributor
+    - field.field.node.law_journal_article.field_copyright
+    - field.field.node.law_journal_article.field_date
+    - field.field.node.law_journal_article.field_doi
+    - field.field.node.law_journal_article.field_external_link
+    - field.field.node.law_journal_article.field_files
+    - field.field.node.law_journal_article.field_jissue
+    - field.field.node.law_journal_article.field_jtitle
+    - field.field.node.law_journal_article.field_judgment_number
+    - field.field.node.law_journal_article.field_judgment_number_override
+    - field.field.node.law_journal_article.field_jvolume
+    - field.field.node.law_journal_article.field_law_report_citations
+    - field.field.node.law_journal_article.field_media_neutral_citation
+    - node.type.law_journal_article
+  module:
+    - datetime
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_flex_vertical
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          content: {  }
+    regions:
+      content:
+        - node_title
+        - 'bundle_field:node'
+        - field_jtitle
+        - field_jvolume
+        - field_date
+        - field_jissue
+        - field_author_surname
+        - search_api_excerpt
+    fields:
+      'bundle_field:node':
+        plugin_id: 'bundle_field:node'
+        weight: 1
+        label: hidden
+        formatter: default
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.law_journal_article.search_result
+targetEntityType: node
+bundle: law_journal_article
+mode: search_result
+content:
+  field_author_surname:
+    type: entity_reference_label
+    weight: 6
+    region: content
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_date:
+    type: datetime_custom
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: 'j F Y'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_jissue:
+    type: entity_reference_label
+    weight: 5
+    region: content
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_jtitle:
+    type: entity_reference_label
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_jvolume:
+    type: number_unformatted
+    weight: 3
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  search_api_excerpt:
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_abstract: true
+  field_author_affilliation: true
+  field_booktopic: true
+  field_contributor: true
+  field_copyright: true
+  field_doi: true
+  field_external_link: true
+  field_files: true
+  field_judgment_number: true
+  field_judgment_number_override: true
+  field_law_report_citations: true
+  field_media_neutral_citation: true
+  langcode: true
+  links: true

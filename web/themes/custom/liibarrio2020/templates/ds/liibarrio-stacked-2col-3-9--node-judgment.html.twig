@@ -8,7 +8,7 @@
 
   {# Main #}
 
-  <{{ left_wrapper }}{{ left_attributes.addClass('layout-sidebar layout-sidebar--first col') }} id="sidebar_first">
+  <div {{ left_attributes.addClass('layout-sidebar layout-sidebar--first col') }} id="sidebar_first">
     <aside class="content-aside--inner-wrapper section">
       <div class="sidebar-block drop-shadow top-right-radius">
         <div class="beige top-right-radius">
@@ -27,7 +27,8 @@
           <h3>Related</h3>
         </div>
         <div class="white thin-border">
-          {{ left['dynamic_block_field:node-similar_judgments'] }}
+          {{ left['dynamic_block_field:node-related_judgments'] }}
+          {{ left['dynamic_block_field:node-similar_judgements'] }}
         </div>
       </div>
       <div class="sidebar-block drop-shadow top-right-radius">
@@ -57,9 +58,9 @@
       </div>
       
     </aside>
-  </{{ left_wrapper }}>
+  </div>
 
-  <{{ right_wrapper }}{{ right_attributes.addClass('layout-main col') }} id="content">
+  <div {{ right_attributes.addClass('layout-main col') }} id="content">
     {# Header #}
     <section class="section">
     {% if header_left|render or header_right|render %}
@@ -96,7 +97,7 @@
       </div>
     </div>
   </section>
-  </{{ right_wrapper }}>
+</div>
 
   {# Footer #}
   <{{ footer_wrapper }}{{ footer_attributes.addClass('content-footer') }}>

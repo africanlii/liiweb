@@ -103,6 +103,16 @@
                     </div>
                   </div>
                 {% endif %}
+                {% if page.content_top.exposedformdb_searchadvanced_search|render %}
+                  <div class="search-wrapper">
+                    {{page.content_top.exposedformdb_searchadvanced_search}}
+                    {{page.content_top.exposedformdb_searchgeneral_search_2}}
+                    <div class="button_container">
+                      <button id="search-switch" class="btn btn-tertiary" aria-expanded="false" aria-controls="views-exposed-form-liiweb-search-block-advanced-search-form"><h5>Advanced Search</h5></button>
+                      <a role="button" data-trigger="focus" tabindex="0" id="how-to-switch" class="btn btn-tertiary"  data-toggle="popover" title="How to Search" data-content="Search works by using keywords. You can prefilter your search by clicking the 'Advanced Search' button on the left." data-placement="top"><h5>How to Search</h5></a>
+                    </div>
+                  </div>
+                {% endif %}
               </div>
               {{ devel_breakpoint() }}
             {% endif %}

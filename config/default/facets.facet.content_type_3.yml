@@ -1,30 +1,30 @@
-uuid: 067e85f4-f819-415a-8c34-c96da58ac576
+uuid: 0e35b570-f14c-438e-a783-7f459d4f2d06
 langcode: en
 status: true
 dependencies:
   config:
-    - search_api.index.full_site_search
-    - views.view.search_judgments
+    - search_api.index.full_site_db_search
+    - views.view.db_search
   module:
     - search_api
-id: judgments_court
-name: 'Judgments Court'
-url_alias: court_name
-weight: 0
+id: content_type_3
+name: 'Content type DB'
+url_alias: content_type_3
+weight: -2
 min_count: 1
-show_only_one_result: true
-field_identifier: field_court_name
-facet_source_id: 'search_api:views_page__search_judgments__search_judgments'
+show_only_one_result: false
+field_identifier: type
+facet_source_id: 'search_api:views_page__db_search__general_search'
 widget:
   type: links
   config:
-    show_numbers: false
+    show_numbers: true
     soft_limit: 0
     soft_limit_settings:
       show_less_label: 'Show less'
       show_more_label: 'Show more'
     show_reset_link: true
-    reset_text: 'All Courts'
+    reset_text: All
     hide_reset_when_no_selection: false
 query_operator: and
 use_hierarchy: false
@@ -47,4 +47,4 @@ processor_configs:
     settings: {  }
 empty_behavior:
   behavior: none
-show_title: true
+show_title: false

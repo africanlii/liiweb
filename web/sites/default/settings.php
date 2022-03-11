@@ -88,6 +88,7 @@
  * ];
  * @endcode
  */
+/*
 $dburl = getenv('DATABASE_URL');
 if ($dburl) {
   $dbopts = parse_url($dburl);
@@ -104,7 +105,19 @@ if ($dburl) {
 } else {
   $databases = [];
 }
+*/
+$settings['hash_salt'] = 'ggxaq3QNDyWVhlqeV0gz7YHJJm39P5JOU4HekxOYGMnpMU78LKdHJGm1cPprsGW2YdycSZ';
 
+$databases['default']['default'] = [
+    'database' => 'liiweb',
+    'username' => 'root',
+    'password' => '',
+    'host' => 'localhost',
+    'port' => '3306',
+    'driver' => 'mysql',
+    'prefix' => '',
+    'collation' => 'utf8mb4_general_ci',
+  ];
 /**
  * Customizing database settings.
  *
@@ -295,7 +308,7 @@ $config_directories = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = getenv('HASH_SALT');
+//$settings['hash_salt'] = getenv('HASH_SALT');
 
 /**
  * Deployment identifier.

@@ -1,22 +1,22 @@
-uuid: 8c417d0c-a6b5-4e99-ad79-8aa5ac2fe5df
+uuid: f5cbebd1-07e9-4253-a859-a50f12ac493b
 langcode: en
-status: false
+status: true
 dependencies:
   config:
-    - views.view.search
+    - views.view.db_search
   module:
     - system
     - views
   theme:
     - liibarrio2020
-id: exposedformsearchgeneral_search
+id: exposedformdb_searchgeneral_search_2
 theme: liibarrio2020
-region: primary_menu
-weight: 0
+region: content_top
+weight: -23
 provider: null
-plugin: 'views_exposed_filter_block:search-general_search'
+plugin: 'views_exposed_filter_block:db_search-general_search'
 settings:
-  id: 'views_exposed_filter_block:search-general_search'
+  id: 'views_exposed_filter_block:db_search-general_search'
   label: ''
   provider: views
   label_display: '0'
@@ -25,5 +25,5 @@ visibility:
   request_path:
     id: request_path
     pages: '<front>'
-    negate: true
+    negate: false
     context_mapping: {  }
