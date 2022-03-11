@@ -49,7 +49,7 @@
 // Search
 body {
    input#edit-search-api-fulltext {
-     border-color: $black;
+     border-color: $gray;
      margin-top: 0;
      background-image: none;
      &::placeholder {
@@ -1041,7 +1041,7 @@ section{
     padding:0;
     margin-bottom:2rem;
     box-shadow: $dropshadow-lg;
-    border-radius: 0 10px 0 0;
+    border-radius: 0;
   }
 }
 .node--type-law-in-focus.node--view-mode-card{
@@ -1170,7 +1170,7 @@ section{
 }
 /*Filters Exposed Form Styling*/
 .bef-exposed-form.block-sidebar-first form {
-  border: 1px solid $black;
+  border: 2px solid $gray;
   box-shadow: $dropshadow-lg;
   .form-row {
     margin:0;
@@ -1193,7 +1193,7 @@ section{
       padding:1rem;
       font-weight:700;
       font-family: $font-family-header;
-      background-color: $gray-light;
+      background-color: $beige;
       &:focus {
         outline: none;
       }
@@ -1212,12 +1212,12 @@ section{
       top: 0;
       right: 1rem;
       font-size: 1.4rem;
-      color: #EE7845;
+      color: $black;
       padding: 0.5rem 1rem;
       width: 1ch;
     }
     .plus{
-      background-color: $gray-light;
+      background-color: $beige;
     }
     .minus{
       background-color: $white;
@@ -1254,7 +1254,7 @@ section{
   input:checked~label{
     color:$secondary;
     &::after{
-      background-color: $gray-light;
+      background-color: $gray;
     }
   }
 }
@@ -1306,17 +1306,17 @@ section{
 /*Judgements View*/
 
 .view-judgments-views {
-  border: 1px solid $black;
+  border: 2px solid $gray;
   background-color: $white;
   box-shadow: $dropshadow-sm;
-  border-radius: 0 10px 0 0;
+  border-radius: 0 0 0 0;
   overflow:hidden;
   .view-content {
     padding: 1rem;
   }
   .view-header {
-    background-color: $black;
-    color: $white;
+    background-color: $beige;
+    color: $black;
     padding: 1rem;
   }
   .table-responsive {
@@ -1353,7 +1353,7 @@ section{
         padding:  0.75rem ;
         vertical-align: top;
         border-top:none;
-        border-bottom: 1px solid $red;
+        border-bottom: 1px solid $green;
         &:empty{
           padding:0;
         }
@@ -1400,7 +1400,7 @@ a.more-link {
 }
 
 .expanded .more-link{
-  background-color: $gray-light;
+  background-color: $beige;
 }
 .path-judgment h1{
   max-width:75vw;
@@ -1457,7 +1457,7 @@ ul.pagination {
   a{
     border-bottom:2px solid $orange;
     &:hover{
-      color:$orange;
+      color:$green;
     }
   }
 
@@ -1485,8 +1485,8 @@ ul.pagination {
   legend{
     display:block;
     padding:1rem;
-    color:$white;
-    background-color: $black;
+    color:$black;
+    background-color: $beige;
     width:100%;
     font-size:1.2rem;
     //border-radius: 0 10px 0 0;
@@ -1504,7 +1504,7 @@ ul.pagination {
       }
       transition: color 400ms ease;
       &:hover{
-        color:$orange;
+        color:$green;
       }
     }
   }
@@ -1528,7 +1528,7 @@ ul.pagination {
 }
 
 .view-bookshelf{
-  border: 1px solid $black;
+  border: 2px solid $gray;
   background-color: $white;
   box-shadow: $dropshadow-sm;
   border-radius: 0 10px 0 0;
@@ -1544,17 +1544,17 @@ ul.pagination {
     flex-wrap: wrap;
   }
   .view-header {
-    background-color: $black;
-    color: $white;
+    background-color: $beige;
+    color: $black;
     padding: 1rem;
   }
 
   .views-row{
-    border-bottom: 2px solid $gray-light;
+    border-bottom: 2px solid $gray;
     header{
       padding:1rem 0;
       margin:0 0.5rem 1rem;
-      border-bottom: 2px solid $red;
+      border-bottom: 2px solid $green;
       h3{
         margin-bottom:0;
         font-size:1rem;
@@ -1575,7 +1575,7 @@ ul.pagination {
         }
         &::after{
           content:'Read';
-          background-color: $red;
+          background-color: $green;
           color:$white;
           width:100%;
           padding:1rem;
@@ -1735,7 +1735,7 @@ ul.pagination {
     transition:border 400ms ease;
   }
   a:hover::before{
-    border-right-color: $orange;
+    border-right-color: $green;
   }
 }
 .book-pager__item--next{ 
@@ -1750,7 +1750,7 @@ ul.pagination {
     transition:border 400ms ease;
   }
   a:hover::after{
-    border-left-color: $orange;
+    border-left-color: $green;
   }
 }
 
@@ -1775,7 +1775,7 @@ ul.pagination {
 }
 
 .book-tree {
-  border: 1px solid black;
+  border: 2px solid $gray;
   padding: .5rem;
   .menu {
     padding: 0;
@@ -1787,7 +1787,7 @@ ul.pagination {
     display: block;
     width: 100%;
     padding-bottom: .1rem;
-    border-bottom: 2px solid orange;
+    border-bottom: 2px solid $green;
     line-height:105%;
   }
 }
@@ -1804,7 +1804,7 @@ ul.pagination {
 .bookshelf_return{ 
   a {
     display: flex;
-    color: white;
+    color: $white;
     border-bottom: 0;
     justify-content: space-between;
   }
