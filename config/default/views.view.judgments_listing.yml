@@ -773,7 +773,6 @@ display:
           required: false
           vids:
             - court_names
-            - registry
           entity_type: node
           plugin_id: node_term_data
       exposed_form:
@@ -1046,7 +1045,6 @@ display:
           required: false
           vids:
             - court_names
-            - registry
           entity_type: node
           plugin_id: node_term_data
       display_description: ''
