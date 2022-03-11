@@ -25,6 +25,7 @@ settings:
     'facet_block:date_range': 'facet_block:date_range'
     'facet_block:commencement_date': 'facet_block:commencement_date'
     'facet_block:expression_date': 'facet_block:expression_date'
+    'facet_block:judge': 'facet_block:judge'
     'facet_block:court_name': 'facet_block:court_name'
     'facet_block:tags': 'facet_block:tags'
     'facet_block:court_name_2': '0'
