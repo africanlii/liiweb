@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_court_name
     - field.storage.node.field_date
     - field.storage.node.field_judge
     - field.storage.node.field_registry
@@ -428,14 +427,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_court_name:
-          id: field_court_name
-          table: node__field_court_name
-          field: field_court_name
+        field_judge:
+          id: field_judge
+          table: node__field_judge
+          field: field_judge
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Court name'
+          label: Coram
           exclude: false
           alter:
             alter_text: false
@@ -499,69 +498,6 @@ display:
           group_type: group
           admin_label: ''
           label: Registry
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_judge:
-          id: field_judge
-          table: node__field_judge
-          field: field_judge
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Coram
           exclude: false
           alter:
             alter_text: false
@@ -948,10 +884,10 @@ display:
           entity_type: node
           entity_field: uid
           plugin_id: user_name
-        tid_1:
-          id: tid_1
-          table: taxonomy_index
-          field: tid
+        field_judge_target_id:
+          id: field_judge_target_id
+          table: node__field_judge
+          field: field_judge_target_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -960,17 +896,17 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: tid_1_op
-            label: Judge
+            operator_id: field_judge_target_id_op
+            label: 'Coram (field_judge)'
             description: ''
             use_operator: false
-            operator: tid_1_op
+            operator: field_judge_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: tid_1
+            identifier: field_judge_target_id
             required: false
             remember: false
-            multiple: true
+            multiple: false
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
@@ -990,17 +926,17 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          reduce_duplicates: false
+          reduce_duplicates: true
           type: select
           limit: true
           vid: judges
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-        tid_2:
-          id: tid_2
-          table: taxonomy_index
-          field: tid
+        field_registry_target_id:
+          id: field_registry_target_id
+          table: node__field_registry
+          field: field_registry_target_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -1009,17 +945,17 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: tid_2_op
-            label: Registry
+            operator_id: field_registry_target_id_op
+            label: 'Registry (field_registry)'
             description: ''
             use_operator: false
-            operator: tid_2_op
+            operator: field_registry_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: tid_2
+            identifier: field_registry_target_id
             required: false
             remember: false
-            multiple: true
+            multiple: false
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
@@ -1039,8 +975,8 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          reduce_duplicates: false
-          type: select
+          reduce_duplicates: true
+          type: textfield
           limit: true
           vid: registry
           hierarchy: false
@@ -1086,7 +1022,6 @@ display:
         - user.permissions
       max-age: 0
       tags:
-        - 'config:field.storage.node.field_court_name'
         - 'config:field.storage.node.field_date'
         - 'config:field.storage.node.field_judge'
         - 'config:field.storage.node.field_registry'
@@ -1122,7 +1057,6 @@ display:
         - user.permissions
       max-age: 0
       tags:
-        - 'config:field.storage.node.field_court_name'
         - 'config:field.storage.node.field_date'
         - 'config:field.storage.node.field_judge'
         - 'config:field.storage.node.field_registry'
