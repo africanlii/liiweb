@@ -10,7 +10,7 @@ dependencies:
 id: socialnewstimeline
 theme: liibarrio2020
 region: pre_header
-weight: -15
+weight: -21
 provider: null
 plugin: social_news_timeline
 settings:

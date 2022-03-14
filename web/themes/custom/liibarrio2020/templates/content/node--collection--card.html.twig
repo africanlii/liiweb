@@ -73,15 +73,13 @@
 %}
 <article{{ attributes.addClass(classes) }}>
   <a href="{{ url }}" rel="bookmark">
-    <header class="green">
+    <header class="dark-beige">
         <h3{{ title_attributes.addClass('node__title') }}>
           {{ label }}
         </h3>
-        {% include('themes/custom/liibarrio2020/images/icons/collection.svg') %}  
     </header>
-    <div{{ content_attributes.addClass('node__content', 'white') }}>
+    <div{{ content_attributes.addClass('node__content', 'very-light-grey') }}>
       {{ content }}
-        {% include('themes/custom/liibarrio2020/images/icons/forward.svg') %}
     </div>
   </a>
 </article>

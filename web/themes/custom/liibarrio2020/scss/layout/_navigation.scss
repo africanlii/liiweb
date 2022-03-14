@@ -6,47 +6,18 @@
       margin: 0 0 $spacer-md;
       color: $body-color;
       position:relative;
+      transition:background-color 400ms ease, color 400ms ease-in;
       @include media-breakpoint-up(lg) {
-        margin: 0.5rem 1.5rem 0 0;
+        margin: 0 .5rem 0 0;
+        padding:1rem;
         font-weight:600;
         font-family: $font-family-header;
       }
 
       &:hover,
       &:focus {
-        color: $primary;
-      }
-
-      &:after {
-        content: "";
-        display: block;
-        position:absolute;
-        margin-top: 5px;;
-        width: auto;
-        height: 2px;
-        background: $border-color;
-        transition: all 0.2s ease-in-out;
-
-        @include media-breakpoint-up(lg) {
-          background: transparent;
-          height:3px;
-          left: 0;
-          width: calc(100%);
-        }
-      }
-
-      &.is-active,
-      &:hover,
-      &:focus {
-        &:after {
-          background: $secondary;
-          height: 3px;
-        }
-      }
-
-      &:hover,
-      &:focus {
-        color: $secondary;
+        color: white;
+        background-color: $green;
       }
     }
     .nav-item:last-child {
@@ -57,10 +28,42 @@
       }
     }
   }
+ 
+}
+
+.menu--pre-header-nav{
+  .nav-link{
+    padding:0 0.5rem;
+  }
+}
+
+#navbar-main {
+  position: absolute;
+  top: 0;
+  right: 10px;
 }
 
 a.navbar-brand img {
   height: 80px;
+}
+
+@include media-breakpoint-up(md){
+  #navbar-main{
+    width:100%;
+    max-width:720px;
+    margin:0 10px;
+    right:calc(50vw - 360px);
+  }
+}
+
+@include media-breakpoint-up(lg){
+  #navbar-main{
+    position: static;
+    display:block;
+    right:unset;
+    margin:0 auto;
+    max-width: 960px
+  }
 }
 
 @include media-breakpoint-up(xl){
@@ -71,33 +74,38 @@ a.navbar-brand img {
      max-width: 315px;
     }
   }
+  #navbar-main{
+    max-width: 1140px;
+  }
 }
 
 a.uct_logo{
   display: block;
   width:80px;
-  height:80px;
-  svg {
+  height:50px;
+  align-self: center;
+  svg,img {
     height: 100%;
-    width: auto;
+    width:100%;
     display: block;
     padding: 0.5rem;
+    object-fit: contain;
     &.uctlong{
       display:none;
     }
   }
 }
-@include media-breakpoint-up(md){
+/*@include media-breakpoint-up(md){
   a.uct_logo{
     width:40px;
     height:40px;
   }
 }
-
+*/
 @include media-breakpoint-up(lg){
   a.uct_logo {
-      width:auto;
-      height:40px;
+      width:150px;
+      height:50px;
     svg {
         &.uctlong{
         display:block;
@@ -118,6 +126,9 @@ a.uct_logo{
   .layout-header__pre-header{
     flex-shrink:1;
     font-size:0.8rem;
+    .d-flex{
+      align-items: center;
+    }
   }
   .container{
     height: 100%;
@@ -137,6 +148,7 @@ a.uct_logo{
       max-height: 100%;
       display: block;
       position: absolute;
+      object-fit: contain;
   }
   }
 }
@@ -146,18 +158,52 @@ a.uct_logo{
   z-index: 1;
   opacity: 1;
   top: 100%;
-  width: 100%;
+  width: 100vw;
+  right:-10px;
 }
 
+.navbar-light .navbar-toggler{
+  position: absolute;
+  right: 0;
+}
+
+@include media-breakpoint-up(md){
+  .navbar {
+    .navbar-collapse, .navbar-collapse.show,  .navbar-collapse.collapsing {
+      padding: 1rem calc(50vw - 360px);
+      right:calc((50vw - 350px) * -1);
+    }
+  }
+}
 @include media-breakpoint-up(lg){
   .layout-header {
     .layout-header__pre-header{
       font-size:1rem;
     }
+    .layout-header__main-header{
+      flex-grow:1;
+      display: flex;
+      flex-direction: column;
+    }
+    .navbar-brand{
+      height: calc(80px + 1rem);
+      img {
+        height:80px;
+      }
+    }
   }
-  .navbar-collapse,.navbar .navbar-collapse.show {
-    top: unset;
-    width: unset;
+  .navbar{
+    .navbar-collapse, .navbar-collapse.show {
+      top: unset;
+      width: unset;
+      right:unset;
+      padding:0;
+      &::before{
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+      }
+    }
+    .menu--main{
+      padding:0;
+    }
   }
-  
 }

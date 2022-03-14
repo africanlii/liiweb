@@ -9,7 +9,7 @@ dependencies:
 id: liiwebsupportnavblock
 theme: liibarrio2020
 region: pre_header
-weight: -20
+weight: -28
 provider: null
 plugin: support_nav_block
 settings:

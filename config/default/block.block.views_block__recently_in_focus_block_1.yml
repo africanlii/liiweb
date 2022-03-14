@@ -1,6 +1,6 @@
 uuid: ae151964-9dd6-4510-9705-b0e44ed3cabd
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.recently_in_focus

@@ -11,7 +11,7 @@ dependencies:
 id: preheadernav
 theme: liibarrio2020
 region: pre_header
-weight: 0
+weight: -30
 provider: null
 plugin: 'system_menu_block:pre-header-nav'
 settings:

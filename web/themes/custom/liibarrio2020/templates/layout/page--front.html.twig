@@ -52,33 +52,26 @@
       <div class="container">
         <div class="d-flex justify-content-between">
           {{ page.pre_header }}
-          <a href="https://uct.ac.za" class="uct_logo"><span class="visually-hidden">University of Cape Town</span>{% include('themes/custom/liibarrio2020/images/uct.svg') %}{% include('themes/custom/liibarrio2020/images/uctround.svg') %}</a>
         </div>
       </div>
     </div>          
     {% endif %}     
 
     <div class="layout-header__main-header">
-      <div class="container">
         {# Header and Primary Nav #}
-        <nav{{ navbar_attributes.addClass('navbar-light') }}>
-          {% if container_navbar %}
-          <div class="container">
-          {% endif %}
-            {{ page.header }}
-            {% if page.primary_menu %}
+        <div class="container header-logo">
+          {{ page.header }}    
+        </div>  
+        <nav{{ navbar_attributes.addClass('navbar-light container') }}>
+          {% if page.primary_menu %}
               <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 {% include('themes/custom/liibarrio2020/images/icons/hamburger.svg') %}
               </button>
               <div class="collapse navbar-collapse" id="CollapsingNavbar">
                 {{ page.primary_menu }}                  
               </div>
-            {% endif %}     
-          {% if container_navbar %}
-          </div>
-          {% endif %}
+          {% endif %} 
         </nav>
-      </div>
     </div> 
   </header> 
 
@@ -91,30 +84,36 @@
           <section class="section">
             <a id="main-content" tabindex="-1"></a>
             {% if page.content_top|render|striptags is not empty %}
-              <div class="content-top">
-                {{ page.content_top.body }}
-                {% if page.content_top.exposedformsearchadvanced_search|render %}
-                  <div class="search-wrapper">
-                    {{page.content_top.exposedformsearchadvanced_search}}
-                    {{page.content_top.exposedformsearchgeneral_search_2}}
-                    <div class="button_container">
-                      <button id="search-switch" class="btn btn-tertiary" aria-expanded="false" aria-controls="views-exposed-form-liiweb-search-block-advanced-search-form"><h5>Advanced Search</h5></button>
-                      <a role="button" data-trigger="focus" tabindex="0" id="how-to-switch" class="btn btn-tertiary"  data-toggle="popover" title="How to Search" data-content="Search works by using keywords. You can prefilter your search by clicking the 'Advanced Search' button on the left." data-placement="top"><h5>How to Search</h5></a>
-                    </div>
+              <div class="content-top container-fluid">
+                <div class="row">
+                  <div class="col-sm-12 col-md-8">
+                    {{ page.content_top.body }}
+                    {% if page.content_top.exposedformsearchadvanced_search|render %}
+                      <div class="search-wrapper">
+                        {{page.content_top.exposedformsearchadvanced_search}}
+                        {{page.content_top.exposedformsearchgeneral_search_2}}
+                        <div class="button_container">
+                          <button id="search-switch" class="btn btn-tertiary" aria-expanded="false" aria-controls="views-exposed-form-liiweb-search-block-advanced-search-form"><h5>Advanced Search</h5></button>
+                          <a role="button" data-trigger="focus" tabindex="0" id="how-to-switch" class="btn btn-tertiary"  data-toggle="popover" title="How to Search" data-content="Search works by using keywords. You can prefilter your search by clicking the 'Advanced Search' button on the left." data-placement="top"><h5>How to Search</h5></a>
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if page.content_top.exposedformdb_searchadvanced_search|render %}
+                      <div class="search-wrapper">
+                        {{page.content_top.exposedformdb_searchadvanced_search}}
+                        {{page.content_top.exposedformdb_searchgeneral_search_2}}
+                        <div class="button_container">
+                          <button id="search-switch" class="btn btn-tertiary" aria-expanded="false" aria-controls="views-exposed-form-liiweb-search-block-advanced-search-form"><h5>Advanced Search</h5></button>
+                          <a role="button" data-trigger="focus" tabindex="0" id="how-to-switch" class="btn btn-tertiary"  data-toggle="popover" title="How to Search" data-content="Search works by using keywords. You can prefilter your search by clicking the 'Advanced Search' button on the left." data-placement="top"><h5>How to Search</h5></a>
+                        </div>
+                      </div>
+                    {% endif %}
                   </div>
-                {% endif %}
-                {% if page.content_top.exposedformdb_searchadvanced_search|render %}
-                  <div class="search-wrapper">
-                    {{page.content_top.exposedformdb_searchadvanced_search}}
-                    {{page.content_top.exposedformdb_searchgeneral_search_2}}
-                    <div class="button_container">
-                      <button id="search-switch" class="btn btn-tertiary" aria-expanded="false" aria-controls="views-exposed-form-liiweb-search-block-advanced-search-form"><h5>Advanced Search</h5></button>
-                      <a role="button" data-trigger="focus" tabindex="0" id="how-to-switch" class="btn btn-tertiary"  data-toggle="popover" title="How to Search" data-content="Search works by using keywords. You can prefilter your search by clicking the 'Advanced Search' button on the left." data-placement="top"><h5>How to Search</h5></a>
-                    </div>
+                  <div class="col-sm-12 col-md-4">
+                    {{ page.content_top.views_block__legislation_block_latest_legistration_2 }}
                   </div>
-                {% endif %}
+                </div>
               </div>
-              {{ devel_breakpoint() }}
             {% endif %}
             {# Content #}
             {{ page.content }}

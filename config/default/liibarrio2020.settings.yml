@@ -34,7 +34,7 @@ features:
   favicon: 1
 logo:
   use_default: 0
-  path: themes/custom/liibarrio2020/images/logo.png
+  path: themes/custom/liibarrio2020/images/PAP_LOGO_RGB_English_Colour_0.png
 favicon:
   use_default: 0
   path: themes/custom/liibarrio2020/favicon.ico

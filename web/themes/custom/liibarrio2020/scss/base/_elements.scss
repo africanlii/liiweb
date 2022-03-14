@@ -19,7 +19,7 @@ html, body{
 
 @include media-breakpoint-up(lg){
 	:root{
-		--header-height:195px;
+		--header-height:200px;
 	}
 }
 /*Typography*/
@@ -29,9 +29,22 @@ h1, h2, .h1, .h2{
 	margin:0 0 1em;
 	text-transform: uppercase;
 	font-family: $font-family-header;
-	font-stretch: 80;
-	font-weight: 301;
+	font-stretch: 80%;
+	font-weight: 400;
+	&.border-bottom, &.border-bottom.border-secondary{
+		border-color:$gray !important;
+		border-width: 2px !important;
+		position:relative;
+		span{
+			border-bottom: 2px solid $green !important;
+			padding-bottom:-2px;
+			margin-bottom: -2px;
+    		display: inline-block;
+		}
+
+	}
 }
+
 
 h3,h4, .h3,.h4 {
     font-weight: 600;
@@ -41,7 +54,7 @@ h3,h4, .h3,.h4 {
 
 h5,.h5{
 	font-weight:400;
-	text-transform: uppercase;
+	font-stretch: 80%;
 }
 
 p a{

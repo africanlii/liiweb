@@ -10,7 +10,7 @@ dependencies:
 id: contactblock
 theme: liibarrio2020
 region: pre_header
-weight: -16
+weight: -22
 provider: null
 plugin: contact_block
 settings:

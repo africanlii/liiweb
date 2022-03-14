@@ -1,7 +1,7 @@
 /* Override the Bootstrap 4 variables
 -----------------------------------------*/
 // Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,80,301;0,100,400;0,100,600;1,100,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,80,400;0,100,400;0,100,600;1,100,400&display=swap');
 // Fontawesome
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/fontawesome.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/regular.min.css");
@@ -12,11 +12,12 @@
 $blue: #326fd1;
 $green: #0d5919;
 $beige: #c9c09b;
+$dark-beige: #bea56a;
 $green-light: rgba(13, 89, 24, 0.79);
 $red: #A50707;
 $gray: #d6d6d6;
 $gray-light: #EAE6E1;
-$gray-very-light: #f8f8f8;
+$gray-very-light: #f6f6f6;
 $gray-dark: #4a4a4a;
 $white:#fff;
 $black:#231F20;
@@ -29,11 +30,11 @@ $brand-green: #afc73f;
 $brand-magenta: #ba3e65;
 
 $primary: $black;
-$secondary: $orange;
+$secondary: $green;
 $danger: $red;
 
 $dropshadow-sm:1px 1px 2px rgba(29, 29, 27, 0.3);
-$dropshadow-lg:3px 3px 4px rgba(29, 29, 27, 0.3);
+$dropshadow-lg:5px 5px 5px -5px #333;
 
 
 $twitter-brand: #00a0cb;

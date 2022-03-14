@@ -12,7 +12,7 @@ dependencies:
 id: useraccountmenu
 theme: liibarrio2020
 region: pre_header
-weight: -19
+weight: -26
 provider: null
 plugin: 'system_menu_block:account'
 settings:

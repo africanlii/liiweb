@@ -45,20 +45,17 @@
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished',
     'drop-shadow',
-    'top-right-radius'
   ]
 %}
 <article{{ attributes.addClass(classes) }}>
   <a href="{{ content.field_collection_link[0]['#url'] }}" rel="bookmark">
-    <header class="black top-right-radius d-flex">
+    <header class="dark-beige d-flex">
       <h3 class="node__title">
         {{ content.field_collection_link[0]['#title'] }}
       </h3>
-      {% include('themes/custom/liibarrio2020/images/icons/collection.svg') %}  
     </header>
-    <div class="paragraph_content node__content white" >
+    <div class="paragraph_content node__content very-light-grey" >
       {{ content.field_collection_description }}
-      {% include('themes/custom/liibarrio2020/images/icons/forward.svg') %}
     </div>
   </a>
 </article>

@@ -14,13 +14,12 @@
 .navbar-light .navbar-toggler {
     border:none;
     box-shadow:$dropshadow-sm;
-    background-color:$gray-light;
-    border-radius: 10px;  
+    background-color:$beige;  
     width: 50px;
     height: 50px;
     padding:10px;
     svg{
-        fill:$secondary;
+        fill:$black;
         transition:fill 300ms ease-out;
     }
     .bar-top{
@@ -40,7 +39,7 @@
 
     &.collapsed{
         svg{
-            fill:$primary;
+            fill:$green;
         }
         .bar-top{
             transform: translate(0,0) rotate(0);
@@ -59,18 +58,25 @@
     opacity:0;
     transition:opacity 300ms ease-in;
     &::before{
-        content:'';
-        
+        content:'';   
     }
-    &.show{
-        @include full-width-bg($white);
-        opacity:1;
+    &.show, &.collapsing{
+        height:100%;
         &::before{
-            box-shadow: $dropshadow-lg;
-            
+            content: '';
+            width: 100vw;
+            position: absolute;
+            top: 0;
+            right:0;
+            height:100%;
+            background-color: $beige;
+            z-index: -1;
+            opacity:1;
+            box-shadow: $dropshadow-lg;  
         }
     }
 }
+
 div#block-views-block-liiweb-search-general-search-form {
     width: 100%;
 }
@@ -84,4 +90,10 @@ div#block-views-block-liiweb-search-general-search-form {
     flex-basis: 90%;
     width: 100%;
   }
+}
+
+@include media-breakpoint-up(lg){
+    .navbar-collapse.collapse{
+        @include full-width-bg($beige);
+      }
 }

@@ -5,3 +5,12 @@ button[type="submit"] {
     fill: $white;
   }
 }
+
+.btn-primary{
+  background-color: $green;
+  border-color:$green;
+  &:hover, &:focus{
+    background-color: $dark-beige;
+    border-color:$dark-beige;
+  }
+}

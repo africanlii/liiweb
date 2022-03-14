@@ -1,6 +1,6 @@
 uuid: 4ce1fc72-46db-4abd-8708-8b3ebc3ac334
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - ctools_block

@@ -1,0 +1,25 @@
+uuid: ab323649-8850-4442-8673-1fc6ef5a161e
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:namlex:09241d23-f984-4b35-a4d9-a1ed6368dba2'
+  module:
+    - block_content
+  theme:
+    - liibarrio2020
+id: preheaderlogo
+theme: liibarrio2020
+region: pre_header
+weight: -29
+provider: null
+plugin: 'block_content:09241d23-f984-4b35-a4d9-a1ed6368dba2'
+settings:
+  id: 'block_content:09241d23-f984-4b35-a4d9-a1ed6368dba2'
+  label: 'Pre Header Logo'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

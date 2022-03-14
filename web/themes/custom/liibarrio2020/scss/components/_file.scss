@@ -31,10 +31,11 @@
     display: block;
     width: 100%;
     padding: 0.625;
-    border: solid #f8f8f8 1px;
-    background: $primary;
+    background: $green;
     text-align: center;
     color: #fff;
+    border-bottom: none;
+    transition:background-color 400ms ease;
 
     &:after {
       content: "\f15c";
@@ -46,7 +47,9 @@
 
     &:hover,
     &:focus {
-        text-decoration: underline;
+        text-decoration: none;
+        background:$dark-beige;
+        border-bottom: none;
     }
   }
 }

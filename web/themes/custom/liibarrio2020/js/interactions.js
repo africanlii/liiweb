@@ -26,7 +26,6 @@
            
             const searchBlock = document.querySelector('.search-wrapper');
             if(searchBlock){
-                console.log(searchButton);
                //searchSwitch.removeEventListener('click',toggleAdvancedSearch);
                searchButton.addEventListener('click',toggleAdvancedSearch);
             }

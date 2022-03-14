@@ -52,9 +52,7 @@ body {
      border-color: $gray;
      margin-top: 0;
      background-image: none;
-     &::placeholder {
-      text-transform: uppercase;
-     }
+     
    }
    label.js-form-required.form-required {
      display: none;
@@ -176,7 +174,8 @@ header {
   }
 }
 
-#views-exposed-form-search-general-search,#views-exposed-form-search-advanced-search{
+#views-exposed-form-search-general-search,#views-exposed-form-search-advanced-search,
+#views-exposed-form-db-search-general-search,#views-exposed-form-db-search-advanced-search{
   .form-row {
     display: flex;
     flex-wrap: nowrap;
@@ -189,30 +188,31 @@ header {
 }
 
 .content-top {
-  #views-exposed-form-search-general-search,#views-exposed-form-search-advanced-search{
+  #views-exposed-form-search-general-search,#views-exposed-form-search-advanced-search,
+  #views-exposed-form-db-search-general-search,#views-exposed-form-db-search-advanced-search{
     position: absolute;
     top:0;
     transition:transform 400ms ease-in, opacity 200ms ease;
   }
 }
 
-#views-exposed-form-liiweb-search-block-advanced-search-form, #views-exposed-form-search-advanced-search{
+#views-exposed-form-liiweb-search-block-advanced-search-form, #views-exposed-form-search-advanced-search, #views-exposed-form-db-search-advanced-search{
   transform: rotateX(90deg);
   opacity:0;
 }
 
 .show-advanced-search{
-  #views-exposed-form-liiweb-search-block-advanced-search-form, #views-exposed-form-search-advanced-search{
+  #views-exposed-form-liiweb-search-block-advanced-search-form, #views-exposed-form-search-advanced-search, #views-exposed-form-db-search-advanced-search{
     transform: rotatex(0);
     opacity:1;
   }
-  #views-exposed-form-liiweb-search-block-1, #views-exposed-form-search-general-search{
+  #views-exposed-form-liiweb-search-block-1, #views-exposed-form-search-general-search, #views-exposed-form-db-search-general-search{
     transform: rotatex(-90deg);
     opacity:0;
   }
 }
 
-.view-display-id-block_1,.block-views-exposed-filter-blocksearch-general-search{
+.view-display-id-block_1,.block-views-exposed-filter-blocksearch-general-search, .block-views-exposed-filter-blockdb-search-general-search{
   position: relative;
   .view-filters{
     perspective:800px;
@@ -239,13 +239,19 @@ button#edit-submit-search {
 .btn-tertiary {
   padding: 0;
   h5 {
-    border-bottom: 1px solid $secondary;
+    border-bottom: 2px solid $gray;
+    transition: border 400ms ease;
+  }
+  &:hover{
+    h5{
+      border-bottom: 2px solid $green;
+    }
   }
 }
 
 .search-wrapper {
   min-height: 5rem;
-  padding-top: 1px;
+  padding-top: 1rem;
 }
 
 #views-exposed-form-search-advanced-search fieldset.js-form-type-select{
@@ -253,10 +259,10 @@ button#edit-submit-search {
   flex-basis:max-content;
 }
 @include media-breakpoint-up(md){
-  #views-exposed-form-liiweb-search-block-1, #views-exposed-form-search-general-search,#views-exposed-form-search-advanced-search {
+  #views-exposed-form-liiweb-search-block-1, #views-exposed-form-search-general-search,#views-exposed-form-search-advanced-search,
+  #views-exposed-form-db-search-general-search,#views-exposed-form-db-search-advanced-search {
    
       width:100%;
-      min-width: 580px;
     .form-actions {
       flex-basis: 5%;
     }
@@ -698,10 +704,11 @@ button#edit-submit-search {
 }
 
 .home-page{
-  .field--name-body{
-      p{
-          font-weight:500;
-      }
+  .content-top{
+    .field--name-body{
+        padding-left:1.5rem;
+        border-left: 5px solid $dark-beige;
+    }
   }
 }
 
@@ -852,7 +859,7 @@ button#edit-submit-search {
 section{
   padding:1rem 0;
   &.grey{
-    @include full-width-bg($gray-light);
+    border-bottom:2px solid $gray;
   }
 }
 
@@ -861,8 +868,32 @@ section{
     padding:0;
   }
 }
-
-
+.white{
+  background-color: $white;
+}
+.grey{
+  border-bottom:2px solid $gray;
+}
+.black{
+  background-color: $green;
+  color:$white;
+  a{
+    color:$white;
+  }
+}
+.dark-beige{
+  background-color:$dark-beige;
+  color:$white;
+  a{
+    color:$white;
+  }
+}
+.very-light-grey{
+  background-color: $gray-very-light;
+}
+.drop-shadow{
+	box-shadow: $dropshadow-lg;
+}
 
 .collection_icon{
   width:25px;
@@ -909,7 +940,7 @@ section{
         flex-basis:calc(100% - 20px);
       }
     }
-
+    background-color: $gray-very-light;
   }
 }
 
@@ -929,8 +960,16 @@ section{
       height: 100%;
       flex-direction: column;
       justify-content: space-between;
-      background-color: $white;
+      background-color:  $gray-very-light;
       border-radius: 0 10px 0 0;
+      header{
+        transition:background-color 400ms ease;
+      }
+      &:hover{
+        header{
+          background-color: $green;
+        }
+      }
     }
   }
 }
@@ -1030,7 +1069,7 @@ section{
     padding:0;
     margin-bottom:2rem;
     box-shadow: $dropshadow-lg;
-    border-radius: 0;
+    border-radius: 0 10px 0 0;
   }
 }
 .node--type-law-in-focus.node--view-mode-card{
@@ -1158,8 +1197,8 @@ section{
   }
 }
 /*Filters Exposed Form Styling*/
-.bef-exposed-form.block-sidebar-first form {
-  border: 2px solid $gray;
+.bef-exposed-form.block-sidebar-first form, .view-display-id-page_legislation  {
+  border: 1px solid $dark-beige;
   box-shadow: $dropshadow-lg;
   .form-row {
     margin:0;
@@ -1190,9 +1229,12 @@ section{
         display: none;
       }
     }
+    ul{
+      margin-bottom:0;
+    }
     &[open]{
       summary{
-        background-color: $white;
+        background-color: $gray-very-light;
       }
     }
     .plus,.minus{
@@ -1201,7 +1243,7 @@ section{
       top: 0;
       right: 1rem;
       font-size: 1.4rem;
-      color: $black;
+      color: $green;
       padding: 0.5rem 1rem;
       width: 1ch;
     }
@@ -1209,7 +1251,7 @@ section{
       background-color: $beige;
     }
     .minus{
-      background-color: $white;
+      background-color: $gray-very-light;
     }
   
   }  
@@ -1241,9 +1283,9 @@ section{
     }
   }
   input:checked~label{
-    color:$secondary;
+    color:$white;
     &::after{
-      background-color: $gray;
+      background-color: $dark-beige;
     }
   }
 }
@@ -1279,7 +1321,21 @@ section{
   display: none;
 }
 
-
+.view-display-id-page_legislation {
+  background-color: $white;
+  .view-header{
+    padding:1rem;
+    color:$white;
+    background-color:$dark-beige;
+    a{
+      color:$white;
+    }
+  }
+  &.view--liibarrio .view-content{
+    border:0;
+    padding:0;
+  }
+}
 
 .block-sidebar-first {
   .form-actions {
@@ -1295,17 +1351,16 @@ section{
 /*Judgements View*/
 
 .view-judgments-views {
-  border: 2px solid $gray;
+  border: 1px solid $dark-beige;
   background-color: $white;
   box-shadow: $dropshadow-sm;
-  border-radius: 0 0 0 0;
   overflow:hidden;
   .view-content {
     padding: 1rem;
   }
   .view-header {
-    background-color: $beige;
-    color: $black;
+    background-color: $dark-beige;
+    color: $white;
     padding: 1rem;
   }
   .table-responsive {
@@ -1315,7 +1370,6 @@ section{
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        border-radius: 0 10px 0 0;
         background-color: $white;
         transition: background-color 300ms ease-in;
         .views-field-title {
@@ -1332,7 +1386,7 @@ section{
           flex-basis:100%;
         }
         &.expanded{
-          background-color:$gray-light;
+          background-color:$gray-very-light;
           .views-field-title , .views-field-field-date, .views-field-field-matter-type, .views-field-term-node-tid {
             font-weight:700;
           }
@@ -1342,7 +1396,7 @@ section{
         padding:  0.75rem ;
         vertical-align: top;
         border-top:none;
-        border-bottom: 1px solid $green;
+        border-bottom: 2px solid $gray-very-light;
         &:empty{
           padding:0;
         }
@@ -1357,7 +1411,7 @@ section{
         }
       }
       thead {
-        border-bottom:3px solid $red;
+        border-bottom:5px solid $dark-beige;
         th{
           border:none;
         }
@@ -1389,7 +1443,7 @@ a.more-link {
 }
 
 .expanded .more-link{
-  background-color: $beige;
+  background-color: $gray-very-light;
 }
 .path-judgment h1{
   max-width:75vw;
@@ -1398,9 +1452,13 @@ a.more-link {
 
 .btn-tab {
   background-color: $white;
-  border-radius: 0 10px 0 0;
-  box-shadow: 3px 0 3px rgba(0, 0, 0, 0.3);
+  border-radius: 0 10px 10px 0;
   margin-left: -10px;
+  border:5px solid $dark-beige;
+  &:focus{
+    outline: none;
+    background-color: $gray-very-light;
+  }
   &:last-child {
     margin-left: 0;
   }
@@ -1444,9 +1502,11 @@ ul.pagination {
     margin-bottom: 0;
   }
   a{
-    border-bottom:2px solid $orange;
+    border-bottom:2px solid $green;
+    transition: border 400ms ease;
     &:hover{
       color:$green;
+      border-bottom:2px solid $dark-beige;
     }
   }
 
@@ -1456,18 +1516,25 @@ ul.pagination {
   
 }
 
-.node--type-judgment, .node--type-book, .node--type-law-in-focus {
+.node--type-judgment,.node--type-legislation, .node--type-book, .node--type-law-in-focus {
   margin-left: 0;
   margin-right: 0;
 }
 
+/*Legislation*/
+.sidebar-block{
+  .alert-primary{
+    padding:0;
+    color:$white;
+    text-align: left !important;
+    font-weight:700;
+    background-color: transparent;
+    border:none;
+  }
+}
 /*Bookshelf*/
 
 .views-exposed-form{
-  form{
-    border-radius: 0 10px 0 0;
-    overflow:hidden;
-  }
   fieldset{
     width:100%;
   }
@@ -1517,7 +1584,7 @@ ul.pagination {
 }
 
 .view-bookshelf{
-  border: 2px solid $gray;
+  border: 1px solid $black;
   background-color: $white;
   box-shadow: $dropshadow-sm;
   border-radius: 0 10px 0 0;
@@ -1533,17 +1600,17 @@ ul.pagination {
     flex-wrap: wrap;
   }
   .view-header {
-    background-color: $beige;
-    color: $black;
+    background-color: $black;
+    color: $white;
     padding: 1rem;
   }
 
   .views-row{
-    border-bottom: 2px solid $gray;
+    border-bottom: 2px solid $gray-light;
     header{
       padding:1rem 0;
       margin:0 0.5rem 1rem;
-      border-bottom: 2px solid $green;
+      border-bottom: 2px solid $red;
       h3{
         margin-bottom:0;
         font-size:1rem;
@@ -1564,7 +1631,7 @@ ul.pagination {
         }
         &::after{
           content:'Read';
-          background-color: $green;
+          background-color: $red;
           color:$white;
           width:100%;
           padding:1rem;
@@ -1724,7 +1791,7 @@ ul.pagination {
     transition:border 400ms ease;
   }
   a:hover::before{
-    border-right-color: $green;
+    border-right-color: $orange;
   }
 }
 .book-pager__item--next{ 
@@ -1739,7 +1806,7 @@ ul.pagination {
     transition:border 400ms ease;
   }
   a:hover::after{
-    border-left-color: $green;
+    border-left-color: $orange;
   }
 }
 
@@ -1764,7 +1831,7 @@ ul.pagination {
 }
 
 .book-tree {
-  border: 2px solid $gray;
+  border: 1px solid black;
   padding: .5rem;
   .menu {
     padding: 0;
@@ -1776,7 +1843,7 @@ ul.pagination {
     display: block;
     width: 100%;
     padding-bottom: .1rem;
-    border-bottom: 2px solid $green;
+    border-bottom: 2px solid orange;
     line-height:105%;
   }
 }
@@ -1793,7 +1860,7 @@ ul.pagination {
 .bookshelf_return{ 
   a {
     display: flex;
-    color: $white;
+    color: white;
     border-bottom: 0;
     justify-content: space-between;
   }
@@ -1886,5 +1953,175 @@ ul.pagination {
     #sidebar_first{
       margin-top:1rem;
     }
+  }
+}
+
+/*Search and Facets*/
+
+.facet-block {
+  border: 1px solid $dark-beige;
+  box-shadow: $dropshadow-lg;
+  margin-bottom:2rem;
+  .facet-block__title{
+    padding:1rem;
+    .small{
+      margin:0;
+      text-transform: uppercase;
+    }
+    h3{
+      margin:0;
+    }
+  }
+  .facet-block__content{
+    padding:1rem;
+    .facets-reset{
+      .facet-item__count{
+        display:none;
+      }
+    }
+    span.facet-item__count {
+      font-size: 75%;
+      padding: 0.4rem;
+      border: 2px solid $gray;
+      border-radius: 1rem;
+      line-height: 100%;
+      min-width: 1rem;
+      height: 1rem;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 0.4rem;
+    }
+    li{
+      a{
+        display:flex;
+        align-items: center;
+        line-height:110%;
+        margin-bottom:.5rem;
+        &::before{
+          content:'';
+          width:1rem;
+          min-width:1rem;
+          height:1rem;
+          margin-right:.5rem;
+          border-radius:100%;
+          border:2px solid $gray;
+          display:inline-block;
+          background-color:$white;
+          transition:border 400ms ease, background-color 600ms ease;
+        }
+        &:hover{
+          &::before{
+            background-color: $beige;
+          }
+        }
+        &.is-active{
+          color:$green;
+          &::before{
+            border-color:$black;
+            background-color: $green;
+          }
+        }
+      }
+    }
+  }
+}
+
+.view-db-search, .view-search{
+  .views-infinite-scroll-content-wrapper{
+    .views-row,.views-row:nth-child(3n){
+      flex-basis:100%;
+      margin-right:0;
+    }
+  }
+}
+.node--view-mode-search-result{
+  margin-bottom:2rem;
+  h3{
+    margin:0;
+  }
+}
+
+.search-result--header, .search-result--subheader, .search-result--extract {
+  padding: 1rem;
+}
+
+.search-result--header{
+  transition:background-color 400ms ease;
+  a{
+    display:block;
+  }
+  &:hover{
+    background-color: $dark-beige;
+  }
+}
+
+.search-result--subheader{
+  h4{
+    display: inline;
+    font-weight:400;
+    font-size:1rem;
+    span{
+      color:$gray;
+    }
+    *{
+      display: inline;
+    }
+    &::after{
+      content:' | ';
+    }
+    &:last-child{
+      &::after{
+        content:'';
+      }
+    }
+  }
+}
+
+.search-highlight {
+  background-color: $beige;
+  display: inline-block;
+  padding: 0 0.4rem;
+}
+
+/*Recent Legislation*/
+.block-views-blocklegislation-block-latest-legistration{
+  margin-top:2rem;
+  .title{
+    background: linear-gradient(to left, $gray-very-light, $green);
+    padding: 1rem;
+    color: $white;
+    font-size:1rem;
+  }
+  .card-body{
+    h3{
+      margin-bottom:0;
+    }
+  }
+}
+
+@include media-breakpoint-up(md){
+  .block-views-blocklegislation-block-latest-legistration{
+    margin-top:0;
+  }
+}
+
+/*misc*/
+.node--view-mode-full .field--name-dynamic-token-fieldnode-share-links{
+  background-color:$gray-very-light;
+  a{
+    &:hover{
+      border-bottom:2px solid $dark-beige;
+    }
+  }
+}
+
+.page-item.active .page-link{
+  background-color: $green;
+}
+
+.view-related-content{
+  .views-row{
+    padding-bottom:.5rem;
   }
 }

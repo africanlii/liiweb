@@ -9,7 +9,7 @@ dependencies:
 id: messages
 theme: liibarrio2020
 region: pre_header
-weight: 0
+weight: -16
 provider: null
 plugin: system_messages_block
 settings:
