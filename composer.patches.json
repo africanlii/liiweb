@@ -9,6 +9,9 @@
     },
     "drupal/facets": {
       "Test scanning fails with The 'core' or the 'core_version_requirement' key must be present ...": "patches/facets/3182762-1.diff"
+    },
+    "drupal/search_api_solr": {
+      "Support absolute paths for s3 solr attachments...": "patches/search_api_solr/3205298-3.patch"
     }
   }
 }
