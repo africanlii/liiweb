@@ -8,22 +8,14 @@ dependencies:
     - search_api
     - search_api_attachments
   config:
-    - field.storage.node.body
-    - field.storage.node.field_case_number
-    - field.storage.node.field_case_number_numeric
     - field.storage.node.field_commencement_date
-    - field.storage.node.field_content
     - field.storage.node.field_court_name
     - field.storage.node.field_date
     - field.storage.node.field_expression_date
-    - field.storage.node.field_flynote
-    - field.storage.node.field_gazette_issue_number
-    - field.storage.node.field_headnote_and_holding
     - field.storage.node.field_judge
-    - field.storage.node.field_lifecycle_json
-    - field.storage.node.field_search_summary
     - field.storage.node.field_tags
     - search_api.server.solr
+    - core.entity_view_mode.node.search_index
 third_party_settings:
   search_api_solr:
     finalize: false
@@ -67,32 +59,6 @@ name: 'Full Site Search'
 description: ''
 read_only: false
 field_settings:
-  body:
-    label: Body
-    datasource_id: 'entity:node'
-    property_path: body
-    type: text
-    boost: !!float 13
-    dependencies:
-      config:
-        - field.storage.node.body
-  field_case_number:
-    label: 'Case number'
-    datasource_id: 'entity:node'
-    property_path: field_case_number
-    type: integer
-    boost: !!float 5
-    dependencies:
-      config:
-        - field.storage.node.field_case_number
-  field_case_number_numeric:
-    label: 'Case number numeric'
-    datasource_id: 'entity:node'
-    property_path: field_case_number_numeric
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_case_number_numeric
   field_commencement_date:
     label: 'Commencement date'
     datasource_id: 'entity:node'
@@ -101,15 +67,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_commencement_date
-  field_content:
-    label: Content
-    datasource_id: 'entity:node'
-    property_path: field_content
-    type: text
-    boost: !!float 13
-    dependencies:
-      config:
-        - field.storage.node.field_content
   field_court_name:
     label: 'Court name'
     datasource_id: 'entity:node'
@@ -119,7 +76,7 @@ field_settings:
       config:
         - field.storage.node.field_court_name
   field_date:
-    label: 'Index Search Date'
+    label: 'Gazette date'
     datasource_id: 'entity:node'
     property_path: field_date
     type: date
@@ -134,56 +91,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_expression_date
-  field_flynote:
-    label: Flynote
-    datasource_id: 'entity:node'
-    property_path: field_flynote
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_flynote
-  field_gazette_issue_number:
-    label: 'Gazette issue number'
-    datasource_id: 'entity:node'
-    property_path: field_gazette_issue_number
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_gazette_issue_number
-  field_headnote_and_holding:
-    label: 'Headnote and holding'
-    datasource_id: 'entity:node'
-    property_path: field_headnote_and_holding
-    type: text
-    boost: !!float 13
-    dependencies:
-      config:
-        - field.storage.node.field_headnote_and_holding
   field_judge:
-    label: Judge
+    label: Coram
     datasource_id: 'entity:node'
     property_path: field_judge
     type: string
     dependencies:
       config:
         - field.storage.node.field_judge
-  field_lifecycle_json:
-    label: Lifecycle
-    datasource_id: 'entity:node'
-    property_path: field_lifecycle_json
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_lifecycle_json
-  field_search_summary:
-    label: 'Search summary'
-    datasource_id: 'entity:node'
-    property_path: field_search_summary
-    type: text
-    boost: !!float 21
-    dependencies:
-      config:
-        - field.storage.node.field_search_summary
   field_tags:
     label: Tags
     datasource_id: 'entity:node'
@@ -192,7 +107,20 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_tags
-  saa_field_file_1:
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    configuration:
+      roles:
+        anonymous: anonymous
+      view_mode:
+        'entity:node':
+          government_gazette: search_index
+          judgment: search_index
+          law_reform_reports: ''
+          legislation: search_index
+  saa_field_file:
     label: 'Search api attachments: Gazette download'
     property_path: saa_field_file
     type: text
@@ -201,15 +129,6 @@ field_settings:
     property_path: saa_field_files
     type: text
     boost: !!float 13
-  title:
-    label: Title
-    datasource_id: 'entity:node'
-    property_path: title
-    type: text
-    boost: !!float 21
-    dependencies:
-      module:
-        - node
   type:
     label: 'Content type'
     datasource_id: 'entity:node'
@@ -234,24 +153,21 @@ processor_settings:
   add_url: {  }
   aggregated_field: {  }
   double_quote_workaround:
-    all_fields: false
+    all_fields: true
     fields:
-      - body
-      - field_content
-      - field_flynote
-      - field_gazette_issue_number
-      - field_headnote_and_holding
+      - field_court_name
       - field_judge
-      - field_lifecycle_json
-      - field_search_summary
       - field_tags
-      - title
+      - rendered_item
+      - saa_field_file
+      - saa_field_files
       - type
     replacement: '|9999999998|'
     weights:
       postprocess_query: 0
       preprocess_index: -15
       preprocess_query: -15
+  entity_status: {  }
   file_attachments:
     excluded_extensions: 'aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv'
     number_indexed: 0
@@ -269,10 +185,39 @@ processor_settings:
     suffix: '</span>'
     weights:
       postprocess_query: 0
-  ignore_character:
-    all_fields: false
+  html_filter:
+    all_fields: true
     fields:
+      - field_court_name
+      - field_judge
+      - field_tags
+      - rendered_item
+      - saa_field_file
       - saa_field_files
+      - type
+    title: true
+    alt: true
+    tags:
+      b: 2
+      em: 1
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      u: 1
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
+  ignore_character:
+    all_fields: true
+    fields:
+      - field_court_name
+      - field_judge
+      - field_tags
+      - rendered_item
+      - saa_field_file
+      - saa_field_files
+      - type
     ignorable: '[''¿¡!?,.:;]'
     ignorable_classes:
       - Pc
