@@ -6,7 +6,7 @@ pdftotext_extractor_configuration:
   pdftotext_path: pdftotext
 tika_extractor_configuration:
   java_path: java
-  tika_path: ''
+  tika_path: /app/tika-app-1.28.jar
 tika_server_extractor_configuration:
   scheme: http
   host: localhost

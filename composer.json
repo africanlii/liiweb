@@ -51,6 +51,7 @@
         "drupal/field_group": "^3.0",
         "drupal/file_download_link": "^1.0",
         "drupal/filefield_paths": "^1.0",
+        "drupal/flood_control": "^2.2",
         "drupal/focal_point": "^1.4",
         "drupal/google_analytics": "^3.0",
         "drupal/group": "^1.0@RC",
