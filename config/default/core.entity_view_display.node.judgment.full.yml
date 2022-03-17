@@ -251,15 +251,23 @@ content:
     type: text_default
     region: header
   field_judge:
-    type: entity_reference_label
+    type: entity_reference_entity_view
     weight: 9
     region: left
     label: inline
     settings:
+      view_mode: default
       link: false
     third_party_settings:
       ds:
         ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            classes:
+              - text-center
+            lb-col: false
   field_law_report_citations:
     type: string
     weight: 4
