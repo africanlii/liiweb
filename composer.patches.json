@@ -12,9 +12,6 @@
     },
     "drupal/search_api_solr": {
       "Support absolute paths for s3 solr attachments...": "patches/search_api_solr/3205298-3.patch"
-    },
-    "drupal/filefield_paths": {
-      "Set permanent status on files": "patches/filefield_paths/filefield_paths-set_permanent-3175118-0.patch"
     }
   }
 }
