@@ -12,9 +12,6 @@
     },
     "drupal/redirect": {
       "Allow for wildcards within redirects": "patches/redirect/support-for-wildcard-2831605-83.patch"
-    },
-    "drupal/filefield_paths": {
-      "Set permanent status on files": "patches/filefield_paths/filefield_paths-set_permanent-3175118-0.patch"
     }
   }
 }
