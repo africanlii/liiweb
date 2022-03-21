@@ -10,5 +10,6 @@
     },
     "drupal/facets": {
       "Test scanning fails with The 'core' or the 'core_version_requirement' key must be present ...": "patches/facets/3182762-1.diff"
+    }
   }
 }
