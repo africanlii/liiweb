@@ -1,0 +1,74 @@
+uuid: c567a2e6-5c21-4c04-a2d3-72b041a38894
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.government_gazette.body
+    - field.field.node.government_gazette.field_date
+    - field.field.node.government_gazette.field_external_link
+    - field.field.node.government_gazette.field_file
+    - field.field.node.government_gazette.field_gazette_issue_number
+    - field.field.node.government_gazette.field_gazette_machine_id
+    - field.field.node.government_gazette.field_gazette_supplement
+    - field.field.node.government_gazette.field_locality
+    - node.type.government_gazette
+  module:
+    - datetime
+    - ds
+    - search_api_attachments
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_onecol
+      library: layout_discovery/onecol
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+    regions:
+      content:
+        - field_date
+        - field_file
+        - node_title
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+id: node.government_gazette.search_result
+targetEntityType: node
+bundle: government_gazette
+mode: search_result
+content:
+  field_date:
+    weight: 0
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_file:
+    type: file_extracted_text
+    weight: 0
+    region: content
+    label: above
+    settings:
+      excluded_extensions: 'aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv'
+      max_filesize: '0'
+      excluded_private: 1
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_external_link: true
+  field_gazette_issue_number: true
+  field_gazette_machine_id: true
+  field_gazette_supplement: true
+  field_locality: true
+  langcode: true
+  links: true
+  search_api_excerpt: true
