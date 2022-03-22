@@ -9,9 +9,6 @@
     },
     "drupal/facets": {
       "Test scanning fails with The 'core' or the 'core_version_requirement' key must be present ...": "patches/facets/3182762-1.diff"
-    },
-    "drupal/filefield_paths": {
-      "Set permanent status on files": "patches/filefield_paths/filefield_paths-set_permanent-3175118-0.patch"
     }
   }
 }
