@@ -42,6 +42,7 @@ dependencies:
     - field.field.node.judgment.field_search_summary
     - node.type.judgment
   module:
+    - computed_field
     - datetime
     - ds
     - taxonomy
@@ -77,8 +78,10 @@ third_party_settings:
         - search_api_excerpt
       left:
         - field_court_name
-        - field_judge
+        - field_case_number
       right:
+        - field_media_neutral_citation
+        - field_judge
         - field_date
         - field_law_report_citations
       footer:
@@ -104,9 +107,17 @@ targetEntityType: node
 bundle: judgment
 mode: search_index
 content:
+  field_case_number:
+    type: string
+    weight: 1
+    region: left
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   field_court_name:
     type: entity_reference_label
-    weight: 2
+    weight: 0
     region: left
     label: inline
     settings:
@@ -123,7 +134,7 @@ content:
   field_judge:
     type: entity_reference_rss_category
     weight: 3
-    region: left
+    region: right
     label: inline
     settings: {  }
     third_party_settings: {  }
@@ -134,6 +145,16 @@ content:
     label: inline
     settings:
       link_to_entity: false
+    third_party_settings: {  }
+  field_media_neutral_citation:
+    type: computed_string
+    weight: 0
+    region: right
+    label: inline
+    settings:
+      sanitized: true
+      cache_unit: -1
+      cache_duration: 1
     third_party_settings: {  }
   field_search_summary:
     type: text_default
@@ -157,7 +178,6 @@ hidden:
   field_attorney_s_for_the_applica: true
   field_attorney_s_for_the_respond: true
   field_case_name: true
-  field_case_number: true
   field_case_number_numeric: true
   field_case_number_old: true
   field_case_number_year: true
@@ -176,9 +196,6 @@ hidden:
   field_judgment_old_nid: true
   field_locality: true
   field_matter_type: true
-  field_media_neutral_citation: true
-  field_related_cases: true
-  field_related_legislation: true
   field_order: true
   langcode: true
   links: true
