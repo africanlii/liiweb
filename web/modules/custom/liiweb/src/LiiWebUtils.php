@@ -150,30 +150,7 @@ class LiiWebUtils {
     }
 
     return NULL;
-  }
-
-  /**
-   * @param \Exception $e
-   *   Underlying exception from JSON API.
-   *
-   * @throws \Exception
-   * @return string
-   *   Former exception message plus underlying error messages.
-   */
-  public function prepareAPIExceptionMessage($e) {
-    $messages[] = $e->getMessage();
-    if ($e instanceof UnprocessableHttpEntityException) {
-      $violations = $e->getViolations();
-      foreach($violations->getIterator() as $violation) {
-        // Sometimes these contain useful information about the root error
-        // $violation->getPropertyPath();
-        // $violation->getInvalidValue();
-        $messages[] = (string)$violation->getMessage();
-      }
-    }
-    return implode(" ", $messages);
-  }
-  
+  }  
  /**
    * Extract JSON information from the given Legislation revision.
    *
