@@ -30,99 +30,96 @@ dependencies:
   module:
     - datetime
     - ds
+    - search_api_attachments
     - user
 third_party_settings:
   ds:
     layout:
-      id: ds_2col_stacked
-      library: ds/ds_2col_stacked
+      id: layout_onecol
+      library: layout_discovery/onecol
       disable_css: false
       entity_classes: all_classes
       settings:
         label: ''
-        wrappers:
-          header: div
-          left: div
-          right: div
-          footer: div
-        outer_wrapper: div
-        attributes: ''
-        link_attribute: ''
-        link_custom: ''
-        classes:
-          layout_class: {  }
-          header: {  }
-          left: {  }
-          right: {  }
-          footer: {  }
     regions:
-      header:
-        - node_title
-      left:
-        - search_api_excerpt
-      right:
+      content:
+        - field_as_at
+        - field_commencement_date
+        - field_date
         - field_expression_date
-      footer:
+        - field_files
         - field_publication_name
+        - node_title
     fields:
       node_title:
         plugin_id: node_title
         weight: 0
         label: hidden
         formatter: default
-        settings:
-          wrapper: h2
-          class: h3
-          link: false
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
 id: node.legislation.search_result
 targetEntityType: node
 bundle: legislation
 mode: search_result
 content:
-  field_expression_date:
-    type: datetime_custom
-    weight: 2
-    region: right
-    label: hidden
+  field_as_at:
+    type: datetime_default
+    weight: 0
+    region: content
+    label: above
     settings:
+      format_type: medium
       timezone_override: ''
-      date_format: 'j M Y'
-    third_party_settings:
-      ds:
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
+    third_party_settings: {  }
+  field_commencement_date:
+    type: datetime_default
+    weight: 0
+    region: content
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  field_date:
+    type: datetime_default
+    weight: 0
+    region: content
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  field_expression_date:
+    type: datetime_default
+    weight: 0
+    region: content
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  field_files:
+    type: file_extracted_text
+    weight: 0
+    region: content
+    label: above
+    settings:
+      excluded_extensions: 'aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv'
+      max_filesize: '0'
+      excluded_private: 1
+    third_party_settings: {  }
   field_publication_name:
     type: string
-    weight: 3
-    region: footer
-    label: hidden
+    weight: 0
+    region: content
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  search_api_excerpt:
-    weight: 1
-    region: left
-    settings: {  }
-    third_party_settings: {  }
 hidden:
-  field_as_at: true
-  field_commencement_date: true
   field_content: true
   field_created: true
   field_created_by_api: true
-  field_date: true
   field_external_link: true
-  field_files: true
   field_frbr_uri: true
   field_images: true
   field_iso_country_code: true
@@ -138,3 +135,4 @@ hidden:
   langcode: true
   legislation_pdf_conditional_entity_view_1: true
   links: true
+  search_api_excerpt: true
