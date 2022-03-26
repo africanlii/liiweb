@@ -61,6 +61,8 @@
  $settings['trusted_host_patterns'] = [
   '^sierralii\.org$',
   '^.+\.sierralii\.org$',
+   '^sierralii\.gov.sl$',
+  '^.+\.sierralii\.gov.sl$',
  ];
 /**
  * Database settings:
