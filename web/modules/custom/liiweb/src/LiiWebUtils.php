@@ -4,6 +4,7 @@ namespace Drupal\liiweb;
 
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\jsonapi\Exception\UnprocessableHttpEntityException;
 use Drupal\node\Entity\Node;
 use Symfony\Component\Config\Definition\NodeInterface;
 
@@ -202,5 +203,27 @@ class LiiWebUtils {
       } catch (\Exception $e) {}
     }
     return NULL;
+  }
+
+  /**
+   * @param \Exception $e
+   *   Underlying exception from JSON API.
+   *
+   * @throws \Exception
+   * @return string
+   *   Former exception message plus underlying error messages.
+   */
+  public function prepareAPIExceptionMessage($e) {
+    $messages[] = $e->getMessage();
+    if ($e instanceof UnprocessableHttpEntityException) {
+      $violations = $e->getViolations();
+      foreach($violations->getIterator() as $violation) {
+        // Sometimes these contain useful information about the root error
+        // $violation->getPropertyPath();
+        // $violation->getInvalidValue();
+        $messages[] = (string)$violation->getMessage();
+      }
+    }
+    return implode(" ", $messages);
   }
 }
