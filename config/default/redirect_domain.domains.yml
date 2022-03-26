@@ -1,3 +1,11 @@
-domain_redirects: {  }
+domain_redirects:
+  'sierralii:org':
+    -
+      sub_path: /
+      destination: sierralii.gov.sl/
+  'www:sierralii:org':
+    -
+      sub_path: /
+      destination: www.sierralii.gov.sl/
 _core:
   default_config_hash: CgXLPQkHCGerCdDtMO8wK9Er4j6iy1iMOyalk8iRgrE
