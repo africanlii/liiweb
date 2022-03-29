@@ -269,9 +269,12 @@ class LiiWebEntityResource extends EntityResource {
       static::validate($entity, $field_names);
     }
     catch (\Exception $e) {
-      $this->logger->error($e->getMessage());
+      /** @var LiiWebUtils $helper */
+      $helper = \Drupal::service('liiweb.utils');
+      $message = $helper->prepareAPIExceptionMessage($e);
+      $this->logger->error($message);
       $status_code = $e instanceof HttpException ? $e->getStatusCode() : 400;
-      return $this->getResourceResponseError($e->getMessage(), $status_code);
+      return $this->getResourceResponseError($message, $status_code);
     }
 
     // Set revision data details for revisionable entities.
@@ -310,9 +313,12 @@ class LiiWebEntityResource extends EntityResource {
       return parent::createIndividual($resource_type, $request);
     } catch (\Exception $e) {
       $transaction->rollback();
-      $this->logger->error($e->getMessage());
+      /** @var LiiWebUtils $helper */
+      $helper = \Drupal::service('liiweb.utils');
+      $message = $helper->prepareAPIExceptionMessage($e);
+      $this->logger->error($message);
       $status_code = $e instanceof HttpException ? $e->getStatusCode() : 400;
-      return $this->getResourceResponseError($e->getMessage(), $status_code);
+      return $this->getResourceResponseError($message, $status_code);
     }
   }
 
