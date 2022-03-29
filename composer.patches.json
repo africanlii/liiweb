@@ -1,7 +1,8 @@
 {
   "patches": {
     "drupal/core": {
-      "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch"
+      "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch",
+      "Book module bug patch adapted from https://www.drupal.org/project/drupal/issues/2918537#comment-13873706": "patches/core/2918537-63.patch"
     },
     "drupal/filefield_paths": {
       "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch",
