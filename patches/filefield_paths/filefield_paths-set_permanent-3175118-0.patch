@@ -1,0 +1,10 @@
+diff --git a/modules/contrib/filefield_paths/filefield_paths.inc b/modules/contrib/filefield_paths/filefield_paths.inc
+index f75563a..7990f83 100644
+--- a/modules/contrib/filefield_paths/filefield_paths.inc
++++ b/modules/contrib/filefield_paths/filefield_paths.inc
+@@ -111,6 +111,7 @@ function filefield_paths_filefield_paths_process_file(ContentEntityInterface $en
+       // Finalize file if necessary.
+       if ($file->getFileUri() !== $destination) {
+         $dirname = $file_system->dirname($destination);
++        $file->setPermanent();
+         if (file_prepare_directory($dirname, FILE_CREATE_DIRECTORY) && $new_file = file_move($file, $destination)) {
