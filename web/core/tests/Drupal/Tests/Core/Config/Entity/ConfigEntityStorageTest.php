@@ -103,7 +103,7 @@ class ConfigEntityStorageTest extends UnitTestCase {
    *
    * @covers ::__construct
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->entityTypeId = 'test_entity_type';
@@ -247,6 +247,7 @@ class ConfigEntityStorageTest extends UnitTestCase {
    * @covers ::doSave
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity to test.
    *
    * @return \Drupal\Core\Entity\EntityInterface
    *
@@ -299,6 +300,7 @@ class ConfigEntityStorageTest extends UnitTestCase {
    * @covers ::doSave
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity to test.
    *
    * @return \Drupal\Core\Entity\EntityInterface
    *
@@ -564,7 +566,7 @@ class ConfigEntityStorageTest extends UnitTestCase {
     $this->assertSame('foo', $entity->id());
 
     $this->expectException(\AssertionError::class);
-    $this->expectExceptionMessage('Cannot load a NULL ID.');
+    $this->expectExceptionMessage(sprintf('Cannot load the "%s" entity with NULL ID.', $this->entityTypeId));
     $this->entityStorage->load(NULL);
   }
 

@@ -24,7 +24,12 @@ class TaxonomyFieldVidTest extends ViewsKernelTestBase {
    *
    * @var array
    */
-  public static $modules = ['taxonomy', 'taxonomy_test_views', 'text', 'filter'];
+  protected static $modules = [
+    'taxonomy',
+    'taxonomy_test_views',
+    'text',
+    'filter',
+  ];
 
   /**
    * Views used by this test.
@@ -43,14 +48,14 @@ class TaxonomyFieldVidTest extends ViewsKernelTestBase {
   /**
    * An admin user.
    *
-   * @var \Drupal\user\Entity\User;
+   * @var \Drupal\user\Entity\User
    */
   protected $adminUser;
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp($import_test_views = TRUE) {
+  protected function setUp($import_test_views = TRUE): void {
     parent::setUp($import_test_views);
 
     $this->installEntitySchema('taxonomy_term');
@@ -67,7 +72,7 @@ class TaxonomyFieldVidTest extends ViewsKernelTestBase {
     $this->adminUser->save();
     $this->container->get('current_user')->setAccount($this->adminUser);
 
-    ViewTestData::createTestViews(get_class($this), ['taxonomy_test_views']);
+    ViewTestData::createTestViews(static::class, ['taxonomy_test_views']);
   }
 
   /**

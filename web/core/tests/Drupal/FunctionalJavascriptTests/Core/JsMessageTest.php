@@ -15,7 +15,7 @@ class JsMessageTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['js_message_test'];
+  protected static $modules = ['js_message_test'];
 
   /**
    * {@inheritdoc}
@@ -25,7 +25,7 @@ class JsMessageTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     // Enable the theme.
@@ -36,7 +36,7 @@ class JsMessageTest extends WebDriverTestBase {
   }
 
   /**
-   * Test click on links to show messages and remove messages.
+   * Tests click on links to show messages and remove messages.
    */
   public function testAddRemoveMessages() {
     $web_assert = $this->assertSession();
@@ -50,8 +50,8 @@ class JsMessageTest extends WebDriverTestBase {
         $selector = "$messagesSelector .messages.messages--$type";
         $msg_element = $web_assert->waitForElementVisible('css', $selector);
         $this->assertNotEmpty($msg_element, "Message element visible: $selector");
-        $web_assert->elementContains('css', $selector, "This is a message of the type, $type. You be the the judge of its importance.");
-        $current_messages[$selector] = "This is a message of the type, $type. You be the the judge of its importance.";
+        $web_assert->elementContains('css', $selector, "This is a message of the type, $type. You be the judge of its importance.");
+        $current_messages[$selector] = "This is a message of the type, $type. You be the judge of its importance.";
         $this->assertCurrentMessages($current_messages, $messagesSelector);
       }
       // Remove messages 1 by 1 and confirm the messages are expected.
@@ -69,7 +69,7 @@ class JsMessageTest extends WebDriverTestBase {
     $types = JSMessageTestController::getTypes();
     $nb_messages = count($types) * 2;
     for ($i = 0; $i < $nb_messages; $i++) {
-      $current_messages[] = "This is message number $i of the type, {$types[$i % count($types)]}. You be the the judge of its importance.";
+      $current_messages[] = "This is message number $i of the type, {$types[$i % count($types)]}. You be the judge of its importance.";
     }
     // Test adding multiple messages at once.
     // @see processMessages()
@@ -108,8 +108,10 @@ class JsMessageTest extends WebDriverTestBase {
    *   Expected messages.
    * @param string $messagesSelector
    *   The css selector for the containing messages element.
+   *
+   * @internal
    */
-  protected function assertCurrentMessages(array $expected_messages, $messagesSelector) {
+  protected function assertCurrentMessages(array $expected_messages, string $messagesSelector): void {
     $expected_messages = array_values($expected_messages);
     $current_messages = [];
     if ($message_divs = $this->getSession()->getPage()->findAll('css', "$messagesSelector .messages")) {
@@ -118,7 +120,13 @@ class JsMessageTest extends WebDriverTestBase {
         $current_messages[] = $message_div->getText();
       }
     }
-    $this->assertEquals($expected_messages, $current_messages);
+    // Check that each message text contains the expected text.
+    if (count($expected_messages) !== count($current_messages)) {
+      $this->fail('The expected messages array contains a different number of values than the current messages array.');
+    }
+    for ($i = 0; $i < count($expected_messages); $i++) {
+      $this->assertStringContainsString($expected_messages[$i], $current_messages[$i]);
+    }
   }
 
 }

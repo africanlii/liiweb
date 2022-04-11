@@ -49,14 +49,14 @@
   margin-bottom: 0;
 }
 
-.table-file-multiple-widget .button.button {
+.table-file-multiple-widget .button.button:only-child {
   margin: 0;
 }
 
 .table-file-multiple-widget th {
   height: calc(var(--space-m) * 2);
-  color: var(--color-davysgrey);
-  background: var(--color-whitesmoke);
+  color: var(--color-gray-800);
+  background: var(--color-gray-050);
   font-size: var(--font-size-s);
 }
 

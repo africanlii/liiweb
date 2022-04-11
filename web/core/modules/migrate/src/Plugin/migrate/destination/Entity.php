@@ -6,12 +6,17 @@ use Drupal\Component\Plugin\DependentPluginInterface;
 use Drupal\Core\Entity\DependencyTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\migrate\EntityFieldDefinitionTrait;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Row;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a generic destination to import entities.
+ *
+ * Available configuration keys:
+ * - default_bundle: (optional) The bundle to use for this row if 'bundle' is
+ *   not defined on the row.
  *
  * Examples:
  *
@@ -43,7 +48,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   revision_timestamp: timestamp
  * destination:
  *   plugin: entity:node
+ *   default_bundle: custom
  * @endcode
+ *
+ * This will save the processed, migrated row as a node of type 'custom'.
  *
  * @MigrateDestination(
  *   id = "entity",
@@ -53,6 +61,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 abstract class Entity extends DestinationBase implements ContainerFactoryPluginInterface, DependentPluginInterface {
 
   use DependencyTrait;
+  use EntityFieldDefinitionTrait;
 
   /**
    * The entity storage.
@@ -111,20 +120,6 @@ abstract class Entity extends DestinationBase implements ContainerFactoryPluginI
   }
 
   /**
-   * Finds the entity type from configuration or plugin ID.
-   *
-   * @param string $plugin_id
-   *   The plugin ID.
-   *
-   * @return string
-   *   The entity type.
-   */
-  protected static function getEntityTypeId($plugin_id) {
-    // Remove "entity:".
-    return substr($plugin_id, 7);
-  }
-
-  /**
    * Gets the bundle for the row taking into account the default.
    *
    * @param \Drupal\migrate\Row $row
@@ -134,7 +129,7 @@ abstract class Entity extends DestinationBase implements ContainerFactoryPluginI
    *   The bundle for this row.
    */
   public function getBundle(Row $row) {
-    $default_bundle = isset($this->configuration['default_bundle']) ? $this->configuration['default_bundle'] : '';
+    $default_bundle = $this->configuration['default_bundle'] ?? '';
     $bundle_key = $this->getKey('bundle');
     return $row->getDestinationProperty($bundle_key) ?: $default_bundle;
   }
@@ -142,7 +137,7 @@ abstract class Entity extends DestinationBase implements ContainerFactoryPluginI
   /**
    * {@inheritdoc}
    */
-  public function fields(MigrationInterface $migration = NULL) {
+  public function fields() {
     // TODO: Implement fields() method.
   }
 

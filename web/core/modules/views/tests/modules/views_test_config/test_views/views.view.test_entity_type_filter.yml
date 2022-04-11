@@ -14,7 +14,7 @@ display:
   default:
     display_plugin: default
     id: default
-    display_title: Master
+    display_title: Default
     position: 0
     display_options:
       fields:
@@ -101,6 +101,7 @@ display:
           field: type
           relationship: none
           value:
+            180575: '180575'
             test_bundle: test_bundle
             test_bundle_2: test_bundle_2
           plugin_id: bundle

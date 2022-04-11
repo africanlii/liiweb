@@ -59,7 +59,7 @@ function block_content_theme($existing, $type, $theme, $path) {
  * Implements hook_entity_type_alter().
  */
 function block_content_entity_type_alter(array &$entity_types) {
-  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
   // Add a translation handler for fields if the language module is enabled.
   if (\Drupal::moduleHandler()->moduleExists('language')) {
     $translation = $entity_types['block_content']->get('translation');
@@ -122,9 +122,9 @@ function block_content_add_body_field($block_type_id, $label = 'Body') {
  * These queries should only return reusable blocks unless a condition on
  * 'reusable' is explicitly set.
  *
- * Block_content entities that are reusable should by default not be selectable
- * as entity reference values. A module can still create an instance of
- * \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface
+ * Block_content entities that are not reusable should by default not be
+ * selectable as entity reference values. A module can still create an instance
+ * of \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface
  * that will allow selection of non-reusable blocks by explicitly setting
  * a condition on the 'reusable' field.
  *

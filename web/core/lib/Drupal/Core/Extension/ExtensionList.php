@@ -563,4 +563,37 @@ abstract class ExtensionList {
     return $info;
   }
 
+  /**
+   * Tests the compatibility of an extension.
+   *
+   * @param string $name
+   *   The extension name to check.
+   *
+   * @return bool
+   *   TRUE if the extension is incompatible and FALSE if not.
+   *
+   * @throws \Drupal\Core\Extension\Exception\UnknownExtensionException
+   *   If there is no extension with the supplied name.
+   */
+  public function checkIncompatibility($name) {
+    $extension = $this->get($name);
+    return $extension->info['core_incompatible'] || (isset($extension->info['php']) && version_compare(phpversion(), $extension->info['php']) < 0);
+  }
+
+  /**
+   * Array sorting callback; sorts extensions by their name.
+   *
+   * @param \Drupal\Core\Extension\Extension $a
+   *   The first extension to compare.
+   * @param \Drupal\Core\Extension\Extension $b
+   *   The second extension to compare.
+   *
+   * @return int
+   *   Less than 0 if $a is less than $b, more than 0 if $a is greater than $b,
+   *   and 0 if they are equal.
+   */
+  public static function sortByName(Extension $a, Extension $b): int {
+    return strcasecmp($a->info['name'], $b->info['name']);
+  }
+
 }

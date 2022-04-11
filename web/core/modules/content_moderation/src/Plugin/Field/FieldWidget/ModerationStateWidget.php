@@ -8,7 +8,6 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\Plugin\Field\FieldWidget\OptionsSelectWidget;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\content_moderation\ModerationInformation;
 use Drupal\content_moderation\StateTransitionValidationInterface;
@@ -25,7 +24,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-class ModerationStateWidget extends OptionsSelectWidget implements ContainerFactoryPluginInterface {
+class ModerationStateWidget extends OptionsSelectWidget {
 
   /**
    * Current user service.
@@ -124,7 +123,7 @@ class ModerationStateWidget extends OptionsSelectWidget implements ContainerFact
 
     // If the entity already exists, grab the most recent revision and load it.
     // The moderation state of the saved revision will be used to display the
-    // current state as well determine the the appropriate transitions.
+    // current state as well determine the appropriate transitions.
     if (!$entity->isNew()) {
       /** @var \Drupal\Core\Entity\ContentEntityInterface $original_entity */
       $original_entity = $this->entityTypeManager->getStorage($entity->getEntityTypeId())->loadRevision($entity->getLoadedRevisionId());
@@ -176,7 +175,7 @@ class ModerationStateWidget extends OptionsSelectWidget implements ContainerFact
         ],
       ],
     ];
-    $element['#element_validate'][] = [get_class($this), 'validateElement'];
+    $element['#element_validate'][] = [static::class, 'validateElement'];
 
     return $element;
   }

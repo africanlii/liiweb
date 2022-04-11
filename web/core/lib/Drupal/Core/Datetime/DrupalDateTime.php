@@ -23,9 +23,34 @@ class DrupalDateTime extends DateTimePlus {
   use StringTranslationTrait;
 
   /**
-   * Format string translation cache.
+   * Formatted strings translation cache.
    *
-   * @var string
+   * Translation cache represents an instance storage for formatted date
+   * strings. It contains a multidimensional array where:
+   * - first level keys - are drupal language codes;
+   * - second level keys - are each symbols of given format string (like 'F');
+   * - third level keys - are original matched strings related to the symbol;
+   * - values - are translated or not-translated original strings (depends on
+   *   if a particular symbol represents translatable value according to PHP's
+   *   date() format character).
+   *
+   * For example:
+   * @code
+   *   [
+   *     'en' => [
+   *       'F' => [
+   *         'November' => t('November'),
+   *         'December' => t('December'),
+   *       ],
+   *       'd' => [
+   *         '10' => '10',
+   *         '31' => '31',
+   *       ],
+   *     ],
+   *   ]
+   * @endcode
+   *
+   * @var array
    */
   protected $formatTranslationCache;
 
@@ -109,28 +134,31 @@ class DrupalDateTime extends DateTimePlus {
       // Call date_format().
       $format = parent::format($format, $settings);
 
-      // Translates a formatted date string.
-      $translation_callback = function ($matches) use ($langcode) {
-        $code = $matches[1];
-        $string = $matches[2];
-        if (!isset($this->formatTranslationCache[$langcode][$code][$string])) {
-          $options = ['langcode' => $langcode];
-          if ($code == 'F') {
-            $options['context'] = 'Long month name';
-          }
+      // $format will be NULL if there are any errors.
+      if ($format !== NULL) {
+        // Translates a formatted date string.
+        $translation_callback = function ($matches) use ($langcode) {
+          $code = $matches[1];
+          $string = $matches[2];
+          if (!isset($this->formatTranslationCache[$langcode][$code][$string])) {
+            $options = ['langcode' => $langcode];
+            if ($code == 'F') {
+              $options['context'] = 'Long month name';
+            }
 
-          if ($code == '') {
-            $this->formatTranslationCache[$langcode][$code][$string] = $string;
+            if ($code == '') {
+              $this->formatTranslationCache[$langcode][$code][$string] = $string;
+            }
+            else {
+              $this->formatTranslationCache[$langcode][$code][$string] = $this->t($string, [], $options);
+            }
           }
-          else {
-            $this->formatTranslationCache[$langcode][$code][$string] = $this->t($string, [], $options);
-          }
-        }
-        return $this->formatTranslationCache[$langcode][$code][$string];
-      };
+          return $this->formatTranslationCache[$langcode][$code][$string];
+        };
 
-      // Translate the marked sequences.
-      $value = preg_replace_callback('/\xEF([AaeDlMTF]?)(.*?)\xFF/', $translation_callback, $format);
+        // Translate the marked sequences.
+        $value = preg_replace_callback('/\xEF([AaeDlMTF]?)(.*?)\xFF/', $translation_callback, $format);
+      }
     }
     catch (\Exception $e) {
       $this->errors[] = $e->getMessage();

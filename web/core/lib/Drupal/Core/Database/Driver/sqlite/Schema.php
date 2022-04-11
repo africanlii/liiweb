@@ -17,7 +17,7 @@ use Drupal\Core\Database\Schema as DatabaseSchema;
 class Schema extends DatabaseSchema {
 
   /**
-   * Override DatabaseSchema::$defaultSchema
+   * Override DatabaseSchema::$defaultSchema.
    *
    * @var string
    */
@@ -48,6 +48,7 @@ class Schema extends DatabaseSchema {
    *   The name of the table to create.
    * @param $table
    *   A Schema API table definition array.
+   *
    * @return
    *   An array of SQL statements to create the table.
    */
@@ -165,6 +166,7 @@ class Schema extends DatabaseSchema {
    *   The field specification, as per the schema data structure format.
    */
   protected function createFieldSql($name, $spec) {
+    $name = $this->connection->escapeField($name);
     if (!empty($spec['auto_increment'])) {
       $sql = $name . " INTEGER PRIMARY KEY AUTOINCREMENT";
       if (!empty($spec['unsigned'])) {
@@ -262,10 +264,10 @@ class Schema extends DatabaseSchema {
    */
   public function renameTable($table, $new_name) {
     if (!$this->tableExists($table)) {
-      throw new SchemaObjectDoesNotExistException(t("Cannot rename @table to @table_new: table @table doesn't exist.", ['@table' => $table, '@table_new' => $new_name]));
+      throw new SchemaObjectDoesNotExistException("Cannot rename '$table' to '$new_name': table '$table' doesn't exist.");
     }
     if ($this->tableExists($new_name)) {
-      throw new SchemaObjectExistsException(t("Cannot rename @table to @table_new: table @table_new already exists.", ['@table' => $table, '@table_new' => $new_name]));
+      throw new SchemaObjectExistsException("Cannot rename '$table' to '$new_name': table '$new_name' already exists.");
     }
 
     $schema = $this->introspectSchema($table);
@@ -314,10 +316,10 @@ class Schema extends DatabaseSchema {
    */
   public function addField($table, $field, $specification, $keys_new = []) {
     if (!$this->tableExists($table)) {
-      throw new SchemaObjectDoesNotExistException(t("Cannot add field @table.@field: table doesn't exist.", ['@field' => $field, '@table' => $table]));
+      throw new SchemaObjectDoesNotExistException("Cannot add field '$table.$field': table doesn't exist.");
     }
     if ($this->fieldExists($table, $field)) {
-      throw new SchemaObjectExistsException(t("Cannot add field @table.@field: field already exists.", ['@field' => $field, '@table' => $table]));
+      throw new SchemaObjectExistsException("Cannot add field '$table.$field': field already exists.");
     }
     if (isset($keys_new['primary key']) && in_array($field, $keys_new['primary key'], TRUE)) {
       $this->ensureNotNullPrimaryKey($keys_new['primary key'], [$field => $specification]);
@@ -364,7 +366,7 @@ class Schema extends DatabaseSchema {
       // Build the mapping between the old fields and the new fields.
       $mapping = [];
       if (isset($specification['initial_from_field'])) {
-        // If we have a initial value, copy it over.
+        // If we have an initial value, copy it over.
         if (isset($specification['initial'])) {
           $expression = 'COALESCE(' . $specification['initial_from_field'] . ', :default_initial_value)';
           $arguments = [':default_initial_value' => $specification['initial']];
@@ -379,7 +381,7 @@ class Schema extends DatabaseSchema {
         ];
       }
       elseif (isset($specification['initial'])) {
-        // If we have a initial value, copy it over.
+        // If we have an initial value, copy it over.
         $mapping[$field] = [
           'expression' => ':newfieldinitial',
           'arguments' => [':newfieldinitial' => $specification['initial']],
@@ -498,15 +500,34 @@ class Schema extends DatabaseSchema {
         $length = NULL;
       }
       if (isset($mapped_fields[$type])) {
-        list($type, $size) = explode(':', $mapped_fields[$type]);
+        [$type, $size] = explode(':', $mapped_fields[$type]);
         $schema['fields'][$row->name] = [
           'type' => $type,
           'size' => $size,
           'not null' => !empty($row->notnull) || $row->pk !== "0",
-          'default' => trim($row->dflt_value, "'"),
         ];
         if ($length) {
           $schema['fields'][$row->name]['length'] = $length;
+        }
+
+        // Convert the default into a properly typed value.
+        if ($row->dflt_value === 'NULL') {
+          $schema['fields'][$row->name]['default'] = NULL;
+        }
+        elseif (is_string($row->dflt_value) && $row->dflt_value[0] === '\'') {
+          // Remove the wrapping single quotes. And replace duplicate single
+          // quotes with a single quote.
+          $schema['fields'][$row->name]['default'] = str_replace("''", "'", substr($row->dflt_value, 1, -1));
+        }
+        elseif (is_numeric($row->dflt_value)) {
+          // Adding 0 to a string will cause PHP to convert it to a float or
+          // an integer depending on what the string is. For example:
+          // - '1' + 0 = 1
+          // - '1.0' + 0 = 1.0
+          $schema['fields'][$row->name]['default'] = $row->dflt_value + 0;
+        }
+        else {
+          $schema['fields'][$row->name]['default'] = $row->dflt_value;
         }
         // $row->pk contains a number that reflects the primary key order. We
         // use that as the key and sort (by key) below to return the primary key
@@ -586,10 +607,10 @@ class Schema extends DatabaseSchema {
    */
   public function changeField($table, $field, $field_new, $spec, $keys_new = []) {
     if (!$this->fieldExists($table, $field)) {
-      throw new SchemaObjectDoesNotExistException(t("Cannot change the definition of field @table.@name: field doesn't exist.", ['@table' => $table, '@name' => $field]));
+      throw new SchemaObjectDoesNotExistException("Cannot change the definition of field '$table.$field': field doesn't exist.");
     }
     if (($field != $field_new) && $this->fieldExists($table, $field_new)) {
-      throw new SchemaObjectExistsException(t("Cannot rename field @table.@name to @name_new: target field already exists.", ['@table' => $table, '@name' => $field, '@name_new' => $field_new]));
+      throw new SchemaObjectExistsException("Cannot rename field '$table.$field' to '$field_new': target field already exists.");
     }
     if (isset($keys_new['primary key']) && in_array($field_new, $keys_new['primary key'], TRUE)) {
       $this->ensureNotNullPrimaryKey($keys_new['primary key'], [$field_new => $spec]);
@@ -659,10 +680,10 @@ class Schema extends DatabaseSchema {
    */
   public function addIndex($table, $name, $fields, array $spec) {
     if (!$this->tableExists($table)) {
-      throw new SchemaObjectDoesNotExistException(t("Cannot add index @name to table @table: table doesn't exist.", ['@table' => $table, '@name' => $name]));
+      throw new SchemaObjectDoesNotExistException("Cannot add index '$name' to table '$table': table doesn't exist.");
     }
     if ($this->indexExists($table, $name)) {
-      throw new SchemaObjectExistsException(t("Cannot add index @name to table @table: index already exists.", ['@table' => $table, '@name' => $name]));
+      throw new SchemaObjectExistsException("Cannot add index '$name' to table '$table': index already exists.");
     }
 
     $schema['indexes'][$name] = $fields;
@@ -700,10 +721,10 @@ class Schema extends DatabaseSchema {
    */
   public function addUniqueKey($table, $name, $fields) {
     if (!$this->tableExists($table)) {
-      throw new SchemaObjectDoesNotExistException(t("Cannot add unique key @name to table @table: table doesn't exist.", ['@table' => $table, '@name' => $name]));
+      throw new SchemaObjectDoesNotExistException("Cannot add unique key '$name' to table '$table': table doesn't exist.");
     }
     if ($this->indexExists($table, $name)) {
-      throw new SchemaObjectExistsException(t("Cannot add unique key @name to table @table: unique key already exists.", ['@table' => $table, '@name' => $name]));
+      throw new SchemaObjectExistsException("Cannot add unique key '$name' to table '$table': unique key already exists.");
     }
 
     $schema['unique keys'][$name] = $fields;
@@ -732,14 +753,14 @@ class Schema extends DatabaseSchema {
    */
   public function addPrimaryKey($table, $fields) {
     if (!$this->tableExists($table)) {
-      throw new SchemaObjectDoesNotExistException(t("Cannot add primary key to table @table: table doesn't exist.", ['@table' => $table]));
+      throw new SchemaObjectDoesNotExistException("Cannot add primary key to table '$table': table doesn't exist.");
     }
 
     $old_schema = $this->introspectSchema($table);
     $new_schema = $old_schema;
 
     if (!empty($new_schema['primary key'])) {
-      throw new SchemaObjectExistsException(t("Cannot add primary key to table @table: primary key already exists.", ['@table' => $table]));
+      throw new SchemaObjectExistsException("Cannot add primary key to table '$table': primary key already exists.");
     }
 
     $new_schema['primary key'] = $fields;
@@ -784,38 +805,6 @@ class Schema extends DatabaseSchema {
     $schema = $this->introspectSchema($table);
     unset($schema['fields']);
     return $schema;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function fieldSetDefault($table, $field, $default) {
-    @trigger_error('fieldSetDefault() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Instead, call ::changeField() passing a full field specification. See https://www.drupal.org/node/2999035', E_USER_DEPRECATED);
-    if (!$this->fieldExists($table, $field)) {
-      throw new SchemaObjectDoesNotExistException(t("Cannot set default value of field @table.@field: field doesn't exist.", ['@table' => $table, '@field' => $field]));
-    }
-
-    $old_schema = $this->introspectSchema($table);
-    $new_schema = $old_schema;
-
-    $new_schema['fields'][$field]['default'] = $default;
-    $this->alterTable($table, $old_schema, $new_schema);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function fieldSetNoDefault($table, $field) {
-    @trigger_error('fieldSetNoDefault() is deprecated in Drupal 8.7.0 and will be removed before Drupal 9.0.0. Instead, call ::changeField() passing a full field specification. See https://www.drupal.org/node/2999035', E_USER_DEPRECATED);
-    if (!$this->fieldExists($table, $field)) {
-      throw new SchemaObjectDoesNotExistException(t("Cannot remove default value of field @table.@field: field doesn't exist.", ['@table' => $table, '@field' => $field]));
-    }
-
-    $old_schema = $this->introspectSchema($table);
-    $new_schema = $old_schema;
-
-    unset($new_schema['fields'][$field]['default']);
-    $this->alterTable($table, $old_schema, $new_schema);
   }
 
   /**

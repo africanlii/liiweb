@@ -22,6 +22,14 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *       "html" = "Drupal\rw_organisation\OrganisationEntityTypeHtmlRouteProvider",
  *     },
  *   },
+ *   config_export = {
+ *     "id",
+ *     "label",
+ *     "enabled",
+ *     "first_field",
+ *     "second_field",
+ *     "bundles"
+ *   },
  *   config_prefix = "organisation_entity_type",
  *   admin_permission = "administer site configuration",
  *   bundle_of = "organisation_entity",

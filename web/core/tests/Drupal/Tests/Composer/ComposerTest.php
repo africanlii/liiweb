@@ -21,27 +21,21 @@ class ComposerTest extends UnitTestCase {
       $this->assertNull(Composer::ensureComposerVersion());
     }
     catch (\RuntimeException $e) {
-      $this->assertRegExp('/Drupal core development requires Composer 1.9.0, but Composer /', $e->getMessage());
+      $this->assertMatchesRegularExpression('/Drupal core development requires Composer 1.9.0, but Composer /', $e->getMessage());
     }
   }
 
   /**
-   * Verify that Composer::ensureBehatDriverVersions() detects a good version.
+   * Ensure that the configured php version matches the minimum php version.
    *
-   * @covers::ensureBehatDriverVersions
+   * Also ensure that the minimum php version in the root-level composer.json
+   * file exactly matches DRUPAL_MINIMUM_PHP.
    */
-  public function testEnsureBehatDriverVersions() {
-    // First call 'ensureBehatDriverVersions' test directly using Drupal's
-    // composer.lock. It should not fail.
-    chdir($this->root);
-    $this->assertNull(Composer::ensureBehatDriverVersions());
-
-    // Next, call 'ensureBehatDriverVersions' again, this time using a fixture
-    // with a known-bad version number.
-    $this->expectException(\RuntimeException::class);
-    $this->expectExceptionMessageRegExp('#^Drupal requires behat/mink-selenium2-driver:1.3.x-dev#');
-    chdir(__DIR__ . '/fixtures/ensureBehatDriverVersionsFixture');
-    $this->assertNull(Composer::ensureBehatDriverVersions());
+  public function testEnsurePhpConfiguredVersion() {
+    $composer_json = json_decode(file_get_contents($this->root . '/composer.json'), TRUE);
+    $composer_core_json = json_decode(file_get_contents($this->root . '/core/composer.json'), TRUE);
+    $this->assertEquals(DRUPAL_MINIMUM_PHP, $composer_json['config']['platform']['php'], 'The DRUPAL_MINIMUM_PHP constant should always be exactly the same as the config.platform.php in the root composer.json.');
+    $this->assertEquals($composer_core_json['require']['php'], '>=' . $composer_json['config']['platform']['php'], 'The config.platform.php configured version in the root composer.json file should always be exactly the same as the minimum php version configured in core/composer.json.');
   }
 
 }

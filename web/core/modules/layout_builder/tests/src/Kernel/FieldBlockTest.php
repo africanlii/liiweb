@@ -47,7 +47,7 @@ class FieldBlockTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->entityFieldManager = $this->prophesize(EntityFieldManagerInterface::class);
@@ -101,7 +101,7 @@ class FieldBlockTest extends EntityKernelTestBase {
     $entity->access('view', $account->reveal(), TRUE)->willReturn(AccessResult::allowed());
 
     $access = $block->access($account->reveal(), TRUE);
-    $this->assertSame(FALSE, $access->isAllowed());
+    $this->assertFalse($access->isAllowed());
   }
 
   /**
@@ -119,7 +119,7 @@ class FieldBlockTest extends EntityKernelTestBase {
     $entity->get('the_field_name')->shouldNotBeCalled();
 
     $access = $block->access($account->reveal(), TRUE);
-    $this->assertSame(FALSE, $access->isAllowed());
+    $this->assertFalse($access->isAllowed());
   }
 
   /**
@@ -281,13 +281,22 @@ class FieldBlockTest extends EntityKernelTestBase {
       new ReturnPromise([[]]),
       '',
     ];
-    $data['exception'] = [
-      new ThrowPromise(new \Exception('The exception message')),
+    return $data;
+  }
+
+  /**
+   * @covers ::build
+   */
+  public function testBuildException() {
+    // In PHP 7.4 ReflectionClass cannot be serialized so this cannot be part of
+    // providerTestBuild().
+    $promise = new ThrowPromise(new \Exception('The exception message'));
+    $this->testBuild(
+      $promise,
       '',
       'The field "%field" failed to render with the error of "%error".',
-      ['%field' => 'the_field_name', '%error' => 'The exception message'],
-    ];
-    return $data;
+      ['%field' => 'the_field_name', '%error' => 'The exception message']
+    );
   }
 
   /**

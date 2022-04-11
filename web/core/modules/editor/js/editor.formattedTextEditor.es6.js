@@ -11,7 +11,7 @@
  *  - Drupal.editors.magical.attachInlineEditor()
  */
 
-(function($, Drupal, drupalSettings, _) {
+(function ($, Drupal, drupalSettings, _) {
   Drupal.quickedit.editors.editor = Drupal.quickedit.EditorView.extend(
     /** @lends Drupal.quickedit.editors.editor# */ {
       /**
@@ -73,7 +73,7 @@
       },
 
       /**
-       * @inheritdoc
+       * {@inheritdoc}
        *
        * @return {jQuery}
        *   The text element edited.
@@ -83,7 +83,7 @@
       },
 
       /**
-       * @inheritdoc
+       * {@inheritdoc}
        *
        * @param {object} fieldModel
        *   The field model.
@@ -126,7 +126,7 @@
             // without the transformation filters.
             if (this.textFormatHasTransformations) {
               const $textElement = this.$textElement;
-              this._getUntransformedText(untransformedText => {
+              this._getUntransformedText((untransformedText) => {
                 $textElement.html(untransformedText);
                 fieldModel.set('state', 'active');
               });
@@ -152,7 +152,7 @@
               toolbarView.getFloatedWysiwygToolgroupId(),
             );
             // Set the state to 'changed' whenever the content has changed.
-            this.textEditor.onChange(textElement, htmlText => {
+            this.textEditor.onChange(textElement, (htmlText) => {
               editorModel.set('currentValue', htmlText);
               fieldModel.set('state', 'changed');
             });
@@ -179,7 +179,7 @@
       },
 
       /**
-       * @inheritdoc
+       * {@inheritdoc}
        *
        * @return {object}
        *   The settings for the quick edit UI.
@@ -194,7 +194,7 @@
       },
 
       /**
-       * @inheritdoc
+       * {@inheritdoc}
        */
       revert() {
         this.$textElement.html(this.model.get('originalValue'));
@@ -227,7 +227,7 @@
 
         // Implement a scoped editorGetUntransformedText AJAX command: calls the
         // callback.
-        textLoaderAjax.commands.editorGetUntransformedText = function(
+        textLoaderAjax.commands.editorGetUntransformedText = function (
           ajax,
           response,
           status,

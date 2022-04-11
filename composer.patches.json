@@ -1,15 +1,10 @@
 {
   "patches": {
     "drupal/core": {
-      "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch",
-      "Book module bug patch adapted from https://www.drupal.org/project/drupal/issues/2918537#comment-13873706": "patches/core/2918537-63.patch"
+      "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch"
     },
     "drupal/filefield_paths": {
-      "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch",
-      "Token replacement generate leaked cache metadata": "https://www.drupal.org/files/issues/2019-08-13/fieldfield_path-leaked_cache_metadata-3074642-2.patch"
-    },
-    "drupal/facets": {
-      "Test scanning fails with The 'core' or the 'core_version_requirement' key must be present ...": "patches/facets/3182762-1.diff"
+      "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch"
     }
   }
 }

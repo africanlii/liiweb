@@ -57,7 +57,7 @@
  * register custom, site-specific service definitions and/or swap out default
  * implementations with custom ones.
  */
-
+/** Trusted Host PAtterns **/
 /**
  * Database settings:
  *
@@ -802,7 +802,7 @@ $config['s3fs.settings']['domain'] = getenv('S3_CDN_DOMAIN');
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
-$config_directories['sync'] = '../config/default';
+$settings['config_sync_directory'] = '../config/default';
 
 $settings['node_title_length_chars'] = 1023;
 
@@ -822,3 +822,7 @@ $config['recaptcha.settings']['secret_key'] = getenv('RECAPTCHA_SECRET_KEY');
 */
 $config['smtp.settings']['smtp_password'] = getenv('SMTP_PASS');
 
+/**
+* Google Analytics account
+*/
+$config['google_analytics.settings']['account'] = getenv('GA_ACCOUNT');

@@ -84,7 +84,7 @@ class TestSiteInstallCommand extends Command {
   protected function execute(InputInterface $input, OutputInterface $output) {
     // Determines and validates the setup class prior to installing a database
     // to avoid creating unnecessary sites.
-    $root = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+    $root = dirname(__DIR__, 5);
     chdir($root);
     $class_name = $this->getSetupClass($input->getOption('setup-file'));
     // Ensure we can install a site in the sites/simpletest directory.
@@ -200,9 +200,6 @@ class TestSiteInstallCommand extends Command {
     $this->initSettings();
     $container = $this->initKernel(\Drupal::request());
     $this->initConfig($container);
-    $this->installDefaultThemeFromClassProperty($container);
-    $this->installModulesFromClassProperty($container);
-    $this->rebuildAll();
   }
 
   /**

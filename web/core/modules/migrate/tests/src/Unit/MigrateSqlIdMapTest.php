@@ -56,7 +56,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     $this->database = $this->getDatabase([]);
   }
 
@@ -110,7 +110,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
     $migration
       ->method('getDestinationPlugin')
       ->willReturn($plugin);
-    $event_dispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+    $event_dispatcher = $this->createMock('Symfony\Contracts\EventDispatcher\EventDispatcherInterface');
 
     $id_map = new TestSqlIdMap($this->database, [], 'sql', [], $migration, $event_dispatcher);
     $migration
@@ -194,7 +194,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
     $message = $this->createMock('Drupal\migrate\MigrateMessageInterface');
     $id_map = $this->getIdMap();
     $id_map->setMessage($message);
-    $this->assertAttributeEquals($message, 'message', $id_map);
+    $this->assertEquals($message, $id_map->message);
   }
 
   /**
@@ -328,7 +328,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
       $this->assertEquals($message_default, $message_row->message);
       $this->assertEquals(MigrationInterface::MESSAGE_ERROR, $message_row->level);
     }
-    $this->assertEquals($count, 1);
+    $this->assertEquals(1, $count);
 
     // Retrieve messages with a specific level.
     $messages = $id_map->getMessages([], MigrationInterface::MESSAGE_WARNING);
@@ -337,18 +337,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
       $count = 1;
       $this->assertEquals(MigrationInterface::MESSAGE_WARNING, $message_row->level);
     }
-    $this->assertEquals($count, 1);
-  }
-
-  /**
-   * Tests the SQL ID map get message iterator method.
-   *
-   * @group legacy
-   *
-   * @expectedDeprecation getMessageIterator() is deprecated in drupal:8.8.0 and is removed from drupal:9.0.0. Use getMessages() instead. See https://www.drupal.org/node/3060969
-   */
-  public function testGetMessageIterator() {
-    $this->getIdMap()->getMessageIterator();
+    $this->assertEquals(1, $count);
   }
 
   /**
@@ -438,7 +427,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
     $this->assertSame([$expected_result], $destination_ids);
     // Test for a miss.
     $destination_ids = $id_map->lookupDestinationIds($nonexistent_id_values);
-    $this->assertSame(0, count($destination_ids));
+    $this->assertCount(0, $destination_ids);
   }
 
   /**
@@ -561,31 +550,6 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
   }
 
   /**
-   * Tests lookupDestinationId().
-   *
-   * @group legacy
-   * @expectedDeprecation Drupal\migrate\Plugin\migrate\id_map\Sql::lookupDestinationId() is deprecated in drupal:8.1.0 and is removed from drupal:9.0.0. Use Sql::lookupDestinationIds() instead. See https://www.drupal.org/node/2725809
-   */
-  public function testLookupDestinationId() {
-    // Simple map with one source and one destination ID.
-    $id_map = $this->setupRows(['nid'], ['nid'], [
-      [1, 101],
-      [2, 102],
-      [3, 103],
-    ]);
-
-    // Lookup nothing, gives nothing.
-    $this->assertEquals([], $id_map->lookupDestinationId([]));
-
-    // Lookup by complete non-associative list.
-    $this->assertEquals([101], $id_map->lookupDestinationId([1]));
-    $this->assertEquals([], $id_map->lookupDestinationId([99]));
-
-    // Lookup by complete associative list.
-    $this->assertEquals([101], $id_map->lookupDestinationId(['nid' => 1]));
-  }
-
-  /**
    * Tests the getRowByDestination method.
    */
   public function testGetRowByDestination() {
@@ -607,11 +571,19 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
     $id_map = $this->getIdMap();
     $result_row = $id_map->getRowByDestination($dest_id_values);
     $this->assertSame($row, $result_row);
-    // This value does not exist.
-    $dest_id_values = ['destination_id_property' => 'invalid_destination_id_property'];
-    $id_map = $this->getIdMap();
-    $result_row = $id_map->getRowByDestination($dest_id_values);
-    $this->assertFalse($result_row);
+    // This value does not exist, getRowByDestination should return an (empty)
+    // array.
+    // @see \Drupal\migrate\Plugin\MigrateIdMapInterface::getRowByDestination()
+    $missing_result_row = $id_map->getRowByDestination([
+      'destination_id_property' => 'invalid_destination_id_property',
+    ]);
+    $this->assertEquals([], $missing_result_row);
+    // The destination ID values array does not contain all the destination ID
+    // keys, we expect an empty array.
+    $invalid_result_row = $id_map->getRowByDestination([
+      'invalid_destination_key' => 'invalid_destination_id_property',
+    ]);
+    $this->assertEquals([], $invalid_result_row);
   }
 
   /**
@@ -675,7 +647,7 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
     $this->assertSame($expected_result, $source_id);
     // Test for a miss.
     $source_id = $id_map->lookupSourceId($nonexistent_id_values);
-    $this->assertSame(0, count($source_id));
+    $this->assertCount(0, $source_id);
   }
 
   /**
@@ -1069,6 +1041,139 @@ class MigrateSqlIdMapTest extends MigrateTestCase {
     // Check that tables do exist.
     $this->assertTrue($this->database->schema()->tableExists($map_table_name));
     $this->assertTrue($this->database->schema()->tableExists($message_table_name));
+  }
+
+  /**
+   * Tests getHighestId method.
+   *
+   * @param array $destination_ids
+   *   Array of destination ids.
+   * @param array $rows
+   *   Array of map table rows.
+   * @param int $expected
+   *   Expected highest id value.
+   *
+   * @dataProvider getHighestIdDataProvider
+   */
+  public function testGetHighestId(array $destination_ids, array $rows, $expected) {
+    $this->database = $this->getDatabase([]);
+    $this->sourceIds = $destination_ids;
+    $this->destinationIds = $destination_ids;
+    $db_keys = [];
+    $dest_id_count = count($destination_ids);
+    for ($i = 1; $i <= $dest_id_count; $i++) {
+      $db_keys[$i] = "sourceid$i";
+    }
+    for ($i = 1; $i <= $dest_id_count; $i++) {
+      $db_keys[] = "destid$i";
+    }
+    $id_map = $this->getIdMap();
+    foreach ($rows as $row) {
+      $values = array_combine($db_keys, $row);
+      $source_values = array_slice($row, 0, $dest_id_count);
+      $values['source_ids_hash'] = $id_map->getSourceIdsHash($source_values);
+      $this->saveMap($values);
+    }
+
+    $actual = $id_map->getHighestId();
+    $this->assertSame($expected, $actual);
+  }
+
+  /**
+   * Data provider for getHighestId().
+   *
+   * Scenarios to test:
+   * - Destination ID type integer.
+   * - Destination ID types integer and string.
+   *
+   * @return array
+   *   An array of data values.
+   */
+  public function getHighestIdDataProvider() {
+    return [
+      'Destination ID type integer' => [
+        'dest_ids' => [
+          'nid' => [
+            'type' => 'integer',
+          ],
+        ],
+        'rows' => [
+          [1, 2],
+          [2, 1],
+          [4, 3],
+          [9, 5],
+        ],
+        'expected' => 5,
+      ],
+      'Destination ID types integer and string' => [
+        'dest_ids' => [
+          'nid' => [
+            'type' => 'integer',
+          ],
+          'vid' => [
+            'type' => 'integer',
+          ],
+          'language' => [
+            'type' => 'string',
+          ],
+        ],
+        'rows' => [
+          [1, 1, 'en', 1, 6, 'en'],
+          [1, 4, 'fr', 1, 6, 'fr'],
+          [1, 6, 'de', 1, 6, 'de'],
+          [2, 8, 'en', 2, 8, 'en'],
+        ],
+        'expected' => 2,
+      ],
+    ];
+  }
+
+  /**
+   * Tests getHighestId method with invalid data.
+   *
+   * @param array $destination_ids
+   *   Array of destination ids.
+   *
+   * @dataProvider getHighestIdInvalidDataProvider
+   */
+  public function testGetHighestIdInvalid(array $destination_ids) {
+    $this->expectException(\LogicException::class);
+    $this->expectExceptionMessage('To determine the highest migrated ID the first ID must be an integer');
+    $this->destinationIds = $destination_ids;
+    $id_map = $this->getIdMap();
+    $id_map->getHighestId();
+  }
+
+  /**
+   * Data provider for testGetHighestIdInvalid().
+   *
+   * Scenarios to test:
+   * - Destination ID type string.
+   * - Destination ID types int (not integer) and string.
+   *
+   * @return array
+   *   An array of data values.
+   */
+  public function getHighestIdInvalidDataProvider() {
+    return [
+      'Destination ID type string' => [
+        'ids' => [
+          'language' => [
+            'type' => 'string',
+          ],
+        ],
+      ],
+      'Destination ID types int (not integer) and string' => [
+        'ids' => [
+          'nid' => [
+            'type' => 'int',
+          ],
+          'language' => [
+            'type' => 'string',
+          ],
+        ],
+      ],
+    ];
   }
 
 }

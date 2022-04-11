@@ -18,7 +18,7 @@ class FieldCounterTest extends ViewsKernelTestBase {
    *
    * @var array
    */
-  public static $modules = ['user'];
+  protected static $modules = ['user'];
 
   /**
    * Views used by this test.
@@ -47,11 +47,11 @@ class FieldCounterTest extends ViewsKernelTestBase {
     $view->preview();
 
     $counter = $view->style_plugin->getField(0, 'counter');
-    $this->assertEqual($counter, '1', new FormattableMarkup('Make sure the expected number (@expected) patches with the rendered number (@counter)', ['@expected' => 1, '@counter' => $counter]));
+    $this->assertEquals('1', $counter, new FormattableMarkup('Make sure the expected number (@expected) patches with the rendered number (@counter)', ['@expected' => 1, '@counter' => $counter]));
     $counter = $view->style_plugin->getField(1, 'counter');
-    $this->assertEqual($counter, '2', new FormattableMarkup('Make sure the expected number (@expected) patches with the rendered number (@counter)', ['@expected' => 2, '@counter' => $counter]));
+    $this->assertEquals('2', $counter, new FormattableMarkup('Make sure the expected number (@expected) patches with the rendered number (@counter)', ['@expected' => 2, '@counter' => $counter]));
     $counter = $view->style_plugin->getField(2, 'counter');
-    $this->assertEqual($counter, '3', new FormattableMarkup('Make sure the expected number (@expected) patches with the rendered number (@counter)', ['@expected' => 3, '@counter' => $counter]));
+    $this->assertEquals('3', $counter, new FormattableMarkup('Make sure the expected number (@expected) patches with the rendered number (@counter)', ['@expected' => 3, '@counter' => $counter]));
     $view->destroy();
     $view->storage->invalidateCaches();
 
@@ -76,13 +76,13 @@ class FieldCounterTest extends ViewsKernelTestBase {
 
     $counter = $view->style_plugin->getField(0, 'counter');
     $expected_number = 0 + $rand_start;
-    $this->assertEqual($counter, (string) $expected_number, new FormattableMarkup('Make sure the expected number (@expected) patches with the rendered number (@counter)', ['@expected' => $expected_number, '@counter' => $counter]));
+    $this->assertEquals((string) $expected_number, $counter, new FormattableMarkup('Make sure the expected number (@expected) patches with the rendered number (@counter)', ['@expected' => $expected_number, '@counter' => $counter]));
     $counter = $view->style_plugin->getField(1, 'counter');
     $expected_number = 1 + $rand_start;
-    $this->assertEqual($counter, (string) $expected_number, new FormattableMarkup('Make sure the expected number (@expected) patches with the rendered number (@counter)', ['@expected' => $expected_number, '@counter' => $counter]));
+    $this->assertEquals((string) $expected_number, $counter, new FormattableMarkup('Make sure the expected number (@expected) patches with the rendered number (@counter)', ['@expected' => $expected_number, '@counter' => $counter]));
     $counter = $view->style_plugin->getField(2, 'counter');
     $expected_number = 2 + $rand_start;
-    $this->assertEqual($counter, (string) $expected_number, new FormattableMarkup('Make sure the expected number (@expected) patches with the rendered number (@counter)', ['@expected' => $expected_number, '@counter' => $counter]));
+    $this->assertEquals((string) $expected_number, $counter, new FormattableMarkup('Make sure the expected number (@expected) patches with the rendered number (@counter)', ['@expected' => $expected_number, '@counter' => $counter]));
   }
 
   /**
@@ -116,7 +116,7 @@ class FieldCounterTest extends ViewsKernelTestBase {
     $this->assertEquals('1', $counter);
     $view->destroy();
 
-    // Go the the second page.
+    // Go to the second page.
     $view->setCurrentPage(1);
     $view->preview();
 
@@ -124,7 +124,7 @@ class FieldCounterTest extends ViewsKernelTestBase {
     $this->assertEquals('2', $counter);
     $view->destroy();
 
-    // Go the the third page.
+    // Go to the third page.
     $view->setCurrentPage(2);
     $view->preview();
 
@@ -158,7 +158,7 @@ class FieldCounterTest extends ViewsKernelTestBase {
     $this->assertEquals($counter_start, $counter);
     $view->destroy();
 
-    // Go the the second page.
+    // Go to the second page.
     $view->setCurrentPage(1);
     $view->preview();
 
@@ -166,7 +166,7 @@ class FieldCounterTest extends ViewsKernelTestBase {
     $this->assertEquals($counter_start + 1, $counter);
     $view->destroy();
 
-    // Go the the third page.
+    // Go to the third page.
     $view->setCurrentPage(2);
     $view->preview();
 

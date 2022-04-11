@@ -130,10 +130,13 @@ class FieldPluginBaseTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->executable = $this->getMockBuilder('Drupal\views\ViewExecutable')
+      ->disableOriginalConstructor()
+      ->getMock();
+    $this->executable->style_plugin = $this->getMockBuilder('Drupal\views\Plugin\views\style\StylePluginBase')
       ->disableOriginalConstructor()
       ->getMock();
     $this->display = $this->getMockBuilder('Drupal\views\Plugin\views\display\DisplayPluginBase')
@@ -207,7 +210,7 @@ class FieldPluginBaseTest extends UnitTestCase {
   }
 
   /**
-   * Test rendering as a link without a path.
+   * Tests rendering as a link without a path.
    *
    * @covers ::renderAsLink
    */
@@ -227,7 +230,7 @@ class FieldPluginBaseTest extends UnitTestCase {
   }
 
   /**
-   * Test rendering with a more link.
+   * Tests rendering with a more link.
    *
    * @param string $path
    *   An internal or external path.
@@ -310,7 +313,7 @@ class FieldPluginBaseTest extends UnitTestCase {
   }
 
   /**
-   * Test rendering of a link with a path and options.
+   * Tests rendering of a link with a path and options.
    *
    * @dataProvider providerTestRenderAsLinkWithPathAndOptions
    * @covers ::renderAsLink
@@ -321,7 +324,7 @@ class FieldPluginBaseTest extends UnitTestCase {
       'path' => $path,
     ];
 
-    $final_html = isset($final_html) ? $final_html : $link_html;
+    $final_html = $final_html ?? $link_html;
 
     $this->setUpUrlIntegrationServices();
     $this->setupDisplayWithEmptyArgumentsAndFields();
@@ -395,7 +398,7 @@ class FieldPluginBaseTest extends UnitTestCase {
       'url' => $url,
     ];
 
-    $final_html = isset($final_html) ? $final_html : $link_html;
+    $final_html = $final_html ?? $link_html;
 
     $this->setUpUrlIntegrationServices();
     $this->setupDisplayWithEmptyArgumentsAndFields();
@@ -526,7 +529,7 @@ class FieldPluginBaseTest extends UnitTestCase {
   }
 
   /**
-   * Test rendering of a link with a path and options.
+   * Tests rendering of a link with a path and options.
    *
    * @dataProvider providerTestRenderAsLinkWithPathAndTokens
    * @covers ::renderAsLink
@@ -586,7 +589,7 @@ class FieldPluginBaseTest extends UnitTestCase {
   }
 
   /**
-   * Test rendering of a link with a path and options.
+   * Tests rendering of a link with a path and options.
    *
    * @dataProvider providerTestRenderAsExternalLinkWithPathAndTokens
    * @covers ::renderAsLink
@@ -650,7 +653,7 @@ class FieldPluginBaseTest extends UnitTestCase {
   protected function setupTestField(array $options = []) {
     /** @var \Drupal\Tests\views\Unit\Plugin\field\FieldPluginBaseTestField $field */
     $field = $this->getMockBuilder('Drupal\Tests\views\Unit\Plugin\field\FieldPluginBaseTestField')
-      ->setMethods(['l'])
+      ->addMethods(['l'])
       ->setConstructorArgs([$this->configuration, $this->pluginId, $this->pluginDefinition])
       ->getMock();
     $field->init($this->executable, $this->display, $options);

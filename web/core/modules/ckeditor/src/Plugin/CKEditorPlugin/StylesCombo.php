@@ -117,6 +117,7 @@ class StylesCombo extends CKEditorPluginBase implements CKEditorPluginConfigurab
    *
    * @param string $styles
    *   The "styles" setting.
+   *
    * @return array|false
    *   An array containing the "stylesSet" configuration, or FALSE when the
    *   syntax is invalid.
@@ -140,12 +141,12 @@ class StylesCombo extends CKEditorPluginBase implements CKEditorPluginConfigurab
       }
 
       // Validate syntax: element[.class...]|label pattern expected.
-      if (!preg_match('@^ *[a-zA-Z0-9]+ *(\\.[a-zA-Z0-9_-]+ *)*\\| *.+ *$@', $style)) {
+      if (!preg_match('@^ *[a-zA-Z0-9-]+ *(\\.[a-zA-Z0-9_-]+ *)*\\| *.+ *$@', $style)) {
         return FALSE;
       }
 
       // Parse.
-      list($selector, $label) = explode('|', $style);
+      [$selector, $label] = explode('|', $style);
       $classes = explode('.', $selector);
       $element = array_shift($classes);
 

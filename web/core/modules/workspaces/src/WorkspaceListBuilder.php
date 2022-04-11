@@ -51,6 +51,8 @@ class WorkspaceListBuilder extends EntityListBuilder {
    *   The entity storage class.
    * @param \Drupal\workspaces\WorkspaceManagerInterface $workspace_manager
    *   The workspace manager service.
+   * @param \Drupal\workspaces\WorkspaceRepositoryInterface $workspace_repository
+   *   The workspace repository service.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer service.
    */
@@ -114,7 +116,9 @@ class WorkspaceListBuilder extends EntityListBuilder {
       'label' => [
         'data' => [
           '#prefix' => isset($indentation) ? $this->renderer->render($indentation) : '',
-          '#markup' => $entity->label(),
+          '#type' => 'link',
+          '#title' => $entity->label(),
+          '#url' => $entity->toUrl(),
         ],
       ],
       'owner' => $entity->getOwner()->getDisplayname(),
@@ -123,7 +127,7 @@ class WorkspaceListBuilder extends EntityListBuilder {
 
     $active_workspace = $this->workspaceManager->getActiveWorkspace();
     if ($active_workspace && $entity->id() === $active_workspace->id()) {
-      $row['class'] = 'active-workspace';
+      $row['class'] = ['active-workspace', 'active-workspace--not-default'];
     }
     return $row;
   }
@@ -150,12 +154,15 @@ class WorkspaceListBuilder extends EntityListBuilder {
     }
 
     if (!$entity->hasParent()) {
-      $operations['deploy'] = [
-        'title' => $this->t('Deploy content'),
-        // The 'Deploy' operation should be the default one for the currently
+      $operations['publish'] = [
+        'title' => $this->t('Publish content'),
+        // The 'Publish' operation should be the default one for the currently
         // active workspace.
         'weight' => ($active_workspace && $entity->id() == $active_workspace->id()) ? 0 : 20,
-        'url' => $entity->toUrl('deploy-form', ['query' => ['destination' => $entity->toUrl('collection')->toString()]]),
+        'url' => Url::fromRoute('entity.workspace.publish_form',
+          ['workspace' => $entity->id()],
+          ['query' => ['destination' => $entity->toUrl('collection')->toString()]]
+        ),
       ];
     }
     else {
@@ -178,6 +185,12 @@ class WorkspaceListBuilder extends EntityListBuilder {
       ];
     }
 
+    $operations['manage'] = [
+      'title' => $this->t('Manage'),
+      'weight' => 5,
+      'url' => $entity->toUrl(),
+    ];
+
     return $operations;
   }
 
@@ -190,6 +203,37 @@ class WorkspaceListBuilder extends EntityListBuilder {
       $this->offCanvasRender($build);
     }
     else {
+      // Add a row for switching to Live.
+      $has_active_workspace = $this->workspaceManager->hasActiveWorkspace();
+      $row_live = [
+        'data' => [
+          'label' => [
+            'data' => [
+              '#markup' => $this->t('Live'),
+            ],
+          ],
+          'owner' => '',
+          'operations' => [
+            'data' => [
+              '#type' => 'operations',
+              '#links' => [
+                'activate' => [
+                  'title' => 'Switch to Live',
+                  'weight' => 0,
+                  'url' => Url::fromRoute('workspaces.switch_to_live', [], ['query' => $this->getDestinationArray()]),
+                ],
+              ],
+              '#access' => $has_active_workspace,
+            ],
+          ],
+        ],
+      ];
+
+      if (!$has_active_workspace) {
+        $row_live['class'] = ['active-workspace', 'active-workspace--default'];
+      }
+      array_unshift($build['table']['#rows'], $row_live);
+
       $build['#attached'] = [
         'library' => ['workspaces/drupal.workspaces.overview'],
       ];
@@ -217,31 +261,37 @@ class WorkspaceListBuilder extends EntityListBuilder {
       ];
     }
 
-    $collection_url = Url::fromRoute('entity.workspace.collection');
-    $row_count = count($build['table']['#rows']);
     $build['active_workspace'] = [
       '#type' => 'container',
       '#weight' => -20,
       '#attributes' => [
         'class' => array_merge(['active-workspace'], $active_workspace_classes),
       ],
-      'label' => [
-        '#type' => 'label',
-        '#prefix' => '<div class="active-workspace__title">' . $this->t('Current workspace:') . '</div>',
-        '#title' => $active_workspace ? $active_workspace->label() : $this->t('Live'),
-        '#title_display' => '',
-        '#attributes' => ['class' => 'active-workspace__label'],
+      'title' => [
+        '#type' => 'html_tag',
+        '#tag' => 'div',
+        '#value' => $this->t('Current workspace:'),
+        '#attributes' => ['class' => 'active-workspace__title'],
       ],
-      'manage' => [
-        '#type' => 'link',
-        '#title' => $this->t('Manage workspaces'),
-        '#url' => $collection_url,
-        '#attributes' => [
-          'class' => ['active-workspace__manage'],
+      'label' => [
+        '#type' => 'container',
+        '#attributes' => ['class' => 'active-workspace__label'],
+        'value' => [
+          '#type' => 'html_tag',
+          '#tag' => 'span',
+          '#value' => $active_workspace ? $active_workspace->label() : $this->t('Live'),
         ],
       ],
     ];
     if ($active_workspace) {
+      $build['active_workspace']['label']['manage'] = [
+        '#type' => 'link',
+        '#title' => $this->t('Manage workspace'),
+        '#url' => $active_workspace->toUrl('canonical'),
+        '#attributes' => [
+          'class' => ['active-workspace__manage'],
+        ],
+      ];
       $build['active_workspace']['actions'] = [
         '#type' => 'container',
         '#weight' => 20,
@@ -250,10 +300,13 @@ class WorkspaceListBuilder extends EntityListBuilder {
         ],
       ];
       if (!$active_workspace->hasParent()) {
-        $build['active_workspace']['actions']['deploy'] = [
+        $build['active_workspace']['actions']['publish'] = [
           '#type' => 'link',
-          '#title' => $this->t('Deploy content'),
-          '#url' => $active_workspace->toUrl('deploy-form', ['query' => ['destination' => $active_workspace->toUrl('collection')->toString()]]),
+          '#title' => $this->t('Publish content'),
+          '#url' => Url::fromRoute('entity.workspace.publish_form',
+            ['workspace' => $active_workspace->id()],
+            ['query' => ['destination' => $active_workspace->toUrl('collection')->toString()]]
+          ),
           '#attributes' => [
             'class' => ['button', 'active-workspace__button'],
           ],
@@ -278,16 +331,7 @@ class WorkspaceListBuilder extends EntityListBuilder {
         ];
       }
     }
-    if ($row_count > 2) {
-      $build['all_workspaces'] = [
-        '#type' => 'link',
-        '#title' => $this->t('View all @count workspaces', ['@count' => $row_count]),
-        '#url' => $collection_url,
-        '#attributes' => [
-          'class' => ['all-workspaces'],
-        ],
-      ];
-    }
+
     $items = [];
     $rows = array_slice($build['table']['#rows'], 0, 5, TRUE);
     foreach ($rows as $id => $row) {
@@ -295,7 +339,7 @@ class WorkspaceListBuilder extends EntityListBuilder {
         $url = Url::fromRoute('entity.workspace.activate_form', ['workspace' => $id], ['query' => $this->getDestinationArray()]);
         $items[] = [
           '#type' => 'link',
-          '#title' => $row['data']['label'],
+          '#title' => ltrim($row['data']['label']['data']['#title']),
           '#url' => $url,
           '#attributes' => [
             'class' => ['use-ajax', 'workspaces__item', 'workspaces__item--not-default'],
@@ -324,13 +368,28 @@ class WorkspaceListBuilder extends EntityListBuilder {
       ];
     }
 
-    $build['workspaces'] = [
+    $build['workspaces_list'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => 'workspaces',
+      ],
+    ];
+    $build['workspaces_list']['workspaces'] = [
       '#theme' => 'item_list',
+      '#title' => $this->t('Other workspaces:'),
       '#items' => $items,
-      '#wrapper_attributes' => ['class' => ['workspaces']],
+      '#wrapper_attributes' => ['class' => ['workspaces__list']],
       '#cache' => [
         'contexts' => $this->entityType->getListCacheContexts(),
         'tags' => $this->entityType->getListCacheTags(),
+      ],
+    ];
+    $build['workspaces_list']['all_workspaces'] = [
+      '#type' => 'link',
+      '#title' => $this->t('View all workspaces'),
+      '#url' => Url::fromRoute('entity.workspace.collection'),
+      '#attributes' => [
+        'class' => ['all-workspaces'],
       ],
     ];
     unset($build['table']);

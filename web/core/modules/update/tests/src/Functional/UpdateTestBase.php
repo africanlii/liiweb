@@ -3,7 +3,6 @@
 namespace Drupal\Tests\update\Functional;
 
 use Drupal\Core\DrupalKernel;
-use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
 
@@ -40,6 +39,20 @@ abstract class UpdateTestBase extends BrowserTestBase {
    * Denotes no update will be available in the test case.
    */
   const UPDATE_NONE = 'UPDATE_NONE';
+
+  /**
+   * The CSS locator for the update table run asserts on.
+   *
+   * @var string
+   */
+  protected $updateTableLocator;
+
+  /**
+   * The project that is being tested.
+   *
+   * @var string
+   */
+  protected $updateProject;
 
   protected function setUp() {
     parent::setUp();
@@ -84,7 +97,7 @@ abstract class UpdateTestBase extends BrowserTestBase {
     $this->config('update_test.settings')->set('xml_map', $xml_map)->save();
     // Manually check the update status.
     $this->drupalGet('admin/reports/updates');
-    $this->clickLink(t('Check manually'));
+    $this->clickLink('Check manually');
     $this->checkForMetaRefresh();
   }
 
@@ -92,9 +105,12 @@ abstract class UpdateTestBase extends BrowserTestBase {
    * Runs a series of assertions that are applicable to all update statuses.
    */
   protected function standardTests() {
-    $this->assertRaw('<h3>' . t('Drupal core') . '</h3>');
-    $this->assertRaw(Link::fromTextAndUrl(t('Drupal'), Url::fromUri('http://example.com/project/drupal'))->toString(), 'Link to the Drupal project appears.');
-    $this->assertNoText(t('No available releases found'));
+    $this->assertSession()->responseContains('<h3>Drupal core</h3>');
+    // Verify that the link to the Drupal project appears.
+    $this->assertSession()->linkExists('Drupal');
+    $this->assertSession()->linkByHrefExists('http://example.com/project/drupal');
+    $this->assertSession()->pageTextNotContains('No available releases found');
+    $this->assertSession()->pageTextContains('Last checked:');
   }
 
   /**
@@ -126,7 +142,8 @@ abstract class UpdateTestBase extends BrowserTestBase {
       if ($expected_update_message_type === static::SECURITY_UPDATE_REQUIRED) {
         $assert_session->elementTextNotContains('css', $update_element_css_locator, 'Update available');
         $assert_session->elementTextContains('css', $update_element_css_locator, 'Security update required!');
-        $assert_session->responseContains('error.svg', 'Error icon was found.');
+        // Verify that the error icon is found.
+        $assert_session->responseContains('error.svg');
       }
       else {
         $assert_session->elementTextContains('css', $update_element_css_locator, 'Update available');
@@ -140,8 +157,8 @@ abstract class UpdateTestBase extends BrowserTestBase {
         $expected_release_urls[] = $release_url;
         $expected_download_urls[] = $download_url;
         // Ensure the expected links are security links.
-        $this->assertTrue(in_array($release_url, $all_security_release_urls), "Release $release_url is a security release link.");
-        $this->assertTrue(in_array($download_url, $all_security_download_urls), "Release $download_url is a security download link.");
+        $this->assertContains($release_url, $all_security_release_urls, "Release $release_url is a security release link.");
+        $this->assertContains($download_url, $all_security_download_urls, "Release $download_url is a security download link.");
         $assert_session->linkByHrefExists($release_url);
         $assert_session->linkByHrefExists($download_url);
       }
@@ -166,6 +183,138 @@ abstract class UpdateTestBase extends BrowserTestBase {
         $this->fail('Unexpected value for $expected_update_message_type: ' . $expected_update_message_type);
       }
     }
+  }
+
+  /**
+   * Asserts that an update version has the correct links.
+   *
+   * @param string $label
+   *   The label for the update.
+   * @param string $version
+   *   The project version.
+   * @param string|null $download_version
+   *   (optional) The version number as it appears in the download link. If
+   *   $download_version is not provided then $version will be used.
+   */
+  protected function assertVersionUpdateLinks($label, $version, $download_version = NULL) {
+    $download_version = $download_version ?? $version;
+    $update_element = $this->findUpdateElementByLabel($label);
+    // In the release notes URL the periods are replaced with dashes.
+    $url_version = str_replace('.', '-', $version);
+
+    $this->assertEquals($update_element->findLink($version)->getAttribute('href'), "http://example.com/{$this->updateProject}-$url_version-release");
+    $this->assertEquals($update_element->findLink('Download')->getAttribute('href'), "http://example.com/{$this->updateProject}-$download_version.tar.gz");
+    $this->assertEquals($update_element->findLink('Release notes')->getAttribute('href'), "http://example.com/{$this->updateProject}-$url_version-release");
+  }
+
+  /**
+   * Confirms messages are correct when a release has been unpublished/revoked.
+   *
+   * @param string $revoked_version
+   *   The revoked version that is currently installed.
+   * @param string $newer_version
+   *   The expected newer version to recommend.
+   * @param string $new_version_label
+   *   The expected label for the newer version (for example 'Recommended
+   *   version:' or 'Also available:').
+   */
+  protected function confirmRevokedStatus($revoked_version, $newer_version, $new_version_label) {
+    $this->drupalGet('admin/reports/updates');
+    $this->clickLink('Check manually');
+    $this->checkForMetaRefresh();
+    $this->assertUpdateTableTextContains('Revoked!');
+    $this->assertUpdateTableTextContains($revoked_version);
+    $this->assertUpdateTableElementContains('error.svg');
+    $this->assertUpdateTableTextContains('Release revoked: Your currently installed release has been revoked, and is no longer available for download. Disabling everything included in this release or upgrading is strongly recommended!');
+    $this->assertVersionUpdateLinks($new_version_label, $newer_version);
+  }
+
+  /**
+   * Confirms messages are correct when a release has been marked unsupported.
+   *
+   * @param string $unsupported_version
+   *   The unsupported version that is currently installed.
+   * @param string $newer_version
+   *   The expected newer version to recommend.
+   * @param string $new_version_label
+   *   The expected label for the newer version (for example 'Recommended
+   *   version:' or 'Also available:').
+   */
+  protected function confirmUnsupportedStatus($unsupported_version, $newer_version, $new_version_label) {
+    $this->drupalGet('admin/reports/updates');
+    $this->clickLink('Check manually');
+    $this->checkForMetaRefresh();
+    $this->assertUpdateTableTextContains('Not supported!');
+    $this->assertUpdateTableTextContains($unsupported_version);
+    $this->assertUpdateTableElementContains('error.svg');
+    $this->assertUpdateTableTextContains('Release not supported: Your currently installed release is now unsupported, and is no longer available for download. Disabling everything included in this release or upgrading is strongly recommended!');
+    $this->assertVersionUpdateLinks($new_version_label, $newer_version);
+  }
+
+  /**
+   * Asserts that the update table text contains the specified text.
+   *
+   * @param string $text
+   *   The expected text.
+   *
+   * @see \Behat\Mink\WebAssert::elementTextContains()
+   */
+  protected function assertUpdateTableTextContains($text) {
+    $this->assertSession()
+      ->elementTextContains('css', $this->updateTableLocator, $text);
+  }
+
+  /**
+   * Asserts that the update table text does not contain the specified text.
+   *
+   * @param string $text
+   *   The expected text.
+   */
+  protected function assertUpdateTableTextNotContains($text) {
+    $this->assertSession()->elementTextNotContains('css', $this->updateTableLocator, $text);
+  }
+
+  /**
+   * Asserts that the update table element HTML contains the specified text.
+   *
+   * @param string $text
+   *   The expected text.
+   *
+   * @see \Behat\Mink\WebAssert::elementContains()
+   */
+  protected function assertUpdateTableElementContains($text) {
+    $this->assertSession()
+      ->elementContains('css', $this->updateTableLocator, $text);
+  }
+
+  /**
+   * Asserts that the update table element HTML contains the specified text.
+   *
+   * @param string $text
+   *   The expected text.
+   *
+   * @see \Behat\Mink\WebAssert::elementNotContains()
+   */
+  protected function assertUpdateTableElementNotContains($text) {
+    $this->assertSession()
+      ->elementNotContains('css', $this->updateTableLocator, $text);
+  }
+
+  /**
+   * Finds an update page element by label.
+   *
+   * @param string $label
+   *   The label for the update, for example "Recommended version:" or
+   *   "Latest version:".
+   *
+   * @return \Behat\Mink\Element\NodeElement
+   *   The update element.
+   */
+  protected function findUpdateElementByLabel($label) {
+    $update_elements = $this->getSession()->getPage()
+      ->findAll('css', $this->updateTableLocator . " .project-update__version:contains(\"$label\")");
+    $this->assertCount(1, $update_elements);
+    return $update_elements[0];
   }
 
 }

@@ -57,7 +57,7 @@ class OrganisationEntityRevisionRevertForm extends ConfirmFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('organisation_entity'),
+      $container->get('entity_type.manager')->getStorage('organisation_entity'),
       $container->get('date.formatter')
     );
   }

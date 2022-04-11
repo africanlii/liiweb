@@ -20,7 +20,6 @@
         "ext-json": "*",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
-        "drupal-composer/drupal-scaffold": "^2.5",
         "drupal/address": "^1.8",
         "drupal/admin_toolbar": "^2.3",
         "drupal/ajax_loader": "^1.4",
@@ -36,8 +35,10 @@
         "drupal/coffee": "^1.0",
         "drupal/computed_field": "^2.0",
         "drupal/console": "^1.0.2",
-        "drupal/core": "^8.7.0",
-        "drupal/devel": "^2.1",
+        "drupal/core-composer-scaffold": "^9",
+        "drupal/core-project-message": "^9",
+        "drupal/core-recommended": "^9",
+        "drupal/devel": "^4.1",
         "drupal/ds": "^3.7",
         "drupal/easy_breadcrumb": "^1.12",
         "drupal/entity_browser": "^2.5",
@@ -60,7 +61,7 @@
         "drupal/pathauto": "^1.7",
         "drupal/pdf": "^1.0",
         "drupal/quick_node_clone": "^1.12",
-        "drupal/recaptcha": "^2.4",
+        "drupal/recaptcha": "^3.0",
         "drupal/redirect": "^1.6",
         "drupal/s3fs": "^3.0",
         "drupal/search_api": "~1.17",
@@ -75,30 +76,27 @@
         "drupal/svg_image": "^1.14",
         "drupal/taxonomy_manager": "^2.0",
         "drupal/term_csv_export_import": "^3.0",
-        "drupal/term_merge": "^1.0@alpha",
+        "drupal/term_merge": "^2.0@beta",
         "drupal/title_length": "^1.0",
         "drupal/token": "^1.6",
-        "drupal/toolbar_extras": "^1.0@beta",
         "drupal/ultimate_cron": "^2.0@alpha",
         "drupal/views_bulk_operations": "^3.8",
         "drupal/views_conditional": "^1.2",
         "drupal/views_data_export": "^1.0",
         "drupal/views_exposed_filter_blocks": "^1.1",
         "drupal/views_infinite_scroll": "^1.7",
-        "drupal/views_php": "1.x-dev",
         "drupal/views_taxonomy_term_name_into_id": "^1.0@alpha",
         "drupal/views_tree": "^2.0",
-        "drupal/webform": "5.x-dev",
-        "drupal/xmlsitemap": "1.0.0-alpha3",
-        "drush/drush": "^9.0.0",
+        "drupal/webform": "^6.1",
+        "drupal/xmlsitemap": "^1.2",
+        "drush/drush": "^10",
         "solarium/solarium": "^6.0",
+        "symfony/var-dumper": "^5.1",
+        "symfony/yaml": "^4.4.9",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3",
         "zaporylie/composer-drupal-optimizations": "^1.0"
-    },
-    "require-dev": {
-        "webflo/drupal-core-require-dev": "^8.7.0"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -106,7 +104,16 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "drupal/console-extend-plugin": true,
+            "cweagans/composer-patches": true,
+            "drupal/core-composer-scaffold": true,
+            "zaporylie/composer-drupal-optimizations": true,
+            "drupal/core-project-message": true
+        }
     },
     "autoload": {
         "classmap": [
@@ -148,5 +155,8 @@
                 ".gitattributes": "../.gitattributes"
             }
         }
+    },
+    "require-dev": {
+        "drupal/core-dev": "^9"
     }
 }

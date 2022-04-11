@@ -21,7 +21,7 @@ nicescroll:
     url: https://github.com/inuyaksa/jquery.nicescroll/blob/master/MIT.LICENSE
     gpl-compatible: true
   js:
-    ? //cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js
+    https:////cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js
     : { type: external, minified: true }
     js/niceScroll.js: {}
 

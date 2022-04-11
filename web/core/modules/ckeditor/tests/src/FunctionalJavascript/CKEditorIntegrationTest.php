@@ -42,12 +42,12 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['node', 'ckeditor', 'filter', 'ckeditor_test'];
+  protected static $modules = ['node', 'ckeditor', 'filter', 'ckeditor_test'];
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     // Create a text format and associate CKEditor.
@@ -203,14 +203,35 @@ class CKEditorIntegrationTest extends WebDriverTestBase {
     $assert_session->assertWaitOnAjaxRequest();
 
     // Check the background color of two CKEditor elements to confirm they are
-    // not overriden by the off-canvas css reset.
+    // not overridden by the off-canvas css reset.
     $assert_session->elementExists('css', '.cke_top');
     $ckeditor_top_bg_color = $this->getSession()->evaluateScript('window.getComputedStyle(document.getElementsByClassName(\'cke_top\')[0]).backgroundColor');
-    $this->assertEqual($ckeditor_top_bg_color, 'rgb(248, 248, 248)');
+    $this->assertEquals('rgb(248, 248, 248)', $ckeditor_top_bg_color);
 
     $assert_session->elementExists('css', '.cke_button__source');
     $ckeditor_source_button_bg_color = $this->getSession()->evaluateScript('window.getComputedStyle(document.getElementsByClassName(\'cke_button__source\')[0]).backgroundColor');
-    $this->assertEqual($ckeditor_source_button_bg_color, 'rgba(0, 0, 0, 0)');
+    $this->assertEquals('rgba(0, 0, 0, 0)', $ckeditor_source_button_bg_color);
+
+    // Check that only one off-canvas style is cached in local storage and that
+    // it gets updated with the cache-busting query string.
+    $get_cache_keys = 'Object.keys(window.localStorage).filter(function (i) {return i.indexOf(\'Drupal.off-canvas.css.\') === 0})';
+    $old_keys = $this->getSession()->evaluateScript($get_cache_keys);
+    // Flush the caches to ensure the new timestamp is altered into the
+    // drupal.ckeditor library's javascript settings.
+    $this->resetAll();
+    // Normally flushing caches regenerates the cache busting query string, but
+    // as it's based on the request time, it won't change within this test so
+    // explicitly set it.
+    \Drupal::state()->set('system.css_js_query_string', '0');
+    $this->drupalGet('/ckeditor_test/off_canvas');
+    $page->clickLink('Add Node');
+    $assert_session->waitForElementVisible('css', '#drupal-off-canvas');
+    $assert_session->assertWaitOnAjaxRequest();
+    $new_keys = $this->getSession()->evaluateScript($get_cache_keys);
+
+    $this->assertCount(1, $old_keys, 'Only one off-canvas style was cached before clearing caches.');
+    $this->assertCount(1, $new_keys, 'Only one off-canvas style was cached after clearing caches.');
+    $this->assertNotEquals($old_keys, $new_keys, 'Clearing caches changed the off-canvas style cache key.');
   }
 
 }

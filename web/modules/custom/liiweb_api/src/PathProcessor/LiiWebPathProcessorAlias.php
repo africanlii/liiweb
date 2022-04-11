@@ -3,15 +3,15 @@
 namespace Drupal\liiweb_api\PathProcessor;
 
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\Core\Path\AliasManagerInterface;
-use Drupal\Core\PathProcessor\PathProcessorAlias;
+use Drupal\path_alias\AliasManagerInterface;
+use Drupal\path_alias\PathProcessor\AliasPathProcessor;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\liiweb\LiiWebUtils;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class LiiWebPathProcessorAlias extends PathProcessorAlias {
+class LiiWebPathProcessorAlias extends AliasPathProcessor {
 
   /**
    * @var \Drupal\liiweb\LiiWebUtils

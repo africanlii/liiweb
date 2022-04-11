@@ -220,7 +220,7 @@ class SystemTestController extends ControllerBase implements TrustedCallbackInte
   }
 
   /**
-   * Set cache tag on on the returned render array.
+   * Set cache tag on the returned render array.
    */
   public function system_test_cache_tags_page() {
     $build['main'] = [
@@ -283,7 +283,7 @@ class SystemTestController extends ControllerBase implements TrustedCallbackInte
   /**
    * A simple page callback that uses a plain Symfony response object.
    */
-  public function respondWithReponse(Request $request) {
+  public function respondWithResponse(Request $request) {
     return new Response('test');
   }
 
@@ -297,7 +297,7 @@ class SystemTestController extends ControllerBase implements TrustedCallbackInte
   /**
    * A simple page callback that uses a CacheableResponse object.
    */
-  public function respondWithCacheableReponse(Request $request) {
+  public function respondWithCacheableResponse(Request $request) {
     return new CacheableResponse('test');
   }
 

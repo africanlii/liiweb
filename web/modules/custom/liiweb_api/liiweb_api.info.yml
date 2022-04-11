@@ -3,7 +3,7 @@ type: module
 description: 'Holds custom functionality for the LII Website API'
 package: 'Liiweb'
 version: VERSION
-core: 8.x
+core_version_requirement: ^8 || ^9
 dependencies:
   - filefield_paths:filefield_paths
   - drupal:jsonapi

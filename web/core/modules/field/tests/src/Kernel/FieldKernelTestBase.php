@@ -19,7 +19,14 @@ abstract class FieldKernelTestBase extends KernelTestBase {
    *
    * @var array
    */
-  public static $modules = ['user', 'system', 'field', 'text', 'entity_test', 'field_test'];
+  protected static $modules = [
+    'user',
+    'system',
+    'field',
+    'text',
+    'entity_test',
+    'field_test',
+  ];
 
   /**
    * Bag of created field storages and fields.
@@ -47,7 +54,7 @@ abstract class FieldKernelTestBase extends KernelTestBase {
 
     $this->installEntitySchema('entity_test');
     $this->installEntitySchema('user');
-    $this->installSchema('system', ['sequences', 'key_value']);
+    $this->installSchema('system', ['sequences']);
 
     // Set default storage backend and configure the theme system.
     $this->installConfig(['field', 'system']);
@@ -156,6 +163,7 @@ abstract class FieldKernelTestBase extends KernelTestBase {
    *
    * @param $cardinality
    *   Number of values to generate.
+   *
    * @return
    *   An array of random values, in the format expected for field values.
    */
@@ -186,6 +194,8 @@ abstract class FieldKernelTestBase extends KernelTestBase {
    *   (Optional) The name of the column to check. Defaults to 'value'.
    */
   protected function assertFieldValues(EntityInterface $entity, $field_name, $expected_values, $langcode = LanguageInterface::LANGCODE_NOT_SPECIFIED, $column = 'value') {
+    $expected_values_count = count($expected_values);
+
     // Re-load the entity to make sure we have the latest changes.
     $storage = $this->container->get('entity_type.manager')
       ->getStorage($entity->getEntityTypeId());
@@ -196,9 +206,9 @@ abstract class FieldKernelTestBase extends KernelTestBase {
     // Filter out empty values so that they don't mess with the assertions.
     $field->filterEmptyItems();
     $values = $field->getValue();
-    $this->assertEqual(count($values), count($expected_values), 'Expected number of values were saved.');
+    $this->assertCount($expected_values_count, $values, 'Expected number of values were saved.');
     foreach ($expected_values as $key => $value) {
-      $this->assertEqual($values[$key][$column], $value, new FormattableMarkup('Value @value was saved correctly.', ['@value' => $value]));
+      $this->assertEquals($value, $values[$key][$column], new FormattableMarkup('Value @value was saved correctly.', ['@value' => $value]));
     }
   }
 

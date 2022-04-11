@@ -30,7 +30,7 @@ function liiweb_uninstall() {
 function liiweb_db_change_varchar_field($entity_type_id, $field_name, $field_length) {
   // Ignore entity manager caches.
   /** @var \Drupal\Core\Entity\EntityManager $entity_manager */
-  $entity_manager = \Drupal::service('entity.manager');
+  $entity_manager = \Drupal::service('entity_field.manager');
   $entity_manager->useCaches(FALSE);
 
   /** @var \Drupal\Core\Entity\EntityLastInstalledSchemaRepositoryInterface $schema_repository */

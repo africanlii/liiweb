@@ -8,7 +8,7 @@ namespace Drupal\jsonapi\JsonApiResource;
  * @internal JSON:API maintains no PHP API. The API is the HTTP API. This class
  *   may change at any time and could break any dependencies on it.
  *
- * @see https://www.drupal.org/project/jsonapi/issues/3032787
+ * @see https://www.drupal.org/project/drupal/issues/3032787
  * @see jsonapi.api.php
  *
  * @see \Drupal\jsonapi\JsonApiResource\ResourceIdentifierInterface
@@ -23,7 +23,7 @@ trait ResourceIdentifierTrait {
   protected $resourceIdentifier;
 
   /**
-   * The JSON:API resource type of of the identified resource object.
+   * The JSON:API resource type of the identified resource object.
    *
    * @var \Drupal\jsonapi\ResourceType\ResourceType
    */

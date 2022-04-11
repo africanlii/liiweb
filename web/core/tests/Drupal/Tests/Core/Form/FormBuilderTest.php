@@ -42,7 +42,7 @@ class FormBuilderTest extends FormTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->container = new ContainerBuilder();
@@ -145,9 +145,9 @@ class FormBuilderTest extends FormTestBase {
     $form_arg = $this->getMockForm($form_id, $expected_form);
     $form_arg->expects($this->any())
       ->method('submitForm')
-      ->will($this->returnCallback(function ($form, FormStateInterface $form_state) use ($response, $form_state_key) {
+      ->willReturnCallback(function ($form, FormStateInterface $form_state) use ($response, $form_state_key) {
         $form_state->setFormState([$form_state_key => $response]);
-      }));
+      });
 
     $form_state = new FormState();
     try {
@@ -192,11 +192,11 @@ class FormBuilderTest extends FormTestBase {
     $form_arg = $this->getMockForm($form_id, $expected_form);
     $form_arg->expects($this->any())
       ->method('submitForm')
-      ->will($this->returnCallback(function ($form, FormStateInterface $form_state) use ($response, $redirect) {
+      ->willReturnCallback(function ($form, FormStateInterface $form_state) use ($response, $redirect) {
         // Set both the response and the redirect.
         $form_state->setResponse($response);
         $form_state->set('redirect', $redirect);
-      }));
+      });
 
     $form_state = new FormState();
     try {
@@ -486,6 +486,36 @@ class FormBuilderTest extends FormTestBase {
   }
 
   /**
+   * Tests that HTML IDs are unique between 2 forms with the same element names.
+   */
+  public function testUniqueElementHtmlId() {
+    $form_id_1 = 'test_form_id';
+    $form_id_2 = 'test_form_id_2';
+    $expected_form = $form_id_1();
+
+    // Mock 2 form objects that will be built once each.
+    $form_arg_1 = $this->createMock('Drupal\Core\Form\FormInterface');
+    $form_arg_1->expects($this->exactly(1))
+      ->method('getFormId')
+      ->will($this->returnValue($form_id_1));
+    $form_arg_1->expects($this->exactly(1))
+      ->method('buildForm')
+      ->will($this->returnValue($expected_form));
+    $form_arg_2 = $this->createMock('Drupal\Core\Form\FormInterface');
+    $form_arg_2->expects($this->exactly(1))
+      ->method('getFormId')
+      ->will($this->returnValue($form_id_2));
+    $form_arg_2->expects($this->exactly(1))
+      ->method('buildForm')
+      ->will($this->returnValue($expected_form));
+    $form_state = new FormState();
+    $form_1 = $this->simulateFormSubmission($form_id_1, $form_arg_1, $form_state);
+    $form_state = new FormState();
+    $form_2 = $this->simulateFormSubmission($form_id_2, $form_arg_2, $form_state);
+    $this->assertNotSame($form_1['actions']["#id"], $form_2['actions']["#id"]);
+  }
+
+  /**
    * Tests that a cached form is deleted after submit.
    */
   public function testFormCacheDeletionCached() {
@@ -539,7 +569,7 @@ class FormBuilderTest extends FormTestBase {
     $request_stack->push($request);
     $this->formBuilder = $this->getMockBuilder('\Drupal\Core\Form\FormBuilder')
       ->setConstructorArgs([$this->formValidator, $this->formSubmitter, $this->formCache, $this->moduleHandler, $this->eventDispatcher, $request_stack, $this->classResolver, $this->elementInfo, $this->themeManager, $this->csrfToken])
-      ->setMethods(['getFileUploadMaxSize'])
+      ->onlyMethods(['getFileUploadMaxSize'])
       ->getMock();
     $this->formBuilder->expects($this->once())
       ->method('getFileUploadMaxSize')
@@ -802,12 +832,30 @@ class FormBuilderTest extends FormTestBase {
     $expected_form = $form_id();
     $form_arg = $this->getMockForm($form_id, $expected_form);
 
+    // Set up some request data so we can be sure it is removed when a token is
+    // invalid.
+    $this->request->request->set('foo', 'bar');
+    $_POST['foo'] = 'bar';
+
     $form_state = new FormState();
     $input['form_id'] = $form_id;
     $input['form_token'] = $form_token;
+    $input['test'] = 'example-value';
     $form_state->setUserInput($input);
-    $this->simulateFormSubmission($form_id, $form_arg, $form_state, FALSE);
+    $form = $this->simulateFormSubmission($form_id, $form_arg, $form_state, FALSE);
     $this->assertSame($expected, $form_state->hasInvalidToken());
+    if ($expected) {
+      $this->assertEmpty($form['test']['#value']);
+      $this->assertEmpty($form_state->getValue('test'));
+      $this->assertEmpty($_POST);
+      $this->assertEmpty(iterator_to_array($this->request->request->getIterator()));
+    }
+    else {
+      $this->assertEquals('example-value', $form['test']['#value']);
+      $this->assertEquals('example-value', $form_state->getValue('test'));
+      $this->assertEquals('bar', $_POST['foo']);
+      $this->assertEquals('bar', $this->request->request->get('foo'));
+    }
   }
 
   public function providerTestInvalidToken() {

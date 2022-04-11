@@ -55,6 +55,17 @@ class InstallerExistingSettingsTest extends InstallerTestBase {
   }
 
   /**
+   * Visits the interactive installer.
+   */
+  protected function visitInstaller() {
+    // Should redirect to the installer.
+    $this->drupalGet($GLOBALS['base_url']);
+    // Ensure no database tables have been created yet.
+    $this->assertSame([], Database::getConnection()->schema()->findTables('%'));
+    $this->assertSession()->addressEquals($GLOBALS['base_url'] . '/core/install.php');
+  }
+
+  /**
    * {@inheritdoc}
    */
   protected function setUpSettings() {
@@ -66,9 +77,9 @@ class InstallerExistingSettingsTest extends InstallerTestBase {
    * Verifies that installation succeeded.
    */
   public function testInstaller() {
-    $this->assertUrl('user/1');
-    $this->assertResponse(200);
-    $this->assertEqual('testing', \Drupal::installProfile());
+    $this->assertSession()->addressEquals('user/1');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertEquals('testing', \Drupal::installProfile());
   }
 
 }

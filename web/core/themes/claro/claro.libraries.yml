@@ -6,6 +6,19 @@ global-styling:
       css/base/typography.css: {}
       css/base/print.css: {}
     component:
+      css/classy/components/container-inline.css: {}
+      css/classy/components/exposed-filters.css: {}
+      css/classy/components/field.css: {}
+      css/classy/components/icons.css: {}
+      css/classy/components/inline-form.css: {}
+      css/classy/components/item-list.css: {}
+      css/classy/components/link.css: {}
+      css/classy/components/links.css: {}
+      css/classy/components/menu.css: {}
+      css/classy/components/more-link.css: {}
+      css/classy/components/tablesort.css: {}
+      css/classy/components/textarea.css: {}
+      css/classy/components/ui-dialog.css: {}
       css/components/accordion.css: {}
       css/components/action-link.css: {}
       css/components/content-header.css: {}
@@ -41,6 +54,7 @@ global-styling:
       css/components/system-status-report.css: {}
       css/components/system-status-report-counters.css: {}
       css/components/system-status-counter.css: {}
+      css/components/tableselect.css: {}
       css/components/tabs.css: {}
       css/components/views-ui.css: {}
     theme:
@@ -57,7 +71,7 @@ global-styling:
     # such as inputs, action links, buttons, dropbuttons. For usability and
     # accessibility reasons, we keep target sizes big enough on touch screen
     # devices (by not making these elements smaller than their default size).
-    # Modernizr is used for recognising whether user is using a touch device or
+    # Modernizr is used for recognizing whether user is using a touch device or
     # not. This allows conditionally rendering small variation of the control
     # elements on non-touch devices. In some cases, such as when rendering
     # links, it is hard recognize when Modernizr should be attached, therefore
@@ -98,10 +112,9 @@ drupal.nav-tabs:
   js:
     js/nav-tabs.js: {}
   dependencies:
-    - core/matchmedia
     - core/jquery
     - core/drupal
-    - core/jquery.once
+    - core/once
     - core/drupal.debounce
     - core/collapse
 
@@ -110,10 +123,8 @@ drupal.responsive-detail:
   js:
     js/responsive-details.js: {}
   dependencies:
-    - core/matchmedia
-    - core/matchmedia.addListener
     - core/jquery
-    - core/jquery.once
+    - core/once
     - core/collapse
 
 claro.jquery.ui:
@@ -127,6 +138,17 @@ claro.drupal.dialog:
   css:
     theme:
       css/components/dialog.css: {}
+
+claro.tabledrag:
+  version: VERSION
+  js:
+    js/tabledrag.js: {}
+
+ckeditor-admin:
+  version: VERSION
+  css:
+    theme:
+      css/theme/ckeditor.admin.css: {}
 
 ckeditor-dialog:
   version: VERSION
@@ -144,7 +166,7 @@ tour-styling:
   version: VERSION
   css:
     theme:
-      css/components/tour.theme.css: {}
+      css/theme/tour.theme.css: {}
 
 media-form:
   version: VERSION
@@ -153,12 +175,6 @@ media-form:
       css/components/media.css: {}
   dependencies:
     - media/form
-
-image-widget:
-  version: VERSION
-  css:
-    component:
-      css/layout/image-widget.css: {}
 
 system.admin:
   version: VERSION
@@ -181,6 +197,12 @@ checkbox:
   dependencies:
     - core/drupal
 
+icon-link:
+  version: VERSION
+  css:
+    component:
+      css/components/icon-link.css: {}
+
 dropbutton:
   version: VERSION
   js:
@@ -192,6 +214,8 @@ autocomplete:
   version: VERSION
   js:
     js/autocomplete.js: {}
+  dependencies:
+    - core/once
 
 drupal.shortcut:
   version: VERSION
@@ -214,11 +238,10 @@ form.password-confirm:
     component:
       css/components/form--password-confirm.css: {}
   js:
-    js/user.js: {}
+    js/user.theme.js: {}
   dependencies:
-    - core/jquery
+    - core/drupal.object.assign
     - core/drupal
-    - core/jquery.once
     - claro/global-styling
 
 views:
@@ -247,3 +270,82 @@ file:
   css:
     component:
       css/components/file.css: {}
+
+media_library.theme:
+  version: VERSION
+  css:
+    theme:
+      css/theme/media-library.css: {}
+  dependencies:
+    - claro/icon-link
+
+media_library.ui:
+  version: VERSION
+  css:
+    component:
+      css/components/media-library.ui.css : {}
+  js:
+    js/media-library.ui.js: { weight: -1 }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+
+progress:
+  version: VERSION
+  css:
+    component:
+      css/components/progress.css: {}
+
+filter:
+  version: VERSION
+  css:
+    component:
+      css/theme/filter.theme.css: {}
+
+classy.book-navigation:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/book-navigation.css: {}
+
+classy.file:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/file.css: { weight: -10 }
+
+classy.forum:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/forum.css: { weight: -10 }
+
+classy.indented:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/indented.css: {}
+
+classy.media_embed_error:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/media-embed-error.css: {}
+
+classy.media_embed_ckeditor_theme:
+  version: VERSION
+  js:
+    js/classy/media_embed_ckeditor.theme.js: {}
+
+classy.node:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/node.css: { weight: -10 }
+
+classy.search-results:
+  version: VERSION
+  css:
+    component:
+      css/classy/components/search-results.css: {}

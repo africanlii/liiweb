@@ -17,6 +17,7 @@ use Drupal\Core\Url;
 use Drupal\Core\Utility\LinkGeneratorInterface;
 use Drupal\menu_link_content\MenuLinkContentStorageInterface;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
+use Drupal\system\MenuStorage;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -112,7 +113,7 @@ class MenuForm extends EntityForm {
       '#type' => 'machine_name',
       '#title' => $this->t('Menu name'),
       '#default_value' => $menu->id(),
-      '#maxlength' => MENU_MAX_MENU_NAME_LENGTH_UI,
+      '#maxlength' => MenuStorage::MAX_ID_LENGTH,
       '#description' => $this->t('A unique name to construct the URL for the menu. It must only contain lowercase letters, numbers and hyphens.'),
       '#machine_name' => [
         'exists' => [$this, 'menuNameExists'],
@@ -125,14 +126,14 @@ class MenuForm extends EntityForm {
     ];
     $form['description'] = [
       '#type' => 'textfield',
-      '#title' => t('Administrative summary'),
+      '#title' => $this->t('Administrative summary'),
       '#maxlength' => 512,
       '#default_value' => $menu->getDescription(),
     ];
 
     $form['langcode'] = [
       '#type' => 'language_select',
-      '#title' => t('Menu language'),
+      '#title' => $this->t('Menu language'),
       '#languages' => LanguageInterface::STATE_ALL,
       '#default_value' => $menu->language()->getId(),
     ];
@@ -270,7 +271,7 @@ class MenuForm extends EntityForm {
           'subgroup' => 'menu-parent',
           'source' => 'menu-id',
           'hidden' => TRUE,
-          'limit' => \Drupal::menuTree()->maxDepth() - 1,
+          'limit' => $this->menuTree->maxDepth() - 1,
         ],
         [
           'action' => 'order',

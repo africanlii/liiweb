@@ -3,7 +3,12 @@
 namespace Drupal\field\Plugin\migrate\source\d7;
 
 /**
- * Gets field option label translations.
+ * Drupal 7 i18n field option label source from database.
+ *
+ * For available configuration keys, refer to the parent classes.
+ *
+ * @see \Drupal\migrate\Plugin\migrate\source\SqlBase
+ * @see \Drupal\migrate\Plugin\migrate\source\SourcePluginBase
  *
  * @MigrateSource(
  *   id = "d7_field_option_translation",
@@ -17,15 +22,22 @@ class FieldOptionTranslation extends Field {
    */
   public function query() {
     $query = parent::query();
-    $query->leftJoin('i18n_string', 'i18n', 'i18n.type = fc.field_name');
-    $query->innerJoin('locales_target', 'lt', 'lt.lid = i18n.lid');
+    $query->leftJoin('i18n_string', 'i18n', '[i18n].[type] = [fc].[field_name]');
+    $query->innerJoin('locales_target', 'lt', '[lt].[lid] = [i18n].[lid]');
     $query->condition('i18n.textgroup', 'field')
       ->condition('objectid', '#allowed_values');
     // Add all i18n and locales_target fields.
     $query
-      ->fields('i18n')
+      ->fields('i18n', [
+        // All table fields except lid and type.
+        'textgroup',
+        'context',
+        'objectid',
+        'property',
+        'objectindex',
+        'format',
+      ])
       ->fields('lt');
-    $query->addField('fc', 'type');
     $query->addField('fci', 'bundle');
     $query->addField('i18n', 'lid', 'i18n_lid');
     $query->addField('i18n', 'type', 'i18n_type');
@@ -64,6 +76,7 @@ class FieldOptionTranslation extends Field {
       [
         'language' => ['type' => 'string'],
         'property' => ['type' => 'string'],
+        'bundle' => ['type' => 'string'],
       ];
   }
 
