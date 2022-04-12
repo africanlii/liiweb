@@ -59,8 +59,8 @@
  */
  /** Trusted Host PAtterns **/
  $settings['trusted_host_patterns'] = [
-  '^swazilii\.org$',
-  '^.+\.swazilii\.org$',
+  '^eswatinilii\.org$',
+  '^.+\.eswatinilii\.org$',
  ];
 /**
  * Database settings:
