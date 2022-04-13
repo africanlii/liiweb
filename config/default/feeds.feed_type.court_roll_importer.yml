@@ -1,0 +1,131 @@
+uuid: 1986bfa7-5011-4d42-84c7-30f0fcc74cb5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.court_rolls.body
+    - field.field.node.court_rolls.field_files
+    - field.field.node.court_rolls.field_gazette_date
+    - node.type.court_rolls
+  module:
+    - feeds_ex
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      70ce9de9-9abd-4940-8932-feb26c0cfda5:
+        default_value: ''
+        only_if_empty: true
+        plugin: default_value
+        source: download
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 70ce9de9-9abd-4940-8932-feb26c0cfda5
+      fd7fc689-b85e-4abb-bbf5-146016d59d6c:
+        separator: '|'
+        limit: null
+        plugin: explode
+        source: download
+        weight: 1
+        label: Explode
+        uuid: fd7fc689-b85e-4abb-bbf5-146016d59d6c
+id: court_roll_importer
+label: 'Court Roll Importer'
+description: ''
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  always_download: false
+  fallback_hub: ''
+  request_timeout: 600
+parser: jsonpath
+parser_configuration:
+  context:
+    value: '$.nodes.*.*'
+  display_errors: false
+  source_encoding:
+    - auto
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+  authorize: true
+  skip_hash_check: false
+  values:
+    type: court_rolls
+custom_sources:
+  nid:
+    value: Nid
+    machine_name: nid
+    type: json
+    label: Nid
+  title:
+    value: title
+    machine_name: title
+    type: json
+    label: title
+  body:
+    value: Body
+    machine_name: body
+    type: json
+    label: Body
+  date:
+    value: Date
+    machine_name: date
+    type: json
+    label: Date
+  download:
+    value: Download
+    machine_name: download
+    type: json
+    label: Download
+mappings:
+  -
+    target: nid
+    map:
+      value: nid
+    unique:
+      value: '1'
+    settings: {  }
+  -
+    target: title
+    map:
+      value: title
+    unique: {  }
+    settings:
+      language: null
+  -
+    target: body
+    map:
+      value: body
+      summary: ''
+    settings:
+      language: ''
+      format: full_html
+  -
+    target: field_gazette_date
+    map:
+      value: date
+    settings:
+      language: null
+      timezone: UTC
+  -
+    target: field_files
+    map:
+      target_id: download
+      description: ''
+    settings:
+      existing: 2
+      language: null
+      reference_by: filename
+      autocreate: false
