@@ -1,0 +1,22 @@
+uuid: f59a2822-3111-4388-afcf-e3ed6da7b1c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.court_rolls
+id: node.court_rolls.promote
+field_name: promote
+entity_type: node
+bundle: court_rolls
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

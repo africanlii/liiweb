@@ -1,11 +1,11 @@
 uuid: c4a3bac4-f642-42b8-b339-3dd80682442f
-name: SwaziLII
-mail: no-reply@example.com
-slogan: ''
+name: 'ESwatini Legal Information Institute'
+mail: info@africanlii.org
+slogan: 'Free Access to Law from eSwatini'
 page:
   403: ''
   404: ''
-  front: /node/7629
+  front: /node/1
 admin_compact_mode: false
 weight_select_max: 100
 langcode: en

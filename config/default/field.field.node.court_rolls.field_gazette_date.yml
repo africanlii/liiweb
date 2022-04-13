@@ -1,0 +1,21 @@
+uuid: 56f5dea2-0cab-4335-90a3-ffc12eafac0f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gazette_date
+    - node.type.court_rolls
+  module:
+    - datetime
+id: node.court_rolls.field_gazette_date
+field_name: field_gazette_date
+entity_type: node
+bundle: court_rolls
+label: Date
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

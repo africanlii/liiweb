@@ -19,7 +19,7 @@ settings:
   provider: liiweb
   label_display: visible
   text:
-    value: ''
+    value: "<p>ESwatiniLII is a free access to law website by the Judiciary of eSwatini. eSwatiniLII exists to provide free access to the law for everyone, as a fundamental right of every citizen to know the law that governs them.</p>\r\n"
     format: full_html
 visibility:
   request_path:
