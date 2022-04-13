@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.node.court_rolls.body
+    - field.field.node.court_rolls.feeds_item
     - field.field.node.court_rolls.field_court_name
     - field.field.node.court_rolls.field_files
     - field.field.node.court_rolls.field_gazette_date
+    - field.field.node.court_rolls.field_judgment_old_nid
     - node.type.court_rolls
   module:
     - datetime
@@ -20,7 +22,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 121
+    weight: 8
     settings:
       rows: 9
       summary_rows: 3
@@ -30,12 +32,12 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_court_name:
-    weight: 122
+    weight: 9
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -45,28 +47,28 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_files:
-    weight: 124
+    weight: 11
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
     region: content
   field_gazette_date:
-    weight: 123
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 1
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -74,26 +76,26 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 15
+    weight: 4
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 120
+    weight: 7
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 16
+    weight: 5
     region: content
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -5
+    weight: 0
     region: content
     settings:
       size: 60
@@ -101,7 +103,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
@@ -109,4 +111,6 @@ content:
       match_limit: 10
     region: content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  feeds_item: true
+  field_judgment_old_nid: true
