@@ -1,0 +1,23 @@
+uuid: ca9db851-37c3-4718-a06d-1a09c7f9d1ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.feeds_item
+    - node.type.court_rolls
+  module:
+    - feeds
+id: node.court_rolls.feeds_item
+field_name: feeds_item
+entity_type: node
+bundle: court_rolls
+label: 'Feeds item'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:feeds_feed'
+  handler_settings: {  }
+field_type: feeds_item
