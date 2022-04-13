@@ -13,11 +13,12 @@
 $blue: #326fd1;
 $green: #5a9d1c;
 $green-light: #afc73f;
-$red: #c71d1b;
+$red: #E74C3C;
 $gray: #e1e1e1;
 $gray-light: #ebebeb;
 $gray-very-light: #f8f8f8;
 $gray-dark: #4a4a4a;
+$black:#222222;
 
 $brand-orange: #db6533;
 $brand-blue: #4c95a8;
@@ -25,8 +26,8 @@ $brand-yellow: #f8c944;
 $brand-green: #afc73f;
 $brand-magenta: #ba3e65;
 
-$primary: $blue;
-$secondary: $green;
+$primary: $red;
+$secondary: $black;
 $danger: $red;
 $border-color: #d5d5d5;
 
@@ -60,7 +61,7 @@ $body-bg: $gray-very-light;
 $body-color: $gray-dark;
 
 // Links
-$link-color: $blue;
+$link-color: $red;
 //$link-decoration:                         none !default;
 $link-hover-color:                        darken($link-color, 15%) !default;
 //$link-hover-decoration:                   underline !default;

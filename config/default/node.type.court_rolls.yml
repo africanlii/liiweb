@@ -1,0 +1,18 @@
+uuid: ab9f172b-6e91-4e6e-b0bc-64c2b8e15afb
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Court Rolls'
+type: court_rolls
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

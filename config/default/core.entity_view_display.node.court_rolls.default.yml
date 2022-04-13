@@ -1,0 +1,60 @@
+uuid: 08e39d8e-dc62-4f92-8f14-9eecbbc818f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.court_rolls.body
+    - field.field.node.court_rolls.field_court_name
+    - field.field.node.court_rolls.field_files
+    - field.field.node.court_rolls.field_gazette_date
+    - node.type.court_rolls
+  module:
+    - datetime
+    - file
+    - text
+    - user
+id: node.court_rolls.default
+targetEntityType: node
+bundle: court_rolls
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_court_name:
+    weight: 0
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_files:
+    weight: 2
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_gazette_date:
+    weight: 1
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  links:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  search_api_excerpt: true

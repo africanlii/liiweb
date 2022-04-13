@@ -1,0 +1,38 @@
+uuid: 8da30024-89b0-4028-a840-ee608e29d4f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.court_rolls.body
+    - field.field.node.court_rolls.field_court_name
+    - field.field.node.court_rolls.field_files
+    - field.field.node.court_rolls.field_gazette_date
+    - node.type.court_rolls
+  module:
+    - text
+    - user
+id: node.court_rolls.teaser
+targetEntityType: node
+bundle: court_rolls
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_court_name: true
+  field_files: true
+  field_gazette_date: true
+  langcode: true
+  search_api_excerpt: true

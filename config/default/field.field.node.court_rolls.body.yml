@@ -1,0 +1,23 @@
+uuid: e305994a-8cff-4d85-a3c9-e646eb822b01
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.court_rolls
+  module:
+    - text
+id: node.court_rolls.body
+field_name: body
+entity_type: node
+bundle: court_rolls
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary
