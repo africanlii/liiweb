@@ -1,0 +1,23 @@
+uuid: 8b7a870d-5918-4399-9aa0-7416ef8e297e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_judgment_old_nid
+    - node.type.court_rolls
+id: node.court_rolls.field_judgment_old_nid
+field_name: field_judgment_old_nid
+entity_type: node
+bundle: court_rolls
+label: 'Old NID'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
