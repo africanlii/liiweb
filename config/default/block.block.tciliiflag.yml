@@ -1,0 +1,25 @@
+uuid: dbc86ec6-1082-4c1a-b364-aa3d9da1744a
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:namlex:76084dae-22ae-445d-bdc2-db4f78f1b0ac'
+  module:
+    - block_content
+  theme:
+    - liibarrio2020
+id: tciliiflag
+theme: liibarrio2020
+region: footer_second
+weight: 0
+provider: null
+plugin: 'block_content:76084dae-22ae-445d-bdc2-db4f78f1b0ac'
+settings:
+  id: 'block_content:76084dae-22ae-445d-bdc2-db4f78f1b0ac'
+  label: 'TciLII Flag'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
