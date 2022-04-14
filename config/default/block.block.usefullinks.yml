@@ -1,0 +1,25 @@
+uuid: ffe86d0c-8dca-4723-8bb8-1dcbbf5ef905
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:namlex:e56b4bf6-1bbf-4e0e-bd7e-bd85eb6afa97'
+  module:
+    - block_content
+  theme:
+    - liibarrio2020
+id: usefullinks
+theme: liibarrio2020
+region: footer_third
+weight: 0
+provider: null
+plugin: 'block_content:e56b4bf6-1bbf-4e0e-bd7e-bd85eb6afa97'
+settings:
+  id: 'block_content:e56b4bf6-1bbf-4e0e-bd7e-bd85eb6afa97'
+  label: 'Useful Links'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
