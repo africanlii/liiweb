@@ -1,0 +1,25 @@
+uuid: 81c71660-e037-4158-8d39-4f0bfe29a66d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:namlex:204ae618-720e-4e03-9593-b81cfa3d4413'
+  module:
+    - block_content
+  theme:
+    - liibarrio2020
+id: worldlawresources
+theme: liibarrio2020
+region: footer_second
+weight: 0
+provider: null
+plugin: 'block_content:204ae618-720e-4e03-9593-b81cfa3d4413'
+settings:
+  id: 'block_content:204ae618-720e-4e03-9593-b81cfa3d4413'
+  label: 'WORLD LAW RESOURCES'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
