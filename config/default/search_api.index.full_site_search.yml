@@ -9,10 +9,10 @@ dependencies:
     - search_api_attachments
   config:
     - field.storage.node.field_commencement_date
-    - field.storage.node.field_court_name
-    - field.storage.node.field_date
-    - field.storage.node.field_expression_date
     - field.storage.node.field_judge
+    - field.storage.node.field_court_name
+    - field.storage.node.field_expression_date
+    - field.storage.node.field_date
     - field.storage.node.field_tags
     - search_api.server.solr
     - core.entity_view_mode.node.search_index
@@ -111,6 +111,7 @@ field_settings:
     label: 'Rendered HTML output'
     property_path: rendered_item
     type: text
+    boost: !!float 21
     configuration:
       roles:
         anonymous: anonymous
@@ -129,7 +130,7 @@ field_settings:
     label: 'Search api attachments: Download'
     property_path: saa_field_files
     type: text
-    boost: !!float 13
+    boost: !!float 21
   type:
     label: 'Content type'
     datasource_id: 'entity:node'

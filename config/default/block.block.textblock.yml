@@ -14,10 +14,10 @@ provider: null
 plugin: text_block
 settings:
   id: text_block
-  label: 'About TciLII'
+  label: 'About TCILII'
   provider: liiweb
   label_display: visible
   text:
-    value: "<p>&nbsp;</p>\r\n\r\n<div class=\"embed-responsive embed-responsive-16by9\"><iframe allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"https://www.youtube.com/embed/og2YO8e_Dmc\" width=\"560\"></iframe></div>\r\n\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -25px; top: -13px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>\r\n"
+    value: "<p>TCILII is a Judiciary-led initiative, which champions the provision of access to quality justice in Turks and Caicos Islands (TCI). The initiative is to ensure that legal practitioners and the public alike, have free access to legal material necessary to advance and inform the protection of their legal rights.</p>\r\n\r\n<p>TCILII has provided a mechanism by which electronic publication of judgments and other sources of law can be accessed in one location. It provides subscription-free access to the comprehensive set of local TCI judgments, as well as links to primary legal material including judicial writings and updated legislation.</p>\r\n\r\n<p>Free access to legal information is a primary tenet of any sound justice system. We seek to serve the community in the TCI and beyond.</p>\r\n"
     format: full_html
 visibility: {  }
