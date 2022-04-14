@@ -10,8 +10,8 @@ dependencies:
     - liibarrio2020
 id: tciliiflag
 theme: liibarrio2020
-region: footer_second
-weight: 0
+region: footer_third
+weight: -18
 provider: null
 plugin: 'block_content:27116f5f-f409-497e-af4d-43ffe449d9bb'
 settings:
