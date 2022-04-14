@@ -55,16 +55,16 @@ class ContactBlock extends BlockBase {
 
     //website email
     $items['website_email'][] = [
-      '#markup' => '<a href="https://africanlii.org/" target="_blank" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i>africanlii.org</a>',
+      '#markup' => '<a href="https://eswatinilii.org/" target="_blank" class="icon--website list-inline-item" ><i class="fas fa-globe-africa"></i>eswatinilii.org</a>',
     ];
     $items['website_email'][] = [
-      '#markup' => '<a href="mailto:info@africanlii.org" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@africanlii.org</a>',
+      '#markup' => '<a href="mailto:info@eswatinilii.org" class="icon--email list-inline-item" ><i class="fas fa-at"></i>info@eswatinilii.org</a>',
     ];
 
     //Social media
     $platforms = [
-      'fab fa-facebook-square' => 'https://facebook.com/africanlii/',
-      'fab fa-twitter-square'    => 'https://twitter.com/AfricanLII',
+      'fab fa-facebook-square' => 'https://facebook.com/swazilii/',
+      'fab fa-twitter-square'    => 'https://twitter.com/swazilii',
     ];
 
     foreach ($platforms as $icon => $url) {
