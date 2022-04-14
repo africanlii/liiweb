@@ -1,9 +1,9 @@
-uuid: 81c71660-e037-4158-8d39-4f0bfe29a66d
+uuid: 4185d85a-e242-4861-8cde-5fde744c1edf
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:namlex:204ae618-720e-4e03-9593-b81cfa3d4413'
+    - 'block_content:namlex:be0d26b0-e6d1-4e3c-965f-8c7491bca04c'
   module:
     - block_content
   theme:
@@ -13,10 +13,10 @@ theme: liibarrio2020
 region: footer_second
 weight: 0
 provider: null
-plugin: 'block_content:204ae618-720e-4e03-9593-b81cfa3d4413'
+plugin: 'block_content:be0d26b0-e6d1-4e3c-965f-8c7491bca04c'
 settings:
-  id: 'block_content:204ae618-720e-4e03-9593-b81cfa3d4413'
-  label: 'WORLD LAW RESOURCES'
+  id: 'block_content:be0d26b0-e6d1-4e3c-965f-8c7491bca04c'
+  label: 'World Law Resources'
   provider: block_content
   label_display: visible
   status: true
