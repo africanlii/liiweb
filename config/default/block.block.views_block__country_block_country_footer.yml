@@ -1,6 +1,6 @@
 uuid: 51e0116d-3f77-410d-9121-454c1ebf27b2
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.country
@@ -11,7 +11,7 @@ dependencies:
 id: views_block__country_block_country_footer
 theme: liibarrio2020
 region: footer_third
-weight: 0
+weight: -17
 provider: null
 plugin: 'views_block:country-block_country_footer'
 settings:
