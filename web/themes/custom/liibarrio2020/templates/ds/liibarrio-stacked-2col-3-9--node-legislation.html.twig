@@ -28,15 +28,17 @@
           {{ left.field_commencement_date }}
         </div>
       </div>
-      <div class="sidebar-block drop-shadow top-right-radius">
-        <div class="black top-right-radius">
-          <h3>Related</h3>
+      {% if left['dynamic_block_field:node-related_legislation'] or left['dynamic_block_field:node-similar_legislation'] %}
+        <div class="sidebar-block drop-shadow top-right-radius">
+          <div class="black top-right-radius">
+            <h3>Related</h3>
+          </div>
+          <div class="white thin-border">
+            {{ left['dynamic_block_field:node-related_legislation'] }}
+            {{ left['dynamic_block_field:node-similar_legislation'] }}
+          </div>
         </div>
-        <div class="white thin-border">
-          {{ left['dynamic_block_field:node-related_legislation'] }}
-          {{ left['dynamic_block_field:node-similar_legislation'] }}
-        </div>
-      </div>
+      {% endif %}
       <div class="sidebar-block drop-shadow top-right-radius">
         <div class="black top-right-radius">
           <h3>PDF</h3>
@@ -87,7 +89,7 @@
     {% endif %}
     <div class="full_judgment content drop-shadow top-right-radius white">
       <div class="black top-right-radius">
-        <h3>Full Legislation</h3>
+        <h3>Full Text of Document</h3>
       </div>
       <div class="white thin-border">
         {{ right }}
