@@ -22,6 +22,10 @@
   background-color: $white;
 }
 
+.grey{
+  background-color: $gray;
+}
+
 .black{
   background-color: $black;
   color:$white;
@@ -38,9 +42,6 @@
   } 
 }
 
-.beige{
-  background-color: $beige;
-}
 .drop-shadow{
 	box-shadow: $dropshadow-lg;
 }
