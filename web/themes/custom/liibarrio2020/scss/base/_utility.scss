@@ -17,3 +17,31 @@
     margin-bottom: 0;
   }
 }
+
+.white{
+  background-color: $white;
+}
+
+.grey{
+  background-color: $gray;
+}
+
+.black{
+  background-color: $black;
+  color:$white;
+  a{
+    color:$white;
+  }
+}
+
+.green{
+  background-color: $green;
+  color:$white;
+  a{
+    color:$white;
+  } 
+}
+
+.drop-shadow{
+	box-shadow: $dropshadow-lg;
+}

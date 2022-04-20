@@ -9,7 +9,7 @@ dependencies:
 id: pagetitle
 theme: liibarrio2020
 region: content_top
-weight: -20
+weight: -29
 provider: null
 plugin: page_title_block
 settings:
@@ -20,6 +20,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: "/judgments\r\n/judgments/*\r\n/judgments_by_court\r\n/judgments_by_court/*\r\n/bookshelf\r\n/bookshelf/*\r\n/taxonomy/term/*"
+    pages: "/judgments\r\n/judgments/*\r\n/legislation\r\n/legislation/*\r\n/judgments_by_court\r\n/judgments_by_court/*\r\n/bookshelf\r\n/bookshelf/*\r\n/taxonomy/term/*\r\n/search\r\n/search/*\r\n/db-search\r\n/db-search/*"
     negate: false
     context_mapping: {  }

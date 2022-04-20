@@ -1,0 +1,29 @@
+uuid: 10891c1d-67fc-4952-a93f-9071d7183e94
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.db_search
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: exposedformdb_searchadvanced_search
+theme: liibarrio2020
+region: content_top
+weight: -24
+provider: null
+plugin: 'views_exposed_filter_block:db_search-advanced_search'
+settings:
+  id: 'views_exposed_filter_block:db_search-advanced_search'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

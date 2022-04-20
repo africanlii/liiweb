@@ -2,7 +2,7 @@
   
     Drupal.behaviors.liibarrio2020_interactions = {
         attach: function (context, settings) {
-          /*Check if WebP is supported*/
+            /*Check if WebP is supported*/
             var webp = new Image();
             webp.src = "data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==";
             webp.onload = () => { document.body.classList.add("webp"); }
@@ -14,7 +14,6 @@
             function getRandomInt(max) {
                 return Math.ceil(Math.random() * max);
             }
-        
             //Sets a vh custom property to account for the shifting vh in mobile
             setDocHeight();
             window.addEventListener('resize', setDocHeight);

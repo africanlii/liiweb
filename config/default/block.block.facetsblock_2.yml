@@ -1,6 +1,6 @@
 uuid: 7d312035-9fde-4821-8434-1eef77bfdd23
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - facets_block
@@ -28,12 +28,16 @@ settings:
     'facet_block:judge': 'facet_block:judge'
     'facet_block:court_name': 'facet_block:court_name'
     'facet_block:tags': 'facet_block:tags'
+    'facet_block:court_name_2': '0'
+    'facet_block:duplicate_of_content_type': '0'
+    'facet_block:duplicate_of_court_name': '0'
+    'facet_block:duplicate_of_court': '0'
     'facet_block:judgments_date': '0'
     'facet_block:gazette_date': '0'
     'facet_block:judgments_court': '0'
 visibility:
   request_path:
     id: request_path
-    pages: /search
+    pages: "/search\r\n"
     negate: false
     context_mapping: {  }

@@ -28,8 +28,9 @@ dependencies:
     - field.field.node.legislation.field_work_frbr_uri
     - node.type.legislation
   module:
+    - datetime
     - ds
-    - liiweb
+    - file_download_link
     - liiweb_legislation
     - text
     - user
@@ -64,29 +65,39 @@ third_party_settings:
     regions:
       header_left:
         - node_title
-        - field_parent_work
-      header_right:
-        - field_publication_name
-      header:
+      left:
         - field_frbr_uri
         - field_lifecycle_json
-      left:
+        - field_publication_name
+        - field_parent_work
+        - field_date
+        - field_commencement_date
+        - field_expression_date
         - field_files
+        - 'dynamic_block_field:node-related_legislation'
         - 'dynamic_token_field:node-share_links'
-        - field_toc
       right:
+        - field_toc
         - field_content
-      footer:
-        - links
     fields:
+      'dynamic_block_field:node-related_legislation':
+        plugin_id: 'dynamic_block_field:node-related_legislation'
+        weight: 9
+        label: hidden
+        formatter: default
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 10
+        label: hidden
+        formatter: default
       node_title:
         plugin_id: node_title
         weight: 0
         label: hidden
         formatter: default
         settings:
-          wrapper: h2
-          class: h3
+          wrapper: h1
+          class: ''
           link: false
         ft:
           id: default
@@ -94,35 +105,81 @@ third_party_settings:
             lb: ''
             lb-col: false
             classes: {  }
-      'dynamic_token_field:node-share_links':
-        plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 6
-        label: hidden
-        formatter: default
 id: node.legislation.full
 targetEntityType: node
 bundle: legislation
 mode: full
 content:
+  field_commencement_date:
+    type: datetime_custom
+    weight: 6
+    region: left
+    label: above
+    settings:
+      timezone_override: ''
+      date_format: 'j F Y'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_content:
-    weight: 8
+    weight: 12
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: right
-  field_files:
-    type: lii_file
+  field_date:
+    type: datetime_custom
     weight: 5
     region: left
-    label: hidden
+    label: above
     settings:
-      use_description_as_link_text: true
+      timezone_override: ''
+      date_format: 'j F Y'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_expression_date:
+    type: datetime_custom
+    weight: 7
+    region: left
+    label: above
+    settings:
+      timezone_override: ''
+      date_format: 'j F Y'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_files:
+    type: file_download_link
+    weight: 8
+    region: left
+    label: inline
+    settings:
+      link_text: Download
+      new_tab: true
+      force_download: true
+      custom_classes: ''
     third_party_settings: {  }
   field_frbr_uri:
     type: string
-    weight: 3
-    region: header
+    weight: 1
+    region: left
     label: hidden
     settings:
       link_to_entity: false
@@ -138,8 +195,8 @@ content:
             lb-col: false
   field_lifecycle_json:
     type: timeline_field_formatter
-    weight: 4
-    region: header
+    weight: 2
+    region: left
     label: hidden
     settings: {  }
     third_party_settings:
@@ -152,17 +209,17 @@ content:
             classes: {  }
   field_parent_work:
     type: entity_reference_label
-    weight: 1
-    region: header_left
-    label: above
+    weight: 4
+    region: left
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
   field_publication_name:
     type: string
-    weight: 2
-    region: header_right
-    label: hidden
+    weight: 3
+    region: left
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings:
@@ -175,23 +232,15 @@ content:
             classes: {  }
   field_toc:
     type: basic_string
-    weight: 7
-    region: left
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-  links:
-    weight: 9
-    region: footer
+    weight: 11
+    region: right
+    label: above
     settings: {  }
     third_party_settings: {  }
 hidden:
   field_as_at: true
-  field_commencement_date: true
   field_created: true
   field_created_by_api: true
-  field_date: true
-  field_expression_date: true
   field_external_link: true
   field_images: true
   field_iso_country_code: true
@@ -202,4 +251,5 @@ hidden:
   field_tags: true
   field_work_frbr_uri: true
   langcode: true
+  links: true
   search_api_excerpt: true

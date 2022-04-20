@@ -1,0 +1,22 @@
+<{{ outer_wrapper }}{{ attributes }}>
+  <{{ content_wrapper }}{{ content_attributes.addClass('d-flex flex-column justify-content-between h-100 drop-shadow top-right-radius white') }}>
+   <header class="search-result--header black top-right-radius d-flex">{{content.node_title}}</header>
+   <div class="search-result--subheader">
+      <h4><span>Type:</span> {{content['bundle_field:node']}}</h4>
+      {% if content.field_court_name %}
+        <h4><span>Court:</span> {{content.field_court_name}}</h4>
+      {% endif %} 
+      {% if content.field_author %}
+        <h4><span>Author:</span> {{content.field_author}}</h4>
+      {% elseif content.field_author_surname %}
+        <h4><span>Author:</span> {{content.field_author_surname}}</h4>
+      {% endif %}
+      {% if content.field_date %}
+        <h4>{{content.field_date}}</h4>
+      {% elseif content.node_post_date %}
+        <h4>{{content.node_post_date}}</h4>
+      {% endif %}
+   </div>
+   <p class="search-result--extract">{{ content.search_api_excerpt }}</p>
+  </{{ content_wrapper }}>
+</{{ outer_wrapper }}>

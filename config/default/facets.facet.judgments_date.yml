@@ -10,7 +10,7 @@ dependencies:
 id: judgments_date
 name: 'Judgments Date'
 url_alias: date_range
-weight: -2
+weight: -1
 min_count: 1
 show_only_one_result: true
 field_identifier: field_date

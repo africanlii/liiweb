@@ -88,7 +88,7 @@ third_party_settings:
     fields:
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
-        weight: 10
+        weight: 11
         label: hidden
         formatter: default
 id: node.judgment.full
@@ -97,7 +97,7 @@ bundle: judgment
 mode: full
 content:
   download_conditional_entity_view_1:
-    weight: 13
+    weight: 14
     region: right
     settings: {  }
     third_party_settings: {  }
@@ -141,7 +141,7 @@ content:
             classes: {  }
   field_files:
     type: file_download_link
-    weight: 9
+    weight: 10
     region: left
     label: hidden
     settings:
@@ -212,7 +212,7 @@ content:
             lb-col: false
             classes: {  }
   field_headnote_and_holding:
-    weight: 11
+    weight: 12
     label: inline
     settings: {  }
     third_party_settings:
@@ -270,7 +270,7 @@ content:
             classes: {  }
   field_search_summary:
     type: text_summary_or_trimmed
-    weight: 12
+    weight: 13
     region: right
     label: inline
     settings:

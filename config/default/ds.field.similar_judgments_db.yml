@@ -1,0 +1,11 @@
+id: similar_judgments_db
+label: 'Similar Judgments DB'
+ui_limit: ''
+properties:
+  block: 'views_block:similar_judgments_db-block_1'
+  use_block_title: false
+  add_block_wrappers: false
+type: block
+type_label: 'Block field'
+entities:
+  node: node

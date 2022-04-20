@@ -71,7 +71,7 @@
               <button class="btn btn-tab" data-id="edit-field-date-value-{{ view.exposed_data.field_date_value }}">{{ view.exposed_data.field_date_value }}<span class="close">x</span></button>
             {% endif %}
             {% if view.exposed_data.alphabetical %}
-              <button class="btn btn-tab" data-id="edit-alphabetical-{{ view.exposed_data.alphabetical }}">Title starts with {{ view.exposed_data.alphabetical }}<span class="close">x</span></button>
+              <button class="btn btn-tab" data-id="edit-alphabetical-{{ view.exposed_data.alphabetical | lower }}">Title starts with {{ view.exposed_data.alphabetical }}<span class="close">x</span></button>
             {% endif %}
               {% for item in view.exposed_data.field_flynote_target_id %}
                 {% if item %}
