@@ -1,0 +1,23 @@
+uuid: 89a95788-cd3c-4e33-a801-9e8752f66f73
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.feeds_item
+    - node.type.law_journal_article
+  module:
+    - feeds
+id: node.law_journal_article.feeds_item
+field_name: feeds_item
+entity_type: node
+bundle: law_journal_article
+label: 'Feeds item'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:feeds_feed'
+  handler_settings: {  }
+field_type: feeds_item

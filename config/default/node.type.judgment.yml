@@ -9,9 +9,9 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: Judgment
+name: Document
 type: judgment
-description: 'A content type for displaying Judgments'
+description: 'A content type for displaying documents, such as judgments, soft law, etc.'
 help: ''
 new_revision: false
 preview_mode: 1

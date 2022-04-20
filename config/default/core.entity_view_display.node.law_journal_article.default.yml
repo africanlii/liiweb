@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.law_journal_article.body
+    - field.field.node.law_journal_article.feeds_item
     - field.field.node.law_journal_article.field_abstract
     - field.field.node.law_journal_article.field_author_affilliation
     - field.field.node.law_journal_article.field_author_surname
@@ -222,6 +223,7 @@ content:
     type: computed_string
     region: header_right
 hidden:
+  feeds_item: true
   field_judgment_number: true
   field_judgment_number_override: true
   langcode: true

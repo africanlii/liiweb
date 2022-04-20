@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.judgment.field_case_number_numeric
     - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
+    - field.field.node.judgment.field_country_affected
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
@@ -217,6 +218,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
+  field_country_affected:
+    weight: 28
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_court_name:
     weight: 10

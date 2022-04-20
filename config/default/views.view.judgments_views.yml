@@ -10,6 +10,7 @@ dependencies:
     - field.storage.node.field_media_neutral_citation
     - field.storage.node.field_search_summary
     - node.type.judgment
+    - taxonomy.vocabulary.court_names
     - taxonomy.vocabulary.tags
   module:
     - better_exposed_filters
@@ -385,14 +386,17 @@ display:
           link_to_taxonomy: true
           limit: true
           vids:
-            court_names: court_names
             matter_type: matter_type
             tags: tags
+            tags_local: tags_local
             author_affiliation: '0'
             author_surname: '0'
+            book_topic: '0'
+            book_type: '0'
             contributing_organisation: '0'
             copyright_and_licensing: '0'
             country: '0'
+            court_names: '0'
             iso_country_code: '0'
             judges: '0'
             law_in_focus_collection: '0'
@@ -401,7 +405,6 @@ display:
             law_journals: '0'
             legislation_tags: '0'
             locality: '0'
-            tags_local: '0'
           entity_type: node
           plugin_id: taxonomy_index_tid
         field_court_name:
@@ -833,6 +836,55 @@ display:
           hide_alter_empty: false
           plugin_id: custom
       filters:
+        field_court_name_target_id:
+          id: field_court_name_target_id
+          table: node__field_court_name
+          field: field_court_name_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_court_name_target_id_op
+            label: Institution
+            description: ''
+            use_operator: false
+            operator: field_court_name_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_court_name_target_id
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+              editor: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: true
+          type: select
+          limit: true
+          vid: court_names
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
         status:
           value: '1'
           table: node_field_data
@@ -1099,16 +1151,23 @@ display:
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: 0
-                options_show_only_used: 1
-                options_show_only_used_filtered: 1
               field_date_value:
                 plugin_id: default
                 advanced:
                   placeholder_text: ''
                   collapsible: false
                   is_secondary: false
-                options_show_only_used: false
-                options_show_only_used_filtered: false
+              field_court_name_target_id:
+                plugin_id: bef
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: false
+                  is_secondary: false
+                select_all_none: true
+                select_all_none_nested: false
+                display_inline: 0
       defaults:
         exposed_form: false
         style: true
@@ -1173,24 +1232,29 @@ display:
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: 0
-                options_show_only_used: 1
-                options_show_only_used_filtered: 1
               field_date_value:
                 plugin_id: default
                 advanced:
                   placeholder_text: ''
                   collapsible: false
                   is_secondary: false
-                options_show_only_used: false
-                options_show_only_used_filtered: false
               title:
                 plugin_id: default
                 advanced:
                   placeholder_text: ''
                   collapsible: false
                   is_secondary: false
-                options_show_only_used: false
-                options_show_only_used_filtered: false
+              field_court_name_target_id:
+                plugin_id: bef
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: false
+                  is_secondary: false
+                select_all_none: true
+                select_all_none_nested: false
+                display_inline: 0
       defaults:
         exposed_form: false
         arguments: false
@@ -1266,6 +1330,55 @@ display:
           bypass_access: false
           plugin_id: entity
       filters:
+        field_court_name_target_id:
+          id: field_court_name_target_id
+          table: node__field_court_name
+          field: field_court_name_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_court_name_target_id_op
+            label: Institution
+            description: ''
+            use_operator: false
+            operator: field_court_name_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_court_name_target_id
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              system: '0'
+              api_legislation: '0'
+              editor: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: true
+          type: select
+          limit: true
+          vid: court_names
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
         status:
           value: '1'
           table: node_field_data

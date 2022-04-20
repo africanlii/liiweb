@@ -35,7 +35,7 @@ name: 'Apache Solr'
 description: 'Default Apache Solr search server'
 backend: search_api_solr
 backend_config:
-  connector: standard
+  connector: basic_auth
   connector_config:
     scheme: http
     host: ip-172-31-28-35.eu-west-1.compute.internal
@@ -47,6 +47,8 @@ backend_config:
     optimize_timeout: 10
     finalize_timeout: 30
     commit_within: 1000
+    username: solr
+    password: 56478$$gHijJTb37823648768
     solr_version: '7'
     http_method: AUTO
     jmx: false
