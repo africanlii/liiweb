@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.card
     - field.field.node.law_journal_article.body
+    - field.field.node.law_journal_article.feeds_item
     - field.field.node.law_journal_article.field_abstract
     - field.field.node.law_journal_article.field_author_affilliation
     - field.field.node.law_journal_article.field_author_surname
@@ -56,6 +57,7 @@ content:
     region: content
 hidden:
   body: true
+  feeds_item: true
   field_abstract: true
   field_author_affilliation: true
   field_booktopic: true

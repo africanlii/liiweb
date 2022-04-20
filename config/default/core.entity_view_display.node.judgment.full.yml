@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.judgment.field_case_number_numeric
     - field.field.node.judgment.field_case_number_old
     - field.field.node.judgment.field_case_number_year
+    - field.field.node.judgment.field_country_affected
     - field.field.node.judgment.field_court_name
     - field.field.node.judgment.field_date
     - field.field.node.judgment.field_external_link
@@ -35,6 +36,7 @@ dependencies:
     - computed_field
     - ds
     - file_download_link
+    - taxonomy
     - text
     - user
 third_party_settings:
@@ -68,15 +70,15 @@ third_party_settings:
     regions:
       header_left:
         - field_case_name
+        - field_judge
       left:
         - field_case_number
         - field_court_name
-        - field_judge
+        - field_flynote_local
+        - field_flynote
         - field_law_report_citations
         - field_media_neutral_citation
-        - 'dynamic_block_field:node-similar_judgments'
-        - field_flynote
-        - field_flynote_local
+        - field_country_affected
         - field_files
         - 'dynamic_token_field:node-share_links'
       right:
@@ -84,11 +86,6 @@ third_party_settings:
         - field_search_summary
         - download_conditional_entity_view_1
     fields:
-      'dynamic_block_field:node-similar_judgments':
-        plugin_id: 'dynamic_block_field:node-similar_judgments'
-        weight: 6
-        label: hidden
-        formatter: default
       'dynamic_token_field:node-share_links':
         plugin_id: 'dynamic_token_field:node-share_links'
         weight: 10
@@ -114,20 +111,34 @@ content:
     third_party_settings: {  }
   field_case_number:
     type: string
-    weight: 1
+    weight: 2
     region: left
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  field_country_affected:
+    type: entity_reference_rss_category
+    weight: 8
+    region: left
+    label: above
+    settings: {  }
+    third_party_settings: {  }
   field_court_name:
     type: entity_reference_label
-    weight: 2
+    weight: 3
     region: left
     label: inline
     settings:
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: Institution
+            lb-col: false
+            classes: {  }
   field_files:
     type: file_download_link
     weight: 9
@@ -169,7 +180,7 @@ content:
             fi: false
             fi-def-at: false
   field_flynote:
-    weight: 7
+    weight: 5
     label: hidden
     settings:
       link: true
@@ -186,12 +197,20 @@ content:
     region: left
   field_flynote_local:
     type: entity_reference_label
-    weight: 8
+    weight: 4
     region: left
     label: hidden
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: 'Type of document'
+            lb-col: false
+            classes: {  }
   field_headnote_and_holding:
     weight: 11
     label: inline
@@ -208,8 +227,8 @@ content:
     region: right
   field_judge:
     type: entity_reference_label
-    weight: 3
-    region: left
+    weight: 1
+    region: header_left
     label: inline
     settings:
       link: false
@@ -218,15 +237,23 @@ content:
         ds_limit: ''
   field_law_report_citations:
     type: string
-    weight: 4
+    weight: 6
     region: left
     label: inline
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: Citation
+            lb-col: false
+            classes: {  }
   field_media_neutral_citation:
     type: computed_string
-    weight: 5
+    weight: 7
     region: left
     label: inline
     settings:
@@ -253,7 +280,7 @@ content:
         ft:
           id: default
           settings:
-            lb: 'Case summary:'
+            lb: Summary
             lb-col: false
             classes: {  }
   liiweb_share_links:

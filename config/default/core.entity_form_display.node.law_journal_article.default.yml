@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.law_journal_article.body
+    - field.field.node.law_journal_article.feeds_item
     - field.field.node.law_journal_article.field_abstract
     - field.field.node.law_journal_article.field_author_affilliation
     - field.field.node.law_journal_article.field_author_surname
@@ -321,6 +322,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  feeds_item: true
   langcode: true
   promote: true
   uid: true

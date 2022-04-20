@@ -1742,6 +1742,7 @@ display:
         weight: -48
         context: '0'
         menu_name: main
+        enabled: false
       display_description: ''
       pager:
         type: none

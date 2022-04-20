@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.law_in_focus.body
+    - field.field.node.law_in_focus.feeds_item
     - field.field.node.law_in_focus.field_author
     - field.field.node.law_in_focus.field_featured_image
     - field.field.node.law_in_focus.field_law_in_focus_collection
@@ -68,5 +69,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  feeds_item: true
   langcode: true
   search_api_excerpt: true

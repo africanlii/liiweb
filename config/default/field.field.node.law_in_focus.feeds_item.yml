@@ -1,0 +1,23 @@
+uuid: 4b29cbed-4785-4a67-aa01-5cc470e0a8e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.feeds_item
+    - node.type.law_in_focus
+  module:
+    - feeds
+id: node.law_in_focus.feeds_item
+field_name: feeds_item
+entity_type: node
+bundle: law_in_focus
+label: 'Feeds item'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:feeds_feed'
+  handler_settings: {  }
+field_type: feeds_item

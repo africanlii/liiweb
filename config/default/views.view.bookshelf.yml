@@ -8,9 +8,9 @@ dependencies:
     - node.type.law_journal_article
     - taxonomy.vocabulary.book_topic
     - taxonomy.vocabulary.book_type
+    - taxonomy.vocabulary.law_journals
   content:
-    - 'taxonomy_term:book_type:524547d8-7ba1-413c-a411-f7dfd3b57f40'
-    - 'taxonomy_term:book_type:919ff049-0665-46a5-a5a2-154a72124c69'
+    - 'taxonomy_term:judges:cc10bc4e-67b4-416f-a59b-ad8a408c11dc'
   module:
     - better_exposed_filters
     - book
@@ -1171,52 +1171,6 @@ display:
           plugin_id: language
           entity_type: node
           entity_field: langcode
-        field_b_target_id:
-          id: field_b_target_id
-          table: node__field_b
-          field: field_b_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            85: 85
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: true
-          type: select
-          limit: true
-          vid: book_type
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
         type:
           id: type
           table: node_field_data
@@ -1226,7 +1180,7 @@ display:
           admin_label: ''
           operator: in
           value:
-            book: book
+            law_journal_article: law_journal_article
           group: 1
           exposed: false
           expose:
@@ -1304,7 +1258,7 @@ display:
           reduce_duplicates: true
           type: select
           limit: true
-          vid: book_topic
+          vid: law_journals
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid

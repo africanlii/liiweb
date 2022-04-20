@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.card
     - field.field.node.law_in_focus.body
+    - field.field.node.law_in_focus.feeds_item
     - field.field.node.law_in_focus.field_author
     - field.field.node.law_in_focus.field_featured_image
     - field.field.node.law_in_focus.field_law_in_focus_collection
@@ -72,6 +73,7 @@ content:
     region: content
 hidden:
   body: true
+  feeds_item: true
   field_law_in_focus_collection: true
   field_topic: true
   langcode: true

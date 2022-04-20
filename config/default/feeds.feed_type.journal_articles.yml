@@ -1,0 +1,227 @@
+uuid: a0d0013c-825d-4dee-b2ae-9b4dc6aa3ac1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.law_journal_article.body
+    - field.field.node.law_journal_article.field_author_surname
+    - field.field.node.law_journal_article.field_date
+    - field.field.node.law_journal_article.field_doi
+    - field.field.node.law_journal_article.field_files
+    - field.field.node.law_journal_article.field_jtitle
+    - field.field.node.law_journal_article.field_law_report_citations
+    - node.type.law_journal_article
+  module:
+    - feeds_ex
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      d4b19e2d-0b51-48e5-889e-4ca93344c1e2:
+        separator: '|'
+        limit: null
+        plugin: explode
+        source: author
+        weight: -9
+        label: Explode
+        uuid: d4b19e2d-0b51-48e5-889e-4ca93344c1e2
+      2d2a9bb3-a27e-4ff3-aeaa-9a6ea31717b7:
+        default_value: ''
+        only_if_empty: true
+        plugin: default_value
+        source: author
+        weight: -10
+        label: 'Set value or default value'
+        uuid: 2d2a9bb3-a27e-4ff3-aeaa-9a6ea31717b7
+id: journal_articles
+label: 'Journal Articles'
+description: 'Import journal articles'
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: jsonpath
+parser_configuration:
+  context:
+    value: '$.nodes.*.*'
+  sources:
+    author:
+      label: Author
+      value: Author
+    user:
+      label: User
+      value: User
+    _updated_date_:
+      label: '[''Updated date'']'
+      value: '[''Updated date'']'
+    body:
+      label: Body
+      value: Body
+    _doi_link_:
+      label: '[''DOI Link'']'
+      value: '[''DOI Link'']'
+    _article_title_:
+      label: '[''Article title'']'
+      value: '[''Article title'']'
+    _journal_citation_:
+      label: '[''Journal citation'']'
+      value: '[''Journal citation'']'
+    _publication_date_:
+      label: '[''Publication date'']'
+      value: '[''Publication date'']'
+    _journal_title_2:
+      label: '[''Journal title'']'
+      value: '[''Journal title'']'
+    download:
+      label: Download
+      value: Download
+  display_errors: false
+  source_encoding:
+    - auto
+  debug_mode: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  langcode: en
+  update_existing: 0
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: false
+  owner_id: 1
+  authorize: true
+  skip_hash_check: false
+  values:
+    type: law_journal_article
+custom_sources:
+  author:
+    label: Author
+    value: Author
+    machine_name: author
+  user:
+    label: User
+    value: User
+    machine_name: user
+  _updated_date_:
+    label: '[''Updated date'']'
+    value: '[''Updated date'']'
+    machine_name: _updated_date_
+  body:
+    label: Body
+    value: Body
+    machine_name: body
+  _doi_link_:
+    label: '[''DOI Link'']'
+    value: '[''DOI Link'']'
+    machine_name: _doi_link_
+  _article_title_:
+    label: '[''Article title'']'
+    value: '[''Article title'']'
+    machine_name: _article_title_
+  _journal_citation_:
+    label: '[''Journal citation'']'
+    value: '[''Journal citation'']'
+    machine_name: _journal_citation_
+  _publication_date_:
+    label: '[''Publication date'']'
+    value: '[''Publication date'']'
+    machine_name: _publication_date_
+  journal_title:
+    label: 'Journal title'
+    value: 'Journal title'
+    machine_name: journal_title
+  download:
+    label: Download
+    value: Download
+    machine_name: download
+  _journal_title_:
+    label: '[''Journal Title'']'
+    value: '[''Journal Title'']'
+    machine_name: _journal_title_
+  _journal_title_2:
+    label: '[''Journal title'']'
+    value: '[''Journal title'']'
+    machine_name: _journal_title_2
+mappings:
+  -
+    target: field_author_surname
+    map:
+      target_id: author
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: '1'
+  -
+    target: uid
+    map:
+      target_id: user
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: 0
+  -
+    target: created
+    map:
+      value: _updated_date_
+    settings:
+      language: ''
+      timezone: __SITE__
+  -
+    target: body
+    map:
+      value: body
+      summary: ''
+    settings:
+      language: ''
+      format: full_html
+  -
+    target: field_doi
+    map:
+      uri: _doi_link_
+      title: ''
+    settings:
+      language: null
+  -
+    target: title
+    map:
+      value: _article_title_
+    unique: {  }
+    settings:
+      language: null
+  -
+    target: field_law_report_citations
+    map:
+      value: _journal_citation_
+    unique:
+      value: '1'
+    settings:
+      language: null
+  -
+    target: field_date
+    map:
+      value: _publication_date_
+    settings:
+      language: null
+      timezone: UTC
+  -
+    target: field_jtitle
+    map:
+      target_id: _journal_title_2
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: '1'
+  -
+    target: field_files
+    map:
+      target_id: download
+      description: ''
+    settings:
+      existing: 2
+      language: null
+      reference_by: filename
+      autocreate: false

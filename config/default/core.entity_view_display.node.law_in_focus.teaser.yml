@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.law_in_focus.body
+    - field.field.node.law_in_focus.feeds_item
     - field.field.node.law_in_focus.field_author
     - field.field.node.law_in_focus.field_featured_image
     - field.field.node.law_in_focus.field_law_in_focus_collection
@@ -49,6 +50,7 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
+  feeds_item: true
   field_topic: true
   langcode: true
   links: true
