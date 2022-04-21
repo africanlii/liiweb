@@ -1,7 +1,7 @@
 {% for facet in facets %}
-  <div class="facet-block">
+  <div class="facet-block top-right-radius white">
     {% if show_title %}
-      <p class="facet-block__title">{{ facet.title }}</p>
+      <div class="facet-block__title grey top-right-radius"><p class="small">Filter by:</p><h3>{{ facet.title }}</h3></div>
     {% endif %}
     <div class="facet-block__content">{{ facet.content }}</div>
   </div>

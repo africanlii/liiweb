@@ -3,12 +3,12 @@
   {{ title_suffix.contextual_links }}
 
   <div class="mobile-only open-filter">
-    <a href="#" role="button" class="btn btn-black" id="toggle_filters" aria-controls="sidebar_first" aria-expanded="false">Open Details</a>
+    <a href="#" role="button" class="btn btn-green" id="toggle_filters" aria-controls="sidebar_first" aria-expanded="false">Open Details</a>
   </div>
 
   {# Main #}
 
-  <{{ left_wrapper }}{{ left_attributes.addClass('layout-sidebar layout-sidebar--first col') }} id="sidebar_first">
+  <div {{ left_attributes.addClass('layout-sidebar layout-sidebar--first col') }} id="sidebar_first">
     <aside class="content-aside--inner-wrapper section">
       <div class="sidebar-block drop-shadow top-right-radius">
         <div class="black top-right-radius">
@@ -22,31 +22,38 @@
           {{ left.field_media_neutral_citation }}
         </div>
       </div>
-      <div class="sidebar-block drop-shadow top-right-radius">
-        <div class="black top-right-radius">
-          <h3>Related</h3>
+      {% if left['dynamic_block_field:node-related_judgments'] or left['dynamic_block_field:node-similar_judgements'] %}
+        <div class="sidebar-block drop-shadow top-right-radius">
+          <div class="black top-right-radius">
+            <h3>Related</h3>
+          </div>
+          <div class="white thin-border">
+            {{ left['dynamic_block_field:node-related_judgments'] }}
+            {{ left['dynamic_block_field:node-similar_judgements'] }}
+          </div>
         </div>
-        <div class="white thin-border">
-          {{ left['dynamic_block_field:node-similar_judgments'] }}
+      {% endif %}
+      {% if left.field_flynote or left.field_flynote_local %}
+        <div class="sidebar-block drop-shadow top-right-radius">
+          <div class="black top-right-radius">
+            <h3>Flynote</h3>
+          </div>
+          <div class="white thin-border">
+            {{ left.field_flynote }}
+            {{ left.field_flynote_local }}
+          </div>
         </div>
-      </div>
-      <div class="sidebar-block drop-shadow top-right-radius">
-        <div class="black top-right-radius">
-          <h3>Flynote</h3>
+      {% endif %}
+      {% if left.field_files %}
+        <div class="sidebar-block drop-shadow top-right-radius">
+          <div class="black top-right-radius">
+            <h3>PDF</h3>
+          </div>
+          <div class="white thin-border">
+            {{ left.field_files }}
+          </div>
         </div>
-        <div class="white thin-border">
-          {{ left.field_flynote }}
-          {{ left.field_flynote_local }}
-        </div>
-      </div>
-      <div class="sidebar-block drop-shadow top-right-radius">
-        <div class="black top-right-radius">
-          <h3>PDF</h3>
-        </div>
-        <div class="white thin-border">
-          {{ left.field_files }}
-        </div>
-      </div>
+      {% endif %}
       <div class="sidebar-block drop-shadow top-right-radius">
         <div class="black top-right-radius">
           <h3>Sharing</h3>
@@ -57,9 +64,9 @@
       </div>
       
     </aside>
-  </{{ left_wrapper }}>
+  </div>
 
-  <{{ right_wrapper }}{{ right_attributes.addClass('layout-main col') }} id="content">
+  <div {{ right_attributes.addClass('layout-main col') }} id="content">
     {# Header #}
     <section class="section">
     {% if header_left|render or header_right|render %}
@@ -89,14 +96,14 @@
     {% endif %}
     <div class="full_judgment content drop-shadow top-right-radius white">
       <div class="black top-right-radius">
-        <h3>Full Judgment</h3>
+        <h3>Full Text of Document</h3>
       </div>
       <div class="white thin-border">
         {{ right }}
       </div>
     </div>
   </section>
-  </{{ right_wrapper }}>
+</div>
 
   {# Footer #}
   <{{ footer_wrapper }}{{ footer_attributes.addClass('content-footer') }}>

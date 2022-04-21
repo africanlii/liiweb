@@ -1,0 +1,91 @@
+uuid: c874525a-855e-4f10-8cdd-5aae4c7b98bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.law_in_focus.body
+    - field.field.node.law_in_focus.field_author
+    - field.field.node.law_in_focus.field_featured_image
+    - field.field.node.law_in_focus.field_law_in_focus_collection
+    - field.field.node.law_in_focus.field_topic
+    - node.type.law_in_focus
+  module:
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_flex_vertical
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          content: {  }
+    regions:
+      content:
+        - node_title
+        - 'bundle_field:node'
+        - node_post_date
+        - field_author
+        - search_api_excerpt
+    fields:
+      'bundle_field:node':
+        plugin_id: 'bundle_field:node'
+        weight: 1
+        label: hidden
+        formatter: default
+      node_post_date:
+        plugin_id: node_post_date
+        weight: 2
+        label: hidden
+        formatter: ds_post_date_jfy
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.law_in_focus.search_result
+targetEntityType: node
+bundle: law_in_focus
+mode: search_result
+content:
+  field_author:
+    weight: 3
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  search_api_excerpt:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_featured_image: true
+  field_law_in_focus_collection: true
+  field_topic: true
+  langcode: true
+  links: true

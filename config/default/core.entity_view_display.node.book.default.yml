@@ -95,6 +95,16 @@ third_party_settings:
         weight: 0
         label: hidden
         formatter: default
+        settings:
+          wrapper: h3
+          class: h6
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.book.default
 targetEntityType: node
 bundle: book

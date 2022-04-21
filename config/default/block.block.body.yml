@@ -10,7 +10,7 @@ dependencies:
 id: body
 theme: liibarrio2020
 region: content_top
-weight: -17
+weight: -25
 provider: null
 plugin: 'entity_field:node:body'
 settings:
