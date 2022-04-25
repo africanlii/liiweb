@@ -1,11 +1,11 @@
 uuid: c4a3bac4-f642-42b8-b339-3dd80682442f
-name: liiweb
+name: AngolaLII
 mail: no-reply@example.com
 slogan: ''
 page:
   403: ''
   404: ''
-  front: /home
+  front: /user/login
 admin_compact_mode: false
 weight_select_max: 100
 langcode: en
