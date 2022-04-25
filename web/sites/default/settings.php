@@ -57,7 +57,11 @@
  * register custom, site-specific service definitions and/or swap out default
  * implementations with custom ones.
  */
-
+/** Trusted Host Patterns **/
+$settings['trusted_host_patterns'] = [
+  '^africanlii\.org$',
+  '^.+\.africanlii\.org$',
+];
 /**
  * Database settings:
  *
@@ -88,7 +92,6 @@
  * ];
  * @endcode
  */
-
 $dburl = getenv('DATABASE_URL');
 if ($dburl) {
   $dbopts = parse_url($dburl);
@@ -293,7 +296,7 @@ $config_directories = [];
  *
  * Example:
  * @code
- *  
+ *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
 $settings['hash_salt'] = getenv('HASH_SALT');
@@ -822,4 +825,3 @@ $config['recaptcha.settings']['secret_key'] = getenv('RECAPTCHA_SECRET_KEY');
 * SMTP settings
 */
 $config['smtp.settings']['smtp_password'] = getenv('SMTP_PASS');
-
