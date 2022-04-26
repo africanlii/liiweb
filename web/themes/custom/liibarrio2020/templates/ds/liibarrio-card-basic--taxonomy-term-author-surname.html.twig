@@ -24,9 +24,10 @@
   <div class="white thin-border">
     {{ content.field_author_portrait }}
     {{ content.field_author_bio|render }}
-    <a href="{{ content.field_author_link[0]["#url"] }}" target="_blank">More about the author</a>
+    {% if content.field_author_link %}
+      <a href="{{ content.field_author_link[0]["#url"] }}" target="_blank">More about the author</a>
+    {% endif %}
     <h4>More by this Author</h4>
     {{ content['dynamic_block_field:taxonomy_term-more_by_author']}}
-    {{ devel_breakpoint() }}
   </div>
 </div>

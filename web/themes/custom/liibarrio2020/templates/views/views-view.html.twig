@@ -52,7 +52,9 @@
       {% if view.exposed_data %}
         {{ header }}
         {% set topic = false %}
-        {% if view.exposed_data.field_flynote_target_id or  view.exposed_data.field_booktopic_target_id %}
+        {% set journal = false %}
+          
+        {% if view.exposed_data.field_flynote_target_id or  view.exposed_data.field_booktopic_target_id or view.exposed_data.field_jtitle_target_id %}
           {% for item in view.exposed_data.field_flynote_target_id %}
               {% if item %}
                 {% set topic = true %}
@@ -63,8 +65,13 @@
               {% set topic = true %}
             {% endif %}
           {% endfor %}
+          {% for item in view.exposed_data.field_jtitle_target_id %}
+            {% if item %}
+              {% set journal = true %}
+            {% endif %}
+          {% endfor %}
         {% endif %}
-        {% if view.exposed_data.field_date_value or view.exposed_data.alphabetical or topic %}
+        {% if view.exposed_data.field_date_value or view.exposed_data.alphabetical or topic or journal %}
           <h3>You are viewing:</h3>
           <div class="topic-list d-flex">
             {% if view.exposed_data.field_date_value %}
@@ -81,6 +88,11 @@
               {% for item in view.exposed_data.field_booktopic_target_id %}
                 {% if item %}
                   <button class="btn btn-tab" data-id="edit-field-booktopic-target-id-{{ item }}">{{ view.exposed_data.booktopic[item] }}<span class="close">x</span></span></button>
+                {% endif %}
+              {% endfor %}
+              {% for item in view.exposed_data.field_jtitle_target_id %}
+                {% if item %}
+                  <button class="btn btn-tab" data-id="edit-field-jtitle-target-id-{{ item }}">{{ view.exposed_data.jtitle[item] }}<span class="close">x</span></span></button>
                 {% endif %}
               {% endfor %}
           </div>
