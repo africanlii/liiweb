@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1fd5acfdf628a905ed9a7931147a4e50",
+    "content-hash": "9beef3470e4a62410dd874cd4f0b3609",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3735,7 +3735,8 @@
                     }
                 },
                 "patches_applied": {
-                    "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch"
+                    "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch",
+                    "Book module bug patch adapted from https://www.drupal.org/project/drupal/issues/2918537#comment-13873706": "patches/core/2918537-63.patch"
                 }
             },
             "autoload": {
@@ -7175,17 +7176,17 @@
         },
         {
             "name": "drupal/views_data_export",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_data_export.git",
-                "reference": "8.x-1.0"
+                "reference": "8.x-1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_data_export-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "f1d16fd06ee7574f680e30f6bf5d6a152e3e9f42"
+                "url": "https://ftp.drupal.org/files/projects/views_data_export-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "8ee9d441e69b5861ab12286246522d52613f4e61"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9",
@@ -7198,8 +7199,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1592589996",
+                    "version": "8.x-1.1",
+                    "datestamp": "1642805106",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
