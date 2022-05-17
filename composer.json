@@ -83,7 +83,7 @@
         "drupal/ultimate_cron": "^2.0@alpha",
         "drupal/views_bulk_operations": "^3.8",
         "drupal/views_conditional": "^1.2",
-        "drupal/views_data_export": "^1.0",
+        "drupal/views_data_export": "^1.1",
         "drupal/views_exposed_filter_blocks": "^1.1",
         "drupal/views_infinite_scroll": "^1.7",
         "drupal/views_php": "1.x-dev",
