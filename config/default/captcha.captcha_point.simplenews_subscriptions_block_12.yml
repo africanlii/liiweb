@@ -1,0 +1,7 @@
+uuid: e214f21b-4ef1-4ab2-b714-41c516dede3f
+langcode: en
+status: true
+dependencies: {  }
+formId: simplenews_subscriptions_block_12
+captchaType: recaptcha/reCAPTCHA
+label: simplenews_subscriptions_block_12

@@ -1,0 +1,74 @@
+uuid: ad626c5e-4114-489e-93f5-fc0f41b4a482
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_news_view
+    - node.type.simplenews_issue
+  module:
+    - viewfield
+id: node.simplenews_issue.field_news_view
+field_name: field_news_view
+entity_type: node
+bundle: simplenews_issue
+label: 'News View'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  force_default: false
+  allowed_views:
+    content_mailing_list: content_mailing_list
+    billboard: '0'
+    content: '0'
+    country: '0'
+    block_content: '0'
+    download_conditional: '0'
+    entity_browser: '0'
+    feeds_feed: '0'
+    files: '0'
+    frontpage: '0'
+    gazettes_listing: '0'
+    jot_documents_and_guidelines: '0'
+    judgment: '0'
+    judgment_court_filter: '0'
+    judgments_listing: '0'
+    legislation: '0'
+    legislation_pdf_conditional: '0'
+    lrdc_reports: '0'
+    media: '0'
+    news: '0'
+    simplenews_newsletters: '0'
+    rw_organisations: '0'
+    user_admin_people: '0'
+    rw_quicklink: '0'
+    content_recent: '0'
+    related_content: '0'
+    liiweb_search: '0'
+    index_search_gazettes: '0'
+    index_search_judgment: '0'
+    search_judgments: '0'
+    index_search_legislation: '0'
+    similar_judgments: '0'
+    speeches: '0'
+    simplenews_subscribers: '0'
+    taxonomy_term: '0'
+    tree_view_selector: '0'
+    watchdog: '0'
+    webform_submissions: '0'
+    who_s_new: '0'
+    who_s_online: '0'
+  allowed_display_types:
+    block: block
+    page: page
+    attachment: '0'
+    embed: '0'
+    entity_browser: '0'
+    entity_view: '0'
+    feed: '0'
+    default: '0'
+  handler: 'default:view'
+  handler_settings: {  }
+field_type: viewfield

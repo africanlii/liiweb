@@ -1,0 +1,26 @@
+uuid: 4ec86d18-022b-4c9b-bd15-777090280948
+langcode: en
+status: true
+dependencies:
+  module:
+    - simplenews
+  theme:
+    - liibarrio2020
+id: simplenewssubscription
+theme: liibarrio2020
+region: sidebar_second
+weight: 0
+provider: null
+plugin: simplenews_subscription_block
+settings:
+  id: simplenews_subscription_block
+  label: 'Monthly Newsletter'
+  provider: simplenews
+  label_display: visible
+  show_manage: false
+  newsletters: {  }
+  default_newsletters:
+    default: default
+  message: 'Stay up to date with new content - subscribe to our newsletter.'
+  unique_id: '12'
+visibility: {  }
