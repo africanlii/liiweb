@@ -1,0 +1,29 @@
+hash_expiration: 86400
+newsletter:
+  issue_tokens: false
+  format: plain
+  priority: 0
+  receipt: true
+  from_address: info@tcilii.org
+  from_name: TCILII
+subscriber:
+  sync_fields: true
+subscription:
+  skip_verification: false
+  tidy_unconfirmed: 7
+  confirm_combined_subject: 'Confirmation for [site:name]'
+  confirm_combined_body: "We have received a request to subscribe [simplenews-subscriber:mail] at [site:url]. To confirm please use the link below.\r\n\r\n[simplenews-subscriber:combined-url]"
+  confirm_combined_body_unchanged: 'We have received a request to subscribe [simplenews-subscriber:mail] at [site:url]. No confirmation necessary because you are already subscribed.'
+  validate_subject: 'Manage your subscriptions at [site:name]'
+  validate_body: "We have received a request to manage your subscriptions for [simplenews-subscriber:mail] at [site:url]. To proceed please use the link below.\r\n\r\n[simplenews-subscriber:manage-url]"
+  confirm_subscribe_page: ''
+  confirm_unsubscribe_page: ''
+mail:
+  use_cron: true
+  textalt: false
+  throttle: 20
+  spool_progress_expiration: 3600
+  spool_expire: 0
+  debug: false
+_core:
+  default_config_hash: us91yAZ2i-PBRNGxbudkfTDsiVfCpbLCNPOGmO78NJ4

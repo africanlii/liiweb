@@ -1,0 +1,17 @@
+uuid: e74cf66b-0383-4479-81a7-d5ee34748892
+langcode: en
+status: true
+dependencies:
+  module:
+    - simplenews_scheduler
+title: 'Default cron handler'
+id: simplenews_scheduler_cron
+weight: 0
+module: simplenews_scheduler
+callback: simplenews_scheduler_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

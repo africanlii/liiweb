@@ -1,0 +1,32 @@
+uuid: 0b910b8d-c018-4102-aaff-1ac5362781d9
+langcode: en
+status: true
+dependencies:
+  module:
+    - simplenews
+_core:
+  default_config_hash: S4R8gMB5KRRp4AeUvku-2qpcRuD0o_Lu8UgnSXEHyBw
+title: 'Sends newsletters'
+id: simplenews_cron
+weight: 0
+module: simplenews
+callback: simplenews_cron
+scheduler:
+  id: crontab
+  configuration:
+    rules:
+      - '0 12 1 */1 1'
+    catch_up: 0
+launcher:
+  id: serial
+  configuration:
+    timeouts:
+      lock_timeout: 3600
+    launcher:
+      thread: 0
+logger:
+  id: database
+  configuration:
+    method: '3'
+    expire: 1209600
+    retain: 1000
