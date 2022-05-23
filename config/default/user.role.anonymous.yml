@@ -10,5 +10,6 @@ weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'subscribe to newsletters'
   - 'view legislation revisions'
   - 'view media'
