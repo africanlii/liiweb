@@ -124,7 +124,6 @@ field_settings:
     label: 'Search api attachments: Gazette download'
     property_path: saa_field_file
     type: text
-    boost: !!float 13
   saa_field_files:
     label: 'Search api attachments: Download'
     property_path: saa_field_files
@@ -145,6 +144,7 @@ datasource_settings:
       selected:
         - government_gazette
         - judgment
+        - law_reform_reports
         - legislation
     languages:
       default: true
