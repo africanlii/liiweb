@@ -8,11 +8,12 @@ dependencies:
     - search_api
     - search_api_attachments
   config:
+    - field.storage.node.field_case_name
     - field.storage.node.field_commencement_date
-    - field.storage.node.field_court_name
-    - field.storage.node.field_date
-    - field.storage.node.field_expression_date
     - field.storage.node.field_judge
+    - field.storage.node.field_court_name
+    - field.storage.node.field_expression_date
+    - field.storage.node.field_date
     - field.storage.node.field_tags
     - search_api.server.solr
     - core.entity_view_mode.node.search_index
@@ -59,6 +60,15 @@ name: 'Full Site Search'
 description: ''
 read_only: false
 field_settings:
+  field_case_name:
+    label: 'Case name'
+    datasource_id: 'entity:node'
+    property_path: field_case_name
+    type: text
+    boost: !!float 21
+    dependencies:
+      config:
+        - field.storage.node.field_case_name
   field_commencement_date:
     label: 'Commencement date'
     datasource_id: 'entity:node'
@@ -111,6 +121,7 @@ field_settings:
     label: 'Rendered HTML output'
     property_path: rendered_item
     type: text
+    boost: !!float 13
     configuration:
       roles:
         anonymous: anonymous
@@ -124,7 +135,7 @@ field_settings:
     label: 'Search api attachments: Gazette download'
     property_path: saa_field_file
     type: text
-    boost: !!float 13
+    boost: !!float 8
   saa_field_files:
     label: 'Search api attachments: Download'
     property_path: saa_field_files
@@ -189,6 +200,7 @@ processor_settings:
   html_filter:
     all_fields: true
     fields:
+      - field_case_name
       - field_court_name
       - field_judge
       - field_tags
@@ -212,6 +224,7 @@ processor_settings:
   ignore_character:
     all_fields: true
     fields:
+      - field_case_name
       - field_court_name
       - field_judge
       - field_tags
