@@ -11,6 +11,7 @@ is_admin: false
 permissions:
   - 'access content'
   - 'opt-in or out of google analytics tracking'
+  - 'subscribe to newsletters'
   - 'use text format full_html'
   - 'view legislation revisions'
   - 'view media'

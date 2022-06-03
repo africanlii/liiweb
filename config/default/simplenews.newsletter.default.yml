@@ -1,0 +1,21 @@
+uuid: aba796cc-2d81-421d-bbb0-d613d8bd88f1
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 6wgXMbTWVfjhYZ3wFXLy3vAISxQeKEJz9SdNqt9SLMY
+name: 'Default newsletter'
+id: default
+description: 'This is an example newsletter. Change it.'
+format: plain
+priority: 0
+receipt: true
+from_name: TCILII
+subject: '[[simplenews-newsletter:name]] [node:title]'
+from_address: info@tcilii.org
+hyperlinks: false
+allowed_handlers:
+  simplenews_all: '0'
+new_account: 'on'
+access: default
+weight: 0
