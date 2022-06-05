@@ -1,0 +1,11 @@
+domain_redirects:
+  'sierralii:org':
+    -
+      sub_path: /
+      destination: eswatinilii.org/
+  'www:swazilii:org':
+    -
+      sub_path: /
+      destination: www.eswatinilii.org/
+_core:
+  default_config_hash: CgXLPQkHCGerCdDtMO8wK9Er4j6iy1iMOyalk8iRgrE
