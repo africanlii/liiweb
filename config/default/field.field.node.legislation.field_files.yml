@@ -39,7 +39,7 @@ default_value_callback: ''
 settings:
   file_directory: legislation/files
   file_extensions: 'txt doc docx pdf epub'
-  max_filesize: 20MB
+  max_filesize: 64MB
   description_field: true
   handler: 'default:file'
   handler_settings: {  }
