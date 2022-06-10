@@ -31,8 +31,10 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  feeds_item: true
   field_court_name: true
   field_files: true
   field_gazette_date: true
+  field_judgment_old_nid: true
   langcode: true
   search_api_excerpt: true
