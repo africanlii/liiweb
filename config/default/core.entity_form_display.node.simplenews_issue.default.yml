@@ -4,14 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.node.simplenews_issue.body
-    - field.field.node.simplenews_issue.field_news_view
+    - field.field.node.simplenews_issue.field_latese
     - field.field.node.simplenews_issue.simplenews_issue
     - node.type.simplenews_issue
   module:
+    - block_field
     - path
     - simplenews
     - text
-    - viewfield
 _core:
   default_config_hash: 95gz1Cn7UjP1ED-lgXnR9ucmWPz9TOn1YEuKUllmELo
 id: node.simplenews_issue.default
@@ -34,11 +34,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-  field_news_view:
-    weight: 121
-    settings: {  }
+  field_latese:
+    weight: 122
+    settings:
+      plugin_id: ''
+      settings: {  }
+      configuration_form: full
     third_party_settings: {  }
-    type: viewfield_select
+    type: block_field_default
     region: content
   langcode:
     type: language_select

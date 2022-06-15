@@ -1,7 +1,14 @@
 uuid: 04a6d31b-b553-42d4-9bc0-2f761220b3a3
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
 _core:
   default_config_hash: T0xVUPLXklJ1liu4ukvaguMb-aMY1oMxO2PsCRB8-qg
 name: 'Newsletter Issue'

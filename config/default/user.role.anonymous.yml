@@ -13,3 +13,4 @@ permissions:
   - 'subscribe to newsletters'
   - 'view legislation revisions'
   - 'view media'
+  - 'view simplenews_issue revisions'

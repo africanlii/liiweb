@@ -1,4 +1,4 @@
-uuid: 2f4c0b4a-1158-42ca-91b4-53ce922a5441
+uuid: 48801c4b-c516-4de2-9343-d939bedc1356
 langcode: en
 status: true
 dependencies:
@@ -7,9 +7,6 @@ dependencies:
     - field.field.simplenews_subscriber.simplenews_subscriber.field_surname
   module:
     - simplenews
-    - telephone
-_core:
-  default_config_hash: 2Nvy8pq5vcEXAV16jh_aQ93MsG3CNQG45VcpztHiT7o
 id: simplenews_subscriber.simplenews_subscriber.default
 targetEntityType: simplenews_subscriber
 bundle: simplenews_subscriber
@@ -17,26 +14,18 @@ mode: default
 content:
   field_contact:
     weight: 3
-    settings:
-      placeholder: ''
+    label: above
+    settings: {  }
     third_party_settings: {  }
-    type: telephone_default
+    type: basic_string
     region: content
   field_surname:
     weight: 2
+    label: above
     settings:
-      size: 60
-      placeholder: ''
+      link_to_entity: false
     third_party_settings: {  }
-    type: string_textfield
-    region: content
-  mail:
-    type: email_default
-    weight: 0
-    settings:
-      placeholder: ''
-      size: 60
-    third_party_settings: {  }
+    type: string
     region: content
 hidden:
-  uid: true
+  search_api_excerpt: true
