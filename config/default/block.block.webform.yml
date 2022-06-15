@@ -1,11 +1,12 @@
 uuid: f2516e4e-142f-49e4-9dea-fed5c3973d13
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - webform.webform.newsletter_sign_up
   module:
     - system
+    - user
     - webform
   theme:
     - liibarrio2020
@@ -29,3 +30,10 @@ visibility:
     pages: "/about\r\n/contact"
     negate: false
     context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      system: system
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

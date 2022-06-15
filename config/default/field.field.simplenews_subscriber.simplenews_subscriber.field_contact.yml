@@ -1,0 +1,21 @@
+uuid: 3ff595e7-c700-43a2-8d9e-013516f8213a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.simplenews_subscriber.field_contact
+  module:
+    - simplenews
+    - telephone
+id: simplenews_subscriber.simplenews_subscriber.field_contact
+field_name: field_contact
+entity_type: simplenews_subscriber
+bundle: simplenews_subscriber
+label: 'Phone Number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

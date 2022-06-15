@@ -5,7 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.simplenews_issue.body
-    - field.field.node.simplenews_issue.field_news_view
+    - field.field.node.simplenews_issue.field_latese
     - field.field.node.simplenews_issue.simplenews_issue
     - node.type.simplenews_issue
   module:
@@ -27,7 +27,7 @@ content:
     label: hidden
     region: content
 hidden:
-  field_news_view: true
+  field_latese: true
   langcode: true
   links: true
   search_api_excerpt: true

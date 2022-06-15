@@ -5,10 +5,11 @@ dependencies:
   config:
     - core.entity_view_mode.node.email_plain
     - field.field.node.simplenews_issue.body
-    - field.field.node.simplenews_issue.field_news_view
+    - field.field.node.simplenews_issue.field_latese
     - field.field.node.simplenews_issue.simplenews_issue
     - node.type.simplenews_issue
   module:
+    - block_field
     - text
     - user
 _core:
@@ -25,8 +26,14 @@ content:
     third_party_settings: {  }
     label: hidden
     region: content
+  field_latese:
+    type: block_field
+    weight: 1
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
 hidden:
-  field_news_view: true
   langcode: true
   links: true
   search_api_excerpt: true

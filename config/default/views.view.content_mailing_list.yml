@@ -4,12 +4,18 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_court_name
+    - field.storage.node.field_search_summary
     - node.type.government_gazette
+    - node.type.jot_documents_and_guidelines
     - node.type.judgment
+    - node.type.law_journal_article
+    - node.type.law_reform_reports
     - node.type.legislation
+    - node.type.news
+    - node.type.speech
   module:
     - node
-    - user
+    - text
 id: content_mailing_list
 label: 'Content Mailing List'
 module: views
@@ -25,16 +31,15 @@ display:
     position: 0
     display_options:
       access:
-        type: perm
-        options:
-          perm: 'access content'
+        type: none
+        options: {  }
       cache:
         type: tag
         options: {  }
       query:
         type: views_query
         options:
-          disable_sql_rewrite: false
+          disable_sql_rewrite: true
           distinct: false
           replica: false
           query_comment: ''
@@ -264,6 +269,68 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: field
+        field_search_summary:
+          id: field_search_summary
+          table: node__field_search_summary
+          field: field_search_summary
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
       filters:
         status:
           value: '1'
@@ -288,8 +355,13 @@ display:
           operator: in
           value:
             government_gazette: government_gazette
+            jot_documents_and_guidelines: jot_documents_and_guidelines
             judgment: judgment
+            law_journal_article: law_journal_article
+            law_reform_reports: law_reform_reports
             legislation: legislation
+            news: news
+            speech: speech
           group: 1
           exposed: false
           expose:
@@ -398,9 +470,25 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - 'user.node_grants:view'
-        - user.permissions
       tags:
         - 'config:field.storage.node.field_court_name'
+        - 'config:field.storage.node.field_search_summary'
+  block_1:
+    display_plugin: block
+    id: block_1
+    display_title: Block
+    position: 1
+    display_options:
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+      tags:
+        - 'config:field.storage.node.field_court_name'
+        - 'config:field.storage.node.field_search_summary'
   page_1:
     display_plugin: page
     id: page_1
@@ -415,6 +503,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - 'user.node_grants:view'
-        - user.permissions
       tags:
         - 'config:field.storage.node.field_court_name'
+        - 'config:field.storage.node.field_search_summary'

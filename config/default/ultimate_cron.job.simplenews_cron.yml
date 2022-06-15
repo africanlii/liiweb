@@ -12,11 +12,10 @@ weight: 0
 module: simplenews
 callback: simplenews_cron
 scheduler:
-  id: crontab
+  id: simple
   configuration:
     rules:
-      - '0 12 1 */1 1'
-    catch_up: 0
+      - '0+@ */3 * * *'
 launcher:
   id: serial
   configuration:

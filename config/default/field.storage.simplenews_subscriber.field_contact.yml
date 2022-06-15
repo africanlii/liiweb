@@ -1,0 +1,19 @@
+uuid: 3c760125-ae59-41ff-9341-111bdc0a6a09
+langcode: en
+status: true
+dependencies:
+  module:
+    - simplenews
+    - telephone
+id: simplenews_subscriber.field_contact
+field_name: field_contact
+entity_type: simplenews_subscriber
+type: telephone
+settings: {  }
+module: telephone
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -15,3 +15,4 @@ permissions:
   - 'use text format full_html'
   - 'view legislation revisions'
   - 'view media'
+  - 'view simplenews_issue revisions'

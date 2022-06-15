@@ -25,5 +25,6 @@ mail:
   spool_progress_expiration: 3600
   spool_expire: 0
   debug: false
+  source_cache: null
 _core:
   default_config_hash: us91yAZ2i-PBRNGxbudkfTDsiVfCpbLCNPOGmO78NJ4

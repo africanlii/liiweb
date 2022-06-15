@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.simplenews_issue.body
-    - field.field.node.simplenews_issue.field_news_view
+    - field.field.node.simplenews_issue.field_latese
     - field.field.node.simplenews_issue.simplenews_issue
     - node.type.simplenews_issue
   module:
+    - block_field
     - text
     - user
-    - viewfield
 _core:
   default_config_hash: 2uFXyR4335F9Qrls0Lx2QTobeBiF6FN1PeDjJEv47Yw
 id: node.simplenews_issue.default
@@ -25,15 +25,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-  field_news_view:
-    weight: 1
-    label: hidden
-    settings:
-      view_title: hidden
-      always_build_output: false
-      empty_view_title: hidden
+  field_latese:
+    weight: 3
+    label: above
+    settings: {  }
     third_party_settings: {  }
-    type: viewfield_default
+    type: block_field
     region: content
   links:
     weight: 2
