@@ -746,3 +746,19 @@ header {
     }
   }
 }
+//Newsletter Block
+div#block-simplenewssubscription {
+    background: white;
+    border: 1px solid #d5d5d5;
+    padding: 5px;
+
+ .title {
+    text-align: center;
+    background: $primary;
+    color: #ffffff;
+	}
+.fieldset-inner-wrapper {
+    text-align: center;
+}
+}
+
