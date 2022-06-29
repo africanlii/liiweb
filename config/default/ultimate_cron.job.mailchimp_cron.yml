@@ -1,0 +1,17 @@
+uuid: 08ab4459-505b-4b35-965a-85966a577ae2
+langcode: en
+status: true
+dependencies:
+  module:
+    - mailchimp
+title: 'Default cron handler'
+id: mailchimp_cron
+weight: 0
+module: mailchimp
+callback: mailchimp_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

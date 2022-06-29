@@ -56,6 +56,7 @@
         "drupal/group": "^1.0@RC",
         "drupal/inline_entity_form": "^1.0@RC",
         "drupal/jasm": "2.x-dev",
+        "drupal/mailchimp": "^2.0",
         "drupal/paragraphs": "^1.12",
         "drupal/pathauto": "^1.7",
         "drupal/pdf": "^1.0",
