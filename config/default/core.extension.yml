@@ -74,6 +74,10 @@ module:
   liiweb_search: 0
   link: 0
   locale: 0
+  mailchimp: 0
+  mailchimp_campaign: 0
+  mailchimp_lists: 0
+  mailchimp_signup: 0
   media: 0
   menu_ui: 0
   node: 0
