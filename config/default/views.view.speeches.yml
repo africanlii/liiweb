@@ -490,7 +490,7 @@ display:
         description: 'This is a collection of Guidelines issued by the Chief Justice of Tanzania and other JoT documents.'
         expanded: false
         parent: ''
-        weight: 50
+        weight: -45
         context: '0'
         menu_name: main
     cache_metadata:

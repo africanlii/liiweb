@@ -19,7 +19,7 @@ settings:
   provider: liiweb
   label_display: '0'
   text:
-    value: "<table bgcolor=\"#3fc9f5\" border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width: 90%;\">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td>\r\n\t\t\t<p><strong>Welcome to the new SeyLII website. Enjoy an improved search engine and new collections. If you are used to accessing SeyLII via Google, note Google will take some time to re-index the site.</strong></p>\r\n\r\n\t\t\t<p><strong>We are still busy migrating some of the old content. If you need anything in particular from the old website, it will be available for a while longer at <a href=\"https://old.seylii.org/ \">https://old.seylii.org/&nbsp;</a></strong></p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n"
+    value: "<table bgcolor=\"#808f91\" border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"margin:0\">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td>\r\n\t\t\t<p class=\"text-align-center\" style=\"text-align:center;color:white\"><strong>Welcome to the new SeyLII website. Enjoy an improved search engine and new collections. If you are used to accessing SeyLII via Google, note Google will take some time to re-index the site.</strong></p>\r\n\r\n\t\t\t<p class=\"text-align-center\" style=\"text-align:center;color:white\"><strong>We are still busy migrating some of the old content. If you need anything in particular from the old website, it will be available for a while longer at <a href=\"https://old.seylii.org/ \">https://old.seylii.org/ </a></strong></p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n"
     format: full_html
 visibility:
   request_path:

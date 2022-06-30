@@ -447,7 +447,10 @@ display:
           admin_label: ''
           operator: or
           value:
-            all: all
+            government_gazette: government_gazette
+            judgment: judgment
+            legislation: legislation
+            speech: speech
           group: 1
           exposed: true
           expose:
@@ -467,6 +470,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
+              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
