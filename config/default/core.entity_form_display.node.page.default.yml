@@ -5,6 +5,7 @@ dependencies:
   config:
     - entity_browser.browser.image_browser
     - field.field.node.page.body
+    - field.field.node.page.field_attach_block
     - field.field.node.page.field_image
     - field.field.node.page.field_image_ref
     - field.field.node.page.field_paragraphs
@@ -12,10 +13,11 @@ dependencies:
     - image.style.thumbnail
     - node.type.page
   module:
+    - block_field
     - entity_browser
-    - image
     - paragraphs
     - path
+    - svg_image
     - text
 id: node.page.default
 targetEntityType: node
@@ -38,6 +40,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_attach_block:
+    weight: 27
+    settings:
+      plugin_id: ''
+      settings: {  }
+      configuration_form: full
+    third_party_settings: {  }
+    type: block_field_default
+    region: content
   field_image:
     weight: 26
     settings:
