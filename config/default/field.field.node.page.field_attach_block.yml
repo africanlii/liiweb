@@ -1,0 +1,25 @@
+uuid: a8b27cdf-31b2-4abc-8fb6-a53d867b0c1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attach_block
+    - node.type.page
+  module:
+    - block_field
+id: node.page.field_attach_block
+field_name: field_attach_block
+entity_type: node
+bundle: page
+label: 'Attach Block'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  selection: blocks
+  selection_settings:
+    plugin_ids:
+      'views_block:new_monthly_content-block_1': 'views_block:new_monthly_content-block_1'
+field_type: block_field
