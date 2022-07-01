@@ -1,69 +1,147 @@
-uuid: 8d006349-a033-4df9-bca1-b813e9c49406
+uuid: 28a9aa9a-6992-4d0f-a151-56d87e08df91
 langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image_browser
     - field.field.node.page.body
+    - field.field.node.page.field_attach_block
     - field.field.node.page.field_image
     - field.field.node.page.field_image_ref
     - field.field.node.page.field_paragraphs
     - field.field.node.page.field_sub_title
+    - image.style.thumbnail
     - node.type.page
   module:
-    - entity_reference_revisions
-    - image
+    - block_field
+    - entity_browser
+    - paragraphs
+    - path
+    - svg_image
     - text
-    - user
 id: node.page.default
 targetEntityType: node
 bundle: page
 mode: default
 content:
   body:
-    label: hidden
-    type: text_default
-    weight: 1
+    type: text_textarea_with_summary
+    weight: 9
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 3
+    region: content
     settings: {  }
     third_party_settings: {  }
+  field_attach_block:
+    weight: 27
+    settings:
+      plugin_id: ''
+      settings: {  }
+      configuration_form: full
+    third_party_settings: {  }
+    type: block_field_default
     region: content
   field_image:
-    weight: 6
-    label: above
+    weight: 26
     settings:
-      image_style: ''
-      image_link: ''
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings: {  }
-    type: image
+    type: image_image
     region: content
   field_image_ref:
-    type: entity_reference_entity_id
-    weight: 3
-    label: hidden
-    settings: {  }
+    weight: 10
+    settings:
+      entity_browser: image_browser
+      field_widget_display: rendered_entity
+      field_widget_display_settings:
+        view_mode: default
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_replace: false
+      open: false
     third_party_settings: {  }
+    type: entity_browser_entity_reference
     region: content
   field_paragraphs:
-    type: entity_reference_revisions_entity_view
-    weight: 5
-    region: content
-    label: above
+    weight: 11
     settings:
-      view_mode: default
-      link: ''
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
     third_party_settings: {  }
+    type: entity_reference_paragraphs
+    region: content
   field_sub_title:
-    weight: 2
-    label: hidden
+    weight: 8
     settings:
-      link_to_entity: false
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: string
+    type: string_textfield
     region: content
-  links:
-    weight: 0
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  langcode: true
-  search_api_excerpt: true
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 7
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 5
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+hidden: {  }
