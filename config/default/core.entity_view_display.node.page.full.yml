@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.page.body
+    - field.field.node.page.field_attach_block
     - field.field.node.page.field_image
     - field.field.node.page.field_image_ref
     - field.field.node.page.field_paragraphs
@@ -70,6 +71,7 @@ content:
     type: string
     region: content
 hidden:
+  field_attach_block: true
   langcode: true
   links: true
   search_api_excerpt: true
