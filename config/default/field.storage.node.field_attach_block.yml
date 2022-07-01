@@ -1,0 +1,19 @@
+uuid: 98b01b41-dde1-4380-9b39-51b0662bfa09
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_field
+    - node
+id: node.field_attach_block
+field_name: field_attach_block
+entity_type: node
+type: block_field
+settings: {  }
+module: block_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
