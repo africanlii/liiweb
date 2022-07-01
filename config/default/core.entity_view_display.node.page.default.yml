@@ -1,147 +1,78 @@
-uuid: 28a9aa9a-6992-4d0f-a151-56d87e08df91
+uuid: 8d006349-a033-4df9-bca1-b813e9c49406
 langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.image_browser
     - field.field.node.page.body
     - field.field.node.page.field_attach_block
     - field.field.node.page.field_image
     - field.field.node.page.field_image_ref
     - field.field.node.page.field_paragraphs
     - field.field.node.page.field_sub_title
-    - image.style.thumbnail
     - node.type.page
   module:
     - block_field
-    - entity_browser
-    - paragraphs
-    - path
+    - entity_reference_revisions
     - svg_image
     - text
+    - user
 id: node.page.default
 targetEntityType: node
 bundle: page
 mode: default
 content:
   body:
-    type: text_textarea_with_summary
-    weight: 9
-    settings:
-      rows: 9
-      summary_rows: 3
-      placeholder: ''
-      show_summary: false
-    third_party_settings: {  }
-    region: content
-  created:
-    type: datetime_timestamp
-    weight: 3
-    region: content
+    label: hidden
+    type: text_default
+    weight: 1
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_attach_block:
-    weight: 27
-    settings:
-      plugin_id: ''
-      settings: {  }
-      configuration_form: full
+    weight: 7
+    label: above
+    settings: {  }
     third_party_settings: {  }
-    type: block_field_default
+    type: block_field
     region: content
   field_image:
-    weight: 26
+    weight: 6
+    label: above
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      image_style: ''
+      image_link: ''
     third_party_settings: {  }
-    type: image_image
+    type: image
     region: content
   field_image_ref:
-    weight: 10
-    settings:
-      entity_browser: image_browser
-      field_widget_display: rendered_entity
-      field_widget_display_settings:
-        view_mode: default
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_replace: false
-      open: false
+    type: entity_reference_entity_id
+    weight: 3
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
-    type: entity_browser_entity_reference
     region: content
   field_paragraphs:
-    weight: 11
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: ''
-    third_party_settings: {  }
-    type: entity_reference_paragraphs
+    type: entity_reference_revisions_entity_view
+    weight: 5
     region: content
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   field_sub_title:
-    weight: 8
+    weight: 2
+    label: hidden
     settings:
-      size: 60
-      placeholder: ''
+      link_to_entity: false
     third_party_settings: {  }
-    type: string_textfield
+    type: string
     region: content
-  langcode:
-    type: language_select
-    weight: 1
-    region: content
-    settings:
-      include_locked: true
-    third_party_settings: {  }
-  path:
-    type: path
-    weight: 6
+  links:
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 4
-    region: content
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 7
-    region: content
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 5
-    region: content
-    third_party_settings: {  }
-  title:
-    type: string_textfield
-    weight: 0
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 2
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
-    region: content
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  langcode: true
+  search_api_excerpt: true
