@@ -1,0 +1,26 @@
+uuid: c8d2be80-4c24-412d-8685-e317b7df86bf
+langcode: en
+status: true
+dependencies:
+  module:
+    - mailchimp_signup
+    - system
+  theme:
+    - liibarrio2020
+id: mailchimpsubscriptionformmonthlynewslettersignup
+theme: liibarrio2020
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'mailchimp_signup_subscribe_block:monthly_newsletter_signup'
+settings:
+  id: 'mailchimp_signup_subscribe_block:monthly_newsletter_signup'
+  label: 'Monthly newsletter signup'
+  provider: mailchimp_signup
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: /monthly-content-newsletter
+    negate: false
+    context_mapping: {  }
