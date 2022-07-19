@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1dc3789c8b021a429eeba9ba43d7213",
+    "content-hash": "46840b009933ee938c37f7f7278d7820",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3796,7 +3796,8 @@
                     }
                 },
                 "patches_applied": {
-                    "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch"
+                    "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch",
+                    "Book module bug patch adapted from https://www.drupal.org/project/drupal/issues/2918537#comment-13873706": "patches/core/2918537-63.patch"
                 }
             },
             "autoload": {
@@ -5501,34 +5502,33 @@
         },
         {
             "name": "drupal/mailchimp",
-            "version": "2.1.0-rc1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/mailchimp.git",
-                "reference": "2.1.0-rc1"
+                "reference": "2.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/mailchimp-2.1.0-rc1.zip",
-                "reference": "2.1.0-rc1",
-                "shasum": "a13c964c316ad7729dd5f8c70b97b155d756917a"
+                "url": "https://ftp.drupal.org/files/projects/mailchimp-2.0.2.zip",
+                "reference": "2.0.2",
+                "shasum": "21117bb5181e0421ce7f40c98f3a39a886893cc4"
             },
             "require": {
                 "drupal/core": "^8.7.7 || ^9",
-                "thinkshout/mailchimp-api-php": "^2.1"
+                "thinkshout/mailchimp-api-php": "^2.0"
             },
             "require-dev": {
-                "drupal/mailchimp_events": "*",
                 "drupal/mailchimp_lists": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.1.0-rc1",
-                    "datestamp": "1626366691",
+                    "version": "2.0.2",
+                    "datestamp": "1615931525",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -10904,6 +10904,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
+            "abandoned": "symfony/error-handler",
             "time": "2020-01-08T16:36:15+00:00"
         },
         {
@@ -15806,7 +15807,6 @@
         "drupal/group": 5,
         "drupal/inline_entity_form": 5,
         "drupal/jasm": 20,
-        "drupal/mailchimp": 5,
         "drupal/rules": 15,
         "drupal/search_api_attachments": 10,
         "drupal/simplenews": 10,

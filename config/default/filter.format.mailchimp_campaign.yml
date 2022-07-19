@@ -1,0 +1,24 @@
+uuid: ce16df2a-bb7b-48b8-8751-e14a80c22084
+langcode: en
+status: true
+dependencies:
+  module:
+    - mailchimp_campaign
+_core:
+  default_config_hash: 9DcGEOycSbmLfu0UQSd_Xa2nVtxo9y3iP6wK3nHyWe4
+name: 'Mailchimp campaign'
+format: mailchimp_campaign
+weight: 0
+filters:
+  filter_mailchimp_campaign:
+    id: filter_mailchimp_campaign
+    provider: mailchimp_campaign
+    status: true
+    weight: 0
+    settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: 1
+    settings: {  }

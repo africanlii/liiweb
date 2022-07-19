@@ -1,0 +1,37 @@
+uuid: 0ae79dd1-2900-4560-818c-c1f050298d47
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.simplenews_subscriber.field_sign_up_for_our_newsletter
+  module:
+    - mailchimp_lists
+    - simplenews
+id: simplenews_subscriber.simplenews_subscriber.field_sign_up_for_our_newsletter
+field_name: field_sign_up_for_our_newsletter
+entity_type: simplenews_subscriber
+bundle: simplenews_subscriber
+label: 'Sign up for our newsletter'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    subscribe: true
+    interest_groups: null
+default_value_callback: ''
+settings:
+  subscribe_checkbox_label: Subscribe
+  show_interest_groups: false
+  hide_subscribe_checkbox: false
+  interest_groups_hidden: false
+  interest_groups_label: 'Interest Groups'
+  merge_fields:
+    EMAIL: mail
+    ADDRESS: ''
+    BIRTHDAY: ''
+    FNAME: field_surname
+    LNAME: ''
+    PHONE: field_contact
+  unsubscribe_on_delete: false
+field_type: mailchimp_lists_subscription

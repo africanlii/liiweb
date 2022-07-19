@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.simplenews_subscriber.simplenews_subscriber.field_contact
+    - field.field.simplenews_subscriber.simplenews_subscriber.field_sign_up_for_our_newsletter
     - field.field.simplenews_subscriber.simplenews_subscriber.field_surname
   module:
+    - mailchimp_lists
     - simplenews
     - telephone
 _core:
@@ -21,6 +23,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: telephone_default
+    region: content
+  field_sign_up_for_our_newsletter:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: mailchimp_lists_select
     region: content
   field_surname:
     weight: 2

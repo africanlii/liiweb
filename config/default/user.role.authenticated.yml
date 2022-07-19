@@ -13,6 +13,7 @@ permissions:
   - 'opt-in or out of google analytics tracking'
   - 'subscribe to newsletters'
   - 'use text format full_html'
+  - 'use text format mailchimp_campaign'
   - 'view legislation revisions'
   - 'view media'
   - 'view simplenews_issue revisions'

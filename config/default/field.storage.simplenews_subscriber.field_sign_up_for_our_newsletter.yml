@@ -1,0 +1,22 @@
+uuid: 7156848a-23ea-4fef-a1b7-69dbdff8b00e
+langcode: en
+status: true
+dependencies:
+  module:
+    - mailchimp_lists
+    - simplenews
+id: simplenews_subscriber.field_sign_up_for_our_newsletter
+field_name: field_sign_up_for_our_newsletter
+entity_type: simplenews_subscriber
+type: mailchimp_lists_subscription
+settings:
+  mc_list_id: 78f5c941f5
+  double_opt_in: false
+  send_welcome: false
+module: mailchimp_lists
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
