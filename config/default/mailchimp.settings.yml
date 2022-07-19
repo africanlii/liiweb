@@ -1,4 +1,3 @@
-api_key: c354f4d90031b9be1542773cd7bd2cba-us14
 api_timeout: 10
 cron: true
 batch_limit: 10
