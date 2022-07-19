@@ -762,12 +762,12 @@ div#block-simplenewssubscription {
 }
 }
 div#block-mailchimpsubscriptionformnewmonthlycontentnewsletter {
-   border: 2px solid #0094a4;
+   border: 2px solid $primary;
    padding: 5px;
       h3.title {
       text-align: center;
-      border: 10px solid #0094a4;
-      background: #0094a4;
+      border: 10px solid $primary;
+      background: $primary;
       color: white;
     }
   label.js-form-required.form-required {
