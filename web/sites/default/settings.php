@@ -825,4 +825,8 @@ $config['recaptcha.settings']['secret_key'] = getenv('RECAPTCHA_SECRET_KEY');
 * SMTP settings
 */
 $config['smtp.settings']['smtp_password'] = getenv('SMTP_PASS');
+/**
+* Mailchimp API Key
+*/
+$config['mailchimp.settings']['api_key'] = getenv('MAILCHIMP_API_KEY');
 
