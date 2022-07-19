@@ -405,7 +405,7 @@ display:
           value:
             min: ''
             max: ''
-            value: '-30 day'
+            value: '-60 day'
             type: offset
           group: 1
           exposed: false

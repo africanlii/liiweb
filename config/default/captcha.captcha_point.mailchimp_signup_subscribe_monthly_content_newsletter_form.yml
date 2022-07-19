@@ -1,0 +1,7 @@
+uuid: c31f4ba8-7dcb-42ef-9b77-cf0e7a0dd26b
+langcode: en
+status: true
+dependencies: {  }
+formId: mailchimp_signup_subscribe_monthly_content_newsletter_form
+captchaType: recaptcha/reCAPTCHA
+label: mailchimp_signup_subscribe_block_new_monthly_content_newsletter_form

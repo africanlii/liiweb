@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.simplenews_subscriber.simplenews_subscriber.field_contact
+    - field.field.simplenews_subscriber.simplenews_subscriber.field_sign_up_for_our_newsletter
     - field.field.simplenews_subscriber.simplenews_subscriber.field_surname
   module:
+    - mailchimp_lists
     - simplenews
 id: simplenews_subscriber.simplenews_subscriber.default
 targetEntityType: simplenews_subscriber
@@ -18,6 +20,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: content
+  field_sign_up_for_our_newsletter:
+    weight: 4
+    label: above
+    settings:
+      show_interest_groups: false
+    third_party_settings: {  }
+    type: mailchimp_lists_subscribe_default
     region: content
   field_surname:
     weight: 2

@@ -4,6 +4,8 @@ status: true
 dependencies:
   module:
     - simplenews
+    - system
+    - user
   theme:
     - liibarrio2020
 id: simplenewssubscription
@@ -23,4 +25,16 @@ settings:
     default: default
   message: 'Stay up to date with new content - subscribe to our newsletter.'
   unique_id: '12'
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: ''
+    negate: true
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      system: system
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
