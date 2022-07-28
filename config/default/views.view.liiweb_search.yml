@@ -52,7 +52,7 @@ display:
           text_input_required_format: full_html
           bef:
             general:
-              autosubmit: false
+              autosubmit: true
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
               autosubmit_hide: true
@@ -69,11 +69,6 @@ display:
                     filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
-              field_date:
-                plugin_id: bef_datepicker
-                advanced:
-                  collapsible: false
-                  is_secondary: true
       pager:
         type: infinite_scroll
         options:
@@ -214,6 +209,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
+              editor: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -227,7 +223,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: terms
+          parse_mode: sloppy_phrase
           min_length: null
           fields: {  }
           plugin_id: search_api_fulltext
@@ -351,7 +347,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: direct
+          parse_mode: sloppy_phrase
           min_length: null
           fields: {  }
           plugin_id: search_api_fulltext
@@ -509,6 +505,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
+              editor: '0'
             placeholder: 'Results For'
           is_grouped: false
           group_info:
@@ -522,7 +519,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: direct
+          parse_mode: sloppy_phrase
           min_length: null
           fields: {  }
           plugin_id: search_api_fulltext
