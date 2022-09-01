@@ -1,0 +1,31 @@
+uuid: e9dfee6c-99ca-443a-9094-fc5bd9fed37b
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:namlex:a4334176-6112-45b9-af29-a4d7410d42d2'
+  module:
+    - block_content
+    - system
+  theme:
+    - liibarrio2020
+id: judicallinks
+theme: liibarrio2020
+region: sidebar_second
+weight: -19
+provider: null
+plugin: 'block_content:a4334176-6112-45b9-af29-a4d7410d42d2'
+settings:
+  id: 'block_content:a4334176-6112-45b9-af29-a4d7410d42d2'
+  label: 'Judicial Links'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }
