@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.judgment.field_files
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_headnote_and_holding
+    - field.field.node.judgment.field_hearing_date
     - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_mnc_old
     - field.field.node.judgment.field_judgment_number_override
@@ -221,6 +222,9 @@ parser_configuration:
     judge:
       label: Judge
       value: Judge
+    _hearing_date_:
+      label: '[''Hearing Date'']'
+      value: '[''Hearing Date'']'
   display_errors: false
   source_encoding:
     - auto
@@ -331,6 +335,10 @@ custom_sources:
     label: '[''Matter type'']'
     value: '[''Matter type'']'
     machine_name: _matter_type_
+  _hearing_date_:
+    label: '[''Hearing Date'']'
+    value: '[''Hearing Date'']'
+    machine_name: _hearing_date_
 mappings:
   -
     target: field_case_name
@@ -462,3 +470,10 @@ mappings:
       language: ''
       reference_by: name
       autocreate: '1'
+  -
+    target: field_hearing_date
+    map:
+      value: _hearing_date_
+    settings:
+      language: null
+      timezone: UTC

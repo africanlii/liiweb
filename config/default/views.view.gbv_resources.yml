@@ -1,20 +1,17 @@
-uuid: 00a79fd3-478a-48fe-9bf8-1d569a42bfe8
+uuid: 06814c2a-5180-4be5-bddd-bbc85103b568
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_author_surname
-    - field.storage.node.field_date
     - field.storage.node.field_file
-    - node.type.jot_documents_and_guidelines
+    - node.type.news
     - system.menu.main
   module:
-    - datetime
     - file_download_link
     - node
     - user
-id: jot_documents_and_guidelines
-label: 'JoT Documents and Guidelines'
+id: gbv_resources
+label: 'GBV Resources'
 module: views
 description: ''
 tag: ''
@@ -110,69 +107,6 @@ display:
       row:
         type: fields
       fields:
-        field_author_surname:
-          id: field_author_surname
-          table: node__field_author_surname
-          field: field_author_surname
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Issuing authority'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -220,70 +154,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_date:
-          id: field_date
-          table: node__field_date
-          field: field_date
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Date
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: datetime_default
-          settings:
-            timezone_override: ''
-            format_type: html_month
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         field_file:
           id: field_file
           table: node__field_file
@@ -373,7 +243,7 @@ display:
           admin_label: ''
           operator: in
           value:
-            jot_documents_and_guidelines: jot_documents_and_guidelines
+            news: news
           group: 1
           exposed: false
           expose:
@@ -421,20 +291,19 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: standard
-        field_date_value:
-          id: field_date_value
-          table: node__field_date
-          field: field_date_value
+        field_citation_value:
+          id: field_citation_value
+          table: node__field_citation
+          field: field_citation_value
           relationship: none
           group_type: group
           admin_label: ''
-          order: DESC
+          order: ASC
           exposed: false
           expose:
-            label: ''
-          granularity: day
-          plugin_id: datetime
-      title: 'Documents and Guidelines'
+            label: 'Citation (field_citation)'
+          plugin_id: standard
+      title: 'SGBV Library'
       header:
         area:
           id: area
@@ -446,7 +315,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: 'Documents, guidelines and circulars'
+            value: 'Law Reform and Development Commission Papers'
             format: full_html
           plugin_id: text
         result:
@@ -473,8 +342,6 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_author_surname'
-        - 'config:field.storage.node.field_date'
         - 'config:field.storage.node.field_file'
   page_1:
     display_plugin: page
@@ -483,17 +350,16 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: jotdocs
+      path: other/sgbv-library
       menu:
         type: normal
-        title: 'Documents and Guidelines'
-        description: ''
+        title: 'SGBV Library'
+        description: 'Guides and case summaries on SGBV issues'
         expanded: false
         parent: ''
-        weight: 0
+        weight: 50
         context: '0'
         menu_name: main
-        enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -503,6 +369,4 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_author_surname'
-        - 'config:field.storage.node.field_date'
         - 'config:field.storage.node.field_file'

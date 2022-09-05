@@ -1,0 +1,20 @@
+uuid: d22fba4b-f5a1-45b5-81ca-b8d1a5c47c80
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_hearing_date
+field_name: field_hearing_date
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

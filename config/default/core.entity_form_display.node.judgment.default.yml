@@ -23,6 +23,7 @@ dependencies:
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_flynote_local
     - field.field.node.judgment.field_headnote_and_holding
+    - field.field.node.judgment.field_hearing_date
     - field.field.node.judgment.field_iso_country_code
     - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_mnc_old
@@ -90,6 +91,7 @@ third_party_settings:
         - field_case_number_numeric
         - field_case_number_year
         - field_date
+        - field_hearing_date
         - field_judgment_number_override
         - field_law_report_citations
         - field_advocate_s_for_the_applica
@@ -187,7 +189,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_advocate_s_for_the_applica:
-    weight: 20
+    weight: 21
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -197,7 +199,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_advocate_s_for_the_respond:
-    weight: 21
+    weight: 22
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -215,7 +217,7 @@ content:
     type: string_textfield
     region: content
   field_attorney_s_for_the_applica:
-    weight: 22
+    weight: 23
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -225,7 +227,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_attorney_s_for_the_respond:
-    weight: 23
+    weight: 24
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -330,6 +332,12 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
+  field_hearing_date:
+    weight: 18
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_iso_country_code:
     weight: 19
     settings:
@@ -341,7 +349,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_judge:
-    weight: 24
+    weight: 25
     settings:
       match_operator: STARTS_WITH
       match_limit: 15
@@ -365,7 +373,7 @@ content:
     type: computed_number_widget
     region: content
   field_judgment_number_override:
-    weight: 18
+    weight: 19
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -379,7 +387,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_law_report_citations:
-    weight: 19
+    weight: 20
     settings:
       size: 255
       placeholder: ''
@@ -407,7 +415,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_media_neutral_citation:
-    weight: 25
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: computed_string_widget
