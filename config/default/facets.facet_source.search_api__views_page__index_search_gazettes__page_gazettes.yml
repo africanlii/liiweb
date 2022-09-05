@@ -1,0 +1,9 @@
+uuid: eaa839a8-3abd-44a6-8312-4ee17303a299
+langcode: en
+status: true
+dependencies: {  }
+id: search_api__views_page__index_search_gazettes__page_gazettes
+name: 'search_api:views_page__index_search_gazettes__page_gazettes'
+filter_key: null
+url_processor: query_string
+breadcrumb: {  }

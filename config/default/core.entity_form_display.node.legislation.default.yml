@@ -109,7 +109,7 @@ content:
     type: string_textarea
     region: content
   field_locality:
-    weight: 26
+    weight: 21
     settings:
       match_operator: CONTAINS
       match_limit: 10
