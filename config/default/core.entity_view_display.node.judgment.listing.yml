@@ -24,6 +24,7 @@ dependencies:
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_flynote_local
     - field.field.node.judgment.field_headnote_and_holding
+    - field.field.node.judgment.field_hearing_date
     - field.field.node.judgment.field_iso_country_code
     - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_mnc_old
@@ -122,6 +123,7 @@ hidden:
   field_flynote: true
   field_flynote_local: true
   field_headnote_and_holding: true
+  field_hearing_date: true
   field_iso_country_code: true
   field_judge: true
   field_judgment_mnc_old: true

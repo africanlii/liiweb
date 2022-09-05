@@ -24,6 +24,7 @@ dependencies:
     - field.field.node.judgment.field_flynote
     - field.field.node.judgment.field_flynote_local
     - field.field.node.judgment.field_headnote_and_holding
+    - field.field.node.judgment.field_hearing_date
     - field.field.node.judgment.field_iso_country_code
     - field.field.node.judgment.field_judge
     - field.field.node.judgment.field_judgment_mnc_old
@@ -39,6 +40,7 @@ dependencies:
     - node.type.judgment
   module:
     - computed_field
+    - datetime
     - ds
     - file_download_link
     - text
@@ -75,6 +77,7 @@ third_party_settings:
       header_left:
         - field_court_name
         - field_case_number
+        - field_hearing_date
       header_right:
         - node_title
         - field_law_report_citations
@@ -247,6 +250,15 @@ content:
             classes: {  }
     type: text_default
     region: header
+  field_hearing_date:
+    type: datetime_custom
+    weight: 14
+    region: header_left
+    label: above
+    settings:
+      date_format: 'Y-m-d\TH:i:s'
+      timezone_override: ''
+    third_party_settings: {  }
   field_judge:
     type: entity_reference_label
     weight: 8
