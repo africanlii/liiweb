@@ -201,14 +201,8 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-  field_search_summary:
-    type: text_default
-    weight: 9
-    region: footer
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
 hidden:
+  body: true
   download_conditional_entity_view_1: true
   feeds_item: true
   field_advocate_s_for_the_applica: true
@@ -230,6 +224,7 @@ hidden:
   field_locality: true
   field_matter_type: true
   field_order: true
+  field_subject_library: true
   langcode: true
   links: true
   search_api_excerpt: true

@@ -111,10 +111,13 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_content: true
   field_created: true
   field_created_by_api: true
+  field_date: true
   field_expression_date: true
   field_external_link: true
+  field_files: true
   field_frbr_uri: true
   field_images: true
   field_iso_country_code: true
