@@ -34,38 +34,6 @@ third_party_settings:
         weight: 0
         label: 'Set value or default value'
         uuid: 14c0c7f9-ed8b-4a00-958d-4d5b26c9404a
-      41bab3f2-151a-4f60-8d79-050db7f4dc04:
-        default_value: ''
-        only_if_empty: true
-        plugin: default_value
-        source: _judge_
-        weight: 0
-        label: 'Set value or default value'
-        uuid: 16f3610c-dcc6-40a2-bc32-b8d4f4546e66
-      b5056762-4f6f-47f8-9dfa-ccfb4e51cf7e:
-        separator: '|'
-        limit: null
-        plugin: explode
-        source: _judge_
-        weight: 1
-        label: 'String to Unix Timestamp'
-        uuid: 535f7563-22d6-47b6-9106-08fdd57dcc88
-      322a68de-0399-4f93-9950-da9ad2490018:
-        default_value: ' '
-        only_if_empty: true
-        plugin: default_value
-        source: _law_report_citation_
-        weight: 0
-        label: 'Set value or default value'
-        uuid: 322a68de-0399-4f93-9950-da9ad2490018
-      cdf1fbe8-c4e7-4fc0-b3bd-966de3a1415a:
-        separator: '|'
-        limit: null
-        plugin: explode
-        source: _law_report_citation_
-        weight: 1
-        label: Explode
-        uuid: cdf1fbe8-c4e7-4fc0-b3bd-966de3a1415a
       1e4a75a2-f1ca-480a-95ec-db465cbe9503:
         default_value: ' '
         only_if_empty: true
