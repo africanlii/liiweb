@@ -691,7 +691,7 @@ display:
           text_input_required_format: full_html
           bef:
             general:
-              autosubmit: false
+              autosubmit: true
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
               autosubmit_hide: false

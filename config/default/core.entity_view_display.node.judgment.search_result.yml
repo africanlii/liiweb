@@ -215,7 +215,8 @@ hidden:
   field_judgment_number_override: true
   field_judgment_old_nid: true
   field_locality: true
-
+  field_registry: true
+  field_source_url: true
   langcode: true
   links: true
   search_api_excerpt: true
