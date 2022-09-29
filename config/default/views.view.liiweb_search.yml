@@ -272,8 +272,6 @@ display:
           admin_label: ''
           operator: or
           value:
-            article: article
-            government_gazette: government_gazette
             judgment: judgment
             legislation: legislation
           group: 1
@@ -295,6 +293,7 @@ display:
               anonymous: '0'
               system: '0'
               api_legislation: '0'
+              editor: '0'
             reduce: true
           is_grouped: false
           group_info:
@@ -447,10 +446,7 @@ display:
           admin_label: ''
           operator: or
           value:
-            government_gazette: government_gazette
-            judgment: judgment
-            legislation: legislation
-            speech: speech
+            all: all
           group: 1
           exposed: true
           expose:
@@ -683,7 +679,7 @@ display:
           text_input_required_format: full_html
           bef:
             general:
-              autosubmit: false
+              autosubmit: true
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
               autosubmit_hide: false
