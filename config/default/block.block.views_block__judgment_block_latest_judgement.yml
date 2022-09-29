@@ -12,7 +12,7 @@ dependencies:
 id: views_block__judgment_block_latest_judgement
 theme: liibarrio2020
 region: sidebar_second
-weight: -14
+weight: -16
 provider: null
 plugin: 'views_block:judgment-block_latest_judgement'
 settings:

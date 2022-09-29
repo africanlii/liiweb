@@ -10,7 +10,7 @@ dependencies:
 id: mailchimpsubscriptionformnewmonthlycontentnewsletter
 theme: liibarrio2020
 region: sidebar_second
-weight: 0
+weight: -14
 provider: null
 plugin: 'mailchimp_signup_subscribe_block:new_monthly_content_newsletter'
 settings:
@@ -21,6 +21,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: ''
-    negate: true
+    pages: '<front>'
+    negate: false
     context_mapping: {  }
