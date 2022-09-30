@@ -10,10 +10,10 @@ dependencies:
   config:
     - field.storage.node.field_case_name
     - field.storage.node.field_commencement_date
-    - field.storage.node.field_judge
     - field.storage.node.field_court_name
-    - field.storage.node.field_expression_date
     - field.storage.node.field_date
+    - field.storage.node.field_expression_date
+    - field.storage.node.field_judge
     - field.storage.node.field_tags
     - search_api.server.solr
     - core.entity_view_mode.node.search_index
@@ -165,15 +165,15 @@ processor_settings:
   add_url: {  }
   aggregated_field: {  }
   double_quote_workaround:
-    all_fields: true
+    all_fields: false
     fields:
+      - field_case_name
       - field_court_name
       - field_judge
       - field_tags
       - rendered_item
       - saa_field_file
       - saa_field_files
-      - type
     replacement: '|9999999998|'
     weights:
       postprocess_query: 0
@@ -198,7 +198,7 @@ processor_settings:
     weights:
       postprocess_query: 0
   html_filter:
-    all_fields: true
+    all_fields: false
     fields:
       - field_case_name
       - field_court_name
@@ -207,22 +207,19 @@ processor_settings:
       - rendered_item
       - saa_field_file
       - saa_field_files
-      - type
     title: true
     alt: true
     tags:
       b: 2
-      em: 1
       h1: 5
       h2: 3
       h3: 2
       strong: 2
-      u: 1
     weights:
       preprocess_index: -15
       preprocess_query: -15
   ignore_character:
-    all_fields: true
+    all_fields: false
     fields:
       - field_case_name
       - field_court_name
@@ -231,7 +228,6 @@ processor_settings:
       - rendered_item
       - saa_field_file
       - saa_field_files
-      - type
     ignorable: '[''¿¡!?,.:;]'
     ignorable_classes:
       - Pc
