@@ -12,21 +12,7 @@ id: newsletter_sign_up
 title: 'Newsletter sign up'
 description: ''
 category: ''
-elements: |
-  email_address:
-    '#type': email
-    '#title': 'Email Address'
-    '#title_display': invisible
-    '#placeholder': 'Email Address'
-    '#required': true
-    '#required_error': 'Please provide your email address'
-  captcha:
-    '#type': captcha
-    '#captcha_type': recaptcha/reCAPTCHA
-  actions:
-    '#type': webform_actions
-    '#title': 'Submit button(s)'
-    '#submit__label': 'Sign Up'
+elements: "email_address:\n  '#type': email\n  '#title': 'Email Address'\n  '#title_display': invisible\n  '#placeholder': 'Email Address'\n  '#required': true\n  '#required_error': 'Please provide your email address'\ncaptcha:\n  '#type': captcha\n  '#captcha_type': recaptcha/reCAPTCHA\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': 'Sign Up'\n"
 css: ''
 javascript: ''
 settings:
