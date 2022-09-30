@@ -436,6 +436,14 @@ content:
     third_party_settings: {  }
     type: computed_string_widget
     region: content
+  field_order:
+    weight: 28
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
   field_related_cases:
     weight: 22
     settings:
@@ -455,13 +463,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-  field_order:
-    weight: 28
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
     region: content
   field_search_summary:
     weight: 20

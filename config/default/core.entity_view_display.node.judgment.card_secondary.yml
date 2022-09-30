@@ -137,9 +137,9 @@ hidden:
   field_locality: true
   field_matter_type: true
   field_media_neutral_citation: true
+  field_order: true
   field_related_cases: true
   field_related_legislation: true
-  field_order: true
   field_search_summary: true
   langcode: true
   links: true

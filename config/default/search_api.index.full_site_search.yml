@@ -10,10 +10,10 @@ dependencies:
   config:
     - field.storage.node.field_case_name
     - field.storage.node.field_commencement_date
-    - field.storage.node.field_court_name
-    - field.storage.node.field_date
-    - field.storage.node.field_expression_date
     - field.storage.node.field_judge
+    - field.storage.node.field_court_name
+    - field.storage.node.field_expression_date
+    - field.storage.node.field_date
     - field.storage.node.field_tags
     - search_api.server.solr
     - core.entity_view_mode.node.search_index
@@ -121,7 +121,7 @@ field_settings:
     label: 'Rendered HTML output'
     property_path: rendered_item
     type: text
-    boost: !!float 13
+    boost: !!float 21
     configuration:
       roles:
         anonymous: anonymous
@@ -141,14 +141,6 @@ field_settings:
     property_path: saa_field_files
     type: text
     boost: !!float 13
-  title:
-    label: Title
-    datasource_id: 'entity:node'
-    property_path: title
-    type: string
-    dependencies:
-      module:
-        - node
   type:
     label: 'Content type'
     datasource_id: 'entity:node'
@@ -216,7 +208,6 @@ processor_settings:
       - rendered_item
       - saa_field_file
       - saa_field_files
-      - title
     title: true
     alt: true
     tags:
@@ -238,7 +229,6 @@ processor_settings:
       - rendered_item
       - saa_field_file
       - saa_field_files
-      - title
     ignorable: '[''¿¡!?,.:;]'
     ignorable_classes:
       - Pc

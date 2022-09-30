@@ -197,5 +197,7 @@ hidden:
   field_locality: true
   field_matter_type: true
   field_order: true
+  field_related_cases: true
+  field_related_legislation: true
   langcode: true
   links: true
