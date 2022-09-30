@@ -11,7 +11,7 @@ dependencies:
 id: worldlawresources
 theme: liibarrio2020
 region: footer_second
-weight: 0
+weight: -21
 provider: null
 plugin: 'block_content:be0d26b0-e6d1-4e3c-965f-8c7491bca04c'
 settings:

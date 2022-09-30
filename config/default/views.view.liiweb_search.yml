@@ -52,7 +52,7 @@ display:
           text_input_required_format: full_html
           bef:
             general:
-              autosubmit: false
+              autosubmit: true
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
               autosubmit_hide: true
@@ -69,11 +69,6 @@ display:
                     filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
-              field_date:
-                plugin_id: bef_datepicker
-                advanced:
-                  collapsible: false
-                  is_secondary: true
       pager:
         type: infinite_scroll
         options:

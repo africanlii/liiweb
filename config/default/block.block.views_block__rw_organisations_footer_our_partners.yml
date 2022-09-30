@@ -11,7 +11,7 @@ dependencies:
 id: views_block__rw_organisations_footer_our_partners
 theme: liibarrio2020
 region: footer_second
-weight: -8
+weight: -20
 provider: null
 plugin: 'views_block:rw_organisations-block_footer_our_partners'
 settings:

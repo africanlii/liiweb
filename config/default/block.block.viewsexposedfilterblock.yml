@@ -10,7 +10,7 @@ dependencies:
 id: viewsexposedfilterblock
 theme: liibarrio2020
 region: sidebar_first
-weight: -19
+weight: -20
 provider: null
 plugin: views_exposed_filter_blocks_block
 settings:
