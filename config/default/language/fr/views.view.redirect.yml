@@ -1,4 +1,5 @@
 label: Rediriger
+description: 'List of redirects'
 display:
   default:
     display_title: Maître
@@ -60,5 +61,8 @@ display:
           expose:
             label: 'Langue initiale'
       title: Rediriger
+      empty:
+        area_text_custom:
+          content: 'There is no redirect yet.'
   page_1:
     display_title: Page

@@ -229,7 +229,6 @@ content:
     region: content
   field_attorney_s_for_the_respond:
     weight: 23
-
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -496,5 +495,10 @@ content:
       match_limit: 10
     region: content
     third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    settings: {  }
+    third_party_settings: {  }
+    region: content
 hidden:
   feeds_item: true
