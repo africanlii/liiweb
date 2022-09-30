@@ -200,7 +200,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-
   download_conditional_entity_view_1: true
   feeds_item: true
   field_advocate_s_for_the_applica: true
@@ -220,5 +219,6 @@ hidden:
   field_judgment_number_override: true
   field_judgment_old_nid: true
   field_locality: true
+  field_subject_library: true
   langcode: true
   links: true
