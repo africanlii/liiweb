@@ -831,7 +831,7 @@ $config['smtp.settings']['smtp_password'] = getenv('SMTP_PASS');
 */
 $config['search_api.server.solr'] = [
   'backend_config' => [
-    'connector': 'basic_auth',
+    'connector' => 'basic_auth',
     'connector_config' => [
       'scheme' => 'http',
       'host' => 'ip-172-31-28-35.eu-west-1.compute.internal',
