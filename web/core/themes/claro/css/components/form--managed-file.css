@@ -12,50 +12,6 @@
  * This includes the styles for the file widgets and the image widgets.
  */
 
-:root {
-  /*
-   * Color Palette.
-   */
-  /* Secondary. */
-  /* Variations. */ /* 5% darker than base. */ /* 10% darker than base. */ /* 10% darker than base. */ /* 20% darker than base. */ /* 5% darker than base. */ /* 10% darker than base. */ /* 5% darker than base. */ /* 10% darker than base. */ /* 5% darker than base. */ /* 10% darker than base. */
-  /*
-   * Base.
-   */
-  /*
-   * Typography.
-   */ /* 1rem = 16px if font root is 100% ands browser defaults are used. */ /* ~32px */ /* ~29px */ /* ~26px */ /* ~23px */ /* ~20px */ /* 18px */ /* ~14px */ /* ~13px */ /* ~11px */
-  /**
-   * Spaces.
-   */ /* 3 * 16px = 48px */ /* 1.5 * 16px = 24px */ /* 1 * 16px = 16px */ /* 0.75 * 16px = 12px */ /* 0.5 * 16px = 8px */
-  /*
-   * Common.
-   */
-  /*
-   * Inputs.
-   */ /* Absolute zero with opacity. */ /* Davy's grey with 0.6 opacity. */ /* Light gray with 0.3 opacity on white bg. */ /* Old silver with 0.5 opacity on white bg. */ /* (1/8)em ~ 2px */ /* (1/16)em ~ 1px */ /* Font size is too big to use 1rem for extrasmall line-height */ /* 7px inside the form element label. */ /* 8px with the checkbox width of 19px */
-  /*
-   * Details.
-   */
-  /**
-   * Buttons.
-   */
-  /**
-   * jQuery.UI dropdown.
-   */ /* Light gray with 0.8 opacity. */ /* Text color with 0.1 opacity. */
-  /**
-   * Progress bar.
-   */
-  /**
-   * Tabledrag icon size.
-   */ /* 17px */
-  /**
-   * Ajax progress.
-   */
-  /**
-   * Breadcrumb.
-   */
-}
-
 /**
  * The root element of the file/image widget.
  */
@@ -267,15 +223,6 @@ td .form-managed-file.no-meta .form-managed-file__image-preview {
 }
 
 /**
- * Remove the default margins of buttons.
- * The '.button' selector is doubled for RTL layouts.
- */
-
-.form-managed-file .button.button {
-  margin: 0;
-}
-
-/**
  * The file upload input.
  */
 
@@ -285,12 +232,14 @@ td .form-managed-file.no-meta .form-managed-file__image-preview {
 }
 
 /**
- * This applies both on the 'no-js' upload button and the remove button.
- * We don't want to let these to be shrinked.
+ * Remove the default button margins and prevent shrinking or growing buttons.
+ * This applies both on the 'no-js' upload button and the remove button. The
+ * weight of this ruleset has been increase for this to take effect on RTL.
  */
 
-.form-managed-file__main .button {
+.form-managed-file__main .button.button {
   flex: 0 0 auto;
+  margin: 0;
 }
 
 /**

@@ -136,6 +136,9 @@ class CoreServiceProvider implements ServiceProviderInterface, ServiceModifierIn
     foreach ($services as $id => $class) {
       if (!$container->hasDefinition($id)) {
         $definition = $container->register($id, $class);
+        // Mark the fallback services as deprecated in order to allow other
+        // modules to provide additional checks before relying or altering them.
+        $definition->setDeprecated(TRUE, 'The "%service_id%" service is in fallback mode. See https://drupal.org/node/3092086');
         switch ($id) {
           case 'path_alias.subscriber':
             $definition->addArgument(new Reference('path.alias_manager'));
@@ -178,6 +181,11 @@ class CoreServiceProvider implements ServiceProviderInterface, ServiceModifierIn
   protected function registerTest(ContainerBuilder $container) {
     // Do nothing if we are not in a test environment.
     if (!drupal_valid_test_ua()) {
+      return;
+    }
+    // The test middleware is not required for kernel tests as there is no child
+    // site. DRUPAL_TEST_IN_CHILD_SITE is not defined in this case.
+    if (!defined('DRUPAL_TEST_IN_CHILD_SITE')) {
       return;
     }
     // Add the HTTP request middleware to Guzzle.

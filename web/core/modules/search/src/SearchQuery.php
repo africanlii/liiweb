@@ -246,7 +246,7 @@ class SearchQuery extends SelectExtender {
 
       // Strip off phrase quotes.
       $phrase = FALSE;
-      if ($match[2]{0} == '"') {
+      if ($match[2][0] == '"') {
         $match[2] = substr($match[2], 1, -1);
         $phrase = TRUE;
         $this->simple = FALSE;
@@ -520,7 +520,7 @@ class SearchQuery extends SelectExtender {
     // search expression. So, use string replacement to change this to a
     // calculated query expression, counting the number of occurrences so
     // in the execute() method we can add arguments.
-    while (($pos = strpos($score, 'i.relevance')) !== FALSE) {
+    while (strpos($score, 'i.relevance') !== FALSE) {
       $pieces = explode('i.relevance', $score, 2);
       $score = implode('((ROUND(:normalization_' . $this->relevance_count . ', 4)) * i.score * t.count)', $pieces);
       $this->relevance_count++;

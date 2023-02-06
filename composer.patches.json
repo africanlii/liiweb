@@ -7,7 +7,8 @@
       "fix ocntextual filters with exposed form bug": "patches/views/views-exposed-form-block-arg-2821962-50.patch"
     },
     "drupal/filefield_paths": {
-      "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch"
+      "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch",
+      "fixing leaky cache metadata": "patches/filefield_paths/filefield_leaked_cache.patch"
     },
     "drupal/facets": {
       "Test scanning fails with The 'core' or the 'core_version_requirement' key must be present ...": "patches/facets/3182762-1.diff"

@@ -179,7 +179,6 @@ class AliasTest extends KernelTestBase {
 
     // Create AliasManager and Path object.
     $whitelist = new AliasWhitelist('path_alias_whitelist', $memoryCounterBackend, $this->container->get('lock'), $this->container->get('state'), $this->container->get('path_alias.repository'));
-    $aliasManager = new AliasManager($this->container->get('path_alias.repository'), $whitelist, $this->container->get('language_manager'), $memoryCounterBackend);
 
     // Whitelist cache should not exist at all yet.
     $this->assertFalse($memoryCounterBackend->get('path_alias_whitelist'));
@@ -202,7 +201,7 @@ class AliasTest extends KernelTestBase {
     $this->assertEquals(['user' => FALSE, 'admin' => TRUE], $memoryCounterBackend->get('path_alias_whitelist')->data);
     $memoryCounterBackend->resetCounter();
 
-    // Re-initialize the the whitelist and lookup an alias for the 'user' path.
+    // Re-initialize the whitelist and lookup an alias for the 'user' path.
     // Whitelist should load data from its cache, see that it hasn't done a
     // check for 'user' yet, perform the check, then mark the result to be
     // persisted to cache.

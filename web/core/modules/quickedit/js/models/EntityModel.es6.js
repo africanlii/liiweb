@@ -243,7 +243,8 @@
             //   proceed to set the fields to candidate state.
             if (
               (changedFields.length || this.get('fieldsInTempStore').length) &&
-              (!options.saved && !options.confirmed)
+              !options.saved &&
+              !options.confirmed
             ) {
               // Cancel deactivation until the user confirms save or discard.
               this.set('state', 'opened', { confirming: true });
@@ -525,6 +526,9 @@
             options.success.call(entityModel);
           }
         };
+        entitySaverAjax.options.headers = entitySaverAjax.options.headers || {};
+        entitySaverAjax.options.headers['X-Drupal-Quickedit-CSRF-Token'] =
+          drupalSettings.quickedit.csrf_token;
         // Trigger the AJAX request, which will will return the
         // quickeditEntitySaved AJAX command to which we then react.
         entitySaverAjax.execute();
@@ -698,7 +702,7 @@
       },
 
       /**
-       * @inheritdoc
+       * {@inheritdoc}
        */
       sync() {
         // We don't use REST updates to sync.

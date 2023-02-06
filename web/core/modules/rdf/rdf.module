@@ -117,7 +117,7 @@ function rdf_get_namespaces() {
     $function = $module . '_rdf_namespaces';
     foreach ($function() as $prefix => $namespace) {
       if (array_key_exists($prefix, $namespaces) && $namespace !== $namespaces[$prefix]) {
-        throw new Exception(t('Tried to map @prefix to @namespace, but @prefix is already mapped to @orig_namespace.', ['@prefix' => $prefix, '@namespace' => $namespace, '@orig_namespace' => $namespaces[$prefix]]));
+        throw new Exception("Tried to map '$prefix' to '$namespace', but '$prefix' is already mapped to '{$namespaces[$prefix]}'.");
       }
       else {
         $namespaces[$prefix] = $namespace;
@@ -237,12 +237,13 @@ function rdf_comment_storage_load($comments) {
       ->getPreparedFieldMapping('created');
     /** @var \Drupal\comment\CommentInterface $comment*/
     $comment->rdf_data['date'] = rdf_rdfa_attributes($created_mapping, $comment->get('created')->first()->toArray());
-    $entity = $comment->getCommentedEntity();
-    // The current function is a storage level hook, so avoid to bubble
-    // bubbleable metadata, because it can be outside of a render context.
-    $comment->rdf_data['entity_uri'] = $entity->toUrl()->toString(TRUE)->getGeneratedUrl();
-    if ($comment->hasParentComment()) {
-      $comment->rdf_data['pid_uri'] = $comment->getParentComment()->toUrl()->toString(TRUE)->getGeneratedUrl();
+    if ($entity = $comment->getCommentedEntity()) {
+      // The current function is a storage level hook, so avoid to bubble
+      // bubbleable metadata, because it can be outside of a render context.
+      $comment->rdf_data['entity_uri'] = $entity->toUrl()->toString(TRUE)->getGeneratedUrl();
+    }
+    if ($parent = $comment->getParentComment()) {
+      $comment->rdf_data['pid_uri'] = $parent->toUrl()->toString(TRUE)->getGeneratedUrl();
     }
   }
 }
@@ -495,7 +496,7 @@ function rdf_preprocess_comment(&$variables) {
   }
   // Adds RDFa markup for the date of the comment.
   $created_mapping = $mapping->getPreparedFieldMapping('created');
-  if (!empty($created_mapping)) {
+  if (!empty($created_mapping) && isset($comment->rdf_data)) {
     // The comment date is precomputed as part of the rdf_data so that it can be
     // cached as part of the entity.
     $date_attributes = $comment->rdf_data['date'];
@@ -567,7 +568,7 @@ function rdf_preprocess_taxonomy_term(&$variables) {
   $term = $variables['term'];
   $mapping = rdf_get_mapping('taxonomy_term', $term->bundle());
   $bundle_mapping = $mapping->getPreparedBundleMapping();
-  $variables['attributes']['about'] = $term->toUrl()->toString();
+  $variables['attributes']['about'] = $variables['url'];
   $variables['attributes']['typeof'] = empty($bundle_mapping['types']) ? NULL : $bundle_mapping['types'];
 
   // Add RDFa markup for the taxonomy term name as metadata, if present.

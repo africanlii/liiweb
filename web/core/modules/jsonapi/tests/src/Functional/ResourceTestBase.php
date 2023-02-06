@@ -906,7 +906,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
     // - to first test all mistakes a developer might make, and assert that the
     //   error responses provide a good DX
     // - to eventually result in a well-formed request that succeeds.
-    // @todo Remove line below in favor of commented line in https://www.drupal.org/project/jsonapi/issues/2878463.
+    // @todo Remove line below in favor of commented line in https://www.drupal.org/project/drupal/issues/2878463.
     $url = Url::fromRoute(sprintf('jsonapi.%s.individual', static::$resourceTypeName), ['entity' => $this->entity->uuid()]);
     // $url = $this->entity->toUrl('jsonapi');
     $request_options = [];
@@ -975,9 +975,10 @@ abstract class ResourceTestBase extends BrowserTestBase {
     // contain a flattened response. Otherwise performance suffers.
     // @see \Drupal\jsonapi\EventSubscriber\ResourceResponseSubscriber::flattenResponse()
     $cache_items = $this->container->get('database')
-      ->query("SELECT cid, data FROM {cache_dynamic_page_cache} WHERE cid LIKE :pattern", [
-        ':pattern' => '%[route]=jsonapi.%',
-      ])
+      ->select('cache_dynamic_page_cache', 'cdp')
+      ->fields('cdp', ['cid', 'data'])
+      ->condition('cid', '%[route]=jsonapi.%', 'LIKE')
+      ->execute()
       ->fetchAllAssoc('cid');
     $this->assertTrue(count($cache_items) >= 2);
     $found_cache_redirect = FALSE;
@@ -1118,7 +1119,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
           'related_author_id' => [
             'operator' => '<>',
             'path' => 'field_jsonapi_test_entity_ref.status',
-            'value' => 'doesnt@matter.com',
+            'value' => 'does_not@matter.com',
           ],
         ],
       ]);
@@ -1878,7 +1879,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
     $unparseable_request_body = '!{>}<';
     $parseable_valid_request_body = Json::encode($this->getPostDocument());
     /* $parseable_valid_request_body_2 = Json::encode($this->getNormalizedPostEntity()); */
-    $parseable_invalid_request_body_missing_type = Json::encode($this->removeResourceTypeFromDocument($this->getPostDocument(), 'type'));
+    $parseable_invalid_request_body_missing_type = Json::encode($this->removeResourceTypeFromDocument($this->getPostDocument()));
     if ($this->entity->getEntityType()->hasKey('label')) {
       $parseable_invalid_request_body = Json::encode($this->makeNormalizationInvalid($this->getPostDocument(), 'label'));
     }
@@ -1985,7 +1986,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
     if (get_class($this->entityStorage) !== ContentEntityNullStorage::class) {
       $created_entity = $this->entityLoadUnchanged(static::$firstCreatedEntityId);
       $uuid = $created_entity->uuid();
-      // @todo Remove line below in favor of commented line in https://www.drupal.org/project/jsonapi/issues/2878463.
+      // @todo Remove line below in favor of commented line in https://www.drupal.org/project/drupal/issues/2878463.
       $location = Url::fromRoute(sprintf('jsonapi.%s.individual', static::$resourceTypeName), ['entity' => $uuid]);
       if (static::$resourceTypeIsVersionable) {
         assert($created_entity instanceof RevisionableInterface);
@@ -2037,7 +2038,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
     if ($this->entity->getEntityType()->getStorageClass() !== ContentEntityNullStorage::class && $this->entity->getEntityType()->hasKey('uuid')) {
       $second_created_entity = $this->entityStorage->load(static::$secondCreatedEntityId);
       $uuid = $second_created_entity->uuid();
-      // @todo Remove line below in favor of commented line in https://www.drupal.org/project/jsonapi/issues/2878463.
+      // @todo Remove line below in favor of commented line in https://www.drupal.org/project/drupal/issues/2878463.
       $location = Url::fromRoute(sprintf('jsonapi.%s.individual', static::$resourceTypeName), ['entity' => $uuid]);
       /* $location = $this->entityStorage->load(static::$secondCreatedEntityId)->toUrl('jsonapi')->setAbsolute(TRUE)->toString(); */
       if (static::$resourceTypeIsVersionable) {
@@ -2117,7 +2118,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
     // - to first test all mistakes a developer might make, and assert that the
     //   error responses provide a good DX
     // - to eventually result in a well-formed request that succeeds.
-    // @todo Remove line below in favor of commented line in https://www.drupal.org/project/jsonapi/issues/2878463.
+    // @todo Remove line below in favor of commented line in https://www.drupal.org/project/drupal/issues/2878463.
     $url = Url::fromRoute(sprintf('jsonapi.%s.individual', static::$resourceTypeName), ['entity' => $this->entity->uuid()]);
     // $url = $this->entity->toUrl('jsonapi');
     $request_options = [];
@@ -2370,7 +2371,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
     $updated_entity->setNewRevision();
     $updated_entity->save();
     $actual_response = $this->request('PATCH', $url, $request_options);
-    $this->assertResourceErrorResponse(400, 'Updating a resource object that has a working copy is not yet supported. See https://www.drupal.org/project/jsonapi/issues/2795279.', $url, $actual_response);
+    $this->assertResourceErrorResponse(400, 'Updating a resource object that has a working copy is not yet supported. See https://www.drupal.org/project/drupal/issues/2795279.', $url, $actual_response);
 
     // Allow PATCHing an unpublished default revision.
     $updated_entity->set('moderation_state', 'archived');
@@ -2411,7 +2412,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
     // - to first test all mistakes a developer might make, and assert that the
     //   error responses provide a good DX
     // - to eventually result in a well-formed request that succeeds.
-    // @todo Remove line below in favor of commented line in https://www.drupal.org/project/jsonapi/issues/2878463.
+    // @todo Remove line below in favor of commented line in https://www.drupal.org/project/drupal/issues/2878463.
     $url = Url::fromRoute(sprintf('jsonapi.%s.individual', static::$resourceTypeName), ['entity' => $this->entity->uuid()]);
     // $url = $this->entity->toUrl('jsonapi');
     $request_options = [];
@@ -2694,7 +2695,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
       $request_options = NestedArray::mergeDeep($request_options, $this->getAuthenticationRequestOptions());
       $response = $this->request('GET', $url, $request_options);
       $detail = 'JSON:API does not yet support resource versioning for this resource type.';
-      $detail .= ' For context, see https://www.drupal.org/project/jsonapi/issues/2992833#comment-12818258.';
+      $detail .= ' For context, see https://www.drupal.org/project/drupal/issues/2992833#comment-12818258.';
       $detail .= ' To contribute, see https://www.drupal.org/project/drupal/issues/2350939 and https://www.drupal.org/project/drupal/issues/2809177.';
       $expected_cache_contexts = [
         'url.path',
@@ -2731,7 +2732,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
     $entity->save();
     $latest_revision_id = (int) $entity->getRevisionId();
 
-    // @todo Remove line below in favor of commented line in https://www.drupal.org/project/jsonapi/issues/2878463.
+    // @todo Remove line below in favor of commented line in https://www.drupal.org/project/drupal/issues/2878463.
     $url = Url::fromRoute(sprintf('jsonapi.%s.individual', static::$resourceTypeName), ['entity' => $this->entity->uuid()])->setAbsolute();
     // $url = $this->entity->toUrl('jsonapi');
     $collection_url = Url::fromRoute(sprintf('jsonapi.%s.collection', static::$resourceTypeName))->setAbsolute();
@@ -3017,9 +3018,9 @@ abstract class ResourceTestBase extends BrowserTestBase {
     $forward_revision_id_url = $forward_revision_id_url->setOption('query', ['resourceVersion' => "id:$forward_revision_id"]);
     $expected_document['data']['links']['self']['href'] = $forward_revision_id_url->setAbsolute()->toString();
     $amend_relationship_urls($expected_document, $forward_revision_id);
-    // Since the the working copy is not the default revision. A
-    // `latest-version` link is required to indicate that the requested version
-    // is not the default revision.
+    // Since the working copy is not the default revision. A `latest-version`
+    // link is required to indicate that the requested version is not the
+    // default revision.
     unset($expected_document['data']['links']['working-copy']);
     $expected_document['data']['links']['latest-version']['href'] = $rel_latest_version_url->setAbsolute()->toString();
     $expected_cache_tags = $this->getExpectedCacheTags();
@@ -3330,7 +3331,7 @@ abstract class ResourceTestBase extends BrowserTestBase {
   }
 
   /**
-   * Gets an array of of all nested include paths to be tested.
+   * Gets an array of all nested include paths to be tested.
    *
    * @param int $depth
    *   (optional) The maximum depth to which included paths should be nested.

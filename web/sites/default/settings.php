@@ -58,10 +58,10 @@
  * implementations with custom ones.
  */
 /** Trusted Host Patterns **/
-$settings['trusted_host_patterns'] = [
+/* $settings['trusted_host_patterns'] = [
   '^africanlii\.org$',
   '^.+\.africanlii\.org$',
-];
+]; */
 /**
  * Database settings:
  *
@@ -92,7 +92,7 @@ $settings['trusted_host_patterns'] = [
  * ];
  * @endcode
  */
-$dburl = getenv('DATABASE_URL');
+/* $dburl = getenv('DATABASE_URL');
 if ($dburl) {
   $dbopts = parse_url($dburl);
   $databases['default']['default'] = [
@@ -107,8 +107,18 @@ if ($dburl) {
   ];
 } else {
   $databases = [];
-}
-
+} */
+$databases['default']['default'] = [
+  'database' => 'paplii',
+  'username' => 'root',
+  'password' => '',
+  'prefix' => '',
+  'host' => 'localhost',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+  
+];
 /**
  * Customizing database settings.
  *
@@ -299,7 +309,7 @@ $config_directories = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = getenv('HASH_SALT');
+$settings['hash_salt'] = 'bmMqAnBHyjcGsWWXoBT0ZPkKzXhaVo3oDdOAkA1LuB1n3JU7nySAu9_8wF5On3RcKktKmMX_mA';
 
 /**
  * Deployment identifier.

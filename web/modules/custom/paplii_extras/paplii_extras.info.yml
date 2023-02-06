@@ -1,0 +1,5 @@
+name: Extra Functions for PAP
+type: module
+description: Adds pre-save features
+core: 8.x
+package: Custom

@@ -1,0 +1,115 @@
+<?php 
+use Symfony\Component\HttpFoundation\RedirectResponse;
+$paplii_extras_entity_presave_updating = false;
+ function paplii_extras_entity_presave(Drupal\Core\Entity\EntityInterface $entity){
+  if($entity->getEntityType()->id() == 'node') {
+    if($entity->bundle()=='legislation'){
+      global $paplii_extras_entity_presave;
+      if($paplii_extras_entity_presave == true) return;
+      $paplii_extras_entity_presave = true;
+      $raw_json = $entity->get('field_raw_json')->value;
+      $json = json_decode($raw_json,true);
+      if(array_key_exists('subtype',$json) && $json['subtype']){
+          $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
+              'name' => $json['subtype'], 'vid'=>'legislation_sub_type'
+          ]);
+          
+            $term = reset($terms);
+            if($term){
+              $entity->set('field_legislation_subtype', $term->id());
+            }
+      } 
+      
+
+      $frbruri = $entity->get('field_frbr_uri')->value; 
+      
+      $languages=array('eng','fre','spa','ara','swa','por');
+      if(preg_match('/\/(?<lang>\w{3})@/', $frbruri, $current_lang)){
+        $current_lang = $current_lang['lang'];
+      }
+
+      $query = \Drupal::entityQuery('node')
+      ->condition('type', 'legislation');
+      $or = $query->orConditionGroup();
+      foreach($languages as $lang){
+        $translated_frbruri = str_replace($current_lang,$lang,$frbruri);
+        $or->condition('field_frbr_uri',$translated_frbruri);
+      }
+      $query->condition($or);
+       
+      $results = $query->execute();
+      $all_langs = [$current_lang];
+      $all_translations = [];
+      if ($results) {
+        $results_without_current_id = paplii_extras_filter_results($results,$entity->id());
+        $entity->set('field_translations', $results_without_current_id);
+        $entity->set('field_language',$current_lang);
+        foreach($results as $id){
+          if($id == $entity->id()) continue;
+          $translation = \Drupal::entityTypeManager()->getStorage('node')->load($id);
+          if($translation){
+            if($translation_lang=$translation->get('field_language')->value){
+              $all_langs[]=$translation_lang;
+            }
+            $results_without_current_id = paplii_extras_filter_results($results,$id);
+            $translation->set('field_translations', $results_without_current_id);
+            $all_translations[]=$translation;
+          }
+        }
+        if($all_langs){
+          $all_langs = implode(',',$all_langs);
+          $entity->set('field_translation_languages',$all_langs);
+          foreach($all_translations as $translation){
+            $translation->set('field_translation_languages',$all_langs);
+            $translation->save();
+          }
+        }
+      }  
+      $paplii_extras_entity_presave = false;
+    }
+  }
+}
+
+function paplii_extras_filter_results($results,$id){
+  return array_filter($results,function($n) use($id){return $n!=$id;});
+}
+
+function paplii_extras_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+    if($view_mode!='full') return;
+    $has_translations = $entity->hasField('field_translation_languages');
+    if($has_translations && $entity->get('field_translation_languages')->value){
+      $site_language_2_letters = \Drupal::languageManager()->getCurrentLanguage()->getId();
+      $site_language = map_language_code_to_three_letter($site_language_2_letters);
+      $current_lang = $entity->get('field_language')->value;
+      if($site_language==$current_lang) return;
+        $translation_langs = explode(',',$has_translations);
+        if(in_array($site_language,$translation_langs)){
+          $translations = $entity->get('field_translations')->getValue();
+          foreach($translations as $translation){
+            
+            $node = \Drupal::entityTypeManager()->getStorage('node')->load($translation['target_id']);
+            if($node){
+              $node_lang = $node->get('field_language')->value;
+
+              if($site_language==$node_lang){
+                if($site_language_2_letters!='en'){
+                  $url = $node->toUrl('canonical',['language'=>\Drupal::languageManager()->getCurrentLanguage()])->toString();
+                }
+                else{
+                  $url = $node->toUrl()->toString();
+                }
+                $response = new RedirectResponse($url);
+                $response->send();
+              }
+            }
+          }
+        }
+    } 
+} 
+
+function map_language_code_to_three_letter($lang){
+    $languages=array('en'=>'eng','fr'=>'fre','es'=>'spa','ar'=>'ara','sw'=>'swa','pt'=>'por');
+    if(isset($languages[$lang])){
+      return $languages[$lang];
+    }
+}

@@ -1,0 +1,276 @@
+diff --git a/core/modules/file/file.module b/core/modules/file/file.module
+index 8e3f7e0988..f1856c5520 100644
+--- a/core/modules/file/file.module
++++ b/core/modules/file/file.module
+@@ -6,6 +6,7 @@
+  */
+ 
+ use Drupal\Component\Utility\Environment;
++use Drupal\Core\Access\AccessResult;
+ use Drupal\Component\Utility\NestedArray;
+ use Drupal\Core\Datetime\Entity\DateFormat;
+ use Drupal\Core\Entity\EntityStorageInterface;
+@@ -18,6 +19,7 @@
+ use Drupal\Core\File\FileSystemInterface;
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\Core\Link;
++use Drupal\Core\Session\AccountInterface;
+ use Drupal\Core\Messenger\MessengerInterface;
+ use Drupal\Core\Render\BubbleableMetadata;
+ use Drupal\Core\Render\Element;
+@@ -585,6 +587,31 @@ function file_theme() {
+   ];
+ }
+ 
++/**
++ * Implements hook_file_access().
++ */
++function file_file_access(FileInterface $file, $op, AccountInterface $account) {
++  $access = AccessResult::neutral();
++
++  switch ($op) {
++    case 'update':
++      $access = AccessResult::allowedIfHasPermission($account, 'edit any files');
++      if (!$access->isAllowed() && $account->hasPermission('edit own files')) {
++        $access = $access->orIf(AccessResult::allowedIf($account->id() == $file->getOwnerId())->cachePerUser()->addCacheableDependency($file));
++      }
++      break;
++
++    case 'delete':
++      $access = AccessResult::allowedIfHasPermission($account, 'delete any files');
++      if (!$access->isAllowed() && $account->hasPermission('delete own files')) {
++        $access = $access->orIf(AccessResult::allowedIf($account->id() == $file->getOwnerId()))->cachePerUser()->addCacheableDependency($file);
++      }
++      break;
++  }
++
++  return $access;
++}
++
+ /**
+  * Implements hook_file_download().
+  */
+diff --git a/core/modules/file/file.permissions.yml b/core/modules/file/file.permissions.yml
+index 8575f20806..d09e602368 100644
+--- a/core/modules/file/file.permissions.yml
++++ b/core/modules/file/file.permissions.yml
+@@ -1,2 +1,16 @@
+ access files overview:
+   title: 'Access the Files overview page'
++
++edit own files:
++  title: 'Edit own files'
++
++edit any files:
++  title: 'Edit any files'
++  restrict access: true
++
++delete own files:
++  title: 'Delete own files'
++
++delete any files:
++  title: 'Delete any files'
++  restrict access: true
+diff --git a/core/modules/file/src/FileAccessControlHandler.php b/core/modules/file/src/FileAccessControlHandler.php
+index 3e1fb492d6..9e06959d77 100644
+--- a/core/modules/file/src/FileAccessControlHandler.php
++++ b/core/modules/file/src/FileAccessControlHandler.php
+@@ -61,16 +61,6 @@ protected function checkAccess(EntityInterface $entity, $operation, AccountInter
+       }
+     }
+ 
+-    if ($operation == 'delete' || $operation == 'update') {
+-      $account = $this->prepareUser($account);
+-      $file_uid = $entity->get('uid')->getValue();
+-      // Only the file owner can update or delete the file entity.
+-      if ($account->id() == $file_uid[0]['target_id']) {
+-        return AccessResult::allowed();
+-      }
+-      return AccessResult::forbidden('Only the file owner can update or delete the file entity.');
+-    }
+-
+     // No opinion.
+     return AccessResult::neutral();
+   }
+diff --git a/core/modules/file/tests/src/Functional/Rest/FileResourceTestBase.php b/core/modules/file/tests/src/Functional/Rest/FileResourceTestBase.php
+index 2d87ca796b..4c03570aea 100644
+--- a/core/modules/file/tests/src/Functional/Rest/FileResourceTestBase.php
++++ b/core/modules/file/tests/src/Functional/Rest/FileResourceTestBase.php
+@@ -6,6 +6,9 @@
+ use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
+ use Drupal\user\Entity\User;
+ 
++/**
++ * Provides a base class for file resources.
++ */
+ abstract class FileResourceTestBase extends EntityResourceTestBase {
+ 
+   /**
+@@ -208,13 +211,19 @@ public function testPost() {
+    * {@inheritdoc}
+    */
+   protected function getExpectedUnauthorizedAccessMessage($method) {
+-    if ($method === 'GET') {
+-      return "The 'access content' permission is required.";
+-    }
+-    if ($method === 'PATCH' || $method === 'DELETE') {
+-      return 'Only the file owner can update or delete the file entity.';
++    switch ($method) {
++      case 'GET':
++        return "The 'access content' permission is required.";
++
++      case 'PATCH':
++        return "The 'edit any files' permission is required.";
++
++      case 'DELETE':
++        return "The 'delete any files' permission is required.";
++
++      default:
++        return parent::getExpectedUnauthorizedAccessMessage($method);
+     }
+-    return parent::getExpectedUnauthorizedAccessMessage($method);
+   }
+ 
+ }
+diff --git a/core/modules/file/tests/src/Kernel/AccessTest.php b/core/modules/file/tests/src/Kernel/AccessTest.php
+index bfc8fc03cf..ffc4846e89 100644
+--- a/core/modules/file/tests/src/Kernel/AccessTest.php
++++ b/core/modules/file/tests/src/Kernel/AccessTest.php
+@@ -4,6 +4,7 @@
+ 
+ use Drupal\file\Entity\File;
+ use Drupal\KernelTests\KernelTestBase;
++use Drupal\Tests\user\Traits\UserCreationTrait;
+ use Drupal\user\Entity\User;
+ 
+ /**
+@@ -13,6 +14,8 @@
+  */
+ class AccessTest extends KernelTestBase {
+ 
++  use UserCreationTrait;
++
+   /**
+    * Modules to enable.
+    *
+@@ -51,21 +54,24 @@ protected function setUp(): void {
+     $this->installEntitySchema('user');
+     $this->installSchema('file', ['file_usage']);
+     $this->installSchema('system', 'sequences');
++  }
+ 
+-    $this->user1 = User::create([
+-      'name' => 'user1',
+-      'status' => 1,
++  /**
++   * Tests access to delete and update file permissions.
++   */
++  public function testFileAccess() {
++    $this->user1 = $this->createUser([
++      'delete any files',
++      'edit any files',
+     ]);
+-    $this->user1->save();
+ 
+-    $this->user2 = User::create([
+-      'name' => 'user2',
+-      'status' => 1,
++    $this->user2 = $this->createUser([
++      'delete own files',
++      'edit own files',
+     ]);
+-    $this->user2->save();
+ 
+-    $this->file = File::create([
+-      'uid' => $this->user1->id(),
++    $file1 = File::create([
++      'uid' => $user1->id(),
+       'filename' => 'druplicon.txt',
+       'filemime' => 'text/plain',
+     ]);
+@@ -75,13 +81,42 @@ protected function setUp(): void {
+    * Tests that only the file owner can delete or update a file.
+    */
+   public function testOnlyOwnerCanDeleteUpdateFile() {
+-    \Drupal::currentUser()->setAccount($this->user2);
+-    $this->assertFalse($this->file->access('delete'));
+-    $this->assertFalse($this->file->access('update'));
++    $file2 = File::create([
++      'uid' => $user2->id(),
++      'filename' => 'druplicon.txt',
++      'filemime' => 'text/plain',
++    ]);
++
++    // Anonymous users can create a file by default.
++    $this->assertFalse($file1->access('create'));
+ 
+-    \Drupal::currentUser()->setAccount($this->user1);
+-    $this->assertTrue($this->file->access('delete'));
+-    $this->assertTrue($this->file->access('update'));
++    // Authenticated users can create a file by default.
++    $this->assertFalse($file1->access('create'), $user1);
++
++    // User with "* any files" permissions should access all files.
++    $this->assertTrue($file1->access('delete', $user1));
++    $this->assertTrue($file1->access('update', $user1));
++    $this->assertTrue($file2->access('delete', $user1));
++    $this->assertTrue($file2->access('update', $user1));
++
++    // User with "* own files" permissions should access only own files.
++    $this->assertFalse($file1->access('delete', $user2));
++    $this->assertFalse($file1->access('update', $user2));
++    $this->assertTrue($file2->access('delete', $user2));
++    $this->assertTrue($file2->access('update', $user2));
++
++    // User without permissions should not be able to delete/edit files even if
++    // they have owner permission.
++    $user3 = $this->createUser();
++
++    $file3 = File::create([
++      'uid' => $user3->id(),
++      'filename' => 'druplicon.txt',
++      'filemime' => 'text/plain',
++    ]);
++
++    $this->assertFalse($file3->access('delete', $user3));
++    $this->assertFalse($file3->access('update', $user3));
+   }
+ 
+   /**
+@@ -90,7 +125,7 @@ public function testOnlyOwnerCanDeleteUpdateFile() {
+    * @see \Drupal\file\FileAccessControlHandler::checkFieldAccess()
+    */
+   public function testCheckFieldAccess() {
+-    \Drupal::currentUser()->setAccount($this->user1);
++    $this->setUpCurrentUser();
+     /** @var \Drupal\file\FileInterface $file */
+     $file = File::create([
+       'uri' => 'public://test.png',
+@@ -111,18 +146,6 @@ public function testCheckFieldAccess() {
+     $this->assertFalse($file->get('status')->access('edit'));
+   }
+ 
+-  /**
+-   * Tests create access checks.
+-   */
+-  public function testCreateAccess() {
+-    // Anonymous users can create a file by default.
+-    $this->assertFalse($this->file->access('create'));
+-
+-    // Authenticated users can create a file by default.
+-    \Drupal::currentUser()->setAccount($this->user1);
+-    $this->assertFalse($this->file->access('create'));
+-  }
+-
+   /**
+    * Tests cacheability metadata.
+    */
+@@ -141,7 +164,7 @@ public function testFileCacheability() {
+     $this->assertSame(['session', 'user'], $file->access('view', $account, TRUE)->getCacheContexts());
+     $this->assertSame(['session', 'user'], $file->access('download', $account, TRUE)->getCacheContexts());
+ 
+-    $account = $this->user1;
++    $account = $this->createUser();
+     $file->setOwnerId($account->id())->save();
+     $this->assertSame(['user'], $file->access('view', $account, TRUE)->getCacheContexts());
+     $this->assertSame(['user'], $file->access('download', $account, TRUE)->getCacheContexts());

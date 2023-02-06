@@ -84,7 +84,7 @@ class TextFormat extends RenderElement {
 
     // Ensure that children appear as subkeys of this element.
     $element['#tree'] = TRUE;
-    $blacklist = [
+    $keys_not_to_copy = [
       // Make \Drupal::formBuilder()->doBuildForm() regenerate child properties.
       '#parents',
       '#id',
@@ -108,7 +108,7 @@ class TextFormat extends RenderElement {
     // Move this element into sub-element 'value'.
     unset($element['value']);
     foreach (Element::properties($element) as $key) {
-      if (!in_array($key, $blacklist)) {
+      if (!in_array($key, $keys_not_to_copy)) {
         $element['value'][$key] = $element[$key];
       }
     }
@@ -251,10 +251,11 @@ class TextFormat extends RenderElement {
    * Render API callback: Hides the field value of 'text_format' elements.
    *
    * To not break form processing and previews if a user does not have access to
-   * a stored text format, the expanded form elements in filter_process_format()
-   * are forced to take over the stored #default_values for 'value' and
-   * 'format'. However, to prevent the unfiltered, original #value from being
-   * displayed to the user, we replace it with a friendly notice here.
+   * a stored text format, the expanded form elements in
+   * \Drupal\filter\Element\TextFormat::processFormat() are forced to take over
+   * the stored #default_values for 'value' and 'format'. However, to prevent
+   * the unfiltered, original #value from being displayed to the user, we
+   * replace it with a friendly notice here.
    *
    * @param array $element
    *   The render array to add the access denied message to.
