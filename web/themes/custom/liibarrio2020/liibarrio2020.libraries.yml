@@ -30,12 +30,12 @@ nicescroll:
 legislation-content:
   version: VERSION
   js:
-    https://cdn.jsdelivr.net/gh/laws-africa/la-web-components@0.3.0-beta/dist/la-web-components/la-web-components.bundle.js: {
+    https://cdn.jsdelivr.net/gh/laws-africa/la-web-components@0.7.1-beta/dist/la-web-components/la-web-components.bundle.js: {
         type: external,
         minified: true,
         attributes: { type: module }
       }
-    https://cdn.jsdelivr.net/gh/laws-africa/la-web-components@v0.3.0-beta/dist/la-web-components/la-web-components.js: {
+    https://cdn.jsdelivr.net/gh/laws-africa/la-web-components@v0.7.1-beta/dist/la-web-components/la-web-components.js: {
         type: external,
         minified: true,
         attributes: { nomodule: true }
