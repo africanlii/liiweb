@@ -1,0 +1,143 @@
+diff --git a/filefield_paths.module b/filefield_paths.module
+index be8da01..955370e 100644
+--- a/filefield_paths.module
++++ b/filefield_paths.module
+@@ -11,6 +11,8 @@ use Drupal\Core\Entity\EntityInterface;
+ use Drupal\Core\Field\BaseFieldDefinition;
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\Core\Language\Language;
++use Drupal\Core\Render\BubbleableMetadata;
++use Drupal\Core\Render\RenderContext;
+ use Drupal\Core\Url;
+ use Drupal\field\Entity\FieldConfig;
+ use Drupal\file\Plugin\Field\FieldType\FileFieldItemList;
+@@ -418,68 +420,77 @@ function _filefield_paths_create_redirect($source, $path, Language $language) {
+  *   Todo.
+  */
+ function filefield_paths_process_string($value, $data, array $settings = []) {
+-  $transliterate = $settings['transliterate'];
+-  $pathauto = \Drupal::moduleHandler()
+-      ->moduleExists('pathauto') && isset($settings['pathauto']) && $settings['pathauto'] == TRUE;
+-  $remove_slashes = !empty($settings['slashes']);
+-
+-  // If '/' is to be removed from tokens, token replacement need to happen after
+-  // splitting the paths to subdirs, otherwise tokens containing '/' will be
+-  // part of the final path.
+-  if (!$remove_slashes) {
+-    $value = \Drupal::service('token')
+-      ->replace($value, $data, ['clear' => TRUE]);
+-  }
+-  $paths = explode('/', $value);
+-
+-  foreach ($paths as $i => &$path) {
+-    if ($remove_slashes) {
+-      $path = \Drupal::service('token')
+-        ->replace($path, $data, ['clear' => TRUE]);
++  $context = new RenderContext();
++  $result = \Drupal::service('renderer')->executeInRenderContext($context, function() use($value, $data, $settings) {
++    $transliterate = $settings['transliterate'];
++    $pathauto = \Drupal::moduleHandler()
++        ->moduleExists('pathauto') && isset($settings['pathauto']) && $settings['pathauto'] == TRUE;
++    $remove_slashes = !empty($settings['slashes']);
++
++    // If '/' is to be removed from tokens, token replacement need to happen after
++    // splitting the paths to subdirs, otherwise tokens containing '/' will be
++    // part of the final path.
++    if (!$remove_slashes) {
++      $value = \Drupal::service('token')
++        ->replace($value, $data, ['clear' => TRUE]);
+     }
+-    if ($pathauto == TRUE) {
+-      if ('file_name' == $settings['context'] && count($paths) == $i + 1) {
+-        $pathinfo = pathinfo($path);
+-        $basename = \Drupal::service('file_system')->basename($path);
+-        $extension = preg_match('/\.[^.]+$/', $basename, $matches) ? $matches[0] : NULL;
+-        $pathinfo['filename'] = !is_null($extension) ? mb_substr($basename, 0, mb_strlen($basename) - mb_strlen($extension)) : $basename;
+-
+-        if ($remove_slashes) {
+-          $path = '';
+-          if (!empty($pathinfo['dirname']) && $pathinfo['dirname'] !== '.') {
+-            $path .= $pathinfo['dirname'] . '/';
++    $paths = explode('/', $value);
++
++    foreach ($paths as $i => &$path) {
++      if ($remove_slashes) {
++        $path = \Drupal::service('token')
++          ->replace($path, $data, ['clear' => TRUE]);
++      }
++      if ($pathauto == TRUE) {
++        if ('file_name' == $settings['context'] && count($paths) == $i + 1) {
++          $pathinfo = pathinfo($path);
++          $basename = \Drupal::service('file_system')->basename($path);
++          $extension = preg_match('/\.[^.]+$/', $basename, $matches) ? $matches[0] : NULL;
++          $pathinfo['filename'] = !is_null($extension) ? mb_substr($basename, 0, mb_strlen($basename) - mb_strlen($extension)) : $basename;
++
++          if ($remove_slashes) {
++            $path = '';
++            if (!empty($pathinfo['dirname']) && $pathinfo['dirname'] !== '.') {
++              $path .= $pathinfo['dirname'] . '/';
++            }
++            $path .= $pathinfo['filename'];
++            $path = \Drupal::service('pathauto.alias_cleaner')
++              ->cleanstring($path);
++            if (!empty($pathinfo['extension'])) {
++              $path .= '.' . \Drupal::service('pathauto.alias_cleaner')
++                  ->cleanstring($pathinfo['extension']);
++            }
++            $path = str_replace('/', '', $path);
+           }
+-          $path .= $pathinfo['filename'];
+-          $path = \Drupal::service('pathauto.alias_cleaner')
+-            ->cleanstring($path);
+-          if (!empty($pathinfo['extension'])) {
+-            $path .= '.' . \Drupal::service('pathauto.alias_cleaner')
+-                ->cleanstring($pathinfo['extension']);
++          else {
++            $path = str_replace($pathinfo['filename'], \Drupal::service('pathauto.alias_cleaner')
++              ->cleanstring($pathinfo['filename']), $path);
+           }
+-          $path = str_replace('/', '', $path);
+         }
+         else {
+-          $path = str_replace($pathinfo['filename'], \Drupal::service('pathauto.alias_cleaner')
+-            ->cleanstring($pathinfo['filename']), $path);
++          $path = \Drupal::service('pathauto.alias_cleaner')->cleanstring($path);
+         }
+       }
+-      else {
+-        $path = \Drupal::service('pathauto.alias_cleaner')->cleanstring($path);
++      elseif ($remove_slashes) {
++        $path = str_replace('/', '', $path);
+       }
+-    }
+-    elseif ($remove_slashes) {
+-      $path = str_replace('/', '', $path);
+-    }
+ 
+-    // Transliterate string.
+-    if ($transliterate == TRUE) {
+-      $path = \Drupal::service('transliteration')->transliterate($path);
++      // Transliterate string.
++      if ($transliterate == TRUE) {
++        $path = \Drupal::service('transliteration')->transliterate($path);
++      }
+     }
+-  }
+-  $value = implode('/', $paths);
++    $value = implode('/', $paths);
+ 
+-  // Ensure that there are no double-slash sequences due to empty token values.
+-  $value = preg_replace('/\/+/', '/', $value);
++    // Ensure that there are no double-slash sequences due to empty token values.
++    $value = preg_replace('/\/+/', '/', $value);
+ 
+-  return $value;
++    return $value;
++  });
++  if (!$context->isEmpty()) {
++    $bubbleable_metadata = $context->pop();
++    BubbleableMetadata::createFromObject($result)
++    ->merge($bubbleable_metadata);
++  }
++  return $result;
+ }
