@@ -6,7 +6,7 @@
     },
     "drupal/filefield_paths": {
       "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch",
-      "Token replacement generate leaked cache metadata": "https://www.drupal.org/files/issues/2019-08-13/fieldfield_path-leaked_cache_metadata-3074642-2.patch"
+      "Token replacement generate leaked cache metadata": "patches/filefield_paths/filefields_path_fix_render_cache.patch"
     },
     "drupal/facets": {
       "Test scanning fails with The 'core' or the 'core_version_requirement' key must be present ...": "patches/facets/3182762-1.diff"
