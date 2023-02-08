@@ -112,7 +112,7 @@ class Pager {
    * Gets the maximum number of items per page.
    *
    * @return int
-   *   The maximum number of items per page.
+   *   The the maximum number of items per page.
    */
   public function getLimit() {
     return $this->limit;

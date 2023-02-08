@@ -1,0 +1,29 @@
+uuid: cd513cb8-0036-4065-b10d-281ea484162a
+langcode: en
+status: false
+dependencies:
+  module:
+    - liiweb
+    - system
+  theme:
+    - liibarrio2020
+id: textblock_2
+theme: liibarrio2020
+region: pre_header
+weight: -25
+provider: null
+plugin: text_block
+settings:
+  id: text_block
+  label: 'About Africanlii'
+  provider: liiweb
+  label_display: visible
+  text:
+    value: ''
+    format: full_html
+visibility:
+  request_path:
+    id: request_path
+    pages: "<front>\r\n/about"
+    negate: false
+    context_mapping: {  }

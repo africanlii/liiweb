@@ -1,0 +1,10 @@
+uuid: 18bd7c32-52f9-4c21-82d4-dd4c6a24d64b
+langcode: en
+status: true
+dependencies: {  }
+id: law_bookshelf
+label: 'Law Bookshelf'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

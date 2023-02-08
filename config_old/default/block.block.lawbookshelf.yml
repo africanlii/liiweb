@@ -1,0 +1,35 @@
+uuid: ae3eb5da-a9c7-4713-b763-f1bb7270a929
+langcode: en
+status: false
+dependencies:
+  module:
+    - ctools_block
+    - system
+  theme:
+    - liibarrio2020
+id: lawbookshelf
+theme: liibarrio2020
+region: content
+weight: -20
+provider: null
+plugin: 'entity_field:node:field_law_bookshelf'
+settings:
+  id: 'entity_field:node:field_law_bookshelf'
+  label: 'Law Bookshelf'
+  provider: ctools_block
+  label_display: visible
+  formatter:
+    label: hidden
+    type: entity_reference_revisions_entity_view
+    settings:
+      view_mode: default
+    third_party_settings: {  }
+    weight: 0
+  context_mapping:
+    entity: '@node.node_route_context:node'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

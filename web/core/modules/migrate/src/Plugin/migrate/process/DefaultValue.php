@@ -41,8 +41,7 @@ use Drupal\migrate\Row;
  * @see \Drupal\migrate\Plugin\MigrateProcessInterface
  *
  * @MigrateProcessPlugin(
- *   id = "default_value",
- *   handle_multiples = TRUE
+ *   id = "default_value"
  * )
  */
 class DefaultValue extends ProcessPluginBase {

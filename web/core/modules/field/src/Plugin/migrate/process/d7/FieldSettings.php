@@ -29,10 +29,9 @@ class FieldSettings extends ProcessPluginBase {
       case 'date':
       case 'datetime':
       case 'datestamp':
-        $collected_date_attributes = is_numeric(array_keys($value['granularity'])[0])
-          ? $value['granularity']
-          : array_keys(array_filter($value['granularity']));
-        if (empty(array_intersect($collected_date_attributes, ['hour', 'minute', 'second']))) {
+        if ($value['granularity']['hour'] === 0
+            && $value['granularity']['minute'] === 0
+            && $value['granularity']['second'] === 0) {
           $value['datetime_type'] = 'date';
         }
         break;

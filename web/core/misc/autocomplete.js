@@ -156,8 +156,7 @@
       isComposing: false
     },
     ajax: {
-      dataType: 'json',
-      jsonp: false
+      dataType: 'json'
     }
   };
 

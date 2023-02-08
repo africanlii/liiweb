@@ -41,7 +41,7 @@ class FormTestPatternForm extends FormBase {
     $form['url'] = [
       '#type' => 'url',
       '#title' => 'Client side validation',
-      '#description' => 'Just client side validation, using the #pattern attribute.',
+      '#decription' => 'Just client side validation, using the #pattern attribute.',
       '#attributes' => [
         'pattern' => '.*foo.*',
       ],

@@ -4,18 +4,14 @@
  * Theme override to display a file form widget.
  *
  * Available variables:
- * - main_items: Main render elements of the file or image widget:
- *   file name, upload input, upload and remove buttons and hidden inputs.
- * - data: Other render elements of the image widget like preview, alt or title,
- *   or the description input and the display checkbox of the file widget.
- * - display: A flag indicating whether the display field is visible.
+ * - element: Form element for the file upload.
  * - attributes: HTML attributes for the containing element.
  * - multiple: Whether this widget is the part of a multi-value file widget or
  *   not.
  * - upload: Whether the file upload input is displayed or not.
  * - has_value: true if the widget already contains a file.
- * - has_meta: true when the display checkbox or the description, alt or title
- *   inputs are enabled and at least one of them is visible.
+ * - has_meta: true when the display checkbox or the description input are
+ *   enabled and and are visible.
  *
  * @see template_preprocess_file_managed_file()
  * @see claro_preprocess_file_managed_file()
@@ -31,37 +27,21 @@
     has_meta ? 'has-meta' : 'no-meta',
   ]
 %}
-<div{{ attributes.addClass(classes).removeClass('clearfix') }}>
+<div{{ attributes.addClass(classes) }}>
   <div class="form-managed-file__main">
-    {{ main_items.filename }}
-    {{ main_items|without('filename') }}
+    {{ element|without('display', 'description')}}
   </div>
 
-  {% if has_meta or data.preview %}
-  <div class="form-managed-file__meta-wrapper">
-    <div class="form-managed-file__meta">
-      {% if data.preview %}
-        <div class="form-managed-file__image-preview image-preview">
-          <div class="image-preview__img-wrapper">
-            {{ data.preview }}
-          </div>
-        </div>
-      {% endif %}
-
-      {% if data.description or display or data.alt or data.title %}
+  {% if has_meta %}
+    <div class="form-managed-file__meta-wrapper">
+      <div class="form-managed-file__meta">
         <div class="form-managed-file__meta-items">
-          {{ data.description }}
+          {{ element.description }}
           {% if display %}
-            {{ data.display }}
+            {{ element.display }}
           {% endif %}
-          {{ data.alt }}
-          {{ data.title }}
         </div>
-      {% endif %}
+      </div>
     </div>
-  </div>
   {% endif %}
-
-  {# Every third-party addition will be rendered here. #}
-  {{ data|without('preview', 'alt', 'title', 'description', 'display') }}
 </div>

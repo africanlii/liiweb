@@ -4,7 +4,6 @@ namespace Drupal\Core\Template;
 
 use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Component\Render\MarkupInterface;
-use Drupal\Component\Utility\NestedArray;
 
 /**
  * Collects, sanitizes, and renders HTML attributes.
@@ -210,19 +209,6 @@ class Attribute implements \ArrayAccess, \IteratorAggregate, MarkupInterface {
   }
 
   /**
-   * Checks if the storage has an attribute with the given name.
-   *
-   * @param string $name
-   *   The name of the attribute to check for.
-   *
-   * @return bool
-   *   Returns TRUE if the attribute exists, or FALSE otherwise.
-   */
-  public function hasAttribute($name) {
-    return array_key_exists($name, $this->storage);
-  }
-
-  /**
    * Removes an attribute from an Attribute object.
    *
    * @param string|array ...
@@ -368,22 +354,6 @@ class Attribute implements \ArrayAccess, \IteratorAggregate, MarkupInterface {
    */
   public function jsonSerialize() {
     return (string) $this;
-  }
-
-  /**
-   * Merges an Attribute object into the current storage.
-   *
-   * @param \Drupal\Core\Template\Attribute $collection
-   *   The Attribute object to merge.
-   *
-   * @return $this
-   */
-  public function merge(Attribute $collection) {
-    $merged_attributes = NestedArray::mergeDeep($this->toArray(), $collection->toArray());
-    foreach ($merged_attributes as $name => $value) {
-      $this->storage[$name] = $this->createAttributeValue($name, $value);
-    }
-    return $this;
   }
 
 }

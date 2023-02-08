@@ -1,0 +1,17 @@
+uuid: 6629507c-9710-430e-a868-58121c17f180
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: billboard_16_9_large
+label: 'Billboard 16:9 Large'
+effects:
+  8164446b-678f-4759-bc11-f12459374599:
+    uuid: 8164446b-678f-4759-bc11-f12459374599
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1280
+      height: 720
+      crop_type: focal_point

@@ -39,8 +39,10 @@ function liibarrio2020_theme_suggestions_block_alter(array &$suggestions, array 
 {
   if (!empty($variables['elements']['#id'])) {
     $block = Block::load($variables['elements']['#id']);
-    array_unshift($suggestions, 'block__' . $block->getRegion());
-    array_unshift($suggestions, 'block__' . $block->getRegion() . '__' . $variables['elements']['#id']);   
+    if($block){
+      array_unshift($suggestions, 'block__' . $block->getRegion());
+      array_unshift($suggestions, 'block__' . $block->getRegion() . '__' . $variables['elements']['#id']);   
+    }
   }
   
   return $suggestions;

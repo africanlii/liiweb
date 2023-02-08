@@ -1,0 +1,39 @@
+all:
+  - language_interface
+  - language_content
+  - language_url
+configurable:
+  - language_interface
+negotiation:
+  language_content:
+    enabled:
+      language-interface: 0
+    method_weights:
+      language-content-entity: -10
+      language-frbr-uri: -9
+      language-url: -8
+      language-session: -6
+      language-user: -4
+      language-browser: -2
+      language-interface: 9
+      language-selected: 12
+  language_url:
+    enabled:
+      language-frbr-uri: 0
+      language-url-fallback: 1
+  language_interface:
+    enabled:
+      language-frbr-uri: -20
+      language-user: -16
+      language-browser: -15
+      language-selected: -14
+    method_weights:
+      language-frbr-uri: -20
+      language-user-admin: -19
+      language-url: -18
+      language-session: -17
+      language-user: -16
+      language-browser: -15
+      language-selected: -14
+_core:
+  default_config_hash: dqouFqVseNJNvEjsoYKxbinFOITuCxYhi4y2OTNQP_8

@@ -8,7 +8,6 @@ use Drupal\KernelTests\KernelTestBase;
  * Tests that extensions that are incompatible with the current core version are disabled.
  *
  * @group Update
- * @group legacy
  */
 class CompatibilityFixTest extends KernelTestBase {
 
@@ -22,9 +21,6 @@ class CompatibilityFixTest extends KernelTestBase {
     require_once $this->root . '/core/includes/update.inc';
   }
 
-  /**
-   * @expectedDeprecation update_fix_compatibility() is deprecated in Drupal 8.8.5 and will be removed before Drupal 9.0.0. There is no replacement. See https://www.drupal.org/node/3026100
-   */
   public function testFixCompatibility() {
     $extension_config = \Drupal::configFactory()->getEditable('core.extension');
 

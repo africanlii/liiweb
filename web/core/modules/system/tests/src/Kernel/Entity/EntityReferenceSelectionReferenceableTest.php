@@ -41,14 +41,7 @@ class EntityReferenceSelectionReferenceableTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
-    'system',
-    'user',
-    'field',
-    'entity_reference',
-    'node',
-    'entity_test',
-  ];
+  public static $modules = ['system', 'user', 'field', 'entity_reference', 'node', 'entity_test'];
 
   /**
    * {@inheritdoc}
@@ -126,7 +119,7 @@ class EntityReferenceSelectionReferenceableTest extends KernelTestBase {
       // entity labels.
       // @see \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface::getReferenceableEntities()
       $item = is_string($item) ? Html::escape($item) : $item;
-      $this->assertContains($item, $referenceables[$this->bundle]);
+      $this->assertTrue(array_search($item, $referenceables[$this->bundle]) !== FALSE);
     }
 
     // Test ::countReferenceableEntities().

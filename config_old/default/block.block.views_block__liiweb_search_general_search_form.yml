@@ -1,0 +1,27 @@
+uuid: f793e5e5-79e4-412b-ab57-41ae38093a09
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - liibarrio2020
+id: views_block__liiweb_search_general_search_form
+theme: liibarrio2020
+region: primary_menu
+weight: 0
+provider: null
+plugin: 'views_block:liiweb_search-general_search_form'
+settings:
+  id: 'views_block:liiweb_search-general_search_form'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

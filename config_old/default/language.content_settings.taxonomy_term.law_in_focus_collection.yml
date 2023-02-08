@@ -1,0 +1,11 @@
+uuid: 21ae1a05-ec4d-4029-86e7-8639fce6ad64
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.law_in_focus_collection
+id: taxonomy_term.law_in_focus_collection
+target_entity_type_id: taxonomy_term
+target_bundle: law_in_focus_collection
+default_langcode: site_default
+language_alterable: false

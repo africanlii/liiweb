@@ -283,7 +283,7 @@ class SystemTestController extends ControllerBase implements TrustedCallbackInte
   /**
    * A simple page callback that uses a plain Symfony response object.
    */
-  public function respondWithResponse(Request $request) {
+  public function respondWithReponse(Request $request) {
     return new Response('test');
   }
 
@@ -297,7 +297,7 @@ class SystemTestController extends ControllerBase implements TrustedCallbackInte
   /**
    * A simple page callback that uses a CacheableResponse object.
    */
-  public function respondWithCacheableResponse(Request $request) {
+  public function respondWithCacheableReponse(Request $request) {
     return new CacheableResponse('test');
   }
 

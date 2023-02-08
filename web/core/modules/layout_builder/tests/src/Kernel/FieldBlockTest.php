@@ -281,22 +281,13 @@ class FieldBlockTest extends EntityKernelTestBase {
       new ReturnPromise([[]]),
       '',
     ];
-    return $data;
-  }
-
-  /**
-   * @covers ::build
-   */
-  public function testBuildException() {
-    // In PHP 7.4 ReflectionClass cannot be serialized so this cannot be part of
-    // providerTestBuild().
-    $promise = new ThrowPromise(new \Exception('The exception message'));
-    $this->testBuild(
-      $promise,
+    $data['exception'] = [
+      new ThrowPromise(new \Exception('The exception message')),
       '',
       'The field "%field" failed to render with the error of "%error".',
-      ['%field' => 'the_field_name', '%error' => 'The exception message']
-    );
+      ['%field' => 'the_field_name', '%error' => 'The exception message'],
+    ];
+    return $data;
   }
 
   /**

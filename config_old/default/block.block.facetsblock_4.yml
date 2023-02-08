@@ -1,0 +1,38 @@
+uuid: a8ebad42-5fc5-4f28-8634-8817d89cf793
+langcode: en
+status: true
+dependencies:
+  module:
+    - facets_block
+    - system
+  theme:
+    - liibarrio2020
+id: facetsblock_4
+theme: liibarrio2020
+region: sidebar_first
+weight: -17
+provider: null
+plugin: facets_block
+settings:
+  id: facets_block
+  label: 'Filter Results'
+  provider: facets_block
+  label_display: visible
+  show_title: false
+  exclude_empty_facets: false
+  facets_to_include:
+    'facet_block:judgments_date': 'facet_block:judgments_date'
+    'facet_block:judgments_court': 'facet_block:judgments_court'
+    'facet_block:content_type': '0'
+    'facet_block:date_range': '0'
+    'facet_block:commencement_date': '0'
+    'facet_block:expression_date': '0'
+    'facet_block:gazette_date': '0'
+    'facet_block:court_name': '0'
+    'facet_block:tags': '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /search-judgments
+    negate: false
+    context_mapping: {  }

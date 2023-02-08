@@ -5,6 +5,10 @@ namespace Drupal\Tests\update\Unit;
 use Drupal\Tests\UnitTestCase;
 use Drupal\update\UpdateFetcher;
 
+if (!defined('DRUPAL_CORE_COMPATIBILITY')) {
+  define('DRUPAL_CORE_COMPATIBILITY', '8.x');
+}
+
 /**
  * Tests update functionality unrelated to the database.
  *
@@ -33,7 +37,7 @@ class UpdateFetcherTest extends UnitTestCase {
    *
    * @param array $project
    *   A keyed array of project information matching results from
-   *   \Drupal\update\UpdateManager::getProjects().
+   *   \Drupal\Update\UpdateManager::getProjects().
    * @param string $site_key
    *   A string to mimic an anonymous site key hash.
    * @param string $expected
@@ -67,20 +71,20 @@ class UpdateFetcherTest extends UnitTestCase {
     $project['info']['project status url'] = 'http://www.example.com';
     $project['includes'] = ['module1' => 'Module 1', 'module2' => 'Module 2'];
     $site_key = '';
-    $expected = "http://www.example.com/{$project['name']}/current";
+    $expected = 'http://www.example.com/' . $project['name'] . '/' . DRUPAL_CORE_COMPATIBILITY;
 
     $data[] = [$project, $site_key, $expected];
 
     // For disabled projects it shouldn't add the site key either.
     $site_key = 'site_key';
     $project['project_type'] = 'disabled';
-    $expected = "http://www.example.com/{$project['name']}/current";
+    $expected = 'http://www.example.com/' . $project['name'] . '/' . DRUPAL_CORE_COMPATIBILITY;
 
     $data[] = [$project, $site_key, $expected];
 
     // For enabled projects, test adding the site key.
     $project['project_type'] = '';
-    $expected = "http://www.example.com/{$project['name']}/current";
+    $expected = 'http://www.example.com/' . $project['name'] . '/' . DRUPAL_CORE_COMPATIBILITY;
     $expected .= '?site_key=site_key';
     $expected .= '&list=' . rawurlencode('module1,module2');
 
@@ -88,7 +92,7 @@ class UpdateFetcherTest extends UnitTestCase {
 
     // Test when the URL contains a question mark.
     $project['info']['project status url'] = 'http://www.example.com/?project=';
-    $expected = "http://www.example.com/?project=/{$project['name']}/current";
+    $expected = 'http://www.example.com/?project=/' . $project['name'] . '/' . DRUPAL_CORE_COMPATIBILITY;
     $expected .= '&site_key=site_key';
     $expected .= '&list=' . rawurlencode('module1,module2');
 

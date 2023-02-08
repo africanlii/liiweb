@@ -5,11 +5,8 @@ namespace Drupal\Tests\rdf\Kernel\Field;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\Tests\field\Kernel\FieldKernelTestBase;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\Tests\rdf\Traits\RdfParsingTrait;
 
 abstract class FieldRdfaTestBase extends FieldKernelTestBase {
-
-  use RdfParsingTrait;
 
   /**
    * The machine name of the field type to test.
@@ -98,8 +95,17 @@ abstract class FieldRdfaTestBase extends FieldKernelTestBase {
       ->getViewBuilder($this->entity->getEntityTypeId())
       ->view($this->entity, 'default');
     $output = \Drupal::service('renderer')->renderRoot($build);
+    $graph = new \EasyRdf_Graph($this->uri, $output, 'rdfa');
     $this->setRawContent($output);
-    $this->assertTrue($this->hasRdfProperty($output, $this->uri, $this->uri, $property, $expected_rdf_value), "Formatter {$formatter['type']} exposes data correctly for {$this->fieldType} fields.");
+
+    // If verbose debugging is turned on, display the HTML and parsed RDF
+    // in the results.
+    if ($this->debug) {
+      print_r($output);
+      print_r($graph->toRdfPhp());
+    }
+
+    $this->assertTrue($graph->hasProperty($this->uri, $property, $expected_rdf_value), "Formatter {$formatter['type']} exposes data correctly for {$this->fieldType} fields.");
   }
 
   /**

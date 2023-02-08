@@ -18,15 +18,7 @@ class BookPendingRevisionTest extends KernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
-    'system',
-    'user',
-    'field',
-    'filter',
-    'text',
-    'node',
-    'book',
-  ];
+  public static $modules = ['system', 'user', 'field', 'filter', 'text', 'node', 'book'];
 
   /**
    * {@inheritdoc}

@@ -1,0 +1,29 @@
+uuid: b003b69b-bc4b-4681-bcbf-d3d0b00ec577
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jtitle
+    - node.type.law_journal_article
+    - taxonomy.vocabulary.law_journals
+id: node.law_journal_article.field_jtitle
+field_name: field_jtitle
+entity_type: node
+bundle: law_journal_article
+label: 'Journal title'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      law_journals: law_journals
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

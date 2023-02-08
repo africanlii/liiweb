@@ -24,14 +24,7 @@ class MenuLinkTest extends ViewTestBase {
    *
    * @var array
    */
-  public static $modules = [
-    'views',
-    'views_ui',
-    'user',
-    'node',
-    'menu_ui',
-    'block',
-  ];
+  public static $modules = ['views', 'views_ui', 'user', 'node', 'menu_ui', 'block'];
 
   /**
    * {@inheritdoc}
@@ -53,10 +46,7 @@ class MenuLinkTest extends ViewTestBase {
 
     $this->enableViewsTestModule();
 
-    $this->adminUser = $this->drupalCreateUser([
-      'administer views',
-      'administer menu',
-    ]);
+    $this->adminUser = $this->drupalCreateUser(['administer views', 'administer menu']);
     $this->drupalPlaceBlock('system_menu_block:main');
     $this->drupalCreateContentType(['type' => 'page']);
   }

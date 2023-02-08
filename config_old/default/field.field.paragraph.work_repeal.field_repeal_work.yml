@@ -1,0 +1,28 @@
+uuid: 9f97dbb6-cef7-4413-bb86-399e40c892e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_repeal_work
+    - node.type.legislation
+    - paragraphs.paragraphs_type.work_repeal
+id: paragraph.work_repeal.field_repeal_work
+field_name: field_repeal_work
+entity_type: paragraph
+bundle: work_repeal
+label: 'Repeal work'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      legislation: legislation
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

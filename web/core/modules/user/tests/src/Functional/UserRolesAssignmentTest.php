@@ -13,10 +13,7 @@ class UserRolesAssignmentTest extends BrowserTestBase {
 
   protected function setUp() {
     parent::setUp();
-    $admin_user = $this->drupalCreateUser([
-      'administer permissions',
-      'administer users',
-    ]);
+    $admin_user = $this->drupalCreateUser(['administer permissions', 'administer users']);
     $this->drupalLogin($admin_user);
   }
 
@@ -92,10 +89,10 @@ class UserRolesAssignmentTest extends BrowserTestBase {
     $user_storage->resetCache([$account->id()]);
     $account = $user_storage->load($account->id());
     if ($is_assigned) {
-      $this->assertContains($rid, $account->getRoles());
+      $this->assertFalse(array_search($rid, $account->getRoles()) === FALSE, 'The role is present in the user object.');
     }
     else {
-      $this->assertNotContains($rid, $account->getRoles());
+      $this->assertTrue(array_search($rid, $account->getRoles()) === FALSE, 'The role is not present in the user object.');
     }
   }
 

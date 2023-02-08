@@ -1,0 +1,29 @@
+uuid: 58447f53-b905-4cf8-8b4e-a89c2f8d7c88
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.judgments_views
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: exposedformjudgments_viewspage_1
+theme: liibarrio2020
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:judgments_views-page_1'
+settings:
+  id: 'views_exposed_filter_block:judgments_views-page_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: "/judgments\r\n/judgments/*"
+    negate: false
+    context_mapping: {  }

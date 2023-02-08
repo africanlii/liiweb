@@ -292,7 +292,7 @@
   };
 
   /**
-   * Password strength feedback for password confirm's main input.
+   * Password strenght feedback for password confirm's main input.
    *
    * @param {string} message
    *   The prefix text for the strength feedback word.

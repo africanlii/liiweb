@@ -23,15 +23,7 @@ class CommentEntityTest extends CommentTestBase {
    *
    * @var array
    */
-  public static $modules = [
-    'block',
-    'comment',
-    'node',
-    'history',
-    'field_ui',
-    'datetime',
-    'taxonomy',
-  ];
+  public static $modules = ['block', 'comment', 'node', 'history', 'field_ui', 'datetime', 'taxonomy'];
 
   /**
    * {@inheritdoc}

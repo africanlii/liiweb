@@ -1,0 +1,31 @@
+uuid: f2516e4e-142f-49e4-9dea-fed5c3973d13
+langcode: en
+status: false
+dependencies:
+  config:
+    - webform.webform.newsletter_sign_up
+  module:
+    - system
+    - webform
+  theme:
+    - liibarrio2020
+id: webform
+theme: liibarrio2020
+region: pre_header
+weight: -27
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Stay informed, sign up for our monthly newsletter'
+  provider: webform
+  label_display: visible
+  webform_id: newsletter_sign_up
+  default_data: ''
+  redirect: false
+visibility:
+  request_path:
+    id: request_path
+    pages: "/about\r\n/contact"
+    negate: false
+    context_mapping: {  }

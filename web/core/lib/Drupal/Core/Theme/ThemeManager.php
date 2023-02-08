@@ -140,46 +140,48 @@ class ThemeManager implements ThemeManagerInterface {
     }
 
     $theme_registry = $this->themeRegistry->getRuntime();
-    $theme_hooks = (array) $hook;
-    $hook_found = NULL;
-    // Check for hook implementation. If an array of hook candidates is passed,
-    // use the first one that has an implementation.
-    foreach ($theme_hooks as $candidate) {
-      if ($theme_registry->has($candidate)) {
-        $hook_found = $candidate;
-        break;
+
+    // If an array of hook candidates were passed, use the first one that has an
+    // implementation.
+    if (is_array($hook)) {
+      foreach ($hook as $candidate) {
+        if ($theme_registry->has($candidate)) {
+          break;
+        }
+      }
+      $hook = $candidate;
+    }
+    // Save the original theme hook, so it can be supplied to theme variable
+    // preprocess callbacks.
+    $original_hook = $hook;
+
+    // If there's no implementation, check for more generic fallbacks.
+    // If there's still no implementation, log an error and return an empty
+    // string.
+    if (!$theme_registry->has($hook)) {
+      // Iteratively strip everything after the last '__' delimiter, until an
+      // implementation is found.
+      while ($pos = strrpos($hook, '__')) {
+        $hook = substr($hook, 0, $pos);
+        if ($theme_registry->has($hook)) {
+          break;
+        }
+      }
+      if (!$theme_registry->has($hook)) {
+        // Only log a message when not trying theme suggestions ($hook being an
+        // array).
+        if (!isset($candidate)) {
+          \Drupal::logger('theme')->warning('Theme hook %hook not found.', ['%hook' => $hook]);
+        }
+        // There is no theme implementation for the hook passed. Return FALSE so
+        // the function calling
+        // \Drupal\Core\Theme\ThemeManagerInterface::render() can differentiate
+        // between a hook that exists and renders an empty string, and a hook
+        // that is not implemented.
+        return FALSE;
       }
     }
 
-    $derived_hooks = [];
-    // Remove the last item of the array which is the original hook and use it
-    // as a pattern.
-    $hook_pattern = array_pop($theme_hooks);
-    // Get the generic fallbacks. If a valid hook implementation has not been
-    // found, check each fallback until one is.
-    while ($pos = strrpos($hook_pattern, '__')) {
-      // Save all derived hooks to be used later as a theme suggestion.
-      $derived_hooks[] = $hook_pattern;
-      $hook_pattern = substr($hook_pattern, 0, $pos);
-      if (!$hook_found && $theme_registry->has($hook_pattern)) {
-        $hook_found = $hook_pattern;
-      }
-    }
-    if (!$hook_found) {
-      // Do not log a warning for arrays of theme hooks with no implemented
-      // hooks. It's valid to pass an array of theme hooks where none of the
-      // hooks are implemented. We only log missing theme hook implementations
-      // for single (string) hooks.
-      if (is_string($hook)) {
-        \Drupal::logger('theme')->warning('Theme hook %hook not found.', ['%hook' => $hook]);
-      }
-      // There is no theme implementation for the hook(s) passed. Return FALSE
-      // so the calling function can differentiate between a hook that exists
-      // and renders an empty string, and hooks that are not implemented.
-      return FALSE;
-    }
-    $hook = $hook_found;
-    $theme_hooks = array_merge($theme_hooks, $derived_hooks);
     $info = $theme_registry->get($hook);
 
     // If a renderable array is passed as $variables, then set $variables to
@@ -208,11 +210,9 @@ class ThemeManager implements ThemeManagerInterface {
     elseif (!empty($info['render element'])) {
       $variables += [$info['render element'] => []];
     }
-
-    // Save the original theme hook, so it can be supplied to theme variable
-    // preprocess callbacks.
+    // Supply original caller info.
     $variables += [
-      'theme_hook_original' => $candidate,
+      'theme_hook_original' => $original_hook,
     ];
 
     // Set base hook for later use. For example if '#theme' => 'node__article'
@@ -228,9 +228,12 @@ class ThemeManager implements ThemeManagerInterface {
 
     // Invoke hook_theme_suggestions_HOOK().
     $suggestions = $this->moduleHandler->invokeAll('theme_suggestions_' . $base_theme_hook, [$variables]);
-    // Prioritize suggestions from hook_theme_suggestions_HOOK() implementations
-    // above other suggestions.
-    $suggestions = array_merge($suggestions, array_reverse($theme_hooks));
+    // If the theme implementation was invoked with a direct theme suggestion
+    // like '#theme' => 'node__article', add it to the suggestions array before
+    // invoking suggestion alter hooks.
+    if (isset($info['base hook'])) {
+      $suggestions[] = $hook;
+    }
 
     // Invoke hook_theme_suggestions_alter() and
     // hook_theme_suggestions_HOOK_alter().

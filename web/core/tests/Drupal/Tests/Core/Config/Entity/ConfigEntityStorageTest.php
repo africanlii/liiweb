@@ -564,7 +564,7 @@ class ConfigEntityStorageTest extends UnitTestCase {
     $this->assertSame('foo', $entity->id());
 
     $this->expectException(\AssertionError::class);
-    $this->expectExceptionMessage(sprintf('Cannot load the "%s" entity with NULL ID.', $this->entityTypeId));
+    $this->expectExceptionMessage('Cannot load a NULL ID.');
     $this->entityStorage->load(NULL);
   }
 

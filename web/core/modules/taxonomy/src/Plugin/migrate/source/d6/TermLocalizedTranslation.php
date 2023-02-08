@@ -70,13 +70,7 @@ class TermLocalizedTranslation extends Term {
     $query->condition('lt.language', $language);
     $query->addField('lt', 'translation');
     $results = $query->execute()->fetchAssoc();
-    if ($results) {
-      $row->setSourceProperty($other_property . '_translated', $results['translation']);
-    }
-    else {
-      // The translation does not exist.
-      $row->setSourceProperty($other_property . '_translated', NULL);
-    }
+    $row->setSourceProperty($other_property . '_translated', $results['translation']);
 
     parent::prepareRow($row);
   }

@@ -18,14 +18,7 @@ class PathNoCanonicalLinkTest extends KernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
-    'path',
-    'content_translation_test',
-    'language',
-    'entity_test',
-    'user',
-    'system',
-  ];
+  public static $modules = ['path', 'content_translation_test', 'language', 'entity_test', 'user', 'system'];
 
   protected function setUp() {
     parent::setUp();
@@ -55,11 +48,11 @@ class PathNoCanonicalLinkTest extends KernelTestBase {
 
     $entity_type->addTranslation('de', ['name' => 'name german']);
     $entity_type->save();
-    $this->assertCount(2, $entity_type->getTranslationLanguages());
+    $this->assertEqual(count($entity_type->getTranslationLanguages()), 2);
 
     $entity_type->removeTranslation('de');
     $entity_type->save();
-    $this->assertCount(1, $entity_type->getTranslationLanguages());
+    $this->assertEqual(count($entity_type->getTranslationLanguages()), 1);
   }
 
 }

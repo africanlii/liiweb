@@ -20,14 +20,7 @@ class PendingRevisionTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
-    'taxonomy',
-    'node',
-    'user',
-    'text',
-    'field',
-    'system',
-  ];
+  public static $modules = ['taxonomy', 'node', 'user', 'text', 'field', 'system'];
 
   /**
    * {@inheritdoc}

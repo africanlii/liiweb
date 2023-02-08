@@ -1,0 +1,79 @@
+uuid: 96b68e87-8fdf-4ed8-94d3-16e249854a4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.law_in_focus.body
+    - field.field.node.law_in_focus.field_author
+    - field.field.node.law_in_focus.field_featured_image
+    - field.field.node.law_in_focus.field_law_in_focus_collection
+    - field.field.node.law_in_focus.field_topic
+    - image.style.large
+    - node.type.law_in_focus
+  module:
+    - blazy
+    - ds
+    - user
+id: node.law_in_focus.card
+targetEntityType: node
+bundle: law_in_focus
+mode: card
+content:
+  field_author:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_featured_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: large
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: '16:9'
+      current_view_mode: card
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: blazy
+    region: content
+hidden:
+  body: true
+  field_law_in_focus_collection: true
+  field_topic: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

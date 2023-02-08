@@ -1,0 +1,23 @@
+uuid: d1694ed1-400a-490c-a7c7-db2304022678
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_author_link
+    - taxonomy.vocabulary.author_surname
+  module:
+    - link
+id: taxonomy_term.author_surname.field_author_link
+field_name: field_author_link
+entity_type: taxonomy_term
+bundle: author_surname
+label: 'Author Link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

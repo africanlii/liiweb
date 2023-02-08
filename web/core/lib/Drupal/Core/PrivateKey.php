@@ -18,7 +18,7 @@ class PrivateKey {
   protected $state;
 
   /**
-   * Constructs the private key object.
+   * Constructs the token generator.
    *
    * @param \Drupal\Core\State\StateInterface $state
    *   The state service.

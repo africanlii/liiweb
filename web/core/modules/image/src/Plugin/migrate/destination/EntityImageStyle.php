@@ -30,7 +30,7 @@ class EntityImageStyle extends EntityConfigBase {
       $row->setDestinationProperty('effects', []);
     }
 
-    /** @var \Drupal\image\Entity\ImageStyle $style */
+    /** @var \Drupal\Image\Entity\ImageStyle $style */
     $style = $this->getEntity($row, $old_destination_id_values);
 
     // Iterate the effects array so each effect plugin can be initialized.

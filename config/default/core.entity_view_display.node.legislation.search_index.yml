@@ -94,11 +94,6 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-  legislation_pdf_conditional_entity_view_1:
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   search_api_excerpt:
     weight: 1
     region: ds_content

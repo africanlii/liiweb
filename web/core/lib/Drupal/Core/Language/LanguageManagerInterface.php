@@ -99,7 +99,7 @@ interface LanguageManagerInterface {
    * @param string $langcode
    *   The language code.
    *
-   * @return \Drupal\Core\Language\LanguageInterface|null
+   * @return \Drupal\core\Language\LanguageInterface|null
    *   A fully-populated language object or NULL.
    */
   public function getLanguage($langcode);

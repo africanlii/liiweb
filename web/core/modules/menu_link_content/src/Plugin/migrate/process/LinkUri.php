@@ -99,9 +99,6 @@ class LinkUri extends ProcessPluginBase implements ContainerFactoryPluginInterfa
       if ($path == '<front>') {
         $path = '';
       }
-      elseif ($path == '<nolink>') {
-        return 'route:<nolink>';
-      }
       $path = 'internal:/' . $path;
 
       // Convert entity URIs to the entity scheme, if the path matches a route

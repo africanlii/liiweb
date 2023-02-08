@@ -4,7 +4,6 @@ namespace Drupal\Tests\rdf\Functional;
 
 use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
-use Drupal\Tests\rdf\Traits\RdfParsingTrait;
 
 /**
  * Tests the RDFa markup of Users.
@@ -13,26 +12,17 @@ use Drupal\Tests\rdf\Traits\RdfParsingTrait;
  */
 class UserAttributesTest extends BrowserTestBase {
 
-  use RdfParsingTrait;
-
   /**
    * Modules to enable.
    *
    * @var array
    */
-  public static $modules = ['rdf', 'node', 'user_hooks_test'];
+  public static $modules = ['rdf', 'node'];
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
-
-  /**
-   * URI of the front page of the Drupal site.
-   *
-   * @var string
-   */
-  protected $baseUri;
 
   protected function setUp() {
     parent::setUp();
@@ -44,12 +34,6 @@ class UserAttributesTest extends BrowserTestBase {
         'properties' => ['foaf:name'],
       ])
       ->save();
-
-    // Prepares commonly used URIs.
-    $this->baseUri = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
-
-    // Set to test the altered display name.
-    \Drupal::state()->set('user_hooks_test_user_format_name_alter', TRUE);
   }
 
   /**
@@ -77,7 +61,13 @@ class UserAttributesTest extends BrowserTestBase {
     /** @var \Drupal\user\UserInterface[] $authors */
     foreach ($authors as $author) {
       $account_uri = $author->toUrl('canonical', ['absolute' => TRUE])->toString();
-      $this->drupalGet('user/' . $author->id());
+
+      // Parses the user profile page where the default bundle mapping for user
+      // should be used.
+      $parser = new \EasyRdf_Parser_Rdfa();
+      $graph = new \EasyRdf_Graph();
+      $base_uri = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
+      $parser->parse($graph, $this->drupalGet('user/' . $author->id()), 'rdfa', $base_uri);
 
       // Inspects RDF graph output.
       // User type.
@@ -85,20 +75,24 @@ class UserAttributesTest extends BrowserTestBase {
         'type' => 'uri',
         'value' => 'http://rdfs.org/sioc/ns#UserAccount',
       ];
-      $this->assertTrue($this->hasRdfProperty($this->getSession()->getPage()->getContent(), $this->baseUri, $account_uri, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', $expected_value), 'User type found in RDF output (sioc:UserAccount).');
-
+      $this->assertTrue($graph->hasProperty($account_uri, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', $expected_value), 'User type found in RDF output (sioc:UserAccount).');
       // User name.
       $expected_value = [
         'type' => 'literal',
-        'value' => $author->getDisplayName(),
+        'value' => $author->getAccountName(),
       ];
-      $this->assertTrue($this->hasRdfProperty($this->getSession()->getPage()->getContent(), $this->baseUri, $account_uri, 'http://xmlns.com/foaf/0.1/name', $expected_value), 'User name found in RDF output (foaf:name).');
+      $this->assertTrue($graph->hasProperty($account_uri, 'http://xmlns.com/foaf/0.1/name', $expected_value), 'User name found in RDF output (foaf:name).');
 
       // User creates a node.
       $this->drupalLogin($author);
       $node = $this->drupalCreateNode(['type' => 'article', 'promote' => 1]);
       $this->drupalLogin($user1);
-      $this->drupalGet('node/' . $node->id());
+
+      // Parses the node created by the user.
+      $parser = new \EasyRdf_Parser_Rdfa();
+      $graph = new \EasyRdf_Graph();
+      $base_uri = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
+      $parser->parse($graph, $this->drupalGet('node/' . $node->id()), 'rdfa', $base_uri);
 
       // Ensures the default bundle mapping for user is used on the Authored By
       // information on the node.
@@ -106,14 +100,14 @@ class UserAttributesTest extends BrowserTestBase {
         'type' => 'uri',
         'value' => 'http://rdfs.org/sioc/ns#UserAccount',
       ];
-      $this->assertTrue($this->hasRdfProperty($this->getSession()->getPage()->getContent(), $this->baseUri, $account_uri, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', $expected_value), 'User type found in RDF output (sioc:UserAccount).');
-
+      $this->assertTrue($graph->hasProperty($account_uri, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', $expected_value), 'User type found in RDF output (sioc:UserAccount).');
       // User name.
       $expected_value = [
         'type' => 'literal',
-        'value' => $author->getDisplayName(),
+        'value' => $author->getAccountName(),
       ];
-      $this->assertTrue($this->hasRdfProperty($this->getSession()->getPage()->getContent(), $this->baseUri, $account_uri, 'http://xmlns.com/foaf/0.1/name', $expected_value), 'User name found in RDF output (foaf:name).');
+      $this->assertTrue($graph->hasProperty($account_uri, 'http://xmlns.com/foaf/0.1/name', $expected_value), 'User name found in RDF output (foaf:name).');
+
     }
   }
 

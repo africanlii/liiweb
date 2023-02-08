@@ -17,16 +17,7 @@ class FieldItemSerializationTest extends NormalizerTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
-    'serialization',
-    'system',
-    'field',
-    'entity_test',
-    'text',
-    'filter',
-    'user',
-    'field_normalization_test',
-  ];
+  public static $modules = ['serialization', 'system', 'field', 'entity_test', 'text', 'filter', 'user', 'field_normalization_test'];
 
   /**
    * The class name of the test class.

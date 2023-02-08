@@ -21,15 +21,7 @@ class RowEntityTest extends ViewsKernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
-    'taxonomy',
-    'text',
-    'filter',
-    'field',
-    'system',
-    'node',
-    'user',
-  ];
+  public static $modules = ['taxonomy', 'text', 'filter', 'field', 'system', 'node', 'user'];
 
   /**
    * Views used by this test.

@@ -49,14 +49,9 @@ class FileTestForm implements FormInterface {
     ];
 
     $form['allow_all_extensions'] = [
+      '#type' => 'checkbox',
       '#title' => t('Allow all extensions?'),
-      '#type' => 'radios',
-      '#options' => [
-        'false' => 'No',
-        'empty_array' => 'Empty array',
-        'empty_string' => 'Empty string',
-      ],
-      '#default_value' => 'false',
+      '#default_value' => FALSE,
     ];
 
     $form['is_image_file'] = [
@@ -97,12 +92,8 @@ class FileTestForm implements FormInterface {
       $validators['file_validate_is_image'] = [];
     }
 
-    $allow = $form_state->getValue('allow_all_extensions');
-    if ($allow === 'empty_array') {
+    if ($form_state->getValue('allow_all_extensions')) {
       $validators['file_validate_extensions'] = [];
-    }
-    elseif ($allow === 'empty_string') {
-      $validators['file_validate_extensions'] = [''];
     }
     elseif (!$form_state->isValueEmpty('extensions')) {
       $validators['file_validate_extensions'] = [$form_state->getValue('extensions')];

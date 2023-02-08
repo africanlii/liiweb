@@ -1,0 +1,30 @@
+uuid: c1240b30-6d1d-4611-b9ad-9b66d0c18f01
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.rw_organisations
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: views_block__rw_organisations_block_1
+theme: liibarrio2020
+region: pre_header
+weight: -23
+provider: null
+plugin: 'views_block:rw_organisations-block_1'
+settings:
+  id: 'views_block:rw_organisations-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: "/about\r\n<front>"
+    negate: false
+    context_mapping: {  }

@@ -215,11 +215,6 @@
                   'figcaption',
                 );
 
-                const captionFilter = new CKEDITOR.filter(
-                  widgetDefinition.editables.caption.allowedContent,
-                );
-                captionFilter.applyTo(caption);
-
                 // Use Drupal's data-placeholder attribute to insert a CSS-based,
                 // translation-ready placeholder for empty captions. Note that it
                 // also must to be done for new instances (see

@@ -1,0 +1,181 @@
+uuid: 94d5d763-f3b0-46cf-ad05-29a03877fdf8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.law_in_focus.body
+    - field.field.node.law_in_focus.field_author
+    - field.field.node.law_in_focus.field_featured_image
+    - field.field.node.law_in_focus.field_law_in_focus_collection
+    - field.field.node.law_in_focus.field_topic
+    - image.style.letterbox_lg
+    - node.type.law_in_focus
+  module:
+    - blazy
+    - ds
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_stacked_2col_3_9
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          header_left: div
+          header_right: div
+          header: div
+          left: div
+          right: div
+          footer: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          header_left: {  }
+          header_right: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
+    regions:
+      header:
+        - field_featured_image
+      left:
+        - field_author
+        - field_law_in_focus_collection
+        - field_topic
+        - 'dynamic_token_field:node-share_links'
+      right:
+        - node_title
+        - node_post_date
+        - body
+    fields:
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 4
+        label: hidden
+        formatter: default
+      node_post_date:
+        plugin_id: node_post_date
+        weight: 6
+        label: hidden
+        formatter: ds_post_date_jfy
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      node_title:
+        plugin_id: node_title
+        weight: 5
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h1
+          class: ''
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.law_in_focus.full
+targetEntityType: node
+bundle: law_in_focus
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    region: right
+  field_author:
+    type: entity_reference_entity_view
+    weight: 1
+    region: left
+    label: hidden
+    settings:
+      view_mode: slide
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_featured_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: letterbox_lg
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      current_view_mode: full
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: blazy
+    region: header
+  field_law_in_focus_collection:
+    weight: 2
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: left
+  field_topic:
+    weight: 3
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: left
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

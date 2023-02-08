@@ -1,0 +1,11 @@
+id: related_judgments
+label: 'Related judgments'
+ui_limit: ''
+properties:
+  block: 'views_block:related_content-block_2'
+  use_block_title: false
+  add_block_wrappers: true
+type: block
+type_label: 'Block field'
+entities:
+  node: node

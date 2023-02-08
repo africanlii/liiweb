@@ -186,11 +186,7 @@ class WorkspaceManager implements WorkspaceManagerInterface {
       foreach ($this->negotiatorIds as $negotiator_id) {
         $negotiator = $this->classResolver->getInstanceFromDefinition($negotiator_id);
         if ($negotiator->applies($request)) {
-          // By default, 'view' access is checked when a workspace is activated,
-          // but it should also be checked when retrieving the currently active
-          // workspace.
-          if (($negotiated_workspace = $negotiator->getActiveWorkspace($request)) && $negotiated_workspace->access('view')) {
-            $active_workspace = $negotiated_workspace;
+          if ($active_workspace = $negotiator->getActiveWorkspace($request)) {
             break;
           }
         }

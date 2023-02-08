@@ -1,0 +1,23 @@
+uuid: 6e4a8b50-74fd-402f-8b7b-d48590c36fcc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_judgment_number_override
+    - node.type.judgment
+id: node.judgment.field_judgment_number_override
+field_name: field_judgment_number_override
+entity_type: node
+bundle: judgment
+label: 'Judgment number override'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

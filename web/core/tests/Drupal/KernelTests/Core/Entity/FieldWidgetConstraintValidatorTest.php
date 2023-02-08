@@ -15,13 +15,7 @@ use Drupal\KernelTests\KernelTestBase;
  */
 class FieldWidgetConstraintValidatorTest extends KernelTestBase {
 
-  public static $modules = [
-    'entity_test',
-    'field',
-    'field_test',
-    'user',
-    'system',
-  ];
+  public static $modules = ['entity_test', 'field', 'field_test', 'user', 'system'];
 
   /**
    * {@inheritdoc}

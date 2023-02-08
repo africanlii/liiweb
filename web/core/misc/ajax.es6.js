@@ -102,9 +102,7 @@
     if (xmlhttp.status) {
       statusCode = `\n${Drupal.t('An AJAX HTTP error occurred.')}\n${Drupal.t(
         'HTTP Result Code: !status',
-        {
-          '!status': xmlhttp.status,
-        },
+        { '!status': xmlhttp.status },
       )}`;
     } else {
       statusCode = `\n${Drupal.t(
@@ -421,10 +419,8 @@
     this.element = element;
 
     /**
-     * @deprecated in drupal:8.5.0 and is removed from drupal:10.0.0.
-     *   Use elementSettings.
-     *
-     * @see https://www.drupal.org/node/2928117
+     * @deprecated in Drupal 8.5.0 and will be removed before Drupal 9.0.0.
+     * Use elementSettings.
      *
      * @type {Drupal.Ajax~elementSettings}
      */
@@ -559,7 +555,6 @@
         }
       },
       dataType: 'json',
-      jsonp: false,
       type: 'POST',
     };
 
@@ -1122,26 +1117,24 @@
    * @param {object} response
    *   The response from the Ajax request.
    *
-   * @deprecated in drupal:8.6.0 and is removed from drupal:10.0.0.
-   *   Use data with desired wrapper.
-   *
-   * @see https://www.drupal.org/node/2940704
+   * @deprecated in Drupal 8.6.x and will be removed before Drupal 9.0.0.
+   *   Use data with desired wrapper. See https://www.drupal.org/node/2974880.
    *
    * @todo Add deprecation warning after it is possible. For more information
    *   see: https://www.drupal.org/project/drupal/issues/2973400
+   *
+   * @see https://www.drupal.org/node/2940704
    */
   Drupal.theme.ajaxWrapperNewContent = ($newContent, ajax, response) =>
     (response.effect || ajax.effect) !== 'none' &&
     $newContent.filter(
       i =>
-        !(
-          // We can not consider HTML comments or whitespace text as separate
-          // roots, since they do not cause visual regression with effect.
-          (
-            $newContent[i].nodeName === '#comment' ||
-            ($newContent[i].nodeName === '#text' &&
-              /^(\s|\n|\r)*$/.test($newContent[i].textContent))
-          )
+        !// We can not consider HTML comments or whitespace text as separate
+        // roots, since they do not cause visual regression with effect.
+        (
+          $newContent[i].nodeName === '#comment' ||
+          ($newContent[i].nodeName === '#text' &&
+            /^(\s|\n|\r)*$/.test($newContent[i].textContent))
         ),
     ).length > 1
       ? Drupal.theme('ajaxWrapperMultipleRootElements', $newContent)
@@ -1153,13 +1146,13 @@
    * @param {jQuery} $elements
    *   Response elements after parsing.
    *
-   * @deprecated in drupal:8.6.0 and is removed from drupal:10.0.0.
-   *   Use data with desired wrapper.
-   *
-   * @see https://www.drupal.org/node/2940704
+   * @deprecated in Drupal 8.6.x and will be removed before Drupal 9.0.0.
+   *   Use data with desired wrapper. See https://www.drupal.org/node/2974880.
    *
    * @todo Add deprecation warning after it is possible. For more information
    *   see: https://www.drupal.org/project/drupal/issues/2973400
+   *
+   * @see https://www.drupal.org/node/2940704
    */
   Drupal.theme.ajaxWrapperMultipleRootElements = $elements =>
     $('<div></div>').append($elements);
@@ -1539,6 +1532,10 @@
     /**
      * Command to add css.
      *
+     * Uses the proprietary addImport method if available as browsers which
+     * support that method ignore @import statements in dynamically added
+     * stylesheets.
+     *
      * @param {Drupal.Ajax} [ajax]
      *   {@link Drupal.Ajax} object created by {@link Drupal.ajax}.
      * @param {object} response
@@ -1549,7 +1546,21 @@
      *   The XMLHttpRequest status.
      */
     add_css(ajax, response, status) {
+      // Add the styles in the normal way.
       $('head').prepend(response.data);
+      // Add imports in the styles using the addImport method if available.
+      let match;
+      const importMatch = /^@import url\("(.*)"\);$/gim;
+      if (
+        document.styleSheets[0].addImport &&
+        importMatch.test(response.data)
+      ) {
+        importMatch.lastIndex = 0;
+        do {
+          match = importMatch.exec(response.data);
+          document.styleSheets[0].addImport(match[1]);
+        } while (match);
+      }
     },
 
     /**

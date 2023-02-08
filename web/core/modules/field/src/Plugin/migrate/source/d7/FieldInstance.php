@@ -180,6 +180,9 @@ class FieldInstance extends DrupalSqlBase {
       }
     }
 
+    $field_data = unserialize($row->getSourceProperty('field_data'));
+    $row->setSourceProperty('field_settings', $field_data['settings']);
+
     return parent::prepareRow($row);
   }
 

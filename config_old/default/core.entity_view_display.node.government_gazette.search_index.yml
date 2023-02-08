@@ -1,0 +1,77 @@
+uuid: 24f7cfa9-58fb-49d6-8751-84b25ff7fc96
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_index
+    - field.field.node.government_gazette.body
+    - field.field.node.government_gazette.field_date
+    - field.field.node.government_gazette.field_external_link
+    - field.field.node.government_gazette.field_file
+    - field.field.node.government_gazette.field_gazette_issue_number
+    - field.field.node.government_gazette.field_gazette_machine_id
+    - field.field.node.government_gazette.field_gazette_supplement
+    - field.field.node.government_gazette.field_locality
+    - node.type.government_gazette
+  module:
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          ds_content: {  }
+    regions:
+      ds_content:
+        - node_title
+        - search_api_excerpt
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.government_gazette.search_index
+targetEntityType: node
+bundle: government_gazette
+mode: search_index
+content:
+  search_api_excerpt:
+    weight: 1
+    region: ds_content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_date: true
+  field_external_link: true
+  field_file: true
+  field_gazette_issue_number: true
+  field_gazette_machine_id: true
+  field_gazette_supplement: true
+  field_locality: true
+  langcode: true
+  links: true

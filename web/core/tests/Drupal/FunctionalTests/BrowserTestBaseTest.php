@@ -24,12 +24,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
    *
    * @var array
    */
-  public static $modules = [
-    'test_page_test',
-    'form_test',
-    'system_test',
-    'node',
-  ];
+  public static $modules = ['test_page_test', 'form_test', 'system_test', 'node'];
 
   /**
    * {@inheritdoc}
@@ -52,8 +47,8 @@ class BrowserTestBaseTest extends BrowserTestBase {
 
     // Check that returned plain text is correct.
     $text = $this->getTextContent();
-    $this->assertStringContainsString('Test page text.', $text);
-    $this->assertStringNotContainsString('</html>', $text);
+    $this->assertContains('Test page text.', $text);
+    $this->assertNotContains('</html>', $text);
 
     // Response includes cache tags that we can assert.
     $this->assertSession()->responseHeaderEquals('X-Drupal-Cache-Tags', 'http_response rendered');
@@ -169,13 +164,13 @@ class BrowserTestBaseTest extends BrowserTestBase {
   public function testClickLink() {
     $this->drupalGet('test-page');
     $this->clickLink('Visually identical test links');
-    $this->assertStringContainsString('user/login', $this->getSession()->getCurrentUrl());
+    $this->assertContains('user/login', $this->getSession()->getCurrentUrl());
     $this->drupalGet('test-page');
     $this->clickLink('Visually identical test links', 0);
-    $this->assertStringContainsString('user/login', $this->getSession()->getCurrentUrl());
+    $this->assertContains('user/login', $this->getSession()->getCurrentUrl());
     $this->drupalGet('test-page');
     $this->clickLink('Visually identical test links', 1);
-    $this->assertStringContainsString('user/register', $this->getSession()->getCurrentUrl());
+    $this->assertContains('user/register', $this->getSession()->getCurrentUrl());
   }
 
   public function testError() {
@@ -247,17 +242,9 @@ class BrowserTestBaseTest extends BrowserTestBase {
     $sanitized = Html::escape($dangerous);
     $this->assertNoText($dangerous);
     $this->assertText($sanitized);
-  }
 
-  /**
-   * Tests legacy getRawContent().
-   *
-   * @group legacy
-   * @expectedDeprecation AssertLegacyTrait::getRawContent() is deprecated in drupal:8.2.0 and is removed from drupal:10.0.0. Use $this->getSession()->getPage()->getContent() instead. See https://www.drupal.org/node/3129738
-   */
-  public function testGetRawContent() {
-    $this->drupalGet('test-encoded');
-    $this->assertSame($this->getSession()->getPage()->getContent(), $this->getRawContent());
+    // Test getRawContent().
+    $this->assertSame($this->getSession()->getPage()->getContent(), $this->getSession()->getPage()->getContent());
   }
 
   /**
@@ -283,7 +270,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "notexisting" field was found.');
     }
     catch (ExpectationFailedException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('assertFieldByXPath correctly failed. The "notexisting" field was not found.');
     }
 
     try {
@@ -291,7 +278,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "edit-name" field was not found.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('assertNoFieldByXPath correctly failed. The "edit-name" field was found.');
     }
 
     try {
@@ -299,7 +286,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "edit-name" field is found with the value "not the value".');
     }
     catch (ExpectationFailedException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('The "edit-name" field is not found with the value "not the value".');
     }
   }
 
@@ -318,7 +305,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "name" field was not found based on name.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('assertNoField correctly failed. The "name" field was found by name.');
     }
 
     // Test that the assertion fails correctly when searching by id.
@@ -327,7 +314,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "name" field was not found based on id.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('assertNoField correctly failed. The "name" field was found by id.');
     }
 
     // *** 2. assertField().
@@ -340,7 +327,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "invalid_name_and_id" field was found.');
     }
     catch (ExpectationFailedException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('assertField correctly failed. The "invalid_name_and_id" field was not found.');
     }
 
     // *** 3. assertNoFieldById().
@@ -355,7 +342,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "description" field, with no value was not found.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('The "description" field, with no value was found.');
     }
 
     // Test that the assertion fails correctly if a NULL value is passed in.
@@ -364,7 +351,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "name" field was not found.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('The "name" field was found.');
     }
 
     // *** 4. assertFieldById().
@@ -379,7 +366,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "edit-name" field with no value was found.');
     }
     catch (ExpectationFailedException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('The "edit-name" field with no value was not found.');
     }
 
     // Test that the assertion fails correctly if the wrong value is passed in.
@@ -388,7 +375,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "name" field was found, using the wrong value.');
     }
     catch (ExpectationFailedException $e) {
-      // Expected exception; just continue testing
+      $this->pass('The "name" field was not found, using the wrong value.');
     }
 
     // *** 5. assertNoFieldByName().
@@ -403,7 +390,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "description" field, with no value was not found.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('The "description" field, with no value was found.');
     }
 
     // Test that the assertion fails correctly if a NULL value is passed in.
@@ -412,7 +399,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "name" field was not found.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('The "name" field was found.');
     }
 
     // *** 6. assertFieldByName().
@@ -429,7 +416,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "non-existing-name" field was found.');
     }
     catch (ExpectationFailedException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('The "non-existing-name" field was not found');
     }
 
     // Test that the assertion fails correctly if given the wrong value.
@@ -438,7 +425,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "name" field with incorrect value was found.');
     }
     catch (ExpectationFailedException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('assertFieldByName correctly failed. The "name" field with incorrect value was not found.');
     }
 
     // Test that text areas can contain new lines.
@@ -458,7 +445,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The select option "four" was found.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass($e->getMessage());
     }
 
     $this->assertOption('options', 1);
@@ -467,7 +454,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The select option "4" was found.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass($e->getMessage());
     }
 
     $this->assertNoOption('options', 'non-existing');
@@ -476,7 +463,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The select option "one" was not found.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass($e->getMessage());
     }
 
     $this->assertOptionSelected('options', 2);
@@ -485,7 +472,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The select option "4" was selected.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass($e->getMessage());
     }
 
     try {
@@ -493,7 +480,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The select option "1" was selected.');
     }
     catch (ExpectationFailedException $e) {
-      // Expected exception; just continue testing.
+      $this->pass($e->getMessage());
     }
 
   }
@@ -512,7 +499,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The field with id of "Save" was found.');
     }
     catch (ExpectationFailedException $e) {
-      // Expected exception; just continue testing.
+      $this->pass($e->getMessage());
     }
 
     $this->assertNoFieldById('Save', NULL);
@@ -523,7 +510,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The field with id of "edit-save" was not found.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass($e->getMessage());
     }
 
     // Test that multiple fields with the same name are validated correctly.
@@ -536,7 +523,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "duplicate_button" field with the value Duplicate button 2 was not found.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('assertNoFieldByName correctly failed. The "duplicate_button" field with the value Duplicate button 2 was found.');
     }
   }
 
@@ -573,7 +560,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "checkbox_enabled" field was not found by name, using NULL value.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('assertNoFieldByName failed correctly. The "checkbox_enabled" field was found using NULL value.');
     }
 
     // Part 2 - Test by ID.
@@ -603,7 +590,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "edit-checkbox-disabled" field was not found by ID, using NULL value.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('assertNoFieldById failed correctly. The "edit-checkbox-disabled" field was found by ID using NULL value.');
     }
 
     // Part 3 - Test the specific 'checked' assertions.
@@ -616,7 +603,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "incorrect_checkbox_id" field was found');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('assertNoFieldChecked correctly failed. The "incorrect_checkbox_id" field was not found.');
     }
 
     // Test that the assertion fails correctly for a checkbox that is checked.
@@ -625,7 +612,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "edit-checkbox-enabled" field was not found in a checked state.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('assertNoFieldChecked correctly failed. The "edit-checkbox-enabled" field was found in a checked state.');
     }
 
     // Test that the assertion fails correctly for a checkbox that is not
@@ -635,7 +622,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
       $this->fail('The "edit-checkbox-disabled" field was found and checked.');
     }
     catch (ExpectationException $e) {
-      // Expected exception; just continue testing.
+      $this->pass('assertFieldChecked correctly failed. The "edit-checkbox-disabled" field was not found in a checked state.');
     }
   }
 
@@ -656,7 +643,7 @@ class BrowserTestBaseTest extends BrowserTestBase {
    */
   public function testInstall() {
     $htaccess_filename = $this->tempFilesDirectory . '/.htaccess';
-    $this->assertFileExists($htaccess_filename);
+    $this->assertTrue(file_exists($htaccess_filename), "$htaccess_filename exists");
   }
 
   /**

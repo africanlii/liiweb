@@ -1,0 +1,46 @@
+uuid: 5e866b25-bbb5-4fac-913a-44c4e0bc38f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_files
+    - node.type.legislation
+  module:
+    - file
+    - filefield_paths
+third_party_settings:
+  filefield_paths:
+    enabled: true
+    file_path:
+      value: legislation
+      options:
+        slashes: false
+        pathauto: false
+        transliterate: false
+    redirect: false
+    retroactive_update: false
+    active_updating: true
+    file_name:
+      value: '[file:ffp-name-only-original].[file:ffp-extension-original]'
+      options:
+        slashes: false
+        pathauto: false
+        transliterate: false
+id: node.legislation.field_files
+field_name: field_files
+entity_type: node
+bundle: legislation
+label: Files
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: legislation/files
+  file_extensions: 'txt doc docx pdf epub'
+  max_filesize: 64MB
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

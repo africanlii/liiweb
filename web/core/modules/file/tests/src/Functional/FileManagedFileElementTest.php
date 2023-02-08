@@ -50,7 +50,7 @@ class FileManagedFileElementTest extends FileFieldTestBase {
             $file_field_name => \Drupal::service('file_system')->realpath($test_file->getFileUri()),
           ];
           $this->drupalPostForm(NULL, $edit, t('Save'));
-          $this->assertText('The form has become outdated.');
+          $this->assertText('The form has become outdated. Copy any unsaved work in the form below');
           $last_fid = $this->getLastFileId();
           $this->assertEqual($last_fid_prior, $last_fid, 'File was not saved when uploaded with an invalid form token.');
 

@@ -9,9 +9,6 @@
  *
  * Then, replace this directory (core/assets/vendor/ckeditor) with your build.
  *
- * Also: Remember to update core/core.libraries.yml if you are doing an update of the version of CKEditor for Drupal
- * Core.
- *
  * If you are developing or debugging CKEditor plugins, you may want to work
  * against an unoptimized (unminified) CKEditor build. To do so,
  * run the build command with the --leave-js-unminified flag.
@@ -39,7 +36,6 @@ var CKBUILDER_CONFIG = {
 		'.editorconfig',
 		'.gitignore',
 		'.gitattributes',
-		'.github',
 		'gruntfile.js',
 		'.idea',
 		'.jscsrc',
@@ -48,7 +44,6 @@ var CKBUILDER_CONFIG = {
 		'less',
 		'.mailmap',
 		'node_modules',
-		'.nvmrc',
 		'package.json',
 		'README.md',
 		'tests',
@@ -85,7 +80,6 @@ var CKBUILDER_CONFIG = {
 		magicline: 1,
 		maximize: 1,
     pastefromgdocs: 1,
-    pastefromlibreoffice: 1,
 		pastefromword: 1,
 		pastetext: 1,
 		removeformat: 1,

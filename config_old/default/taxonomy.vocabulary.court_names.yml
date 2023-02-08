@@ -1,0 +1,8 @@
+uuid: c70564e8-587b-4339-9244-b833f8dcce56
+langcode: en
+status: true
+dependencies: {  }
+name: 'Court Names'
+vid: court_names
+description: 'The different Court Names used for Judgements'
+weight: 0

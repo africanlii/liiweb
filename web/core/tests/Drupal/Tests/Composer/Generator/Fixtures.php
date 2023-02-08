@@ -33,13 +33,12 @@ class Fixtures {
       'license' => 'GPL-2.0-or-later',
       'require' =>
       [
-        'composer/installers' => '^1.9',
         'php' => '>=7.0.8',
         'symfony/yaml' => '~3.4.5',
       ],
       'require-dev' =>
       [
-        'behat/mink' => '^1.8',
+        'behat/mink' => '1.7.x-dev',
       ],
     ];
   }
@@ -60,15 +59,6 @@ class Fixtures {
       'content-hash' => 'da9910627bab73a256b39ceda83d7167',
       'packages' =>
       [
-        [
-          'name' => "composer/installers",
-          'version' => 'v1.9.0',
-          'source' => [
-            'type' => 'git',
-            'url' => 'https://github.com/composer/installers.git',
-            'reference' => 'b93bcf0fa1fccb0b7d176b0967d969691cd74cca',
-          ],
-        ],
         [
           'name' => 'symfony/polyfill-ctype',
           'version' => 'v1.12.0',
@@ -94,12 +84,12 @@ class Fixtures {
       [
         [
           'name' => 'behat/mink',
-          'version' => 'v1.8.0',
+          'version' => 'dev-master',
           'source' =>
           [
             'type' => 'git',
             'url' => 'https://github.com/minkphp/Mink.git',
-            'reference' => 'e1772aabb6b654464264a6cc72158c8b3409d8bc',
+            'reference' => 'a534fe7dac9525e8e10ca68e737c3d7e5058ec83',
           ],
         ],
         [

@@ -96,4 +96,7 @@ div#block-views-block-liiweb-search-general-search-form {
     .navbar-collapse.collapse{
         @include full-width-bg($beige);
       }
+      #navbar-mega{
+        @include full-width-bg($green);
+      }
 }

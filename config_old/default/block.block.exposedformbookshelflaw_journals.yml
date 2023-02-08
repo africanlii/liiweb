@@ -1,0 +1,29 @@
+uuid: 5ee26417-f9c4-4ee5-9d1a-a372a669b989
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.bookshelf
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: exposedformbookshelflaw_journals
+theme: liibarrio2020
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:bookshelf-law_journals'
+settings:
+  id: 'views_exposed_filter_block:bookshelf-law_journals'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: "/bookshelf/law-journals\r\n"
+    negate: false
+    context_mapping: {  }

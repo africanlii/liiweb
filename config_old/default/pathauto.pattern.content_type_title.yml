@@ -1,0 +1,25 @@
+uuid: 2bc8eaf6-ba77-4136-bc48-ed4842ac5bca
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: content_type_title
+label: 'Content Type Title'
+type: 'canonical_entities:node'
+pattern: '[node:content-type]/[node:title]'
+selection_criteria:
+  26a98e85-4504-44a2-92f4-ad9d88bc24a9:
+    id: node_type
+    bundles:
+      book: book
+      collection: collection
+      law_in_focus: law_in_focus
+      law_journal_article: law_journal_article
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 26a98e85-4504-44a2-92f4-ad9d88bc24a9
+selection_logic: and
+weight: -5
+relationships: {  }

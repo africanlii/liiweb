@@ -1,0 +1,36 @@
+uuid: 78abb4c7-d061-419f-bc1b-2235151c890e
+langcode: en
+status: true
+dependencies:
+  module:
+    - facets_block
+    - system
+  theme:
+    - liibarrio2020
+id: facetsblock_3
+theme: liibarrio2020
+region: content
+weight: -23
+provider: null
+plugin: facets_block
+settings:
+  id: facets_block
+  label: 'Gazettes By Year'
+  provider: facets_block
+  label_display: '0'
+  show_title: false
+  exclude_empty_facets: false
+  facets_to_include:
+    'facet_block:gazette_date': 'facet_block:gazette_date'
+    'facet_block:content_type': '0'
+    'facet_block:date_range': '0'
+    'facet_block:commencement_date': '0'
+    'facet_block:expression_date': '0'
+    'facet_block:court_name': '0'
+    'facet_block:tags': '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: "/gazettes\r\n/gazettes/search/year"
+    negate: false
+    context_mapping: {  }

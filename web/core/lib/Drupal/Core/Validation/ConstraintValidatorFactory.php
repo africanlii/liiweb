@@ -8,9 +8,6 @@ use Symfony\Component\Validator\ConstraintValidatorFactory as BaseConstraintVali
 
 /**
  * Defines a constraint validator factory that works with container injection.
- *
- * @TODO Decide what to do with this class or how to reuse constraint
- * validators in https://drupal.org/project/drupal/issues/3097071
  */
 class ConstraintValidatorFactory extends BaseConstraintValidatorFactory {
 
@@ -28,13 +25,12 @@ class ConstraintValidatorFactory extends BaseConstraintValidatorFactory {
    */
   public function getInstance(Constraint $constraint) {
     $class_name = $constraint->validatedBy();
-    // Constraint validator instances should always be initialized newly and
-    // never shared, because the current validation context is getting injected
-    // into them through setter injection and in a case of a recursive
-    // validation where a validator triggers a validation chain leading to the
-    // same validator the context of the first call would be exchanged with the
-    // one of the subsequent validation chain.
-    return $this->classResolver->getInstanceFromDefinition($class_name);
+
+    if (!isset($this->validators[$class_name])) {
+      $this->validators[$class_name] = $this->classResolver->getInstanceFromDefinition($class_name);
+    }
+
+    return $this->validators[$class_name];
   }
 
 }

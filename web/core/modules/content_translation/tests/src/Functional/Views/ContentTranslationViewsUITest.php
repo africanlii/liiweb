@@ -35,7 +35,7 @@ class ContentTranslationViewsUITest extends UITestBase {
    */
   public function testViewsUI() {
     $this->drupalGet('admin/structure/views/view/test_view/edit');
-    $this->assertTitle('Test view (Views test data) | Drupal');
+    $this->assertTitle(t('@label (@table) | @site-name', ['@label' => 'Test view', '@table' => 'Views test data', '@site-name' => $this->config('system.site')->get('name')]));
   }
 
 }

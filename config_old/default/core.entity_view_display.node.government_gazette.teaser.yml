@@ -1,0 +1,90 @@
+uuid: 20131232-cd7e-469f-bd73-ea30a2cc3cb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.government_gazette.body
+    - field.field.node.government_gazette.field_date
+    - field.field.node.government_gazette.field_external_link
+    - field.field.node.government_gazette.field_file
+    - field.field.node.government_gazette.field_gazette_issue_number
+    - field.field.node.government_gazette.field_gazette_machine_id
+    - field.field.node.government_gazette.field_gazette_supplement
+    - field.field.node.government_gazette.field_locality
+    - node.type.government_gazette
+  module:
+    - ds
+    - liiweb
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_2col_9_3
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          left: div
+          right: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          left: {  }
+          right: {  }
+    regions:
+      left:
+        - node_title
+      right:
+        - field_file
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: h6
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.government_gazette.teaser
+targetEntityType: node
+bundle: government_gazette
+mode: teaser
+content:
+  field_file:
+    type: lii_file
+    weight: 1
+    region: right
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+hidden:
+  body: true
+  field_date: true
+  field_external_link: true
+  field_gazette_issue_number: true
+  field_gazette_machine_id: true
+  field_gazette_supplement: true
+  field_locality: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

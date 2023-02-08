@@ -8,8 +8,6 @@ use Drupal\views\Entity\View;
 /**
  * Tests the upgrade path for limit operators feature.
  *
- * @coversDefaultClass \Drupal\views\ViewsConfigUpdater
- *
  * @see views_post_update_limit_operator_defaults()
  *
  * @group Update
@@ -29,8 +27,6 @@ class LimitOperatorsDefaultsTest extends UpdatePathTestBase {
 
   /**
    * Tests that default settings for limit operators are present.
-   *
-   * @covers ::needsOperatorDefaultsUpdate
    */
   public function testViewsPostUpdateLimitOperatorsDefaultValues() {
     // Load and initialize our test view.

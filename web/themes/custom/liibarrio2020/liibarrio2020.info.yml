@@ -23,6 +23,7 @@ libraries-override:
 regions:
   pre_header: Pre-header
   header: Header
+  mega_menu: "Mega Menu"
   primary_menu: "Primary menu"
   hero: Hero
   highlighted: Highlighted
@@ -33,4 +34,4 @@ regions:
   footer_first: "Footer first"
   footer_second: "Footer second"
   footer_third: "Footer third"
- 
+  hidden: "Hidden"

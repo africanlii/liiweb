@@ -1,0 +1,36 @@
+uuid: abe5686f-40e9-4d7d-a8d7-91d3b1c7ee05
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.law_in_focus.field_law_in_focus_description
+    - field.field.paragraph.law_in_focus.field_law_in_focus_featured_coll
+    - paragraphs.paragraphs_type.law_in_focus
+  module:
+    - text
+id: paragraph.law_in_focus.default
+targetEntityType: paragraph
+bundle: law_in_focus
+mode: default
+content:
+  field_law_in_focus_description:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_law_in_focus_featured_coll:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden:
+  created: true
+  status: true

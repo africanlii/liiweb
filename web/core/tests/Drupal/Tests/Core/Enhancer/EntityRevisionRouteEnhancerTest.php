@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Route;
 class EntityRevisionRouteEnhancerTest extends UnitTestCase {
 
   /**
-   * @var \Drupal\Core\Routing\RouteEnhancer\EntityRevisionRouteEnhancer
+   * @var \Drupal\entity\RouteEnhancer\EntityRevisionRouteEnhancer
    */
   protected $routeEnhancer;
 

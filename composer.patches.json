@@ -2,16 +2,14 @@
   "patches": {
     "drupal/core": {
       "Allow json api to register custom normalizers": "patches/jsonapi/jsonapi_allow_custom_normalizers.patch",
-      "Add tokens for exposed filters in views": "patches/views/2761273-39.patch",
-      "remove duplicate theme suggestions": "patches/views/2118743-139-twig-debug-info.patch",
-      "fix ocntextual filters with exposed form bug": "patches/views/views-exposed-form-block-arg-2821962-50.patch"
+      "Book module bug patch adapted from https://www.drupal.org/project/drupal/issues/2918537#comment-13873706": "patches/core/2918537-63.patch"
     },
     "drupal/filefield_paths": {
       "Apply temp directory to files not uploaded via the UI": "patches/filefield_paths/filefield_paths.module.patch",
-      "fixing leaky cache metadata": "patches/filefield_paths/filefield_leaked_cache.patch"
+      "Token replacement generate leaked cache metadata": "https://www.drupal.org/files/issues/2019-08-13/fieldfield_path-leaked_cache_metadata-3074642-2.patch"
     },
     "drupal/facets": {
-      "Test scanning fails with The 'core' or the 'core_version_requirement' key must be present ...": "patches/facets/3182762-1.diff"
+      "Test scanning fails with The 'core' or the 'core_version_requirement' key must be present ...": "patches/facets/3182762-1.patch"
     }
   }
 }

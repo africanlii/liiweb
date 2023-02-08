@@ -349,7 +349,7 @@ class Internal extends CKEditorPluginBase implements ContainerFactoryPluginInter
    */
   protected function generateFormatTagsSetting(Editor $editor) {
     // When no text format is associated yet, assume no tag is allowed.
-    // @see \Drupal\editor\EditorInterface::hasAssociatedFilterFormat()
+    // @see \Drupal\Editor\EditorInterface::hasAssociatedFilterFormat()
     if (!$editor->hasAssociatedFilterFormat()) {
       return [];
     }

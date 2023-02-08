@@ -1,0 +1,20 @@
+uuid: 5529ce56-3604-43fd-982e-ba8bcbe61e66
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - paragraphs
+id: paragraph.field_repeal_date
+field_name: field_repeal_date
+entity_type: paragraph
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

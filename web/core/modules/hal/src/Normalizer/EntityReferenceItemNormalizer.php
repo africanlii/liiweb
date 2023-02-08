@@ -82,10 +82,7 @@ class EntityReferenceItemNormalizer extends FieldItemNormalizer implements UuidR
 
     // Normalize the target entity.
     $embedded = $this->serializer->normalize($target_entity, $format, $context);
-    // @todo https://www.drupal.org/project/drupal/issues/3110815 $embedded will
-    //   be NULL if the target entity does not exist. Use null coalescence
-    //   operator to preserve behavior in PHP 7.4.
-    $link = $embedded['_links']['self'] ?? NULL;
+    $link = $embedded['_links']['self'];
     // If the field is translatable, add the langcode to the link relation
     // object. This does not indicate the language of the target entity.
     if ($langcode) {

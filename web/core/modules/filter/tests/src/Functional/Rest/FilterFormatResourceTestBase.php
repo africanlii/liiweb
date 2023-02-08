@@ -34,7 +34,7 @@ abstract class FilterFormatResourceTestBase extends EntityResourceTestBase {
    */
   protected function createEntity() {
     $pablo_format = FilterFormat::create([
-      'name' => 'Pablo Picasso',
+      'name' => 'Pablo Piccasso',
       'format' => 'pablo',
       'langcode' => 'es',
       'filters' => [
@@ -71,7 +71,7 @@ abstract class FilterFormatResourceTestBase extends EntityResourceTestBase {
       ],
       'format' => 'pablo',
       'langcode' => 'es',
-      'name' => 'Pablo Picasso',
+      'name' => 'Pablo Piccasso',
       'status' => TRUE,
       'uuid' => $this->entity->uuid(),
       'weight' => 0,

@@ -33,7 +33,7 @@ class MigrateNodeTitleLabelTest extends MigrateDrupal7TestBase {
    */
   protected function assertEntity($id, $label) {
     $override = BaseFieldOverride::load($id);
-    $this->assertInstanceOf(BaseFieldOverride::class, $override);
+    $this->assertTrue($override instanceof BaseFieldOverride);
     /** @var \Drupal\Core\Field\Entity\BaseFieldOverride $override */
     $this->assertIdentical($label, $override->getLabel());
   }
@@ -42,20 +42,12 @@ class MigrateNodeTitleLabelTest extends MigrateDrupal7TestBase {
    * Tests migration of node title field overrides.
    */
   public function testMigration() {
-    // Forum title labels are overridden to 'Subject'.
+    $this->assertEntity('node.article.title', 'Title');
+    $this->assertEntity('node.blog.title', 'Title');
+    $this->assertEntity('node.book.title', 'Title');
     $this->assertEntity('node.forum.title', 'Subject');
-    // Other content types use the default of 'Title' and are not overridden.
-    $no_override_node_type = [
-      'article',
-      'blog',
-      'book',
-      'page',
-      'test_content_type',
-    ];
-    foreach ($no_override_node_type as $type) {
-      $override = BaseFieldOverride::load("node.$type.title");
-      $this->assertNotInstanceOf(BaseFieldOverride::class, $override);
-    }
+    $this->assertEntity('node.page.title', 'Title');
+    $this->assertEntity('node.test_content_type.title', 'Title');
   }
 
 }

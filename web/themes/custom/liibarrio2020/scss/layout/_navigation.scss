@@ -12,6 +12,8 @@
         padding:1rem;
         font-weight:600;
         font-family: $font-family-header;
+        font-size:.75rem;
+        text-transform: uppercase;
       }
 
       &:hover,
@@ -48,7 +50,7 @@ a.navbar-brand img {
 }
 
 @include media-breakpoint-up(md){
-  #navbar-main{
+  #navbar-main, #navbar-mega{
     width:100%;
     max-width:720px;
     margin:0 10px;
@@ -57,13 +59,22 @@ a.navbar-brand img {
 }
 
 @include media-breakpoint-up(lg){
-  #navbar-main{
+  #navbar-main,#navbar-mega{
     position: static;
     display:block;
     right:unset;
     margin:0 auto;
     max-width: 960px
   }
+  #navbar-mega .level-1>a{
+        margin: 0 .5rem 0 0;
+        padding:1rem;
+        font-weight:600;
+        font-family: $font-family-header;
+        font-size:.75rem;
+        text-transform: uppercase;
+  }
+
 }
 
 @include media-breakpoint-up(xl){
@@ -74,7 +85,7 @@ a.navbar-brand img {
      max-width: 315px;
     }
   }
-  #navbar-main{
+  #navbar-main,#navbar-mega{
     max-width: 1140px;
   }
 }
@@ -204,6 +215,60 @@ a.uct_logo{
     }
     .menu--main{
       padding:0;
+    }
+  }
+}
+
+nav#navbar-mega {
+	z-index: 10;
+}
+
+.region-mega-menu {
+	padding: 0;
+  .tb-megamenu{
+    background-color:$green;
+    .nav > li{
+      position:static !important;
+    }
+    .mega{
+      &.open{
+        &>a{
+          background-color:$beige;
+          color:$black;
+        }
+        .mega-dropdown-inner{
+          padding-top:1rem;
+        }
+      }
+      &>a:hover{
+        background-color:$beige;
+        color:$black;
+      }
+      &>.mega-dropdown-menu{
+        background-color:$green;
+        color:$white;
+        width:100vw;
+        z-index:100;
+        @include media-breakpoint-up(md){
+          max-width:960px;
+        }
+        @include media-breakpoint-up(lg){
+          max-width:1140px;
+        }
+      }
+      img {
+        max-width: 100%;
+      }
+      .tb-megamenu-column{
+        a{
+          color:$white;
+          padding:.5rem;
+          font-size:.75rem;
+          &:hover{
+            color:$black;
+          }
+        }
+      }
     }
   }
 }

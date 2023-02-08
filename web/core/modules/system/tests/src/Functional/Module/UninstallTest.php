@@ -60,7 +60,7 @@ class UninstallTest extends BrowserTestBase {
     $node->save();
 
     $this->drupalGet('admin/modules/uninstall');
-    $this->assertTitle('Uninstall | Drupal');
+    $this->assertTitle(t('Uninstall') . ' | Drupal');
 
     foreach (\Drupal::service('extension.list.module')->getAllInstalledInfo() as $module => $info) {
       $field_name = "uninstall[$module]";
@@ -136,7 +136,7 @@ class UninstallTest extends BrowserTestBase {
     // Make sure confirmation page is accessible only during uninstall process.
     $this->drupalGet('admin/modules/uninstall/confirm');
     $this->assertUrl('admin/modules/uninstall');
-    $this->assertTitle('Uninstall | Drupal');
+    $this->assertTitle(t('Uninstall') . ' | Drupal');
 
     // Make sure the correct error is shown when no modules are selected.
     $edit = [];
@@ -157,7 +157,7 @@ class UninstallTest extends BrowserTestBase {
       $this->fail($message);
     }
     catch (EntityMalformedException $e) {
-      // Expected exception; just continue testing.
+      $this->pass($message);
     }
 
     // Even though the module failed to install properly, its configuration

@@ -1,0 +1,29 @@
+uuid: 275bdef8-7133-4771-be0b-e402afb55e63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jissue
+    - node.type.law_journal_article
+    - taxonomy.vocabulary.law_journal_issues
+id: node.law_journal_article.field_jissue
+field_name: field_jissue
+entity_type: node
+bundle: law_journal_article
+label: 'Issue number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      law_journal_issues: law_journal_issues
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

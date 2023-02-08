@@ -80,14 +80,10 @@ class MigrateExecutableMemoryExceededTest extends MigrateTestCase {
     if ($message) {
       $this->executable->message->expects($this->at(0))
         ->method('display')
-        ->with($this->callback(function ($subject) {
-            return mb_stripos((string) $subject, 'reclaiming memory') !== FALSE;
-        }));
+        ->with($this->stringContains('reclaiming memory'));
       $this->executable->message->expects($this->at(1))
         ->method('display')
-        ->with($this->callback(function ($subject) use ($message) {
-            return mb_stripos((string) $subject, $message) !== FALSE;
-        }));
+        ->with($this->stringContains($message));
     }
     else {
       $this->executable->message->expects($this->never())

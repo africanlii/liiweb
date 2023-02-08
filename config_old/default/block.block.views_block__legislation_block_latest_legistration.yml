@@ -1,0 +1,30 @@
+uuid: 9f0f71a2-80ba-4c07-bc8a-8be929bbe774
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.legislation
+  module:
+    - system
+    - views
+  theme:
+    - liibarrio2020
+id: views_block__legislation_block_latest_legistration
+theme: liibarrio2020
+region: content_bottom
+weight: -21
+provider: null
+plugin: 'views_block:legislation-block_latest_legistration'
+settings:
+  id: 'views_block:legislation-block_latest_legistration'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: /legislation
+    negate: false
+    context_mapping: {  }

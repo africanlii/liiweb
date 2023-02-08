@@ -14,9 +14,6 @@ interface TimeInterface {
    * of the request. It will be the same value for the life of the request
    * (even for long execution times).
    *
-   * If the request is not available it will fallback to the current system
-   * time.
-   *
    * This method can replace instances of
    * @code
    * $request_time = $_SERVER['REQUEST_TIME'];
@@ -52,9 +49,6 @@ interface TimeInterface {
    * This method should be used to obtain the current system time, with
    * microsecond precision, at the start of the request. It will be the same
    * value for the life of the request (even for long execution times).
-   *
-   * If the request is not available it will fallback to the current system
-   * time with microsecond precision.
    *
    * This method can replace instances of
    * @code

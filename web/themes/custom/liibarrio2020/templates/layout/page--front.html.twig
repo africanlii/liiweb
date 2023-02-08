@@ -42,11 +42,10 @@
  * @see html.html.twig
  */
 #}
-<div class="layout-container">
-
+<div class="layout-container" id="page">
+  
   {# Header #}  
   <header class="layout-header" role="banner">  
-      
     {% if page.pre_header is not empty %}
     <div class="layout-header__pre-header">
       <div class="container">
@@ -61,7 +60,17 @@
         {# Header and Primary Nav #}
         <div class="container header-logo">
           {{ page.header }}    
-        </div>  
+        </div> 
+        {% if page.mega_menu %}
+          <nav class="navbar-green container" id="navbar-mega">
+            <a class="mobile-only" href="https://au.int/en/pap">
+              Return to Pan African Parliament
+            </a>
+            <div id="MegaMenu">
+              {{ page.mega_menu }} 
+            </div>
+          </nav>
+        {% endif %}
         <nav{{ navbar_attributes.addClass('navbar-light container') }}>
           {% if page.primary_menu %}
               <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">

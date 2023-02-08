@@ -10,7 +10,7 @@ class Transition implements TransitionInterface {
   /**
    * The workflow that this transition is attached to.
    *
-   * @var \Drupal\workflows\WorkflowTypeInterface
+   * @var \Drupal\workflows\WorkflowInterface
    */
   protected $workflow;
 
@@ -52,7 +52,7 @@ class Transition implements TransitionInterface {
   /**
    * Transition constructor.
    *
-   * @param \Drupal\workflows\WorkflowTypeInterface $workflow
+   * @param \Drupal\workflows\WorkflowInterface $workflow
    *   The workflow the state is attached to.
    * @param string $id
    *   The transition's ID.

@@ -1,0 +1,255 @@
+uuid: 76e670a4-5c46-446c-9b12-769296add735
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.legislation.field_as_at
+    - field.field.node.legislation.field_commencement_date
+    - field.field.node.legislation.field_content
+    - field.field.node.legislation.field_created
+    - field.field.node.legislation.field_created_by_api
+    - field.field.node.legislation.field_date
+    - field.field.node.legislation.field_expression_date
+    - field.field.node.legislation.field_external_link
+    - field.field.node.legislation.field_files
+    - field.field.node.legislation.field_frbr_uri
+    - field.field.node.legislation.field_images
+    - field.field.node.legislation.field_iso_country_code
+    - field.field.node.legislation.field_lifecycle_json
+    - field.field.node.legislation.field_locality
+    - field.field.node.legislation.field_parent_work
+    - field.field.node.legislation.field_publication_name
+    - field.field.node.legislation.field_raw_json
+    - field.field.node.legislation.field_repeal
+    - field.field.node.legislation.field_stub
+    - field.field.node.legislation.field_tags
+    - field.field.node.legislation.field_toc
+    - field.field.node.legislation.field_work_frbr_uri
+    - node.type.legislation
+  module:
+    - datetime
+    - ds
+    - file_download_link
+    - liiweb_legislation
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: liibarrio_stacked_2col_3_9
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        wrappers:
+          header_left: div
+          header_right: div
+          header: div
+          left: aside
+          right: section
+          footer: footer
+        outer_wrapper: article
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+          header_left: {  }
+          header_right: {  }
+          header: {  }
+          left: {  }
+          right: {  }
+          footer: {  }
+    regions:
+      header_left:
+        - node_title
+      left:
+        - field_frbr_uri
+        - field_lifecycle_json
+        - field_publication_name
+        - field_parent_work
+        - field_date
+        - field_commencement_date
+        - field_expression_date
+        - field_files
+        - 'dynamic_block_field:node-related_legislation'
+        - 'dynamic_token_field:node-share_links'
+      right:
+        - field_toc
+        - field_content
+    fields:
+      'dynamic_block_field:node-related_legislation':
+        plugin_id: 'dynamic_block_field:node-related_legislation'
+        weight: 9
+        label: hidden
+        formatter: default
+      'dynamic_token_field:node-share_links':
+        plugin_id: 'dynamic_token_field:node-share_links'
+        weight: 10
+        label: hidden
+        formatter: default
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h1
+          class: ''
+          link: false
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+id: node.legislation.full
+targetEntityType: node
+bundle: legislation
+mode: full
+content:
+  field_commencement_date:
+    type: datetime_custom
+    weight: 6
+    region: left
+    label: above
+    settings:
+      timezone_override: ''
+      date_format: 'j F Y'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_content:
+    weight: 12
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: right
+  field_date:
+    type: datetime_custom
+    weight: 5
+    region: left
+    label: above
+    settings:
+      timezone_override: ''
+      date_format: 'j F Y'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_expression_date:
+    type: datetime_custom
+    weight: 7
+    region: left
+    label: above
+    settings:
+      timezone_override: ''
+      date_format: 'j F Y'
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_files:
+    type: file_download_link
+    weight: 8
+    region: left
+    label: inline
+    settings:
+      link_text: Download
+      new_tab: true
+      force_download: true
+      custom_classes: ''
+    third_party_settings: {  }
+  field_frbr_uri:
+    type: string
+    weight: 1
+    region: left
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            classes:
+              - text-center
+              - alert
+            lb-col: false
+  field_lifecycle_json:
+    type: timeline_field_formatter
+    weight: 2
+    region: left
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_parent_work:
+    type: entity_reference_label
+    weight: 4
+    region: left
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_publication_name:
+    type: string
+    weight: 3
+    region: left
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_toc:
+    type: basic_string
+    weight: 11
+    region: right
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_as_at: true
+  field_created: true
+  field_created_by_api: true
+  field_external_link: true
+  field_images: true
+  field_iso_country_code: true
+  field_locality: true
+  field_raw_json: true
+  field_repeal: true
+  field_stub: true
+  field_tags: true
+  field_work_frbr_uri: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

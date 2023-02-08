@@ -143,7 +143,7 @@ class MigrateEntityContentValidationTest extends KernelTestBase {
   /**
    * Reacts to map message event.
    *
-   * @param \Drupal\migrate\Event\MigrateIdMapMessageEvent $event
+   * @param \Drupal\Migrate\Event\MigrateIdMapMessageEvent $event
    *   The migration event.
    */
   public function mapMessageRecorder(MigrateIdMapMessageEvent $event) {

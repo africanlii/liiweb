@@ -1,0 +1,19 @@
+uuid: 64b9d583-0f14-40b4-a9ba-139b70df8660
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_featured_from_bookshelf
+field_name: field_featured_from_bookshelf
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 3
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

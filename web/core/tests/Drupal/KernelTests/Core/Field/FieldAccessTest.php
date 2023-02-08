@@ -19,14 +19,7 @@ class FieldAccessTest extends KernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
-    'entity_test',
-    'field',
-    'system',
-    'text',
-    'filter',
-    'user',
-  ];
+  public static $modules = ['entity_test', 'field', 'system', 'text', 'filter', 'user'];
 
   /**
    * Holds the currently active global user ID that initiated the test run.

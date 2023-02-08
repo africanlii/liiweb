@@ -1,0 +1,31 @@
+uuid: 4f17b189-e4c7-414e-a306-9225c8e41c74
+langcode: en
+status: false
+dependencies:
+  module:
+    - user
+  theme:
+    - liibarrio2020
+_core:
+  default_config_hash: c-06bbElRY5sKmglk74ppgTW93Et4-EJFyNiUZMb8JY
+id: liibarrio2020_local_tasks
+theme: liibarrio2020
+region: highlighted
+weight: -5
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

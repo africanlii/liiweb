@@ -1,0 +1,23 @@
+uuid: 5f1a02d9-8f95-4b33-a8c5-562801f1ef3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stub
+    - node.type.legislation
+id: node.legislation.field_stub
+field_name: field_stub
+entity_type: node
+bundle: legislation
+label: Stub
+description: 'Data in the system about this work is incomplete.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

@@ -1,0 +1,23 @@
+uuid: 65e66e19-1ef5-494f-82e2-a4fe6b5a8dad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_case_number_year
+    - node.type.judgment
+id: node.judgment.field_case_number_year
+field_name: field_case_number_year
+entity_type: node
+bundle: judgment
+label: 'Case number year'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

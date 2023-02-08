@@ -340,15 +340,8 @@ class ViewExecutableTest extends UnitTestCase {
 
   /**
    * @covers ::addHandler
-   *
-   * @dataProvider addHandlerProvider
-   *
-   * @param string $option
-   *   The option to set on the View.
-   * @param $handler_type
-   *   The handler type to set.
    */
-  public function testAddHandler($option, $handler_type) {
+  public function testAddHandler() {
     /** @var \Drupal\views\ViewExecutable|\PHPUnit\Framework\MockObject\MockObject $view */
     /** @var \Drupal\views\Plugin\views\display\DisplayPluginBase|\PHPUnit\Framework\MockObject\MockObject $display */
     list($view, $display) = $this->setupBaseViewAndDisplay();
@@ -366,31 +359,30 @@ class ViewExecutableTest extends UnitTestCase {
       ->with('test_entity')
       ->willReturn($views_data);
 
-    $display->expects($this->atLeastOnce())
-      ->method('setOption')
-      ->with($option, [
-        'test_field' => [
-          'id' => 'test_field',
-          'table' => 'test_entity',
-          'field' => 'test_field',
-          'plugin_id' => 'standard',
-        ],
-      ]);
+    foreach (['field', 'filter', 'argument', 'sort'] as $handler_type) {
+      $display->expects($this->atLeastOnce())
+        ->method('setOption')
+        ->with($this->callback(function ($argument) {
+          return $argument;
+        }), [
+          'test_field' => [
+            'id' => 'test_field',
+            'table' => 'test_entity',
+            'field' => 'test_field',
+            'plugin_id' => 'standard',
+          ],
+        ]);
+    }
 
-    $view->addHandler('default', $handler_type, 'test_entity', 'test_field');
+    foreach (['field', 'filter', 'argument', 'sort'] as $handler_type) {
+      $view->addHandler('default', $handler_type, 'test_entity', 'test_field');
+    }
   }
 
   /**
    * @covers ::addHandler
-   *
-   * @dataProvider addHandlerProvider
-   *
-   * @param string $option
-   *   The option to set on the View.
-   * @param $handler_type
-   *   The handler type to set.
    */
-  public function testAddHandlerWithEntityField($option, $handler_type) {
+  public function testAddHandlerWithEntityField() {
     /** @var \Drupal\views\ViewExecutable|\PHPUnit\Framework\MockObject\MockObject $view */
     /** @var \Drupal\views\Plugin\views\display\DisplayPluginBase|\PHPUnit\Framework\MockObject\MockObject $display */
     list($view, $display) = $this->setupBaseViewAndDisplay();
@@ -410,35 +402,26 @@ class ViewExecutableTest extends UnitTestCase {
       ->with('test_entity')
       ->willReturn($views_data);
 
-    $display->expects($this->atLeastOnce())
-      ->method('setOption')
-      ->with($option, [
-        'test_field' => [
-          'id' => 'test_field',
-          'table' => 'test_entity',
-          'field' => 'test_field',
-          'entity_type' => 'test_entity_type',
-          'entity_field' => 'test_field',
-          'plugin_id' => 'standard',
-        ],
-      ]);
+    foreach (['field', 'filter', 'argument', 'sort'] as $handler_type) {
+      $display->expects($this->atLeastOnce())
+        ->method('setOption')
+        ->with($this->callback(function ($argument) {
+          return $argument;
+        }), [
+          'test_field' => [
+            'id' => 'test_field',
+            'table' => 'test_entity',
+            'field' => 'test_field',
+            'entity_type' => 'test_entity_type',
+            'entity_field' => 'test_field',
+            'plugin_id' => 'standard',
+          ],
+        ]);
+    }
 
-    $view->addHandler('default', $handler_type, 'test_entity', 'test_field');
-  }
-
-  /**
-   * Data provider for testAddHandlerWithEntityField and testAddHandler.
-   *
-   * @return array[]
-   *   Test data set.
-   */
-  public function addHandlerProvider() {
-    return [
-      'field' => ['fields', 'field'],
-      'filter' => ['filters', 'filter'],
-      'argument' => ['arguments', 'argument'],
-      'sort' => ['sorts', 'sort'],
-    ];
+    foreach (['field', 'filter', 'argument', 'sort'] as $handler_type) {
+      $view->addHandler('default', $handler_type, 'test_entity', 'test_field');
+    }
   }
 
   /**

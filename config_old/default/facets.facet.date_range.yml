@@ -1,0 +1,71 @@
+uuid: 6571ebb9-787d-4beb-a50f-270d725097df
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.full_site_search
+    - views.view.liiweb_search
+  module:
+    - search_api
+id: date_range
+name: 'Date Range'
+url_alias: date_range
+weight: -2
+min_count: 1
+show_only_one_result: true
+field_identifier: field_date
+facet_source_id: 'search_api:views_page__liiweb_search__page_search'
+widget:
+  type: links
+  config:
+    show_numbers: false
+    soft_limit: 5
+    soft_limit_settings:
+      show_less_label: 'Show less'
+      show_more_label: 'Show more'
+    show_reset_link: true
+    reset_text: 'All Dates'
+    hide_reset_when_no_selection: false
+query_operator: or
+use_hierarchy: false
+expand_hierarchy: false
+enable_parent_when_child_gets_disabled: true
+hard_limit: 0
+exclude: false
+only_visible_when_facet_source_is_visible: true
+processor_configs:
+  date_item:
+    processor_id: date_item
+    weights:
+      build: 35
+    settings:
+      date_display: actual_date
+      granularity: 6
+      date_format: ''
+  range_slider:
+    processor_id: range_slider
+    weights:
+      pre_query: 60
+      post_query: 60
+      build: 20
+    settings: {  }
+  raw_value_widget_order:
+    processor_id: raw_value_widget_order
+    weights:
+      sort: 50
+    settings:
+      sort: DESC
+  slider:
+    processor_id: slider
+    weights:
+      post_query: 60
+    settings: {  }
+  url_processor_handler:
+    processor_id: url_processor_handler
+    weights:
+      pre_query: 50
+      build: 15
+    settings: {  }
+empty_behavior:
+  behavior: none
+show_title: true

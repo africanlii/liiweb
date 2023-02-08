@@ -1,0 +1,11 @@
+uuid: da627240-1212-402d-8a4a-f716c9e0963e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.book_topic
+id: taxonomy_term.book_topic
+target_entity_type_id: taxonomy_term
+target_bundle: book_topic
+default_langcode: site_default
+language_alterable: false

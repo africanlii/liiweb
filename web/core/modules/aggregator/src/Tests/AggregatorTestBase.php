@@ -34,13 +34,7 @@ abstract class AggregatorTestBase extends WebTestBase {
    *
    * @var array
    */
-  public static $modules = [
-    'block',
-    'node',
-    'aggregator',
-    'aggregator_test',
-    'views',
-  ];
+  public static $modules = ['block', 'node', 'aggregator', 'aggregator_test', 'views'];
 
   /**
    * {@inheritdoc}

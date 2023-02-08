@@ -1,0 +1,27 @@
+uuid: 2d4e3b2a-a5b2-45a3-a2f9-e795d61d322f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.home_page.body
+    - field.field.node.home_page.field_featured_collection
+    - field.field.node.home_page.field_featured_from_bookshelf
+    - field.field.node.home_page.field_law_bookshelf
+    - field.field.node.home_page.field_law_in_focus
+    - node.type.home_page
+  module:
+    - user
+id: node.home_page.default
+targetEntityType: node
+bundle: home_page
+mode: default
+content: {  }
+hidden:
+  body: true
+  field_featured_collection: true
+  field_featured_from_bookshelf: true
+  field_law_bookshelf: true
+  field_law_in_focus: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

@@ -1,0 +1,22 @@
+uuid: 689a5ec7-f109-4bb1-9066-180b4bf0738b
+langcode: en
+status: true
+dependencies:
+  module:
+    - computed_field
+    - node
+id: node.field_media_neutral_citation
+field_name: field_media_neutral_citation
+entity_type: node
+type: computed_string
+settings:
+  max_length: '100'
+  is_ascii: false
+  case_sensitive: false
+module: computed_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

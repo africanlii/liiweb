@@ -25,7 +25,7 @@ interface LoggerChannelFactoryInterface {
    * @param int $priority
    *   The priority of the logger being added.
    *
-   * @see \Symfony\Component\HttpKernel\DependencyInjection\LoggerPass
+   * @see \Drupal\Core\DependencyInjection\Compiler\RegisterLoggersPass
    */
   public function addLogger(LoggerInterface $logger, $priority = 0);
 

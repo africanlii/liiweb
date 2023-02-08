@@ -1,0 +1,35 @@
+uuid: 4ce1fc72-46db-4abd-8708-8b3ebc3ac334
+langcode: en
+status: false
+dependencies:
+  module:
+    - ctools_block
+    - system
+  theme:
+    - liibarrio2020
+id: featuredfrombookshelf
+theme: liibarrio2020
+region: content
+weight: -19
+provider: null
+plugin: 'entity_field:node:field_featured_from_bookshelf'
+settings:
+  id: 'entity_field:node:field_featured_from_bookshelf'
+  label: 'Featured from Bookshelf'
+  provider: ctools_block
+  label_display: visible
+  formatter:
+    label: hidden
+    type: entity_reference_entity_view
+    settings:
+      view_mode: card
+    third_party_settings: {  }
+    weight: 0
+  context_mapping:
+    entity: '@node.node_route_context:node'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

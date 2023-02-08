@@ -176,12 +176,6 @@ class EntityTest extends UnitTestCase {
 
     $this->assertTrue($this->argumentValidator->validateArgument(1));
     $this->assertFalse($this->argumentValidator->validateArgument(2));
-
-    $options['bundles'] = NULL;
-    $this->argumentValidator->init($this->executable, $this->display, $options);
-
-    $this->assertTrue($this->argumentValidator->validateArgument(1));
-    $this->assertTrue($this->argumentValidator->validateArgument(2));
   }
 
   /**

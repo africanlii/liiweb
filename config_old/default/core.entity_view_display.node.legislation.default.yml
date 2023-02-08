@@ -1,0 +1,70 @@
+uuid: f71340bc-e641-4921-a4a7-3df001dcf764
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.legislation.field_as_at
+    - field.field.node.legislation.field_commencement_date
+    - field.field.node.legislation.field_content
+    - field.field.node.legislation.field_created
+    - field.field.node.legislation.field_created_by_api
+    - field.field.node.legislation.field_date
+    - field.field.node.legislation.field_expression_date
+    - field.field.node.legislation.field_external_link
+    - field.field.node.legislation.field_files
+    - field.field.node.legislation.field_frbr_uri
+    - field.field.node.legislation.field_images
+    - field.field.node.legislation.field_iso_country_code
+    - field.field.node.legislation.field_lifecycle_json
+    - field.field.node.legislation.field_locality
+    - field.field.node.legislation.field_parent_work
+    - field.field.node.legislation.field_publication_name
+    - field.field.node.legislation.field_raw_json
+    - field.field.node.legislation.field_repeal
+    - field.field.node.legislation.field_stub
+    - field.field.node.legislation.field_tags
+    - field.field.node.legislation.field_toc
+    - field.field.node.legislation.field_work_frbr_uri
+    - node.type.legislation
+  module:
+    - datetime
+    - user
+id: node.legislation.default
+targetEntityType: node
+bundle: legislation
+mode: default
+content:
+  field_date:
+    weight: 0
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+hidden:
+  field_as_at: true
+  field_commencement_date: true
+  field_content: true
+  field_created: true
+  field_created_by_api: true
+  field_expression_date: true
+  field_external_link: true
+  field_files: true
+  field_frbr_uri: true
+  field_images: true
+  field_iso_country_code: true
+  field_lifecycle_json: true
+  field_locality: true
+  field_parent_work: true
+  field_publication_name: true
+  field_raw_json: true
+  field_repeal: true
+  field_stub: true
+  field_tags: true
+  field_toc: true
+  field_work_frbr_uri: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

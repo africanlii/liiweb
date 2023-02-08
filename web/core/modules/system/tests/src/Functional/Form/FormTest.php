@@ -251,27 +251,21 @@ class FormTest extends BrowserTestBase {
     $this->assertSession()
       ->elementExists('css', 'input[name="form_token"]')
       ->setValue('invalid token');
-    $random_string = $this->randomString();
     $edit = [
-      'textfield' => $random_string,
+      'textfield' => $this->randomString(),
       'checkboxes[bar]' => TRUE,
       'select' => 'bar',
       'radios' => 'foo',
     ];
     $this->drupalPostForm(NULL, $edit, 'Submit');
     $this->assertFieldByXpath('//div[contains(@class, "error")]', NULL, 'Error message is displayed with invalid token even when required fields are filled.');
-
-    $assert = $this->assertSession();
-    $element = $assert->fieldExists('textfield');
-    $this->assertEmpty($element->getValue());
-    $assert->responseNotContains($random_string);
-    $this->assertText('The form has become outdated.');
-    // Ensure that we don't use the posted values.
-    $this->assertFieldByName('textfield', '');
+    $this->assertText('The form has become outdated. Copy any unsaved work in the form below');
+    // Verify that input elements retained the posted values.
+    $this->assertFieldByName('textfield', $edit['textfield']);
     $this->assertNoFieldChecked('edit-checkboxes-foo');
-    $this->assertNoFieldChecked('edit-checkboxes-bar');
-    $this->assertOptionSelected('edit-select', '');
-    $this->assertNoFieldChecked('edit-radios-foo');
+    $this->assertFieldChecked('edit-checkboxes-bar');
+    $this->assertOptionSelected('edit-select', 'bar');
+    $this->assertFieldChecked('edit-radios-foo');
 
     // Check another form that has a textarea input.
     $this->drupalGet(Url::fromRoute('form_test.required'));
@@ -284,9 +278,9 @@ class FormTest extends BrowserTestBase {
     ];
     $this->drupalPostForm(NULL, $edit, 'Submit');
     $this->assertFieldByXpath('//div[contains(@class, "error")]', NULL, 'Error message is displayed with invalid token even when required fields are filled.');
-    $this->assertText('The form has become outdated.');
-    $this->assertFieldByName('textfield', '');
-    $this->assertFieldByName('textarea', '');
+    $this->assertText('The form has become outdated. Copy any unsaved work in the form below');
+    $this->assertFieldByName('textfield', $edit['textfield']);
+    $this->assertFieldByName('textarea', $edit['textarea']);
 
     // Check another form that has a number input.
     $this->drupalGet(Url::fromRoute('form_test.number'));
@@ -294,14 +288,12 @@ class FormTest extends BrowserTestBase {
       ->elementExists('css', 'input[name="form_token"]')
       ->setValue('invalid token');
     $edit = [
-      // We choose a random value which is higher than the default value,
-      // so we don't accidentally generate the default value.
-      'integer_step' => mt_rand(6, 100),
+      'integer_step' => mt_rand(1, 100),
     ];
     $this->drupalPostForm(NULL, $edit, 'Submit');
     $this->assertFieldByXpath('//div[contains(@class, "error")]', NULL, 'Error message is displayed with invalid token even when required fields are filled.');
-    $this->assertText('The form has become outdated.');
-    $this->assertFieldByName('integer_step', 5);
+    $this->assertText('The form has become outdated. Copy any unsaved work in the form below');
+    $this->assertFieldByName('integer_step', $edit['integer_step']);
 
     // Check a form with a Url field
     $this->drupalGet(Url::fromRoute('form_test.url'));
@@ -313,8 +305,8 @@ class FormTest extends BrowserTestBase {
     ];
     $this->drupalPostForm(NULL, $edit, 'Submit');
     $this->assertFieldByXpath('//div[contains(@class, "error")]', NULL, 'Error message is displayed with invalid token even when required fields are filled.');
-    $this->assertText('The form has become outdated.');
-    $this->assertFieldByName('url', '');
+    $this->assertText('The form has become outdated. Copy any unsaved work in the form below');
+    $this->assertFieldByName('url', $edit['url']);
   }
 
   /**

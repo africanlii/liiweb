@@ -22,15 +22,7 @@ class ContentTranslationLanguageChangeTest extends NodeTestBase {
    *
    * @var array
    */
-  public static $modules = [
-    'language',
-    'content_translation',
-    'content_translation_test',
-    'node',
-    'block',
-    'field_ui',
-    'image',
-  ];
+  public static $modules = ['language', 'content_translation', 'content_translation_test', 'node', 'block', 'field_ui', 'image'];
 
   /**
    * {@inheritdoc}
@@ -112,9 +104,9 @@ class ContentTranslationLanguageChangeTest extends NodeTestBase {
 
     // Check that the translation languages are correct.
     $node = $this->getNodeByTitle('english_title');
-    $translation_languages = $node->getTranslationLanguages();
-    $this->assertArrayHasKey('fr', $translation_languages);
-    $this->assertArrayHasKey('de', $translation_languages);
+    $translation_languages = array_keys($node->getTranslationLanguages());
+    $this->assertTrue(in_array('fr', $translation_languages));
+    $this->assertTrue(in_array('de', $translation_languages));
   }
 
   /**
@@ -159,9 +151,9 @@ class ContentTranslationLanguageChangeTest extends NodeTestBase {
 
     // Check that the translation languages are correct.
     $node = $this->getNodeByTitle('english_title');
-    $translation_languages = $node->getTranslationLanguages();
-    $this->assertArrayHasKey('fr', $translation_languages);
-    $this->assertArrayNotHasKey('de', $translation_languages);
+    $translation_languages = array_keys($node->getTranslationLanguages());
+    $this->assertTrue(in_array('fr', $translation_languages));
+    $this->assertTrue(!in_array('de', $translation_languages));
   }
 
 }

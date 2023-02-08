@@ -5,8 +5,6 @@
  * Hooks provided by the Update Manager module.
  */
 
-use Drupal\update\UpdateFetcherInterface;
-
 /**
  * @addtogroup hooks
  * @{
@@ -29,11 +27,11 @@ use Drupal\update\UpdateFetcherInterface;
  *   Reference to an array of the projects installed on the system. This
  *   includes all the metadata documented in the comments below for each project
  *   (either module or theme) that is currently enabled. The array is initially
- *   populated inside \Drupal\update\UpdateManager::getProjects() with the help
+ *   populated inside \Drupal\Update\UpdateManager::getProjects() with the help
  *   of \Drupal\Core\Utility\ProjectInfo->processInfoList(), so look there for
  *   examples of how to populate the array with real values.
  *
- * @see \Drupal\update\UpdateManager::getProjects()
+ * @see \Drupal\Update\UpdateManager::getProjects()
  * @see \Drupal\Core\Utility\ProjectInfo::processInfoList()
  */
 function hook_update_projects_alter(&$projects) {
@@ -91,7 +89,7 @@ function hook_update_status_alter(&$projects) {
         ($settings[$project]['check'] == 'never' ||
           (isset($project_info['recommended']) &&
             $settings[$project]['check'] === $project_info['recommended']))) {
-      $projects[$project]['status'] = UpdateFetcherInterface::NOT_CHECKED;
+      $projects[$project]['status'] = UPDATE_NOT_CHECKED;
       $projects[$project]['reason'] = t('Ignored from settings');
       if (!empty($settings[$project]['notes'])) {
         $projects[$project]['extra'][] = [

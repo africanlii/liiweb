@@ -1,0 +1,34 @@
+uuid: 9f21f0fd-fdaa-4c76-92ae-6530722b9059
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools_block
+    - system
+  theme:
+    - liibarrio2020
+id: body
+theme: liibarrio2020
+region: content_top
+weight: -25
+provider: null
+plugin: 'entity_field:node:body'
+settings:
+  id: 'entity_field:node:body'
+  label: Body
+  provider: ctools_block
+  label_display: '0'
+  formatter:
+    label: hidden
+    type: text_default
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+  context_mapping:
+    entity: '@node.node_route_context:node'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

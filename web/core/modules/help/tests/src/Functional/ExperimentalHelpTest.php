@@ -19,11 +19,7 @@ class ExperimentalHelpTest extends BrowserTestBase {
    *
    * @var array
    */
-  public static $modules = [
-    'help',
-    'experimental_module_test',
-    'help_page_test',
-  ];
+  public static $modules = ['help', 'experimental_module_test', 'help_page_test'];
 
   /**
    * {@inheritdoc}
@@ -38,7 +34,7 @@ class ExperimentalHelpTest extends BrowserTestBase {
   protected $adminUser;
 
   /**
-   * {@inheritdoc}
+   * {@inheritoc}
    */
   protected function setUp() {
     parent::setUp();
@@ -58,7 +54,7 @@ class ExperimentalHelpTest extends BrowserTestBase {
     $this->assertNoText('This module is experimental.');
 
     // Ensure the actual help page is displayed to avoid a false positive.
-    $this->assertSession()->statusCodeEquals(200);
+    $this->assertResponse(200);
     $this->assertText('online documentation for the Help Page Test module');
   }
 

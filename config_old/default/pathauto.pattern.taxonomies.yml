@@ -1,0 +1,39 @@
+uuid: 91361eaa-3b36-4fbb-b724-afc06d0adf3e
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: taxonomies
+label: Taxonomies
+type: 'canonical_entities:taxonomy_term'
+pattern: '[term:vocabulary]/[term:name]'
+selection_criteria:
+  d44d51bf-1fdb-496a-bc24-122d1e29d908:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      author_affiliation: author_affiliation
+      author_surname: author_surname
+      contributing_organisation: contributing_organisation
+      copyright_and_licensing: copyright_and_licensing
+      country: country
+      court_names: court_names
+      iso_country_code: iso_country_code
+      judges: judges
+      law_in_focus_collection: law_in_focus_collection
+      law_in_focus_topics: law_in_focus_topics
+      law_journal_issues: law_journal_issues
+      law_journals: law_journals
+      legislation_tags: legislation_tags
+      locality: locality
+      matter_type: matter_type
+      tags: tags
+      tags_local: tags_local
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: d44d51bf-1fdb-496a-bc24-122d1e29d908
+selection_logic: and
+weight: -5
+relationships: {  }

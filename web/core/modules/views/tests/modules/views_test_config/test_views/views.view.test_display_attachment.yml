@@ -56,11 +56,10 @@ display:
     position: 2
     display_options:
       displays:
-        page: page
-        attachment_1: attachment_1
-  page:
+        page_1: page_1
+  page_1:
     display_plugin: page
-    id: page
+    id: page_1
     display_title: Page
     position: 1
     display_options:

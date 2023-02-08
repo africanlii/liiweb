@@ -5,15 +5,7 @@ Allow json api to register custom normalizers
 Source: patches/jsonapi/jsonapi_allow_custom_normalizers.patch
 
 
-Add tokens for exposed filters in views
-Source: patches/views/2761273-39.patch
-
-
-remove duplicate theme suggestions
-Source: patches/views/2118743-139-twig-debug-info.patch
-
-
-fix ocntextual filters with exposed form bug
-Source: patches/views/views-exposed-form-block-arg-2821962-50.patch
+Book module bug patch adapted from https://www.drupal.org/project/drupal/issues/2918537#comment-13873706
+Source: patches/core/2918537-63.patch
 
 

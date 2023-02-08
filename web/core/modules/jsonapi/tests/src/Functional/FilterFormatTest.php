@@ -51,7 +51,7 @@ class FilterFormatTest extends ResourceTestBase {
    */
   protected function createEntity() {
     $pablo_format = FilterFormat::create([
-      'name' => 'Pablo Picasso',
+      'name' => 'Pablo Piccasso',
       'format' => 'pablo',
       'langcode' => 'es',
       'filters' => [
@@ -106,7 +106,7 @@ class FilterFormatTest extends ResourceTestBase {
             ],
           ],
           'langcode' => 'es',
-          'name' => 'Pablo Picasso',
+          'name' => 'Pablo Piccasso',
           'status' => TRUE,
           'weight' => 0,
           'drupal_internal__format' => 'pablo',

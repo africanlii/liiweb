@@ -96,13 +96,6 @@ class FilterSettingsTest extends MigrateTestCase {
           'allowed_html' => '<a href hreflang> <em> <strong> <cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd>',
         ],
       ],
-      [
-        [
-          'foo' => 'bar',
-        ],
-        'filter_null',
-        [],
-      ],
     ];
   }
 

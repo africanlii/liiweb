@@ -1,0 +1,8 @@
+uuid: bb9f214e-39d1-4959-adda-e847d04b3173
+langcode: en
+status: true
+dependencies: {  }
+id: jfy
+label: jFY
+locked: false
+pattern: 'j F Y'

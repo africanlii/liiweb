@@ -1,0 +1,25 @@
+uuid: 99afb773-a30d-4477-93b7-1acca521768d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - liibarrio2020
+id: pagetitle
+theme: liibarrio2020
+region: content_top
+weight: -29
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: "/judgments\r\n/judgments/*\r\n/legislation\r\n/legislation/*\r\n/judgments_by_court\r\n/judgments_by_court/*\r\n/bookshelf\r\n/bookshelf/*\r\n/taxonomy/term/*\r\n/search\r\n/search/*\r\n/db-search\r\n/db-search/*"
+    negate: false
+    context_mapping: {  }

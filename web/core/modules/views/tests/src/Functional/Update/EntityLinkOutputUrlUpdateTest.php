@@ -8,8 +8,6 @@ use Drupal\views\Entity\View;
 /**
  * Tests that the additional settings are added to the entity link field.
  *
- * @coversDefaultClass \Drupal\views\ViewsConfigUpdater
- *
  * @see views_post_update_entity_link_url()
  *
  * @group legacy
@@ -28,8 +26,6 @@ class EntityLinkOutputUrlUpdateTest extends UpdatePathTestBase {
 
   /**
    * Tests that the additional settings are added to the config.
-   *
-   * @covers ::needsEntityLinkUrlUpdate
    */
   public function testViewsPostUpdateEntityLinkUrl() {
     $this->runUpdates();

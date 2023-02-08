@@ -1,0 +1,10 @@
+uuid: b8a5238b-132b-47a9-a563-11c20af915ed
+langcode: en
+status: true
+dependencies: {  }
+id: collections_link
+label: 'Collections Link'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

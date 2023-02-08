@@ -22,13 +22,7 @@ class FieldImportDeleteUninstallUiTest extends FieldTestBase {
    *
    * @var array
    */
-  public static $modules = [
-    'entity_test',
-    'telephone',
-    'config',
-    'filter',
-    'datetime',
-  ];
+  public static $modules = ['entity_test', 'telephone', 'config', 'filter', 'datetime'];
 
   /**
    * {@inheritdoc}

@@ -5,8 +5,10 @@
  * Post update functions for the Workspaces module.
  */
 
+use Drupal\Core\Entity\ContentEntityNullStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
 use Drupal\Core\Site\Settings;
 
 /**
@@ -29,13 +31,19 @@ function workspaces_post_update_remove_default_workspace() {
  */
 function workspaces_post_update_move_association_data(&$sandbox) {
   $database = \Drupal::database();
+  $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
   $entity_type_manager = \Drupal::entityTypeManager();
+  $entity_type = $entity_definition_update_manager->getEntityType('workspace_association');
 
-  // @see workspaces_update_8803()
-  $tables = \Drupal::state()->get('workspaces_update_8803.tables');
-  if (!$tables) {
+  // We can't migrate the workspace association data if the entity type is not
+  // using its default storage.
+  if ($entity_type->getHandlerClasses()['storage'] !== 'Drupal\workspaces\WorkspaceAssociationStorage') {
     return;
   }
+
+  // Since the custom storage class doesn't exist anymore, we have to use core's
+  // default storage.
+  $entity_type->setStorageClass(SqlContentEntityStorage::class);
 
   // If 'progress' is not set, this will be the first run of the batch.
   if (!isset($sandbox['progress'])) {
@@ -85,12 +93,12 @@ function workspaces_post_update_move_association_data(&$sandbox) {
 
     // Copy all the data from the base table of the 'workspace_association'
     // entity type to the temporary association table.
-    $select = $database->select($tables['base_table'])
-      ->fields($tables['base_table'], ['workspace', 'target_entity_type_id', 'target_entity_id', 'target_entity_revision_id']);
+    $select = $database->select($entity_type->getBaseTable())
+      ->fields($entity_type->getBaseTable(), ['workspace', 'target_entity_type_id', 'target_entity_id', 'target_entity_revision_id']);
     $database->insert('tmp_workspace_association')->from($select)->execute();
   }
 
-  $table_name = $tables['revision_table'];
+  $table_name = $entity_type->getRevisionTable();
   $revision_field_name = 'revision_id';
 
   // Get the next entity association revision records to migrate.
@@ -128,10 +136,12 @@ function workspaces_post_update_move_association_data(&$sandbox) {
   // Uninstall the 'workspace_association' entity type and rename the temporary
   // table.
   if ($sandbox['#finished'] == 1) {
-    $database->schema()->dropTable($tables['base_table']);
-    $database->schema()->dropTable($tables['revision_table']);
+    $entity_type->setStorageClass(ContentEntityNullStorage::class);
+    $entity_definition_update_manager->uninstallEntityType($entity_type);
+    $database->schema()->dropTable('workspace_association');
+    $database->schema()->dropTable('workspace_association_revision');
+
     $database->schema()->renameTable('tmp_workspace_association', 'workspace_association');
-    \Drupal::state()->delete('workspaces_update_8803.tables');
   }
 }
 
@@ -142,23 +152,4 @@ function workspaces_post_update_update_deploy_form_display() {
   if ($form_display = EntityFormDisplay::load('workspace.workspace.deploy')) {
     $form_display->removeComponent('parent')->save();
   }
-}
-
-/**
- * Removes the workspace association entity and field schema data.
- */
-function workspaces_post_update_remove_association_schema_data() {
-  // Delete the entity and field schema data.
-  $keys = [
-    'workspace_association.entity_schema_data',
-    'workspace_association.field_schema_data.id',
-    'workspace_association.field_schema_data.revision_id',
-    'workspace_association.field_schema_data.uuid',
-    'workspace_association.field_schema_data.revision_default',
-    'workspace_association.field_schema_data.target_entity_id',
-    'workspace_association.field_schema_data.target_entity_revision_id',
-    'workspace_association.field_schema_data.target_entity_type_id',
-    'workspace_association.field_schema_data.workspace',
-  ];
-  \Drupal::keyValue('entity.storage_schema.sql')->deleteMultiple($keys);
 }

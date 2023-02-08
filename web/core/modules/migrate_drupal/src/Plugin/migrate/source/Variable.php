@@ -60,8 +60,7 @@ class Variable extends DrupalSqlBase {
    * {@inheritdoc}
    */
   public function count($refresh = FALSE) {
-    // Variable always returns a single row with at minimum an 'id' property.
-    return 1;
+    return intval($this->query()->countQuery()->execute()->fetchField() > 0);
   }
 
   /**

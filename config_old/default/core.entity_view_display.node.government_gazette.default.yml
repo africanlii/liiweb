@@ -1,0 +1,42 @@
+uuid: b5265099-1aa5-4e0c-86a7-7c0cf62c4d32
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.government_gazette.body
+    - field.field.node.government_gazette.field_date
+    - field.field.node.government_gazette.field_external_link
+    - field.field.node.government_gazette.field_file
+    - field.field.node.government_gazette.field_gazette_issue_number
+    - field.field.node.government_gazette.field_gazette_machine_id
+    - field.field.node.government_gazette.field_gazette_supplement
+    - field.field.node.government_gazette.field_locality
+    - node.type.government_gazette
+  module:
+    - datetime
+    - user
+id: node.government_gazette.default
+targetEntityType: node
+bundle: government_gazette
+mode: default
+content:
+  field_date:
+    weight: 0
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+hidden:
+  body: true
+  field_external_link: true
+  field_file: true
+  field_gazette_issue_number: true
+  field_gazette_machine_id: true
+  field_gazette_supplement: true
+  field_locality: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

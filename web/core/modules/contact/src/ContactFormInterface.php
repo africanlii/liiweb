@@ -38,7 +38,7 @@ interface ContactFormInterface extends ConfigEntityInterface {
    *
    * Empty redirect property results a url object of front page.
    *
-   * @return \Drupal\Core\Url
+   * @return \Drupal\core\Url
    *   The redirect url object.
    */
   public function getRedirectUrl();

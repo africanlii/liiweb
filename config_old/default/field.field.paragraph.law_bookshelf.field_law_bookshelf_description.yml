@@ -1,0 +1,21 @@
+uuid: 36addc8b-63f4-4a5c-80b9-ee2e60b4050c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_law_bookshelf_description
+    - paragraphs.paragraphs_type.law_bookshelf
+  module:
+    - text
+id: paragraph.law_bookshelf.field_law_bookshelf_description
+field_name: field_law_bookshelf_description
+entity_type: paragraph
+bundle: law_bookshelf
+label: 'Law Bookshelf Description'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

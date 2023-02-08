@@ -1,0 +1,19 @@
+uuid: 6e8f115e-9066-4c40-985a-471b4c67eadd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_matter_code
+    - taxonomy.vocabulary.matter_type
+id: taxonomy_term.matter_type.field_matter_code
+field_name: field_matter_code
+entity_type: taxonomy_term
+bundle: matter_type
+label: 'Matter code'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

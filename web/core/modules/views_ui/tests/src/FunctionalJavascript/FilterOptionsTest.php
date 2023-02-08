@@ -14,12 +14,7 @@ class FilterOptionsTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
-    'node',
-    'views',
-    'views_ui',
-    'views_ui_test_field',
-  ];
+  public static $modules = ['node', 'views', 'views_ui', 'views_ui_test_field'];
 
   /**
    * {@inheritdoc}

@@ -1,0 +1,26 @@
+uuid: 5aa7a84d-855c-4c3c-b47b-d3c8e1d0e3c9
+langcode: en
+status: false
+dependencies:
+  module:
+    - liiweb
+    - system
+  theme:
+    - liibarrio2020
+id: contactblock
+theme: liibarrio2020
+region: pre_header
+weight: -22
+provider: null
+plugin: contact_block
+settings:
+  id: contact_block
+  label: 'Get hold of us'
+  provider: liiweb
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: "/about\r\n/contact"
+    negate: false
+    context_mapping: {  }

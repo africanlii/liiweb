@@ -1,0 +1,25 @@
+uuid: 50d06277-acd7-49c3-800d-445d7c6d6a14
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - liibarrio2020
+_core:
+  default_config_hash: fRKXNB91UxDvEMkzCR8ZBsawfC6Fqbme2gtobei3gu4
+id: liibarrio2020_branding
+theme: liibarrio2020
+region: header
+weight: -20
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

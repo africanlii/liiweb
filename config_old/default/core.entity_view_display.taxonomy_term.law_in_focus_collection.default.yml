@@ -1,0 +1,31 @@
+uuid: 4cb96866-b666-40ef-8841-8a9e794b8a56
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.law_in_focus_collection.field_collection_description
+    - taxonomy.vocabulary.law_in_focus_collection
+  module:
+    - text
+id: taxonomy_term.law_in_focus_collection.default
+targetEntityType: taxonomy_term
+bundle: law_in_focus_collection
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_collection_description:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

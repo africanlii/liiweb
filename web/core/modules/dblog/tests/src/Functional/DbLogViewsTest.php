@@ -19,14 +19,7 @@ class DbLogViewsTest extends DbLogTest {
    *
    * @var array
    */
-  public static $modules = [
-    'dblog',
-    'node',
-    'forum',
-    'help',
-    'block',
-    'views',
-  ];
+  public static $modules = ['dblog', 'node', 'forum', 'help', 'block', 'views'];
 
   /**
    * {@inheritdoc}

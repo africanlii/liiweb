@@ -46,7 +46,6 @@
 
   {# Header #}  
   <header class="layout-header" role="banner">  
-      
     {% if page.pre_header is not empty %}
     <div class="layout-header__pre-header">
       <div class="container">
@@ -62,13 +61,24 @@
         <div class="container header-logo">
           {{ page.header }}    
         </div>  
+        {% if page.mega_menu %}
+          <nav class="navbar-green container" id="navbar-mega">
+            <a class="mobile-only" href="https://au.int/en/pap">
+              Return to Pan African Parliament
+            </a>
+            <div id="MegaMenu">
+              {{ page.mega_menu }} 
+            </div>
+          </nav>
+        {% endif %}
         <nav{{ navbar_attributes.addClass('navbar-light container') }}>
           {% if page.primary_menu %}
               <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 {% include('themes/custom/liibarrio2020/images/icons/hamburger.svg') %}
               </button>
+              
               <div class="collapse navbar-collapse" id="CollapsingNavbar">
-                {{ page.primary_menu }}                  
+                {{ page.primary_menu }}                 
               </div>
           {% endif %} 
         </nav>

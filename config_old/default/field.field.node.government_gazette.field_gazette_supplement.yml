@@ -1,0 +1,23 @@
+uuid: 3f94052a-8612-45b9-835e-61f25293d330
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gazette_supplement
+    - node.type.government_gazette
+id: node.government_gazette.field_gazette_supplement
+field_name: field_gazette_supplement
+entity_type: node
+bundle: government_gazette
+label: 'Gazette supplement'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

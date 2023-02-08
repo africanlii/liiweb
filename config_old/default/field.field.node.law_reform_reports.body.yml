@@ -1,0 +1,23 @@
+uuid: ad7b48a5-c927-417b-bb71-0d647a4af80a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.law_reform_reports
+  module:
+    - text
+id: node.law_reform_reports.body
+field_name: body
+entity_type: node
+bundle: law_reform_reports
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary
